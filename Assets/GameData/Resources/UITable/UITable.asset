@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d954c00d4d8b9a42b1c31896c3b33c8, type: 3}
+  m_Name: UITable
+  m_EditorClassIdentifier: 
+  BaseDatas:
+  - ID: HomeScnen
+    Prefab: {fileID: 8181076036601049491, guid: 6d22ddba36ff84677a64beeb4857020f, type: 3}
+    details: "\u4E3B\u83DC\u5355"
+    parentName: UIPanel
+    isInit: 1
+  UIParents:
+  - UIPanel
+  - UIDialogue
+  - UIPop
+  - UITop
