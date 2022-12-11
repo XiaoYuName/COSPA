@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561688c579516704098d94316e34ec6b, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  BaseDatas:
+  - ID: OnChick
+    audioType: 3
+    clip: {fileID: 8300000, guid: 49553ded898a49642bf7afc5eb501fd6, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: OutChick
+    audioType: 3
+    clip: {fileID: 8300000, guid: ed4dbaf0a9a707445b8c01e262f5da99, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: PopWindows
+    audioType: 3
+    clip: {fileID: 8300000, guid: 4dd9f02cdc06d044fb2b2a815cff3526, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: UI_click
+    audioType: 3
+    clip: {fileID: 8300000, guid: a44bd033313ea5245ac88722022c6580, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Calm1
+    audioType: 0
+    clip: {fileID: 8300000, guid: b4d7cca0cb790d4429d003d31046ad80, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Ambient1
+    audioType: 1
+    clip: {fileID: 8300000, guid: 4ec4e161eb84b1b4085406fa1a7bb72f, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
+  GameAudio:
+  - SceneName: GameScnen
+    BgmName: Calm1
+    AmbientName: Ambient1
+  GolodAudioMixer: {fileID: 24100000, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  AudioMixerGroupInfos:
+  - Type: 0
+    Group: {fileID: 24300002, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 1
+    Group: {fileID: -7391964126301006451, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 2
+    Group: {fileID: -5700943712286902784, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 3
+    Group: {fileID: -5080320299743673632, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 4
+    Group: {fileID: -3261379139102623894, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 5
+    Group: {fileID: -8574233290692123026, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 6
+    Group: {fileID: 362709054602567810, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 7
+    Group: {fileID: -8062121401825557134, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 8
+    Group: {fileID: -5115760713875959987, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  AudioMixerSnapshotsInfos:
+  - Type: 0
+    Snapshot: {fileID: 24500006, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 1
+    Snapshot: {fileID: 6255222577905619901, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 3
+    Snapshot: {fileID: -4085921932499016513, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 2
+    Snapshot: {fileID: 1722504437986904499, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}

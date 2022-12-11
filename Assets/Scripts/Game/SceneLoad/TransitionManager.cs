@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using ARPG;
-using ARPG.Global;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,14 +28,14 @@ namespace RPG.Transition
         
         private void OnEnable()
         {
-            EventHandle.TransitionEvent += TransitionScnen;
-            EventHandle.StartGameScene += StarGameScen;
+            MessageAction.TransitionEvent += TransitionScnen;
+            MessageAction.StartGameScene += StarGameScen;
         }
         
         private void OnDisable()
         {
-            EventHandle.TransitionEvent -= TransitionScnen;
-            EventHandle.StartGameScene -= StarGameScen;
+            MessageAction.TransitionEvent -= TransitionScnen;
+            MessageAction.StartGameScene -= StarGameScen;
         }
 
         private void StarGameScen(string SceneName,Vector3 pos)
@@ -71,7 +70,7 @@ namespace RPG.Transition
             yield return SceneManager.LoadSceneAsync(scnenName,LoadSceneMode.Additive);
             Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
             SceneManager.SetActiveScene(newScene);
-            EventHandle.OnAfterScenenLoadEvent();
+            MessageAction.OnAfterScenenLoadEvent();
         }
         
         /// <summary>
@@ -83,13 +82,13 @@ namespace RPG.Transition
         private IEnumerator Transition(string sceneName,Vector3 targetpos)
         {
             //卸载当前场景
-            EventHandle.OnBeforScenenUnloadEvent();
+            MessageAction.OnBeforScenenUnloadEvent();
             yield return Fade(1);
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             yield return LoadAsynScnen(sceneName);
-            EventHandle.OnMovToPosint(targetpos);
+            MessageAction.OnMovToPosint(targetpos);
             yield return Fade(0);
-            EventHandle.OnAfterScenenLoadEvent();
+            MessageAction.OnAfterScenenLoadEvent();
             
         }
 
