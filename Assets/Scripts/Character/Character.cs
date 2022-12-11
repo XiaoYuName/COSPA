@@ -20,6 +20,9 @@ namespace ARPG.Character
         [SpineAnimation]
         public string stopanimname;
 
+        [SpineAnimation]
+        public string Attackanimname;
+
         private int State;
 
         private void Awake()
@@ -50,10 +53,14 @@ namespace ARPG.Character
                 }
                 State = 1;
             }
-
             if (Movspeed.x != 0)
             {
                 transform.rotation = Quaternion.Euler(0, Movspeed.x < 0 ? 180 : 0, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                SwitchAnimator(Attackanimname, false);
             }
         }
 
