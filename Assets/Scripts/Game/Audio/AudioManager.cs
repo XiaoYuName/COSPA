@@ -29,6 +29,11 @@ namespace ARPG
         private AudioSource HeadAudio;
 
         /// <summary>
+        /// 视频音效
+        /// </summary>
+        private AudioSource VideoAudio;
+
+        /// <summary>
         /// 切换场景后,背景音效开始播放的随机时间
         /// </summary>
         private int AudioSwitchRadom => Random.Range(3, 5);
@@ -49,6 +54,8 @@ namespace ARPG
             BGMAudio = transform.Find("GameBGM").GetComponent<AudioSource>();
             AmbientAudio = transform.Find("GameAmbient").GetComponent<AudioSource>();
             HeadAudio =transform.Find("GameHead").GetComponent<AudioSource>();//GameHead
+            VideoAudio = transform.Find("VideoAudio").GetComponent<AudioSource>();
+            VideoAudio.gameObject.SetActive(false);
             Mixer = MainAudioData.GolodAudioMixer;
             normalSnapshot = MainAudioData.GetAudioMixerSnapshot(AudioSnapshotsType.Normal);
             AmbientSnapshot = MainAudioData.GetAudioMixerSnapshot(AudioSnapshotsType.Ambient);
@@ -128,6 +135,32 @@ namespace ARPG
             }
             AmbientSnapshot.TransitionTo(SnapshotTime);
         }
+        
+        /// <summary>
+        /// 播放一个循环播放的视频音效
+        /// </summary>
+        /// <param name="AudioId"></param>
+        public void PlayVideoLoop(string AudioId)
+        {
+            AudioItem ItemInfo = MainAudioData.GetVideoAudio(AudioId);
+            VideoAudio.gameObject.SetActive(true);
+            VideoAudio.clip = ItemInfo.clip;
+            SetSnapshot(AudioSnapshotsType.Video,0.5f);
+            VideoAudio.loop = true;
+            VideoAudio.Play();
+        }
+
+        /// <summary>
+        /// 停止循环播放的视频音效
+        /// </summary>
+        public void StopVideoLoop()
+        {
+            VideoAudio.Stop();
+            VideoAudio.gameObject.SetActive(false);
+            VideoAudio.clip = null;
+            SetSnapshot(AudioSnapshotsType.Normal,0.5f);
+        }
+        
 
         /// <summary>
         /// 播放一个音效
@@ -135,7 +168,7 @@ namespace ARPG
         /// <param name="AudioID">音效名称</param>
         /// <exception cref="Exception">音效类型</exception>
         public void PlayAudio(string AudioID)
-        { 
+        {
             AudioItem ItemInfo = MainAudioData.Get(AudioID);
             switch (ItemInfo.audioType)
             {
@@ -150,6 +183,9 @@ namespace ARPG
                     break;
                 case AudioType.Singleton_UI:
                     break;
+                case AudioType.Video :
+                    SetSnapshot(AudioSnapshotsType.Video, 1);
+                    break;
                 default:
                     throw new Exception("没有对应Switch 的类型音效");
             }
@@ -161,12 +197,15 @@ namespace ARPG
                AudioType.Ambient => MainAudioData.GetAudioMixerGroup(AudioMixerGroupType.AmbientItem),
                AudioType.Singleton_UI => MainAudioData.GetAudioMixerGroup(AudioMixerGroupType.UIItem),
                AudioType.Singleton_Head => MainAudioData.GetAudioMixerGroup(AudioMixerGroupType.HeadItem),
+               AudioType.Video => MainAudioData.GetAudioMixerGroup(AudioMixerGroupType.VideoItem),
                _=> MainAudioData.GetAudioMixerGroup(AudioMixerGroupType.Master)
             };
             audioGame.aduioID = AudioID;
             audioGame.AudioSource.volume = ItemInfo.InitVolume;
             audioGame.Play();
         }
+        
+        
         
         /// <summary>
         /// 播放一个音效
@@ -221,6 +260,8 @@ namespace ARPG
             HeadAudio.pitch = Random.Range(ItemInfo.soundPitchMin, ItemInfo.soundPitchMax);
             HeadAudio.Play();
         }
+
+        
 
 
         /// <summary>

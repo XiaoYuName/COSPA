@@ -10,22 +10,15 @@ namespace ARPG
     public class VideoManager : Singleton<VideoManager>
     {
         private VideoConfig config;
+        private AvVideoConfig AvVideoConfig;
         
         protected override void Awake()
         {
             base.Awake();
             config = ConfigManager.LoadConfig<VideoConfig>("Video/VideoConfig");
+            AvVideoConfig = ConfigManager.LoadConfig<AvVideoConfig>("Video/AvVideos");
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                PlayerVideo("PV_BH3");
-            }
-        }
-
-
+        
         /// <summary>
         /// 在UI上播放视频
         /// </summary>
@@ -39,6 +32,17 @@ namespace ARPG
                 videoItem.StarPlay(item.URL);
             else
                 videoItem.StarPlay(item.clip);
+        }
+
+        /// <summary>
+        /// 在UI上播放AvPro视频
+        /// </summary>
+        /// <param name="videoID">ID</param>
+        public void PlayerAvVideo(string videoID)
+        {
+            UIAvVideoItem avVideoItem = AvVideoPool.Instance.Get();
+            avVideoItem.Init();
+            avVideoItem.StarPlay(AvVideoConfig.Get(videoID));
         }
     }
 }

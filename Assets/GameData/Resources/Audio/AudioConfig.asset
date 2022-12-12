@@ -49,6 +49,12 @@ MonoBehaviour:
     InitVolume: 0.6
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: BGAudio_001
+    audioType: 4
+    clip: {fileID: 8300000, guid: 772b7031e7bf73e499db7332be719303, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
   GameAudio:
   - SceneName: GameScnen
@@ -74,6 +80,10 @@ MonoBehaviour:
     Group: {fileID: -8062121401825557134, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   - Type: 8
     Group: {fileID: -5115760713875959987, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 9
+    Group: {fileID: -6030153886533785318, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  - Type: 10
+    Group: {fileID: 2870479042658387378, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   AudioMixerSnapshotsInfos:
   - Type: 0
     Snapshot: {fileID: 24500006, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
@@ -85,3 +95,10 @@ MonoBehaviour:
     Snapshot: {fileID: 1722504437986904499, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   - Type: 4
     Snapshot: {fileID: 7008517195480697450, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
+  VideoAudioItems:
+  - ID: BGAudio_001
+    audioType: 4
+    clip: {fileID: 8300000, guid: 772b7031e7bf73e499db7332be719303, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2

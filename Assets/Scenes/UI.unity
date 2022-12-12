@@ -334,7 +334,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 3
@@ -416,9 +416,9 @@ GameObject:
   m_Component:
   - component: {fileID: 638013107}
   - component: {fileID: 638013109}
-  - component: {fileID: 638013108}
+  - component: {fileID: 638013110}
   m_Layer: 5
-  m_Name: VideoTopPanel
+  m_Name: AvProVideoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,21 +444,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &638013108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638013106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a34ac956189c7ac43ae1a7bd9fed8cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 3319141495446823787, guid: 569446fdfa0a82e4da74cc8371e9c67c, type: 3}
-  defaultCapactity: 10
-  maxSize: 20
 --- !u!222 &638013109
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -467,6 +452,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638013106}
   m_CullTransparentMesh: 1
+--- !u!114 &638013110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638013106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c910492ec254f75438194ae7c454a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 8110063395312031803, guid: bb1212589e994114bb22a3c7f9b4b9b7, type: 3}
+  defaultCapactity: 10
+  maxSize: 20
 --- !u!1 &657866491
 GameObject:
   m_ObjectHideFlags: 0

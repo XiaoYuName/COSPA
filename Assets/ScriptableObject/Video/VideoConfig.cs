@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 namespace ARPG.Config
 {
-    [CreateAssetMenu(fileName = "VideoConfig",menuName = "ARPG/Video")]
+    [CreateAssetMenu(fileName = "VideoConfig",menuName = "ARPG/Video/Video")]
     public class VideoConfig : Config<VidoeDataItem>
     {
         

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -48,6 +50,27 @@ namespace ARPG.Audio
         public AudioMixerSnapshot GetAudioMixerSnapshot(AudioSnapshotsType type)
         {
             return AudioMixerSnapshotsInfos.FindLast(t => t.Type == type).Snapshot;
+        }
+
+        /// <summary>
+        /// 这里区分的目的是为了在编辑器窗口内不那么混乱多砸
+        /// </summary>
+        [Header("视频音效组")]
+        public List<AudioItem> VideoAudioItems = new List<AudioItem>();
+
+        /// <summary>
+        /// 获取视频音效
+        /// </summary>
+        /// <param name="ID">音效ID</param>
+        /// <returns>AudioItem 配置信息</returns>
+        /// <exception cref="Exception">如果列表中找不到则抛出异常</exception>
+        public AudioItem GetVideoAudio(string ID)
+        {
+            if (VideoAudioItems.Any(a => a.ID == ID))
+            {
+                return VideoAudioItems.Find(a => a.ID == ID);
+            }
+            throw new Exception("Video Items 没有对应 :" + ID +" 的音效,请检查");
         }
     }
 
@@ -109,6 +132,10 @@ namespace ARPG.Audio
         /// UI音效
         /// </summary>
         Singleton_UI,
+        /// <summary>
+        /// 视频音效
+        /// </summary>
+        Video,
     }
 
     /// <summary>
@@ -152,6 +179,14 @@ namespace ARPG.Audio
         /// 人声混合器
         /// </summary>
         HeadItem,
+        /// <summary>
+        /// 视频音效混合器
+        /// </summary>
+        VideoMaster,
+        /// <summary>
+        /// 视频混合器
+        /// </summary>
+        VideoItem,
     }
 
     public enum AudioSnapshotsType
