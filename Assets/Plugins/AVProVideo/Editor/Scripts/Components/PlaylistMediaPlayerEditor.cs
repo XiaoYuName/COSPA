@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Editor
@@ -14,17 +14,36 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	[CustomPropertyDrawer(typeof(MediaPlaylist))]
 	public class MediaPlaylistDrawer : PropertyDrawer
 	{
-		private static readonly GUIContent _guiTextInsert = new GUIContent("Insert");
+		private static readonly GUIContent _guiTextInsert = new GUIContent("Clone");
 		private static readonly GUIContent _guiTextDelete = new GUIContent("Delete");
-		private static readonly GUIContent _guiTextUp = new GUIContent("Up");
-		private static readonly GUIContent _guiTextDown = new GUIContent("Down");
+		private static readonly GUIContent _guiTextUp = new GUIContent("↑");
+		private static readonly GUIContent _guiTextDown = new GUIContent("↓");
+		private static GUIStyle _styleButtonFoldout = null;
+		private static GUIStyle _styleHelpBoxNoPad = null;
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
+			if (_styleButtonFoldout == null)
+			{
+				_styleButtonFoldout = new GUIStyle(EditorStyles.foldout);
+				_styleButtonFoldout.margin = new RectOffset();
+				_styleButtonFoldout.fontStyle = FontStyle.Bold;
+				_styleButtonFoldout.alignment = TextAnchor.MiddleLeft;
+			}
+			if (_styleHelpBoxNoPad == null)
+			{
+				_styleHelpBoxNoPad = new GUIStyle(EditorStyles.helpBox);
+				_styleHelpBoxNoPad.padding = new RectOffset();
+				_styleHelpBoxNoPad.overflow = new RectOffset();
+				_styleHelpBoxNoPad.margin = new RectOffset();
+				_styleHelpBoxNoPad.margin = new RectOffset(0, 0, 0, 0);
+				_styleHelpBoxNoPad.stretchWidth = false;
+				_styleHelpBoxNoPad.stretchHeight = false;
+			}
+
 			// Using BeginProperty / EndProperty on the parent property means that
 			// prefab override logic works on the entire property.
 			EditorGUI.BeginProperty(position, label, property);
-
 
 			SerializedProperty propItems = property.FindPropertyRelative("_items");
 
@@ -36,41 +55,70 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				}
 			}
 
+			int insertIndex = -1;
+			int deleteIndex = -1;
+
 			for (int i = 0; i < propItems.arraySize; i++)
 			{
 				SerializedProperty propItem = propItems.GetArrayElementAtIndex(i);
 
-				GUILayout.BeginVertical(GUI.skin.box);
-				propItem.isExpanded = EditorGUILayout.ToggleLeft("Item " + i, propItem.isExpanded);
+				GUILayout.BeginVertical(_styleHelpBoxNoPad);
+				
+				GUI.backgroundColor = propItem.isExpanded ? Color.yellow : Color.white;
+				GUILayout.Box(GUIContent.none, EditorStyles.miniButton, GUILayout.ExpandWidth(true));
+				Rect buttonRect = GUILayoutUtility.GetLastRect();
+				GUI.backgroundColor = Color.white;
+				if (Event.current.type != EventType.Layout)
+				{
+					EditorGUI.indentLevel++;
+					SerializedProperty propName = propItem.FindPropertyRelative("name");
+					propItem.isExpanded = EditorGUI.Foldout(buttonRect, propItem.isExpanded, "#" + i + ": " + propName.stringValue, true, _styleButtonFoldout);
+					EditorGUI.indentLevel--;
+				}
+
+				GUILayout.BeginHorizontal();
+				GUILayout.FlexibleSpace();
+				if (GUILayout.Button(_guiTextInsert, GUILayout.ExpandWidth(false)))
+				{
+					insertIndex = i;
+					
+				}
+				if (GUILayout.Button(_guiTextDelete, GUILayout.ExpandWidth(false)))
+				{
+					deleteIndex = i;
+				}
+				EditorGUI.BeginDisabledGroup((i - 1) < 0);
+				if (GUILayout.Button(_guiTextUp, GUILayout.ExpandWidth(false)))
+				{
+					propItems.MoveArrayElement(i, i - 1);
+				}
+				EditorGUI.EndDisabledGroup();
+				EditorGUI.BeginDisabledGroup((i + 1) >= propItems.arraySize);
+				if (GUILayout.Button(_guiTextDown, GUILayout.ExpandWidth(false)))
+				{
+					propItems.MoveArrayElement(i, i + 1);
+				}
+				EditorGUI.EndDisabledGroup();
+				GUILayout.EndHorizontal();
+
 				if (propItem.isExpanded)
 				{
 					EditorGUILayout.PropertyField(propItem);
-					GUILayout.BeginHorizontal();
-					if (GUILayout.Button(_guiTextInsert))
-					{
-						propItems.InsertArrayElementAtIndex(i);
-					}
-					if (GUILayout.Button(_guiTextDelete))
-					{
-						propItems.DeleteArrayElementAtIndex(i);
-					}
-					EditorGUI.BeginDisabledGroup((i - 1) < 0);
-					if (GUILayout.Button(_guiTextUp))
-					{
-						propItems.MoveArrayElement(i, i - 1);
-					}
-					EditorGUI.EndDisabledGroup();
-					EditorGUI.BeginDisabledGroup((i + 1) >= propItems.arraySize);
-					if (GUILayout.Button(_guiTextDown))
-					{
-						propItems.MoveArrayElement(i, i + 1);
-					}
-					EditorGUI.EndDisabledGroup();
-					GUILayout.EndHorizontal();
 				}
 
 				GUILayout.EndVertical();
-			}		
+
+				GUILayout.Space(8f);
+			}
+
+			if (insertIndex >= 0)
+			{
+				propItems.InsertArrayElementAtIndex(insertIndex);
+			}
+			else if (deleteIndex >= 0)
+			{
+				propItems.DeleteArrayElementAtIndex(deleteIndex);
+			}
 
 			EditorGUI.EndProperty();
 		}
@@ -89,6 +137,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
+			EditorGUILayout.PropertyField(property.FindPropertyRelative("name"));
 			SerializedProperty propSourceType = property.FindPropertyRelative("sourceType");
 
 			EditorGUILayout.PropertyField(propSourceType);
@@ -111,7 +160,6 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			EditorGUILayout.Space();
 
 			EditorGUILayout.PropertyField(property.FindPropertyRelative("loop"));
-			EditorGUILayout.PropertyField(property.FindPropertyRelative("autoPlay"));
 			EditorGUILayout.PropertyField(property.FindPropertyRelative("startMode"));
 			SerializedProperty propProgressMode = property.FindPropertyRelative("progressMode");
 			EditorGUILayout.PropertyField(propProgressMode);
@@ -156,9 +204,12 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		private SerializedProperty _propDefaultTransition;
 		private SerializedProperty _propDefaultTransitionDuration;
 		private SerializedProperty _propDefaultTransitionEasing;
-
+		private SerializedProperty _propAudioVolume;
+		private SerializedProperty _propAudioMuted;
+		
 		private static bool _expandPlaylistItems = false;
 
+		private static Material _materialIMGUI = null;
 		private static GUIStyle _sectionBoxStyle = null;
 
 		private const string SettingsPrefix = "AVProVideo-PlaylistMediaPlayerEditor-";
@@ -175,6 +226,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			_propPlaylistAutoProgress = this.CheckFindProperty("_playlistAutoProgress");
 			_propAutoCloseVideo = this.CheckFindProperty("_autoCloseVideo");
 			_propPlaylistLoopMode = this.CheckFindProperty("_playlistLoopMode");
+			_propAudioVolume = this.CheckFindProperty("_playlistAudioVolume");
+			_propAudioMuted = this.CheckFindProperty("_playlistAudioMuted");
 
 			_expandPlaylistItems = EditorPrefs.GetBool(SettingsPrefix + "ExpandPlaylistItems", false);
 		}
@@ -182,6 +235,10 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		private void OnDisable()
 		{
 			EditorPrefs.SetBool(SettingsPrefix + "ExpandPlaylistItems", _expandPlaylistItems);
+			if (_materialIMGUI)
+			{
+				DestroyImmediate(_materialIMGUI); _materialIMGUI = null;
+			}
 		}
 
 		public override bool RequiresConstantRepaint()
@@ -210,6 +267,27 @@ namespace RenderHeads.Media.AVProVideo.Editor
 
 			EditorGUILayout.PropertyField(_propPlayerA);
 			EditorGUILayout.PropertyField(_propPlayerB);
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
+			GUILayout.Label("Audio", EditorStyles.boldLabel);
+			EditorGUI.BeginChangeCheck();
+			EditorGUILayout.PropertyField(_propAudioVolume, new GUIContent("Volume"));
+			if (EditorGUI.EndChangeCheck())
+			{
+				foreach (PlaylistMediaPlayer player in this.targets)
+				{
+					player.AudioVolume = _propAudioVolume.floatValue;
+				}
+			}
+			EditorGUI.BeginChangeCheck();
+			EditorGUILayout.PropertyField(_propAudioMuted, new GUIContent("Muted"));
+			if (EditorGUI.EndChangeCheck())
+			{
+				foreach (PlaylistMediaPlayer player in this.targets)
+				{
+					player.AudioMuted = _propAudioMuted.boolValue;
+				}
+			}
 			EditorGUILayout.Space();
 			EditorGUILayout.Space();
 			GUILayout.Label("Playlist", EditorStyles.boldLabel);
@@ -275,7 +353,6 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				GUILayout.BeginHorizontal();
 				GUILayout.FlexibleSpace();
 				Rect textureRect;
-				Rect alphaRect = new Rect(0f, 0f, 1f, 1f);
 				if (texture != EditorGUIUtility.whiteTexture)
 				{
 					textureRect = GUILayoutUtility.GetRect(Screen.width / 2, Screen.width / 2, (Screen.width / 2) / ratio, (Screen.width / 2) / ratio);
@@ -299,30 +376,41 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				EditorGUILayout.LabelField("Using", playerText);
 								
 				// Draw the texture
-				Matrix4x4 prevMatrix = GUI.matrix;
-				if (textureSource != null && textureSource.RequiresVerticalFlip())
+				if (Event.current.type == EventType.Repaint)
 				{
-					GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0, textureRect.y + (textureRect.height / 2)));
-				}
-
-				if (!GUI.enabled)
-				{
-					GUI.color = Color.grey;
-					GUI.DrawTexture(textureRect, texture, ScaleMode.ScaleToFit, false);
-					GUI.color = Color.white;
-				}
-				else
-				{
+					Matrix4x4 prevMatrix = GUI.matrix;
+					if (textureSource != null && textureSource.RequiresVerticalFlip())
 					{
-						GUI.DrawTexture(textureRect, texture, ScaleMode.ScaleToFit, false);
-						EditorGUI.DrawTextureAlpha(alphaRect, texture, ScaleMode.ScaleToFit);
+						GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0f, textureRect.y + (textureRect.height / 2f)));
 					}
+
+					GUI.color = Color.gray;
+					EditorGUI.DrawTextureTransparent(textureRect, Texture2D.blackTexture, ScaleMode.StretchToFill);
+					GUI.color = Color.white;
+
+					if (!GUI.enabled)
+					{
+						GUI.color = Color.grey;
+						GUI.DrawTexture(textureRect, texture, ScaleMode.ScaleToFit, false);
+						GUI.color = Color.white;
+					}
+					else
+					{
+						if (!_materialIMGUI)
+						{
+							_materialIMGUI = VideoRender.CreateResolveMaterial( false );
+							VideoRender.SetupGammaMaterial(_materialIMGUI, true);
+						}
+						{
+							EditorGUI.DrawPreviewTexture(textureRect, texture, _materialIMGUI, ScaleMode.ScaleToFit);
+						}
+					}
+					GUI.matrix = prevMatrix;
 				}
-				GUI.matrix = prevMatrix;
 			}
 
 			EditorGUI.BeginDisabledGroup(!(media.Control != null && media.Control.CanPlay() && media.isActiveAndEnabled && !EditorApplication.isPaused));
-			OnInspectorGUI_PlayControls(media.Control, media.Info);
+			OnInspectorGUI_PlayControls(media);
 			EditorGUI.EndDisabledGroup();
 
 			EditorGUILayout.Space();
@@ -351,27 +439,27 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			serializedObject.ApplyModifiedProperties();
 		}
 
-		private void OnInspectorGUI_PlayControls(IMediaControl control, IMediaInfo info)
+		private void OnInspectorGUI_PlayControls(PlaylistMediaPlayer player)
 		{
 			GUILayout.Space(8.0f);
 
 			// Slider
 			EditorGUILayout.BeginHorizontal();
 			bool isPlaying = false;
-			if (control != null)
+			if (player.Control != null)
 			{
-				isPlaying = control.IsPlaying();
+				isPlaying = player.Control.IsPlaying();
 			}
 			float currentTime = 0f;
-			if (control != null)
+			if (player.Control != null)
 			{
-				currentTime = (float)control.GetCurrentTime();
+				currentTime = (float)player.Control.GetCurrentTime();
 			}
 
 			float durationTime = 0f;
-			if (info != null)
+			if (player.Info != null)
 			{
-				durationTime = (float)info.GetDuration();
+				durationTime = (float)player.Info.GetDuration();
 				if (float.IsNaN(durationTime))
 				{
 					durationTime = 0f;
@@ -381,9 +469,9 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			GUILayout.Label(timeUsed, GUILayout.ExpandWidth(false));
 
 			float newTime = GUILayout.HorizontalSlider(currentTime, 0f, durationTime, GUILayout.ExpandWidth(true));
-			if (newTime != currentTime)
+			if (newTime != currentTime && player.Control != null)
 			{
-				control.Seek(newTime);
+				player.Control.Seek(newTime);
 			}
 
 			string timeTotal = "Infinity";
@@ -400,7 +488,10 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			EditorGUILayout.BeginHorizontal();
 			if (GUILayout.Button("Rewind", GUILayout.ExpandWidth(false)))
 			{
-				control.Rewind();
+				if (player.Control != null)
+				{
+					player.Control.Rewind();
+				}
 			}
 
 			if (!isPlaying)
@@ -408,7 +499,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				GUI.color = Color.green;
 				if (GUILayout.Button("Play", GUILayout.ExpandWidth(true)))
 				{
-					control.Play();
+					player.Play();
 				}
 			}
 			else
@@ -416,7 +507,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				GUI.color = Color.yellow;
 				if (GUILayout.Button("Pause", GUILayout.ExpandWidth(true)))
 				{
-					control.Pause();
+					player.Pause();
 				}
 			}
 			GUI.color = Color.white;

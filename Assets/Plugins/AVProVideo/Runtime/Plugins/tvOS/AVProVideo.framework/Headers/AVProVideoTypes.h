@@ -10,6 +10,7 @@
 #define AVProVideoTypes_h
 
 #import <Foundation/Foundation.h>
+#import <simd/simd.h>
 
 typedef void * AVPPlayerRef;
 
@@ -53,6 +54,7 @@ typedef NS_ENUM(int, AVPPlayerAudioOutputMode)
 {
 	AVPPlayerAudioOutputModeSystemDirect,
 	AVPPlayerAudioOutputModeCapture,
+	AVPPlayerAudioOutputModeSystemDirectWithCapture,
 };
 
 typedef NS_OPTIONS(int, AVPPlayerAudioOutputSettingsFlags)
@@ -64,14 +66,23 @@ typedef struct
 {
 	AVPPlayerAudioOutputMode mode;
 	int sampleRate;
+	int bufferLength;
 	AVPPlayerAudioOutputSettingsFlags flags;
 } AVPPlayerAudioOutputSettings;
+
+
+typedef NS_OPTIONS(int, AVPPlayerNetworkSettingsFlags)
+{
+	AVPPlayerNetworkSettingsFlagsNone = 0,
+	AVPPlayerNetworkSettingsFlagsPlayWithoutBuffering = 1 << 0,
+	AVPPlayerNetworkSettingsFlagsUseSinglePlayerItem  = 1 << 1,
+};
 
 typedef struct
 {
 	double preferredPeakBitRate;
-	double assetDownloadMinimumRequiredBitRate;
-	AVPPlayerDimensions assetDownloadMinimumRequiredResolution;
+	double preferredForwardBufferDuration;
+	AVPPlayerNetworkSettingsFlags flags;
 } AVPPlayerNetworkSettings;
 
 typedef struct
@@ -97,6 +108,7 @@ typedef NS_OPTIONS(int, AVPPlayerStatus)
 	AVPPlayerStatusStalled                   = 1 <<  6,
 	AVPPlayerStatusExternalPlaybackActive    = 1 <<  7,
 	AVPPlayerStatusCached                    = 1 <<  8,
+	AVPPlayerStatusFinishedSeeking           = 1 <<  9,
 
 	AVPPlayerStatusUpdatedAssetInfo          = 1 << 16,
 	AVPPlayerStatusUpdatedTexture            = 1 << 17,
@@ -119,7 +131,7 @@ typedef NS_OPTIONS(int, AVPPlayerFlags)
 	AVPPlayerFlagsMuted                 = 1 <<  1,
 	AVPPlayerFlagsAllowExternalPlayback = 1 <<  2,
 	AVPPlayerFlagsResumePlayback        = 1 << 16,
-	AVPPlayerFlagsCacheAsset            = 1 << 17,
+//	AVPPlayerFlagsCacheAsset            = 1 << 17,
 	AVPPlayerFlagsDirty                 = 1 << 31,
 };
 
@@ -186,6 +198,22 @@ typedef struct
 	float ty;
 } AVPAffineTransform;
 
+typedef NS_OPTIONS(int, AVPPlayerVideoTrackFlags)
+{
+	AVPPlayerVideoTrackFlagsNone     = 0,
+	AVPPlayerVideoTrackFlagsHasAlpha = 1 << 0,
+};
+
+// Version of simd_float4x4 with relaxed alignment requirements. Allows for passing Matrix4x4 through from
+// Unity. Probably not remotely useful otherwise.
+typedef struct { simd_packed_float4 columns[4]; } simd_packed_float4x4;
+
+#ifdef __x86_64__
+typedef simd_packed_float4x4 Matrix4x4;
+#else
+typedef simd_float4x4 Matrix4x4;
+#endif
+
 typedef struct
 {
 	unichar * _Nullable name;
@@ -199,7 +227,10 @@ typedef struct
 	float frameRate;
 	AVPAffineTransform transform;
 	AVPPlayerVideoTrackStereoMode stereoMode;
+	int bitsPerComponent;
+	AVPPlayerVideoTrackFlags videoTrackFlags;
 
+	Matrix4x4 yCbCrTransform;
 } AVPPlayerVideoTrackInfo;
 
 /// Audio channel bitmap
@@ -227,7 +258,6 @@ typedef NS_OPTIONS(uint32_t, AVPPlayerAudioTrackChannelBitmap)
 	AVPPlayerAudioTrackChannelBitmapTopBackRight 		= 1 << 17,
 };
 
-
 typedef struct
 {
 	unichar * _Nullable name;
@@ -252,7 +282,6 @@ typedef struct
 	float estimatedDataRate;
 	uint32_t codecSubtype;
 	AVPPlayerTrackFlags flags;
-
 } AVPPlayerTextTrackInfo;
 
 typedef NS_ENUM(int, AVPPlayerTrackType)
@@ -280,14 +309,6 @@ typedef NS_OPTIONS(int, AVPPlayerTextureFlags)
 	AVPPlayerTextureFlagsMipmapped = 1 << 2,
 };
 
-typedef NS_ENUM(int, AVPPlayerTextureYCbCrMatrix)
-{
-	AVPPlayerTextureYCbCrMatrixIdentity,
-	AVPPlayerTextureYCbCrMatrixITU_R_601,
-	AVPPlayerTextureYCbCrMatrixITU_R_709,
-};
-
-
 typedef NS_ENUM(int, AVPPlayerTextureFormat)
 {
 	AVPPlayerTextureFormatInvalid,
@@ -299,6 +320,10 @@ typedef NS_ENUM(int, AVPPlayerTextureFormat)
 	AVPPlayerTextureFormatBc4,
 	AVPPlayerTextureFormatBc5,
 	AVPPlayerTextureFormatBc7,
+	AVPPlayerTextureFormatBgr10a2Unorm,
+	AVPPlayerTextureFormatR16Unorm,
+	AVPPlayerTextureFormatRg16Unorm,
+	AVPPlayerTextureFormatBgr10xr,
 };
 
 typedef struct
@@ -318,7 +343,6 @@ typedef struct
 	int frameCount;
 	int planeCount;
 	AVPPlayerTextureFlags flags;
-	AVPPlayerTextureYCbCrMatrix YCbCrMatrix;
 } AVPPlayerTexture;
 
 typedef struct
@@ -330,8 +354,6 @@ typedef struct
 } AVPPlayerText;
 
 typedef struct AudioCaptureBuffer *AudioCaptureBufferRef;
-
-//
 
 typedef struct
 {

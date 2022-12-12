@@ -171,7 +171,7 @@
 				float4 colb = tex2D(_MainTex, uv2);
 
 				float4 col = lerp(cola, colb, t);
-				return col;						
+				return col;
 #endif
 			}
 			ENDCG

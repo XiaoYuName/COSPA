@@ -2,7 +2,7 @@
 using UnityEditor;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Editor
@@ -25,11 +25,16 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		{
 			if (EditorUtility.audioMasterMute)
 			{
-				EditorGUILayout.LabelField("Muted in Editor");
+				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.HelpBox("Audio is currently muted in Editor", MessageType.Warning, true);
+				if (GUILayout.Button("Unmute", GUILayout.ExpandHeight(true)))
+				{
+					EditorUtility.audioMasterMute = false;
+					UnityEditorInternal.InternalEditorUtility.RepaintAllViews();	// To force the GameView audio mute toggle display state to update
+				}
+				EditorGUILayout.EndHorizontal();
 			}
-			EditorGUI.BeginDisabledGroup(EditorUtility.audioMasterMute);
 			EditorGUILayout.BeginVertical(GUI.skin.box);
-			//GUILayout.Label("Audio", EditorStyles.boldLabel);
 
 			EditorGUI.BeginChangeCheck();
 			EditorGUILayout.PropertyField(_propVolume, new GUIContent("Volume"));
@@ -63,6 +68,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 
 			EditorGUILayout.EndVertical();
 
+			if (_showUltraOptions)
 			{
 				EditorGUILayout.BeginVertical(GUI.skin.box);
 				GUILayout.Label("Audio 360", EditorStyles.boldLabel);
@@ -76,8 +82,6 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				}
 				EditorGUILayout.EndVertical();
 			}
-
-			EditorGUI.EndDisabledGroup();
 		}
 	}
 }

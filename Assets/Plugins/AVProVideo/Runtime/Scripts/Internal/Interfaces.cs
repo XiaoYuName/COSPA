@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace RenderHeads.Media.AVProVideo
 		void Update();
 		void EndUpdate();
 		void Render();
+		IntPtr GetNativePlayerHandle();
 	}
 
 	/// <summary>
@@ -24,6 +26,53 @@ namespace RenderHeads.Media.AVProVideo
 		bool LoadSubtitlesSRT(string data);
 		int GetSubtitleIndex();
 		string GetSubtitleText();
+	}
+
+	public enum BufferedFrameSelectionMode : int
+	{
+		// No buffering, just selects the latest decoded frame
+		None = 0,
+
+		// Selects the newest buffered frame, and displays it until a newer frame is available
+		NewestFrame = 10,
+
+		// Selects the oldest buffered frame, and displays it until a newer frame is available
+		OldestFrame = 11,
+
+		// Selects the next buffered frame, and displays it until the number of buffered frames changes
+		MediaClock = 20,
+
+		// Uses Time.deltaTime to keep a clock which is used to select the buffered frame
+		ElapsedTime = 30,
+
+		// Uses VSync delta time to keep a clock which is used to select the buffered frame
+		// Time.deltaTime is used to calculate the number of vsyncs that have elapsed
+		ElapsedTimeVsynced = 40,
+
+		// Selects the buffered frame corresponding to the external timeStamp (useful for frame-syncing players)
+		FromExternalTime = 50,
+
+		// Selects the closest buffered frame corresponding to the external timeStamp (useful for frame-syncing players)
+		FromExternalTimeClosest = 51,
+	}
+
+	/// <summary>
+	/// Interface for buffering frames for more control over the timing of their display
+	/// </summary>
+	public interface IBufferedDisplay
+	{
+		/// <summary>
+		/// We need to manually call UpdateBufferedDisplay() in the case of master-slave synced playback so that master is updated before slaves
+		/// </summary>
+		long						UpdateBufferedDisplay();
+
+		BufferedFramesState			GetBufferedFramesState();
+
+		void						SetSlaves(IBufferedDisplay[] slaves);
+
+		void						SetBufferedDisplayMode(BufferedFrameSelectionMode mode, IBufferedDisplay master = null);
+
+		void						SetBufferedDisplayOptions(bool pauseOnPrerollComplete);
 	}
 
 	public interface IMediaControl
@@ -106,7 +155,7 @@ namespace RenderHeads.Media.AVProVideo
 		int		GetCurrentTimeFrames(float overrideFrameRate = 0f);
 
 		/// <summary>
-		/// Returns the current video date and time usually from the 
+		/// Returns the current video date and time usually from the
 		/// EXT-X-PROGRAM-DATE-TIME tag on HLS streams
 		/// Only supported on macOS, iOS, tvOS and Android (using ExoPlayer API)
 		/// And Windows 10 using WinRT API
@@ -144,6 +193,7 @@ namespace RenderHeads.Media.AVProVideo
 		long						GetLastExtendedErrorCode();
 
 		void						SetTextureProperties(FilterMode filterMode = FilterMode.Bilinear, TextureWrapMode wrapMode = TextureWrapMode.Clamp, int anisoLevel = 1);
+		void						GetTextureProperties(out FilterMode filterMode, out TextureWrapMode wrapMode, out int anisoLevel);
 
 		// Audio Grabbing
 
@@ -169,6 +219,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		bool	WaitForNextFrame(Camera dummyCamera, int previousFrameCount);
 
+		[Obsolete("SetPlayWithoutBuffering has been deprecated, see platform specific options for how to enable playback without buffering (if supported).")]
 		void	SetPlayWithoutBuffering(bool playWithoutBuffering);
 
 		// Encrypted stream support
@@ -293,6 +344,9 @@ namespace RenderHeads.Media.AVProVideo
 
 		// Internal method
 		bool GetDecoderPerformance(ref int activeDecodeThreadCount, ref int decodedFrameCount, ref int droppedFrameCount);
+
+		// Internal method
+		PlaybackQualityStats GetPlaybackQualityStats();
 	}
 
 	#region MediaCaching
@@ -302,11 +356,19 @@ namespace RenderHeads.Media.AVProVideo
 	{
 		/// <summary>The minimum bitrate of the media to cache in bits per second.</summary>
 		public double  minimumRequiredBitRate;
-		
+
 		/// <summary>The minimum resolution of the media to cache.</summary>
-		/// <remark>Only supported on iOS 14 and later.</remark>
+		/// <remark>Only supported on Android and iOS 14 and later.</remark>
 		public Vector2 minimumRequiredResolution;
-		
+
+		/// <summary>The maximum bitrate of the media to cache in bits per second.</summary>
+		/// <remark>Only supported on Android.</remark>
+		public double maximumRequiredBitRate;
+
+		/// <summary>The maximum resolution of the media to cache.</summary>
+		/// <remark>Only supported on Android.</remark>
+		public Vector2 maximumRequiredResolution;
+
 		/// <summary>Human readable title for the cached media.</summary>
 		/// <remark>iOS: This value will be displayed in the usage pane of the settings app.</remark>
 		public string title;
@@ -326,7 +388,9 @@ namespace RenderHeads.Media.AVProVideo
 		/// <summary>The media is cached.</summary>
 		Cached,
 		/// <summary>The media is not cached, something went wrong - check the log.</summary>
-		Failed
+		Failed,
+		/// <summary>The media caching is paused.</summary>
+		Paused
 	}
 
 	/// <summary>Interface for the media cache.</summary>
@@ -346,6 +410,14 @@ namespace RenderHeads.Media.AVProVideo
 		/// <param name="url">The url of the media.</param>
 		void CancelDownloadOfMediaToCache(string url);
 
+		/// <summary>Pauses the download of the media specified by url.</summary>
+		/// <param name="url">The url of the media.</param>
+		void PauseDownloadOfMediaToCache(string url);
+
+		/// <summary>Resume the download of the media specified by url.</summary>
+		/// <param name="url">The url of the media.</param>
+		void ResumeDownloadOfMediaToCache(string url);
+
 		/// <summary>Remove the cached media specified by url.</summary>
 		/// <param name="url">The url of the media.</param>
 		void RemoveMediaFromCache(string url);
@@ -356,9 +428,9 @@ namespace RenderHeads.Media.AVProVideo
 		/// <returns>The status of the media.</returns>
 		CachedMediaStatus GetCachedMediaStatus(string url, ref float progress);
 
-		/// <summary>Test if the currently open media is cached.</summary>
-		/// <returns>True if the media is cached, false otherwise.</returns>
-		bool IsMediaCached();
+//		/// <summary>Test if the currently open media is cached.</summary>
+//		/// <returns>True if the media is cached, false otherwise.</returns>
+//		bool IsMediaCached();
 	}
 
 	#endregion
@@ -393,6 +465,11 @@ namespace RenderHeads.Media.AVProVideo
 		/// Returns the presentation time stamp of the current texture
 		/// </summary>
 		long GetTextureTimeStamp();
+
+		/// <summary>
+		/// Returns the DAR/SAR ratio
+		/// </summary>
+		float GetTexturePixelAspectRatio();
 
 		/// <summary>
 		/// Returns true if the image on the texture is upside-down
@@ -497,7 +574,7 @@ namespace RenderHeads.Media.AVProVideo
 
 			return result;
 		}
-		
+
 		public static bool operator == (MediaPath a, MediaPath b)
 		{
 			if ((object)a == null)
@@ -574,12 +651,12 @@ namespace RenderHeads.Media.AVProVideo
 		[SerializeField] public Color tint;
 		[SerializeField] public bool generateMipmaps;
 
-		bool IsIdentityColourAdjust()
+		public bool IsColourAdjust()
 		{
-			return (applyHSBC && hue != 0.0f && saturation != 0.5f && brightness != 0.5f && contrast != 0.5f && gamma != 1.0f);
+			return (applyHSBC && (hue != 0.0f || saturation != 0.5f || brightness != 0.5f || contrast != 0.5f || gamma != 1.0f));
 		}
 
-		void ResetColourAdjust()
+		internal void ResetColourAdjust()
 		{
 			hue = 0.0f;
 			saturation = 0.5f;
@@ -633,7 +710,8 @@ namespace RenderHeads.Media.AVProVideo
 		Landscape,				// Landscape Right (0 degrees)
 		LandscapeFlipped,		// Landscape Left (180 degrees)
 		Portrait,				// Portrait Up (90 degrees)
-		PortraitFlipped,		// Portrait Down (-90 degrees)
+		PortraitFlipped,        // Portrait Down (-90 degrees)
+		PortraitHorizontalMirror,	// Portrait that is mirrored horizontally
 	}
 
 	public enum VideoMapping
@@ -705,6 +783,13 @@ namespace RenderHeads.Media.AVProVideo
 			System,						// Default
 			Unity,						// ExoPlayer API only
 			FacebookAudio360,			// ExoPlayer API only
+		}
+
+		public enum TextureFiltering
+		{
+			Point,
+			Bilinear,
+			Trilinear,
 		}
 
 		public const int Default_MinBufferTimeMs					= 50000;	// Only valid when using ExoPlayer (default comes from DefaultLoadControl.DEFAULT_MIN_BUFFER_MS)
@@ -782,6 +867,35 @@ namespace RenderHeads.Media.AVProVideo
 		TopBackLeft 		= 0x8000,
 		TopBackCenter 		= 0x10000,
 		TopBackRight 		= 0x20000,
+	}
+
+	public enum TextureFlags : int
+	{
+		Unknown = 0,
+		TopDown = 1 << 0,
+		SamplingIsLinear = 1 << 1,
+	}
+
+	[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential, Pack = 1)]
+	public struct BufferedFramesState
+	{
+		public System.Int32 freeFrameCount;
+		public System.Int32 bufferedFrameCount;
+		public System.Int64 minTimeStamp;
+		public System.Int64 maxTimeStamp;
+		public System.Int32 prerolledCount;
+	}
+
+	[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential, Pack = 1)]
+	public struct TextureFrame
+	{
+		internal System.IntPtr texturePointer;
+		internal System.IntPtr auxTexturePointer;
+		internal System.Int64 timeStamp;
+		internal System.UInt32 frameCounter;
+		internal System.UInt32 writtenFrameCount;
+		internal TextureFlags flags;
+		internal System.IntPtr internalNativePointer;
 	}
 
 	[System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential, Pack = 1)]

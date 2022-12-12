@@ -41,16 +41,24 @@ namespace RenderHeads.Media.AVProVideo
 			_instances = new Dictionary<MediaPlayer, PlayerInstance>();
 		}
 
-		public void RequestAudio(AudioOutput outputComponent, MediaPlayer mediaPlayer, float[] audioData, int audioChannelCount, int channelMask, AudioOutput.AudioOutputMode audioOutputMode)
+		public void RequestAudio(AudioOutput outputComponent, MediaPlayer mediaPlayer, float[] audioData, int audioChannelCount, int channelMask, AudioOutput.AudioOutputMode audioOutputMode, bool supportPositionalAudio)
 		{
 			if (mediaPlayer == null || mediaPlayer.Control == null || !mediaPlayer.Control.IsPlaying())
 			{
+				if (supportPositionalAudio)
+				{
+					ZeroAudio(audioData, 0);
+				}
 				return;
 			}
 
 			int channels = mediaPlayer.Control.GetAudioChannelCount();
 			if (channels <= 0)
 			{
+				if (supportPositionalAudio)
+				{
+					ZeroAudio(audioData, 0);
+				}
 				return;
 			}
 
@@ -96,18 +104,37 @@ namespace RenderHeads.Media.AVProVideo
 				{
 					int lesserChannels = Math.Min(channels, audioChannelCount);
 
-					for (int i = 0; i < samples; ++i)
+					if (!supportPositionalAudio)
 					{
-						for (int j = 0; j < lesserChannels; ++j)
+						for (int i = 0; i < samples; ++i)
 						{
-							if ((1 << j & channelMask) > 0)
+							for (int j = 0; j < lesserChannels; ++j)
 							{
-								audioData[requestedPos + j] = instance.pcmData[storedPos + j];
+								if ((1 << j & channelMask) > 0)
+								{
+									audioData[requestedPos + j] = instance.pcmData[storedPos + j];
+								}
 							}
-						}
 
-						storedPos += channels;
-						requestedPos += audioChannelCount;
+							storedPos += channels;
+							requestedPos += audioChannelCount;
+						}
+					}
+					else
+					{
+						for (int i = 0; i < samples; ++i)
+						{
+							for (int j = 0; j < lesserChannels; ++j)
+							{
+								if ((1 << j & channelMask) > 0)
+								{
+									audioData[requestedPos + j] *= instance.pcmData[storedPos + j];
+								}
+							}
+
+							storedPos += channels;
+							requestedPos += audioChannelCount;
+						}
 					}
 				}
 				//Mono mode, copies over single channel to all output channels
@@ -126,18 +153,57 @@ namespace RenderHeads.Media.AVProVideo
 
 					if (desiredChannel < channels)
 					{
-						for (int i = 0; i < samples; ++i)
+						if (!supportPositionalAudio)
 						{
-							for (int j = 0; j < audioChannelCount; ++j)
+							for (int i = 0; i < samples; ++i)
 							{
-								audioData[requestedPos + j] = instance.pcmData[storedPos + desiredChannel];
-							}
+								for (int j = 0; j < audioChannelCount; ++j)
+								{
+									audioData[requestedPos + j] = instance.pcmData[storedPos + desiredChannel];
+								}
 
-							storedPos += channels;
-							requestedPos += audioChannelCount;
+								storedPos += channels;
+								requestedPos += audioChannelCount;
+							}
+						}
+						else
+						{
+							for (int i = 0; i < samples; ++i)
+							{
+								for (int j = 0; j < audioChannelCount; ++j)
+								{
+									audioData[requestedPos + j] *= instance.pcmData[storedPos + desiredChannel];
+								}
+
+								storedPos += channels;
+								requestedPos += audioChannelCount;
+							}
 						}
 					}
 				}
+
+				// If there is left over audio
+				if (supportPositionalAudio && requestedPos != audioData.Length)
+				{
+					// Zero the remaining audio data otherwise there are pops
+					ZeroAudio(audioData, requestedPos);
+				}
+			}
+			else
+			{
+				if (supportPositionalAudio)
+				{
+					// Zero the remaining audio data otherwise there are pops
+					ZeroAudio(audioData, 0);
+				}
+			}
+		}
+
+		private void ZeroAudio(float[] audioData, int startPosition)
+		{
+			for (int i = startPosition; i < audioData.Length; i++)
+			{
+				audioData[i] = 0f;
 			}
 		}
 

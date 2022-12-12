@@ -1,12 +1,15 @@
 #if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_IOS || UNITY_TVOS || UNITY_ANDROID || (UNITY_WEBGL && UNITY_2017_2_OR_NEWER)
 	#define UNITY_PLATFORM_SUPPORTS_LINEAR
 #endif
+#if (UNITY_EDITOR_WIN || (!UNITY_EDITOR && UNITY_STANDALONE_WIN))
+	#define UNITY_PLATFORM_SUPPORTS_VIDEOASPECTRATIO
+#endif
 
 using UnityEngine;
 using UnityEngine.Serialization;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -15,7 +18,7 @@ namespace RenderHeads.Media.AVProVideo
 	/// Displays the video from MediaPlayer component using IMGUI
 	/// </summary>
 	[AddComponentMenu("AVPro Video/Display IMGUI", 200)]
-	[HelpURL("http://renderheads.com/products/avpro-video/")]
+	[HelpURL("https://www.renderheads.com/products/avpro-video/")]
 	[ExecuteInEditMode]
 	public class DisplayIMGUI : MonoBehaviour
 	{
@@ -262,7 +265,7 @@ namespace RenderHeads.Media.AVProVideo
 							GL.sRGBWrite = true;
 						}
 
-						VideoRender.DrawTexture(rect, texture, _scaleMode, _mediaPlayer.TextureProducer.GetTextureAlphaPacking(), _material);
+						VideoRender.DrawTexture(rect, texture, _scaleMode, _mediaPlayer.TextureProducer.GetTextureAlphaPacking(), _mediaPlayer.TextureProducer.GetTexturePixelAspectRatio(), _material);
 						
 						if (restoreSRGBWrite)
 						{
@@ -280,6 +283,20 @@ namespace RenderHeads.Media.AVProVideo
 						{
 							GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0f, rect.y + (rect.height / 2f)));
 						}
+						#if UNITY_PLATFORM_SUPPORTS_VIDEOASPECTRATIO
+						float par = _mediaPlayer.TextureProducer.GetTexturePixelAspectRatio();
+						if (par > 0f)
+						{
+							if (par > 1f)
+							{
+								GUIUtility.ScaleAroundPivot(new Vector2(par, 1f), new Vector2(rect.x + (rect.width / 2f), rect.y + (rect.height / 2f)));
+							}
+							else
+							{
+								GUIUtility.ScaleAroundPivot(new Vector2(1f, 1f/par), new Vector2(rect.x + (rect.width / 2f), rect.y + (rect.height / 2f)));
+							}
+						}
+						#endif
 						GUI.DrawTexture(rect, texture, _scaleMode, _allowTransparency);
 					}
 				}

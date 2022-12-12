@@ -3,14 +3,13 @@ using System;
 using System.Collections.Generic;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
 {
 	public partial class MediaPlayer : MonoBehaviour
 	{
-
 #region PlatformOptions
 		[System.Serializable]
 		public class PlatformOptions
@@ -43,11 +42,23 @@ namespace RenderHeads.Media.AVProVideo
 			public bool hintAlphaChannel = false;
 			public bool useLowLatency = false;
 			public bool useCustomMovParser = false;
+			public bool useHapNotchLC = false;
+			public bool useStereoDetection = true;
+			public bool useTextTrackSupport = true;
+			public bool useFacebookAudio360Support = true;
+			public bool useAudioDelay = false;
+			public BufferedFrameSelectionMode bufferedFrameSelection = BufferedFrameSelectionMode.None;
+			public bool pauseOnPrerollComplete = false;
 			public string forceAudioOutputDeviceName = string.Empty;
 			public List<string> preferredFilters = new List<string>();
 			public Windows.AudioOutput audioOutput = Windows.AudioOutput.System;
 			public Audio360ChannelMode audio360ChannelMode = Audio360ChannelMode.TBE_8_2;
+
+			/// WinRT only
 			public bool startWithHighestBitrate = false;
+
+			/// WinRT only
+			public bool useLowLiveLatency = false;
 
 			/// Hap & NotchLC only
 			[Range(1, 16)]
@@ -65,12 +76,20 @@ namespace RenderHeads.Media.AVProVideo
 				|| hintAlphaChannel
 				|| useLowLatency
 				|| useCustomMovParser
+				|| useHapNotchLC
+				|| !useStereoDetection
+				|| !useTextTrackSupport
+				|| !useFacebookAudio360Support
+				|| useAudioDelay
+				|| pauseOnPrerollComplete
+				|| bufferedFrameSelection != BufferedFrameSelectionMode.None
 				|| videoApi != Windows.VideoApi.MediaFoundation
 				|| audioOutput != Windows.AudioOutput.System
 				|| audio360ChannelMode != Audio360ChannelMode.TBE_8_2
 				|| !string.IsNullOrEmpty(forceAudioOutputDeviceName)
 				|| preferredFilters.Count != 0
 				|| startWithHighestBitrate
+				|| useLowLiveLatency
 				|| parallelFrameCount != 3
 				|| prerollFrameCount != 4
 				);
@@ -114,7 +133,11 @@ namespace RenderHeads.Media.AVProVideo
 			public WindowsUWP.AudioOutput audioOutput = WindowsUWP.AudioOutput.System;
 			public Audio360ChannelMode audio360ChannelMode = Audio360ChannelMode.TBE_8_2;
 
+			/// WinRT only
 			public bool startWithHighestBitrate = false;
+
+			/// WinRT only
+			public bool useLowLiveLatency = false;
 
 			public override bool IsModified()
 			{
@@ -127,6 +150,7 @@ namespace RenderHeads.Media.AVProVideo
 				|| (audio360ChannelMode != Audio360ChannelMode.TBE_8_2)
 				|| videoApi != WindowsUWP.VideoApi.WinRT
 				|| startWithHighestBitrate
+				|| useLowLiveLatency
 				);
 			}
 
@@ -145,7 +169,8 @@ namespace RenderHeads.Media.AVProVideo
 			public enum AudioMode
 			{
 				SystemDirect,
-				Unity
+				Unity,
+				SystemDirectWithCapture,
 			};
 
 			[Flags]
@@ -156,7 +181,9 @@ namespace RenderHeads.Media.AVProVideo
 				GenerateMipMaps = 1 << 0,
 
 				// iOS & macOS
-				AllowExternalPlayback = 1 << 8,
+				AllowExternalPlayback = 1 <<  8,
+				PlayWithoutBuffering  = 1 <<  9,
+				UseSinglePlayerItem   = 1 << 10,
 
 				// iOS
 				ResumeMediaPlaybackAfterAudioSessionRouteChange = 1 << 16,
@@ -184,14 +211,129 @@ namespace RenderHeads.Media.AVProVideo
 			private readonly Flags DefaultFlags;
 			public TextureFormat textureFormat;
 			public AudioMode audioMode;
-			public Flags flags;
+
+			[SerializeField]
+			private Flags _flags;
+			public Flags flags
+			{
+				get { return _flags; }
+				set
+				{
+					Flags changed = _flags ^ value;
+					if (changed != 0)
+					{
+						if ((changed & Flags.PlayWithoutBuffering) == Flags.PlayWithoutBuffering)
+						{
+							_changed |= ChangeFlags.PlayWithoutBuffering;
+						}
+						_flags = value;
+					}
+				}
+			}
+
 			public float maximumPlaybackRate = 2.0f;
-			public Resolution preferredMaximumResolution = Resolution.NoPreference;
-			#if UNITY_2017_2_OR_NEWER
-			public Vector2Int customPreferredMaximumResolution = Vector2Int.zero;
-			#endif
-			public float preferredPeakBitRate = 0.0f;
-			public BitRateUnits preferredPeakBitRateUnits = BitRateUnits.Kbps;
+
+			[Flags]
+			public enum ChangeFlags: int
+			{
+				None = 0,
+				PreferredPeakBitRate = 1 << 1,
+				PreferredForwardBufferDuration = 1 << 2,
+				PlayWithoutBuffering = 1 << 3,
+				PreferredMaximumResolution = 1 << 4,
+				All = -1
+			}
+
+			private ChangeFlags _changed = ChangeFlags.None;
+
+			[SerializeField]
+			private float _preferredPeakBitRate = 0.0f;
+			public float preferredPeakBitRate
+			{
+				get { return _preferredPeakBitRate; }
+				set
+				{
+					if (_preferredPeakBitRate != value)
+					{
+						_changed |= ChangeFlags.PreferredPeakBitRate;
+						_preferredPeakBitRate = value;
+					}
+				}
+			}
+
+			[SerializeField]
+			private BitRateUnits _preferredPeakBitRateUnits = BitRateUnits.Kbps;
+			public BitRateUnits preferredPeakBitRateUnits
+			{
+				get { return _preferredPeakBitRateUnits; }
+				set
+				{
+					if (_preferredPeakBitRateUnits != value)
+					{
+						_changed |= ChangeFlags.PreferredPeakBitRate;
+						_preferredPeakBitRateUnits = value;
+					}
+				}
+			}
+
+			[SerializeField]
+			private double _preferredForwardBufferDuration = 0.0;
+			public double preferredForwardBufferDuration
+			{
+				get
+				{
+					_changed &= ~ChangeFlags.PreferredForwardBufferDuration;
+					return _preferredForwardBufferDuration;
+				}
+				set
+				{
+					if (_preferredForwardBufferDuration != value)
+					{
+						_changed |= ChangeFlags.PreferredForwardBufferDuration;
+						_preferredForwardBufferDuration = value;
+					}
+				}
+			}
+
+			[SerializeField]
+			private Resolution _preferredMaximumResolution = Resolution.NoPreference;
+			public Resolution preferredMaximumResolution
+			{
+				get
+				{
+					_changed &= ~ChangeFlags.PreferredMaximumResolution;
+					return _preferredMaximumResolution;
+				}
+				set
+				{
+					if (_preferredMaximumResolution != value)
+					{
+						_changed |= ChangeFlags.PreferredMaximumResolution;
+						_preferredMaximumResolution = value;
+					}
+				}
+			}
+
+#if UNITY_2017_2_OR_NEWER
+			[SerializeField]
+			private Vector2Int _customPreferredMaximumResolution = Vector2Int.zero;
+			public Vector2Int customPreferredMaximumResolution
+			{
+				get
+				{
+					_changed &= ~ChangeFlags.PreferredMaximumResolution;
+					return _customPreferredMaximumResolution;
+				}
+				set
+				{
+					if (_customPreferredMaximumResolution != value)
+					{
+						_changed |= ChangeFlags.PreferredMaximumResolution;
+						_customPreferredMaximumResolution = value;
+					}
+				}
+			}
+#endif
 
 			private static double BitRateInBitsPerSecond(float value, BitRateUnits units)
 			{
@@ -210,6 +352,7 @@ namespace RenderHeads.Media.AVProVideo
 
 			public double GetPreferredPeakBitRateInBitsPerSecond()
 			{
+				_changed &= ~ChangeFlags.PreferredPeakBitRate;
 				return BitRateInBitsPerSecond(preferredPeakBitRate, preferredPeakBitRateUnits);
 			}
 
@@ -229,7 +372,13 @@ namespace RenderHeads.Media.AVProVideo
 					|| audioMode != AudioMode.SystemDirect
 					|| flags != DefaultFlags
 					|| preferredMaximumResolution != Resolution.NoPreference
-					|| preferredPeakBitRate != 0;
+					|| preferredPeakBitRate != 0.0f
+					|| preferredForwardBufferDuration != 0.0;
+			}
+
+			public bool HasChanged(ChangeFlags flags = ChangeFlags.All)
+			{
+				return (_changed & flags) != ChangeFlags.None;
 			}
 		}
 
@@ -246,10 +395,87 @@ namespace RenderHeads.Media.AVProVideo
 				Custom
 			}
 
-			public Resolution preferredMaximumResolution = Resolution.NoPreference;
+			public enum BitRateUnits
+			{
+				bps,
+				Kbps,
+				Mbps,
+			}
+
+			[Flags]
+			public enum ChangeFlags : int
+			{
+				None = 0,
+				PreferredPeakBitRate = 1 << 1,
+				PreferredMaximumResolution = 1 << 2,
+				PreferredCustomResolution = 1 << 3,
+				All = -1
+			}
+
+			private ChangeFlags _changed = ChangeFlags.None;
+
+			[SerializeField]
+			private Resolution _preferredMaximumResolution = Resolution.NoPreference;
+			public Resolution preferredMaximumResolution
+			{
+				get { return _preferredMaximumResolution; }
+				set
+				{
+					if (_preferredMaximumResolution != value)
+					{
+						_changed |= ChangeFlags.PreferredMaximumResolution;
+						_preferredMaximumResolution = value;
+					}
+				}
+			}
+
 #if UNITY_2017_2_OR_NEWER
-			public Vector2Int customPreferredMaximumResolution = Vector2Int.zero;
+			[SerializeField]
+			private Vector2Int _customPreferredMaximumResolution = Vector2Int.zero;
+			public Vector2Int customPreferredMaximumResolution
+			{
+				get { return _customPreferredMaximumResolution; }
+				set
+				{
+					if (_customPreferredMaximumResolution != value)
+					{
+						_changed |= ChangeFlags.PreferredCustomResolution;
+						_customPreferredMaximumResolution = value;
+					}
+				}
+			}
 #endif
+
+			[SerializeField]
+			private float _preferredPeakBitRate = 0.0f;
+			public float preferredPeakBitRate
+			{
+				get { return _preferredPeakBitRate; }
+				set
+				{
+					if (_preferredPeakBitRate != value)
+					{
+						_changed |= ChangeFlags.PreferredPeakBitRate;
+						_preferredPeakBitRate = value;
+					}
+				}
+			}
+
+			[SerializeField]
+			private BitRateUnits _preferredPeakBitRateUnits = BitRateUnits.Kbps;
+			public BitRateUnits preferredPeakBitRateUnits
+			{
+				get { return _preferredPeakBitRateUnits; }
+				set
+				{
+					if (_preferredPeakBitRateUnits != value)
+					{
+						_changed |= ChangeFlags.PreferredPeakBitRate;
+						_preferredPeakBitRateUnits = value;
+					}
+				}
+			}
+
 
 			public Android.VideoApi videoApi = Android.VideoApi.ExoPlayer;
 			public bool useFastOesPath = false;
@@ -257,6 +483,7 @@ namespace RenderHeads.Media.AVProVideo
 			public Android.AudioOutput audioOutput = Android.AudioOutput.System;
 			public Audio360ChannelMode audio360ChannelMode = Audio360ChannelMode.TBE_8_2;
 			public bool preferSoftwareDecoder = false;
+			public Android.TextureFiltering blitTextureFiltering = Android.TextureFiltering.Point;
 
 			[SerializeField, Tooltip("Byte offset into the file where the media file is located.  This is useful when hiding or packing media files within another file.")]
 			public int fileOffset = 0;
@@ -267,6 +494,7 @@ namespace RenderHeads.Media.AVProVideo
 			public int maxBufferMs							= Android.Default_MaxBufferTimeMs;
 			public int bufferForPlaybackMs					= Android.Default_BufferForPlaybackMs;
 			public int bufferForPlaybackAfterRebufferMs		= Android.Default_BufferForPlaybackAfterRebufferMs;
+
 
 			public override bool IsModified()
 			{
@@ -284,10 +512,46 @@ namespace RenderHeads.Media.AVProVideo
 					|| (bufferForPlaybackMs != Android.Default_BufferForPlaybackMs)
 					|| (bufferForPlaybackAfterRebufferMs != Android.Default_BufferForPlaybackAfterRebufferMs)
 					|| (preferredMaximumResolution != Resolution.NoPreference)
+					|| (preferredPeakBitRate != 0.0f)
+					|| (blitTextureFiltering != Android.TextureFiltering.Point)
 				);
 			}
 
-			public override bool StartWithHighestBandwidth() { return startWithHighestBitrate; }
+			private static double BitRateInBitsPerSecond(float value, BitRateUnits units)
+			{
+				switch (units)
+				{
+					case BitRateUnits.bps:
+						return (double)value;
+					case BitRateUnits.Kbps:
+						return (double)value * 1000.0;
+					case BitRateUnits.Mbps:
+						return (double)value * 1000000.0;
+					default:
+						return 0.0;
+				}
+			}
+
+			public double GetPreferredPeakBitRateInBitsPerSecond()
+			{
+				_changed &= ~ChangeFlags.PreferredPeakBitRate;
+				return BitRateInBitsPerSecond(preferredPeakBitRate, preferredPeakBitRateUnits);
+			}
+
+			public override bool StartWithHighestBandwidth()
+			{
+				return startWithHighestBitrate;
+			}
+
+			public bool HasChanged(ChangeFlags flags = ChangeFlags.All, bool bClearFlags = false)
+			{
+				bool bReturn = ((_changed & flags) != ChangeFlags.None);
+				if (bClearFlags)
+				{
+					_changed = ChangeFlags.None;
+				}
+				return bReturn;
+			}
 
 			#region Upgrade from Version 1.x
 			[SerializeField, HideInInspector]
@@ -367,10 +631,40 @@ namespace RenderHeads.Media.AVProVideo
 
 		public static MediaPlayer.OptionsApple.Flags SetAllowExternalPlayback(this MediaPlayer.OptionsApple.Flags flags, bool b)
 		{
-			if (flags.ResumePlaybackAfterAudioSessionRouteChange() ^ b)
+			if (flags.AllowExternalPlayback() ^ b)
 			{
 				flags = b ? flags | MediaPlayer.OptionsApple.Flags.AllowExternalPlayback
 				          : flags & ~MediaPlayer.OptionsApple.Flags.AllowExternalPlayback;
+			}
+			return flags;
+		}
+
+		public static bool PlayWithoutBuffering(this MediaPlayer.OptionsApple.Flags flags)
+		{
+			return (flags & MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering) == MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering;
+		}
+
+		public static MediaPlayer.OptionsApple.Flags SetPlayWithoutBuffering(this MediaPlayer.OptionsApple.Flags flags, bool b)
+		{
+			if (flags.PlayWithoutBuffering() ^ b)
+			{
+				flags = b ? flags | MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering
+						  : flags & ~MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering;
+			}
+			return flags;
+		}
+
+		public static bool UseSinglePlayerItem(this MediaPlayer.OptionsApple.Flags flags)
+		{
+			return (flags & MediaPlayer.OptionsApple.Flags.UseSinglePlayerItem) == MediaPlayer.OptionsApple.Flags.UseSinglePlayerItem;
+		}
+
+		public static MediaPlayer.OptionsApple.Flags SetUseSinglePlayerItem(this MediaPlayer.OptionsApple.Flags flags, bool b)
+		{
+			if (flags.UseSinglePlayerItem() ^ b)
+			{
+				flags = b ? flags | MediaPlayer.OptionsApple.Flags.UseSinglePlayerItem
+						  : flags & ~MediaPlayer.OptionsApple.Flags.UseSinglePlayerItem;
 			}
 			return flags;
 		}

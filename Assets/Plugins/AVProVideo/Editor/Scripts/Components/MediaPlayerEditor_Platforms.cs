@@ -218,6 +218,62 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			new GUIContent("(STEREO) Stereo audio"),
 		};
 
+		private struct FieldDescription
+		{
+			public FieldDescription(string fieldName, GUIContent description)
+			{
+				this.fieldName = fieldName;
+				this.description = description;
+			}
+			public string fieldName;
+			public GUIContent description;
+		}
+
+		private SerializedProperty DisplayPlatformOption(string platformOptionsFieldName, FieldDescription option)
+		{
+			return DisplayPlatformOption(this.serializedObject, platformOptionsFieldName + option.fieldName, option.description);
+		}
+
+		private static SerializedProperty DisplayPlatformOption(SerializedObject so, string fieldName, GUIContent description)
+		{
+			SerializedProperty prop = so.FindProperty(fieldName);
+			if (prop != null)
+			{
+				if (description == GUIContent.none)
+				{
+					EditorGUILayout.PropertyField(prop, true);
+				}
+				else
+				{
+					EditorGUILayout.PropertyField(prop, description, true);
+				}
+			}
+			else
+			{
+				Debug.LogWarning("Can't find property `" + fieldName + "`");
+			}
+			return prop;
+		}
+
+		private SerializedProperty DisplayPlatformOptionEnum(string platformOptionsFieldName, FieldDescription option, GUIContent[] enumNames)
+		{
+			return DisplayPlatformOptionEnum(this.serializedObject, platformOptionsFieldName + option.fieldName, option.description, enumNames);
+		}
+
+		private static SerializedProperty DisplayPlatformOptionEnum(SerializedObject so, string fieldName, GUIContent description, GUIContent[] enumNames)
+		{
+			SerializedProperty prop = so.FindProperty(fieldName);
+			if (prop != null)
+			{
+				prop.enumValueIndex = EditorGUILayout.Popup(description, prop.enumValueIndex, enumNames);
+			}
+			else
+			{
+				Debug.LogWarning("Can't find property `" + fieldName + "`");
+			}
+			return prop;
+		}
+
 #if false
 		private void OnInspectorGUI_HlsDecryption(string optionsVarName)
 		{

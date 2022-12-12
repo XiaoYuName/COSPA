@@ -24,9 +24,9 @@
 	SubShader
 	{
 		Tags
-		{ 
-			"IgnoreProjector"="True" 
-			"PreviewType"="Plane"
+		{
+			"IgnoreProjector" = "True"
+			"PreviewType" = "Plane"
 		}
 
 		Lighting Off
@@ -51,14 +51,14 @@
 			#include "UnityCG.cginc"
 			#include "../AVProVideo.cginc"
 
-			struct appdata_t 
+			struct appdata_t
 			{
 				float4 vertex : POSITION;
 				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
 			};
 
-			struct v2f 
+			struct v2f
 			{
 				float4 vertex : SV_POSITION;
 				fixed4 color : COLOR;
@@ -66,13 +66,13 @@
 			};
 
 			uniform sampler2D _MainTex;
-#if USE_YPCBCR
+		#if USE_YPCBCR
 			uniform sampler2D _ChromaTex;
 			uniform float4x4 _YpCbCrTransform;
-#endif
-#if USE_HSBC
+		#endif
+		#if USE_HSBC
 			uniform	fixed _Hue, _Saturation, _Brightness, _Contrast, _InvGamma;
-#endif
+		#endif
 			uniform fixed4 _Color;
 			uniform float4 _MainTex_ST;
 			uniform float4 _MainTex_TexelSize;
@@ -86,12 +86,12 @@
 				o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex);
 				o.uv.wz = 0.0;
 
-#if STEREO_TOP_BOTTOM || STEREO_LEFT_RIGHT
+		#if STEREO_TOP_BOTTOM || STEREO_LEFT_RIGHT
 				float4 scaleOffset = GetStereoScaleOffset(IsStereoEyeLeft(), _MainTex_ST.y < 0.0);
 
 				o.uv.xy *= scaleOffset.xy;
 				o.uv.xy += scaleOffset.zw;
-#endif
+		#endif
 
 				// NOTE: this always runs because it's also used to flip vertically
 				o.uv = OffsetAlphaPackingUV(_MainTex_TexelSize.xy, o.uv.xy, _VertScale < 0.0);
@@ -102,20 +102,20 @@
 			half4 frag(v2f i) : SV_Target
 			{
 				half4 col;
-#if USE_YPCBCR
+		#if USE_YPCBCR
 				col = SampleYpCbCr(_MainTex, _ChromaTex, i.uv.xy, _YpCbCrTransform);
-#else
+		#else
 				col = SampleRGBA(_MainTex, i.uv.xy);
-#endif
+		#endif
 
-#if ALPHAPACK_TOP_BOTTOM | ALPHAPACK_LEFT_RIGHT
+		#if ALPHAPACK_TOP_BOTTOM || ALPHAPACK_LEFT_RIGHT
 				col.a = SamplePackedAlpha(_MainTex, i.uv.zw);
-#endif
+		#endif
 
-#if USE_HSBC
+		#if USE_HSBC
 				col.rgb = ApplyHSBEffect(col.rgb, fixed4(_Hue, _Saturation, _Brightness, _Contrast));
 				col.rgb = pow(col.rgb, _InvGamma);
-#endif
+		#endif
 				return col * i.color;
 			}
 			ENDCG

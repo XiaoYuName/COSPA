@@ -1,4 +1,4 @@
-﻿// UnityEngine.UI was moved to a package in 2019.2.0
+// UnityEngine.UI was moved to a package in 2019.2.0
 // Unfortunately no way to test for this across all Unity versions yet
 // You can set up the asmdef to reference the new package, but the package doesn't 
 // existing in Unity 2017 etc, and it throws an error due to missing reference
@@ -14,20 +14,13 @@ using RenderHeads.Media.AVProVideo;
 using RenderHeads.Media.AVProVideo.Demos.UI;
 
 //-----------------------------------------------------------------------------
-// Copyright 2018-2021 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2018-2021 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Demos
 {
 	public class MediaPlayerUI : MonoBehaviour
 	{
-		private const KeyCode KeyVolumeUp = KeyCode.UpArrow;
-		private const KeyCode KeyVolumeDown = KeyCode.DownArrow;
-		private const KeyCode KeyTogglePlayPause = KeyCode.Space;
-		private const KeyCode KeyToggleMute = KeyCode.M;
-		private const KeyCode KeyJumpForward = KeyCode.RightArrow;
-		private const KeyCode KeyJumpBack = KeyCode.LeftArrow;
-
 		[SerializeField] MediaPlayer _mediaPlayer = null;
 
 		[Header("Options")]
@@ -38,6 +31,15 @@ namespace RenderHeads.Media.AVProVideo.Demos
 		[SerializeField] bool _autoHide = true;
 		[SerializeField] float _userInactiveDuration = 1.5f;
 		[SerializeField] bool _useAudioFading = true;
+
+		[Header("Keyboard Controls")]
+		[SerializeField] bool _enableKeyboardControls = true;
+		[SerializeField] KeyCode KeyVolumeUp = KeyCode.UpArrow;
+		[SerializeField] KeyCode KeyVolumeDown = KeyCode.DownArrow;
+		[SerializeField] KeyCode KeyTogglePlayPause = KeyCode.Space;
+		[SerializeField] KeyCode KeyToggleMute = KeyCode.M;
+		[SerializeField] KeyCode KeyJumpForward = KeyCode.RightArrow;
+		[SerializeField] KeyCode KeyJumpBack = KeyCode.LeftArrow;
 
 		[Header("Optional Components")]
 		[SerializeField] OverlayManager _overlayManager = null;
@@ -129,6 +131,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				{
 					return true;
 				}
+				#if (!ENABLE_INPUT_SYSTEM || ENABLE_LEGACY_INPUT_MANAGER)
 				bool touchInput = (Input.touchSupported && Input.touchCount > 0);
 				bool mouseInput = (Input.mousePresent && (Input.mousePosition != _previousMousePos || Input.mouseScrollDelta != Vector2.zero || Input.GetMouseButton(0)));
 
@@ -140,6 +143,9 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				}
 
 				return false;
+				#else
+				return true;
+				#endif
 			}
 		}
 
@@ -299,7 +305,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			}
 		}
 
-		private void TogglePlayPause()
+		public void TogglePlayPause()
 		{
 			if (_mediaPlayer && _mediaPlayer.Control != null)
 			{
@@ -361,7 +367,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			}
 		}
 
-		private void SeekRelative(float deltaTime)
+		public void SeekRelative(float deltaTime)
 		{
 			if (_mediaPlayer && _mediaPlayer.Control != null)
 			{
@@ -378,7 +384,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			}
 		}
 
-		private void ChangeAudioVolume(float delta)
+		public void ChangeAudioVolume(float delta)
 		{
 			if (_mediaPlayer && _mediaPlayer.Control != null)
 			{
@@ -396,11 +402,11 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			}
 		}
 
-		private void ToggleMute()
+		public void ToggleMute()
 		{
 			if (_mediaPlayer && _mediaPlayer.Control != null)
 			{
-				if (_mediaPlayer.Control.IsMuted())
+				if (_mediaPlayer.AudioMuted)
 				{
 					MuteAudio(false);
 				}
@@ -416,7 +422,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			if (_mediaPlayer && _mediaPlayer.Control != null)
 			{
 				// Change mute
-				_mediaPlayer.Control.MuteAudio(mute);
+				_mediaPlayer.AudioMuted = mute;
 
 				// Update the UI
 				// The UI element is constantly updated by the Update() method
@@ -429,7 +435,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			}
 		}
 
-		private void ToggleSubtitles()
+		public void ToggleSubtitles()
 		{
 			if (_mediaPlayer && _mediaPlayer.TextTracks != null)
 			{
@@ -664,6 +670,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			{
 				result = false;
 			}
+			#if (!ENABLE_INPUT_SYSTEM || ENABLE_LEGACY_INPUT_MANAGER)
 			else if (Input.mousePresent)
 			{
 				// Check whether the mouse cursor is over the controls, in which case we can't hide the UI
@@ -674,6 +681,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				Rect rr = RectTransformUtility.PixelAdjustRect(rect, null);
 				result = !rr.Contains(canvasPos);
 			}
+			#endif
 			return result;
 		}
 
@@ -735,6 +743,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				TimeRange timelineRange = GetTimelineRange();
 
 				// Update timeline hover popup
+				#if (!ENABLE_INPUT_SYSTEM || ENABLE_LEGACY_INPUT_MANAGER)
 				if (_timelineTip != null)
 				{
 					if (_isHoveringOverTimeline)
@@ -794,6 +803,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 						_segmentsSeek.gameObject.SetActive(false);
 					}
 				}
+				#endif
 
 				// Updated stalled display
 				if (_overlayManager)
@@ -806,7 +816,9 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				}
 
 				// Update keyboard input
+				if (_enableKeyboardControls)
 				{
+					#if (!ENABLE_INPUT_SYSTEM || ENABLE_LEGACY_INPUT_MANAGER)
 					// Keyboard toggle play/pause
 					if (Input.GetKeyDown(KeyTogglePlayPause))
 					{
@@ -838,6 +850,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 					{
 						ToggleMute();
 					}
+					#endif
 				}
 
 				// Animation play/pause button
@@ -859,7 +872,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				{
 					float t = _volumeMaterial.GetFloat(_propMute.Id);
 					float d = 1f;
-					if (!_mediaPlayer.Control.IsMuted())
+					if (!_mediaPlayer.AudioMuted)
 					{
 						d = -1f;
 					}
@@ -912,7 +925,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				}
 
 				// Update time slider position
-				if (_sliderTime)
+				if (_sliderTime && !_isHoveringOverTimeline)
 				{
 					double t = 0.0;
 					if (timelineRange.duration > 0.0)
@@ -1105,7 +1118,27 @@ namespace RenderHeads.Media.AVProVideo.Demos
 			{
 				GUILayout.Label("FPS: " + _mediaPlayer.Info.GetVideoDisplayRate().ToString("F2"));
 			}
-
+#if (UNITY_STANDALONE_WIN)
+			if (_mediaPlayer.PlatformOptionsWindows.bufferedFrameSelection != BufferedFrameSelectionMode.None)
+			{
+				IBufferedDisplay bufferedDisplay = _mediaPlayer.BufferedDisplay;
+				if (bufferedDisplay != null)
+				{
+					BufferedFramesState state = bufferedDisplay.GetBufferedFramesState();
+					GUILayout.BeginHorizontal();
+					GUILayout.Label("Buffered Frames: " + state.bufferedFrameCount);
+					GUILayout.HorizontalSlider(state.bufferedFrameCount, 0f, 12f);
+					GUILayout.EndHorizontal();
+					GUILayout.BeginHorizontal();
+					GUILayout.Label("Free Frames: " + state.freeFrameCount);
+					GUILayout.HorizontalSlider(state.freeFrameCount, 0f, 12f);
+					GUILayout.EndHorizontal();
+					GUILayout.Label("Min Timstamp: " + state.minTimeStamp);
+					GUILayout.Label("Max Timstamp: " + state.maxTimeStamp);
+					GUILayout.Label("Display Timstamp: " + _mediaPlayer.TextureProducer.GetTextureTimeStamp());
+				}
+			}
+#endif
 			GUILayout.EndVertical();
 		}
 	}

@@ -14,11 +14,14 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	{
 		private void OnInspectorGUI_Network()
 		{
-			SerializedProperty httpHeadersProp = serializedObject.FindProperty("_httpHeaders.httpHeaders");
-			OnInspectorGUI_HttpHeaders(httpHeadersProp);
+			if (_showUltraOptions)
+			{
+				SerializedProperty httpHeadersProp = serializedObject.FindProperty("_httpHeaders.httpHeaders");
+				OnInspectorGUI_HttpHeaders(httpHeadersProp);
 
-			SerializedProperty keyAuthProp = serializedObject.FindProperty("_keyAuth");
-			OnInspectorGUI_HlsDecryption(keyAuthProp);
+				SerializedProperty keyAuthProp = serializedObject.FindProperty("_keyAuth");
+				OnInspectorGUI_HlsDecryption(keyAuthProp);
+			}
 		}
 
 		private void OnInspectorGUI_HlsDecryption(SerializedProperty keyAuthProp)

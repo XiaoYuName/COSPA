@@ -45,6 +45,7 @@ void         AVPPlayerSetRate(AVPPlayerRef player, float rate);
 void         AVPPlayerSetVolume(AVPPlayerRef player, float volume);
 void         AVPPlayerSetExternalPlaybackVideoGravity(AVPPlayerRef player, AVPPlayerExternalPlaybackVideoGravity externalPlaybackVideoGravity);
 bool         AVPPlayerSetTrack(AVPPlayerRef player, AVPPlayerTrackType type, int index);
+void         AVPPlayerSetPlayerSettings(AVPPlayerRef player, AVPPlayerSettings settings);
 
 void         AVPPlayerSeek(AVPPlayerRef player, double toTime, double toleranceBefore, double toleranceAfter);
 

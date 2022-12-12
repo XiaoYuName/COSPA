@@ -211,20 +211,20 @@ namespace RenderHeads.Media.AVProVideo
 			return true;
 		}
 
-		public WebGLMediaPlayer(WebGL.ExternalLibrary externalLibrary, bool useTextureMips)
+		public WebGLMediaPlayer(MediaPlayer.OptionsWebGL options)
 		{
-			SetOptions(externalLibrary, useTextureMips);
+			SetOptions(options);
 		}
 
-		public void SetOptions(WebGL.ExternalLibrary externalLibrary, bool useTextureMips)
+		public void SetOptions(MediaPlayer.OptionsWebGL options)
 		{
-			_externalLibrary = externalLibrary;
-			_useTextureMips = useTextureMips;
+			_externalLibrary = options.externalLibrary;
+			_useTextureMips = options.useTextureMips;
 		}
 
 		public override string GetVersion()
 		{
-			return "2.1.0";
+			return "2.1.6";
 		}
 
 		public override string GetExpectedVersion()

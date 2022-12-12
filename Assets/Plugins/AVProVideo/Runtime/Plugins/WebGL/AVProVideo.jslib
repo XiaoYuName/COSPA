@@ -10,6 +10,23 @@ var AVProVideoWebGL =
 	count: 0,
 	players: [],
 
+	isSafari: function() {
+		return navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && navigator.userAgent && navigator.userAgent.indexOf('CriOS') == -1 && navigator.userAgent.indexOf('FxiOS') == -1;
+	},
+
+	is_iOS: function() {
+		return [
+			'iPad Simulator',
+			'iPhone Simulator',
+			'iPod Simulator',
+			'iPad',
+			'iPhone',
+			'iPod'
+		].includes(navigator.platform)
+		// iPad on iOS 13 detection
+		|| (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+	},
+
 	hasPlayer__deps: ["players"],
 	hasPlayer: function (videoIndex)
 	{
@@ -41,7 +58,7 @@ var AVProVideoWebGL =
 		return false;
 	},
 
-	AVPPlayerInsertVideoElement__deps: ["count", "players"],
+	AVPPlayerInsertVideoElement__deps: ["count", "players", "isSafari", "is_iOS"],
 	AVPPlayerInsertVideoElement: function (path, idValues, externalLibrary)
 	{
 		if (!path) { return false; }
@@ -54,6 +71,7 @@ var AVProVideoWebGL =
 
 		var vid = document.createElement("video");
 		var useNativeSrcPath = true;
+		var hls = null;
 
 		if (externalLibrary == 1)
 		{
@@ -61,10 +79,10 @@ var AVProVideoWebGL =
 			var player = dashjs.MediaPlayer().create();
 			player.initialize(vid, path, true);
 		}
-		else if (externalLibrary == 2)
+		else if (externalLibrary == 2 && !(_is_iOS() || _isSafari()))
 		{
 			useNativeSrcPath = false;
-			var hls = new Hls();
+			hls = new Hls();
 			hls.loadSource(path);
 			hls.attachMedia(vid);
 			hls.on(Hls.Events.MANIFEST_PARSED, function()
@@ -93,7 +111,8 @@ var AVProVideoWebGL =
 			hasMetadata: false,
 			isStalled: false,
 			buffering: false,
-			lastErrorCode: 0
+			lastErrorCode: 0,
+			hlsjs: hls
 		};
 
 		_players.push(vidData);
@@ -192,6 +211,13 @@ var AVProVideoWebGL =
 		vid.crossOrigin = "anonymous";
 		vid.preload = 'auto';
 		vid.autoplay = false;
+
+		if (_is_iOS())
+		{
+			vid.autoplay = true;
+			vid.playsInline = true;
+		}
+
 		if (useNativeSrcPath)
 		{
 			vid.src = path;
@@ -326,6 +352,12 @@ var AVProVideoWebGL =
 		vid.pause();
 		vid.removeAttribute("src"); // Previous: vid.src = "";
 		vid.load();
+
+		if (_players[playerIndex].hlsjs != null)
+		{
+			_players[playerIndex].hlsjs.destroy();
+			_players[playerIndex].hlsjs = null;
+		}
 
 		_players[playerIndex].video = null;
 		_players[playerIndex] = null;
@@ -463,13 +495,18 @@ var AVProVideoWebGL =
 
 		if (vid.seekable && vid.seekable.length > 0)
 		{
+			var timeNorm = 0.0;
+			if (vid.duration > 0.0)
+			{
+				timeNorm = timeSec / vid.duration;
+			}
 			for (i = 0; i < vid.seekable.length; i++)
 			{
-				if (timeSec >= vid.seekable.start(i) && timeSec <= vid.seekable.end(i)) 
+				if (timeNorm >= vid.seekable.start(i) && timeNorm <= vid.seekable.end(i)) 
 				{
 					if (fast && vid.fastSeek)
 					{
-						vid.fastSeek(timeSec);
+						vid.fastSeek(timeNorm);
 					}
 					else
 					{
@@ -478,10 +515,16 @@ var AVProVideoWebGL =
 					return;
 				}
 			}
-
-			if (timeSec == 0) 
+		}
+		else
+		{
+			if (timeSec == 0.0) 
 			{
-				_players[playerIndex].video.load();
+				vid.load();
+			}
+			else
+			{
+				vid.currentTime = timeSec;
 			}
 		}
 	},

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -13,7 +13,7 @@ namespace RenderHeads.Media.AVProVideo
 	/// </summary>
 	[RequireComponent(typeof(AudioSource))]
 	[AddComponentMenu("AVPro Video/Audio Output", 400)]
-	[HelpURL("http://renderheads.com/products/avpro-video/")]
+	[HelpURL("https://www.renderheads.com/products/avpro-video/")]
 	public class AudioOutput : MonoBehaviour
 	{
 		public enum AudioOutputMode
@@ -25,6 +25,7 @@ namespace RenderHeads.Media.AVProVideo
 		[SerializeField] MediaPlayer _mediaPlayer = null;
 		[SerializeField] AudioOutputMode _audioOutputMode = AudioOutputMode.MultipleChannels;
 		[HideInInspector, SerializeField] int _channelMask = 0xffff;
+		[SerializeField] bool _supportPositionalAudio = false;
 
 		public MediaPlayer Player
 		{
@@ -77,6 +78,19 @@ namespace RenderHeads.Media.AVProVideo
 
 		public void ChangeMediaPlayer(MediaPlayer newPlayer)
 		{
+			#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || (!UNITY_EDITOR && (UNITY_IOS || UNITY_TVOS))
+				MediaPlayer.OptionsApple options = (MediaPlayer.OptionsApple)_mediaPlayer.GetCurrentPlatformOptions();
+				if (options.audioMode == MediaPlayer.OptionsApple.AudioMode.Unity)
+				{
+					this.enabled = true;
+				}
+				else
+				{
+					Debug.LogWarning("[AVProVideo] Unity audio output is not supported when 'Audio Output Mode' is not set to 'Unity' in the MediaPlayer platform options");
+					this.enabled = false;
+				}
+			#endif
+
 			// When changing the media player, handle event subscriptions
 			if (_mediaPlayer != null)
 			{
@@ -90,6 +104,27 @@ namespace RenderHeads.Media.AVProVideo
 			{
 				_mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
 				_mediaPlayer.AudioSource = _audioSource;
+			}
+
+			if (_supportPositionalAudio)
+			{
+				if (_audioSource.clip == null)
+				{
+					// Position audio is implemented from hints found on this thread:
+					// https://forum.unity.com/threads/onaudiofilterread-sound-spatialisation.362782/
+					int frameCount = 2048 * 10;
+					int sampleCount = frameCount * Helper.GetUnityAudioSpeakerCount();
+					AudioClip clip = AudioClip.Create("dummy", frameCount, Helper.GetUnityAudioSpeakerCount(), Helper.GetUnityAudioSampleRate(), false);
+					float[] samples = new float[sampleCount];
+					for (int i = 0; i < samples.Length; i++) { samples[i] = 1f; }
+					clip.SetData(samples, 0);
+					_audioSource.clip = clip;
+					_audioSource.loop = true;
+				}
+			}
+			else if (_audioSource.clip != null)
+			{
+				_audioSource.clip = null;
 			}
 		}
 
@@ -125,7 +160,7 @@ namespace RenderHeads.Media.AVProVideo
 #if (UNITY_EDITOR_WIN || UNITY_EDITOR_OSX) || (!UNITY_EDITOR && (UNITY_STANDALONE_WIN || UNITY_WSA_10_0 || UNITY_STANDALONE_OSX || UNITY_IOS || UNITY_TVOS || UNITY_ANDROID))
 		void OnAudioFilterRead(float[] audioData, int channelCount)
 		{
-			AudioOutputManager.Instance.RequestAudio(this, _mediaPlayer, audioData, channelCount, _channelMask, _audioOutputMode);
+			AudioOutputManager.Instance.RequestAudio(this, _mediaPlayer, audioData, channelCount, _channelMask, _audioOutputMode, _supportPositionalAudio);
 		}
 #endif
 	}

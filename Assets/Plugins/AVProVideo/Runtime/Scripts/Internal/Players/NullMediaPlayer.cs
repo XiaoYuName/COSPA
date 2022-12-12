@@ -46,8 +46,8 @@ namespace RenderHeads.Media.AVProVideo
 		/// <inheritdoc/>
 		public override bool OpenMedia(string path, long offset, string httpHeader, MediaHints mediaHints, int forceFileFormat = 0, bool startWithHighestBitrate = false)
 		{
-			_texture_AVPro = (Texture2D)Resources.Load("AVProVideo-NullPlayer-Frame0");
-			_texture_AVPro1 = (Texture2D)Resources.Load("AVProVideo-NullPlayer-Frame1");
+			_texture_AVPro = (Texture2D)Resources.Load("Textures/AVProVideo-NullPlayer-Frame0");
+			_texture_AVPro1 = (Texture2D)Resources.Load("Textures/AVProVideo-NullPlayer-Frame1");
 
 			if( _texture_AVPro )
 			{

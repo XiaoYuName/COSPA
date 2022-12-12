@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -20,6 +20,7 @@ namespace RenderHeads.Media.AVProVideo
 				//Texture2D,
 			}
 
+			[SerializeField] public string name = string.Empty;
 			[SerializeField] public SourceType sourceType = SourceType.AVProVideoPlayer;
 			[SerializeField] public MediaPath mediaPath = new MediaPath();
 			[SerializeField] public Texture2D texture = null;
@@ -28,7 +29,6 @@ namespace RenderHeads.Media.AVProVideo
 			[SerializeField] public PlaylistMediaPlayer.StartMode startMode = PlaylistMediaPlayer.StartMode.Immediate;
 			[SerializeField] public PlaylistMediaPlayer.ProgressMode progressMode = PlaylistMediaPlayer.ProgressMode.OnFinish;
 			[SerializeField] public float progressTimeSeconds = 0.5f;
-			[SerializeField] public bool autoPlay = true;
 			[SerializeField] public bool isOverrideTransition = false;
 			[SerializeField] public PlaylistMediaPlayer.Transition overrideTransition = PlaylistMediaPlayer.Transition.None;
 			[SerializeField] public float overrideTransitionDuration = 1f;
@@ -47,8 +47,8 @@ namespace RenderHeads.Media.AVProVideo
 	/// <summary>
 	/// This is a BETA component
 	/// </summary>
-	[AddComponentMenu("AVPro Video/Playlist Media Player (BETA)", -100)]
-	[HelpURL("http://renderheads.com/products/avpro-video/")]
+	[AddComponentMenu("AVPro Video/Playlist Media Player (BETA)", -80)]
+	[HelpURL("https://www.renderheads.com/products/avpro-video/")]
 	public class PlaylistMediaPlayer : MediaPlayer, ITextureProducer
 	{
 		public enum Transition
@@ -119,6 +119,7 @@ namespace RenderHeads.Media.AVProVideo
 		private static readonly LazyShaderProperty PropFromTex = new LazyShaderProperty("_FromTex");
 		private static readonly LazyShaderProperty PropFade = new LazyShaderProperty("_Fade");
 
+		private bool _isPaused = false;
 		private int _playlistIndex = 0;
 		private MediaPlayer _nextPlayer;
 		private Material _material;
@@ -159,15 +160,47 @@ namespace RenderHeads.Media.AVProVideo
 
 		public MediaPlaylist.MediaItem PlaylistItem { get { if (_playlist.HasItemAt(_playlistIndex)) return _playlist.Items[_playlistIndex]; return null; } }
 
+		/// <summary>
+		/// The default transition to use if the transition is not overridden in the MediaItem
+		/// </summary>
+		public Transition DefaultTransition { get { return _defaultTransition; } set { _defaultTransition = value; } }
+		
+		/// <summary>
+		/// The default duration the transition will take (in seconds) if the transition is not overridden in the MediaItem
+		/// </summary>
+		public float DefaultTransitionDuration { get { return _defaultTransitionDuration; } set { _defaultTransitionDuration = value; } }
+
+		/// <summary>
+		/// The default easing the transition will use if the transition is not overridden in the MediaItem
+		/// </summary>
+		public Easing.Preset DefaultTransitionEasing { get { return _defaultTransitionEasing; } set { _defaultTransitionEasing = value; } }
+
+		/// <summary>
+		/// Closes videos that aren't playing.  This will save memory but adds extra overhead
+		/// </summary>
+		public bool AutoCloseVideo { get { return _autoCloseVideo; } set { _autoCloseVideo = value; } }
+
+		/// <summary>
+		/// None: Do not loop the playlist when the end is reached.<br/>Loop: Rewind the playlist and play again when the each is reached
+		/// </summary>
 		public PlaylistLoopMode LoopMode { get { return _playlistLoopMode; } set { _playlistLoopMode = value; } }
 
+		/// <summary>
+		/// Enable the playlist to progress to the next item automatically, or wait for manual trigger via scripting
+		/// </summary>
 		public bool AutoProgress { get { return _playlistAutoProgress; } set { _playlistAutoProgress = value; } }
 
+		/// <summary>
+		/// Returns the IMediaInfo interface for the MediaPlayer that is playing the current active item in the playlist (returned by CurrentPlayer property).  This will change during each transition.
+		/// </summary>
 		public override IMediaInfo Info
 		{
 			get { if (CurrentPlayer != null) return CurrentPlayer.Info; return null; }
 		}
 
+		/// <summary>
+		/// Returns the IMediaControl interface for the MediaPlayer that is playing the current active item in the playlist (returned by CurrentPlayer property).  This will change during each transition.
+		/// </summary>
 		public override IMediaControl Control
 		{
 			get { if (CurrentPlayer != null) return CurrentPlayer.Control; return null; }
@@ -191,6 +224,58 @@ namespace RenderHeads.Media.AVProVideo
 				}
 				return null;
 			}
+		}
+
+		[SerializeField, Range(0.0f, 1.0f)] float _playlistAudioVolume = 1.0f;
+		[SerializeField] bool _playlistAudioMuted = false;
+
+		public override float AudioVolume
+		{
+			get { return _playlistAudioVolume; }
+			set { _playlistAudioVolume = Mathf.Clamp01(value); if (!IsTransitioning() && CurrentPlayer != null) CurrentPlayer.AudioVolume = _playlistAudioVolume; }
+		}
+
+		public override bool AudioMuted
+		{
+			get { return _playlistAudioMuted; } 
+			set { _playlistAudioMuted = value; if (!IsTransitioning() && CurrentPlayer != null) CurrentPlayer.AudioMuted = _playlistAudioMuted; } 
+		}
+
+		public override void Play()
+		{
+			_isPaused = false;
+			if (Control != null)
+			{
+				Control.Play();
+			}
+			if (IsTransitioning())
+			{
+				if (!_pausePreviousOnTransition && NextPlayer.Control != null)
+				{
+					NextPlayer.Control.Play();
+				}
+			}
+		}
+
+		public override void Pause()
+		{
+			_isPaused = true;
+			if (Control != null)
+			{
+				Control.Pause();
+			}
+			if (IsTransitioning())
+			{
+				if (NextPlayer.Control != null)
+				{
+					NextPlayer.Control.Pause();
+				}
+			}
+		}
+
+		public bool IsPaused()
+		{
+			return _isPaused;
 		}
 
 		private void SwapPlayers()
@@ -219,7 +304,8 @@ namespace RenderHeads.Media.AVProVideo
 					{
 						if (_rt.width != maxWidth || _rt.height != maxHeight)
 						{
-							RenderTexture.ReleaseTemporary(_rt = null);
+							RenderTexture.ReleaseTemporary(_rt);
+							_rt = null;
 						}
 					}
 
@@ -239,8 +325,13 @@ namespace RenderHeads.Media.AVProVideo
 					// Immediately complete the transition
 					_transitionTimer = _currentTransitionDuration;
 
+					// Immediately update the audio volume
+					NextPlayer.AudioVolume = this.AudioVolume;
+					CurrentPlayer.AudioVolume = 0f;
+
 					if (_autoCloseVideo)
 					{
+						CurrentPlayer.MediaPath.Path = string.Empty;
 						CurrentPlayer.CloseMedia();
 					}
 				}
@@ -295,7 +386,11 @@ namespace RenderHeads.Media.AVProVideo
 			_nextPlayer = _playerA;
 			if (_transitionShader == null)
 			{
-				Debug.LogError("Transition shader not assigned to script");
+				_transitionShader = Shader.Find("AVProVideo/Internal/Transition");
+				if (_transitionShader == null)
+				{
+					Debug.LogError("[AVProVideo] Missing transition shader");
+				}
 			}
 			_material = new Material(_transitionShader);
 			_easeFunc = Easing.GetFunction(_defaultTransitionEasing);
@@ -438,9 +533,14 @@ namespace RenderHeads.Media.AVProVideo
 			}
 
 			this.Loop = NextPlayer.Loop = mediaItem.loop;
-			this.AutoStart = NextPlayer.AutoStart = mediaItem.autoPlay;
 			NextPlayer.MediaPath = new MediaPath(mediaItem.mediaPath);
 			this.MediaPath = new MediaPath(mediaItem.mediaPath);
+			NextPlayer.AudioMuted = _playlistAudioMuted;
+			NextPlayer.AudioVolume = _playlistAudioVolume;
+			if (_transitionTimer < _currentTransitionDuration && _currentTransition != Transition.None)
+			{
+				NextPlayer.AudioVolume = 0f;
+			}
 
 			if (isMediaAlreadyLoaded)
 			{
@@ -460,7 +560,6 @@ namespace RenderHeads.Media.AVProVideo
 				}
 				else
 				{
-					//NextPlayer.m_AutoStart = false;
 					NextPlayer.OpenMedia(NextPlayer.MediaPath.PathType, NextPlayer.MediaPath.Path, _nextItem.startMode == StartMode.Immediate);
 				}
 			}
@@ -502,50 +601,59 @@ namespace RenderHeads.Media.AVProVideo
 
 		protected override void Update()
 		{
-			if (IsTransitioning())
+			if (!Application.isPlaying) return;
+
+			if (!IsPaused())
 			{
-				_transitionTimer += Time.deltaTime;
-				float t = _easeFunc(Mathf.Clamp01(_transitionTimer / _currentTransitionDuration));
-
-				// Fade the audio volume
-				NextPlayer.AudioVolume = 1f - t;
-				CurrentPlayer.AudioVolume = t;
-
-				// TODO: support going from mono to stereo
-				// TODO: support videos of different aspect ratios by rendering with scaling to fit
-				// This can be done by blitting twice, once for each eye
-				// If the stereo mode is different for playera/b then both should be set to stereo during the transition
-				// if (CurrentPlayer.m_StereoPacking == StereoPacking.TopBottom)....
-				_material.SetFloat(PropFade.Id, t);
-				_rt.DiscardContents();
-				Graphics.Blit(GetCurrentTexture(), _rt, _material);
-
-				// After the transition is now complete, close/pause the previous video if required
-				bool isTransitioning = IsTransitioning();
-				if (!isTransitioning)
+				if (IsTransitioning())
 				{
-					if (_autoCloseVideo)
+					_transitionTimer += Time.deltaTime;
+					float t = _easeFunc(Mathf.Clamp01(_transitionTimer / _currentTransitionDuration));
+
+					// Fade the audio volume
+					NextPlayer.AudioVolume = (1f - t) * this.AudioVolume;
+					CurrentPlayer.AudioVolume = t * this.AudioVolume;
+
+					// TODO: support going from mono to stereo
+					// TODO: support videos of different aspect ratios by rendering with scaling to fit
+					// This can be done by blitting twice, once for each eye
+					// If the stereo mode is different for playera/b then both should be set to stereo during the transition
+					// if (CurrentPlayer.m_StereoPacking == StereoPacking.TopBottom)....
+					_material.SetFloat(PropFade.Id, t);
+					_rt.DiscardContents();
+					Graphics.Blit(GetCurrentTexture(), _rt, _material);
+
+					// After the transition is now complete, close/pause the previous video if required
+					bool isTransitioning = IsTransitioning();
+					if (!isTransitioning)
 					{
-						if (NextPlayer != null)
+						if (_autoCloseVideo)
 						{
-							NextPlayer.MediaPath.Path = string.Empty;
-							NextPlayer.CloseMedia();
+							if (NextPlayer != null)
+							{
+								NextPlayer.MediaPath.Path = string.Empty;
+								NextPlayer.CloseMedia();
+							}
 						}
-					}
-					else if (!_pausePreviousOnTransition)
-					{
-						if (NextPlayer != null && NextPlayer.Control.IsPlaying())
+						else if (!_pausePreviousOnTransition)
 						{
-							NextPlayer.Pause();
+							if (NextPlayer != null && NextPlayer.Control.IsPlaying())
+							{
+								NextPlayer.Pause();
+							}
 						}
 					}
 				}
-			}
-			else
-			{
-				if (_playlistAutoProgress && _nextItem == null && _currentItem != null && _currentItem.progressMode == ProgressMode.BeforeFinish && Control != null && Control.GetCurrentTime() >= (Info.GetDuration() - (_currentItem.progressTimeSeconds)))
+				else
 				{
-					this.NextItem();
+					if (_playlistAutoProgress && _nextItem == null && _currentItem != null && _currentItem.progressMode == ProgressMode.BeforeFinish && Control != null && Control.HasMetaData() && Control.GetCurrentTime() >= (Info.GetDuration() - (_currentItem.progressTimeSeconds)))
+					{
+						this.NextItem();
+					}
+					else if (_playlistAutoProgress && _currentItem == null)
+					{
+						JumpToItem(_playlistIndex);
+					}
 				}
 			}
 
@@ -584,6 +692,11 @@ namespace RenderHeads.Media.AVProVideo
 		public long GetTextureTimeStamp()
 		{
 			return CurrentPlayer.TextureProducer.GetTextureTimeStamp();
+		}
+
+		public float GetTexturePixelAspectRatio()
+		{
+			return CurrentPlayer.TextureProducer.GetTexturePixelAspectRatio();
 		}
 
 		public bool RequiresVerticalFlip()

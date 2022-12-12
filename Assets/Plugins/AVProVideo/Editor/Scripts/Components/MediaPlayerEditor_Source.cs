@@ -14,9 +14,9 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	public partial class MediaPlayerEditor : UnityEditor.Editor
 	{
 #if UNITY_EDITOR_OSX
-		internal const string MediaFileExtensions = "mp4,m4v,mov,avi,mp3,m4a,aac,ac3,au,aiff,caf,wav,m3u8";
+		internal const string MediaFileExtensions = "mp4,m4v,mov,mpg,avi,mp3,m4a,aac,ac3,au,aiff,caf,wav,m3u8";
 #else
-		internal const string MediaFileExtensions = "Media Files;*.mp4;*.mov;*.m4v;*.avi;*.mkv;*.ts;*.webm;*.flv;*.vob;*.ogg;*.ogv;*.mpg;*.wmv;*.3gp;Audio Files;*wav;*.mp3;*.mp2;*.m4a;*.wma;*.aac;*.au;*.flac;*.m3u8;*.mpd;*.ism;";
+		internal const string MediaFileExtensions = "Media Files;*.mp4;*.mov;*.m4v;*.avi;*.mkv;*.ts;*.webm;*.flv;*.vob;*.ogg;*.ogv;*.mpg;*.wmv;*.3gp;*.mxf;Audio Files;*wav;*.mp3;*.mp2;*.m4a;*.wma;*.aac;*.au;*.flac;*.m3u8;*.mpd;*.ism;";
 #endif
 
 		private readonly static GUIContent[] _fileFormatGuiNames =
@@ -56,6 +56,25 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				GUI.color = Color.white;
 				GUILayout.BeginHorizontal();
 
+				if (_allowDeveloperMode)
+				{
+					if (GUILayout.Button("Rewind"))
+					{
+						mediaPlayer.Rewind(true);
+					}
+					if (GUILayout.Button("Preroll"))
+					{
+						mediaPlayer.RewindPrerollPause();
+					}
+					if (GUILayout.Button("End"))
+					{
+						mediaPlayer.Control.Seek(mediaPlayer.Info.GetDuration());
+					}
+				}
+				if (GUILayout.Button("Close"))
+				{
+					mediaPlayer.CloseMedia();
+				}
 				if (GUILayout.Button("Load"))
 				{
 					if (mediaPlayer.MediaSource == MediaSource.Path)
@@ -86,11 +105,13 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					}
 				}
 
+				GUI.color = Color.green;
 				MediaPathDrawer.ShowBrowseButtonIcon(_propMediaPath, _propMediaSource);
+				GUI.color = Color.white;
 
 				GUILayout.EndHorizontal();
 
-				//MediaPath mediaPath = new MediaPath(_propMediaPath.FindPropertyRelative("_path").stringValue, (MediaPathType)_propMediaPath.FindPropertyRelative("_pathType").enumValueIndex);					
+				//MediaPath mediaPath = new MediaPath(_propMediaPath.FindPropertyRelative("_path").stringValue, (MediaPathType)_propMediaPath.FindPropertyRelative("_pathType").enumValueIndex);
 				//ShowFileWarningMessages((MediaSource)_propMediaSource.enumValueIndex, mediaPath, (MediaReference)_propMediaReference.objectReferenceValue, mediaPlayer.AutoOpen, Platform.Unknown);
 				GUI.color = Color.white;
 			}
@@ -121,7 +142,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		internal static void ShowFileWarningMessages(MediaSource mediaSource, MediaPath mediaPath, MediaReference mediaReference, bool isAutoOpen, Platform platform)
 		{
 			MediaPath result = null;
-			
+
 			if (mediaSource == MediaSource.Path)
 			{
 				if (mediaPath != null)
@@ -143,7 +164,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		internal static void ShowFileWarningMessages(string filePath, MediaPathType fileLocation, MediaReference mediaReference, MediaSource mediaSource, bool isAutoOpen, Platform platform)
 		{
 			MediaPath mediaPath = null;
-			
+
 			if (mediaSource == MediaSource.Path)
 			{
 				mediaPath = new MediaPath(filePath, fileLocation);
@@ -260,10 +281,13 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				}
 				else
 				{
+					// [MOZ] All paths on (i|mac|tv)OS are absolute so this check just results in an incorrect warning being shown
+					#if !UNITY_EDITOR_OSX
 					if (mediaPath.PathType != MediaPathType.AbsolutePathOrURL && fullPath.StartsWith("/"))
 					{
 						EditorHelper.IMGUI.NoticeBox(MessageType.Warning, "Absolute path detected, change location to Absolute path?");
 					}
+					#endif
 
 					// Display warning for Android users if they're trying to use absolute file path without permission
 					if (isPlatformAndroid && !PlayerSettings.Android.forceSDCardPermission)

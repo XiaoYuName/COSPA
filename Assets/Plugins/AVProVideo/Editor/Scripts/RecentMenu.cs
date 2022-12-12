@@ -212,12 +212,20 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		private static string ReplaceSlashes(string text)
 		{
 			string slashReplacement = "\u2215";
-			#if UNITY_EDITOR_WIN
+#if UNITY_EDITOR_WIN
+			// Special replacement for "//" in URLS so they aren't spaced too far apart
+			text = text.Replace("//", " \u2215 \u2215 ");
+
 			// On Windows we have to add extra spaces so it doesn't look squashed together
 			slashReplacement = " \u2215 ";
-			#endif
+#endif
 
-			return text.Replace("/", slashReplacement).Replace("\\", slashReplacement);
+			text = text.Replace("/", slashReplacement).Replace("\\", slashReplacement);	
+
+			// Unity will place text after " _" on the right of the menu, so we replace it so this doesn't happen
+			text = text.Replace(" _", "_");
+
+			return text;
 		}
 
 		private static List<string> FindMediaFilesInStreamingAssetsFolder()

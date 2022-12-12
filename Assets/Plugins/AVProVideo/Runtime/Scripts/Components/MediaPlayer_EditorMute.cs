@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -16,9 +16,9 @@ namespace RenderHeads.Media.AVProVideo
 			// Detect a change
 			if (UnityEditor.EditorUtility.audioMasterMute != _unityAudioMasterMute)
 			{
-				_unityAudioMasterMute = UnityEditor.EditorUtility.audioMasterMute;
 				if (_controlInterface != null)
 				{
+					_unityAudioMasterMute = UnityEditor.EditorUtility.audioMasterMute;
 					_controlInterface.MuteAudio(_audioMuted || _unityAudioMasterMute);
 				}
 			}

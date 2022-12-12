@@ -15,7 +15,7 @@ namespace RenderHeads.Media.AVProVideo
 	/// <summary>
 	/// Base class for all platform specific MediaPlayers
 	/// </summary>
-	public abstract partial class BaseMediaPlayer : IMediaPlayer, IMediaControl, IMediaInfo, IMediaCache, ITextureProducer, IMediaSubtitles, IVideoTracks, IAudioTracks, ITextTracks, System.IDisposable
+	public abstract partial class BaseMediaPlayer : IMediaPlayer, IMediaControl, IMediaInfo, IMediaCache, ITextureProducer, IMediaSubtitles, IVideoTracks, IAudioTracks, ITextTracks, IBufferedDisplay, System.IDisposable
 	{
 		public BaseMediaPlayer()
 		{
@@ -144,7 +144,10 @@ namespace RenderHeads.Media.AVProVideo
 		/// <inheritdoc/>
 		public virtual float[]		GetTextureTransform() { return new float[] { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f }; }
 		/// <inheritdoc/>
+		public virtual float		GetTexturePixelAspectRatio() { return 1f; }
+		/// <inheritdoc/>
 		public virtual Matrix4x4	GetYpCbCrTransform() { return Matrix4x4.identity; }
+
 		public StereoPacking GetTextureStereoPacking()
 		{
 			StereoPacking result = InternalGetTextureStereoPacking();
@@ -157,7 +160,7 @@ namespace RenderHeads.Media.AVProVideo
 		}
 		internal abstract StereoPacking InternalGetTextureStereoPacking();
 
-		public TransparencyMode GetTextureTransparency()
+		public virtual TransparencyMode GetTextureTransparency()
 		{
 			return _mediaHints.transparency;
 		}
@@ -225,11 +228,15 @@ namespace RenderHeads.Media.AVProVideo
 		/// <inheritdoc/>
 		public virtual void					CancelDownloadOfMediaToCache(string url) { }
 		/// <inheritdoc/>
+		public virtual void					PauseDownloadOfMediaToCache(string url) { }
+		/// <inheritdoc/>
+		public virtual void					ResumeDownloadOfMediaToCache(string url) { }
+		/// <inheritdoc/>
 		public virtual void					RemoveMediaFromCache(string url) { }
 		/// <inheritdoc/>
 		public virtual CachedMediaStatus	GetCachedMediaStatus(string url, ref float progress) { return CachedMediaStatus.NotCached; }
-		/// <inheritdoc/>
-		public virtual bool					IsMediaCached() { return false; }
+//		/// <inheritdoc/>
+//		public virtual bool					IsMediaCached() { return false; }
 
 		// External playback
 		/// <inheritdoc/>
@@ -276,9 +283,13 @@ namespace RenderHeads.Media.AVProVideo
 
 		public virtual void EndUpdate() { }
 
+		public virtual IntPtr GetNativePlayerHandle() { return IntPtr.Zero; }
+
 		public ErrorCode GetLastError()
 		{
-			return _lastError;
+			ErrorCode errorCode = _lastError;
+			_lastError = ErrorCode.None;
+			return errorCode;
 		}
 
 		/// <inheritdoc/>
@@ -313,6 +324,13 @@ namespace RenderHeads.Media.AVProVideo
 
 		public TimeRanges GetSeekableTimes() { return _seekableTimes; }
 		public TimeRanges GetBufferedTimes() { return _bufferedTimes; }
+
+		public void GetTextureProperties(out FilterMode filterMode, out TextureWrapMode wrapMode, out int anisoLevel)
+		{
+			filterMode = _defaultTextureFilterMode;
+			wrapMode = _defaultTextureWrapMode;
+			anisoLevel = _defaultTextureAnisoLevel;
+		}
 
 		public void SetTextureProperties(FilterMode filterMode = FilterMode.Bilinear, TextureWrapMode wrapMode = TextureWrapMode.Clamp, int anisoLevel = 0)
 		{
@@ -585,6 +603,47 @@ namespace RenderHeads.Media.AVProVideo
 				double time = Helper.ConvertFrameToTimeSeconds(frame, frameRate);
 				Seek(time);
 			}
+		}
+
+		#region IBufferedDisplay Implementation
+
+		private int _unityFrameCountBufferedDisplayGuard = -1;
+
+		/// <inheritdoc/>
+		public long UpdateBufferedDisplay()
+		{
+			// Guard to make sure we're only updating the buffered frame once per Unity frame
+			if (Time.frameCount == _unityFrameCountBufferedDisplayGuard) return GetTextureTimeStamp();
+
+			_unityFrameCountBufferedDisplayGuard = Time.frameCount;
+
+			return InternalUpdateBufferedDisplay();
+		}
+
+		internal virtual long InternalUpdateBufferedDisplay() { return 0; }
+
+		/// <inheritdoc/>
+		public virtual BufferedFramesState GetBufferedFramesState()
+		{
+			return new BufferedFramesState();
+		}
+
+		/// <inheritdoc/>
+		public virtual void SetSlaves(IBufferedDisplay[] slaves) { }
+
+		/// <inheritdoc/>
+		public virtual void SetBufferedDisplayMode(BufferedFrameSelectionMode mode, IBufferedDisplay master = null) { }
+
+		/// <inheritdoc/>
+		public virtual void SetBufferedDisplayOptions(bool pauseOnPrerollComplete) { }
+
+		#endregion // IBufferedDisplay Implementation
+
+		protected PlaybackQualityStats _playbackQualityStats = new PlaybackQualityStats();
+
+		public PlaybackQualityStats GetPlaybackQualityStats()
+		{
+			return _playbackQualityStats;
 		}
 	}
 }

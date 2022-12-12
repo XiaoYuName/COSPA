@@ -13,6 +13,12 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	/// </summary>
 	public partial class MediaPlayerEditor : UnityEditor.Editor
 	{
+		private readonly static FieldDescription _optionAudioMode = new FieldDescription(".audioMode", new GUIContent("Audio Mode", "Unity mode does not work with HLS video"));
+		private readonly static FieldDescription _optionTextureFormat = new FieldDescription(".textureFormat", new GUIContent("Texture Format", "BGRA32 is the most compatible.\nYCbCr420 uses ~50% of the memory of BGRA32 and has slightly better performance however it does require shader support, recommended for iOS and tvOS."));
+		private readonly static FieldDescription _optionPreferredForwardBufferDuration = new FieldDescription("._preferredForwardBufferDuration", new GUIContent("Preferred Forward Buffer Duration", "The duration in seconds the player should buffer ahead of the playhead to prevent stalling. Set to 0 to let the system decide."));
+		private readonly static FieldDescription _optionCustomPreferredPeakBitRateApple = new FieldDescription("._preferredPeakBitRate", new GUIContent("Preferred Peak BitRate", "The desired limit of network bandwidth consumption for playback, set to 0 for no preference."));
+		private readonly static FieldDescription _optionCustomPreferredPeakBitRateUnitsApple = new FieldDescription("._preferredPeakBitRateUnits", new GUIContent());
+
 		private void OnInspectorGUI_Override_Apple(Platform platform)
 		{
 			GUILayout.Space(8f);
@@ -20,13 +26,10 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			string optionsVarName = MediaPlayer.GetPlatformOptionsVariable(platform);
 
 			EditorGUILayout.BeginVertical(GUI.skin.box);
-			SerializedProperty textureFormatProp = serializedObject.FindProperty(optionsVarName + ".textureFormat");
-			if (textureFormatProp != null)
-			{
-				EditorGUILayout.PropertyField(textureFormatProp, new GUIContent("Texture Format", "BGRA32 is the most compatible.\nYCbCr420 uses ~50% of the memory of BGRA32 and has slightly better performance however it does require shader support, recommended for iOS and tvOS."));
-			}
 
-			SerializedProperty flagsProp = serializedObject.FindProperty(optionsVarName + ".flags");
+			DisplayPlatformOption(optionsVarName, _optionTextureFormat);
+
+			SerializedProperty flagsProp = serializedObject.FindProperty(optionsVarName + "._flags");
 			MediaPlayer.OptionsApple.Flags flags = flagsProp != null ? (MediaPlayer.OptionsApple.Flags)flagsProp.intValue : 0;
 
 			// Texture flags
@@ -38,11 +41,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			}
 
 			// Audio
-			SerializedProperty audioMode = serializedObject.FindProperty(optionsVarName + ".audioMode");
-			if (audioMode != null)
-			{
-				EditorGUILayout.PropertyField(audioMode, new GUIContent("Audio Mode", "Unity mode does not work with HLS video"));
-			}
+			DisplayPlatformOption(optionsVarName, _optionAudioMode);
 
 			// Platform specific flags
 			if (flagsProp != null)
@@ -60,6 +59,14 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					b = EditorGUILayout.Toggle(new GUIContent("Resume playback after audio route change", "The default behaviour is for playback to pause when the audio route changes, for instance when disconnecting headphones."), b);
 					flags = flags.SetResumePlaybackAfterAudioSessionRouteChange(b);
 				}
+
+				bool playWithoutBuffering = flags.PlayWithoutBuffering();
+				playWithoutBuffering = EditorGUILayout.Toggle(new GUIContent("Play without buffering"), playWithoutBuffering);
+				flags = flags.SetPlayWithoutBuffering(playWithoutBuffering);
+
+				bool useSinglePlayerItem = flags.UseSinglePlayerItem();
+				useSinglePlayerItem = EditorGUILayout.Toggle(new GUIContent("Use single player item", "Restricts the media player to using only one player item. This can help reduce network usage for remote videos but will cause a stall when looping."), useSinglePlayerItem);
+				flags = flags.SetUseSinglePlayerItem(useSinglePlayerItem);
 			}
 
 			SerializedProperty maximumPlaybackRateProp = serializedObject.FindProperty(optionsVarName + ".maximumPlaybackRate");
@@ -71,31 +78,22 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			GUILayout.Space(8f);
 
 			EditorGUILayout.BeginVertical();
-			EditorGUILayout.LabelField("HLS Options", EditorStyles.boldLabel);
+			EditorGUILayout.LabelField("Network", EditorStyles.boldLabel);
 
-			SerializedProperty preferredMaximumResolutionProp = serializedObject.FindProperty(optionsVarName + ".preferredMaximumResolution");
-			if (preferredMaximumResolutionProp != null)
+			SerializedProperty preferredMaximumResolutionProp = DisplayPlatformOption(optionsVarName, _optionPreferredMaximumResolution);
+			if ((MediaPlayer.OptionsApple.Resolution)preferredMaximumResolutionProp.intValue == MediaPlayer.OptionsApple.Resolution.Custom)
 			{
-				EditorGUILayout.PropertyField(preferredMaximumResolutionProp, new GUIContent("Preferred Maximum Resolution", "The desired maximum resolution of the video."));
-				if ((MediaPlayer.OptionsApple.Resolution)preferredMaximumResolutionProp.intValue == MediaPlayer.OptionsApple.Resolution.Custom)
-				{
-					SerializedProperty customPreferredMaximumResolutionProp = serializedObject.FindProperty(optionsVarName + ".customPreferredMaximumResolution");
-					if (customPreferredMaximumResolutionProp != null)
-					{
-						EditorGUILayout.PropertyField(customPreferredMaximumResolutionProp, new GUIContent(" "));
-					}
-				}
+				#if UNITY_2017_2_OR_NEWER
+				DisplayPlatformOption(optionsVarName, _optionCustomPreferredMaxResolution);
+				#endif
 			}
 
-			SerializedProperty preferredPeakBitRateProp = serializedObject.FindProperty(optionsVarName + ".preferredPeakBitRate");
-			SerializedProperty preferredPeakBitRateUnitsProp = serializedObject.FindProperty(optionsVarName + ".preferredPeakBitRateUnits");
-			if (preferredPeakBitRateProp != null && preferredPeakBitRateUnitsProp != null)
-			{
-				EditorGUILayout.BeginHorizontal();
-				EditorGUILayout.PropertyField(preferredPeakBitRateProp, new GUIContent("Preferred Peak BitRate", "The desired limit of network bandwidth consumption for playback, set to 0 for no preference."));
-				EditorGUILayout.PropertyField(preferredPeakBitRateUnitsProp, new GUIContent());
-				EditorGUILayout.EndHorizontal();
-			}
+			EditorGUILayout.BeginHorizontal();
+			DisplayPlatformOption(optionsVarName, _optionCustomPreferredPeakBitRateApple);
+			DisplayPlatformOption(optionsVarName, _optionCustomPreferredPeakBitRateUnitsApple);
+			EditorGUILayout.EndHorizontal();
+
+			DisplayPlatformOption(optionsVarName, _optionPreferredForwardBufferDuration);
 
 			EditorGUILayout.EndVertical();
 
@@ -108,16 +106,19 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				flagsProp.intValue = (int)flags;
 			}
 
-			SerializedProperty httpHeadersProp = serializedObject.FindProperty(optionsVarName + ".httpHeaders.httpHeaders");
-			if (httpHeadersProp != null)
+			if (_showUltraOptions)
 			{
-				OnInspectorGUI_HttpHeaders(httpHeadersProp);
-			}
+				SerializedProperty keyAuthProp = serializedObject.FindProperty(optionsVarName + ".keyAuth");
+				if (keyAuthProp != null)
+				{
+					OnInspectorGUI_HlsDecryption(keyAuthProp);
+				}
 
-			SerializedProperty keyAuthProp = serializedObject.FindProperty(optionsVarName + ".keyAuth");
-			if (keyAuthProp != null)
-			{
-				OnInspectorGUI_HlsDecryption(keyAuthProp);
+				SerializedProperty httpHeadersProp = serializedObject.FindProperty(optionsVarName + ".httpHeaders.httpHeaders");
+				if (httpHeadersProp != null)
+				{
+					OnInspectorGUI_HttpHeaders(httpHeadersProp);
+				}
 			}
 		}
 

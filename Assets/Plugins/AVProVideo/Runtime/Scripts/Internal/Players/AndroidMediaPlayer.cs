@@ -57,6 +57,7 @@ namespace RenderHeads.Media.AVProVideo
 		private System.IntPtr				m_Method_IsLooping;
 		private System.IntPtr				m_Method_HasVideo;
 		private System.IntPtr				m_Method_HasAudio;
+		private System.IntPtr               m_Method_HasMetaData;
 		private System.IntPtr				m_Method_SetFocusProps;
 		private System.IntPtr				m_Method_SetFocusEnabled;
 		private System.IntPtr				m_Method_SetFocusRotation;
@@ -64,6 +65,8 @@ namespace RenderHeads.Media.AVProVideo
 		private jvalue[]					m_Value1 = new jvalue[1];
 		private jvalue[]					m_Value2 = new jvalue[2];
 		private jvalue[]					m_Value4 = new jvalue[4];
+
+		private MediaPlayer.OptionsAndroid	m_Options;
 
 		private enum NativeStereoPacking : int
 		{
@@ -163,20 +166,31 @@ namespace RenderHeads.Media.AVProVideo
 			return result;
 		}
 
-		public AndroidMediaPlayer(	bool useFastOesPath, bool showPosterFrame, Android.VideoApi api, bool enable360Audio, Audio360ChannelMode channelMode, bool preferSoftware, bool useUnityAudio, bool forceStartHighestBitrate,
-									int iMinBufferMs, int iMaxBufferMs, int iBufferForPlaybackMs, int iBufferForPlaybackAfterRebufferMs,
-									MediaPlayer.OptionsAndroid.Resolution preferredMaximumResolution, Vector2 customPreferredMaximumResolution ) : base()
+		public AndroidMediaPlayer(MediaPlayer.OptionsAndroid options) : base()
 		{
 			Debug.Assert(s_Interface != null);
 			Debug.Assert(s_bInitialised);
 
-			m_API = api;
+			m_Options = options;
 
-			Vector2 vPreferredVideo = GetPreferredVideoResolution(preferredMaximumResolution, customPreferredMaximumResolution);
+			m_API = options.videoApi;
+
+			if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Vulkan)
+			{
+				Debug.LogWarning("[AVProVideo] Vulkan graphics API is not supported.  Please select OpenGL ES 2.0 and 3.0 are supported on Android.");
+			}
+
+#if UNITY_2017_2_OR_NEWER
+			Vector2 vPreferredVideo = GetPreferredVideoResolution(options.preferredMaximumResolution, options.customPreferredMaximumResolution);
+#else
+			Vector2 vPreferredVideo = GetPreferredVideoResolution(options.preferredMaximumResolution, new Vector2(0.0f, 0.0f));
+#endif
 
 			// Create a java-size video class up front
 			Debug.Log("s_Interface " + s_Interface);
-			m_Video = s_Interface.Call<AndroidJavaObject>("CreatePlayer", (int)m_API, useFastOesPath, enable360Audio, (int)channelMode, preferSoftware, useUnityAudio, Helper.GetUnityAudioSampleRate(), forceStartHighestBitrate, iMinBufferMs, iMaxBufferMs, iBufferForPlaybackMs, iBufferForPlaybackAfterRebufferMs, (int)(vPreferredVideo.x), (int)(vPreferredVideo.y));
+			m_Video = s_Interface.Call<AndroidJavaObject>( "CreatePlayer", (int)(m_API), options.useFastOesPath, options.preferSoftwareDecoder, (int)(options.audioOutput), (int)(options.audio360ChannelMode), Helper.GetUnityAudioSampleRate(), 
+																		   options.StartWithHighestBandwidth(), options.minBufferMs, options.maxBufferMs, options.bufferForPlaybackMs, options.bufferForPlaybackAfterRebufferMs, 
+																		   (int)(options.GetPreferredPeakBitRateInBitsPerSecond()), (int)(vPreferredVideo.x), (int)(vPreferredVideo.y), (int)(options.blitTextureFiltering) );
 			Debug.Log("m_Video " + m_Video);
 
 			if (m_Video != null)
@@ -196,10 +210,11 @@ namespace RenderHeads.Media.AVProVideo
 				m_Method_IsLooping = GetMethod("IsLooping", "()Z");
 				m_Method_HasVideo = GetMethod("HasVideo", "()Z");
 				m_Method_HasAudio = GetMethod("HasAudio", "()Z");
+				m_Method_HasMetaData = GetMethod("HasMetaData", "()Z");
 
 				m_iPlayerIndex = m_Video.Call<int>("GetPlayerIndex");
 				Helper.LogInfo("Creating player " + m_iPlayerIndex);
-				SetOptions(useFastOesPath, showPosterFrame);
+				SetOptions(options.useFastOesPath, options.showPosterFrame);
 
 				// Initialise renderer, on the render thread
 				AndroidMediaPlayer.IssuePluginEvent(Native.AVPPluginEvent.PlayerSetup, m_iPlayerIndex);
@@ -241,7 +256,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override string GetExpectedVersion()
 		{
-			return Helper.ExpectedPluginVersion_Android;
+			return Helper.ExpectedPluginVersion.Android;
 		}
 
 		public override bool OpenMedia(string path, long offset, string httpHeader, MediaHints mediaHints, int forceFileFormat = 0, bool startWithHighestBitrate = false)
@@ -251,8 +266,9 @@ namespace RenderHeads.Media.AVProVideo
 			if (m_Video != null)
 			{
 				_mediaHints = mediaHints;
+
 				Debug.Assert(m_Width == 0 && m_Height == 0 && m_Duration == 0.0);
-				bReturn = m_Video.Call<bool>("OpenVideoFromFile", path, offset, httpHeader, forceFileFormat);
+				bReturn = m_Video.Call<bool>("OpenVideoFromFile", path, offset, httpHeader, forceFileFormat, (int)(m_Options.audioOutput), (int)(m_Options.audio360ChannelMode));
 				if (!bReturn)
 				{
 					DisplayLoadFailureSuggestion(path);
@@ -266,10 +282,21 @@ namespace RenderHeads.Media.AVProVideo
 			return bReturn;
 		}
 
-//		public override void SetKeyServerAuthToken(string token)
-//		{
-//			_AuthToken = token;
-//		}
+		public override void SetKeyServerAuthToken(string token)
+		{
+			if (m_Video != null)
+			{
+				m_Video.Call("SetKeyServerAuthToken", token);
+			}
+		}
+
+		public override void SetOverrideDecryptionKey(byte[] key)
+		{
+			if( m_Video != null )
+			{
+				m_Video.Call("SetOverrideDecryptionKey", key);
+			}
+		}
 
 		private void DisplayLoadFailureSuggestion(string path)
 		{
@@ -362,13 +389,15 @@ namespace RenderHeads.Media.AVProVideo
 		public override bool HasMetaData()
 		{
 			bool result = false;
-			if (m_Duration > 0.0)
+			if (m_Video != null)
 			{
-				result = true;
-
-				if (HasVideo())
+				if (m_Method_HasMetaData != System.IntPtr.Zero)
 				{
-					result = (m_Width > 0 && m_Height > 0);
+					result = AndroidJNI.CallBooleanMethod(m_Video.GetRawObject(), m_Method_HasMetaData, m_Value0);
+				}
+				else
+				{
+					result = m_Video.Call<bool>("HasMetaData");
 				}
 			}
 			return result;
@@ -915,8 +944,35 @@ namespace RenderHeads.Media.AVProVideo
 				}
 
 //				_lastError = (ErrorCode)( m_Video.Call<int>("GetLastErrorCode") );
-				_lastError = (ErrorCode)( Native._GetLastErrorCode( m_iPlayerIndex) );
+				_lastError = (ErrorCode)( Native._GetLastErrorCode( m_iPlayerIndex ) );
 			}
+
+			if( m_Options.HasChanged( MediaPlayer.OptionsAndroid.ChangeFlags.All, true ) )
+			{
+				if (m_Video != null)
+				{
+#if UNITY_2017_2_OR_NEWER
+					Vector2 vPreferredVideo = GetPreferredVideoResolution(m_Options.preferredMaximumResolution, m_Options.customPreferredMaximumResolution);
+#else
+					Vector2 vPreferredVideo = GetPreferredVideoResolution(m_Options.preferredMaximumResolution, new Vector2(0.0f, 0.0f));
+#endif
+
+					int iNewBitrate = (int)(m_Options.GetPreferredPeakBitRateInBitsPerSecond());
+					/*bool bSetMaxResolutionAndBitrate =*/ m_Video.Call<bool>("SetPreferredVideoResolutionAndBitrate", (int)(vPreferredVideo.x), (int)(vPreferredVideo.y), iNewBitrate);
+				}
+			}
+
+/*
+			m_fTestTime += Time.deltaTime;
+			if( m_fTestTime > 4.0f )
+			{
+				m_fTestTime = 0.0f;
+
+				int iNumStreams = InternalGetAdaptiveStreamCount( TrackType.Video );
+				int iNewStreamIndex = UnityEngine.Random.Range( -1, iNumStreams );
+				SetVideoAdaptiveStreamIndex( TrackType.Video, iNewStreamIndex );
+			}
+*/
 
 			// Call before the native update call
 			UpdateTracks();
@@ -1124,6 +1180,8 @@ namespace RenderHeads.Media.AVProVideo
 						}
 						_seekableTimes.CalculateRange();
 					}
+
+					seekableReturnObject.Dispose();
 				}
 
 				// Buffered time ranges
@@ -1144,6 +1202,8 @@ namespace RenderHeads.Media.AVProVideo
 						}
 						_bufferedTimes.CalculateRange();
 					}
+
+					bufferedReturnObject.Dispose();
 				}
 			}
 		}
@@ -1168,27 +1228,8 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			int iReturn = 0;
 
-			if (m_Video != null && buffer != null)
-			{
-				// Atttach thread
-				bool bAttached = Native.JNIAttachCurrentThread();
-
-				// Get audio data
-				float[] outBuffer = m_Video.Call<float[]>("GrabAudio", sampleCount, channelCount);
-
-				// Copy audio data to output buffer
-				if( outBuffer != null )
-				{
-					Array.Copy(outBuffer, buffer, sampleCount);
-					iReturn = sampleCount;
-				}
-
-				if (bAttached)
-				{
-					// Detach thread
-					Native.JNIDetachCurrentThread();
-				}
-			}
+			// Get audio data
+			iReturn = Native._GrabAudioNative( buffer, m_iPlayerIndex, sampleCount, channelCount );
 
 			return iReturn;
 		}
@@ -1388,6 +1429,94 @@ namespace RenderHeads.Media.AVProVideo
 			return result;
 		}
 
+		internal /*override*/ int InternalGetAdaptiveStreamCount(TrackType trackType, int trackIndex = -1)
+		{
+			int result = 0;
+			switch (trackType)
+			{
+				case TrackType.Video:
+					{
+						result = (m_Video != null) ? m_Video.Call<int>("GetNumberVideoAdaptiveStreams", trackIndex) : 0;
+
+						Debug.Log("[AVProVideo]: InternalGetAdaptiveStreamCount return = " + result);
+						break;
+					}
+				case TrackType.Audio:
+					{
+						break;
+					}
+				case TrackType.Text:
+					{
+						break;
+					}
+			}
+			return result;
+		}
+
+		internal /*override*/ void InternalGetAdaptiveStreamInfo(TrackType trackType, int trackIndex = -1)
+		{
+			switch( trackType )
+			{
+				case TrackType.Video:
+					{
+						if( m_Video != null )
+						{
+							AndroidJavaObject returnObject = m_Video.Call<AndroidJavaObject>("GetVideoAdaptiveStreamInfo", trackIndex);
+							if( returnObject.GetRawObject().ToInt32() != 0 )
+							{
+								String[] aReturn = AndroidJNIHelper.ConvertFromJNIArray<String[]>(returnObject.GetRawObject());
+								bool bReturn = (aReturn.Length > 0) ? (int.Parse(aReturn[0]) == 1) : false;
+
+								string toLog = "";
+								foreach( string str in aReturn )	{ toLog += str + ", "; }
+								Debug.Log( "[AVProVideo]: InternalGetAdaptiveStreamInfo return = " + toLog );
+
+								if ( bReturn )
+								{
+								}
+
+								returnObject.Dispose();
+							}
+						}
+					}
+					break;
+
+				case TrackType.Audio:
+					{
+					}
+					break;
+
+				case TrackType.Text:
+					{
+					}
+					break;
+			}
+		}
+
+		internal /*override*/ int SetVideoAdaptiveStreamIndex(TrackType trackType, int streamIndex)
+		{
+			int result = 0;
+			switch( trackType )
+			{
+				case TrackType.Video:
+					{
+						Debug.Log("[AVProVideo]: SetVideoAdaptiveStreamIndex : streamIndex = " + streamIndex);
+
+						result = (m_Video != null) ? m_Video.Call<int>("SetVideoAdaptiveStreams", streamIndex) : 0;
+						break;
+					}
+				case TrackType.Audio:
+					{
+						break;
+					}
+				case TrackType.Text:
+					{
+						break;
+					}
+			}
+			return result;
+		}
+
 		private Vector2 GetPreferredVideoResolution(MediaPlayer.OptionsAndroid.Resolution preferredMaximumResolution, Vector2 customPreferredMaximumResolution)
 		{
 			Vector2 vResolution = new Vector2( 0.0f, 0.0f );
@@ -1423,6 +1552,15 @@ namespace RenderHeads.Media.AVProVideo
 			return vResolution;
 		}
 
+		public override bool IsMediaCachingSupported()
+		{
+			if( m_Video != null )
+			{
+				return m_Video.Call<bool>("IsMediaCachingSupported");
+			}
+
+			return true;
+		}
 
 		public override void AddMediaToCache(string url, string headers, MediaCachingOptions options)
 		{
@@ -1431,13 +1569,22 @@ namespace RenderHeads.Media.AVProVideo
 				double dMinBitrate = -1.0f;
 				int iMinWidth = -1;
 				int iMinHeight = -1;
+
+				double dMaxBitrate = -1.0f;
+				int iMaxWidth = -1;
+				int iMaxHeight = -1;
+				
 				if (options != null )
 				{
 					dMinBitrate = options.minimumRequiredBitRate;
 					iMinWidth = (int)( options.minimumRequiredResolution.x );
 					iMinHeight = (int)( options.minimumRequiredResolution.y );
+
+					dMaxBitrate = options.maximumRequiredBitRate;
+					iMaxWidth = (int)(options.maximumRequiredResolution.x);
+					iMaxHeight = (int)(options.maximumRequiredResolution.y);
 				}
-				m_Video.Call("AddMediaToCache", url, headers, dMinBitrate, iMinWidth, iMinHeight);
+				m_Video.Call("AddMediaToCache", url, headers, dMinBitrate, iMinWidth, iMinHeight, dMaxBitrate, iMaxWidth, iMaxHeight);
 			}
 		}
 
@@ -1454,6 +1601,22 @@ namespace RenderHeads.Media.AVProVideo
 			if (m_Video != null)
 			{
 				m_Video.Call("CancelDownloadOfMediaToCache", url);
+			}
+		}
+
+		public override void PauseDownloadOfMediaToCache(string url)
+		{
+			if (m_Video != null)
+			{
+				m_Video.Call("PauseDownloadOfMediaToCache", url);
+			}
+		}
+
+		public override void ResumeDownloadOfMediaToCache(string url)
+		{
+			if (m_Video != null)
+			{
+				m_Video.Call("ResumeDownloadOfMediaToCache", url);
 			}
 		}
 
@@ -1493,8 +1656,9 @@ namespace RenderHeads.Media.AVProVideo
 			[DllImport(LibraryName)]
 			public static extern int _GetCurrentAudioTrackNumChannels( int iPlayerIndex );
 
-//			[DllImport(LibraryName)]
-//			public static extern int _GrabAudio( float[] buffer, int iPlayerIndex, int sampleCount, int channelCount );
+			[DllImport(LibraryName)]
+//			unsafe public static extern int _GrabAudioNative(float* pBuffer, int iPlayerIndex, int sampleCount, int channelCount);
+			public static extern int _GrabAudioNative(float[] pBuffer, int iPlayerIndex, int sampleCount, int channelCount);
 
 			[DllImport (LibraryName)]
 			public static extern int _GetWidth( int iPlayerIndex );
@@ -1532,3 +1696,4 @@ namespace RenderHeads.Media.AVProVideo
 	}
 }
 #endif
+	  

@@ -134,7 +134,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			{
 				if (rawImage.Player.TextureProducer.RequiresVerticalFlip())
 				{
-					GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0, outerRect.y + (outerRect.height / 2f)));
+					GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0f, outerRect.y + (outerRect.height / 2f)));
 				}
 			}
 

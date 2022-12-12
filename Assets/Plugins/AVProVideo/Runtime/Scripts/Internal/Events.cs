@@ -23,7 +23,7 @@ namespace RenderHeads.Media.AVProVideo
 			Closing,			// Triggered when the media is closed
 			Error,				// Triggered when an error occurs
 			SubtitleChange,		// Triggered when the subtitles change
-			Stalled,			// Triggered when media is stalled (eg. when lost connection to media stream) - Currently only supported on Windows platforms
+			Stalled,			// Triggered when media is stalled (eg. when lost connection to media stream)
 			Unstalled,			// Triggered when media is resumed form a stalled state (eg. when lost connection is re-established)
 			ResolutionChanged,	// Triggered when the resolution of the video has changed (including the load) Useful for adaptive streams
 			StartedSeeking,		// Triggered when seeking begins

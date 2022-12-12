@@ -346,11 +346,19 @@ MonoBehaviour:
     hintAlphaChannel: 0
     useLowLatency: 0
     useCustomMovParser: 0
+    useHapNotchLC: 0
+    useStereoDetection: 1
+    useTextTrackSupport: 1
+    useFacebookAudio360Support: 1
+    useAudioDelay: 0
+    bufferedFrameSelection: 0
+    pauseOnPrerollComplete: 0
     forceAudioOutputDeviceName: 
     preferredFilters: []
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
     parallelFrameCount: 3
     prerollFrameCount: 4
     useUnityAudio: 0
@@ -364,12 +372,13 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
+    _flags: 0
     maximumPlaybackRate: 2
-    preferredMaximumResolution: 0
-    customPreferredMaximumResolution: {x: 0, y: 0}
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
+    _customPreferredMaximumResolution: {x: 0, y: 0}
   _optionsIOS:
     httpHeaders:
       httpHeaders: []
@@ -379,12 +388,13 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
+    _flags: 0
     maximumPlaybackRate: 2
-    preferredMaximumResolution: 0
-    customPreferredMaximumResolution: {x: 0, y: 0}
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
+    _customPreferredMaximumResolution: {x: 0, y: 0}
   _optionsTVOS:
     httpHeaders:
       httpHeaders: []
@@ -394,12 +404,13 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
+    _flags: 0
     maximumPlaybackRate: 2
-    preferredMaximumResolution: 0
-    customPreferredMaximumResolution: {x: 0, y: 0}
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
+    _customPreferredMaximumResolution: {x: 0, y: 0}
   _optionsAndroid:
     httpHeaders:
       httpHeaders: []
@@ -407,14 +418,17 @@ MonoBehaviour:
       keyServerToken: 
       overrideDecryptionKeyBase64: 
       overrideDecryptionKey: 
-    preferredMaximumResolution: 0
-    customPreferredMaximumResolution: {x: 0, y: 0}
-    videoApi: 1
+    _preferredMaximumResolution: 0
+    _customPreferredMaximumResolution: {x: 0, y: 0}
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
     audioOutput: 0
     audio360ChannelMode: 0
     preferSoftwareDecoder: 0
+    blitTextureFiltering: 0
     fileOffset: 0
     startWithHighestBitrate: 0
     minBufferMs: 50000
@@ -438,6 +452,7 @@ MonoBehaviour:
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
   _optionsWebGL:
     httpHeaders:
       httpHeaders: []

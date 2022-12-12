@@ -2,7 +2,7 @@
 {
 	Properties
 	{
-		_MainTex("Texture", any) = "" {}	
+		_MainTex("Texture", any) = "" {}
 	}
 
 	SubShader

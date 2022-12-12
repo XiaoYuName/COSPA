@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -79,11 +79,23 @@ namespace RenderHeads.Media.AVProVideo
 						reset = false;
 						if (_infoInterface.HasVideo())
 						{
-							// Don't reset if within a frame of the end of the video, important for time > duration workaround
-							float secondsPerFrame = 1f / _infoInterface.GetVideoFrameRate();
-							if (_infoInterface.GetDuration() - _controlInterface.GetCurrentTime() > secondsPerFrame)
+							// Some streaming HLS/Dash content don't provide a frame rate
+							if (_infoInterface.GetVideoFrameRate() > 0f)
 							{
-								reset = true;
+								// Don't reset if within a frame of the end of the video, important for time > duration workaround
+								float secondsPerFrame = 1f / _infoInterface.GetVideoFrameRate();
+								if (_infoInterface.GetDuration() - _controlInterface.GetCurrentTime() > secondsPerFrame)
+								{
+									reset = true;
+								}
+							}
+							else
+							{
+								// Just check if we're not beyond the duration
+								if (_controlInterface.GetCurrentTime() < _infoInterface.GetDuration())
+								{
+									reset = true;
+								}
 							}
 						}
 						else
@@ -199,11 +211,7 @@ namespace RenderHeads.Media.AVProVideo
 				switch (et)
 				{
 					case MediaPlayerEvent.EventType.FinishedPlaying:
-						result = (!_controlInterface.IsLooping() && _controlInterface.CanPlay() && _controlInterface.IsFinished())
-#if UNITY_EDITOR_WIN || (!UNITY_EDITOR && (UNITY_STANDALONE_WIN || UNITY_WSA))
-							|| (_controlInterface.GetCurrentTime() > _infoInterface.GetDuration() && !_controlInterface.IsLooping())
-#endif
-							;
+						result = (!_controlInterface.IsLooping() && _controlInterface.CanPlay() && _controlInterface.IsFinished());
 						break;
 					case MediaPlayerEvent.EventType.MetaDataReady:
 						result = (_controlInterface.HasMetaData());

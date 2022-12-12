@@ -54,7 +54,7 @@
 			#pragma only_renderers gles gles3
 
 			#pragma multi_compile MONOSCOPIC STEREO_TOP_BOTTOM STEREO_LEFT_RIGHT STEREO_CUSTOM_UV
-			#pragma multi_compile __ STEREO_DEBUG			
+			#pragma multi_compile __ STEREO_DEBUG
 			#pragma multi_compile __ APPLY_GAMMA
 			#pragma multi_compile __ USING_DEFAULT_TEXTURE
 
@@ -66,8 +66,22 @@
 #ifdef VERTEX
 
 #include "UnityCG.glslinc"
+#if defined(STEREO_MULTIVIEW_ON)
+	UNITY_SETUP_STEREO_RENDERING
+#endif
 #define SHADERLAB_GLSL
 #include "../AVProVideo.cginc"
+
+	INLINE bool Android_IsStereoEyeLeft()
+	{
+		#if defined(STEREO_MULTIVIEW_ON)
+			int eyeIndex = SetupStereoEyeIndex();
+			return (eyeIndex == 0);
+		#else
+	return IsStereoEyeLeft();
+		#endif
+	}		
+		
 	varying vec2 texVal;
 	uniform mat4 _TextureMatrix;
 
@@ -84,14 +98,12 @@
 		texVal.xy = (_TextureMatrix * vec4(texVal.x, texVal.y, 0.0, 1.0)).xy;
 
 #if defined(STEREO_TOP_BOTTOM) | defined(STEREO_LEFT_RIGHT)
-		bool isLeftEye = IsStereoEyeLeft();
-
-		vec4 scaleOffset = GetStereoScaleOffset(isLeftEye, false);
+		vec4 scaleOffset = GetStereoScaleOffset(Android_IsStereoEyeLeft(), false);
 
 		texVal.xy *= scaleOffset.xy;
 		texVal.xy += scaleOffset.zw;
 #elif defined (STEREO_CUSTOM_UV)
-		if (!IsStereoEyeLeft())
+		if (!Android_IsStereoEyeLeft())
 		{
 			texVal = gl_MultiTexCoord1.xy;
 			texVal = vec2(1.0, 1.0) - texVal;
@@ -99,7 +111,7 @@
 #endif
 
 #if defined(STEREO_DEBUG)
-		tint = GetStereoDebugTint(IsStereoEyeLeft());
+		tint = GetStereoDebugTint(Android_IsStereoEyeLeft());
 #endif
 
 	}

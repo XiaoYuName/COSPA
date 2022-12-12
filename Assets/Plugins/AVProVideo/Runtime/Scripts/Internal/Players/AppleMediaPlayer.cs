@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 #if UNITY_2017_2_OR_NEWER && (UNITY_EDITOR_OSX || (!UNITY_EDITOR && (UNITY_STANDALONE_OSX || UNITY_IOS || UNITY_TVOS)))
@@ -13,21 +13,12 @@ namespace RenderHeads.Media.AVProVideo
 {
 	public sealed partial class AppleMediaPlayer: BaseMediaPlayer
 	{
-		internal partial struct Native
-		{
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-			private const string PluginName = "AVProVideo";
-#elif UNITY_IOS || UNITY_TVOS
-			private const string PluginName = "__Internal";
-#endif
-		};
-
 		private static Regex RxSupportedSchema = new Regex("^(https?|file)://", RegexOptions.None);
 		private static DateTime Epoch = new DateTime(2001, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
 		static AppleMediaPlayer()
 		{
-			#if (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR_OSX
+			#if !UNITY_EDITOR && (UNITY_IOS || UNITY_TVOS)
 				Native.AVPPluginBootstrap();
 			#endif
 		}
@@ -35,9 +26,14 @@ namespace RenderHeads.Media.AVProVideo
 		private IntPtr _player;
 		Native.AVPPlayerSettings _playerSettings;
 
+		private MediaPlayer.OptionsApple _options;
+
 		public AppleMediaPlayer(MediaPlayer.OptionsApple options)
 		{
-			// Alert the user to OpenGL renderer being used (mostly so that I don't waste time thinking the rendering is broken).
+			// Keep a handle on the options
+			_options = options;
+
+			// Alert the user to OpenGL renderer being used
 			if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.OpenGLCore)
 			{
 				Debug.LogWarning("[AVProVideo] OpenGL is not supported.");
@@ -73,14 +69,21 @@ namespace RenderHeads.Media.AVProVideo
 			_playerSettings.maximumPlaybackRate = options.maximumPlaybackRate;
 
 			// Configure the audio output settings
+			_playerSettings.audioOutputMode = (Native.AVPPlayerAudioOutputMode)options.audioMode;
 			if (options.audioMode == MediaPlayer.OptionsApple.AudioMode.Unity)
 			{
-				_playerSettings.audioOutputMode = Native.AVPPlayerAudioOutputMode.Unity;
 				_playerSettings.sampleRate = AudioSettings.outputSampleRate;
+				int numBuffers;
+				AudioSettings.GetDSPBufferSize(out _playerSettings.bufferLength, out numBuffers);
 			}
 
 			// Configure any network settings
 			_playerSettings.preferredPeakBitRate = options.GetPreferredPeakBitRateInBitsPerSecond();
+			_playerSettings.preferredForwardBufferDuration = options.preferredForwardBufferDuration;
+			if (options.flags.PlayWithoutBuffering())
+				_playerSettings.networkFlags |= Native.AVPPlayerNetworkSettingsFlags.PlayWithoutBuffering;
+			if (options.flags.UseSinglePlayerItem())
+				_playerSettings.networkFlags |= Native.AVPPlayerNetworkSettingsFlags.UseSinglePlayerItem;
 
 			// Make the player
 			_player = Native.AVPPluginMakePlayer(_playerSettings);
@@ -128,64 +131,6 @@ namespace RenderHeads.Media.AVProVideo
 					break;
 			}
 		}
-
-		internal partial struct Native
-		{
-			// Video settings
-
-			internal enum AVPPlayerVideoPixelFormat: int
-			{
-				Invalid,
-				Bgra,
-				YCbCr420
-			}
-
-			[Flags]
-			internal enum AVPPlayerVideoOutputSettingsFlags: int
-			{
-				None             = 0,
-				LinearColorSpace = 1 << 0,
-				GenerateMipmaps  = 1 << 1,
-			}
-
-			// Audio settings
-
-			internal enum AVPPlayerAudioOutputMode : int
-			{
-				SystemDirect,
-				Unity,
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerSettings
-			{
-				// Video
-				internal AVPPlayerVideoPixelFormat pixelFormat;
-				internal AVPPlayerVideoOutputSettingsFlags videoFlags;
-				internal float preferredMaximumResolution_width;
-				internal float preferredMaximumResolution_height;
-				internal float maximumPlaybackRate;
-
-				// Audio
-				internal AVPPlayerAudioOutputMode audioOutputMode;
-				internal int sampleRate;
-				internal int audioFlags;
-
-				// Network
-				internal double preferredPeakBitRate;
-				internal double assetDownloadMinimumRequiredBitRate;
-				internal float assetDownloadMinimumRequiredResolution_width;
-				internal float assetDownloadMinimumRequiredResolution_height;
-			}
-
-#if UNITY_IOS || UNITY_TVOS
-			[DllImport(PluginName)]
-			internal static extern void AVPPluginBootstrap();
-#endif
-
-			[DllImport(PluginName)]
-			internal static extern IntPtr AVPPluginMakePlayer(Native.AVPPlayerSettings settings);
-		}
 	}
 
 	// IMediaPlayer
@@ -211,10 +156,13 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override void Update()
 		{
+			Native.AVPPlayerStatus prevStatus = _state.status;
 			Native.AVPPlayerGetState(_player, ref _state);
 
+			Native.AVPPlayerStatus changedStatus = prevStatus ^ _state.status;
+
 			// Need to make sure that lastError is set when status is failed so that the Error event is triggered
-			if (/*BaseMediaPlayer.*/_lastError == ErrorCode.None && _state.status.HasFailed())
+			if (/*BaseMediaPlayer.*/_lastError == ErrorCode.None && changedStatus.HasFailed() && _state.status.HasFailed())
 			{
 				/*BaseMediaPlayer.*/_lastError = ErrorCode.LoadFailed;
 			}
@@ -337,6 +285,7 @@ namespace RenderHeads.Media.AVProVideo
 							_playerTexture.flags.IsLinear(),
 							_playerTexture.planes[i].plane
 						);
+						base.ApplyTextureProperties(_texturePlanes[i]);
 					}
 					else
 					{
@@ -357,6 +306,34 @@ namespace RenderHeads.Media.AVProVideo
 				Native.AVPPlayerSetFlags(_player, (int)_flags);
 			}
 
+			if (_options.HasChanged())
+			{
+				if (_options.HasChanged(MediaPlayer.OptionsApple.ChangeFlags.PreferredPeakBitRate))
+				{
+					_playerSettings.preferredPeakBitRate = _options.GetPreferredPeakBitRateInBitsPerSecond();
+				}
+				if (_options.HasChanged(MediaPlayer.OptionsApple.ChangeFlags.PreferredForwardBufferDuration))
+				{
+					_playerSettings.preferredForwardBufferDuration = _options.preferredForwardBufferDuration;
+				}
+				if (_options.HasChanged(MediaPlayer.OptionsApple.ChangeFlags.PlayWithoutBuffering))
+				{
+					bool enabled = (_options.flags & MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering) == MediaPlayer.OptionsApple.Flags.PlayWithoutBuffering;
+					_playerSettings.networkFlags = enabled ? _playerSettings.networkFlags | Native.AVPPlayerNetworkSettingsFlags.PlayWithoutBuffering
+														   : _playerSettings.networkFlags & ~Native.AVPPlayerNetworkSettingsFlags.PlayWithoutBuffering;
+				}
+				if (_options.HasChanged(MediaPlayer.OptionsApple.ChangeFlags.PreferredMaximumResolution))
+				{
+					GetWidthHeightFromResolution(
+						_options.preferredMaximumResolution,
+						_options.customPreferredMaximumResolution,
+						out _playerSettings.preferredMaximumResolution_width,
+						out _playerSettings.preferredMaximumResolution_height);
+				}
+
+				Native.AVPPlayerSetPlayerSettings(_player, _playerSettings);
+			}
+
 			/*BaseMediaPlayer.*/UpdateDisplayFrameRate();
 			/*BaseMediaPlayer.*/UpdateSubtitles();
 		}
@@ -364,6 +341,11 @@ namespace RenderHeads.Media.AVProVideo
 		public override void Render()
 		{
 
+		}
+
+		public override IntPtr GetNativePlayerHandle()
+		{
+			return _player;
 		}
 
 		private static TimeRanges ConvertNativeTimeRangesToTimeRanges(Native.AVPPlayerTimeRange[] ranges)
@@ -375,468 +357,6 @@ namespace RenderHeads.Media.AVProVideo
 				targetRanges[i].duration = ranges[i].duration;
 			}
 			return new TimeRanges(targetRanges);
-		}
-
-		internal partial struct Native
-		{
-			[Flags]
-			internal enum AVPPlayerStatus : int
-			{
-				Unknown                   = 0,
-				ReadyToPlay               = 1 <<  0,
-				Playing                   = 1 <<  1,
-				Paused                    = 1 <<  2,
-				Finished                  = 1 <<  3,
-				Seeking                   = 1 <<  4,
-				Buffering                 = 1 <<  5,
-				Stalled                   = 1 <<  6,
-				ExternalPlaybackActive    = 1 <<  7,
-				Cached                    = 1 <<  8,
-
-				UpdatedAssetInfo          = 1 << 16,
-				UpdatedTexture            = 1 << 17,
-				UpdatedBufferedTimeRanges = 1 << 18,
-				UpdatedSeekableTimeRanges = 1 << 19,
-				UpdatedText               = 1 << 20,
-
-				HasVideo                  = 1 << 24,
-				HasAudio                  = 1 << 25,
-				HasText                   = 1 << 26,
-				HasMetadata               = 1 << 27,
-
-				Failed                    = 1 << 31
-			}
-
-			[Flags]
-			internal enum AVPPlayerFlags : int
-			{
-				None                  = 0,
-				Looping               = 1 <<  0,
-				Muted                 = 1 <<  1,
-				AllowExternalPlayback = 1 <<  2,
-				ResumePlayback        = 1 << 16,	// iOS only, resumes playback after audio session route change
-				Dirty                 = 1 << 31
-			}
-
-			internal enum AVPPlayerExternalPlaybackVideoGravity : int
-			{
-				Resize,
-				ResizeAspect,
-				ResizeAspectFill
-			};
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerSize
-			{
-				internal float width;
-				internal float height;
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPAffineTransform
-			{
-				internal float a;
-				internal float b;
-				internal float c;
-				internal float d;
-				internal float tx;
-				internal float ty;
-			}
-
-			[Flags]
-			internal enum AVPPlayerAssetFlags : int
-			{
-				None                  = 0,
-				CompatibleWithAirPlay = 1 << 0,
-			};
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerAssetInfo
-			{
-				internal double duration;
-				internal AVPPlayerSize dimensions;
-				internal float frameRate;
-				internal int videoTrackCount;
-				internal int audioTrackCount;
-				internal int textTrackCount;
-				internal AVPPlayerAssetFlags flags;
-			}
-
-			[Flags]
-			internal enum AVPPlayerTrackFlags: int
-			{
-				Default = 1 << 0,
-			}
-
-			internal enum AVPPlayerVideoTrackStereoMode: int
-			{
-				Unknown,
-				Monoscopic,
-				StereoscopicTopBottom,
-				StereoscopicLeftRight,
-				StereoscopicCustom,
-				StereoscopicRightLeft,
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerVideoTrackInfo
-			{
-				[MarshalAs(UnmanagedType.LPWStr)] internal string name;
-				[MarshalAs(UnmanagedType.LPWStr)] internal string language;
-				internal int trackId;
-				internal float estimatedDataRate;
-				internal uint codecSubtype;
-				internal AVPPlayerTrackFlags flags;
-
-				internal AVPPlayerSize dimensions;
-				internal float frameRate;
-				internal AVPAffineTransform transform;
-				internal AVPPlayerVideoTrackStereoMode stereoMode;
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerAudioTrackInfo
-			{
-				[MarshalAs(UnmanagedType.LPWStr)] internal string name;
-				[MarshalAs(UnmanagedType.LPWStr)] internal string language;
-				internal int trackId;
-				internal float estimatedDataRate;
-				internal uint codecSubtype;
-				internal AVPPlayerTrackFlags flags;
-
-				internal double sampleRate;
-				internal uint channelCount;
-				internal uint channelLayoutTag;
-				internal AudioChannelMaskFlags channelBitmap;
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerTextTrackInfo
-			{
-				[MarshalAs(UnmanagedType.LPWStr)] internal string name;
-				[MarshalAs(UnmanagedType.LPWStr)] internal string language;
-				internal int trackId;
-				internal float estimatedDataRate;
-				internal uint codecSubtype;
-				internal AVPPlayerTrackFlags flags;
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerTimeRange
-			{
-				internal double start;
-				internal double duration;
-			};
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerState
-			{
-				internal AVPPlayerStatus status;
-				internal double currentTime;
-				internal double currentDate;
-				internal int selectedVideoTrack;
-				internal int selectedAudioTrack;
-				internal int selectedTextTrack;
-				internal int bufferedTimeRangesCount;
-				internal int seekableTimeRangesCount;
-				internal int audioCaptureBufferedSamplesCount;
-			}
-
-			internal enum AVPPlayerTextureFormat: int
-			{
-				Unknown,
-				BGRA8,
-				R8,
-				RG8,
-				BC1,
-				BC3,
-				BC4,
-				BC5,
-				BC7,
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerTexturePlane
-			{
-				internal IntPtr plane;
-				internal int width;
-				internal int height;
-				internal AVPPlayerTextureFormat textureFormat;
-			}
-
-			[Flags]
-			internal enum AVPPlayerTextureFlags: int
-			{
-				None      = 0,
-				Flipped   = 1 << 0,
-				Linear    = 1 << 1,
-				Mipmapped = 1 << 2,
-			}
-
-			internal enum AVPPlayerTextureYCbCrMatrix: int
-			{
-				Identity,
-				ITU_R_601,
-				ITU_R_709,
-			}
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerTexture
-			{
-				[MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]
-				internal AVPPlayerTexturePlane[] planes;
-				internal long itemTime;
-				internal int frameCount;
-				internal int planeCount;
-				internal AVPPlayerTextureFlags flags;
-				internal AVPPlayerTextureYCbCrMatrix YCbCrMatrix;
-			};
-
-			[StructLayout(LayoutKind.Sequential)]
-			internal struct AVPPlayerText
-			{
-				internal IntPtr buffer;
-				internal long itemTime;
-				internal int length;
-				internal int sequence;
-			};
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetState(IntPtr player, ref AVPPlayerState state);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetFlags(IntPtr player, int flags);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetAssetInfo(IntPtr player, ref AVPPlayerAssetInfo info);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetVideoTrackInfo(IntPtr player, int index, ref AVPPlayerVideoTrackInfo info);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetAudioTrackInfo(IntPtr player, int index, ref AVPPlayerAudioTrackInfo info);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetTextTrackInfo(IntPtr player, int index, ref AVPPlayerTextTrackInfo info);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetBufferedTimeRanges(IntPtr player, AVPPlayerTimeRange[] ranges, int count);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetSeekableTimeRanges(IntPtr player, AVPPlayerTimeRange[] ranges, int count);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetTexture(IntPtr player, ref AVPPlayerTexture texture);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerGetText(IntPtr player, ref AVPPlayerText text);
-		}
-	}
-
-	internal static class AppleMediaPlayerExtensions
-	{
-		// AVPPlayerStatus
-
-		internal static bool IsReadyToPlay(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.ReadyToPlay) == AppleMediaPlayer.Native.AVPPlayerStatus.ReadyToPlay;
-		}
-
-		internal static bool IsPlaying(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Playing) == AppleMediaPlayer.Native.AVPPlayerStatus.Playing;
-		}
-
-		internal static bool IsPaused(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Paused) == AppleMediaPlayer.Native.AVPPlayerStatus.Paused;
-		}
-
-		internal static bool IsFinished(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Finished) == AppleMediaPlayer.Native.AVPPlayerStatus.Finished;
-		}
-
-		internal static bool IsSeeking(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Seeking) == AppleMediaPlayer.Native.AVPPlayerStatus.Seeking;
-		}
-
-		internal static bool IsBuffering(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Buffering) == AppleMediaPlayer.Native.AVPPlayerStatus.Buffering;
-		}
-
-		internal static bool IsStalled(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Stalled) == AppleMediaPlayer.Native.AVPPlayerStatus.Stalled;
-		}
-
-		internal static bool IsExternalPlaybackActive(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.ExternalPlaybackActive) == AppleMediaPlayer.Native.AVPPlayerStatus.ExternalPlaybackActive;
-		}
-
-		internal static bool IsCached(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Cached) == AppleMediaPlayer.Native.AVPPlayerStatus.Cached;
-		}
-
-		internal static bool HasUpdatedAssetInfo(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedAssetInfo) == AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedAssetInfo;
-		}
-
-		internal static bool HasUpdatedTexture(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedTexture) == AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedTexture;
-		}
-
-		internal static bool HasUpdatedBufferedTimeRanges(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedBufferedTimeRanges) == AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedBufferedTimeRanges;
-		}
-
-		internal static bool HasUpdatedSeekableTimeRanges(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedSeekableTimeRanges) == AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedSeekableTimeRanges;
-		}
-
-		internal static bool HasUpdatedText(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedText) == AppleMediaPlayer.Native.AVPPlayerStatus.UpdatedText;
-		}
-
-		internal static bool HasVideo(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.HasVideo) == AppleMediaPlayer.Native.AVPPlayerStatus.HasVideo;
-		}
-
-		internal static bool HasAudio(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.HasAudio) == AppleMediaPlayer.Native.AVPPlayerStatus.HasAudio;
-		}
-
-		internal static bool HasText(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.HasText) == AppleMediaPlayer.Native.AVPPlayerStatus.HasText;
-		}
-
-		internal static bool HasMetadata(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.HasMetadata) == AppleMediaPlayer.Native.AVPPlayerStatus.HasMetadata;
-		}
-
-		internal static bool HasFailed(this AppleMediaPlayer.Native.AVPPlayerStatus status)
-		{
-			return (status & AppleMediaPlayer.Native.AVPPlayerStatus.Failed) == AppleMediaPlayer.Native.AVPPlayerStatus.Failed;
-		}
-
-		// AVPPlayerFlags
-
-		internal static bool IsLooping(this AppleMediaPlayer.Native.AVPPlayerFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerFlags.Looping) == AppleMediaPlayer.Native.AVPPlayerFlags.Looping;
-		}
-
-		internal static AppleMediaPlayer.Native.AVPPlayerFlags SetLooping(this AppleMediaPlayer.Native.AVPPlayerFlags flags, bool b)
-		{
-			if (flags.IsLooping() ^ b)
-			{
-				flags = (b ? flags | AppleMediaPlayer.Native.AVPPlayerFlags.Looping
-				           : flags & ~AppleMediaPlayer.Native.AVPPlayerFlags.Looping) | AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-			}
-			return flags;
-		}
-
-		internal static bool IsMuted(this AppleMediaPlayer.Native.AVPPlayerFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerFlags.Muted) == AppleMediaPlayer.Native.AVPPlayerFlags.Muted;
-		}
-
-		internal static AppleMediaPlayer.Native.AVPPlayerFlags SetMuted(this AppleMediaPlayer.Native.AVPPlayerFlags flags, bool b)
-		{
-			if (flags.IsMuted() ^ b)
-			{
-				flags = (b ? flags | AppleMediaPlayer.Native.AVPPlayerFlags.Muted
-				           : flags & ~AppleMediaPlayer.Native.AVPPlayerFlags.Muted) | AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-			}
-			return flags;
-		}
-
-		internal static bool IsExternalPlaybackAllowed(this AppleMediaPlayer.Native.AVPPlayerFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerFlags.AllowExternalPlayback) == AppleMediaPlayer.Native.AVPPlayerFlags.AllowExternalPlayback;
-		}
-
-		internal static AppleMediaPlayer.Native.AVPPlayerFlags SetAllowExternalPlayback(this AppleMediaPlayer.Native.AVPPlayerFlags flags, bool b)
-		{
-			if (flags.IsExternalPlaybackAllowed() ^ b)
-			{
-				flags = (b ? flags |  AppleMediaPlayer.Native.AVPPlayerFlags.AllowExternalPlayback
-				           : flags & ~AppleMediaPlayer.Native.AVPPlayerFlags.AllowExternalPlayback) | AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-			}
-			return flags;
-		}
-
-		internal static bool ResumePlayback(this AppleMediaPlayer.Native.AVPPlayerFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerFlags.ResumePlayback) == AppleMediaPlayer.Native.AVPPlayerFlags.ResumePlayback;
-		}
-
-		internal static AppleMediaPlayer.Native.AVPPlayerFlags SetResumePlayback(this AppleMediaPlayer.Native.AVPPlayerFlags flags, bool b)
-		{
-			if (flags.ResumePlayback() ^ b)
-			{
-				flags = (b ? flags | AppleMediaPlayer.Native.AVPPlayerFlags.ResumePlayback
-				           : flags & ~AppleMediaPlayer.Native.AVPPlayerFlags.ResumePlayback) | AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-			}
-			return flags;
-		}
-
-		internal static bool IsDirty(this AppleMediaPlayer.Native.AVPPlayerFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerFlags.Dirty) == AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-		}
-
-		internal static AppleMediaPlayer.Native.AVPPlayerFlags SetDirty(this AppleMediaPlayer.Native.AVPPlayerFlags flags, bool b)
-		{
-			if (flags.IsDirty() ^ b)
-			{
-				flags = b ? flags | AppleMediaPlayer.Native.AVPPlayerFlags.Dirty : flags & ~AppleMediaPlayer.Native.AVPPlayerFlags.Dirty;
-			}
-			return flags;
-		}
-
-		// MARK: AVPPlayerAssetFlags
-
-		internal static bool IsCompatibleWithAirPlay(this AppleMediaPlayer.Native.AVPPlayerAssetFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerAssetFlags.CompatibleWithAirPlay) == AppleMediaPlayer.Native.AVPPlayerAssetFlags.CompatibleWithAirPlay;
-		}
-
-		// MARK: AVPPlayerTrackFlags
-
-		internal static bool IsDefault(this AppleMediaPlayer.Native.AVPPlayerTrackFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerTrackFlags.Default) == AppleMediaPlayer.Native.AVPPlayerTrackFlags.Default;
-		}
-
-		// AVPPlayerTextureFlags
-
-		internal static bool IsFlipped(this AppleMediaPlayer.Native.AVPPlayerTextureFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerTextureFlags.Flipped) == AppleMediaPlayer.Native.AVPPlayerTextureFlags.Flipped;
-		}
-
-		internal static bool IsLinear(this AppleMediaPlayer.Native.AVPPlayerTextureFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerTextureFlags.Linear) == AppleMediaPlayer.Native.AVPPlayerTextureFlags.Linear;
-		}
-
-		internal static bool IsMipmapped(this AppleMediaPlayer.Native.AVPPlayerTextureFlags flags)
-		{
-			return (flags & AppleMediaPlayer.Native.AVPPlayerTextureFlags.Mipmapped) == AppleMediaPlayer.Native.AVPPlayerTextureFlags.Mipmapped;
 		}
 	}
 
@@ -910,6 +430,16 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			Native.AVPPlayerClose(_player);
 			Update();
+
+			// Clean up the textures
+			for (int i = 0; i < MaxTexturePlanes; ++i)
+			{
+				if (_texturePlanes[i] != null)
+				{
+					_texturePlanes[i].UpdateExternalTexture(IntPtr.Zero);
+					_texturePlanes[i] = null;
+				}
+			}
 			_playerTexture.frameCount = 0;
 		}
 
@@ -940,7 +470,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override bool IsSeeking()
 		{
-			return _state.status.IsSeeking();
+			return _state.status.IsSeeking() || _state.status.HasFinishedSeeking();
 		}
 
 		public override bool IsPaused()
@@ -1013,7 +543,8 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override void SetPlaybackRate(float rate)
 		{
-			if (rate != _rate) {
+			if (rate != _rate)
+			{
 				_rate = rate;
 				Native.AVPPlayerSetRate(_player, rate);
 				Update();
@@ -1032,7 +563,8 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override void SetVolume(float volume)
 		{
-			if (volume != _volume) {
+			if (volume != _volume)
+			{
 				_volume = volume;
 				Native.AVPPlayerSetVolume(_player, volume);
 			}
@@ -1061,11 +593,19 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override int GetAudioChannelCount()
 		{
+			int channelCount = -1;
 			if (_state.selectedAudioTrack > -1 && _state.selectedAudioTrack < _audioTrackInfo.Length)
 			{
-				return (int)_audioTrackInfo[_state.selectedAudioTrack].channelCount;
+				channelCount = (int)_audioTrackInfo[_state.selectedAudioTrack].channelCount;
+				#if !UNITY_EDITOR && UNITY_IOS
+					if (_options.audioMode == MediaPlayer.OptionsApple.AudioMode.Unity)
+					{
+						// iOS audio capture will convert down to two channel stereo
+						channelCount = Math.Min(channelCount, 2);
+					}
+				#endif
 			}
-			return -1;
+			return channelCount;
 		}
 
 		public override AudioChannelMaskFlags GetAudioChannelMask()
@@ -1166,40 +706,6 @@ namespace RenderHeads.Media.AVProVideo
 			}
 			Native.AVPPlayerSetExternalPlaybackVideoGravity(_player, gravity);
 		}
-
-		internal partial struct Native
-		{
-			[DllImport(PluginName)]
-			[return: MarshalAs(UnmanagedType.U1)]
-			internal static extern bool AVPPlayerOpenURL(IntPtr player, string url, string headers);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerClose(IntPtr player);
-
-			[DllImport(PluginName)]
-			internal static extern int AVPPlayerGetAudio(IntPtr player, float[] buffer, int length);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetRate(IntPtr player, float rate);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetVolume(IntPtr player, float volume);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetExternalPlaybackVideoGravity(IntPtr player, AVPPlayerExternalPlaybackVideoGravity gravity);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSeek(IntPtr player, double toTime, double toleranceBefore, double toleranceAfter);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetKeyServerAuthToken(IntPtr player, string token);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetKeyServerURL(IntPtr player, string url);
-
-			[DllImport(PluginName)]
-			internal static extern void AVPPlayerSetDecryptionKey(IntPtr player, byte[] key, int length);
-		}
 	}
 
 	// IMediaInfo
@@ -1213,7 +719,8 @@ namespace RenderHeads.Media.AVProVideo
 		public override int GetVideoWidth()
 		{
 			int width = 0;
-			if (_state.selectedVideoTrack >= 0) {
+			if (_state.selectedVideoTrack >= 0)
+			{
 				width = (int)_videoTrackInfo[_state.selectedVideoTrack].dimensions.width;
 			}
 			return width;
@@ -1222,7 +729,8 @@ namespace RenderHeads.Media.AVProVideo
 		public override int GetVideoHeight()
 		{
 			int height = 0;
-			if (_state.selectedVideoTrack >= 0) {
+			if (_state.selectedVideoTrack >= 0)
+			{
 				height = (int)_videoTrackInfo[_state.selectedVideoTrack].dimensions.height;
 			}
 			return height;
@@ -1231,7 +739,8 @@ namespace RenderHeads.Media.AVProVideo
 		public override float GetVideoFrameRate()
 		{
 			float framerate = 0.0f;
-			if (_state.selectedVideoTrack >= 0) {
+			if (_state.selectedVideoTrack >= 0)
+			{
 				framerate = _videoTrackInfo[_state.selectedVideoTrack].frameRate;
 			}
 			return framerate;
@@ -1314,39 +823,25 @@ namespace RenderHeads.Media.AVProVideo
 			return _playerTexture.flags.IsFlipped();
 		}
 
-		private static Matrix4x4 YCbCrMatrix_Identity = new Matrix4x4(
-			new Vector4(1.0f, 0.0f, 0.0f, 0.0f),
-			new Vector4(0.0f, 1.0f, 0.0f, 0.0f),
-			new Vector4(0.0f, 0.0f, 1.0f, 0.0f),
-			Vector4.zero
-		);
-
-		private static Matrix4x4 YCbCrMatrix_ITU_R_601 = new Matrix4x4(
-			new Vector4( 1.1644f,  1.1644f,  1.1644f, -0.0627451017f),
-			new Vector4( 0.0000f, -0.3918f,  2.0172f, -0.5019608140f),
-			new Vector4( 1.5960f, -0.8130f,  0.0000f, -0.5019608140f),
-			Vector4.zero
-		);
-
-		private static Matrix4x4 YCbCrMatrix_ITU_R_709 = new Matrix4x4(
-			new Vector4( 1.1643835f,  1.16438350f,  1.1643835f, -0.0627451f),
-			new Vector4( 0.0000000f, -0.21324861f,  2.1124017f, -0.5019608f),
-			new Vector4( 1.7927411f, -0.53290933f,  0.0000000f, -0.5019608f),
-			Vector4.zero
-		);
+		public override TransparencyMode GetTextureTransparency()
+		{
+			if (_state.selectedVideoTrack >= 0)
+			{
+				Native.AVPPlayerVideoTrackInfo info = _videoTrackInfo[_state.selectedVideoTrack];
+				if ((info.videoTrackFlags & Native.AVPPlayerVideoTrackFlags.HasAlpha) == Native.AVPPlayerVideoTrackFlags.HasAlpha)
+				{
+					return TransparencyMode.Transparent;
+				}
+			}
+			return base.GetTextureTransparency();
+		}
 
 		public override Matrix4x4 GetYpCbCrTransform()
 		{
-			switch (_playerTexture.YCbCrMatrix)
-			{
-				case AppleMediaPlayer.Native.AVPPlayerTextureYCbCrMatrix.Identity:
-				default:
-					return YCbCrMatrix_Identity;
-				case AppleMediaPlayer.Native.AVPPlayerTextureYCbCrMatrix.ITU_R_601:
-					return YCbCrMatrix_ITU_R_601;
-				case AppleMediaPlayer.Native.AVPPlayerTextureYCbCrMatrix.ITU_R_709:
-					return YCbCrMatrix_ITU_R_709;
-			}
+			if (_videoTrackInfo.Length > 0 && _state.selectedVideoTrack >= 0)
+				return _videoTrackInfo[_state.selectedVideoTrack].yCbCrTransform;
+			else
+				return Matrix4x4.identity;
 		}
 
 		internal override StereoPacking InternalGetTextureStereoPacking()
@@ -1392,18 +887,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override string GetExpectedVersion()
 		{
-			return Helper.ExpectedPluginVersion_Apple;
-		}
-
-		internal partial struct Native
-		{
-			[DllImport(PluginName)]
-			private static extern IntPtr AVPPluginGetVersionStringPointer();
-
-			internal static string GetPluginVersion()
-			{
-				return System.Runtime.InteropServices.Marshal.PtrToStringAnsi(AVPPluginGetVersionStringPointer());
-			}
+			return Helper.ExpectedPluginVersion.Apple;
 		}
 	}
 
@@ -1498,23 +982,9 @@ namespace RenderHeads.Media.AVProVideo
 			else
 				return null;
 		}
-
-		internal partial struct Native
-		{
-			internal enum AVPPlayerTrackType: int
-			{
-				Video,
-				Audio,
-				Text
-			};
-
-			[DllImport(PluginName)]
-			[return: MarshalAs(UnmanagedType.I1)]
-			internal static extern bool AVPPlayerSetTrack(IntPtr player, AVPPlayerTrackType type, int index);
-		}
 	}
 
-#if UNITY_IOS
+#if !UNITY_EDITOR && UNITY_IOS
 	// Media Caching
 	public sealed partial class AppleMediaPlayer
 	{
@@ -1526,7 +996,7 @@ namespace RenderHeads.Media.AVProVideo
 		public override void AddMediaToCache(string url, string headers, MediaCachingOptions options)
 		{
 			Native.MediaCachingOptions nativeOptions = new Native.MediaCachingOptions();
-			GCHandle artworkHandle;
+			GCHandle artworkHandle = new GCHandle();
 
 			if (options != null)
 			{
@@ -1564,49 +1034,8 @@ namespace RenderHeads.Media.AVProVideo
         {
 			return (CachedMediaStatus)Native.AVPPluginGetCachedMediaStatusForURL(url, ref progress);
         }
-
-		internal partial struct Native
-		{
-			public struct MediaCachingOptions
-			{
-				public double minimumRequiredBitRate;
-				public float  minimumRequiredResolution_width;
-				public float  minimumRequiredResolution_height;
-				public string title;
-				public IntPtr artwork;
-				public int    artworkLength;
-			}
-
-			[DllImport(PluginName)]
-			public static extern void AVPPluginCacheMediaForURL(string url, string headers, MediaCachingOptions options);
-
-			[DllImport(PluginName)]
-			public static extern void AVPPluginCancelDownloadOfMediaForURL(string url);
-
-			[DllImport(PluginName)]
-			public static extern void AVPPluginRemoveCachedMediaForURL(string url);
-
-			[DllImport(PluginName)]
-			public static extern int AVPPluginGetCachedMediaStatusForURL(string url, ref float progress);
-		}
 	}
 #endif
-
-	// Native interface
-	public sealed partial class AppleMediaPlayer
-	{
-#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-			private const string PluginName = "AVProVideo";
-#elif UNITY_IOS || UNITY_TVOS
-			private const string PluginName = "__Internal";
-#endif
-
-		internal partial struct Native
-		{
-			[DllImport(PluginName)]
-			public static extern IntPtr AVPPlayerRelease(IntPtr player);
-		}
-	}
 }
 
 #endif

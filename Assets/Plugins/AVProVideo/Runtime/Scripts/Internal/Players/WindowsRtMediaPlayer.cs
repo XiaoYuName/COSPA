@@ -78,11 +78,13 @@ namespace RenderHeads.Media.AVProVideo
 	{
 		private bool _isMediaLoaded = false;
 		private bool _use10BitTextures = false;
+		private bool _useLowLiveLatency = false;
 
 		public WindowsRtMediaPlayer(MediaPlayer.OptionsWindows options) : base()
 		{
 			_playerDescription = "WinRT";
 			_use10BitTextures = options.use10BitTextures;
+			_useLowLiveLatency = options.useLowLiveLatency;
 			for (int i = 0; i < _eyeTextures.Length; i++)
 			{
 				_eyeTextures[i] = new EyeTexture();
@@ -93,6 +95,7 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			_playerDescription = "WinRT";
 			_use10BitTextures = options.use10BitTextures;
+			_useLowLiveLatency = options.useLowLiveLatency;
 			for (int i = 0; i < _eyeTextures.Length; i++)
 			{
 				_eyeTextures[i] = new EyeTexture();
@@ -175,7 +178,7 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override string GetExpectedVersion()
 		{
-			return Helper.ExpectedPluginVersion_WinRT;
+			return Helper.ExpectedPluginVersion.WinRT;
 		}
 
 		public override float GetVideoFrameRate()
@@ -283,7 +286,7 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			Native.SetAudioMuted(_playerInstance, bMuted);
 		}
-
+		
 		// TODO: replace all these options with a structure
 		public override bool OpenMedia(string path, long offset, string httpHeader, MediaHints mediaHints, int forceFileFormat = 0, bool startWithHighestBitrate = false)
 		{
@@ -294,10 +297,20 @@ namespace RenderHeads.Media.AVProVideo
 			if (_playerInstance == System.IntPtr.Zero)
 			{
 				_playerInstance = Native.CreatePlayer();
+
+				// Force setting any auth data as it wouldn't have been set without a _playerInstance
+				AuthenticationData = _nextAuthData;
 			}
 			if (_playerInstance != System.IntPtr.Zero)
 			{
 				result = Native.OpenMedia(_playerInstance, path, httpHeader, (FileFormat)forceFileFormat, startWithHighestBitrate, _use10BitTextures);
+				if (result)
+				{
+					if (_useLowLiveLatency)
+					{
+						Native.SetLiveOffset(_playerInstance, 0.0);
+					}
+				}
 				_mediaHints = mediaHints;
 			}
 			
@@ -375,7 +388,7 @@ namespace RenderHeads.Media.AVProVideo
 							{
 								if (texturePointer != IntPtr.Zero)
 								{
-									eyeTexture.texture = Texture2D.CreateExternalTexture(width, height, TextureFormat.RGBA32, false, false, texturePointer);
+									eyeTexture.texture = Texture2D.CreateExternalTexture(width, height, TextureFormat.BGRA32, false, false, texturePointer);
 									if (eyeTexture.texture != null)
 									{
 										eyeTexture.texture.name = "AVProVideo";
@@ -489,6 +502,7 @@ namespace RenderHeads.Media.AVProVideo
 			_lastError = (ErrorCode)Native.GetLastErrorCode(_playerInstance);
 
 			UpdateTimeRanges();
+			UpdateSubtitles();
 			Update_Textures();
 			UpdateDisplayFrameRate();
 

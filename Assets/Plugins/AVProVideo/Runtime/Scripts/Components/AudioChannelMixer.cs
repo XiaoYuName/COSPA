@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2019-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2019-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -9,7 +9,7 @@ namespace RenderHeads.Media.AVProVideo
 	/// Allows per-channel volume control
 	/// Currently supported on Windows and UWP (Media Foundation API only), macOS, iOS, tvOS and Android (ExoPlayer API only)
 	[AddComponentMenu("AVPro Video/Audio Channel Mixer", 401)]
-	[HelpURL("http://renderheads.com/products/avpro-video/")]
+	[HelpURL("https://www.renderheads.com/products/avpro-video/")]
 	public class AudioChannelMixer : MonoBehaviour
 	{
 		const int MaxChannels = 8;

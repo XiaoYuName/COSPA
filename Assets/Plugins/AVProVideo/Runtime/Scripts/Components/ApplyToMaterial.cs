@@ -5,7 +5,7 @@
 using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -14,7 +14,7 @@ namespace RenderHeads.Media.AVProVideo
 	/// Sets up a material to display the video from a MediaPlayer
 	/// </summary>
 	[AddComponentMenu("AVPro Video/Apply To Material", 300)]
-	[HelpURL("http://renderheads.com/products/avpro-video/")]
+	[HelpURL("https://www.renderheads.com/products/avpro-video/")]
 	public sealed class ApplyToMaterial : ApplyToBase
 	{
 		[Header("Display")]
@@ -148,11 +148,13 @@ namespace RenderHeads.Media.AVProVideo
 
 				if (plane == 0)
 				{
-					VideoRender.SetupMaterialForMedia(_material, _media, _propTexture.Id, texture);
+					VideoRender.SetupMaterialForMedia(_material, _media, _propTexture.Id, texture, texture == _defaultTexture);
 					_lastTextureApplied = texture;
 
+					#if (!UNITY_EDITOR && UNITY_ANDROID)
 					if (texture == _defaultTexture)	{ _material.EnableKeyword("USING_DEFAULT_TEXTURE"); }
 					else							{ _material.DisableKeyword("USING_DEFAULT_TEXTURE"); }
+					#endif
 
 					if (texture != null)
 					{

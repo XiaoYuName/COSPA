@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿#if !(UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IOS || UNITY_TVOS)
+using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -61,3 +62,4 @@ namespace RenderHeads.Media.AVProVideo
 #endregion // Application Focus and Pausing
 	}
 }
+#endif

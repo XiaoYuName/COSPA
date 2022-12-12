@@ -1,4 +1,4 @@
-﻿Shader "AVProVideo/VR/InsideSphere Unlit Transparent(stereo+color+fog+alpha)"
+﻿Shader "AVProVideo/VR/InsideSphere Unlit Transparent (stereo+color+fog+alpha)"
 {
 	Properties
 	{

@@ -2,7 +2,7 @@
 using System.Collections;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -98,7 +98,7 @@ namespace RenderHeads.Media.AVProVideo
 			string subtitleData = string.Empty;
 
 			#if UNITY_2020_1_OR_NEWER
-			if (www.result == UnityEngine.Networking.UnityWebRequest.Result.ConnectionError)
+			if (www.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
 			#elif UNITY_2017_1_OR_NEWER
 			if (!www.isNetworkError)
 			#else

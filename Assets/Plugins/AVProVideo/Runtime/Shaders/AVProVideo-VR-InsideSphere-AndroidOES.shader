@@ -1,8 +1,9 @@
-﻿Shader "AVProVideo/VR/InsideSphere Unlit (stereo) - Android OES ONLY" 
+﻿Shader "AVProVideo/VR/InsideSphere Unlit (stereo+color) - Android OES ONLY" 
 {
 	Properties 
 	{
 		_MainTex ("Base (RGB)", 2D) = "black" {}
+		_ChromaTex("Chroma", 2D) = "white" {}			// For fallback shader
 		_Color("Color", Color) = (0.0, 1.0, 0.0, 1.0)
 		[KeywordEnum(None, Top_Bottom, Left_Right, Custom_UV)] Stereo("Stereo Mode", Float) = 0
 		[KeywordEnum(None, Left, Right)] ForceEye("Force Eye Mode", Float) = 0
@@ -40,8 +41,23 @@
 			#ifdef VERTEX
 
 #include "UnityCG.glslinc"
+#if defined(STEREO_MULTIVIEW_ON)
+	UNITY_SETUP_STEREO_RENDERING
+#endif
 #define SHADERLAB_GLSL
 #include "AVProVideo.cginc"
+
+
+		INLINE bool Android_IsStereoEyeLeft()
+		{
+			#if defined(STEREO_MULTIVIEW_ON)
+				int eyeIndex = SetupStereoEyeIndex();
+				return (eyeIndex == 0);
+			#else
+				return IsStereoEyeLeft();
+			#endif
+		}
+
 
 #if defined(HIGH_QUALITY)
 		varying vec3 texNormal;
@@ -71,8 +87,7 @@
 #if defined(HIGH_QUALITY)
 				texNormal = normalize(gl_Normal.xyz);
 	#if defined(STEREO_TOP_BOTTOM) || defined(STEREO_LEFT_RIGHT)
-				bool isLeftEye = IsStereoEyeLeft();
-				texScaleOffset = GetStereoScaleOffset(isLeftEye, false);
+				texScaleOffset = GetStereoScaleOffset(Android_IsStereoEyeLeft(), false);
 	#endif
 #else
 				texVal.xy = gl_MultiTexCoord0.xy;
@@ -89,13 +104,12 @@
 				texVal.xy = (_TextureMatrix * vec4(texVal.x, texVal.y, 0.0, 1.0)).xy;
 
 	#if defined(STEREO_TOP_BOTTOM) || defined(STEREO_LEFT_RIGHT)
-				bool isLeftEye = IsStereoEyeLeft();
-				vec4 scaleOffset = GetStereoScaleOffset(isLeftEye, false);
+				vec4 scaleOffset = GetStereoScaleOffset(Android_IsStereoEyeLeft(), false);
 
 				texVal.xy *= scaleOffset.xy;
 				texVal.xy += scaleOffset.zw;
 	#elif defined(STEREO_CUSTOM_UV)
-				if (!IsStereoEyeLeft())
+				if(!Android_IsStereoEyeLeft())
 				{
 					texVal.xy= transformTex(gl_MultiTexCoord1.xy, _MainTex_ST);
 					texVal.xy = vec2(1.0, 1.0) - texVal.xy;
@@ -104,7 +118,7 @@
 #endif
 
 #if defined(STEREO_DEBUG)
-				tint = GetStereoDebugTint(IsStereoEyeLeft());
+				tint = GetStereoDebugTint(Android_IsStereoEyeLeft());
 #endif
 			}
 			#endif
@@ -141,7 +155,7 @@
 				const float M_1_2PI = 0.15915494309189533576888376337251; // 2.0/PI
 				vec2 uv;
 				uv.x = 0.5 - atan(n.z, n.x) * M_1_2PI;
-				uv.y = 0.5 - asin(n.y) * M_1_PI;
+				uv.y = 0.5 - asin(-n.y) * M_1_PI;
 				return uv;
 			}
 

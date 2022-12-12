@@ -42,12 +42,12 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		private static bool _isTrialVersion = false;
 		private static GUIStyle _styleSectionBox = null;
 
-		private static AnimCollapseSection _sectionMediaInfo;
-		private static AnimCollapseSection _sectionDebug;
-		private static AnimCollapseSection _sectionSettings;
-		private static AnimCollapseSection _sectionAboutHelp;
-		private static List<AnimCollapseSection> _settingSections = new List<AnimCollapseSection>(16);
-		private static List<AnimCollapseSection> _platformSections = new List<AnimCollapseSection>(8);
+		private AnimCollapseSection _sectionMediaInfo;
+		private AnimCollapseSection _sectionDebug;
+		private AnimCollapseSection _sectionSettings;
+		private AnimCollapseSection _sectionAboutHelp;
+		private List<AnimCollapseSection> _settingSections = new List<AnimCollapseSection>(16);
+		private List<AnimCollapseSection> _platformSections = new List<AnimCollapseSection>(8);
 
 		[MenuItem("GameObject/Video/AVPro Video - Media Player", false, 100)]
 		public static void CreateMediaPlayerEditor()
@@ -73,6 +73,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		{
 			_platformIndex = EditorPrefs.GetInt(SettingsPrefix + "PlatformIndex", -1);
 			_showAlpha = EditorPrefs.GetBool(SettingsPrefix + "ShowAlphaChannel", false);
+			_showPreview = EditorPrefs.GetBool(SettingsPrefix + "ShowPreview", true);
 			_allowDeveloperMode = EditorPrefs.GetBool(SettingsPrefix + "AllowDeveloperMode", false);
 			_HTTPHeadersToggle = EditorPrefs.GetBool(SettingsPrefix + "HTTPHeadersToggle", false);
 			RecentItems.Load();
@@ -94,11 +95,51 @@ namespace RenderHeads.Media.AVProVideo.Editor
 				section.Save();
 			}
 
+			_sectionDevModeState.Save();
+			_sectionDevModeTexture.Save();
+			_sectionDevModePlaybackQuality.Save();
+			_sectionDevModeHapNotchLCDecoder.Save();
+			_sectionDevModeBufferedFrames.Save();
+
 			EditorPrefs.SetInt(SettingsPrefix + "PlatformIndex", _platformIndex);
 			EditorPrefs.SetBool(SettingsPrefix + "ShowAlphaChannel", _showAlpha);
+			EditorPrefs.SetBool(SettingsPrefix + "ShowPreview", _showPreview);
 			EditorPrefs.SetBool(SettingsPrefix + "AllowDeveloperMode", _allowDeveloperMode);
 			EditorPrefs.SetBool(SettingsPrefix + "HTTPHeadersToggle", _HTTPHeadersToggle);
 			RecentItems.Save();
+		}
+
+		//[MenuItem("RenderHeads/AVPro Video/Reset Settings", false, 101)]
+		internal static void DeleteSettings()
+		{
+			EditorPrefs.DeleteKey(SettingsPrefix + "PlatformIndex");
+			EditorPrefs.DeleteKey(SettingsPrefix + "ShowAlphaChannel");
+			EditorPrefs.DeleteKey(SettingsPrefix + "AllowDeveloperMode");
+			EditorPrefs.DeleteKey(SettingsPrefix + "HTTPHeadersToggle");
+
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Media"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Debug"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Settings"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("About / Help"));
+			
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Source"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Main"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Audio"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Visual"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Network"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Media"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Subtitles"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Events"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Platform Specific"));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName("Global"));
+
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.Windows).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.MacOSX).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.Android).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.iOS).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.tvOS).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.WindowsUWP).text));
+			EditorPrefs.DeleteKey(AnimCollapseSection.GetPrefName(GetPlatformButtonContent(Platform.WebGL).text));
 		}
 
 		private void CreateSections()
@@ -123,7 +164,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			_settingSections.Add(new AnimCollapseSection("Main", false, false, OnInspectorGUI_Main, this, Color.white));
 			_settingSections.Add(new AnimCollapseSection("Audio", false, false, OnInspectorGUI_Audio, this, Color.white));
 			_settingSections.Add(new AnimCollapseSection("Visual", true, false, OnInspectorGUI_Visual, this, Color.white));
-			_settingSections.Add(new AnimCollapseSection("Network", true, false, OnInspectorGUI_Network, this, Color.white));
+			//_settingSections.Add(new AnimCollapseSection("Network", true, false, OnInspectorGUI_Network, this, Color.white));
 			_settingSections.Add(new AnimCollapseSection("Subtitles", true, false, OnInspectorGUI_Subtitles, this, Color.white));
 			_settingSections.Add(new AnimCollapseSection("Events", true, false, OnInspectorGUI_Events, this, Color.white));
 			_settingSections.Add(new AnimCollapseSection("Platform Specific", true, false, OnInspectorGUI_PlatformOverrides, this, platformSpecificColor));
@@ -137,6 +178,12 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			_platformSections.Add(new AnimCollapseSection(GetPlatformButtonContent(Platform.tvOS), true, false, OnInspectorGUI_Override_tvOS, this, platformColor, _platformSections));
 			_platformSections.Add(new AnimCollapseSection(GetPlatformButtonContent(Platform.WindowsUWP), true, false, OnInspectorGUI_Override_WindowsUWP, this, platformColor, _platformSections));
 			_platformSections.Add(new AnimCollapseSection(GetPlatformButtonContent(Platform.WebGL), true, false, OnInspectorGUI_Override_WebGL, this, platformColor, _platformSections));
+
+			_sectionDevModeState = new AnimCollapseSection("State", false, false, OnInspectorGUI_DevMode_State, this, Color.white);
+			_sectionDevModeTexture = new AnimCollapseSection("Texture", false, false, OnInspectorGUI_DevMode_Texture, this, Color.white);
+			_sectionDevModePlaybackQuality = new AnimCollapseSection("Presentation Quality", false, false, OnInspectorGUI_DevMode_PresentationQuality, this, Color.white);
+			_sectionDevModeHapNotchLCDecoder = new AnimCollapseSection("Hap/NotchLC Decoder", false, false, OnInspectorGUI_DevMode_HapNotchLCDecoder, this, Color.white);
+			_sectionDevModeBufferedFrames = new AnimCollapseSection("Buffers", false, false, OnInspectorGUI_DevMode_BufferedFrames, this, Color.white);
 		}
 
 		private void ResolveProperties()
@@ -300,6 +347,13 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					//_styleSectionBox.normal.background = Texture2D.redTexture;
 				}
 			}
+
+			_iconPlayButton = EditorGUIUtility.IconContent("d_PlayButton");
+			_iconPauseButton = EditorGUIUtility.IconContent("d_PauseButton");
+			_iconSceneViewAudio = EditorGUIUtility.IconContent("d_SceneViewAudio");
+			_iconProject = EditorGUIUtility.IconContent("d_Project");
+			_iconRotateTool = EditorGUIUtility.IconContent("d_RotateTool");
+
 			AnimCollapseSection.CreateStyles();
 		}
 
@@ -618,11 +672,30 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			return version.Contains("-trial");
 		}
 
+		//private int _updateFrameCount = -1;
 		public override bool RequiresConstantRepaint()
 		{
 			MediaPlayer media = (this.target) as MediaPlayer;
-			return (media != null && media.Control != null && media.isActiveAndEnabled && media.Info.GetDuration() > 0.0 && 
-					(media.Info.HasAudio() || (media.Info.HasVideo() && media.TextureProducer.GetTexture() != null)));
+			if (media != null && media.Control != null && media.isActiveAndEnabled && media.Info.GetDuration() > 0.0)
+			{
+				if (!media.Info.HasVideo())
+				{
+					if (media.Info.HasAudio())
+					{
+						return true;
+					}
+				}
+				else if (media.TextureProducer.GetTexture() != null)
+				{
+					//int frameCount = media.TextureProducer.GetTextureFrameCount();
+					//if (_updateFrameCount != frameCount)
+					{
+						//_updateFrameCount = frameCount;
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 	}
 }

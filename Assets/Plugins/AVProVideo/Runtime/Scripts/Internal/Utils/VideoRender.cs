@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -89,6 +89,7 @@ namespace RenderHeads.Media.AVProVideo
 	{
 		public const string Shader_IMGUI = "AVProVideo/Internal/IMGUI/Texture Transparent";
 		public const string Shader_Resolve = "AVProVideo/Internal/Resolve";
+		public const string Shader_ResolveOES = "AVProVideo/Internal/ResolveOES";
 		public const string Shader_Preview = "AVProVideo/Internal/Preview";
 
 	#if UNITY_PLATFORM_SUPPORTS_YPCBCR
@@ -125,16 +126,16 @@ namespace RenderHeads.Media.AVProVideo
 		public static readonly LazyShaderProperty PropViewMatrix = new LazyShaderProperty("_ViewMatrix");
 		public static readonly LazyShaderProperty PropTextureMatrix = new LazyShaderProperty("_TextureMatrix");
 
-		public static readonly LazyShaderProperty PropUseHSBC = new LazyShaderProperty("_UseHSBC");
+		public static string Keyword_UseHSBC = "USE_HSBC";
 		public static readonly LazyShaderProperty PropHue = new LazyShaderProperty("_Hue");
 		public static readonly LazyShaderProperty PropSaturation = new LazyShaderProperty("_Saturation");
 		public static readonly LazyShaderProperty PropContrast = new LazyShaderProperty("_Contrast");
 		public static readonly LazyShaderProperty PropBrightness = new LazyShaderProperty("_Brightness");
 		public static readonly LazyShaderProperty PropInvGamma = new LazyShaderProperty("_InvGamma");
 
-		public static Material CreateResolveMaterial()
+		public static Material CreateResolveMaterial(bool usingAndroidOES)
 		{
-			return new Material(Shader.Find(VideoRender.Shader_Resolve));
+			return new Material(Shader.Find( usingAndroidOES ? VideoRender.Shader_ResolveOES : VideoRender.Shader_Resolve ));
 		}
 
 		public static Material CreateIMGUIMaterial()
@@ -278,10 +279,11 @@ namespace RenderHeads.Media.AVProVideo
 			{
 				if (transform != null)
 				{
-					material.SetMatrix(VideoRender.PropTextureMatrix.Id, new Matrix4x4(	new Vector4( transform[0], transform[1], transform[2], transform[3] ), 
-																						new Vector4( transform[4], transform[5], transform[6], transform[7] ), 
-																						new Vector4( transform[8], transform[9], transform[10], transform[11] ), 
-																						new Vector4( transform[12], transform[13], transform[14], transform[15] ) ));
+					Matrix4x4 m = new Matrix4x4(new Vector4( transform[0], transform[1], transform[2], transform[3] ), 
+												new Vector4( transform[4], transform[5], transform[6], transform[7] ), 
+												new Vector4( transform[8], transform[9], transform[10], transform[11] ), 
+												new Vector4( transform[12], transform[13], transform[14], transform[15] ));
+					material.SetMatrix(VideoRender.PropTextureMatrix.Id, m);
 				}
 				else
 				{
@@ -338,7 +340,7 @@ namespace RenderHeads.Media.AVProVideo
 			return result;
 		}
 
-		public static void SetupMaterialForMedia(Material material, MediaPlayer mediaPlayer, int texturePropId = -1, Texture fallbackTexture = null)
+		public static void SetupMaterialForMedia(Material material, MediaPlayer mediaPlayer, int texturePropId = -1, Texture fallbackTexture = null, bool forceFallbackTexture = false)
 		{
 			Debug.Assert(material != null);
 			if (mediaPlayer != null)
@@ -348,7 +350,7 @@ namespace RenderHeads.Media.AVProVideo
 
 				if (texturePropId != -1)
 				{
-					if (mainTexture == null)
+					if (mainTexture == null || forceFallbackTexture)
 					{
 						mainTexture = fallbackTexture;
 					}
@@ -430,11 +432,45 @@ namespace RenderHeads.Media.AVProVideo
 			ColorspaceSRGB	= 1 << 4,
 		}
 
+		public static void SetupResolveMaterial(Material material, VideoResolveOptions options)
+		{
+			if (options.IsColourAdjust())
+			{
+				material.EnableKeyword(VideoRender.Keyword_UseHSBC);
+				material.SetFloat(VideoRender.PropHue.Id, options.hue);
+				material.SetFloat(VideoRender.PropSaturation.Id, options.saturation);
+				material.SetFloat(VideoRender.PropBrightness.Id, options.brightness);
+				material.SetFloat(VideoRender.PropContrast.Id, options.contrast);
+				material.SetFloat(VideoRender.PropInvGamma.Id, 1f / options.gamma);
+			}
+			else
+			{
+				material.DisableKeyword(VideoRender.Keyword_UseHSBC);
+			}
+
+			material.color = options.tint;
+		}
+
 		public static RenderTexture ResolveVideoToRenderTexture(Material resolveMaterial, RenderTexture targetTexture, ITextureProducer texture, ResolveFlags flags, ScaleMode scaleMode = ScaleMode.StretchToFill)
 		{
 			int targetWidth = texture.GetTexture(0).width;
 			int targetHeight = texture.GetTexture(0).height;
-			GetResolveTextureSize(texture.GetTextureAlphaPacking(), texture.GetTextureStereoPacking(), StereoEye.Left, ref targetWidth, ref targetHeight);
+			StereoEye eyeMode = StereoEye.Both;
+			if (((flags & ResolveFlags.StereoLeft) == ResolveFlags.StereoLeft) &&
+				((flags & ResolveFlags.StereoRight) != ResolveFlags.StereoRight))
+			{
+				eyeMode = StereoEye.Left;
+			}
+			else if (((flags & ResolveFlags.StereoLeft) != ResolveFlags.StereoLeft) &&
+					((flags & ResolveFlags.StereoRight) == ResolveFlags.StereoRight))
+			{
+				eyeMode = StereoEye.Right;
+			}
+
+			// RJT NOTE: No longer passing in PAR as combined with larger videos (e.g. 8K+) it can lead to textures >16K which most platforms don't support
+			// - Instead, the PAR is accounted for during drawing (which is more efficient too)
+			// - https://github.com/RenderHeads/UnityPlugin-AVProVideo/issues/1297
+			GetResolveTextureSize(texture.GetTextureAlphaPacking(), texture.GetTextureStereoPacking(), eyeMode, /*texture.GetTexturePixelAspectRatio()*/1.0f, ref targetWidth, ref targetHeight);
 
 			if (targetTexture)
 			{
@@ -484,7 +520,7 @@ namespace RenderHeads.Media.AVProVideo
 					{
 						GL.Clear(false, true, Color.black);
 					}
-					VideoRender.DrawTexture(new Rect(0f, 0f, targetTexture.width, targetTexture.height), texture.GetTexture(0), scaleMode, texture.GetTextureAlphaPacking(), resolveMaterial);
+					VideoRender.DrawTexture(new Rect(0f, 0f, targetTexture.width, targetTexture.height), texture.GetTexture(0), scaleMode, texture.GetTextureAlphaPacking(), texture.GetTexturePixelAspectRatio(), resolveMaterial);
 				}
 				RenderTexture.active = prev;
 				GL.sRGBWrite = prevSRGB;
@@ -493,7 +529,7 @@ namespace RenderHeads.Media.AVProVideo
 			return targetTexture;
 		}
 
-		public static void GetResolveTextureSize(AlphaPacking alphaPacking, StereoPacking stereoPacking, StereoEye eyeMode, ref int width, ref int height)
+		public static void GetResolveTextureSize(AlphaPacking alphaPacking, StereoPacking stereoPacking, StereoEye eyeMode, float pixelAspectRatio, ref int width, ref int height)
 		{
 			switch (alphaPacking)
 			{
@@ -516,6 +552,20 @@ namespace RenderHeads.Media.AVProVideo
 						break;
 				}
 			}
+
+			if (pixelAspectRatio > 0f)
+			{
+				if (pixelAspectRatio > 1f)
+				{
+					width = Mathf.RoundToInt(width * pixelAspectRatio);
+				}
+				else if (pixelAspectRatio < 1f)
+				{
+					height = Mathf.RoundToInt(height / pixelAspectRatio);
+				}
+			}
+
+			// TODO: take into account rotation
 		}
 
 		public static bool RequiresResolve(ITextureProducer texture)
@@ -527,13 +577,13 @@ namespace RenderHeads.Media.AVProVideo
 			);
 		}
 
-		public static void DrawTexture(Rect destRect, Texture texture, ScaleMode scaleMode, AlphaPacking alphaPacking, Material material)
+		public static void DrawTexture(Rect destRect, Texture texture, ScaleMode scaleMode, AlphaPacking alphaPacking, float pixelAspectRatio, Material material)
 		{
 			if (Event.current == null || Event.current.type == EventType.Repaint)
 			{
 				int sourceWidth = texture.width;
 				int sourceHeight = texture.height;
-				GetResolveTextureSize(alphaPacking, StereoPacking.Unknown, StereoEye.Both, ref sourceWidth, ref sourceHeight);
+				GetResolveTextureSize(alphaPacking, StereoPacking.Unknown, StereoEye.Both, pixelAspectRatio, ref sourceWidth, ref sourceHeight);
 
 				float sourceRatio = (float)sourceWidth / (float)sourceHeight;
 				Rect sourceRect = new Rect(0f, 0f, 1f, 1f);

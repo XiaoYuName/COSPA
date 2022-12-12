@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //-----------------------------------------------------------------------------
-// Copyright 2018-2021 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2018-2021 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Demos.UI

@@ -251,6 +251,16 @@ MonoBehaviour:
   _textureFilterMode: 1
   _textureWrapMode: 1
   _textureAnisoLevel: 0
+  _useVideoResolve: 0
+  _videoResolveOptions:
+    applyHSBC: 0
+    hue: 0
+    saturation: 0.5
+    brightness: 0.5
+    contrast: 0.5
+    gamma: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    generateMipmaps: 0
   _sideloadSubtitles: 0
   _subtitlePath:
     _pathType: 2
@@ -289,11 +299,24 @@ MonoBehaviour:
     use10BitTextures: 0
     hintAlphaChannel: 0
     useLowLatency: 0
+    useCustomMovParser: 0
+    useHapNotchLC: 0
+    useStereoDetection: 1
+    useTextTrackSupport: 1
+    useFacebookAudio360Support: 1
+    useAudioDelay: 0
+    bufferedFrameSelection: 0
+    pauseOnPrerollComplete: 0
     forceAudioOutputDeviceName: 
     preferredFilters: []
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
+    parallelFrameCount: 3
+    prerollFrameCount: 4
+    useUnityAudio: 0
+    enableAudio360: 0
   _optionsMacOSX:
     httpHeaders:
       httpHeaders: []
@@ -303,10 +326,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsIOS:
     httpHeaders:
       httpHeaders: []
@@ -316,10 +341,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsTVOS:
     httpHeaders:
       httpHeaders: []
@@ -329,10 +356,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsAndroid:
     httpHeaders:
       httpHeaders: []
@@ -340,6 +369,9 @@ MonoBehaviour:
       keyServerToken: 
       overrideDecryptionKeyBase64: 
       overrideDecryptionKey: 
+    _preferredMaximumResolution: 0
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
     videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
@@ -352,6 +384,7 @@ MonoBehaviour:
     maxBufferMs: 50000
     bufferForPlaybackMs: 2500
     bufferForPlaybackAfterRebufferMs: 5000
+    enableAudio360: 0
   _optionsWindowsUWP:
     httpHeaders:
       httpHeaders: []
@@ -368,6 +401,7 @@ MonoBehaviour:
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
   _optionsWebGL:
     httpHeaders:
       httpHeaders: []
@@ -377,6 +411,8 @@ MonoBehaviour:
       overrideDecryptionKey: 
     externalLibrary: 0
     useTextureMips: 0
+  m_VideoPath: 
+  m_VideoLocation: 2
 --- !u!4 &1516615349
 Transform:
   m_ObjectHideFlags: 0
@@ -390,47 +426,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1629360130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1629360132}
-  - component: {fileID: 1629360131}
-  m_Layer: 0
-  m_Name: UpdateMultiPassStereo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1629360131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1629360130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b2366b5575fcba46a0f97038fb6c5fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 1981163067}
---- !u!4 &1629360132
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1629360130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981163064
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +437,7 @@ GameObject:
   - component: {fileID: 1981163067}
   - component: {fileID: 1981163066}
   - component: {fileID: 1981163065}
+  - component: {fileID: 1981163069}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -519,3 +515,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981163069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1981163064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2366b5575fcba46a0f97038fb6c5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1981163067}

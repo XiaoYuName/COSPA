@@ -12,8 +12,15 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	/// </summary>
 	public partial class MediaPlayerEditor : UnityEditor.Editor
 	{
-		private static bool _showAlpha = false;
 		private static GUIContent FilePathSplitEllipses = new GUIContent("-");
+		private static GUIContent _iconPlayButton;
+		private static GUIContent _iconPauseButton;
+		private static GUIContent _iconSceneViewAudio;
+		private static GUIContent _iconProject;
+		private static GUIContent _iconRotateTool;
+
+		private static bool _showAlpha = false;
+		private static bool _showPreview = false;
 		private static Material _materialResolve;
 		private static Material _materialIMGUI;
 		private static RenderTexture _previewTexture;
@@ -21,6 +28,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		private static int _previewTextureFrameCount = -1;
 
 		private MediaReference _queuedLoadMediaRef = null;
+		private bool _queuedToggleShowPreview = false;
 
 		private void OnInspectorGUI_MediaInfo()
 		{
@@ -183,7 +191,6 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			}
 			if (_previewTexture)
 			{
-				//Debug.Log("closing RESOLVE");
 				RenderTexture.ReleaseTemporary(_previewTexture); _previewTexture = null;
 			}
 		}
@@ -197,7 +204,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 
 				if (!_materialResolve)
 				{
-					_materialResolve = VideoRender.CreateResolveMaterial();
+					_materialResolve = VideoRender.CreateResolveMaterial( false );
+					VideoRender.SetupResolveMaterial(_materialResolve, VideoResolveOptions.Create());
 				}
 				if (!_materialIMGUI)
 				{
@@ -248,6 +256,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		{
 			EditorGUILayout.BeginVertical(GUI.skin.box);
 
+			Rect titleRect = Rect.zero;
+			// Display filename as title of preview
 			{
 				string mediaFileName = string.Empty;
 				if ((MediaSource)_propMediaSource.enumValueIndex == MediaSource.Path)
@@ -267,140 +277,168 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					(0 > mediaFileName.IndexOfAny(System.IO.Path.GetInvalidPathChars())))
 				{
 					string text = System.IO.Path.GetFileName(mediaFileName);
-					Rect rrr = GUILayoutUtility.GetRect(GUIContent.none, GUI.skin.label);
+					titleRect = GUILayoutUtility.GetRect(GUIContent.none, GUI.skin.label);
 
 					// Draw background
-					GUI.Box(rrr, GUIContent.none, EditorStyles.toolbarButton);
-					DrawCenterCroppedLabel(rrr, text);
+					GUI.Box(titleRect, GUIContent.none, EditorStyles.toolbarButton);
+					DrawCenterCroppedLabel(titleRect, text);
 				}
 			}
 
-			Texture texture = EditorGUIUtility.whiteTexture;
-			float textureRatio = 16f / 9f;
-
-			if (_lastTextureRatio > 0f)
+			// Toggle preview
+			if (Event.current.type == EventType.MouseDown && Event.current.button == 0 && Event.current.isMouse)
 			{
-				textureRatio = _lastTextureRatio;
+				if (titleRect.Contains(Event.current.mousePosition))
+				{
+					_queuedToggleShowPreview = true;
+				}
 			}
+
+			if (_showPreview)
+			{ 
+				Texture texture = EditorGUIUtility.whiteTexture;
+				float textureRatio = 16f / 9f;
+
+				if (_lastTextureRatio > 0f)
+				{
+					textureRatio = _lastTextureRatio;
+				}
 			
-			if (textureSource != null && textureSource.GetTexture() != null)
-			{
-				texture = textureSource.GetTexture();
-				if (_previewTexture)
+				if (textureSource != null && textureSource.GetTexture() != null)
 				{
-					texture = _previewTexture;
-				}
-				_lastTextureRatio = textureRatio = (float)texture.width / (float)texture.height;
-			}
-
-#if true
-			// Reserve rectangle for texture
-			//GUILayout.BeginHorizontal(GUILayout.MaxHeight(Screen.height / 2f), GUILayout.ExpandHeight(true));
-			//GUILayout.FlexibleSpace();
-			Rect textureRect;
-			//textureRect = GUILayoutUtility.GetRect(256f, 256f);
-			if (texture != EditorGUIUtility.whiteTexture)
-			{
-				if (_showAlpha)
-				{
-					float rectRatio = textureRatio * 2f;
-					rectRatio = Mathf.Max(1f, rectRatio);
-					textureRect = GUILayoutUtility.GetAspectRect(rectRatio, GUILayout.ExpandWidth(true));
-				}
-				else
-				{
-					//textureRatio *= 2f;
-					float rectRatio = Mathf.Max(1f, textureRatio);
-					textureRect = GUILayoutUtility.GetAspectRect(rectRatio, GUILayout.ExpandWidth(true), GUILayout.Height(256f));
-					/*GUIStyle style = new GUIStyle(GUI.skin.box);
-					style.stretchHeight = true;
-					style.stretchWidth = true;
-					style.fixedWidth = 0;
-					style.fixedHeight = 0;
-					textureRect = GUILayoutUtility.GetRect(Screen.width, Screen.width, 128f, Screen.height / 1.2f, style);*/
-				}
-			}
-			else
-			{
-				textureRect = GUILayoutUtility.GetAspectRect(textureRatio, GUILayout.ExpandWidth(true));
-			}
-			if (textureRect.height > (Screen.height / 2f))
-			{
-				//textureRect.height = Screen.height / 2f;
-			}
-			//Debug.Log(textureRect.height + " " + Screen.height);
-			//GUILayout.FlexibleSpace();
-			//GUILayout.EndHorizontal();
-
-			if (Event.current.type == EventType.Repaint)
-			{				
-				GUI.color = Color.gray;
-				EditorGUI.DrawTextureTransparent(textureRect, Texture2D.blackTexture, ScaleMode.StretchToFill);
-				GUI.color = Color.white;
-				//EditorGUI.DrawTextureAlpha(textureRect, Texture2D.whiteTexture, ScaleMode.ScaleToFit);
-				//GUI.color = Color.black;
-				//GUI.DrawTexture(textureRect, texture, ScaleMode.StretchToFill, false);
-				//GUI.color = Color.white;
-
-				// Draw the texture
-				Matrix4x4 prevMatrix = GUI.matrix;
-				if (textureSource != null && textureSource.RequiresVerticalFlip())
-				{
-				//	GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0, textureRect.y + (textureRect.height / 2)));
-				}
-
-				if (!GUI.enabled)
-				{
-					//GUI.color = Color.black;
-					//GUI.DrawTexture(textureRect, texture, ScaleMode.ScaleToFit, false);
-					//GUI.color = Color.white;
-				}
-				else
-				{
-					if (texture != EditorGUIUtility.whiteTexture)
+					texture = textureSource.GetTexture();
+					if (_previewTexture)
 					{
-						RenderPreview(mediaPlayer);
+						texture = _previewTexture;
 					}
+					_lastTextureRatio = textureRatio = (((float)texture.width / (float)texture.height) * textureSource.GetTexturePixelAspectRatio());
+				}
 
-					if (!_showAlpha)
+				// Reserve rectangle for texture
+				//GUILayout.BeginHorizontal(GUILayout.MaxHeight(Screen.height / 2f), GUILayout.ExpandHeight(true));
+				//GUILayout.FlexibleSpace();
+				Rect textureRect;
+				//textureRect = GUILayoutUtility.GetRect(256f, 256f);
+				if (texture != EditorGUIUtility.whiteTexture)
+				{
+					if (_showAlpha)
 					{
-						if (texture != EditorGUIUtility.whiteTexture)
-						{
-							// TODO: In Linear mode, this displays the texture too bright, but GUI.DrawTexture displays it correctly
-							//GL.sRGBWrite = true;
-							//GUI.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, false);
-							
-							if (_previewTexture)
-							{
-								EditorGUI.DrawPreviewTexture(textureRect, _previewTexture, _materialIMGUI, ScaleMode.ScaleToFit);
-							}
-							//EditorGUI.DrawTextureTransparent(textureRect, rt, ScaleMode.ScaleToFit);
-							
-							//VideoRender.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, AlphaPacking.None, _materialPreview);
-							//GL.sRGBWrite = false;
-						}
-						else
-						{
-							// Fill with black
-							//GUI.color = Color.black;
-							//GUI.DrawTexture(textureRect, texture, ScaleMode.StretchToFill, false);
-							//GUI.color = Color.white;
-						}
+						float rectRatio = textureRatio * 2f;
+						rectRatio = Mathf.Max(1f, rectRatio);
+						textureRect = GUILayoutUtility.GetAspectRect(rectRatio, GUILayout.ExpandWidth(true));
 					}
 					else
 					{
-						textureRect.width /= 2f;
-						//GUI.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, false);
-						//GL.sRGBWrite = true;
-						//VideoRender.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, AlphaPacking.None, _materialIMGUI);
-						//GL.sRGBWrite = false;
-						textureRect.x += textureRect.width;
-						//EditorGUI.DrawTextureAlpha(textureRect, texture, ScaleMode.ScaleToFit);
+						//textureRatio *= 2f;
+						float rectRatio = Mathf.Max(1f, textureRatio);
+						textureRect = GUILayoutUtility.GetAspectRect(rectRatio, GUILayout.ExpandWidth(true), GUILayout.Height(256f));
+						/*GUIStyle style = new GUIStyle(GUI.skin.box);
+						style.stretchHeight = true;
+						style.stretchWidth = true;
+						style.fixedWidth = 0;
+						style.fixedHeight = 0;
+						textureRect = GUILayoutUtility.GetRect(Screen.width, Screen.width, 128f, Screen.height / 1.2f, style);*/
 					}
 				}
-				GUI.matrix = prevMatrix;
+				else
+				{
+					float rectRatio = Mathf.Max(1f, textureRatio);
+					textureRect = GUILayoutUtility.GetAspectRect(rectRatio, GUILayout.ExpandWidth(true), GUILayout.Height(256f));
+				}
+				if (textureRect.height > (Screen.height / 2f))
+				{
+					//textureRect.height = Screen.height / 2f;
+				}
+				//Debug.Log(textureRect.height + " " + Screen.height);
+				//GUILayout.FlexibleSpace();
+				//GUILayout.EndHorizontal();
+
+				// Pause / Play toggle on mouse click
+				if (Event.current.type == EventType.MouseDown && Event.current.button == 0 && Event.current.isMouse)
+				{
+					if (textureRect.Contains(Event.current.mousePosition))
+					{
+						if (mediaPlayer.Control != null)
+						{
+							if (mediaPlayer.Control.IsPaused())
+							{
+								mediaPlayer.Play();
+							}
+							else
+							{
+								mediaPlayer.Pause();
+							}
+						}
+					}
+				}
+
+				if (Event.current.type == EventType.Repaint)
+				{
+					GUI.color = Color.gray;
+					EditorGUI.DrawTextureTransparent(textureRect, Texture2D.blackTexture, ScaleMode.StretchToFill);
+					GUI.color = Color.white;
+					//EditorGUI.DrawTextureAlpha(textureRect, Texture2D.whiteTexture, ScaleMode.ScaleToFit);
+					//GUI.color = Color.black;
+					//GUI.DrawTexture(textureRect, texture, ScaleMode.StretchToFill, false);
+					//GUI.color = Color.white;
+
+					// Draw the texture
+					if (textureSource != null && textureSource.RequiresVerticalFlip())
+					{
+						//	GUIUtility.ScaleAroundPivot(new Vector2(1f, -1f), new Vector2(0f, textureRect.y + (textureRect.height / 2f)));
+					}
+
+					if (!GUI.enabled)
+					{
+						//GUI.color = Color.black;
+						//GUI.DrawTexture(textureRect, texture, ScaleMode.ScaleToFit, false);
+						//GUI.color = Color.white;
+					}
+					else
+					{
+						if (_showPreview && texture != EditorGUIUtility.whiteTexture)
+						{
+							RenderPreview(mediaPlayer);
+						}
+
+						if (!_showAlpha)
+						{
+							if (texture != EditorGUIUtility.whiteTexture)
+							{
+								// TODO: In Linear mode, this displays the texture too bright, but GUI.DrawTexture displays it correctly
+								//GL.sRGBWrite = true;
+								//GUI.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, false);
+
+								if (_previewTexture)
+								{
+									EditorGUI.DrawPreviewTexture(textureRect, _previewTexture, _materialIMGUI, ScaleMode.ScaleToFit, textureRatio);
+								}
+								//EditorGUI.DrawTextureTransparent(textureRect, rt, ScaleMode.ScaleToFit);
+
+								//VideoRender.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, AlphaPacking.None, _materialPreview);
+								//GL.sRGBWrite = false;
+							}
+							else
+							{
+								// Fill with black
+								//GUI.color = Color.black;
+								//GUI.DrawTexture(textureRect, texture, ScaleMode.StretchToFill, false);
+								//GUI.color = Color.white;
+							}
+						}
+						else
+						{
+							textureRect.width /= 2f;
+							//GUI.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, false);
+							//GL.sRGBWrite = true;
+							//VideoRender.DrawTexture(textureRect, rt, ScaleMode.ScaleToFit, AlphaPacking.None, _materialIMGUI);
+							//GL.sRGBWrite = false;
+							textureRect.x += textureRect.width;
+							//EditorGUI.DrawTextureAlpha(textureRect, texture, ScaleMode.ScaleToFit);
+						}
+					}
+				}
 			}
-			#endif
 
 			IMediaInfo info = mediaPlayer.Info;
 			IMediaControl control = mediaPlayer.Control;
@@ -470,6 +508,9 @@ namespace RenderHeads.Media.AVProVideo.Editor
 						{
 							if (control != null)
 							{
+								// NOTE: For unknown reasons the seeks here behave differently to the MediaPlayerUI demo
+								// When scrubbing (especially with NotchLC) while the video is playing, the frames will not update and a Stalled state will be shown,
+								// but using the MediaPlayerUI the same scrubbing will updates the frames.  Perhaps it's just an execution order issue
 								control.Seek(newTime);
 							}
 						}
@@ -501,11 +542,11 @@ namespace RenderHeads.Media.AVProVideo.Editor
 
 				// Play/Pause
 				{
-					float maxHeight = GUI.skin.button.CalcHeight(EditorGUIUtility.IconContent("d_SceneViewAudio"), 0f);
+					float maxHeight = GUI.skin.button.CalcHeight(_iconSceneViewAudio, 0f);
 					if (!isPlaying)
 					{
 						GUI.color = Color.green;
-						if (GUILayout.Button(EditorGUIUtility.IconContent("d_PlayButton"), GUILayout.ExpandWidth(false), GUILayout.Height(maxHeight)))
+						if (GUILayout.Button(_iconPlayButton, GUILayout.ExpandWidth(false), GUILayout.Height(maxHeight)))
 						{
 							if (control != null)
 							{
@@ -527,7 +568,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					else
 					{
 						GUI.color = Color.yellow;
-						if (GUILayout.Button(EditorGUIUtility.IconContent("d_PauseButton"), GUILayout.ExpandWidth(false), GUILayout.Height(maxHeight)))
+						if (GUILayout.Button(_iconPauseButton, GUILayout.ExpandWidth(false), GUILayout.Height(maxHeight)))
 						{
 							if (control != null)
 							{
@@ -544,12 +585,9 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					{
 						GUI.color = Color.grey;
 					}
-					string iconName = "d_RotateTool";
-					GUIContent icon = EditorGUIUtility.IconContent(iconName);
-					//float maxHeight = EditorGUIUtility.IconContent("d_SceneViewAudio").image.height;
-					float maxHeight = GUI.skin.button.CalcHeight(EditorGUIUtility.IconContent("d_SceneViewAudio"), 0f);
+					float maxHeight = GUI.skin.button.CalcHeight(_iconSceneViewAudio, 0f);
 					//GUIContent icon = new GUIContent("∞");
-					if (GUILayout.Button(icon, GUILayout.Height(maxHeight)))
+					if (GUILayout.Button(_iconRotateTool, GUILayout.Height(maxHeight)))
 					{
 						if (control != null)
 						{
@@ -558,7 +596,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 						_propLoop.boolValue = !_propLoop.boolValue;
 					}
 					GUI.color = Color.white;
-				}
+				}				
 
 				// Mute & Volume
 				EditorGUI.BeginDisabledGroup(UnityEditor.EditorUtility.audioMasterMute);
@@ -567,11 +605,10 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					{
 						GUI.color = Color.gray;
 					}
-					float maxWidth = EditorGUIUtility.IconContent("d_PlayButton").image.width;
+					float maxWidth = _iconPlayButton.image.width;
 					//if (GUILayout.Button("Muted", GUILayout.ExpandWidth(false), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
-					string iconName = "d_SceneViewAudio";
 					//string iconName = "d_AudioListener Icon";		// Unity 2019+
-					if (GUILayout.Button(EditorGUIUtility.IconContent(iconName)))//, GUILayout.Width(maxWidth),  GUILayout.Height(EditorGUIUtility.singleLineHeight), GUILayout.ExpandHeight(false)))
+					if (GUILayout.Button(_iconSceneViewAudio))//, GUILayout.Width(maxWidth),  GUILayout.Height(EditorGUIUtility.singleLineHeight), GUILayout.ExpandHeight(false)))
 					{
 						if (control != null)
 						{
@@ -606,7 +643,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					_queuedLoadMediaRef = (MediaReference)EditorGUIUtility.GetObjectPickerObject();
 				}
 
-				if (GUILayout.Button(EditorGUIUtility.IconContent("d_Project"), GUILayout.ExpandWidth(false)))
+				if (GUILayout.Button(_iconProject, GUILayout.ExpandWidth(false)))
 				{
 					showBrowseMenu = true;
 				}
@@ -628,6 +665,12 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					mediaPlayer.OpenMedia(_queuedLoadMediaRef, true);
 					_queuedLoadMediaRef = null;
 				}
+			}
+			if (_queuedToggleShowPreview)
+			{
+				_showPreview = !_showPreview;
+				_queuedToggleShowPreview = false;
+				this.Repaint();
 			}
 		}
 

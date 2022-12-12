@@ -375,4 +375,33 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			}
 		}
 	}
+
+	internal class HorizontalFlowScope : GUI.Scope
+	{
+		private float _windowWidth;
+		private float _width;
+
+		public HorizontalFlowScope(int windowWidth)
+		{
+			_windowWidth = windowWidth;
+			_width = _windowWidth;
+			GUILayout.BeginHorizontal();
+		}
+
+		protected override void CloseScope()
+		{
+			GUILayout.EndHorizontal();
+		}
+
+		public void AddItem(GUIContent content, GUIStyle style)
+		{
+			_width -= style.CalcSize(content).x + style.padding.horizontal;
+			if (_width <= 0f)
+			{
+				_width += Screen.width;
+				GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal();
+			}
+		}
+	}
 }

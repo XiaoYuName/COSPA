@@ -17,7 +17,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		public const string LinkForumLastPage = "https://forum.unity.com/threads/released-avpro-video-complete-video-playback-solution.385611/page-100";
 		public const string LinkGithubIssues = "https://github.com/RenderHeads/UnityPlugin-AVProVideo/issues";
 		public const string LinkGithubIssuesNew = "https://github.com/RenderHeads/UnityPlugin-AVProVideo/issues/new/choose";
-		public const string LinkAssetStorePage = "https://assetstore.unity.com/packages/tools/video/avpro-video-56355?aid=1101lcNgx";
+		public const string LinkAssetStorePage = "https://assetstore.unity.com/packages/slug/181844?aid=1101lcNgx";
 		public const string LinkUserManual = "https://www.renderheads.com/content/docs/AVProVideo/";
 		public const string LinkScriptingClassReference = "https://www.renderheads.com/content/docs/AVProVideo/api/RenderHeads.Media.AVProVideo.html";
 		public const string LinkPurchase = "https://www.renderheads.com/content/docs/AVProVideo/articles/download.html";

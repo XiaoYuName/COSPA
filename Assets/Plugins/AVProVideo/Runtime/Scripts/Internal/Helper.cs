@@ -3,18 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2021 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2022 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
 {
 	public static class Helper
 	{
-		public const string AVProVideoVersion             = "2.1.0";
-		public const string ExpectedPluginVersion_Windows = "2.1.0";
-		public const string ExpectedPluginVersion_WinRT   = "2.1.0";
-		public const string ExpectedPluginVersion_Android = "2.1.0";
-		public const string ExpectedPluginVersion_Apple   = "2.1.0";
+		public const string AVProVideoVersion = "2.6.3";
+		public sealed class ExpectedPluginVersion
+		{
+			public const string Windows      = "2.6.3";
+			public const string WinRT        = "2.6.3";
+			public const string Android      = "2.6.3";
+			public const string Apple        = "2.6.2";
+		}
 
 		public const string UnityBaseTextureName = "_MainTex";
 		public const string UnityBaseTextureName_URP = "_BaseMap";
@@ -231,6 +234,9 @@ namespace RenderHeads.Media.AVProVideo
 			return result;
 		}
 
+		public const double SecondsToHNS = 10000000.0;
+		public const double MilliSecondsToHNS = 10000.0;
+
 		public static string GetTimeString(double timeSeconds, bool showMilliseconds = false)
 		{
 			float totalSeconds = (float)timeSeconds;
@@ -296,32 +302,45 @@ namespace RenderHeads.Media.AVProVideo
 				{
 					result = Orientation.LandscapeFlipped;
 				}
+				else
+				if (t[0] == 0f && t[1] == 1f && t[2] == 1f && t[3] == 0f)
+				{
+					result = Orientation.PortraitHorizontalMirror;
+				}
 			}
 			return result;
 		}
 
+		private static Matrix4x4 PortraitMatrix         = Matrix4x4.TRS(new Vector3(0f, 1f, 0f), Quaternion.Euler(0f, 0f, -90f), Vector3.one);
+		private static Matrix4x4 PortraitFlippedMatrix  = Matrix4x4.TRS(new Vector3(1f, 0f, 0f), Quaternion.Euler(0f, 0f, 90f), Vector3.one);
+		private static Matrix4x4 LandscapeFlippedMatrix = Matrix4x4.TRS(new Vector3(0f, 1f, 0f), Quaternion.Euler(0f, 0f, -90f), Vector3.one);
+
 		public static Matrix4x4 GetMatrixForOrientation(Orientation ori)
 		{
-			// TODO: cache these matrices
-			// TODO: check that -90 is correct, perhaps Portrait and PortraitFlipped are the wrong way around - need to check on iOS
-			Matrix4x4 portrait = Matrix4x4.TRS(new Vector3(0f, 1f, 0f), Quaternion.Euler(0f, 0f, -90f), Vector3.one);
-			Matrix4x4 portraitFlipped = Matrix4x4.TRS(new Vector3(1f, 0f, 0f), Quaternion.Euler(0f, 0f, 90f), Vector3.one);
-			Matrix4x4 landscapeFlipped = Matrix4x4.TRS(new Vector3(1f, 1f, 0f), Quaternion.identity, new Vector3(-1f, -1f, 1f));
-
-			Matrix4x4 result = Matrix4x4.identity;
+			Matrix4x4 result;
 			switch (ori)
 			{
 				case Orientation.Landscape:
+					result = Matrix4x4.identity;
 					break;
 				case Orientation.LandscapeFlipped:
-					result = landscapeFlipped;
+					result = LandscapeFlippedMatrix;
 					break;
 				case Orientation.Portrait:
-					result = portrait;
+					result = PortraitMatrix;
 					break;
 				case Orientation.PortraitFlipped:
-					result = portraitFlipped;
+					result = PortraitFlippedMatrix;
 					break;
+				case Orientation.PortraitHorizontalMirror:
+					result = new Matrix4x4();
+					result.SetColumn(0, new Vector4(0f, 1f, 0f, 0f));
+					result.SetColumn(1, new Vector4(1f, 0f, 0f, 0f));
+					result.SetColumn(2, new Vector4(0f, 0f, 1f, 0f));
+					result.SetColumn(3, new Vector4(0f, 0f, 0f, 1f));
+					break;
+				default:
+					throw new System.Exception("Unknown Orientation type");
 			}
 			return result;
 		}

@@ -12,6 +12,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 	/// </summary>
 	public partial class MediaPlayerEditor : UnityEditor.Editor
 	{
+		private readonly static FieldDescription _optionExternalLibrary = new FieldDescription(".externalLibrary", GUIContent.none);
+
 		private void OnInspectorGUI_Override_WebGL()
 		{
 			GUILayout.Space(8f);
@@ -19,23 +21,15 @@ namespace RenderHeads.Media.AVProVideo.Editor
 			string optionsVarName = MediaPlayer.GetPlatformOptionsVariable(Platform.WebGL);
 
 			EditorGUILayout.BeginVertical(GUI.skin.box);
-			SerializedProperty propExternalLibrary = serializedObject.FindProperty(optionsVarName + ".externalLibrary");
-			if (propExternalLibrary != null)
+
+			DisplayPlatformOption(optionsVarName, _optionExternalLibrary);
+
+			SerializedProperty propUseTextureMips = DisplayPlatformOption(optionsVarName, _optionTextureMips);
+			if (propUseTextureMips.boolValue && ((FilterMode)_propFilter.enumValueIndex) != FilterMode.Trilinear)
 			{
-				EditorGUILayout.PropertyField(propExternalLibrary);
+				EditorHelper.IMGUI.NoticeBox(MessageType.Info, "Recommend changing the texture filtering mode to Trilinear when using mip-maps.");
 			}
 
-			{
-				SerializedProperty propUseTextureMips = serializedObject.FindProperty(optionsVarName + ".useTextureMips");
-				if (propUseTextureMips != null)
-				{
-					EditorGUILayout.PropertyField(propUseTextureMips, new GUIContent("Generate Mipmap", "Automatically create mip-maps for the texture to reducing aliasing when texture is scaled down"));
-					if (propUseTextureMips.boolValue && ((FilterMode)_propFilter.enumValueIndex) != FilterMode.Trilinear)
-					{
-						EditorHelper.IMGUI.NoticeBox(MessageType.Info, "Recommend changing the texture filtering mode to Trilinear when using mip-maps.");
-					}
-				}
-			}
 			EditorGUILayout.EndVertical();
 		}
 	}

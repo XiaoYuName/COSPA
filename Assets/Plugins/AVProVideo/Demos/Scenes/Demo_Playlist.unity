@@ -151,7 +151,7 @@ MonoBehaviour:
   _autoOpen: 0
   _autoPlayOnStart: 1
   _loop: 0
-  _audioVolume: 0
+  _audioVolume: 1
   _audioBalance: 0
   _audioMuted: 0
   _playbackRate: 1
@@ -164,13 +164,14 @@ MonoBehaviour:
   _textureAnisoLevel: 0
   _useVideoResolve: 0
   _videoResolveOptions:
-    generateMipmaps: 0
-    tint: {r: 1, g: 1, b: 1, a: 1}
     applyHSBC: 0
     hue: 0
     saturation: 0.5
     brightness: 0.5
     contrast: 0.5
+    gamma: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    generateMipmaps: 0
   _sideloadSubtitles: 0
   _subtitlePath:
     _pathType: 2
@@ -210,11 +211,21 @@ MonoBehaviour:
     hintAlphaChannel: 0
     useLowLatency: 0
     useCustomMovParser: 0
+    useHapNotchLC: 1
+    useStereoDetection: 1
+    useTextTrackSupport: 1
+    useFacebookAudio360Support: 1
+    useAudioDelay: 0
+    bufferedFrameSelection: 0
+    pauseOnPrerollComplete: 0
     forceAudioOutputDeviceName: 
     preferredFilters: []
     audioOutput: 1
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
+    parallelFrameCount: 3
+    prerollFrameCount: 4
     useUnityAudio: 0
     enableAudio360: 0
   _optionsMacOSX:
@@ -226,10 +237,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsIOS:
     httpHeaders:
       httpHeaders: []
@@ -239,10 +252,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsTVOS:
     httpHeaders:
       httpHeaders: []
@@ -252,10 +267,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsAndroid:
     httpHeaders:
       httpHeaders: []
@@ -263,6 +280,9 @@ MonoBehaviour:
       keyServerToken: 
       overrideDecryptionKeyBase64: 
       overrideDecryptionKey: 
+    _preferredMaximumResolution: 0
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
     videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
@@ -292,6 +312,7 @@ MonoBehaviour:
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
   _optionsWebGL:
     httpHeaders:
       httpHeaders: []
@@ -330,6 +351,7 @@ MonoBehaviour:
   _mediaPlayer: {fileID: 48640725}
   _audioOutputMode: 1
   _channelMask: -1
+  _supportPositionalAudio: 0
 --- !u!82 &48640728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -537,7 +559,7 @@ MonoBehaviour:
   _autoOpen: 0
   _autoPlayOnStart: 1
   _loop: 0
-  _audioVolume: 0
+  _audioVolume: 1
   _audioBalance: 0
   _audioMuted: 0
   _playbackRate: 1
@@ -550,13 +572,14 @@ MonoBehaviour:
   _textureAnisoLevel: 0
   _useVideoResolve: 0
   _videoResolveOptions:
-    generateMipmaps: 0
-    tint: {r: 1, g: 1, b: 1, a: 1}
     applyHSBC: 0
     hue: 0
     saturation: 0.5
     brightness: 0.5
     contrast: 0.5
+    gamma: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    generateMipmaps: 0
   _sideloadSubtitles: 0
   _subtitlePath:
     _pathType: 2
@@ -596,11 +619,21 @@ MonoBehaviour:
     hintAlphaChannel: 0
     useLowLatency: 0
     useCustomMovParser: 0
+    useHapNotchLC: 1
+    useStereoDetection: 1
+    useTextTrackSupport: 1
+    useFacebookAudio360Support: 1
+    useAudioDelay: 0
+    bufferedFrameSelection: 0
+    pauseOnPrerollComplete: 0
     forceAudioOutputDeviceName: 
     preferredFilters: []
     audioOutput: 1
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
+    parallelFrameCount: 3
+    prerollFrameCount: 4
     useUnityAudio: 0
     enableAudio360: 0
   _optionsMacOSX:
@@ -612,10 +645,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 1
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsIOS:
     httpHeaders:
       httpHeaders: []
@@ -625,10 +660,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 1
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsTVOS:
     httpHeaders:
       httpHeaders: []
@@ -638,10 +675,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 1
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsAndroid:
     httpHeaders:
       httpHeaders: []
@@ -649,6 +688,9 @@ MonoBehaviour:
       keyServerToken: 
       overrideDecryptionKeyBase64: 
       overrideDecryptionKey: 
+    _preferredMaximumResolution: 0
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
     videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
@@ -678,6 +720,7 @@ MonoBehaviour:
     audioOutput: 1
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
   _optionsWebGL:
     httpHeaders:
       httpHeaders: []
@@ -703,6 +746,7 @@ MonoBehaviour:
   _mediaPlayer: {fileID: 951410099}
   _audioOutputMode: 1
   _channelMask: -1
+  _supportPositionalAudio: 0
 --- !u!82 &951410101
 AudioSource:
   m_ObjectHideFlags: 0
@@ -814,13 +858,13 @@ MonoBehaviour:
   _mediaReference: {fileID: 0}
   _mediaPath:
     _pathType: 2
-    _path: AVProVideoSamples/RenderHeads-1080p30-H264.mp4
+    _path: 
   _fallbackMediaHints:
     transparency: 0
     alphaPacking: 0
     stereoPacking: 0
   _autoOpen: 1
-  _autoPlayOnStart: 0
+  _autoPlayOnStart: 1
   _loop: 0
   _audioVolume: 1
   _audioBalance: 0
@@ -835,13 +879,14 @@ MonoBehaviour:
   _textureAnisoLevel: 0
   _useVideoResolve: 0
   _videoResolveOptions:
-    generateMipmaps: 0
-    tint: {r: 1, g: 1, b: 1, a: 1}
     applyHSBC: 0
     hue: 0
     saturation: 0.5
     brightness: 0.5
     contrast: 0.5
+    gamma: 1
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    generateMipmaps: 0
   _sideloadSubtitles: 0
   _subtitlePath:
     _pathType: 2
@@ -881,11 +926,21 @@ MonoBehaviour:
     hintAlphaChannel: 0
     useLowLatency: 0
     useCustomMovParser: 0
+    useHapNotchLC: 1
+    useStereoDetection: 1
+    useTextTrackSupport: 1
+    useFacebookAudio360Support: 1
+    useAudioDelay: 0
+    bufferedFrameSelection: 0
+    pauseOnPrerollComplete: 0
     forceAudioOutputDeviceName: 
     preferredFilters: []
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
+    parallelFrameCount: 3
+    prerollFrameCount: 4
     useUnityAudio: 0
     enableAudio360: 0
   _optionsMacOSX:
@@ -897,10 +952,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsIOS:
     httpHeaders:
       httpHeaders: []
@@ -910,10 +967,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsTVOS:
     httpHeaders:
       httpHeaders: []
@@ -923,10 +982,12 @@ MonoBehaviour:
       overrideDecryptionKey: 
     textureFormat: 0
     audioMode: 0
-    flags: 0
-    preferredMaximumResolution: 0
-    preferredPeakBitRate: 0
-    preferredPeakBitRateUnits: 1
+    _flags: 0
+    maximumPlaybackRate: 2
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
+    _preferredForwardBufferDuration: 0
+    _preferredMaximumResolution: 0
   _optionsAndroid:
     httpHeaders:
       httpHeaders: []
@@ -934,6 +995,9 @@ MonoBehaviour:
       keyServerToken: 
       overrideDecryptionKeyBase64: 
       overrideDecryptionKey: 
+    _preferredMaximumResolution: 0
+    _preferredPeakBitRate: 0
+    _preferredPeakBitRateUnits: 1
     videoApi: 2
     useFastOesPath: 0
     showPosterFrame: 0
@@ -963,6 +1027,7 @@ MonoBehaviour:
     audioOutput: 0
     audio360ChannelMode: 0
     startWithHighestBitrate: 0
+    useLowLiveLatency: 0
   _optionsWebGL:
     httpHeaders:
       httpHeaders: []
@@ -982,37 +1047,42 @@ MonoBehaviour:
   _playlistLoopMode: 1
   _playlist:
     _items:
-    - mediaPath:
+    - name: INTRO
+      sourceType: 0
+      mediaPath:
         _pathType: 2
         _path: AVProVideoSamples/Cones-2D-1080p60-H264.mp4
+      texture: {fileID: 0}
+      textureDuration: 0
       loop: 0
       startMode: 0
       progressMode: 1
       progressTimeSeconds: 0.5
-      autoPlay: 0
       isOverrideTransition: 0
       overrideTransition: 0
       overrideTransitionDuration: 0
-      overrideTransitionEasing:
-        preset: 0
-    - mediaPath:
+      overrideTransitionEasing: 1
+    - name: OUTRO
+      sourceType: 0
+      mediaPath:
         _pathType: 2
         _path: AVProVideoSamples/RenderHeads-1080p30-H264.mp4
+      texture: {fileID: 0}
+      textureDuration: 0
       loop: 0
       startMode: 0
       progressMode: 1
       progressTimeSeconds: 3
-      autoPlay: 0
       isOverrideTransition: 0
       overrideTransition: 0
       overrideTransitionDuration: 0
-      overrideTransitionEasing:
-        preset: 0
+      overrideTransitionEasing: 1
   _pausePreviousOnTransition: 0
-  _nextTransition: 21
-  _transitionDuration: 1
-  _transitionEasing:
-    preset: 18
+  _defaultTransition: 2
+  _defaultTransitionDuration: 1
+  _defaultTransitionEasing: 1
+  _playlistAudioVolume: 1
+  _playlistAudioMuted: 0
 --- !u!4 &1709421728
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		public AnimCollapseSection(GUIContent label, bool showOnlyInEditMode, bool isDefaultExpanded, System.Action action, UnityEditor.Editor editor, Color backgroundColor, List<AnimCollapseSection> groupItems = null)
 		{
 			Label = label;
-			Label.text = " " + Label.text;
+			_name = Label.text;
+			Label.text = " " + Label.text;		// Add a space for aesthetics
 			ShowOnlyInEditMode = showOnlyInEditMode;
 			_action = action;
 			isDefaultExpanded = EditorPrefs.GetBool(PrefName, isDefaultExpanded);
@@ -39,6 +40,8 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		{
 			_anim.valueChanged.RemoveAllListeners();
 		}
+
+		private string _name;
 		private UnityEditor.AnimatedValues.AnimBool _anim;
 		private System.Action _action;
 		private List<AnimCollapseSection> _groupItems;
@@ -53,7 +56,7 @@ namespace RenderHeads.Media.AVProVideo.Editor
 		public GUIContent Label { get; private set; }
 		public bool ShowOnlyInEditMode { get; private set; }
 		public Color BackgroundColor { get; private set; }
-		private string PrefName { get { return (SettingsPrefix + "Expand-" + Label.text);} }
+		private string PrefName { get { return GetPrefName(_name); } }
 
 		public void Save()
 		{
@@ -73,6 +76,11 @@ namespace RenderHeads.Media.AVProVideo.Editor
 					}
 				}
 			}
+		}
+
+		internal static string GetPrefName(string label)
+		{
+			return SettingsPrefix + "Expand-" + label;
 		}
 
 		internal static void CreateStyles()
