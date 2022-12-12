@@ -151,7 +151,7 @@ namespace ARPG
         /// <param name="isActive">对象Active</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetUI<T>(string uiname, bool isActive) where T : Component
+        public T GetUI<T>(string uiname, bool isActive) where T : MonoBehaviour
         {
             GameObject Obj = GetUI(uiname, isActive);
             T t = Obj.GetComponent<T>();
@@ -163,7 +163,7 @@ namespace ARPG
         /// <param name="uiname">对象名称</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetUI<T>(string uiname) where T : Component
+        public T GetUI<T>(string uiname) where T : MonoBehaviour
         {
             GameObject Obj = GetUI(uiname);
             T t = Obj.GetComponent<T>();
@@ -258,7 +258,7 @@ namespace ARPG
         /// <typeparam name="T">对象类型,该类型必须继承自Component</typeparam>
         /// <returns>返回类型对象</returns>
         /// <exception cref="Exception">如果找不到,则抛出异常</exception>
-        public T GetPrefab<T>(string uiname) where T : UIBase
+        public T GetPrefab<T>(string uiname)
         {
             GameObject Obj = GetPrefab(uiname);
             T Tobj = Obj.GetComponent<T>();
