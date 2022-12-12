@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG;
+using ARPG.Audio;
 using ARPG.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,10 +11,12 @@ public class UIVideoItem : UIBase
 {
     private VideoPlayer VideoPlayer;
     private RawImage RawImage;
+    private AudioSource Source;
     public override void Init()
     {
         VideoPlayer = GetComponent<VideoPlayer>();
         this.RawImage = GetComponent<RawImage>();
+        Source = GetComponent<AudioSource>();
     }
 
     public void StarPlay(VideoClip clip)
@@ -37,10 +41,14 @@ public class UIVideoItem : UIBase
 
     IEnumerator PlayVideo(RenderTexture ouTexture)
     {
+        VideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        VideoPlayer.SetTargetAudioSource(0,Source);
+        AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,1);
         this.VideoPlayer.Play();
         yield return new WaitForSeconds((float)VideoPlayer.clip.length);
         VideoPlayer.clip = null;
         RawImage.texture = null;
+        AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Normal,2);
         Destroy(ouTexture); //播放完毕后，销毁RenderTexture
         VideoPool.Instance.Release(this);
     }

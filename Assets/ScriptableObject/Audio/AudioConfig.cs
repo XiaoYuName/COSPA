@@ -172,6 +172,10 @@ namespace ARPG.Audio
         /// 全部停止
         /// </summary>
         Stop,
+        /// <summary>
+        /// Video 视频音效
+        /// </summary>
+        Video,
         
     }
 }
