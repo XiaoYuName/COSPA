@@ -15,6 +15,7 @@ namespace ARPG.UI
         public TableType _type;
         public override void Init()
         {
+            btn = GetComponent<Button>();
             icon = Get<Image>("icon");
             titleText = Get<TextMeshProUGUI>("TabName");
         }
@@ -26,6 +27,7 @@ namespace ARPG.UI
             titleText.text = data.Type.ToString();
             Bind(btn, delegate
             {
+                if (data.Mode == TableMode.Close) return;
                 MainPanel.Instance.SwitchTabBtn(_type);
                 UISystem.Instance.OpenUI(data.OpenUIName);
             }, "UI_click");

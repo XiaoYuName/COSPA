@@ -21,7 +21,10 @@ namespace ARPG.UI
             TabContent = transform.Find("UIMask/DownUI/Content").GetComponent<RectTransform>();
             Config = ConfigManager.LoadConfig<RootTableConfig>("RootTable/RootTable");
             BtnPrefab = UISystem.Instance.GetPrefab<RootTabBtn>("RootBtnItem");
+            RootBtns = new List<RootTabBtn>();
             CreatTbaleBtn();
+            SwitchTabBtn(TableType.我的主页);
+            UISystem.Instance.OpenUI("HomeScene");
         }
 
         /// <summary>
@@ -49,7 +52,13 @@ namespace ARPG.UI
             {
                 btn.SetState(btn._type == type);
             }
-            
+
+            string UIname = type switch
+            {
+                TableType.主菜单=> "HomeScene",
+                _=> "HomeScene"
+            };
+            UISystem.Instance.CloseUI(UIname);
             //TODO： 开启x秒Fade 过度
         }
     }
