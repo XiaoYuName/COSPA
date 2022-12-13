@@ -12,12 +12,14 @@ namespace ARPG.UI
         private Button btn;
         private Image icon;
         private TextMeshProUGUI titleText;
+        private Image BgImage;
         public TableType _type;
         public override void Init()
         {
             btn = GetComponent<Button>();
             icon = Get<Image>("icon");
             titleText = Get<TextMeshProUGUI>("TabName");
+            BgImage = GetComponent<Image>();
         }
 
         public void InitData(RootTableItem data)
@@ -29,7 +31,11 @@ namespace ARPG.UI
             {
                 if (data.Mode == TableMode.Close) return;
                 MainPanel.Instance.SwitchTabBtn(_type);
-                UISystem.Instance.OpenUI(data.OpenUIName);
+                FadeManager.Instance.PlayFade(1, delegate
+                {
+                    UISystem.Instance.OpenUI(data.OpenUIName);
+                },2);
+                
             }, "UI_click");
         }
 
@@ -42,13 +48,13 @@ namespace ARPG.UI
         {
             if (State)
             {
-                icon.color = Color.green;
-                titleText.color = Color.green;
+                BgImage.color = Settings.ActiveColor;
+                titleText.color = Settings.ActiveColor;
             }
             else
             {
-                icon.color = Color.white;
-                titleText.color = Color.white;
+                BgImage.color = Settings.NotActiveColor;
+                titleText.color = Settings.NotActiveColor;
             }
         }
     }
