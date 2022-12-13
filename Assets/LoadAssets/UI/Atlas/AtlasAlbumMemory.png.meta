@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,96 +119,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_0
+      name: AtlasAlbumMemory_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 236
-        width: 100
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d5fbd03f5d13a24f9a7b182ae4ee76d
-      internalID: 1445751363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_1
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 244
-        width: 135
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cc5f56e373fb3448a61976f5ea0cfc9
-      internalID: -35041703
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 213
-        width: 137
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9f40da67d7b15c4aa6d4ef848bcc5e2
-      internalID: -469710997
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_3
-      rect:
-        serializedVersion: 2
-        x: 395
-        y: 260
-        width: 121
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ca8f2d4e2839104b99db43d43241437
-      internalID: -2015274580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_4
-      rect:
-        serializedVersion: 2
-        x: 525
         y: 224
-        width: 121
+        width: 144
         height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,187 +133,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0dc3d3dd717d2f47a09fe24be6fa5be
-      internalID: 1304492770
+      spriteID: 56459d8d43712e64696305f8503ee78b
+      internalID: -987879842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_5
+      name: AtlasAlbumMemory_1
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 171
+        width: 34
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b3ece5457438740becfdf3560166ec
+      internalID: 989600740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 125
-        width: 114
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2822692694c396c45a38eb190256b6f2
-      internalID: 1200579146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 112
-        width: 126
-        height: 132
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 932087660cf52904292439189ec2dbab
-      internalID: 1298372798
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_7
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 112
-        width: 144
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08bbdaadcd22b22408abae0fc4cb1702
-      internalID: 1610557296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_8
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 130
-        width: 125
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04c71b5ab23266442bbbd71c16ed3408
-      internalID: -625140648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_10
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 100
-        width: 140
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1bd391d5f41ed3479af4d08958248f3
-      internalID: 48440869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_11
-      rect:
-        serializedVersion: 2
-        x: 685
-        y: 113
-        width: 111
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 181ca7d5a06890a48ba0877e9052eb98
-      internalID: -1084060274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_12
-      rect:
-        serializedVersion: 2
-        x: 830
-        y: 104
-        width: 140
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 402f5bc20524c904481777d8f3ef996e
-      internalID: 1214233967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_13
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 124
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6183b0c6473803545a4489754e8c4b22
-      internalID: 2098369919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 141
+        y: 111
+        width: 190
         height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -406,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85fb3e25ed9330146b038fef7294a7d0
-      internalID: 579482847
+      spriteID: 2227c867fab3905489bac2f2cd6311ed
+      internalID: 1376041257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_15
+      name: AtlasAlbumMemory_3
       rect:
         serializedVersion: 2
-        x: 413
-        y: 0
-        width: 129
-        height: 131
+        x: 190
+        y: 110
+        width: 188
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cc26e2169158e740adaa9df1104f8e8
-      internalID: -222762210
+      spriteID: 92b38b20bd5eb854090d68c08d3939cd
+      internalID: -169465098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_16
+      name: AtlasAlbumMemory_4
       rect:
         serializedVersion: 2
-        x: 542
-        y: 0
-        width: 141
-        height: 100
+        x: 380
+        y: 110
+        width: 62
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,20 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e3e3c8d7e17f3b4682d3f7a1c74fc0a
-      internalID: 1110595168
+      spriteID: caed8e62f4cd00f488b0071943f843f8
+      internalID: -1648973465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_17
+      name: AtlasAlbumMemory_5
       rect:
         serializedVersion: 2
-        x: 830
-        y: 0
-        width: 138
-        height: 102
+        x: 444
+        y: 134
+        width: 61
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,8 +238,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6abba7807e00dae4699eaf048ff406d7
-      internalID: -46549249
+      spriteID: 78cc7b6aefba07b459e9a35e7d1944a8
+      internalID: 1399847731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb6bf2d83d1693e4885efe2cfddbcca5
+      internalID: -905067270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_7
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 66
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6fcd6e780e417a41bdc0481cf8c3469
+      internalID: 345646027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_8
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 49
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b854e993b0c264c429446803adaa1eca
+      internalID: 2065019956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_10
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 0
+        width: 36
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9ce4812a165e74788aeb6407541af0
+      internalID: 378961592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 195
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0465acb0f60e654a90ede7bea60df03
+      internalID: -1213692758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasAlbumMemory_9
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 65
+        width: 61
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6d7b212c9ede749b4be199f9e6bf85
+      internalID: -1866147158
       vertices: []
       indices: 
       edges: []
@@ -486,24 +381,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AtlasUnlockContentIcon_16: 1110595168
-      AtlasUnlockContentIcon_4: 1304492770
-      AtlasUnlockContentIcon_13: 2098369919
-      AtlasUnlockContentIcon_15: -222762210
-      AtlasUnlockContentIcon_6: 1298372798
-      AtlasUnlockContentIcon_14: 579482847
-      AtlasUnlockContentIcon_10: 48440869
-      AtlasUnlockContentIcon_7: 1610557296
-      AtlasUnlockContentIcon_17: -46549249
-      AtlasUnlockContentIcon_3: -2015274580
-      AtlasUnlockContentIcon_0: 1445751363
-      AtlasUnlockContentIcon_5: 1200579146
-      AtlasUnlockContentIcon_2: -469710997
-      AtlasUnlockContentIcon_1: -35041703
-      AtlasUnlockContentIcon_12: 1214233967
-      AtlasUnlockContentIcon_11: -1084060274
-      AtlasUnlockContentIcon_9: -169068024
-      AtlasUnlockContentIcon_8: -625140648
+      AtlasAlbumMemory_8: 2065019956
+      AtlasAlbumMemory_6: -905067270
+      AtlasAlbumMemory_1: 989600740
+      AtlasAlbumMemory_3: -169465098
+      AtlasAlbumMemory_0: -987879842
+      AtlasAlbumMemory_10: 378961592
+      AtlasAlbumMemory_9: -1866147158
+      AtlasAlbumMemory_2: 1376041257
+      AtlasAlbumMemory_7: 345646027
+      AtlasAlbumMemory_11: -1213692758
+      AtlasAlbumMemory_5: 1399847731
+      AtlasAlbumMemory_4: -1648973465
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
