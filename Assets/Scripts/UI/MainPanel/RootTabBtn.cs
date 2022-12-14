@@ -37,7 +37,11 @@ namespace ARPG.UI
             anim.SetBool(s_IsSelect,false);
             Bind(btn, delegate
             {
-                if (data.Mode == TableMode.Close) return;
+                if (data.Mode == TableMode.Close)
+                {
+                    UISystem.Instance.ShowPopWindows("提示","暂未开放","确定");
+                    return;
+                }
                 MainPanel.Instance.SwitchTabBtn(_type);
                 FadeManager.Instance.PlayFade(1, delegate
                 {

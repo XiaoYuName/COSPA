@@ -18,6 +18,11 @@ MonoBehaviour:
     details: "\u4E3B\u83DC\u5355"
     parentName: UIPanel
     isInit: 0
+  - ID: PopSingleton
+    Prefab: {fileID: 2788787069707487055, guid: d4b5e0e111a628b4399402f8b270b3aa, type: 3}
+    details: "\u5355\u9879\u63D0\u793A\u5F39\u7A97"
+    parentName: UIPop
+    isInit: 0
   UIParents:
   - UIPanel
   - UIDialogue

@@ -316,6 +316,39 @@ namespace ARPG
 
         #endregion
 
+
+        #region ShowHelp
+
+        /// <summary>
+        /// 显示提示弹窗
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="des">内容</param>
+        /// <param name="quit">退出</param>
+        public void ShowPopWindows(string title, string des, string quit)
+        {
+            PopSingleton ui = GetUI<PopSingleton>("PopSingleton");
+            ui.transform.SetAsLastSibling();
+            ui.ShowPopWindows(title,des,quit);
+            ui.Open();
+        }
+
+        /// <summary>
+        /// 显示提示标题
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="des">内容</param>
+        /// <param name="quit">退出</param>
+        /// <param name="func">点击确认后的回调</param>
+        public void ShowPopWindows(string title, string des, string quit,Action func)
+        {
+            PopSingleton ui = GetUI<PopSingleton>("PopSingleton");
+            ui.transform.SetAsLastSibling();
+            ui.ShowPopWindows(title,des,quit,func);
+        }
+
+        #endregion
+
     }
 }
 
