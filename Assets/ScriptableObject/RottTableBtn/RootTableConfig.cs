@@ -30,6 +30,9 @@ namespace ARPG.UI.Config
 
         [Header("icon"),ShowAssetPreview]
         public Sprite icon;
+
+        [Header("选中icon"),ShowAssetPreview]
+        public Sprite selecticon;
     }
 
     public enum TableMode
