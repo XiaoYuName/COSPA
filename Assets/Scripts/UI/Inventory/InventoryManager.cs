@@ -18,7 +18,7 @@ namespace ARPG
         protected override void Awake()
         {
             base.Awake();
-            UserBag = ConfigManager.LoadConfig<UserBagConfig>("");
+            UserBag = ConfigManager.LoadConfig<UserBagConfig>("PlayerBag/User");
         }
     }
 }
