@@ -10,7 +10,7 @@ namespace ARPG.UI
     {
         private RectTransform content;
         private List<CharacterBag> characterBags;
-
+        
         public override void Init()
         {
             content = Get<RectTransform>("UIMask/Scroll View/Content");

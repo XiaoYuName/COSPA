@@ -15,6 +15,7 @@ namespace ARPG.UI
         private RootTabBtn BtnPrefab;
         private List<RootTabBtn> RootBtns;
         private TableType currentType; //当前Type
+        private List<string> ChildUITabel = new List<string>(); //二级菜单子界面,当打开时,注册列表中,当点击菜单内的按钮时,来控制一键关闭所有子菜单
 
         protected override void Awake()
         {
@@ -50,6 +51,14 @@ namespace ARPG.UI
         /// <param name="type"></param>
         public void SwitchTabBtn(TableType type)
         {
+            if (ChildUITabel.Count >= 1) //关闭所有子项菜单
+            {
+                for (int i = 0; i < ChildUITabel.Count; i++)
+                {
+                    UISystem.Instance.CloseUI(ChildUITabel[i]);
+                }
+            }
+            
             foreach (var btn in RootBtns)
             {
                 btn.SetState(btn._type == type);
@@ -57,6 +66,18 @@ namespace ARPG.UI
             string UIname = Config.GetOpenName(currentType);
             UISystem.Instance.CloseUI(UIname);
             currentType = type;
+        }
+
+
+        public void AddTbaleChild(string table)
+        {
+            ChildUITabel.Add(table);
+        }
+
+        public void RemoveTableChild(string table)
+        {
+            if(ChildUITabel.Contains(table))
+                ChildUITabel.Remove(table);
         }
     }
 

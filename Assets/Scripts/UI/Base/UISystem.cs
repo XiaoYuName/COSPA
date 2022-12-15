@@ -190,6 +190,7 @@ namespace ARPG
         public void OpenUI<T>(string uiname, Call<T> func) where T : UIBase
         {
             var Obj = GetUI(uiname);
+            Obj.transform.SetAsLastSibling();
             var conmop = Obj.GetComponent<T>();
             UIBase @base = Obj.GetComponent<UIBase>();
             @base.Open();
@@ -204,6 +205,7 @@ namespace ARPG
         public void CloseUI(string uiname)
         {
             UIBase Obj = GetUI(uiname).GetComponent<UIBase>();
+            Obj.transform.SetAsFirstSibling();
             Obj.Close();
         }
 
@@ -216,6 +218,7 @@ namespace ARPG
         public void CloseUI<T>(string uiname, Call<T> func) where T : UIBase
         {
             var Obj = GetUI(uiname);
+            Obj.transform.SetAsFirstSibling();
             var conmop = Obj.GetComponent<T>();
             UIBase @base = Obj.GetComponent<UIBase>();
             func?.Invoke(conmop);

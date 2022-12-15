@@ -20,7 +20,6 @@ namespace ARPG.UI
             StarContent = Get("StarContent").transform;
             Level = Get<TextMeshProUGUI>("Faram/Level");
             btn = GetComponent<Button>();
-            btn.onClick.AddListener(()=>UISystem.Instance.ShowPopWindows("提示", "暂未开放", "退出"));
 
         }
 
@@ -31,6 +30,18 @@ namespace ARPG.UI
             icon.sprite = character.CharacterPanelIcon;
             Level.text = "等级 "+info.Level;
             SetInfoStar(info.currentStar);
+            Bind(btn, delegate
+            {
+                FadeManager.Instance.PlayFade(1, delegate
+                {
+                    void func(CharacterEquipPanel ui)
+                    {
+                        ui.InitData(info);
+                    }
+                    MainPanel.Instance.AddTbaleChild("CharacterEquipPanel");
+                    UISystem.Instance.OpenUI<CharacterEquipPanel>("CharacterEquipPanel",func);
+                },1);
+            }, "UI_click");
         }
 
         /// <summary>

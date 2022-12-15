@@ -16,6 +16,10 @@ namespace ARPG.Config
     public class Item : ConfigData
     {
         /// <summary>
+        /// 名字
+        /// </summary>
+        public string ItemName;
+        /// <summary>
         /// 图标
         /// </summary>
         public Sprite icon;

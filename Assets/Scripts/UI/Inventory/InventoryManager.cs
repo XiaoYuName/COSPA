@@ -28,7 +28,7 @@ namespace ARPG
             CharacterInfoConfig = ConfigManager.LoadConfig<CharacterConfig>("Character/Charactern");
         }
 
-
+        #region 查
 
         /// <summary>
         /// 获取角色配置数据
@@ -53,6 +53,21 @@ namespace ARPG
         {
             return UserBag.CharacterBags;
         }
+
+        /// <summary>
+        /// 获取稀有度对应的Icon
+        /// </summary>
+        /// <param name="mode">类型</param>
+        /// <returns>图片</returns>
+        public Sprite GetFaramIcon(ItemMode mode)
+        {
+            return UserBag.GetFaram(mode);
+        }
+
+        #endregion
+
+        
+        
     }
 }
 

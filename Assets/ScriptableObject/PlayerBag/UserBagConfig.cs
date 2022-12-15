@@ -21,6 +21,19 @@ namespace ARPG.Config
         /// </summary>
         [Header("背包道具Item")]
         public List<ItemBag> ItemBags = new List<ItemBag>();
+
+        [Header("稀有度设定")]
+        public List<FaramIcon> FaramIcons = new List<FaramIcon>();
+
+        /// <summary>
+        /// 获取稀有度对应Icon
+        /// </summary>
+        /// <param name="mode">稀有度</param>
+        /// <returns></returns>
+        public Sprite GetFaram(ItemMode mode)
+        {
+            return FaramIcons.Find(f => f.Mode == mode).faram;
+        }
     }
 
     [System.Serializable]
@@ -35,6 +48,11 @@ namespace ARPG.Config
         /// 角色当前星级
         /// </summary>
         public int currentStar;
+
+        /// <summary>
+        /// 好感度
+        /// </summary>
+        public int Favorability;
 
         /// <summary>
         /// 角色等级
@@ -100,7 +118,22 @@ namespace ARPG.Config
         /// </summary>
         public Item item;
     }
+
+
+    [System.Serializable]
+    public class FaramIcon
+    {
+        /// <summary>
+        /// 稀有度
+        /// </summary>
+        public ItemMode Mode;
+        /// <summary>
+        /// 边框
+        /// </summary>
+        public Sprite faram;
+    }
     
+
 
 }
 
