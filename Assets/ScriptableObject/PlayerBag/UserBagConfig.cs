@@ -15,6 +15,12 @@ namespace ARPG.Config
         /// </summary>
         [Header("角色背包")]
         public List<CharacterBag> CharacterBags = new List<CharacterBag>();
+
+        /// <summary>
+        /// 玩家背包道具
+        /// </summary>
+        [Header("背包道具Item")]
+        public List<ItemBag> ItemBags = new List<ItemBag>();
     }
 
     [System.Serializable]
