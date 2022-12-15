@@ -14,6 +14,7 @@ namespace ARPG.UI
         private RectTransform TabContent;
         private RootTabBtn BtnPrefab;
         private List<RootTabBtn> RootBtns;
+        private TableType currentType; //当前Type
 
         protected override void Awake()
         {
@@ -24,6 +25,7 @@ namespace ARPG.UI
             RootBtns = new List<RootTabBtn>();
             CreatTbaleBtn();
             SwitchTabBtn(TableType.我的主页);
+            currentType = TableType.我的主页;
             UISystem.Instance.OpenUI("HomeScene");
         }
 
@@ -52,14 +54,9 @@ namespace ARPG.UI
             {
                 btn.SetState(btn._type == type);
             }
-
-            string UIname = type switch
-            {
-                TableType.主菜单=> "HomeScene",
-                _=> "HomeScene"
-            };
+            string UIname = Config.GetOpenName(currentType);
             UISystem.Instance.CloseUI(UIname);
-            //TODO： 开启x秒Fade 过度
+            currentType = type;
         }
     }
 

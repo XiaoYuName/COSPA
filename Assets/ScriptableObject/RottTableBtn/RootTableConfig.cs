@@ -14,6 +14,16 @@ namespace ARPG.UI.Config
         {
             return tableItems.Find(t => t.Type == tupe);
         }
+
+        /// <summary>
+        /// 获取映射界面名称
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public string GetOpenName(TableType type)
+        {
+            return tableItems.Find(e => e.Type == type).OpenUIName;
+        }
     }
 
     [System.Serializable]
