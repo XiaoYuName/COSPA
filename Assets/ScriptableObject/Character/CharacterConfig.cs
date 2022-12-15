@@ -21,7 +21,8 @@ namespace ARPG.Config
     {
         [Header("角色界面角色ICON")] 
         public Sprite CharacterPanelIcon;
-        
+        [Header("头像")]
+        public Sprite Headicon;
         [Header("角色星级(最高)")]
         public CharacterStarType CharacterStarType;
 
