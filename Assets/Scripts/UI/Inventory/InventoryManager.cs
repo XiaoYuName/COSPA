@@ -21,11 +21,14 @@ namespace ARPG
         /// </summary>
         private CharacterConfig CharacterInfoConfig;
 
+        private BaseItemConfig _itemConfig;
+
         protected override void Awake()
         {
             base.Awake();
             UserBag = ConfigManager.LoadConfig<UserBagConfig>("PlayerBag/User");
             CharacterInfoConfig = ConfigManager.LoadConfig<CharacterConfig>("Character/Charactern");
+            _itemConfig = ConfigManager.LoadConfig<BaseItemConfig>("Character/ItemConfig");
         }
 
         #region 查
@@ -62,6 +65,27 @@ namespace ARPG
         public Sprite GetFaramIcon(ItemMode mode)
         {
             return UserBag.GetFaram(mode);
+        }
+
+
+        /// <summary>
+        /// 获取一个Item 配置信息
+        /// </summary>
+        /// <param name="itemID">item ID</param>
+        /// <returns></returns>
+        public Item GetItem(string itemID)
+        {
+            return _itemConfig.Get(itemID);
+        }
+
+
+        /// <summary>
+        /// 获取Item 背包内的所有数据
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemBag> GetItemBag()
+        {
+            return UserBag.ItemBags;
         }
 
         #endregion
