@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9809c61b4f66cdc47b2e5ecffbcda621, type: 3}
-  m_Name: UITable
+  m_Name: UIPrefab
   m_EditorClassIdentifier: 
   BaseDatas:
   - ID: AudioItem
@@ -28,3 +28,6 @@ MonoBehaviour:
   - ID: PropValue
     Item: {fileID: 8222941326286169882, guid: 7c6ac05379ad8d6479a29b45b5ac7bb6, type: 3}
     details: "\u88C5\u5907\u663E\u793A\u5B57\u6BB5UI"
+  - ID: PrincLineItemUI
+    Item: {fileID: 1389369460553278514, guid: d490ff0b288a8e542bb63582df4178c2, type: 3}
+    details: "\u4E3B\u7EBF\u663E\u793AUI"

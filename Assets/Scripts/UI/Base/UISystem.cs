@@ -45,7 +45,7 @@ namespace ARPG
         private void Init()
         {
             tableConfig = ConfigManager.LoadConfig<UITable>("UITable/UITable");
-            prefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/UITable");
+            prefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/UIPrefab");
             UiTableDic = new Dictionary<string, GameObject>();
             UIRoot = new List<RectTransform>();
             InitParent();
