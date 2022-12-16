@@ -16,6 +16,10 @@ namespace ARPG.UI
         /// 当前任务
         /// </summary>
         private PrincItem currentdata;
+        /// <summary>
+        /// 是否可点击
+        /// </summary>
+        private bool isClick;
         public override void Init()
         {
             Active = Get("Active");
@@ -23,9 +27,12 @@ namespace ARPG.UI
             StarGameBtn = GetComponent<Button>();
         }
 
-        public void InitData(PrincItem data)
+        public void InitData(int index ,PrincItem data,int active)
         {
             PrincName.text = data.PrincItemName;
+            SetStateAction(active);
+            StarGameBtn.interactable = active != 3;
+            Bind(StarGameBtn,delegate { print("进入场景"); },"OnChick" );
         }
         
         /// <summary>
@@ -33,11 +40,18 @@ namespace ARPG.UI
         /// </summary>
         /// <param name="index"> 1 代表已看完,2 代表新内容,3代表暂不能观看，未解锁</param>
         /// <param name="data"></param>
-        public void InitData(int index,PrincLine data)
+        public void InitData(int active,PrincLine data,int index)
         {
             PrincName.text = data.PrincName;
-            SetStateAction(index);
-            StarGameBtn.interactable = index != 3;
+            SetStateAction(active);
+            StarGameBtn.interactable = active != 3;
+            Bind(StarGameBtn, delegate
+            {
+                SwicthMapPanel mapPanel =  UISystem.Instance.GetUI<SwicthMapPanel>("SwicthMapPanel");
+                isClick = !isClick;
+                mapPanel.SetAnimator(isClick);
+                mapPanel.CreateLineItemChlidUI(index);
+            }, "OnChick");
         }
 
 
@@ -61,6 +75,8 @@ namespace ARPG.UI
                     Active.transform.GetChild(2).gameObject.SetActive(false);  
                     break;
             }
+            
+            
         }
     }
 }
