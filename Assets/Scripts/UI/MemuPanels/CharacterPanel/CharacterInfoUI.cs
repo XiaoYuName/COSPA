@@ -45,6 +45,8 @@ namespace ARPG.UI
         /// </summary>
         private Button AutoBtn;
         
+        private Button HeadInfoBtn;
+        
         public override void Init()
         {
             Headicon = Get<Image>("Head");
@@ -56,6 +58,7 @@ namespace ARPG.UI
             AutoBtn = Get<Button>("AotuButton");
             Bind(AutoBtn, 
                 ()=>UISystem.Instance.ShowPopWindows("提示","正在开发","加油"),"OnChick");
+            HeadInfoBtn = Headicon.GetComponent<Button>();
         }
 
         public void InitData(CharacterBag data)
@@ -74,6 +77,14 @@ namespace ARPG.UI
             Level.text = data.Level.ToString();
             Star.text = data.currentStar.ToString();
             FightingCapacity.text = "100";//TODO: 战斗力暂时写死100
+            Bind(HeadInfoBtn, () =>
+            {
+                void Func(CharacterToolTip toolTip)
+                {
+                    toolTip.ShowCharacterInfo(data);
+                }
+                UISystem.Instance.OpenUI<CharacterToolTip>("CharacterToolTip",Func);
+            },"UI_click");
         }
     }
 }

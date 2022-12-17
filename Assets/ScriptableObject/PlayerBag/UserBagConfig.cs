@@ -82,7 +82,24 @@ namespace ARPG.Config
                 new EquipHelo() { ItemType = ItemType.首饰, },
             };
         }
+
+        /// <summary>
+        /// 当前角色属性
+        /// </summary>
+        public CharacterState CurrentCharacterState => Operation();
+
+        /// <summary>
+        /// 计算当前属性状态
+        /// </summary>
+        /// <returns></returns>
+        public CharacterState Operation()
+        {
+            //TODO: 暂时测试返回默认基础属性
+            return InventoryManager.Instance.GetCharacter(ID).State;
+        }
     }
+    
+
 
     /// <summary>
     /// 物品背包
