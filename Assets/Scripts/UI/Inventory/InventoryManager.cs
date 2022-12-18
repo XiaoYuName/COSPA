@@ -90,7 +90,92 @@ namespace ARPG
 
         #endregion
 
+        #region 删
+
+        /// <summary>
+        /// 删除背包的的指定道具
+        /// </summary>
+        /// <param name="itemBag">背包道具</param>
+        private void DeleteItemBag(ItemBag itemBag)
+        {
+            //1.判断背包是否拥有该物品
+            if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
+            {
+                UserBag.ItemBags.Remove(itemBag);
+            }
+        }
         
+        /// <summary>
+        /// 删除背包的的指定道具
+        /// </summary>
+        /// <param name="itemBag">背包道具</param>
+        /// <param name="Amount">数量</param>
+        public void DeleteItemBag(ItemBag itemBag,int Amount)
+        {
+            //1.判断背包是否拥有该物品
+            if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
+            {
+                for (int i = 0;  i< UserBag.ItemBags.Count; i++)
+                {
+                    if (UserBag.ItemBags[i].ID == itemBag.ID)
+                    {
+                        UserBag.ItemBags[i].count -= Amount;
+                        if (UserBag.ItemBags[i].count <= 1)
+                        {
+                            DeleteItemBag(itemBag);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region 增
+
+        /// <summary>
+        /// 背包中添加物品
+        /// </summary>
+        /// <param name="itemBag"></param>
+        public void AddItem(ItemBag itemBag)
+        {
+            if (itemBag == null) return;
+            if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID && i.power == itemBag.power))
+            {
+                for (int i = 0;  i< UserBag.ItemBags.Count; i++)
+                {
+                    if (UserBag.ItemBags[i].ID == itemBag.ID)
+                    {
+                        UserBag.ItemBags[i].count += itemBag.count;
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                UserBag.ItemBags.Add(itemBag);
+            }
+        }
+
+        /// <summary>
+        /// 背包中添加物品
+        /// </summary>
+        /// <param name="item">物品Item</param>
+        public void AddItem(Item item)
+        {
+            ItemBag bag = new ItemBag
+            {
+                ID = item.ID,
+                count = default,
+                power = default,
+            };
+            AddItem(bag);
+        }
+
+        #endregion
         
     }
 }

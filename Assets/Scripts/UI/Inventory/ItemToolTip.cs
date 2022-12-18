@@ -17,6 +17,7 @@ namespace ARPG.UI
         private PropValue Obj;
         private Button CloseBtn;
         private Button BindBtn;
+        private ItemBag currentItem;
         
         public override void Init()
         {
@@ -32,6 +33,7 @@ namespace ARPG.UI
         public void InitData(ItemBag itemBag)
         {
             Item item = InventoryManager.Instance.GetItem(itemBag.ID);
+            currentItem = itemBag;
             ItemName.text = item.ItemName;
             Slot.sprite = item.icon;
             Count.text = "*" + itemBag.count;
@@ -43,7 +45,14 @@ namespace ARPG.UI
                 value.Show(t.Mode.ToString(),t.value.ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
+            Bind(BindBtn, SetEquip, "OnChick");
             Open();
+        }
+
+        private void SetEquip()
+        {
+            UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").UpdateEquipHolo(currentItem);
+            Close();
         }
     }
 }

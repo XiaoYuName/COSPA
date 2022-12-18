@@ -57,7 +57,10 @@ namespace ARPG.Config
         
         [Header("动画参数")]
         public string SpineIdleName;
-
+        /// <summary>
+        /// 装备装备播放动画的动作名称
+        /// </summary>
+        public string EquipAnimName;
         [Header("角色基础属性")]
         public CharacterState State;
 

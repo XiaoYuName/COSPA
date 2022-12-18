@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +98,59 @@ namespace ARPG.Config
             //TODO: 暂时测试返回默认基础属性
             return InventoryManager.Instance.GetCharacter(ID).State;
         }
+
+
+       /// <summary>
+       /// 装备装备
+       /// </summary>
+       /// <param name="bag">装备</param>
+       /// <returns>返回Code 值: 1 等级不足  2 : 没有找到对应的装备槽，3：装备成果</returns>
+        public int SetEquipHelo(ItemBag bag)
+       {
+           Item item = InventoryManager.Instance.GetItem(bag.ID);
+            
+            //1.首先判断该装备能否装备，条件是否满足
+            if (item.level >= Level)
+            {
+                return 1;
+            }
+            
+            //2.判断当前是否已经装备了装备,如果已经装备了，将装备了的装备拆下，讲该装备装备上去
+            for (int i = 0; i < equipHelos.Length; i++)
+            {
+                if (item.Type == equipHelos[i].ItemType)
+                {
+                    if (String.IsNullOrEmpty(equipHelos[i].item.ID))
+                    {
+                        //1. 装备一个新装备,删除背包的的物品,
+                        equipHelos[i].item = item;
+                        equipHelos[i].Powor = bag.power;
+                        InventoryManager.Instance.DeleteItemBag(bag,1);
+                    }
+                    else
+                    {
+                        //2.拆下旧装备
+                        ItemBag Bag = new ItemBag()
+                        {
+                            ID = equipHelos[i].item.ID,
+                            power = equipHelos[i].Powor,
+                            count = 1,
+                        };
+                        InventoryManager.Instance.AddItem(Bag);
+                        //2.1 装备新装备
+                        equipHelos[i].item = item;
+                        equipHelos[i].Powor = bag.power;
+                        InventoryManager.Instance.DeleteItemBag(bag,1);
+                    }
+                    return 3;
+                }
+            }
+            //3.通知刷新
+            return 2;
+
+           
+            
+       }
     }
     
 
@@ -116,6 +170,8 @@ namespace ARPG.Config
         /// 物品数量
         /// </summary>
         public int count;
+
+        public int power;
     }
 
 
@@ -134,6 +190,11 @@ namespace ARPG.Config
         /// 装备
         /// </summary>
         public Item item;
+
+        /// <summary>
+        /// 强化等级
+        /// </summary>
+        public int Powor;
     }
 
 
