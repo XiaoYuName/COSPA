@@ -11,8 +11,11 @@ namespace ARPG.UI
     public class ItemToolTip : UIBase
     {
         private TextMeshProUGUI ItemName;
+        private TextMeshProUGUI ItemType;
         private Image Slot;
         private TextMeshProUGUI Count;
+        private TextMeshProUGUI Level;
+        private TextMeshProUGUI Powor;
         private RectTransform content;
         private PropValue Obj;
         private Button CloseBtn;
@@ -22,8 +25,11 @@ namespace ARPG.UI
         public override void Init()
         {
             ItemName = Get<TextMeshProUGUI>("Mask/Name");
+            ItemType = Get<TextMeshProUGUI>("Mask/Type");
             Slot = Get<Image>("Mask/SlotUI");
             Count = Get<TextMeshProUGUI>("Mask/SlotUI/Count");
+            Level = Get<TextMeshProUGUI>("Mask/SlotUI/Level");
+            Powor = Get<TextMeshProUGUI>("Mask/SlotUI/Powor");
             Obj = UISystem.Instance.GetPrefab<PropValue>("PropValue");
             content = Get<RectTransform>("Mask/Panel/Info/Scroll View/Content");
             CloseBtn = Get<Button>("Mask/Panel/CloseBtn");
@@ -35,6 +41,9 @@ namespace ARPG.UI
             Item item = InventoryManager.Instance.GetItem(itemBag.ID);
             currentItem = itemBag;
             ItemName.text = item.ItemName;
+            ItemType.text = item.Type.ToString();
+            Level.text = "lv: "+item.level;
+            Powor.text = "+" +itemBag.power;
             Slot.sprite = item.icon;
             Count.text = "*" + itemBag.count;
             UIHelper.Clear(content);
