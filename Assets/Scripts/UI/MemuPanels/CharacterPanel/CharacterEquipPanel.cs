@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,26 +83,17 @@ namespace ARPG.UI
         }
 
         /// <summary>
-        /// 創建自身装备Item
+        /// 創建自身装备
         /// </summary>
         private void CreateEquipHelo(CharacterBag data)
         {
             for (int i = 0; i < data.equipHelos.Length; i++)
             {
-                for (int j = 0; j < _equipHeloUis.Length; j++)
+                if (data.equipHelos[i].ItemType == _equipHeloUis[i].type)
                 {
-                    //找到匹配的装备
-                    if (_equipHeloUis[j].type == data.equipHelos[i].ItemType)
-                    {
-                        _equipHeloUis[j].InitData(data.equipHelos[i]);
-                    }
+                    _equipHeloUis[i].InitData(data.equipHelos[i]);
                 }
-            }            
-        }
-
-        private void UpdateEquipHeloUI()
-        {
-            
+            }
         }
 
         /// <summary>
@@ -125,7 +117,7 @@ namespace ARPG.UI
                     PlaySpineAnimation(character.EquipAnimName);
                     //2.通知刷新各个界面UI
                     //2.1 刷新背包
-                    CreateEquipHelo(currentCharacterBag);
+                    CreateSlotUI();
                     //2.2 刷新装备栏装备
                     CreateEquipHelo(currentCharacterBag);
                     break;

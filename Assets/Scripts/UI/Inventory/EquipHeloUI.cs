@@ -28,6 +28,7 @@ namespace ARPG.UI
         private TextMeshProUGUI powor;
         
         [HideInInspector]public EquipHelo currentdata;
+        public bool isEquip; //是否已经装备过装备了
 
         private void Awake()
         {
@@ -57,6 +58,7 @@ namespace ARPG.UI
                 Level.text = "Lv "+data.item.level;
                 powor.text = "+" + data.Powor;
             }
+            isEquip = isNull;
             Level.gameObject.SetActive(!isNull);
             powor.gameObject.SetActive(!isNull);
         }

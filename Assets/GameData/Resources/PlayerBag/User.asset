@@ -23,50 +23,62 @@ MonoBehaviour:
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 0
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
   - ID: plate_1058
     currentStar: 1
     Favorability: 1
@@ -75,55 +87,76 @@ MonoBehaviour:
     equipHelos:
     - ItemType: 0
       item:
-        ID: 
-        ItemName: 
-        icon: {fileID: 0}
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        icon: {fileID: 21300000, guid: bab134b772fd12949a527bbfba3dd299, type: 3}
         Type: 0
         Mode: 0
-        attribute: []
+        attribute:
+        - Mode: 0
+          value: 8
+      Powor: 0
     - ItemType: 0
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
+        level: 0
         icon: {fileID: 0}
         Type: 0
         Mode: 0
         attribute: []
+      Powor: 0
   ItemBags:
   - ID: 101011
     count: 1
+    power: 0
+  - ID: 101011
+    count: 1
+    power: 0
+  - ID: 101011
+    count: 1
+    power: 0
   FaramIcons:
   - Mode: 0
     faram: {fileID: 21300000, guid: ca860c1d4cc8ece48b0fe4f8a1cf01c3, type: 3}

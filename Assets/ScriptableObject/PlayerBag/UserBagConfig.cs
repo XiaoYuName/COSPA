@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ARPG.Config
@@ -107,49 +108,54 @@ namespace ARPG.Config
        /// <returns>返回Code 值: 1 等级不足  2 : 没有找到对应的装备槽，3：装备成果</returns>
         public int SetEquipHelo(ItemBag bag)
        {
-           Item item = InventoryManager.Instance.GetItem(bag.ID);
+            Item item = InventoryManager.Instance.GetItem(bag.ID);
             
             //1.首先判断该装备能否装备，条件是否满足
-            if (item.level >= Level)
+            if (item.level > Level)
             {
                 return 1;
             }
-            
-            //2.判断当前是否已经装备了装备,如果已经装备了，将装备了的装备拆下，讲该装备装备上去
-            for (int i = 0; i < equipHelos.Length; i++)
+
+            var current = equipHelos.ToList();
+            var allEquip = current.FindAll(e => e.ItemType == item.Type);
+            for (int i = 0; i < allEquip.Count; i++)
             {
-                if (item.Type == equipHelos[i].ItemType)
+                if (String.IsNullOrEmpty(equipHelos[i].item.ID)) //找到一个没有装备的装备槽位
                 {
-                    if (String.IsNullOrEmpty(equipHelos[i].item.ID))
-                    {
-                        //1. 装备一个新装备,删除背包的的物品,
-                        equipHelos[i].item = item;
-                        equipHelos[i].Powor = bag.power;
-                        InventoryManager.Instance.DeleteItemBag(bag,1);
-                    }
-                    else
-                    {
-                        //2.拆下旧装备
-                        ItemBag Bag = new ItemBag()
-                        {
-                            ID = equipHelos[i].item.ID,
-                            power = equipHelos[i].Powor,
-                            count = 1,
-                        };
-                        InventoryManager.Instance.AddItem(Bag);
-                        //2.1 装备新装备
-                        equipHelos[i].item = item;
-                        equipHelos[i].Powor = bag.power;
-                        InventoryManager.Instance.DeleteItemBag(bag,1);
-                    }
+                    //1. 装备一个新装备,删除背包的的物品,
+                    equipHelos[i].item = item;
+                    equipHelos[i].Powor = bag.power;
+                    InventoryManager.Instance.DeleteItemBag(bag,1);
                     return 3;
                 }
             }
-            //3.通知刷新
-            return 2;
-
-           
             
+            UISystem.Instance.ShowPopDialogue("选择","装备栏已满,请选择拆卸的装备栏","装备栏(left)","装备栏(right)",
+                () => {
+                    ItemBag Bag = new ItemBag()
+                    {
+                        ID = equipHelos[0].item.ID,
+                        power = equipHelos[0].Powor,
+                        count = 1,
+                    };
+                    InventoryManager.Instance.AddItem(Bag);
+                    //2.1 装备新装备
+                    equipHelos[0].item = item;
+                    equipHelos[0].Powor = bag.power;
+                    InventoryManager.Instance.DeleteItemBag(bag,1); }, 
+                () => {
+                    ItemBag Bag = new ItemBag()
+                    {
+                        ID = equipHelos[1].item.ID,
+                        power = equipHelos[1].Powor,
+                        count = 1,
+                    };
+                    InventoryManager.Instance.AddItem(Bag);
+                    //2.1 装备新装备
+                    equipHelos[0].item = item;
+                    equipHelos[0].Powor = bag.power;
+                    InventoryManager.Instance.DeleteItemBag(bag,1); });
+            return 2;
        }
     }
     

@@ -350,6 +350,23 @@ namespace ARPG
             ui.ShowPopWindows(title,des,quit,func);
         }
 
+
+        /// <summary>
+        /// 显示对话弹窗
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="des">内容</param>
+        /// <param name="btn1">按钮1 文字</param>
+        /// <param name="btn2">按钮2 文字</param>
+        /// <param name="func1">按钮1 委托</param>
+        /// <param name="func2">按钮2 委托</param>
+        public void ShowPopDialogue(string title, string des, string btn1, string btn2, Action func1, Action func2)
+        {
+            PopDialogue ui = GetUI<PopDialogue>("PopDialogue");
+            ui.transform.SetAsLastSibling();
+            ui.ShowPopWindows(title,des,btn1,btn2,func1,func2);
+        }
+
         #endregion
 
     }
