@@ -93,9 +93,21 @@ MonoBehaviour:
   - Type: 4
     Snapshot: {fileID: 7008517195480697450, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   VideoAudioItems:
+  - ID: bgm_MG001
+    audioType: 4
+    clip: {fileID: 8300000, guid: 8eaecd06adcd3a747b413f7cd6b980dc, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   - ID: BGAudio_001
     audioType: 4
     clip: {fileID: 8300000, guid: 772b7031e7bf73e499db7332be719303, type: 3}
-    InitVolume: 0.6
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: bgm_character
+    audioType: 4
+    clip: {fileID: 8300000, guid: cdb0cca6694690746959f4dd626a5edb, type: 3}
+    InitVolume: 0.4
     soundPitchMin: 0.8
     soundPitchMax: 1.2

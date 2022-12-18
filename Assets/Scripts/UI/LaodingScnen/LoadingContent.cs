@@ -25,7 +25,7 @@ namespace ARPG.UI
             {
                 MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
             }, "UI_click");
-            AudioManager.Instance.PlayVideoLoop("BGAudio_001");
+            AudioManager.Instance.PlayVideoLoop("bgm_MG001");
             title.DOFade(1, 2.5f).SetLoops(0,LoopType.Yoyo);
         }
 

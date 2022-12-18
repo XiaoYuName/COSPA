@@ -2071,6 +2071,7 @@ GameObject:
   - component: {fileID: 7713498112199037533}
   - component: {fileID: 7713498112199037530}
   - component: {fileID: 7713498112199037531}
+  - component: {fileID: 681710471383042791}
   m_Layer: 5
   m_Name: HomeScene
   m_TagString: Untagged
@@ -2119,6 +2120,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df459480b0d29b641b416c83f3d59229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &681710471383042791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713498112199037532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d7554e7d1c6f24891e6c9677450e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioID: bgm_MG001
+  isLoop: 1
+  Type: 4
 --- !u!1 &7713498112845033253
 GameObject:
   m_ObjectHideFlags: 0
