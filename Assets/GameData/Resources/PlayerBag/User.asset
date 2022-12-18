@@ -99,13 +99,15 @@ MonoBehaviour:
       Powor: 0
     - ItemType: 0
       item:
-        ID: 
-        ItemName: 
-        level: 0
-        icon: {fileID: 0}
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        icon: {fileID: 21300000, guid: bab134b772fd12949a527bbfba3dd299, type: 3}
         Type: 0
         Mode: 0
-        attribute: []
+        attribute:
+        - Mode: 0
+          value: 8
       Powor: 0
     - ItemType: 1
       item:
@@ -148,13 +150,13 @@ MonoBehaviour:
         attribute: []
       Powor: 0
   ItemBags:
-  - ID: 101011
+  - ID: 101012
     count: 1
     power: 0
-  - ID: 101011
+  - ID: 101012
     count: 1
     power: 0
-  - ID: 101011
+  - ID: 101012
     count: 1
     power: 0
   FaramIcons:

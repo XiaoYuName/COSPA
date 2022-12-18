@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ARPG.UI;
 using UnityEngine;
 
 namespace ARPG.Config
@@ -116,45 +117,73 @@ namespace ARPG.Config
                 return 1;
             }
 
+           
             var current = equipHelos.ToList();
+            //2.1 找到一个没有装备的装备槽位
             var allEquip = current.FindAll(e => e.ItemType == item.Type);
-            for (int i = 0; i < allEquip.Count; i++)
+            for (int i = 0; i < current.Count; i++)
             {
-                if (String.IsNullOrEmpty(equipHelos[i].item.ID)) //找到一个没有装备的装备槽位
+                if (String.IsNullOrEmpty(current[i].item.ID) && current[i].ItemType == item.Type) 
                 {
                     //1. 装备一个新装备,删除背包的的物品,
-                    equipHelos[i].item = item;
-                    equipHelos[i].Powor = bag.power;
+                    current[i].item = item;
+                    current[i].Powor = bag.power;
                     InventoryManager.Instance.DeleteItemBag(bag,1);
+                    equipHelos = current.ToArray();
                     return 3;
                 }
             }
-            
-            UISystem.Instance.ShowPopDialogue("选择","装备栏已满,请选择拆卸的装备栏","装备栏(left)","装备栏(right)",
-                () => {
-                    ItemBag Bag = new ItemBag()
+            //2. 让玩家选择拆卸掉其中一个
+            UISystem.Instance.ShowPopDialogue("提示","装备栏已满,请选择要替换掉的装备",
+                allEquip[1].item.ItemName,allEquip[0].item.ItemName,
+                () =>
+                {
+                    for (int i = 0; i < current.Count; i++)
                     {
-                        ID = equipHelos[0].item.ID,
-                        power = equipHelos[0].Powor,
-                        count = 1,
-                    };
-                    InventoryManager.Instance.AddItem(Bag);
-                    //2.1 装备新装备
-                    equipHelos[0].item = item;
-                    equipHelos[0].Powor = bag.power;
-                    InventoryManager.Instance.DeleteItemBag(bag,1); }, 
-                () => {
-                    ItemBag Bag = new ItemBag()
+                        if (current[i].item == allEquip[1].item)
+                        {
+                            //拆掉他,
+                            ItemBag Bag = new ItemBag()
+                            {
+                                ID = current[i].item.ID,
+                                power = current[i].Powor,
+                                count = 1,
+                            };
+                            InventoryManager.Instance.AddItem(Bag);
+                            //2.1 装备新装备
+                            current[i].item = InventoryManager.Instance.GetItem(bag.ID);
+                            current[i].Powor = bag.power;
+                            equipHelos = current.ToArray();
+                            InventoryManager.Instance.DeleteItemBag(bag,1);
+                            UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").PlayCode();
+                            return;
+                        }
+                    }
+                }, 
+                () =>
+                {
+                    for (int i = 0; i < current.Count; i++)
                     {
-                        ID = equipHelos[1].item.ID,
-                        power = equipHelos[1].Powor,
-                        count = 1,
-                    };
-                    InventoryManager.Instance.AddItem(Bag);
-                    //2.1 装备新装备
-                    equipHelos[0].item = item;
-                    equipHelos[0].Powor = bag.power;
-                    InventoryManager.Instance.DeleteItemBag(bag,1); });
+                        if (current[i].item == allEquip[0].item)
+                        {
+                            //拆掉他,
+                            ItemBag Bag = new ItemBag()
+                            {
+                                ID = current[i].item.ID,
+                                power = current[i].Powor,
+                                count = 1,
+                            };
+                            InventoryManager.Instance.AddItem(Bag);
+                            //2.1 装备新装备
+                            current[i].item = InventoryManager.Instance.GetItem(bag.ID);
+                            current[i].Powor = bag.power;
+                            equipHelos = current.ToArray();
+                            InventoryManager.Instance.DeleteItemBag(bag,1);
+                            UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").PlayCode();
+                            return;
+                        }
+                    }
+                });
             return 2;
        }
     }

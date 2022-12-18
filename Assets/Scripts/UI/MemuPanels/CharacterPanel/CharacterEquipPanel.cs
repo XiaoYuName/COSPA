@@ -109,7 +109,6 @@ namespace ARPG.UI
                     UISystem.Instance.ShowPopWindows("提示","玩家等级不足","确定");
                     break;
                 case 2:
-                    UISystem.Instance.ShowPopWindows("提示", "装备类型错误", "确定");
                     break;
                 case 3:
                     //TODO: 角色播放xxSpine 动画
@@ -124,6 +123,19 @@ namespace ARPG.UI
             }
         }
 
+        /// <summary>
+        /// 点击提示卸下弹窗后的回调函数
+        /// </summary>
+        public void PlayCode()
+        {
+            CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(currentCharacterBag.ID);
+            PlaySpineAnimation(character.EquipAnimName);
+            //2.通知刷新各个界面UI
+            //2.1 刷新背包
+            CreateSlotUI();
+            //2.2 刷新装备栏装备
+            CreateEquipHelo(currentCharacterBag);
+        }
 
         public void ShowItemToolTip(ItemBag bag)
         {
@@ -139,7 +151,7 @@ namespace ARPG.UI
         {
             SpineController.AnimationState.SetAnimation(0, playName, false);
             CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(currentCharacterBag.ID);
-            SpineController.AnimationState.AddAnimation(0,character.SpineIdleName,true,2f);
+            SpineController.AnimationState.AddAnimation(0,character.SpineIdleName,true,1.333f);
         }
 
         public override void Close()

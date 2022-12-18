@@ -25,6 +25,7 @@ namespace ARPG.UI
             currentItme = bag;
             Item item = InventoryManager.Instance.GetItem(bag.ID);
             count.text = bag.count.ToString();
+            icon.sprite = item.icon;
             Bind(ActionBtn, delegate
             {
                  UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").ShowItemToolTip(bag);
