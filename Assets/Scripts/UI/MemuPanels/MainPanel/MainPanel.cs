@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.UI.Config;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace ARPG.UI
@@ -53,7 +54,8 @@ namespace ARPG.UI
         {
             if (ChildUITabel.Count >= 1) //关闭所有子项菜单
             {
-                for (int i = 0; i < ChildUITabel.Count; i++)
+                //这里需要逆序遍历
+                for (int i = ChildUITabel.Count -1; i >= 0; i--)
                 {
                     UISystem.Instance.CloseUI(ChildUITabel[i]);
                 }

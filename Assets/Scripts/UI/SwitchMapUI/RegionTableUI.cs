@@ -41,6 +41,7 @@ namespace ARPG.UI
                 void Func(RegionToolTip ui)
                 {
                     ui.InitData(data);
+                    MainPanel.Instance.AddTbaleChild("RegionToolTip");
                 }
                 UISystem.Instance.OpenUI<RegionToolTip>("RegionToolTip",Func);
             },"OnChick" );

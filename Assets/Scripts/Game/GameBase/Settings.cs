@@ -10,7 +10,9 @@ namespace ARPG
         
         public static Color NotActiveColor = new Color(0.46f,0.49f,0.60f,1);
 
-        
+        public const int MaxSelectAmount = 1;
+
+        public const float isDownTime = 1.25f;
     }
 }
 

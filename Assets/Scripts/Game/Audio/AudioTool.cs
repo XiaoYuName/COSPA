@@ -30,7 +30,8 @@ namespace ARPG.Audio
         {
             if (Type == AudioType.Video)
             {
-                AudioManager.Instance.StopVideoLoop();
+                if(AudioManager.IsInitialized)
+                    AudioManager.Instance.StopVideoLoop();
             }
         }
     }

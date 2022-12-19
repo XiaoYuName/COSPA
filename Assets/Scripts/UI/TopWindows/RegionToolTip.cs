@@ -11,6 +11,7 @@ namespace ARPG.UI
     public class RegionToolTip : UIBase
     {
         private Button CloseBtn;
+        private Button OpenBtn;
         private RectTransform ItemContent;
         private RectTransform RewordContent;
         private TextMeshProUGUI MapName;
@@ -25,6 +26,17 @@ namespace ARPG.UI
             BackImage = Get<Image>("UIMask/Back/Mask/Back");
             MapName = Get<TextMeshProUGUI>("UIMask/Back/Mask/Back/Farme/MapName");
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
+            OpenBtn = Get<Button>("UIMask/Back/RightPanel/OpenBtn");
+            Bind(OpenBtn, delegate
+            {
+                void Func(SwitchCharacterPanel ui)
+                {
+                    ui.CreateChacacterSlotUI();
+                    MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
+                }
+                UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel",Func);
+                
+            }, UI_ToolAudio.OnChick.ToString());
         }
 
         public void InitData(RegionItem regionItem)
@@ -45,6 +57,11 @@ namespace ARPG.UI
             }
         }
 
+        public override void Close()
+        {
+            base.Close();
+            MainPanel.Instance.RemoveTableChild("RegionToolTip");
+        }
     }
 
 }
