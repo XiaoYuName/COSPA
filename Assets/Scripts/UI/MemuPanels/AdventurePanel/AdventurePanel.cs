@@ -28,7 +28,7 @@ namespace ARPG.UI
             {
                 FadeManager.Instance.PlayFade(2, delegate
                 {
-                    UISystem.Instance.OpenUI("SwicthMapPanel");
+                    UISystem.Instance.OpenUI("RegionPanel");
                 }, 1.5f);
             }, "UI_click");
         }
