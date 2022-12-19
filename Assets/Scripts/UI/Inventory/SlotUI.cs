@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -33,7 +34,18 @@ namespace ARPG.UI
             Bind(ActionBtn, delegate
             {
                  UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").ShowItemToolTip(bag);
-            },"PopWindows" );
+            },UI_ToolAudio.UI_click.ToString());
+        }
+        
+        
+        public void InitData(ItemBag bag,Action func)
+        {
+            Item item = InventoryManager.Instance.GetItem(bag.ID);
+            count.text = bag.count.ToString();
+            icon.sprite = item.icon;
+            Level.text = "lv: "+item.level;
+            powor.text = "+" + bag.power;
+            Bind(ActionBtn,func,UI_ToolAudio.UI_click.ToString());
         }
     }
 

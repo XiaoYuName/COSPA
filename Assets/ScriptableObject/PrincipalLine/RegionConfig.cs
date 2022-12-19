@@ -36,12 +36,10 @@ namespace ARPG.UI.Config
     [System.Serializable]
     public class RegionItem
     {
-        [Header("地图名称")]
+        [Header("副本名称orID")]
         public string RegionItemName;
         [Header("icon")]
         public Sprite backIcon;
-        [Header("跳转剧情场景名称"),Scene]
-        public string SceneName;
     }
 }
 

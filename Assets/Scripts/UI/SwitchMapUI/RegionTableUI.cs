@@ -36,7 +36,14 @@ namespace ARPG.UI
             SetStateAction(active);
             StarGameBtn.interactable = active != 3;
             Regionicon.sprite = data.backIcon;
-            Bind(StarGameBtn,delegate { print("进入场景"); },"OnChick" );
+            Bind(StarGameBtn, delegate
+            {
+                void Func(RegionToolTip ui)
+                {
+                    ui.InitData(data);
+                }
+                UISystem.Instance.OpenUI<RegionToolTip>("RegionToolTip",Func);
+            },"OnChick" );
         }
 
         /// <summary>
