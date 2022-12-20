@@ -12,8 +12,19 @@ namespace ARPG
     public class GameManager : Singleton<GameManager>
     { 
         //角色的公用预制体
-        public Character Player; 
-        
+        public Character Player;
+        private SkillConfig SkillConfig;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
+        }
+
+        public SkillItem GetSkill(string id)
+        {
+            return SkillConfig.Get(id);
+        }
 
 
         /// <summary>
@@ -22,12 +33,16 @@ namespace ARPG
         /// <param name="bags">玩家列表</param>
         /// <param name="LoadSceneName">加载的场景名称</param>
         /// <param name="enemyDatas">怪物组</param>
-        public void StarSceneGame(CharacterBag[] bags,string LoadSceneName,EnemyData[] enemyDatas)
+        public IEnumerator StarSceneGame(CharacterBag[] bags,Vector3 pos,EnemyData[] enemyDatas)
         {
-            
+            for (int i = 0; i < bags.Length; i++)
+            {
+                yield return StarSceneGame(bags[i], pos);
+            }
+            yield return null;
+            //TODO: 加载怪物预制体
         }
-
-
+        
         /// <summary>
         /// 初始化加载战斗场景
         /// </summary>

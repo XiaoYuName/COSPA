@@ -1,3 +1,4 @@
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using Spine.Unity;
@@ -68,6 +69,28 @@ namespace ARPG.Config
         [Header("角色基础属性")]
         public CharacterState State;
 
+        [Header("技能配置")]
+        public CharacterSkill[] SkillTable;
+
+        public CharacterConfigInfo()
+        {
+            SkillTable = new[]
+            {
+                new CharacterSkill() {Type = SkillType.Attack},
+                new CharacterSkill() {Type = SkillType.Skill_01},
+                new CharacterSkill() {Type = SkillType.Skill_02},
+                new CharacterSkill() {Type = SkillType.Skill_03},
+                new CharacterSkill() {Type = SkillType.Passive},
+            };
+        }
+
+        public CharacterSkill GetSkillNameID(SkillType type)
+        {
+            return SkillTable?.ToList().Find(t => t.Type == type);
+        }
+
+
+
         [Header("故事"),ResizableTextArea]
         public string des;
     }
@@ -113,6 +136,37 @@ namespace ARPG.Config
 
         [Header("成长系数"),Range(0.1f,100)]
         public float Growth;
+    }
+
+    [System.Serializable]
+    public class CharacterSkill
+    {
+        public string SkillID;
+        public SkillType Type;
+    }
+
+    public enum SkillType
+    {
+        /// <summary>
+        /// 普通攻击
+        /// </summary>
+        Attack,
+        /// <summary>
+        /// 技能1
+        /// </summary>
+        Skill_01,
+        /// <summary>
+        /// 技能2
+        /// </summary>
+        Skill_02,
+        /// <summary>
+        /// 技能3
+        /// </summary>
+        Skill_03,
+        /// <summary>
+        /// 被动技能
+        /// </summary>
+        Passive,
     }
 }
 

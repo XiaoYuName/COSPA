@@ -28,6 +28,13 @@ namespace ARPG
         private Vector2 InputSpeed;
         private static readonly int s_IsMovenemt = Animator.StringToHash("isMovenemt");
         private static readonly int s_Attack = Animator.StringToHash("Attack");
+        //-------------------------Skill-------------------------------//
+        /// <summary>
+        /// 技能对象子弹,初始化阶段会加载出所有的技能对象,并执行Init初始化,之后在释放时调用Play方法
+        /// </summary>
+        private Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
+
+
         private void Awake()
         {
             NameTextUI = transform.Find("CharacterName").GetComponent<TextMeshPro>();
@@ -47,6 +54,23 @@ namespace ARPG
             Spine.Initialize(true);
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3);
             anim.runtimeAnimatorController = data.AnimatorController;
+            CreateSkillClass();
+        }
+
+        private void CreateSkillClass()
+        {
+            SkillDic.Clear();
+            for (int i = 0; i < data.SkillTable.Length; i++)
+            {
+                if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
+                SkillItem skillItem = GameManager.Instance.GetSkill(data.SkillTable[i].SkillID);
+                Type type = Type.GetType("ARPG." +skillItem.ID);
+                if (type == null) return;
+                Skill skill = Activator.CreateInstance(type) as Skill;
+                SkillDic.Add(data.SkillTable[i].Type,skill);
+                skill.Init(this,skillItem);
+                attackButton.SetUI(data.SkillTable[i].Type, skillItem);
+            }
         }
 
         private void Update()
@@ -97,8 +121,9 @@ namespace ARPG
         //TODO：使用专门的技能解释器来释放技能
         protected  void Attack()
         {
-            if(animSpeed != 0)
-                anim.SetTrigger(s_Attack);
+            if(animSpeed == 0)return;
+            anim.SetTrigger(s_Attack);
+            SkillDic[SkillType.Attack].Play();
         }
 
         protected  void Skill_1()
