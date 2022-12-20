@@ -113,6 +113,9 @@ namespace ARPG.Config
         [Header("攻击速度")]
         public float AttackSpeed;
 
+        [Header("移动速度")]
+        public float MovSpeed;
+
         [Header("成长系数"),Range(0.1f,100)]
         public float Growth;
     }

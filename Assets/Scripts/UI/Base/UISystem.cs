@@ -169,6 +169,18 @@ namespace ARPG
             T t = Obj.GetComponent<T>();
             return t;
         }
+
+        /// <summary>
+        /// 获取指定类型GameObje 的对象，该对象不需要继承自UIBase 
+        /// </summary>
+        /// <param name="uiname"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetNotBaseUI<T>(string uiname) where T : Component
+        {
+            GameObject Obj = GetUI(uiname);
+            return Obj.GetComponent<T>();
+        }
         
         /// <summary>
         /// 打开UI
@@ -232,7 +244,8 @@ namespace ARPG
             UITableItem item = tableConfig.Get(uiname);
             if (item == null) throw new Exception("表中没有对应的UI组件");
             var Obj = Instantiate(item.Prefab, GetPanrent(item.parentName));
-            Obj.GetComponent<UIBase>().Init();
+            if(Obj.GetComponent<UIBase>() != null)
+                Obj.GetComponent<UIBase>().Init();
             UiTableDic.Add(uiname,Obj);
             return Obj;
         } 
