@@ -8,13 +8,15 @@ using UnityEngine;
 
 namespace ARPG
 {
-    public class Character : MonoBehaviour
+    public  class Character : MonoBehaviour
     {
-        private CharacterState State;
+        protected CharacterState State;
         private TextMeshPro NameTextUI;
-        private CharacterConfigInfo data;
-        private SkeletonMecanim Spine;
-        private Animator anim;
+        protected CharacterConfigInfo data;
+        protected SkeletonMecanim Spine;
+        protected Animator anim;
+        protected AttackButton attackButton;
+        [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         
         
         //--------------------------Movenemt--------------------------//
@@ -25,7 +27,7 @@ namespace ARPG
         private DynamicJoystick Joystick;
         private Vector2 InputSpeed;
         private static readonly int s_IsMovenemt = Animator.StringToHash("isMovenemt");
-
+        private static readonly int s_Attack = Animator.StringToHash("Attack");
         private void Awake()
         {
             NameTextUI = transform.Find("CharacterName").GetComponent<TextMeshPro>();
@@ -33,6 +35,7 @@ namespace ARPG
             anim = Spine.GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
             Joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
+            attackButton = UISystem.Instance.GetUI<AttackButton>("AttackButton");
         }
 
         public void Init(CharacterBag bag)
@@ -42,6 +45,7 @@ namespace ARPG
             NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.SpineAsset;
             Spine.Initialize(true);
+            attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3);
             anim.runtimeAnimatorController = data.AnimatorController;
         }
 
@@ -64,7 +68,7 @@ namespace ARPG
         {
             if (InputSpeed != Vector2.zero)
             {
-                rb.velocity = InputSpeed.normalized * State.MovSpeed * Time.fixedDeltaTime;
+                rb.velocity = InputSpeed.normalized * State.MovSpeed  * animSpeed* Time.fixedDeltaTime;
             }
             else
             {
@@ -78,7 +82,7 @@ namespace ARPG
         /// </summary>
         private void Flip()
         {
-            if (InputSpeed != Vector2.zero)
+            if (InputSpeed != Vector2.zero && animSpeed != 0)
             {
                 transform.rotation = Quaternion.Euler(0,InputSpeed.x <0 ? 180:0,0);
             }
@@ -87,6 +91,29 @@ namespace ARPG
         private void SwitchAnimation()
         {
             anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
+        }
+
+
+        //TODO：使用专门的技能解释器来释放技能
+        protected  void Attack()
+        {
+            if(animSpeed != 0)
+                anim.SetTrigger(s_Attack);
+        }
+
+        protected  void Skill_1()
+        {
+            
+        }
+
+        protected  void Skill_2()
+        {
+            
+        }
+
+        protected  void Skill_3()
+        {
+            
         }
     }
 }

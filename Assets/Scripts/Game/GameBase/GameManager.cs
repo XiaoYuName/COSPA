@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -12,8 +13,9 @@ namespace ARPG
     { 
         //角色的公用预制体
         public Character Player; 
-
         
+
+
         /// <summary>
         /// 初始化加载战斗场景
         /// </summary>

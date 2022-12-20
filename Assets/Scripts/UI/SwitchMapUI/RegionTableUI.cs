@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ARPG.UI.Config;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace ARPG.UI

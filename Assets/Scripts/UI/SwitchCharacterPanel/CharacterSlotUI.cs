@@ -10,7 +10,6 @@ namespace ARPG.UI
     public class CharacterSlotUI : UIBase
     {
         private Image icon;
-        private bool isSelect;
         private int index;
         private GameObject SelectIcon;
         private Button SelectBtn;
@@ -19,7 +18,6 @@ namespace ARPG.UI
         public override void Init()
         {
             icon = GetComponent<Image>();
-            isSelect = false;
             index = default;
             SelectIcon = Get("Select");
             level = Get<TextMeshProUGUI>("Level");

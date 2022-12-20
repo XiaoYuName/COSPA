@@ -75,7 +75,12 @@ MonoBehaviour:
     isInit: 0
   - ID: DynamicJoystick
     Prefab: {fileID: 9123182228911863454, guid: 16bbeeb81b9ae14428e89b1b2a23e392, type: 3}
-    details: "\u89D2\u8272\u9009\u62E9\u51FA\u6218\u754C\u9762"
+    details: "\u79FB\u52A8\u6447\u6746"
+    parentName: UIPanel
+    isInit: 0
+  - ID: AttackButton
+    Prefab: {fileID: 7589517516281924467, guid: 7a8eed6e72bd5d54aa168a06bff43119, type: 3}
+    details: "\u653B\u51FB\u6309\u94AE\u7EC4"
     parentName: UIPanel
     isInit: 0
   UIParents:

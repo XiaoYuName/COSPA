@@ -65,11 +65,6 @@ namespace ARPG.Config
         [Header("战斗配置")]
         public AnimatorOverrideController AnimatorController;
         
-        
-        
-        
-        
-        
         [Header("角色基础属性")]
         public CharacterState State;
 
