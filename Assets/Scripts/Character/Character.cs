@@ -1,79 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using Spine.Unity;
+using TMPro;
 using UnityEngine;
 
-namespace ARPG.Character
+namespace ARPG
 {
     public class Character : MonoBehaviour
     {
-        public float speed;
-        private Rigidbody2D rb;
-        private SkeletonAnimation anim;
-        private Vector2 Movspeed;
-        private AnimationState _animationState;
-
-        [SpineAnimation]
-        public string animationname;
-
-        [SpineAnimation]
-        public string stopanimname;
-
-        [SpineAnimation]
-        public string Attackanimname;
-
-        private int State;
+        private CharacterState State;
+        private TextMeshPro NameTextUI;
+        private CharacterConfigInfo data;
+        private SkeletonMecanim Spine;
+        private Animator anim;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            anim = transform.GetComponentInChildren<SkeletonAnimation>();
-            State = 0;
-            SwitchAnimator(animationname, true);
-        }
-        
-        private void Update()
-        {
-            Movspeed.x = Input.GetAxisRaw("Horizontal");
-            Movspeed.y = Input.GetAxisRaw("Vertical");
-            if (Movspeed == Vector2.zero)
-            {
-                if (State == 1)
-                {
-                    SwitchAnimator(animationname, true);
-                }
-                State = 0;
-            }
-            else
-            {
-                if (State == 0)
-                {
-                    SwitchAnimator(stopanimname, true);
-                }
-                State = 1;
-            }
-            if (Movspeed.x != 0)
-            {
-                transform.rotation = Quaternion.Euler(0, Movspeed.x < 0 ? 180 : 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                SwitchAnimator(Attackanimname, false);
-            }
+            NameTextUI = transform.Find("CharacterName").GetComponent<TextMeshPro>();
+            Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
+            anim = Spine.GetComponent<Animator>();
         }
 
-        private void FixedUpdate()
+        public void Init(CharacterBag bag)
         {
-            rb.velocity = Movspeed.normalized * speed * Time.fixedDeltaTime;
-            
-        }
-
-
-        private void SwitchAnimator(string animName,bool isLoop)
-        {
-            anim.state.SetAnimation(0,animName, isLoop);
+            data = InventoryManager.Instance.GetCharacter(bag.ID);
+            State = bag.CurrentCharacterState;
+            NameTextUI.text = data.CharacterName;
+            Spine.skeletonDataAsset = data.SpineAsset;
+            Spine.Initialize(true);
+            anim.runtimeAnimatorController = data.AnimatorController;
         }
     }
 }

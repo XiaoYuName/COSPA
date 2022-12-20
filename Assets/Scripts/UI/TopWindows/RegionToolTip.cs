@@ -27,16 +27,6 @@ namespace ARPG.UI
             MapName = Get<TextMeshProUGUI>("UIMask/Back/Mask/Back/Farme/MapName");
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
             OpenBtn = Get<Button>("UIMask/Back/RightPanel/OpenBtn");
-            Bind(OpenBtn, delegate
-            {
-                void Func(SwitchCharacterPanel ui)
-                {
-                    ui.CreateChacacterSlotUI();
-                    MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
-                }
-                UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel",Func);
-                
-            }, UI_ToolAudio.OnChick.ToString());
         }
 
         public void InitData(RegionItem regionItem)
@@ -45,6 +35,16 @@ namespace ARPG.UI
             MapName.text = mapItem.ID;
             BackImage.sprite = mapItem.mapIcon;
             CreateSlotUI(mapItem.RewordItemList);
+
+            Bind(OpenBtn, delegate
+            {
+                void Func(SwitchCharacterPanel ui)
+                {
+                    ui.CreateChacacterSlotUI(regionItem);
+                    MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
+                }
+                UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel", Func);
+            }, "OnChick");
         }
 
         private void CreateSlotUI(List<ItemBag> Reword)

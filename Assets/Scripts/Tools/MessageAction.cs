@@ -1,4 +1,5 @@
 using System;
+using ARPG.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -7,16 +8,17 @@ namespace ARPG
     {
         #region 场景切换
 
-        public static event Action<string, Vector3> StartGameScene;
+        public static event Action<string, Vector3,CharacterBag> StartGameScene;
 
         /// <summary>
         /// 首次进入战斗场景
         /// </summary>
-        /// <param name="scneneName"></param>
-        /// <param name="pos"></param>
-        public static void OnStartGaneScene(string scneneName, Vector3 pos)
+        /// <param name="scneneName">场景名称</param>
+        /// <param name="pos">生成位置</param>
+        /// <param name="Character">玩家配置</param>
+        public static void OnStartGameScene(string scneneName, Vector3 pos,CharacterBag Character)
         {
-            StartGameScene?.Invoke(scneneName,pos);
+            StartGameScene?.Invoke(scneneName,pos,Character);
         }
 
         public static event Action<string, Vector3> TransitionEvent;

@@ -64,6 +64,7 @@ namespace ARPG.UI
                 RegionPanel mapPanel =  UISystem.Instance.GetUI<RegionPanel>("RegionPanel");
                 isClick = !isClick;
                 mapPanel.SetAnimator(isClick);
+                MainPanel.Instance.AddTbaleChild("RegionPanel");
                 mapPanel.CreateLineItemChlidUI(index);
             }, "OnChick");
         }

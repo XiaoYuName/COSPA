@@ -40,6 +40,12 @@ namespace ARPG.UI.Config
         public string RegionItemName;
         [Header("icon")]
         public Sprite backIcon;
+
+        [Header("地图场景名称"),Scene]
+        public string targetScene;
+
+        [Header("该场景的起始点坐标")]
+        public Vector3 StarPos;
     }
 }
 

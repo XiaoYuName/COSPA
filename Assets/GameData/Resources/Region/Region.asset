@@ -18,16 +18,20 @@ MonoBehaviour:
     RegionItemList:
     - RegionItemName: "\u6DF1\u6797\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: ce2cb9615ddbdb94ba3fe346092c1615, type: 3}
-      SceneName: MainScene
+      targetScene: SenLin
+      StarPos: {x: -9.36, y: -1.56, z: 0}
     - RegionItemName: "\u706B\u706B\u8001\u5BB6"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
-      SceneName: Root
+      targetScene: 
+      StarPos: {x: 0, y: 0, z: 0}
   - RegionName: "\u5929\u7A7A\u4E4B\u57CE"
     backIcon: {fileID: 21300000, guid: edf3ccfd7bd331d469d9eae52861d1e2, type: 3}
     RegionItemList:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
-      SceneName: Root
+      targetScene: 
+      StarPos: {x: 0, y: 0, z: 0}
     - RegionItemName: "\u65AD\u57A3\u6B8B\u58C1"
       backIcon: {fileID: 21300000, guid: 20e98a6e84a0e1540819ec78ab0d38e2, type: 3}
-      SceneName: Root
+      targetScene: 
+      StarPos: {x: 0, y: 0, z: 0}

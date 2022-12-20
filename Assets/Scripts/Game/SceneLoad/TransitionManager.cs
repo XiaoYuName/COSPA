@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using ARPG;
+using ARPG.Config;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,19 +39,15 @@ namespace RPG.Transition
             MessageAction.StartGameScene -= StarGameScen;
         }
 
-        private void StarGameScen(string SceneName,Vector3 pos)
+        private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data)
         {
             if (!isFade)
-                StartCoroutine(StartGameScene(SceneName,pos));
+                StartCoroutine(StartGameScene(SceneName,pos,data));
         }
 
-        private IEnumerator StartGameScene(string ScnenName, Vector3 pos)
+        private IEnumerator StartGameScene(string ScnenName, Vector3 pos,CharacterBag data)
         {
-            yield return Transition(ScnenName, pos);
-            // // yield return 
-            // Player Game = GameManager.Instance.GetPrefab<Player>("Player");
-            // yield return Instantiate(Game,pos,Quaternion.Euler(-45,0,0),
-            //     CharacterManager.Instance.transform);
+            yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos));
         }
 
 
@@ -91,6 +88,29 @@ namespace RPG.Transition
             MessageAction.OnAfterScenenLoadEvent();
             
         }
+        
+        
+        /// <summary>
+        /// 场景切换，并且等待func事件执行完毕
+        /// </summary>
+        /// <param name="sceneName">切换的场景名称</param>
+        /// <param name="targetpos">目标场景</param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        private IEnumerator Transition(string sceneName,Vector3 targetpos,IEnumerator func)
+        {
+            //卸载当前场景
+            MessageAction.OnBeforScenenUnloadEvent();
+            yield return Fade(1);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return LoadAsynScnen(sceneName);
+            yield return func;
+            yield return Fade(0);
+            MessageAction.OnAfterScenenLoadEvent();
+            
+        }
+        
+        
 
         /// <summary>
         /// 淡入淡出场景

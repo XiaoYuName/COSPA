@@ -81,6 +81,23 @@ namespace ARPG.UI
             if(ChildUITabel.Contains(table))
                 ChildUITabel.Remove(table);
         }
+
+        public void Close()
+        {
+            if (ChildUITabel.Count >= 1) //关闭所有子项菜单
+            {
+                //这里需要逆序遍历
+                for (int i = ChildUITabel.Count -1; i >= 0; i--)
+                {
+                    UISystem.Instance.CloseUI(ChildUITabel[i]);
+                }
+            }
+            
+            //关闭当前激活菜单
+            string UIname = Config.GetOpenName(currentType);
+            UISystem.Instance.CloseUI(UIname);
+            
+        }
     }
 
 }

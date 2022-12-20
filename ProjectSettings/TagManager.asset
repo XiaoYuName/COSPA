@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - fadeGroup
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 3487432409
+    locked: 0
+  - name: Player
+    uniqueID: 2304127523
+    locked: 0
+  - name: Eff
+    uniqueID: 1624051955
     locked: 0

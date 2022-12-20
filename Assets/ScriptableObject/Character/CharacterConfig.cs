@@ -61,6 +61,15 @@ namespace ARPG.Config
         /// 装备装备播放动画的动作名称
         /// </summary>
         public string EquipAnimName;
+
+        [Header("战斗配置")]
+        public AnimatorOverrideController AnimatorController;
+        
+        
+        
+        
+        
+        
         [Header("角色基础属性")]
         public CharacterState State;
 

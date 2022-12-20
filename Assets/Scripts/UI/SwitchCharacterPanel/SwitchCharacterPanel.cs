@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI.Config;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +14,7 @@ namespace ARPG.UI
         private RectTransform content;
         private List<CharacterSlotUI> SlotUis;
         private Button CloseBtn;
+        private Button FuncBtn;
         /// <summary>
         /// 选中的激活列表
         /// </summary>
@@ -24,13 +27,17 @@ namespace ARPG.UI
         private SelectSlotUI[] SelectSlotUis;
         private TextMeshProUGUI currentText;
         private TextMeshProUGUI maxText;
+        
+        private RegionItem currentRegion;
 
         public override void Init()
         {
             content = Get<RectTransform>("UIMask/Back/Info/Scroll View/Content");
             SlotUis = new List<CharacterSlotUI>();
             CloseBtn = Get<Button>("UIMask/Back/CloseBtn");
+            FuncBtn = Get<Button>("UIMask/Back/FuncBtn");
             Bind(CloseBtn, Close, "OutChick");
+            Bind(FuncBtn,OnClick,"OnChick");
             selectContent = Get<RectTransform>("UIMask/Back/Info/SelectPanel");
             SelectSlotUis = new SelectSlotUI[Settings.MaxSelectAmount];
             currentText = Get<TextMeshProUGUI>("UIMask/Back/Info/Row1/Image/CurrentAmount");
@@ -40,11 +47,12 @@ namespace ARPG.UI
         /// <summary>
         /// 创建出战角色UI
         /// </summary>
-        public void CreateChacacterSlotUI()
+        public void CreateChacacterSlotUI(RegionItem regionItem)
         {
             UIHelper.Clear(content);
             UIHelper.Clear(selectContent);
             SlotUis.Clear();
+            currentRegion = regionItem;
             SelectSlotUis = new SelectSlotUI[Settings.MaxSelectAmount];
             currentCount = 0;
             currentText.text = "当前出战: <color=red>" + currentCount + "</color>";
@@ -118,6 +126,19 @@ namespace ARPG.UI
         {
             base.Close();
             MainPanel.Instance.RemoveTableChild("SwitchCharacterPanel");
+        }
+
+        public void OnClick()
+        {
+            if (SelectSlotUis[0] != null && !String.IsNullOrEmpty(currentRegion.targetScene))
+            {
+                MessageAction.OnStartGameScene(currentRegion.targetScene,currentRegion.StarPos,SelectSlotUis[0].currentdata);
+                MainPanel.Instance.Close();
+            }
+            else
+            {
+                UISystem.Instance.ShowPopWindows("提示","请选择出战角色","确定");
+            }
         }
     }
 }
