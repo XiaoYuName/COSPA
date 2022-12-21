@@ -34,6 +34,8 @@ namespace ARPG
         /// </summary>
         private Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
 
+        [HideInInspector]public Transform body;
+
 
         private void Awake()
         {
@@ -54,6 +56,7 @@ namespace ARPG
             Spine.Initialize(true);
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3);
             anim.runtimeAnimatorController = data.AnimatorController;
+            body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             CreateSkillClass();
         }
 
@@ -70,6 +73,10 @@ namespace ARPG
                 SkillDic.Add(data.SkillTable[i].Type,skill);
                 skill.Init(this,skillItem);
                 attackButton.SetUI(data.SkillTable[i].Type, skillItem);
+                foreach (var pool in skillItem.Pools)
+                {
+                    ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(pool);
+                }
             }
         }
 

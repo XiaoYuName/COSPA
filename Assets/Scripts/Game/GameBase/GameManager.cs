@@ -58,6 +58,7 @@ namespace ARPG
             UISystem.Instance.OpenUI("GaneMemu");
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
+            ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
             yield return new WaitForSeconds(0);
         }
 

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Pool.Skill;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using Task = System.Threading.Tasks.Task;
 
 namespace ARPG
 {
@@ -26,6 +29,16 @@ namespace ARPG
         public override void Play()
         {
             Debug.Log("战士职业普通攻击");
+            Player.StartCoroutine(PlayFx());
+        }
+
+        private IEnumerator PlayFx()
+        {
+            yield return new WaitForSeconds(data.ReleaseTime);
+            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90; 
+            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, Player.body.position,
+                Quaternion.Euler(0,rotationY,-90)).GetComponent<_FxItem>();
+            fxItem.Play(Player,data);
         }
     }
     

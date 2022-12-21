@@ -18,9 +18,17 @@ namespace ARPG
         /// </summary>
         public float CD;
         /// <summary>
+        /// 持续时间
+        /// </summary>
+        public float Duration;
+        /// <summary>
+        /// 释放时间
+        /// </summary>
+        public float ReleaseTime;
+        /// <summary>
         /// 范围
         /// </summary>
-        public float Range;
+        public float Radius;
         /// <summary>
         /// 伤害
         /// </summary>
@@ -33,7 +41,8 @@ namespace ARPG
         /// 技能名称
         /// </summary>
         public string SkillName;
-        
+
+        public List<ARPG.Pool.Skill.Pool> Pools;
     }
 }
 

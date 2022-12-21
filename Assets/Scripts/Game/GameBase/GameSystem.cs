@@ -21,8 +21,7 @@ namespace ARPG
             base.Awake();
             Init();
         }
-
-
+        
         private void Init()
         {
             PrefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/GamePrefab");
