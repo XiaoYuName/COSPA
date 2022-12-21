@@ -83,6 +83,16 @@ MonoBehaviour:
     details: "\u653B\u51FB\u6309\u94AE\u7EC4"
     parentName: UIPanel
     isInit: 0
+  - ID: GaneMemu
+    Prefab: {fileID: 3678736201650618525, guid: 598b0366325a999428cf996ab677012f, type: 3}
+    details: "\u6E38\u620F\u573A\u666F\u4E0A\u65B9\u83DC\u5355"
+    parentName: UIPanel
+    isInit: 0
+  - ID: MemuPanel
+    Prefab: {fileID: 5318941951844196720, guid: cb73512df6a2224438e4f073aa39268d, type: 3}
+    details: "\u4E3B\u83DC\u5355\u754C\u9762"
+    parentName: UIPop
+    isInit: 0
   UIParents:
   - UIPanel
   - UIDialogue

@@ -31,7 +31,6 @@ namespace ARPG
         /// 初始化加载战斗场景
         /// </summary>
         /// <param name="bags">玩家列表</param>
-        /// <param name="LoadSceneName">加载的场景名称</param>
         /// <param name="enemyDatas">怪物组</param>
         public IEnumerator StarSceneGame(CharacterBag[] bags,Vector3 pos,EnemyData[] enemyDatas)
         {
@@ -53,12 +52,21 @@ namespace ARPG
             var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
+            UISystem.Instance.OpenUI("GaneMemu");
             yield return new WaitForSeconds(0);
         }
 
 
+        public void QuitGameScene()
+        {
+            UISystem.Instance.CloseUI("GaneMemu");
+            UISystem.Instance.CloseUI("MemuPanel");
+            MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+        }
 
-        
+
+
+
     }
 
 }

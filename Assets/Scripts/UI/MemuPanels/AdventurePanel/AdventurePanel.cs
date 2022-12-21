@@ -18,17 +18,13 @@ namespace ARPG.UI
         public override void Init()
         {
             XunLianBtn = Get<Button>("UIMask/Right/ChileBtn_XunLian");
-            Bind(XunLianBtn, delegate
-            {
-                Close();
-                MessageAction.OnTransitionEvent("MainScene",Vector3.zero);
-            }, "UI_click");
             OpenSwicthMapPanel = Get<Button>("UIMask/Right/MainPrincLine");
             Bind(OpenSwicthMapPanel, delegate
             {
                 FadeManager.Instance.PlayFade(2, delegate
                 {
                     UISystem.Instance.OpenUI("RegionPanel");
+                    MainPanel.Instance.AddTbaleChild("RegionPanel");
                 }, 1.5f);
             }, "UI_click");
         }

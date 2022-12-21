@@ -25,7 +25,9 @@ namespace ARPG.UI
         /// 副本
         /// </summary>
         private List<RegionLine> MainPrincList = new List<RegionLine>();
-        
+
+        private static readonly int s_ShowView = Animator.StringToHash("ShowView");
+
         public override void Init()
         {
             PrincProgress = Vector2Int.zero;
@@ -36,7 +38,6 @@ namespace ARPG.UI
             MainPrincList = MainConfig.RegionList;
             anim = GetComponent<Animator>();
             CreateLineItemUI();
-
         }
         
         /// <summary>
@@ -89,11 +90,12 @@ namespace ARPG.UI
 
         public void SetAnimator(bool isShow)
         {
-            anim.SetBool("ShowView",isShow);
+            anim.SetBool(s_ShowView,isShow);
         }
 
         public override void Close()
         {
+            SetAnimator(false);
             base.Close();
             MainPanel.Instance.RemoveTableChild("RegionPanel");
         }
