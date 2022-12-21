@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using Cinemachine;
 using UnityEngine;
 
 namespace ARPG
@@ -14,6 +15,7 @@ namespace ARPG
         //角色的公用预制体
         public Character Player;
         private SkillConfig SkillConfig;
+        private CinemachineVirtualCamera virtualCamera;
 
         protected override void Awake()
         {
@@ -31,6 +33,7 @@ namespace ARPG
         /// 初始化加载战斗场景
         /// </summary>
         /// <param name="bags">玩家列表</param>
+        /// <param name="pos">玩家初始位置</param>
         /// <param name="enemyDatas">怪物组</param>
         public IEnumerator StarSceneGame(CharacterBag[] bags,Vector3 pos,EnemyData[] enemyDatas)
         {
@@ -53,6 +56,8 @@ namespace ARPG
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
             UISystem.Instance.OpenUI("GaneMemu");
+            virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            virtualCamera.Follow = Player.transform;
             yield return new WaitForSeconds(0);
         }
 

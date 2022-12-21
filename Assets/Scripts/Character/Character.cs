@@ -109,6 +109,7 @@ namespace ARPG
             if (InputSpeed != Vector2.zero && animSpeed != 0)
             {
                 transform.rotation = Quaternion.Euler(0,InputSpeed.x <0 ? 180:0,0);
+                NameTextUI.transform.localRotation = Quaternion.Euler(0,0,0);
             }
         }
 
