@@ -105,13 +105,16 @@ namespace ARPG
             for (int i = 0; i < currentRegion.WaveItems[currentIndex].EnemyList.Count; i++)
             {
                 EnemyBag data = currentRegion.WaveItems[currentIndex].EnemyList[i];
-                GameObject Prefab = GetPrefab(data.dataID);
-                Vector3 pos = data.CreatePos;
-                int RandomX = (int)Random.Range(-data.Radius, data.Radius);
-                int RandomY = (int)Random.Range(-data.Radius, data.Radius);
-                Enemy enemy =  EnemyPoolManager.Release(Prefab, pos + new Vector3(RandomX, RandomY, 0), Quaternion.identity).GetComponent<Enemy>();
-                enemy.Init(GetData(data.dataID));
-                CurrenEnemys.Add(enemy);
+                for (int j = 0; j < data.count; j++)
+                {
+                    GameObject Prefab = GetPrefab(data.dataID);
+                    Vector3 pos = data.CreatePos;
+                    int RandomX = (int)Random.Range(data.MinRandius, data.MaxRadius);
+                    int RandomY = (int)Random.Range(data.MinRandius, data.MaxRadius);
+                    Enemy enemy =  EnemyPoolManager.Release(Prefab, pos + new Vector3(RandomX, RandomY, 0), Quaternion.identity).GetComponent<Enemy>();
+                    enemy.Init(j,GetData(data.dataID));
+                    CurrenEnemys.Add(enemy);
+                }
             }
             StartCoroutine(WaitCuurrentEnemyDead());
         }

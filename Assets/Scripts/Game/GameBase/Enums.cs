@@ -58,9 +58,7 @@ namespace ARPG
        稀有,
        神器,
    }
-
-
-
+   
    /// <summary>
    /// 常用UI音效类型
    /// </summary>
@@ -83,5 +81,14 @@ namespace ARPG
        /// </summary>
        PopWindows,
    }
+
+   public enum FSMType
+   {
+       /// <summary>
+       /// 巡逻状态
+       /// </summary>
+       PatrolFSM = 1,
+   }
+   
 
 }

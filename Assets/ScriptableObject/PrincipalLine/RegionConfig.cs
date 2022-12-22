@@ -91,8 +91,10 @@ namespace ARPG.UI.Config
         /// <summary>
         /// 随机范围
         /// </summary>
-        [Tooltip("随机范围")]
-        public float Radius;
+        [Tooltip("随机最大范围")]
+        public float MaxRadius;
+        [Tooltip("随机最小范围")]
+        public float MinRandius;
     }
 }
 

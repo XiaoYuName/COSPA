@@ -15,8 +15,9 @@ MonoBehaviour:
   BaseDatas:
   - ID: 200700
     EnemyName: "\u6811\u9B54"
+    Attackradius: 1.5
     icon: {fileID: 21300000, guid: 3085bdae72b11714a9794bf1901b5f15, type: 3}
-    Type: 2
+    Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     SpineAsset: {fileID: 11400000, guid: d8e2686d169cae7468e24ff6839c3225, type: 2}
     State:
@@ -31,11 +32,13 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
-      MovSpeed: 35
+      MovSpeed: 0.35
       Growth: 0.1
     SkillTable: []
+    Animator: {fileID: 22100000, guid: a5150adc347f1fd46abdabfaed6fe302, type: 2}
   - ID: 200900
     EnemyName: "\u6811\u7CBE"
+    Attackradius: 1.5
     icon: {fileID: 21300000, guid: cbd111aa8b3fd3848889cd89ca040932, type: 3}
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
@@ -52,11 +55,13 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
-      MovSpeed: 35
+      MovSpeed: 0.0015
       Growth: 0.1
     SkillTable: []
+    Animator: {fileID: 0}
   - ID: 201200
     EnemyName: "\u77F3\u5DE8\u4EBA"
+    Attackradius: 1.5
     icon: {fileID: 21300000, guid: 6b91eb23738af62478980ef39767f2d7, type: 3}
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
@@ -76,8 +81,10 @@ MonoBehaviour:
       MovSpeed: 35
       Growth: 0.1
     SkillTable: []
+    Animator: {fileID: 0}
   - ID: 201200
     EnemyName: "\u5E7C\u5E74\u72EE\u9E6B"
+    Attackradius: 1.5
     icon: {fileID: 21300000, guid: 99a04f12fed99b748b3fb33ee46b563c, type: 3}
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
@@ -97,3 +104,4 @@ MonoBehaviour:
       MovSpeed: 35
       Growth: 0.1
     SkillTable: []
+    Animator: {fileID: 0}

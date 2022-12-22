@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Spine.Unity;
 using UnityEngine;
 
@@ -23,6 +24,11 @@ namespace ARPG.Config
         [Header("名字")]
         public string EnemyName;
 
+        /// <summary>
+        /// 攻击范围
+        /// </summary>
+        public float Attackradius;
+
         [Header("头像")]
         public Sprite icon;
 
@@ -40,6 +46,9 @@ namespace ARPG.Config
 
         [Header("技能")]
         public List<CharacterSkill> SkillTable;
+
+        [Tooltip("复用动画组件")]
+        public AnimatorOverrideController Animator;
     }
 
     public enum EnemyType
