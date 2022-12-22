@@ -71,7 +71,7 @@ namespace ARPG
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;
                 SkillDic.Add(data.SkillTable[i].Type,skill);
-                skill.Init(this,skillItem);
+                if (skill != null) skill.Init(this, skillItem);
                 attackButton.SetUI(data.SkillTable[i].Type, skillItem);
                 foreach (var pool in skillItem.Pools)
                 {

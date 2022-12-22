@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI.Config;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,6 +43,12 @@ namespace ARPG.UI
         {
             SelectIcon.gameObject.SetActive(active);
             SelectBtn.interactable = !active;
+        }
+
+
+        public void InitData(EnemyBag data)
+        {
+            
         }
     }
 }

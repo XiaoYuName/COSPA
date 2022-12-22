@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace ARPG.Pool
+namespace ARPG.BasePool
 {
     /// <summary>
     /// 泛型单例对象池

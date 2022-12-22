@@ -5,7 +5,7 @@ using ARPG.Config;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace ARPG
+namespace ARPG.BasePool
 {
     public class VideoManager : Singleton<VideoManager>
     {

@@ -7,7 +7,7 @@ using ARPG.UI;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 
-namespace ARPG
+namespace ARPG.BasePool
 {
     public class UIAvVideoItem : UIBase
     {

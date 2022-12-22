@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using ARPG.UI.Config;
 using NaughtyAttributes;
 using UnityEngine;
@@ -46,6 +47,43 @@ namespace ARPG.UI.Config
 
         [Header("该场景的起始点坐标")]
         public Vector3 StarPos;
+
+        [Header("生成怪物设置")]
+        
+        [Tooltip("列表中每一条代表一波怪物,列表的长度代表该地图的总波数")]
+        public List<WaveItem> WaveItems;
+        [Tooltip("每波怪物刷新时间间隔")]
+        public float WaveTime;
+        [Tooltip("是否上一波必须全部死亡才能刷新下一波")]
+        public bool isDeadNext;
+    }
+
+    [System.Serializable]
+    public class WaveItem
+    {
+        /// <summary>
+        /// 该波数怪物与数量
+        /// </summary>
+        public List<EnemyBag> EnemyList;
+
+        [Tooltip("每个怪物生成的时间间隔")]
+        public float CreateTime;
+    }
+
+    /// <summary>
+    /// 怪物的背包类，该类是在其他类中调用显示的
+    /// </summary>
+    [System.Serializable]
+    public class EnemyBag
+    {
+        /// <summary>
+        /// EnemyData ID
+        /// </summary>
+        public string dataID;
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int count;//
     }
 }
 

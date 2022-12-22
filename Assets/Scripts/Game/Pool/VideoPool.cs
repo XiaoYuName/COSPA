@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using ARPG;
-using ARPG.Pool;
-using UnityEngine;
-using UnityEngine.Pool;
-using UnityEngine.Video;
-
-public class VideoPool : BasePool<UIVideoItem>
+namespace ARPG.BasePool
 {
-    protected override void Awake()
+    public class VideoPool : BasePool<UIVideoItem>
     {
-        base.Awake();
-        Init();
+        protected override void Awake()
+        {
+            base.Awake();
+            Init();
+        }
     }
 }
+

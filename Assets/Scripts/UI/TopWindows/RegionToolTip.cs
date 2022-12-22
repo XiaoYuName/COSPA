@@ -14,6 +14,8 @@ namespace ARPG.UI
         private Button OpenBtn;
         private RectTransform ItemContent;
         private RectTransform RewordContent;
+        private RectTransform EnemyContent;
+        
         private TextMeshProUGUI MapName;
         private Image BackImage;
         private MapConfig MapConfig;
@@ -23,6 +25,7 @@ namespace ARPG.UI
             Bind(CloseBtn,Close,UI_ToolAudio.OutChick.ToString());
             ItemContent = Get<RectTransform>("UIMask/Back/LeftPanel/ItemRow/Content");
             RewordContent = Get<RectTransform>("UIMask/Back/LeftPanel/RewordRow/Content");
+            EnemyContent = Get<RectTransform>("UIMask/Back/LeftPanel/EnemyRow/Panel");
             BackImage = Get<Image>("UIMask/Back/Mask/Back");
             MapName = Get<TextMeshProUGUI>("UIMask/Back/Mask/Back/Farme/MapName");
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
@@ -35,7 +38,12 @@ namespace ARPG.UI
             MapName.text = mapItem.ID;
             BackImage.sprite = mapItem.mapIcon;
             CreateSlotUI(mapItem.RewordItemList);
-
+            UIHelper.Clear(EnemyContent);
+            for (int i = 0; i < regionItem.WaveItems.Count; i++)
+            {
+                CreateEnemyUI(i,regionItem.WaveItems[i].EnemyList);
+            }
+            
             Bind(OpenBtn, delegate
             {
                 void Func(SwitchCharacterPanel ui)
@@ -54,6 +62,16 @@ namespace ARPG.UI
             {
                 SlotUI Slot = UISystem.Instance.InstanceUI<SlotUI>("SlotUI",ItemContent);
                 Slot.InitData(Item,delegate {  });
+            }
+        }
+
+
+        private void CreateEnemyUI(int win,List<EnemyBag> Enemys)
+        {
+            foreach (var Item in Enemys)
+            {
+                EnemySlotUI Slot = UISystem.Instance.InstanceUI<EnemySlotUI>("EnemySlotUI",EnemyContent);
+                Slot.InitData(win,Item);
             }
         }
 

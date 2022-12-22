@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ARPG.Pool;
 using UnityEngine;
 
-namespace ARPG
+namespace ARPG.BasePool
 {
     public class AvVideoPool : BasePool<UIAvVideoItem>
     {
