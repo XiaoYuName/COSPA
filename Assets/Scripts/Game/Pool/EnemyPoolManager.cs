@@ -40,15 +40,9 @@ namespace ARPG
          }
       }
 
-      public void AddPoolPrefab(EnemyBag Item)
+      public void AddPoolPrefab(Pool.Skill.Pool Item)
       {
-         Pool.Skill.Pool Obj = new Pool.Skill.Pool
-         {
-            count = Item.count,
-            prefab = EnemyManager.Instance.GetPrefab(Item.dataID)
-         };
-         
-         Pools.Add(Obj);
+         Pools.Add(Item);
       }
 
 

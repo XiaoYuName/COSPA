@@ -84,6 +84,15 @@ namespace ARPG.UI.Config
         /// 数量
         /// </summary>
         public int count;//
+        /// <summary>
+        /// 出生位置
+        /// </summary>
+        public Vector3 CreatePos;
+        /// <summary>
+        /// 随机范围
+        /// </summary>
+        [Tooltip("随机范围")]
+        public float Radius;
     }
 }
 

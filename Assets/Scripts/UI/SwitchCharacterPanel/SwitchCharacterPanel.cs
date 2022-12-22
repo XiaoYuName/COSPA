@@ -133,7 +133,7 @@ namespace ARPG.UI
             if (SelectSlotUis[0] != null && !String.IsNullOrEmpty(currentRegion.targetScene))
             {
                 Close();
-                MessageAction.OnStartGameScene(currentRegion.targetScene,currentRegion.StarPos,SelectSlotUis[0].currentdata);
+                MessageAction.OnStartGameScene(currentRegion.targetScene,currentRegion.StarPos,SelectSlotUis[0].currentdata,currentRegion);
                 MainPanel.Instance.Close();
             }
             else

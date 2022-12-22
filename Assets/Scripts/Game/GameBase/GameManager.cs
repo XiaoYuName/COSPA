@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI.Config;
 using Cinemachine;
 using UnityEngine;
 
@@ -33,24 +34,9 @@ namespace ARPG
         /// 初始化加载战斗场景
         /// </summary>
         /// <param name="bags">玩家列表</param>
-        /// <param name="pos">玩家初始位置</param>
-        /// <param name="enemyDatas">怪物组</param>
-        public IEnumerator StarSceneGame(CharacterBag[] bags,Vector3 pos,EnemyData[] enemyDatas)
-        {
-            for (int i = 0; i < bags.Length; i++)
-            {
-                yield return StarSceneGame(bags[i], pos);
-            }
-            yield return null;
-            //TODO: 加载怪物预制体
-        }
-        
-        /// <summary>
-        /// 初始化加载战斗场景
-        /// </summary>
-        /// <param name="bags">玩家列表</param>
         /// <param name="pos">玩家位置</param>
-        public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos)
+        /// <param name="regionItem">敌人配置</param>
+        public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionItem regionItem)
         {
             var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
             Player =  Instantiate(Obj, pos, Quaternion.identity);
@@ -59,7 +45,7 @@ namespace ARPG
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
             ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
-            yield return new WaitForSeconds(0);
+            yield return EnemyManager.Instance.CreateEnemy(regionItem);
         }
 
 

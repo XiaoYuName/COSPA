@@ -380,6 +380,18 @@ namespace ARPG
             ui.ShowPopWindows(title,des,btn1,btn2,func1,func2);
         }
 
+        /// <summary>
+        /// 显示倒计时UI
+        /// </summary>
+        /// <param name="time">倒计时时间</param>
+        /// <param name="func">倒计时结束回调函数</param>
+        public void DownTime(float time, Action func)
+        {
+            DownTime downTime = GetUI<DownTime>("DownTime");
+            downTime.transform.SetAsLastSibling();
+            downTime.DownTiem(time,func);
+        }
+
         #endregion
 
     }

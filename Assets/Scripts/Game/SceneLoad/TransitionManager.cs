@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ARPG;
 using ARPG.Config;
+using ARPG.UI.Config;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,15 +40,16 @@ namespace RPG.Transition
             MessageAction.StartGameScene -= StarGameScen;
         }
 
-        private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data)
+        private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data,RegionItem regionItem)
         {
             if (!isFade)
-                StartCoroutine(StartGameScene(SceneName,pos,data));
+                StartCoroutine(StartGameScene(SceneName,pos,data,regionItem));
         }
 
-        private IEnumerator StartGameScene(string ScnenName, Vector3 pos,CharacterBag data)
+        private IEnumerator StartGameScene(string ScnenName, Vector3 pos,CharacterBag data,RegionItem regionItem)
         {
-            yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos));
+            yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos,regionItem));
+            EnemyManager.Instance.PlayEnemy();
         }
 
 
