@@ -55,7 +55,8 @@ namespace ARPG
                 await Task.Delay(1200);
             });
             await t;
-            gameObject.SetActive(false);
+            if(gameObject != null)
+                gameObject.SetActive(false);
         }
         
     }

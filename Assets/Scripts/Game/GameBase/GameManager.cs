@@ -88,6 +88,7 @@ namespace ARPG
                     if (isCirtical)
                     {
                         //暴击了
+                        // ReSharper disable once PossibleLossOfFraction
                         Physics *= (2.5d+attackState.CirticalAttack/10);
                     }
 

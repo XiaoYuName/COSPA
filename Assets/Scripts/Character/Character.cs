@@ -16,6 +16,7 @@ namespace ARPG
         protected SkeletonMecanim Spine;
         protected Animator anim;
         protected AttackButton attackButton;
+        public Transform[] SpineBodys;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         
         
@@ -57,6 +58,7 @@ namespace ARPG
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3);
             anim.runtimeAnimatorController = data.AnimatorController;
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
+            SpineBodys = body.GetComponentsInChildren<Transform>();
             CreateSkillClass();
         }
 

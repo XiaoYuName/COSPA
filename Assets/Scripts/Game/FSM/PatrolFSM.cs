@@ -39,7 +39,7 @@ namespace ARPG
             else
             {
                 enemy.transform.position = Vector2.Lerp(enemy.transform.position, 
-                    targetPos, EnemyState.MovSpeed * Time.deltaTime);
+                    targetPos, Random.value*EnemyState.MovSpeed * Time.deltaTime);
                 Flip(enemy);
             }
         }
@@ -58,14 +58,7 @@ namespace ARPG
 
         public void Flip(Enemy enemy)
         {
-            if (enemy.transform.position.x < GameManager.Instance.Player.transform.position.x)
-            {
-                enemy.transform.rotation = Quaternion.Euler(0,180,0);
-            }
-            else
-            {
-                enemy.transform.rotation = Quaternion.Euler(0,0,0);
-            }
+            enemy.transform.rotation = Quaternion.Euler(0, enemy.transform.position.x < targetPos.x ? 180 : 0, 0);
         }
 
         public override void BehaviourEnd(Enemy enemy)

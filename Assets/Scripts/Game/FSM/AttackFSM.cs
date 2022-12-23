@@ -8,10 +8,11 @@ namespace ARPG
     {
         private Vector3 tagretPos;
         private static readonly int s_Attack = Animator.StringToHash("Attack");
+        private float valueSpeed;
 
         public override void BehaviourStart(Enemy enemy)
         {
-            
+            valueSpeed = Random.value;
         }
 
         public override void BehaviourUpdate(Enemy enemy)
@@ -26,13 +27,13 @@ namespace ARPG
             else
             {
                 enemy.transform.position = Vector2.Lerp(enemy.transform.position, 
-                    tagretPos, enemy.GetState().MovSpeed * Time.deltaTime);
+                    tagretPos, enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
                 Flip(enemy);
             }
         }
         public void Flip(Enemy enemy)
         {
-            enemy.transform.rotation = Quaternion.Euler(0, enemy.transform.position.x < GameManager.Instance.Player.transform.position.x ? 180 : 0, 0);
+            enemy.transform.rotation = Quaternion.Euler(0, enemy.transform.position.x < tagretPos.x ? 180 : 0, 0);
         }
         
 
