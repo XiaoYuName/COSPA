@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
 using ARPG.Pool.Skill;
+using ARPG.UI;
 using ARPG.UI.Config;
 using Cinemachine;
 using UnityEngine;
@@ -20,6 +21,10 @@ namespace ARPG
         private SkillConfig SkillConfig;
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
+        /// <summary>
+        /// 是否在战斗场景
+        /// </summary>
+        [HideInInspector]public bool isGameScnen;
 
         protected override void Awake()
         {
@@ -48,6 +53,7 @@ namespace ARPG
             UISystem.Instance.OpenUI("GaneMemu");
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
+            isGameScnen = true;
             ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(new Pool.Skill.Pool
             {
                 prefab = DamageWordUI,
@@ -60,8 +66,11 @@ namespace ARPG
 
         public void QuitGameScene()
         {
+            isGameScnen = false;
             UISystem.Instance.CloseUI("GaneMemu");
             UISystem.Instance.CloseUI("MemuPanel");
+            UISystem.Instance.CloseUI("DownTime");
+            EnemyManager.Instance.QuitGameScene();
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
 

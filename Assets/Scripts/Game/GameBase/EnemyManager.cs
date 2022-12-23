@@ -23,9 +23,7 @@ namespace ARPG
             base.Awake();
             config = ConfigManager.LoadConfig<EnemyConfig>("Character/EnemyData");
         }
-
-      
-
+        
         /// <summary>
         /// 获取Enemy配置数据
         /// </summary>
@@ -120,6 +118,7 @@ namespace ARPG
             StartCoroutine(WaitCuurrentEnemyDead());
         }
         
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// 等待当前列表内怪物全部死亡，开始进行下一波怪物调用
         /// </summary>
@@ -130,22 +129,19 @@ namespace ARPG
             {
                 yield return null;
             }
-            InstanceEnemy();
+            if(GameManager.Instance.isGameScnen)
+                InstanceEnemy();
         }
 
-        //TODO: 使用异步编程实现
-        // protected async void WaitEnemyDead()
-        // {
-        //     await Task.Run(delegate
-        //     {
-        //         while (CurrenEnemys is { Count: >= 1 })
-        //         {
-        //             Thread.Sleep(1000);
-        //         }
-        //     });
-        //     
-        //     
-        // }
+        public void QuitGameScene()
+        {
+            foreach (var curren in CurrenEnemys)
+            {
+                curren.gameObject.SetActive(false);
+                curren.QuitFSM();  
+            }
+            CurrenEnemys.Clear();
+        }
     }
 }
 

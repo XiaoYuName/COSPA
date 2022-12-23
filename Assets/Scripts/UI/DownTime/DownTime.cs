@@ -14,6 +14,7 @@ namespace ARPG.UI
     {
         private TextMeshProUGUI DownTimeText;
         private WaitForSeconds _seconds;
+        private Coroutine _coroutine;
         public override void Init()
         {
             DownTimeText = Get<TextMeshProUGUI>("DownTime");
@@ -23,7 +24,7 @@ namespace ARPG.UI
         public void DownTiem(float time, Action func)
         {
             Open();
-            StartCoroutine(DownTimeWait(time, func));
+            _coroutine = StartCoroutine(DownTimeWait(time, func));
         }
         
         IEnumerator DownTimeWait(float time,Action func)
@@ -41,6 +42,17 @@ namespace ARPG.UI
             yield return _seconds;
             func?.Invoke();
             Close();
+        }
+        
+        public override void Close()
+        {
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+            base.Close();
+            
         }
     }
 }

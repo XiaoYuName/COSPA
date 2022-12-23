@@ -57,6 +57,13 @@ namespace ARPG
 
         public void SwitchFSM(FSMType type)
         {
+            if (type == FSMType.Note)
+            {
+                FSM?.BehaviourEnd(this);
+                FSM = null;
+                return;
+            }
+
             string ClassName = "ARPG."+type;
             animState = (int)type;
             var Type = System.Type.GetType(ClassName);
@@ -74,6 +81,11 @@ namespace ARPG
             
         }
 
+        public void QuitFSM()
+        {
+            SwitchFSM(FSMType.Note);
+            FSM = null;
+        }
 
         public void OnCollisionEnter2D(Collision2D other)
         {

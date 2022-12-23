@@ -85,6 +85,10 @@ namespace ARPG
    public enum FSMType
    {
        /// <summary>
+       /// 空状态机
+       /// </summary>
+       Note = 99,
+       /// <summary>
        /// 待机状态
        /// </summary>
        IdleFSM = 0,
