@@ -74,7 +74,7 @@ namespace ARPG
 
         public override void OnColliderEnter2D(Collision2D other, Enemy enemy)
         {
-            if (other.gameObject.CompareTag("Ground"))
+            if (other.gameObject.CompareTag($"Ground"))
             {
                 SetRandomPoint();
             }

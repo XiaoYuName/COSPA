@@ -85,9 +85,18 @@ namespace ARPG
    public enum FSMType
    {
        /// <summary>
+       /// 待机状态
+       /// </summary>
+       IdleFSM = 0,
+       /// <summary>
        /// 巡逻状态
        /// </summary>
        PatrolFSM = 1,
+       AttackFSM = 2,
+       /// <summary>
+       /// 受伤状态
+       /// </summary>
+       DamageFSM = 9,
    }
 
    

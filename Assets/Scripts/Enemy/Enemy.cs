@@ -17,7 +17,8 @@ namespace ARPG
         /// <summary>
         /// 动画控制器
         /// </summary>
-        protected Animator anim;
+        [HideInInspector]public Animator anim;
+        protected int animState = 0; 
         /// <summary>
         /// 数据
         /// </summary>
@@ -28,6 +29,8 @@ namespace ARPG
         protected CharacterState State;
         protected FSMBehaviour FSM;
         [HideInInspector]public Rigidbody2D rb;
+        private static readonly int s_State = Animator.StringToHash("State");
+
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
@@ -44,7 +47,7 @@ namespace ARPG
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             //TODO: 开始进入FSM状态
             anim.runtimeAnimatorController = data.Animator;
-            SwitchFSM(FSMType.PatrolFSM);
+            SwitchFSM(FSMType.IdleFSM);
         }
 
         protected void Update()
@@ -55,6 +58,7 @@ namespace ARPG
         public void SwitchFSM(FSMType type)
         {
             string ClassName = "ARPG."+type;
+            animState = (int)type;
             var Type = System.Type.GetType(ClassName);
             if (Type == null)
             {
@@ -65,7 +69,9 @@ namespace ARPG
             if (FSM != null)
                 FSM.BehaviourEnd(this);
             FSM = Obj as FSMBehaviour;
-            FSM.BehaviourStart(this);
+            anim.SetInteger(s_State,animState);
+            if (FSM != null) FSM.BehaviourStart(this);
+            
         }
 
 
@@ -86,7 +92,7 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-           Debug.Log("受到伤害 ："+Damage);
+           SwitchFSM(FSMType.DamageFSM);
         }
     }
 }
