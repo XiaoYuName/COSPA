@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8410642262970412114}
   m_Layer: 13
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +84,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9c38d30f2e5ae4883d2d7755b54ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    ID: 
+    EnemyName: 
+    Attackradius: 0
+    icon: {fileID: 0}
+    Type: 0
+    Prefab: {fileID: 0}
+    SpineAsset: {fileID: 0}
+    State:
+      PhysicsAttack: 0
+      MagicAttack: 0
+      Defense: 0
+      HP: 0
+      AddHp: 0
+      SkillAttack: 0
+      Cirtical: 0
+      CirticalAttack: 0
+      Power: 0
+      Intelligence: 0
+      AttackSpeed: 0
+      MovSpeed: 0
+      Growth: 0
+    SkillTable: []
+    Animator: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &599150381622781951
 GameObject:
   m_ObjectHideFlags: 0

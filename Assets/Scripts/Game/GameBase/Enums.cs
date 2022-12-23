@@ -89,6 +89,25 @@ namespace ARPG
        /// </summary>
        PatrolFSM = 1,
    }
+
    
+   /// <summary>
+   /// 伤害类型
+   /// </summary>
+   public enum DamageType
+   {
+       /// <summary>
+       /// 物理伤害
+       /// </summary>
+       Physics = 1,
+       /// <summary>
+       /// 魔法伤害
+       /// </summary>
+       Magic = 2,
+       /// <summary>
+       /// 治疗伤害
+       /// </summary>
+       Treatment = 3,
+   }
 
 }

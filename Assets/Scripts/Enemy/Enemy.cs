@@ -8,7 +8,7 @@ using Object = System.Object;
 
 namespace ARPG
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour,IDamage
     {
         /// <summary>
         /// Spine 动画
@@ -77,6 +77,16 @@ namespace ARPG
         public void OnCollisionExit2D(Collision2D other)
         {
             FSM.OnColliderExit2D(other,this);
+        }
+
+        public CharacterState GetState()
+        {
+            return State;
+        }
+
+        public void IDamage(int Damage)
+        {
+           Debug.Log("受到伤害 ："+Damage);
         }
     }
 }

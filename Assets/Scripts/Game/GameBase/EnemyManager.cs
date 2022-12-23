@@ -16,6 +16,7 @@ namespace ARPG
         private RegionItem currentRegion;
         private List<Enemy> CurrenEnemys;
         private int currentIndex; //当前生产Enemy的波数
+        private int currentAmount; //当前波数剩余的怪物数，当数量为0时，重新生成下一波怪物
 
         protected override void Awake()
         {

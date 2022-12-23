@@ -61,6 +61,13 @@ namespace ARPG
 
             throw new Exception("没有对应的Sprite文件");
         }
+
+        public static string GetDamageText(DamageType type,bool isCirct,string Damage)
+        {
+            string sprite = "";
+            sprite = isCirct ? "Cirtical" : type.ToString();
+            return GetSpineText(sprite,Damage);
+        }
     }
 
     public enum TextAnimaType

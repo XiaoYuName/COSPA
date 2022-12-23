@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace ARPG
 {
-    public  class Character : MonoBehaviour
+    public  class Character : MonoBehaviour,IDamage
     {
         protected CharacterState State;
         private TextMeshPro NameTextUI;
@@ -145,6 +145,18 @@ namespace ARPG
         }
 
         protected  void Skill_3()
+        {
+            
+        }
+
+        //----------------------------攻击接口---------------------------//
+        public CharacterState GetState()
+        {
+            return State;
+        }
+        
+
+        public void IDamage(int Damage)
         {
             
         }

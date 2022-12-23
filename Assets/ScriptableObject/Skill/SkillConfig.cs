@@ -41,8 +41,28 @@ namespace ARPG
         /// 技能名称
         /// </summary>
         public string SkillName;
-
+        /// <summary>
+        /// 技能类型
+        /// </summary>
+        public SkillDamageState SkillType;
+        
         public List<ARPG.Pool.Skill.Pool> Pools;
+    }
+
+    [System.Serializable]
+    public class SkillDamageState
+    {
+        /// <summary>
+        /// 伤害类型
+        /// </summary>
+        [Tooltip("伤害的类型")]
+        public DamageType type;
+        [Tooltip("是否是多段伤害的")]
+        public bool isMultistage;
+        [Tooltip("多段伤害的伤害间隔")]
+        public bool MultistageTime; 
+        [Tooltip("多段伤害的数据： 请注意多段伤害的计算是：首先命中目标后立即执行技能基础伤害,之后每x秒间隔后执行下一段伤害")]
+        public List<int> MultistageDamage;
     }
 }
 

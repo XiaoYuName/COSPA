@@ -15,12 +15,17 @@ MonoBehaviour:
   BaseDatas:
   - ID: SkillSoldierAttack
     CD: 1
-    Duration: 4
+    Duration: 2
     ReleaseTime: 0.5
     Radius: 2.5
-    Diamage: 50
+    Diamage: 5
     icon: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
     SkillName: "\u6218\u58EB\u804C\u4E1A\u666E\u901A\u653B\u51FB"
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 10
@@ -32,4 +37,9 @@ MonoBehaviour:
     Diamage: 50
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u9B54\u6CD5\u5E08\u804C\u4E1A\u666E\u901A\u653B\u51FB"
+    SkillType:
+      type: 0
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
     Pools: []

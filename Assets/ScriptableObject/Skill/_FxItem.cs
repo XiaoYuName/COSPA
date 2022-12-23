@@ -8,6 +8,8 @@ namespace ARPG
     public class _FxItem : MonoBehaviour
     {
         private CircleCollider2D Collider2D;
+        protected Character currentPlayer;
+        private SkillItem currentdata;
         private void Awake()
         {
             Collider2D = GetComponent<CircleCollider2D>();
@@ -21,6 +23,8 @@ namespace ARPG
         /// <param name="data">技能数据</param>
         public void Play(Character Player,SkillItem data)
         {
+            currentdata = data;
+            this.currentPlayer = Player;
             Collider2D.radius = data.Radius;
             StartCoroutine(WaitDuration(data.Duration));
         }
@@ -33,9 +37,10 @@ namespace ARPG
 
         public void OnTriggerEnter2D(Collider2D col)
         {
-            if (gameObject.activeSelf)
+            if (gameObject.activeSelf && col.gameObject.CompareTag($"Character"))
             {
-                
+                var hitPoint = col.bounds.ClosestPoint(transform.position);
+                GameManager.Instance.OptionDamage(currentPlayer,col.GetComponent<Enemy>(),currentdata,hitPoint);
             }
         }
     }
