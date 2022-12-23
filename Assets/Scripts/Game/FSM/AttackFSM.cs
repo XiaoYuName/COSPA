@@ -17,7 +17,7 @@ namespace ARPG
         public override void BehaviourUpdate(Enemy enemy)
         {
             tagretPos = GameManager.Instance.Player.transform.position;
-            //1.判断我与玩家的位置,如果大于普通攻击范围内,则追击到攻击范围内
+            //1.判断我与玩家的位置,如果大于普通攻击范围内同时,判断自身类型,如果是普通小怪，则只有普通攻击,如果是精英怪,则随机开始进入一个特殊的技能状态直到结束,则追击到攻击范围内
             if (Vector2.Distance(enemy.transform.position, tagretPos) < enemy.data.Attackradius)
             {
                 //发送攻击,TODO: 发动技能
