@@ -59,8 +59,8 @@ namespace ARPG
                 prefab = DamageWordUI,
                 count =  100,
             });
-            ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
             yield return EnemyManager.Instance.CreateEnemy(regionItem);
+            ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
         }
 
 
