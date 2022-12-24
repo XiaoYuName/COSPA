@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ARPG.Pool.Skill
@@ -41,6 +42,9 @@ namespace ARPG.Pool.Skill
 
       public void AddPoolPrefab(Pool Item)
       {
+         //是否有相同的预制体
+         if (Pools.Any(p => p.prefab == Item.prefab))
+            return;
          Pools.Add(Item);
       }
 

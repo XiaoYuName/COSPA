@@ -1903,7 +1903,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7809a38ff8d0e3449957af6cedf14110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pools: []
+  Pools:
+  - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
+    count: 50
 --- !u!1 &1870156019
 GameObject:
   m_ObjectHideFlags: 0

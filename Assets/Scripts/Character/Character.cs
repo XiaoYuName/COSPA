@@ -45,13 +45,14 @@ namespace ARPG
             anim = Spine.GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
             Joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
+            Joystick.gameObject.SetActive(true);
             attackButton = UISystem.Instance.GetUI<AttackButton>("AttackButton");
         }
 
         public void Init(CharacterBag bag)
         {
             data = InventoryManager.Instance.GetCharacter(bag.ID);
-            State = bag.CurrentCharacterState;
+            State = bag.CurrentCharacterState.Clone() as CharacterState;
             NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.SpineAsset;
             Spine.Initialize(true);
@@ -160,7 +161,7 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-            
+            anim.SetTrigger("Damage");
         }
     }
 }

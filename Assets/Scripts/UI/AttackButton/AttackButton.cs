@@ -46,6 +46,7 @@ namespace ARPG
 
         public void InitBindButton(Action attack, Action skill_1, Action skill_2, Action skill_3)
         {
+            Open();
             Bind(AttackBtn,attack,"OnChick");
             Bind(SkillBtn_1,skill_1,"OnChick");
             Bind(SkillBtn_2,skill_2,"OnChick");

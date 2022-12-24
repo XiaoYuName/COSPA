@@ -87,8 +87,8 @@ namespace ARPG
             }
             EnemyPoolManager.Instance.Init();
         }
-        
-        
+
+
         public void PlayEnemy()
         {
             //如果加载好的新场景是当前数据的目标场景，那么就表示场景加载已完毕，开始准备刷怪
@@ -146,22 +146,10 @@ namespace ARPG
             InstanceEnemy();
         }
 
-
-        // ReSharper disable Unity.PerformanceAnalysis
+        
         /// <summary>
-        /// 等待当前列表内怪物全部死亡，开始进行下一波怪物调用
+        /// 退出战斗场景事件
         /// </summary>
-        /// <returns></returns>
-        private IEnumerator WaitCuurrentEnemyDead()
-        {
-            while (CurrenEnemys is { Count: >= 1 })
-            {
-                yield return null;
-            }
-            if(GameManager.Instance.isGameScnen)
-                InstanceEnemy();
-        }
-
         public void QuitGameScene()
         {
             foreach (var curren in CurrenEnemys)
@@ -169,9 +157,9 @@ namespace ARPG
                 curren.gameObject.SetActive(false);
                 curren.QuitFSM();  
             }
-
             currentIndex = 0;
             CurrenEnemys.Clear();
+            EnemyPoolManager.Instance.RemoveAllPool();
         }
     }
 }

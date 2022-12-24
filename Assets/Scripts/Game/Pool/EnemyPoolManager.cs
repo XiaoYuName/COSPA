@@ -42,7 +42,16 @@ namespace ARPG
 
       public void AddPoolPrefab(Pool.Skill.Pool Item)
       {
-         Pools.Add(Item);
+            Pools.Add(Item);
+      }
+
+      /// <summary>
+      /// 清空所有预制体对象池,释放内存
+      /// </summary>
+      public void RemoveAllPool()
+      {
+         UIHelper.Clear(gameObject.transform);
+         Pools.Clear();
       }
 
 

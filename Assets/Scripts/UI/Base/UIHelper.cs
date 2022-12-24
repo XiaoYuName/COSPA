@@ -20,4 +20,16 @@ public static class UIHelper
             Object.Destroy(child.gameObject);
         }
     }
+
+    /// <summary>
+    /// 清空所有子物体
+    /// </summary>
+    /// <param name="transform">子物体的父级物体</param>
+    public static void Clear(Transform transform)
+    {
+        foreach (Transform child in transform)
+        {
+            Object.Destroy(child.gameObject);
+        }
+    }
 }

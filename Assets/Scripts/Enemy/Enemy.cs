@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 using Object = System.Object;
@@ -43,15 +44,13 @@ namespace ARPG
             data = Data;
             State = data.State;
             State = data.State.Clone() as CharacterState;
-            Spine.skeletonDataAsset = data.SpineAsset;
-            Spine.Initialize(true);
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             //TODO: 开始进入FSM状态
             anim.runtimeAnimatorController = data.Animator;
             CreateSkillClass();
             SwitchFSM(FSMType.IdleFSM);
-           
         }
+        
         private void CreateSkillClass()
         {
             SkillDic.Clear();
@@ -64,10 +63,6 @@ namespace ARPG
                 Skill skill = Activator.CreateInstance(type) as Skill;
                 SkillDic.Add(data.SkillTable[i].Type,skill);
                 if (skill != null) skill.Init(this, skillItem);
-                foreach (var pool in skillItem.Pools)
-                {
-                    ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(pool);
-                }
             }
         }
         

@@ -44,7 +44,7 @@ MonoBehaviour:
       MultistageDamage: 
     Pools: []
   - ID: SkillEnemySoldierAttack
-    CD: 1
+    CD: 2.5
     Duration: 0.5
     ReleaseTime: 0.5
     Radius: 2.5
@@ -58,4 +58,4 @@ MonoBehaviour:
       MultistageDamage: 
     Pools:
     - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
-      count: 10
+      count: 999

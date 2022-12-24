@@ -15,7 +15,7 @@ namespace ARPG
         public override void BehaviourStart(Enemy enemy)
         {
             valueSpeed = Random.value;
-           AttackCD =  GameManager.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
+            AttackCD =  GameManager.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
         }
 
         public override void BehaviourUpdate(Enemy enemy)

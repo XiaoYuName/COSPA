@@ -37,9 +37,6 @@ namespace ARPG.Config
         
         [Header("预制体")]
         public GameObject Prefab;
-
-        [Header("Spine源文件")] 
-        public SkeletonDataAsset SpineAsset;
         
         [Header("自身属性")]
         public CharacterState State;
