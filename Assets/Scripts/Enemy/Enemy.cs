@@ -30,7 +30,7 @@ namespace ARPG
         protected FSMBehaviour FSM;
         [HideInInspector]public Rigidbody2D rb;
         private static readonly int s_State = Animator.StringToHash("State");
-
+        public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
@@ -42,6 +42,7 @@ namespace ARPG
         {
             data = Data;
             State = data.State;
+            State = data.State.Clone() as CharacterState;
             Spine.skeletonDataAsset = data.SpineAsset;
             Spine.Initialize(true);
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
@@ -49,6 +50,25 @@ namespace ARPG
             anim.runtimeAnimatorController = data.Animator;
             SwitchFSM(FSMType.IdleFSM);
         }
+        private void CreateSkillClass()
+        {
+            SkillDic.Clear();
+            for (int i = 0; i < data.SkillTable.Count; i++)
+            {
+                if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
+                SkillItem skillItem = GameManager.Instance.GetSkill(data.SkillTable[i].SkillID);
+                Type type = Type.GetType("ARPG." +skillItem.ID);
+                if (type == null) return;
+                Skill skill = Activator.CreateInstance(type) as Skill;
+                SkillDic.Add(data.SkillTable[i].Type,skill);
+                if (skill != null) skill.Init(this, skillItem);
+                foreach (var pool in skillItem.Pools)
+                {
+                    ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(pool);
+                }
+            }
+        }
+        
 
         protected void Update()
         {
@@ -104,7 +124,8 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-           SwitchFSM(FSMType.DamageFSM);
+            State.HP -= Damage;
+            SwitchFSM(FSMType.DamageFSM);
         }
     }
 }

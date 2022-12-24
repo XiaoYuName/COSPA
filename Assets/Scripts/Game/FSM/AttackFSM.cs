@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -23,6 +24,7 @@ namespace ARPG
             {
                 //发送攻击,TODO: 发动技能
                 enemy.anim.SetTrigger(s_Attack);
+                enemy.SkillDic[SkillType.Attack].Play();
             }
             else
             {

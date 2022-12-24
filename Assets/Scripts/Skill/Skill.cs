@@ -8,10 +8,17 @@ namespace ARPG
     {
         protected Character Player;
         protected SkillItem data;
+        protected Enemy Enemy;
 
         public virtual void Init(Character character, SkillItem item)
         {
             Player = character;
+            data = item;
+        }
+
+        public virtual void Init(Enemy enemy, SkillItem item)
+        {
+            Enemy = enemy;
             data = item;
         }
 
@@ -48,6 +55,27 @@ namespace ARPG
         {
             Debug.Log("魔法师职业普通攻击");
         }
+    }
+
+    /// <summary>
+    /// 怪物普通攻击
+    /// </summary>
+    public class SkillEnemySoldierAttack : Skill
+    {
+        public override void Play()
+        {
+            Debug.Log("怪物普通攻击");
+            Enemy.StartCoroutine(PlayFx());
+        }
+        private IEnumerator PlayFx()
+        {
+            yield return new WaitForSeconds(data.ReleaseTime);
+            float rotationY = Enemy.transform.rotation.eulerAngles.y > 0 ? -90:90; 
+            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, Enemy.transform.position,
+                Quaternion.Euler(0,rotationY,-90)).GetComponent<_FxItem>();
+            fxItem.Play(Enemy,data);
+        }
+        
     }
 }
 

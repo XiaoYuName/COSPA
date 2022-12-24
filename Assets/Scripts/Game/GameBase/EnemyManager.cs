@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using ARPG.Config;
 using ARPG.UI.Config;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace ARPG
 {
@@ -101,6 +103,11 @@ namespace ARPG
         {
             //1.首先生成第一波怪物
             CurrenEnemys = new List<Enemy>();
+            if (currentIndex > currentRegion.WaveItems.Count -1)
+            {
+                Debug.Log("所有波段敌人全部死亡,战斗结束");
+                return;
+            }
             for (int i = 0; i < currentRegion.WaveItems[currentIndex].EnemyList.Count; i++)
             {
                 EnemyBag data = currentRegion.WaveItems[currentIndex].EnemyList[i];
@@ -115,9 +122,31 @@ namespace ARPG
                     CurrenEnemys.Add(enemy);
                 }
             }
-            StartCoroutine(WaitCuurrentEnemyDead());
+            // StartCoroutine(WaitCuurrentEnemyDead());
         }
-        
+
+        /// <summary>
+        /// 当前波数敌人死亡
+        /// </summary>
+        /// <param name="diEnemy"></param>
+        public void DieCurrentEnemy(Enemy diEnemy)
+        {
+            if (!CurrenEnemys.Contains(diEnemy))
+            {
+                throw new Exception("出现了不在当前波段中的敌人");
+            }
+            CurrenEnemys.Remove(diEnemy);
+            if (CurrenEnemys.Count > 0) //如果当前波段还有敌人,则直接返回,如果没有敌人了,则进行刷新下一波敌人
+            {
+                Debug.Log("当前波段还有敌人");
+                return;
+            }
+
+            currentIndex++;
+            InstanceEnemy();
+        }
+
+
         // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// 等待当前列表内怪物全部死亡，开始进行下一波怪物调用
@@ -140,6 +169,8 @@ namespace ARPG
                 curren.gameObject.SetActive(false);
                 curren.QuitFSM();  
             }
+
+            currentIndex = 0;
             CurrenEnemys.Clear();
         }
     }

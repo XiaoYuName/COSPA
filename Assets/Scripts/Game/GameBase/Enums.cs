@@ -101,6 +101,10 @@ namespace ARPG
        /// 受伤状态
        /// </summary>
        DamageFSM = 9,
+       /// <summary>
+       /// 死亡状态
+       /// </summary>
+       DieFSM = 10,
    }
 
    

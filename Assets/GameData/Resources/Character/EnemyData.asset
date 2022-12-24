@@ -34,7 +34,9 @@ MonoBehaviour:
       AttackSpeed: 1
       MovSpeed: 0.35
       Growth: 0.1
-    SkillTable: []
+    SkillTable:
+    - SkillID: SkillEnemySoldierAttack
+      Type: 0
     Animator: {fileID: 22100000, guid: a5150adc347f1fd46abdabfaed6fe302, type: 2}
   - ID: 200900
     EnemyName: "\u6811\u7CBE"
@@ -44,8 +46,8 @@ MonoBehaviour:
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     SpineAsset: {fileID: 11400000, guid: 6558507df1d03734f89d1eb2ddd08616, type: 2}
     State:
-      PhysicsAttack: 15
-      MagicAttack: 30
+      PhysicsAttack: 30
+      MagicAttack: 15
       Defense: 8
       HP: 100
       AddHp: 2
@@ -55,10 +57,12 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
-      MovSpeed: 0.0015
+      MovSpeed: 0.5
       Growth: 0.1
-    SkillTable: []
-    Animator: {fileID: 0}
+    SkillTable:
+    - SkillID: SkillEnemySoldierAttack
+      Type: 0
+    Animator: {fileID: 22100000, guid: 3ca18ae3502d4794a9a2bcdfb7297f1b, type: 2}
   - ID: 201200
     EnemyName: "\u77F3\u5DE8\u4EBA"
     Attackradius: 1.5
@@ -80,8 +84,10 @@ MonoBehaviour:
       AttackSpeed: 1
       MovSpeed: 35
       Growth: 0.1
-    SkillTable: []
-    Animator: {fileID: 0}
+    SkillTable:
+    - SkillID: SkillEnemySoldierAttack
+      Type: 0
+    Animator: {fileID: 22100000, guid: c655e3b3f9e84ce45b0e1ed4973094d8, type: 2}
   - ID: 201200
     EnemyName: "\u5E7C\u5E74\u72EE\u9E6B"
     Attackradius: 1.5
@@ -103,5 +109,7 @@ MonoBehaviour:
       AttackSpeed: 1
       MovSpeed: 35
       Growth: 0.1
-    SkillTable: []
-    Animator: {fileID: 0}
+    SkillTable:
+    - SkillID: SkillEnemySoldierAttack
+      Type: 0
+    Animator: {fileID: 22100000, guid: 0bc25ab2f5bb30d46b3e5bd056be9b12, type: 2}

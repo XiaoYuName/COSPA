@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
 using UnityEngine;
 using Spine.Unity;
@@ -97,7 +100,7 @@ namespace ARPG.Config
     }
 
     [System.Serializable]
-    public class CharacterState
+    public class CharacterState:ICloneable
     {
         [Header("物理攻击")]
         public int PhysicsAttack;
@@ -137,6 +140,11 @@ namespace ARPG.Config
 
         [Header("成长系数"),Range(0.1f,100)]
         public float Growth;
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 
     [System.Serializable]

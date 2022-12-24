@@ -43,3 +43,19 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+  - ID: SkillEnemySoldierAttack
+    CD: 1
+    Duration: 0.5
+    ReleaseTime: 0.5
+    Radius: 2.5
+    Diamage: 15
+    icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
+    SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
+      count: 10

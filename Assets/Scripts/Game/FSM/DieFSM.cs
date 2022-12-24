@@ -4,23 +4,25 @@ using UnityEngine;
 
 namespace ARPG
 {
-    public class DamageFSM : FSMBehaviour
+    public class DieFSM : FSMBehaviour
     {
-        private static readonly int s_Damage = Animator.StringToHash("Damage");
-
         public override void BehaviourStart(Enemy enemy)
         {
-            enemy.anim.SetTrigger(s_Damage);
-            enemy.SwitchFSM(enemy.GetState().HP > 0 ? FSMType.AttackFSM : FSMType.DieFSM);
+            WaitUtils.WaitTimeDo(1, () =>
+            {
+                enemy.gameObject.SetActive(false);//释放线程池资源
+                EnemyManager.Instance.DieCurrentEnemy(enemy);
+            });
         }
 
         public override void BehaviourUpdate(Enemy enemy)
         {
+            
         }
 
         public override void BehaviourEnd(Enemy enemy)
         {
-           
+            
         }
 
         public override void OnColliderEnter2D(Collision2D other, Enemy enemy)
@@ -33,5 +35,5 @@ namespace ARPG
             
         }
     }
-}
 
+}

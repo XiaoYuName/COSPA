@@ -91,6 +91,12 @@ namespace ARPG.UI
         {
             anim.SetBool("ShowView",isShow);
         }
+
+        public override void Close()
+        {
+            base.Close();
+            MainPanel.Instance.RemoveTableChild("SwicthMapPanel");
+        }
     }
 }
 
