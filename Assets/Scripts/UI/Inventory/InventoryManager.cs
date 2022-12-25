@@ -49,12 +49,22 @@ namespace ARPG
         }
 
         /// <summary>
-        /// 获取玩家角色背包
+        /// 获取玩家所有角色背包
         /// </summary>
         /// <returns></returns>
-        public List<CharacterBag> GetBag()
+        public List<CharacterBag> GetAllBag()
         {
             return UserBag.CharacterBags;
+        }
+
+        /// <summary>
+        /// 获取角色背包
+        /// </summary>
+        /// <param name="ID">ID</param>
+        /// <returns></returns>
+        public CharacterBag GetBag(string ID)
+        {
+            return UserBag.CharacterBags.Find(c => c.ID == ID);
         }
 
         /// <summary>

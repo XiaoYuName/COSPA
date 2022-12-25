@@ -24,7 +24,7 @@ namespace ARPG.UI
         private void InitData()
         {
             UIHelper.Clear(content);
-            characterBags = InventoryManager.Instance.GetBag();
+            characterBags = InventoryManager.Instance.GetAllBag();
 
             foreach (var data in characterBags)
             {

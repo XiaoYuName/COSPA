@@ -22,11 +22,21 @@ namespace ARPG.Config
     {
         [Header("背景弹窗")]
         public Sprite mapIcon;
-
-
+        
         [Header("奖励Item 列表")]
         public List<ItemBag> RewordItemList;
 
-        // public List<Ite>
+        [Header("奖励货币列表")]
+        public ItemBag[] MoneyReword;
+
+        public MapItem()
+        {
+            MoneyReword = new[]
+            {
+                new ItemBag {ID = Settings.GemsthoneID, count = 0},
+                new ItemBag {ID = Settings.ManaID, count = 0},
+                new ItemBag {ID = Settings.ExpID, count = 0},
+            };
+        }
     }
 }

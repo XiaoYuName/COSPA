@@ -21,6 +21,8 @@ namespace ARPG.UI
         /// </summary>
         private Slider LevelSlider;
 
+        private TextMeshProUGUI LevelSliderText;
+
         /// <summary>
         /// 好感度滑动条
         /// </summary>
@@ -32,13 +34,70 @@ namespace ARPG.UI
             FavorabilityText = Get<TextMeshProUGUI>("Favorability/Value");
             LevelSlider = Get<Slider>("LevelSlider");
             FavorabilitySlider = Get<Slider>("FavorabilitySlider");
+            LevelSliderText = Get<TextMeshProUGUI>("LevelSlider/SliderText");
         }
 
 
         public IEnumerator OpentionLevelAndFavorability(MapItem Reword)
         {
+            CharacterBag characterBag = InventoryManager.Instance.GetBag(
+                GameManager.Instance.Player.currentBag.ID);
             
+            LevelText.text = characterBag.Level.ToString();
+            FavorabilityText.text = characterBag.Favorability.ToString();
+            
+            LevelSlider.value = characterBag.exp;
+            LevelSlider.minValue = 0;
+            LevelSlider.maxValue = characterBag.MaxExp;
+            for (int i = 0; i < Reword.MoneyReword.Length; i++)
+            {
+                if (Reword.MoneyReword[i].ID != Settings.ExpID) continue;
+                if (Reword.MoneyReword[i].count > 0)
+                {
+                    yield return AddUserExp(characterBag, Reword.MoneyReword[i].count);
+                }
+            }
+
             yield return null;
+        }
+
+        private IEnumerator AddUserExp(CharacterBag bag,int value)
+        {
+            //1.获取经验差值
+            int lerp = bag.MaxExp - bag.exp;  // 30
+            int temp = 0;
+            if (value >= lerp)
+            {
+                while (true)
+                {
+                    temp += 1;
+                    if (temp >= LevelSlider.maxValue)
+                    {
+                        bag.Level++;
+                        LevelSlider.maxValue = (Settings.deftualExp * bag.Level) * bag.currentStar;
+                        LevelText.text = bag.Level.ToString();
+                        LevelSlider.value = 0;
+                        LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+                        bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;
+                        bag.exp = 0;
+                        int sValue = value - lerp;
+                        yield return AddUserExp(bag, sValue);
+                        yield break;
+                    }
+                    LevelSlider.value += temp;
+                    LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+                    yield return new WaitForSeconds(0.15f);
+                }
+            }
+            while (temp < value)
+            {
+                temp += 1;
+                LevelSlider.value += temp;
+                bag.exp = temp;
+                LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+                yield return new WaitForSeconds(0.15f);
+            }
+            
         }
     }
 }

@@ -39,7 +39,8 @@ namespace ARPG.UI
             //2.Player 坐标转换为UI坐标系
             Vector3 UIPoint = Camera.main.WorldToScreenPoint(playerPoint);
             //3.在UI坐标系下生成LevelPanel信息
-            LevelPanelUI panelUI =  UISystem.Instance.InstanceUI<LevelPanelUI>("LevelPanelUI",UIPoint,Quaternion.identity);
+            LevelPanelUI panelUI =  UISystem.Instance.InstanceUI<LevelPanelUI>("LevelPanelUI",gameObject.transform);
+            panelUI.transform.position = UIPoint;
             yield return panelUI.OpentionLevelAndFavorability(Reword);
             //4.进入下一个界面,进行奖励界面的处理
             

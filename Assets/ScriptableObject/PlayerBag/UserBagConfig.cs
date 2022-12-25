@@ -67,6 +67,13 @@ namespace ARPG.Config
         /// </summary>
         public int exp;
         
+        public int MaxExp;
+        
+        /// <summary>
+        /// 好感度经验值
+        /// </summary>
+        public int Favorabexp;
+        
         //--------------装备槽---------------------//
         public EquipHelo[] equipHelos;
         

@@ -16,6 +16,9 @@ namespace ARPG
 
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
 
+        //基础经验值: 经验值计算公式 :(基础经验值)*当前等级*(角色基础星级)
+        public const int deftualExp = 30;
+
 
         /// <summary>
         /// 宝石ID
@@ -26,6 +29,11 @@ namespace ARPG
         /// 玛那ID
         /// </summary>
         public const string ManaID = "94001";
+
+        /// <summary>
+        /// 经验值ID
+        /// </summary>
+        public const string ExpID = "92001";
     }
 }
 

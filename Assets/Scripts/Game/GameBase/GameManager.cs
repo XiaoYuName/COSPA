@@ -49,6 +49,7 @@ namespace ARPG
         /// <param name="regionItem">敌人配置</param>
         public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionItem regionItem)
         {
+            currentRegion = regionItem;
             var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
@@ -98,6 +99,7 @@ namespace ARPG
             wordPoint.z = 0;
             Player.animSpeed = 0;
             Player.isAI = true;
+            Player.rb.velocity = Vector2.zero;
             _coroutine ??= StartCoroutine(MovZeroPoint(wordPoint));
         }
 

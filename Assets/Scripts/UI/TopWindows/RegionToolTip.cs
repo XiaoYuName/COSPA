@@ -43,6 +43,8 @@ namespace ARPG.UI
             {
                 CreateEnemyUI(i,regionItem.WaveItems[i].EnemyList);
             }
+            UIHelper.Clear(RewordContent);
+            CreateMontySlotUI(mapItem.MoneyReword);
             
             Bind(OpenBtn, delegate
             {
@@ -55,6 +57,10 @@ namespace ARPG.UI
             }, "OnChick");
         }
 
+        /// <summary>
+        /// 生成Item信息
+        /// </summary>
+        /// <param name="Reword"></param>
         private void CreateSlotUI(List<ItemBag> Reword)
         {
             UIHelper.Clear(ItemContent);
@@ -64,14 +70,31 @@ namespace ARPG.UI
                 Slot.InitData(Item,delegate {  });
             }
         }
-
-
+        
+        /// <summary>
+        /// 生成怪物信息
+        /// </summary>
+        /// <param name="win">波数</param>
+        /// <param name="Enemys">怪物</param>
         private void CreateEnemyUI(int win,List<EnemyBag> Enemys)
         {
             foreach (var Item in Enemys)
             {
                 EnemySlotUI Slot = UISystem.Instance.InstanceUI<EnemySlotUI>("EnemySlotUI",EnemyContent);
                 Slot.InitData(win,Item);
+            }
+        }
+
+        /// <summary>
+        /// 生成货币奖励详情
+        /// </summary>
+        /// <param name="Reword"></param>
+        private void CreateMontySlotUI(ItemBag[] Reword)
+        {
+            foreach (var Item in Reword)
+            {
+                MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",RewordContent);
+                Slot.InitData(Item);
             }
         }
 

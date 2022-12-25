@@ -10,6 +10,10 @@ namespace ARPG
 {
     public  class Character : MonoBehaviour,IDamage
     {
+        /// <summary>
+        /// 在背包的数据
+        /// </summary>
+        [HideInInspector] public CharacterBag currentBag;
         protected CharacterState State;
         private TextMeshPro NameTextUI;
         protected CharacterConfigInfo data;
@@ -18,10 +22,11 @@ namespace ARPG
         protected AttackButton attackButton;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
+
         
         
         //--------------------------Movenemt--------------------------//
-        private Rigidbody2D rb;
+        [HideInInspector]public Rigidbody2D rb;
         /// <summary>
         /// 摇杆组件
         /// </summary>
@@ -54,6 +59,7 @@ namespace ARPG
         public void Init(CharacterBag bag)
         {
             isAI = false;
+            currentBag = bag;
             data = InventoryManager.Instance.GetCharacter(bag.ID);
             State = bag.CurrentCharacterState.Clone() as CharacterState;
             NameTextUI.text = data.CharacterName;
@@ -103,7 +109,6 @@ namespace ARPG
         /// </summary>
         private void Movenemt()
         {
-            
             if (InputSpeed != Vector2.zero)
             {
                 rb.velocity = InputSpeed.normalized * State.MovSpeed  * animSpeed* Time.fixedDeltaTime;
@@ -129,7 +134,8 @@ namespace ARPG
 
         private void SwitchAnimation()
         {
-            anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
+            if(!isAI)
+                anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
         }
 
 
