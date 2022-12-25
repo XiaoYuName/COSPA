@@ -97,8 +97,47 @@ namespace ARPG.Config
         /// <returns></returns>
         public CharacterState Operation()
         {
+            
             //TODO: 暂时测试返回默认基础属性
-            return InventoryManager.Instance.GetCharacter(ID).State;
+            CharacterState state = InventoryManager.Instance.GetCharacter(ID).State.Clone() as CharacterState;
+            for (int i = 0; i < equipHelos.Length; i++)
+            {
+                for (int E = 0; E < equipHelos[i].item.attribute.Count; E++)
+                {
+                    switch (equipHelos[i].item.attribute[E].Mode)
+                    {
+                        case StateMode.物理攻击力:
+                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.魔法攻击力:
+                            state.MagicAttack += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.生命值:
+                            state.HP += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.生命恢复:
+                            state.AddHp += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.防御力:
+                            state.Defense += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.技能攻击力:
+                            state.SkillAttack += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.暴击率:
+                            state.Cirtical += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.暴击伤害:
+                            state.CirticalAttack += equipHelos[i].item.attribute[E].value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+
+            return state;
         }
 
 

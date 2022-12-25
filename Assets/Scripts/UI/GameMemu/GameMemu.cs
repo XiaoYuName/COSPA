@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,17 @@ namespace ARPG.UI
     public class GameMemu : UIBase
     {
         private Button QuitBtn;
+        private TextMeshProUGUI VaveText;
         public override void Init()
         {
-            QuitBtn = GetComponent<Button>();
+            QuitBtn = Get<Button>("MemuBtn");
+            VaveText = Get<TextMeshProUGUI>("Vave/Count");
             Bind(QuitBtn,()=>UISystem.Instance.OpenUI("MemuPanel"),"OnChick");
+        }
+
+        public void SetVaveText(string amount)
+        {
+            VaveText.text = amount;
         }
     }
 }

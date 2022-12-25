@@ -13,6 +13,8 @@ namespace ARPG
         public const int MaxSelectAmount = 1;
 
         public const float isDownTime = 1.25f;
+
+        public static readonly Vector3 zeroView = new Vector3(0.5F, 0.45F, 0);
     }
 }
 

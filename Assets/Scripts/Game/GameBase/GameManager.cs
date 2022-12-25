@@ -50,7 +50,7 @@ namespace ARPG
             var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
-            UISystem.Instance.OpenUI("GaneMemu");
+            UISystem.Instance.OpenUI("GameMemu");
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
             isGameScnen = true;
@@ -67,7 +67,7 @@ namespace ARPG
         public void QuitGameScene()
         {
             isGameScnen = false;
-            UISystem.Instance.CloseUI("GaneMemu");
+            UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("MemuPanel");
             UISystem.Instance.CloseUI("DownTime");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
@@ -75,6 +75,45 @@ namespace ARPG
             UISystem.Instance.CloseUI("AttackButton");
             EnemyManager.Instance.QuitGameScene();
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+        }
+
+        private Coroutine _coroutine;
+        public void VictoryGameScene()
+        {
+            UISystem.Instance.CloseUI("GameMemu");
+            UISystem.Instance.CloseUI("DownTime");
+            DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
+            joystick.gameObject.SetActive(false);
+            UISystem.Instance.CloseUI("AttackButton");
+            Vector3 wordPoint = Camera.main.ViewportToWorldPoint(Settings.zeroView);
+            wordPoint.z = 0;
+            _coroutine ??= StartCoroutine(MovZeroPoint(wordPoint));
+        }
+
+        /// <summary>
+        /// 移動玩家到UI中心點位置
+        /// </summary>
+        /// <param name="zeroPoint"></param>
+        /// <returns></returns>
+        private IEnumerator MovZeroPoint(Vector3 zeroPoint)
+        {
+            while (Vector3.Distance(Player.transform.position,zeroPoint) >0.5f)
+            {
+                Player.transform.localPosition = Vector3.MoveTowards(Player.transform.localPosition, zeroPoint, 3.5f*Time.deltaTime);
+                Player.anim.SetBool("isMovenemt",true);
+                yield return null;
+            }
+            //2.播放胜利庆祝动画
+            Player.anim.SetBool("isMovenemt",true);
+            Player.anim.SetTrigger("Victory");
+            //3.显示胜利UI
+            yield return new WaitForSeconds(1.25f);
+            void Func(GameEnd ui)
+            {
+                ui.ShowEndGame();
+            }
+            UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
+            _coroutine = null;
         }
 
 

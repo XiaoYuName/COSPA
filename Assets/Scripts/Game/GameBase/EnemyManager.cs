@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ARPG.Config;
+using ARPG.UI;
 using ARPG.UI.Config;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ namespace ARPG
         private List<Enemy> CurrenEnemys;
         private int currentIndex; //当前生产Enemy的波数
         private int currentAmount; //当前波数剩余的怪物数，当数量为0时，重新生成下一波怪物
+        private GameMemu GameMemu;
 
         protected override void Awake()
         {
@@ -55,6 +57,8 @@ namespace ARPG
         {
             //1. 先把所有的怪物预加载上去
             currentRegion = data;
+            GameMemu = UISystem.Instance.GetUI<GameMemu>("GameMemu");
+           
             List<Pool.Skill.Pool> CreatBag = new List<Pool.Skill.Pool>();
             
             for (int i = 0; i < data.WaveItems.Count; i++)  //循环每波敌人
@@ -105,7 +109,7 @@ namespace ARPG
             CurrenEnemys = new List<Enemy>();
             if (currentIndex > currentRegion.WaveItems.Count -1)
             {
-                Debug.Log("所有波段敌人全部死亡,战斗结束");
+                GameManager.Instance.VictoryGameScene();
                 return;
             }
             for (int i = 0; i < currentRegion.WaveItems[currentIndex].EnemyList.Count; i++)
@@ -122,7 +126,9 @@ namespace ARPG
                     CurrenEnemys.Add(enemy);
                 }
             }
-            // StartCoroutine(WaitCuurrentEnemyDead());
+
+            string amount = 1+currentIndex + "/" + currentRegion.WaveItems.Count;
+            GameMemu.SetVaveText(amount);
         }
 
         /// <summary>

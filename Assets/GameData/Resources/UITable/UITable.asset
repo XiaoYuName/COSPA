@@ -83,7 +83,7 @@ MonoBehaviour:
     details: "\u653B\u51FB\u6309\u94AE\u7EC4"
     parentName: UIPanel
     isInit: 0
-  - ID: GaneMemu
+  - ID: GameMemu
     Prefab: {fileID: 3678736201650618525, guid: 598b0366325a999428cf996ab677012f, type: 3}
     details: "\u6E38\u620F\u573A\u666F\u4E0A\u65B9\u83DC\u5355"
     parentName: UIPanel
@@ -97,6 +97,11 @@ MonoBehaviour:
     Prefab: {fileID: 2844500558598246377, guid: 43d8ac125e0499b44b2e2772345f2a06, type: 3}
     details: "\u5012\u8BA1\u65F6UI"
     parentName: UITop
+    isInit: 0
+  - ID: GameEnd
+    Prefab: {fileID: 6841626619055234857, guid: 6b9d95ee345f553428d341b3784b3d85, type: 3}
+    details: "\u6218\u6597\u7ED3\u675F\u7ED3\u7B97UI"
+    parentName: UIPanel
     isInit: 0
   UIParents:
   - UIPanel
