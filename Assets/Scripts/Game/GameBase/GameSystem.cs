@@ -16,6 +16,13 @@ namespace ARPG
         /// </summary>
         private UIPrefab PrefabConfig;
 
+        /// <summary>
+        /// 副本奖励配置表
+        /// </summary>
+        private MapConfig MapConfig;
+        
+        private SkillConfig SkillConfig;
+
         protected override void Awake()
         {
             base.Awake();
@@ -25,9 +32,24 @@ namespace ARPG
         private void Init()
         {
             PrefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/GamePrefab");
+            MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
+            SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
         }
 
-
+        public SkillItem GetSkill(string id)
+        {
+            return SkillConfig.Get(id);
+        }
+        
+        /// <summary>
+        /// 获取单个地图副本的奖励配置
+        /// </summary>
+        /// <param name="id">副本ID</param>
+        /// <returns></returns>
+        public MapItem GetMapReword(string id)
+        {
+            return MapConfig.Get(id);
+        }
 
         
         /// <summary>

@@ -26,5 +26,7 @@ namespace ARPG.Config
 
         [Header("奖励Item 列表")]
         public List<ItemBag> RewordItemList;
+
+        // public List<Ite>
     }
 }

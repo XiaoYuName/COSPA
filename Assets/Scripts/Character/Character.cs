@@ -71,7 +71,7 @@ namespace ARPG
             for (int i = 0; i < data.SkillTable.Length; i++)
             {
                 if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
-                SkillItem skillItem = GameManager.Instance.GetSkill(data.SkillTable[i].SkillID);
+                SkillItem skillItem = GameSystem.Instance.GetSkill(data.SkillTable[i].SkillID);
                 Type type = Type.GetType("ARPG." +skillItem.ID);
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;

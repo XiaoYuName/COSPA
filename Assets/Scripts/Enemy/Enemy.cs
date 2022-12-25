@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI;
 using Spine;
 using Spine.Unity;
 using UnityEngine;
@@ -57,7 +58,7 @@ namespace ARPG
             for (int i = 0; i < data.SkillTable.Count; i++)
             {
                 if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
-                SkillItem skillItem = GameManager.Instance.GetSkill(data.SkillTable[i].SkillID);
+                SkillItem skillItem = GameSystem.Instance.GetSkill(data.SkillTable[i].SkillID);
                 Type type = Type.GetType("ARPG." +skillItem.ID);
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;

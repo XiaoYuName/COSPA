@@ -52,10 +52,6 @@ namespace ARPG.UI.Config
         
         [Tooltip("列表中每一条代表一波怪物,列表的长度代表该地图的总波数")]
         public List<WaveItem> WaveItems;
-        [Tooltip("每波怪物刷新时间间隔")]
-        public float WaveTime;
-        [Tooltip("是否上一波必须全部死亡才能刷新下一波")]
-        public bool isDeadNext;
     }
 
     [System.Serializable]

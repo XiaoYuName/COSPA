@@ -18,7 +18,11 @@ namespace ARPG
     { 
         //角色的公用预制体
         public Character Player;
-        private SkillConfig SkillConfig;
+        /// <summary>
+        /// 当前战斗的副本
+        /// </summary>
+        private RegionItem currentRegion;
+        
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
         /// <summary>
@@ -26,17 +30,15 @@ namespace ARPG
         /// </summary>
         [HideInInspector]public bool isGameScnen;
 
+
         protected override void Awake()
         {
             base.Awake();
-            SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
+            
             DamageWordUI = GameSystem.Instance.GetPrefab("DamageText");
         }
 
-        public SkillItem GetSkill(string id)
-        {
-            return SkillConfig.Get(id);
-        }
+
 
 
         /// <summary>
@@ -50,6 +52,7 @@ namespace ARPG
             var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
+            Player.isAI = false;
             UISystem.Instance.OpenUI("GameMemu");
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
@@ -63,7 +66,9 @@ namespace ARPG
             ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
         }
 
-
+        /// <summary>
+        /// 强制退出战斗场景函数
+        /// </summary>
         public void QuitGameScene()
         {
             isGameScnen = false;
@@ -79,6 +84,9 @@ namespace ARPG
         }
 
         private Coroutine _coroutine;
+        /// <summary>
+        /// 战斗胜利，结算完毕后退出战斗场景
+        /// </summary>
         public void VictoryGameScene()
         {
             UISystem.Instance.CloseUI("GameMemu");
@@ -113,7 +121,7 @@ namespace ARPG
             yield return new WaitForSeconds(1.25f);
             void Func(GameEnd ui)
             {
-                ui.ShowEndGame();
+                ui.ShowEndGame(GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
             }
             UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
             _coroutine = null;

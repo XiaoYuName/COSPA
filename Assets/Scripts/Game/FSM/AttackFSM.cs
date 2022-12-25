@@ -15,7 +15,7 @@ namespace ARPG
         public override void BehaviourStart(Enemy enemy)
         {
             valueSpeed = Random.Range(0.7f,1f);
-            AttackCD =  GameManager.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
+            AttackCD =  GameSystem.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
         }
 
         public override void BehaviourUpdate(Enemy enemy)
@@ -26,7 +26,7 @@ namespace ARPG
                 && AttackCD <= 0)
             {
                 //发送攻击,TODO: 发动技能
-                AttackCD =  GameManager.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
+                AttackCD =  GameSystem.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
                 enemy.anim.SetTrigger(s_Attack);
                 enemy.SkillDic[SkillType.Attack].Play();
             }
