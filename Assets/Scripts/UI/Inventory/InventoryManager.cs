@@ -83,9 +83,19 @@ namespace ARPG
         /// 获取Item 背包内的所有数据
         /// </summary>
         /// <returns></returns>
-        public List<ItemBag> GetItemBag()
+        public List<ItemBag> GetItemAllBag()
         {
             return UserBag.ItemBags;
+        }
+
+        /// <summary>
+        /// 获取一条背包数据
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ItemBag GetItemBag(string ID)
+        {
+            return UserBag.ItemBags.Find(p => p.ID == ID);
         }
 
         #endregion
@@ -143,6 +153,24 @@ namespace ARPG
         public void AddItem(ItemBag itemBag)
         {
             if (itemBag == null) return;
+            //1.如果是货币的话特殊处理
+            if (isMoney(itemBag.ID))
+            {
+                for (int i = 0;  i< UserBag.ItemBags.Count; i++)
+                {
+                    if (UserBag.ItemBags[i].ID == itemBag.ID)
+                    {
+                        UserBag.ItemBags[i].count += itemBag.count;
+                        return;
+                    }
+                }
+                //2.添加货币后发送刷新事件
+                MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                    ,GetItemBag(Settings.ManaID));
+                return;
+            } 
+
+
             if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID && i.power == itemBag.power))
             {
                 for (int i = 0;  i< UserBag.ItemBags.Count; i++)
@@ -176,7 +204,19 @@ namespace ARPG
         }
 
         #endregion
-        
+
+
+
+
+        /// <summary>
+        /// 判断物品ID是否是货币,如果是则进行特殊处理
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        private bool isMoney(string ID)
+        {
+            return ID is Settings.GemsthoneID or Settings.ManaID;
+        }
     }
 }
 

@@ -66,6 +66,28 @@ namespace ARPG
         }
         
         #endregion
+
+
+        #region UI刷新
+
+        /// <summary>
+        /// 刷新货币
+        /// </summary>
+        public static event Action<ItemBag, ItemBag> UpdataeMoney;
+        
+        /// <summary>
+        /// 刷新货币事件
+        /// </summary>
+        /// <param name="Gemsthone">宝石</param>
+        /// <param name="Mana">玛那</param>
+        public static void OnUpdataeMoney(ItemBag Gemsthone, ItemBag Mana)
+        {
+            UpdataeMoney?.Invoke(Gemsthone, Mana);
+        }
+
+
+        #endregion
+
         
     }
 }

@@ -10,9 +10,12 @@ namespace ARPG.UI
     {
         private RectTransform content;
         private List<CharacterBag> characterBags;
+        private MoneyUI MoneyUI;
         
         public override void Init()
         {
+            MoneyUI = Get<MoneyUI>("UIMask/MoneyUI");
+            MoneyUI.Init();
             content = Get<RectTransform>("UIMask/Scroll View/Content");
             InitData();
         }

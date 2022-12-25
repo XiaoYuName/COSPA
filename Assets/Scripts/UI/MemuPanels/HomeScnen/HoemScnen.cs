@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class HoemScnen : UIBase
 {
+    private MoneyUI _moneyUI;
     public override void Init()
     {
-        Debug.Log("HomeScnen Init");
+        _moneyUI = Get<MoneyUI>("UIMask/MoneyUI");
+        _moneyUI.Init();
     }
 }

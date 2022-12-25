@@ -32,6 +32,9 @@ namespace ARPG.UI
         /// 装备列表
         /// </summary>
         private EquipHeloUI[] _equipHeloUis;
+
+        private MoneyUI MoneyUI;
+        
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Close");
@@ -40,6 +43,8 @@ namespace ARPG.UI
             SpineController = Get<SkeletonGraphic>("UIMask/Left/Spine");
             content = Get<RectTransform>("UIMask/Right/Scroll Rect/Content");
             SpineController.gameObject.SetActive(false);
+            MoneyUI = Get<MoneyUI>("UIMask/MoneyUI");
+            MoneyUI.Init();
             CharacterInfoUI = GetComponentInChildren<CharacterInfoUI>();
             _toolTip = GetComponentInChildren<ItemToolTip>(true);
             _SlotUI = UISystem.Instance.GetPrefab<SlotUI>("SlotUI");
@@ -74,10 +79,13 @@ namespace ARPG.UI
         private void CreateSlotUI()
         {
             UIHelper.Clear(content);
-            foreach (var Bag in InventoryManager.Instance.GetItemBag())
+            foreach (var Bag in InventoryManager.Instance.GetItemAllBag())
             {
                SlotUI Obj =  Instantiate(_SlotUI, content);
                Obj.Init();
+
+               Item item = InventoryManager.Instance.GetItem(Bag.ID);
+               if(item.Type == ItemType.材料)continue;
                Obj.InitData(Bag);
             }
         }

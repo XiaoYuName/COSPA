@@ -15,6 +15,17 @@ namespace ARPG
         public const float isDownTime = 1.25f;
 
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
+
+
+        /// <summary>
+        /// 宝石ID
+        /// </summary>
+        public const string GemsthoneID = "91001";
+        
+        /// <summary>
+        /// 玛那ID
+        /// </summary>
+        public const string ManaID = "94001";
     }
 }
 
