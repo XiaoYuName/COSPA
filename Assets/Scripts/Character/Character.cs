@@ -17,6 +17,7 @@ namespace ARPG
         [HideInInspector]public Animator anim;
         protected AttackButton attackButton;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
+        [HideInInspector]public bool isAI;
         
         
         //--------------------------Movenemt--------------------------//
@@ -52,6 +53,7 @@ namespace ARPG
 
         public void Init(CharacterBag bag)
         {
+            isAI = false;
             data = InventoryManager.Instance.GetCharacter(bag.ID);
             State = bag.CurrentCharacterState.Clone() as CharacterState;
             NameTextUI.text = data.CharacterName;
@@ -92,7 +94,8 @@ namespace ARPG
 
         private void FixedUpdate()
         {
-            Movenemt();
+            if(!isAI)
+                Movenemt();
         }
 
         /// <summary>
@@ -100,6 +103,7 @@ namespace ARPG
         /// </summary>
         private void Movenemt()
         {
+            
             if (InputSpeed != Vector2.zero)
             {
                 rb.velocity = InputSpeed.normalized * State.MovSpeed  * animSpeed* Time.fixedDeltaTime;

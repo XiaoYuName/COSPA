@@ -21,7 +21,7 @@ namespace ARPG.UI
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
-                    TitleText.transform.DOLocalMoveY(TitleText.transform.position.y-8f, 1.25f);
+                    TitleText.transform.DOMove(new Vector3(TitleText.transform.position.x,TitleText.transform.position.y+300,transform.position.z), 1.25f);
                 });
         }
     }

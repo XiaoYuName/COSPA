@@ -14,7 +14,7 @@ namespace ARPG
 
         public override void BehaviourStart(Enemy enemy)
         {
-            valueSpeed = Random.value;
+            valueSpeed = Random.Range(0.7f,1f);
             AttackCD =  GameManager.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
         }
 
@@ -34,8 +34,10 @@ namespace ARPG
             {
                 if(AttackCD >=0)
                     AttackCD -= Time.deltaTime;
-                enemy.transform.position = Vector2.Lerp(enemy.transform.position, 
-                    tagretPos, enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
+                // enemy.transform.position = Vector2.Lerp(enemy.transform.position, 
+                //     tagretPos, enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
+                enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, tagretPos, 
+                    enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
                 Flip(enemy);
             }
         }

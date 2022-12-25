@@ -74,6 +74,7 @@ namespace ARPG
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");
             EnemyManager.Instance.QuitGameScene();
+            Destroy(Player.gameObject);
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
 
@@ -87,6 +88,8 @@ namespace ARPG
             UISystem.Instance.CloseUI("AttackButton");
             Vector3 wordPoint = Camera.main.ViewportToWorldPoint(Settings.zeroView);
             wordPoint.z = 0;
+            Player.animSpeed = 0;
+            Player.isAI = true;
             _coroutine ??= StartCoroutine(MovZeroPoint(wordPoint));
         }
 
@@ -104,7 +107,7 @@ namespace ARPG
                 yield return null;
             }
             //2.播放胜利庆祝动画
-            Player.anim.SetBool("isMovenemt",true);
+            Player.anim.SetBool("isMovenemt",false);
             Player.anim.SetTrigger("Victory");
             //3.显示胜利UI
             yield return new WaitForSeconds(1.25f);
