@@ -36,6 +36,8 @@ namespace ARPG
         private Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
 
         [HideInInspector]public Transform body;
+        private static readonly int s_Die = Animator.StringToHash("Die");
+        private static readonly int s_Damage = Animator.StringToHash("Damage");
 
 
         private void Awake()
@@ -161,7 +163,15 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-            anim.SetTrigger("Damage");
+            State.HP -= Damage;
+            if (State.HP <= 0)
+            {
+                State.HP = 0;
+                anim.SetTrigger(s_Die);
+                Debug.Log("玩家死亡,战斗结束");
+                return;
+            }
+            anim.SetTrigger(s_Damage);
         }
     }
 }
