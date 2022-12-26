@@ -51,14 +51,14 @@ namespace ARPG
         /// <returns></returns>
         public static CharacterState GetGrowthState(CharacterState state)
         {
-            state.PhysicsAttack = (int)(state.PhysicsAttack *  state.Growth);
-            state.MagicAttack = (int)(state.MagicAttack *  state.Growth);
-            state.Defense = (int)(state.Defense *  state.Growth);
-            state.HP = (int)(state.HP *  state.Growth);
-            state.AddHp = (int)(state.AddHp *  state.Growth);
-            state.Cirtical = (int)(state.Cirtical *  state.Growth);
-            state.Power = (int)(state.Power *  state.Growth);
-            state.Intelligence = (int)(state.Intelligence *  state.Growth);
+            state.PhysicsAttack = (int)(state.PhysicsAttack *  (1+state.Growth));
+            state.MagicAttack = (int)(state.MagicAttack *  (1+state.Growth));
+            state.Defense = (int)(state.Defense *  (1+state.Growth));
+            state.HP = (int)(state.HP *  (1+state.Growth));
+            state.AddHp = (int)(state.AddHp *  (1+state.Growth));
+            state.Cirtical = (int)(state.Cirtical *  (1+state.Growth));
+            state.Power = (int)(state.Power *  (1+state.Growth));
+            state.Intelligence = (int)(state.Intelligence *  (1+state.Growth));
             state.AttackSpeed = (state.AttackSpeed *  1+(state.Growth*0.125f));
             state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
             return state;

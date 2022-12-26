@@ -46,7 +46,7 @@ namespace ARPG
         /// <exception cref="Exception">没有没有该文件则报错</exception>
         public static string GetSpineText(string spriteName, string indexName)
         {
-            string path = Application.dataPath+"/Plugins/TextMesh Pro/Resources/Sprite Assets/"+spriteName+".asset";
+            string path = Application.dataPath+"/TextMesh Pro/Resources/Sprite Assets/"+spriteName+".asset";
             if (File.Exists(path))
             {
                 char[] arr = indexName.ToCharArray();
