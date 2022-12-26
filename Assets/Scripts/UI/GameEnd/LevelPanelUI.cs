@@ -81,12 +81,13 @@ namespace ARPG.UI
                         bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;
                         bag.exp = 0;
                         int sValue = value - lerp;
-                        yield return AddUserExp(bag, sValue);
+                        GameManager.Instance.Player.anim.SetTrigger("UpLevel");
+                        StartCoroutine(AddUserExp(bag, sValue));
                         yield break;
                     }
                     LevelSlider.value += temp;
                     LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
-                    yield return new WaitForSeconds(0.15f);
+                    yield return new WaitForSeconds(0.025f);
                 }
             }
             while (temp < value)
@@ -95,7 +96,7 @@ namespace ARPG.UI
                 LevelSlider.value += temp;
                 bag.exp = temp;
                 LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.025f);
             }
             
         }

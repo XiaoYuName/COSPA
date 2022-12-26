@@ -177,6 +177,11 @@ namespace ARPG
             }
         }
 
+        public void RelieveFollowPlayer()
+        {
+            virtualCamera.Follow = null;
+        }
+
     }
 
 }
