@@ -14,6 +14,9 @@ namespace ARPG.UI
         private Button NextBtn;
         private RewordUI _RewordUI;
         private LevelPanelUI PanelUI;
+
+        public Sprite VietorySpien;
+        public Sprite OverSpine;
         
         //1.记录初始坐标
         private Vector3 NextBtnStarPoint;
@@ -34,6 +37,7 @@ namespace ARPG.UI
 
         public void ShowEndGame(MapItem RewordItem)
         {
+            TitleText.sprite = VietorySpien;
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
@@ -113,11 +117,40 @@ namespace ARPG.UI
             yield return null;
         }
 
+        /// <summary>
+        /// 玩家死亡战斗失败界面
+        /// </summary>
+        public void ShowGameOver()
+        {
+            TitleText.sprite = OverSpine;
+            TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
+                .OnComplete(delegate
+                {
+                    TitleText.transform
+                        .DOMove(new Vector3(TitleText.transform.position.x, TitleText.transform.position.y + 300,transform.position.z), 1.25f).
+                        OnComplete(
+                            delegate
+                            {
+                                var netPoint = NextBtn.transform.position;
+                                NextBtn.transform.DOMove(new Vector3(netPoint.x, netPoint.y + 250, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
+                                    .OnComplete(() =>
+                                    {
+                                        Bind(NextBtn, delegate
+                                        {
+                                            GameManager.Instance.VictoryQuitScene();
+                                        }, "UI_click");
+                                    });
+                            }
+                        );
+                });
+        }
+
 
         public override void Close()
         {
             base.Close();
-            Destroy(PanelUI.gameObject);
+            if(PanelUI != null)
+                Destroy(PanelUI.gameObject);
             NextBtn.transform.position = NextBtnStarPoint;
             NextBtn.onClick.RemoveAllListeners();
             _RewordUI.Close();

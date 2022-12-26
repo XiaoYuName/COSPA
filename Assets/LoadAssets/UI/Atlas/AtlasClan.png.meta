@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_0
+      name: AtlasClan_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 236
-        width: 100
-        height: 133
+        y: 860
+        width: 384
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d5fbd03f5d13a24f9a7b182ae4ee76d
-      internalID: 1445751363
+      spriteID: bca7ea77bc119574ba20763f4fc64b88
+      internalID: 1123337063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_1
+      name: AtlasClan_1
       rect:
         serializedVersion: 2
-        x: 101
-        y: 244
-        width: 135
-        height: 120
+        x: 386
+        y: 968
+        width: 129
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cc5f56e373fb3448a61976f5ea0cfc9
-      internalID: -35041703
+      spriteID: 5cd2b329e74b98149bef70403dbdd73c
+      internalID: 387905425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_2
+      name: AtlasClan_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 213
-        width: 137
-        height: 120
+        x: 517
+        y: 967
+        width: 284
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,82 +175,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9f40da67d7b15c4aa6d4ef848bcc5e2
-      internalID: -469710997
+      spriteID: 573cf434aa15e3c40b8d48075dbbca4b
+      internalID: -657987786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_3
+      name: AtlasClan_3
       rect:
         serializedVersion: 2
-        x: 395
-        y: 260
-        width: 121
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ca8f2d4e2839104b99db43d43241437
-      internalID: -2015274580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_4
-      rect:
-        serializedVersion: 2
-        x: 525
-        y: 224
-        width: 121
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0dc3d3dd717d2f47a09fe24be6fa5be
-      internalID: 1304492770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 125
-        width: 114
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2822692694c396c45a38eb190256b6f2
-      internalID: 1200579146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 112
+        x: 803
+        y: 938
         width: 126
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161023cc2e480e845a0d2506731216cb
+      internalID: -1967708391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_4
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 973
+        width: 89
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6592979fbe5c22640a1c88904b9996f9
+      internalID: -76306967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 834
+        width: 112
         height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,40 +238,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 932087660cf52904292439189ec2dbab
-      internalID: 1298372798
+      spriteID: 0895c19c0cb024e4e8afb1c829eb110f
+      internalID: -1892451612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_7
+      name: AtlasClan_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 112
-        width: 144
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08bbdaadcd22b22408abae0fc4cb1702
-      internalID: 1610557296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AtlasUnlockContentIcon_8
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 130
+        x: 496
+        y: 892
         width: 125
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e675837a44d18694a935eaf91bd006f5
+      internalID: -366953023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_7
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 892
+        width: 285
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df4b3da361634d4899f072fed9a3a4f
+      internalID: 1347409760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 730
+        width: 384
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -301,20 +301,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04c71b5ab23266442bbbd71c16ed3408
-      internalID: -625140648
+      spriteID: b7ca208992666f547bb63490c5bdb513
+      internalID: -497407543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_10
+      name: AtlasClan_9
       rect:
         serializedVersion: 2
-        x: 543
-        y: 100
-        width: 140
-        height: 121
+        x: 496
+        y: 833
+        width: 195
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,20 +322,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1bd391d5f41ed3479af4d08958248f3
-      internalID: 48440869
+      spriteID: c24dfa233af74954ebdeef5aa26ce0ac
+      internalID: -1513879581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_11
+      name: AtlasClan_10
       rect:
         serializedVersion: 2
-        x: 685
-        y: 113
-        width: 111
-        height: 129
+        x: 691
+        y: 834
+        width: 256
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,20 +343,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 181ca7d5a06890a48ba0877e9052eb98
-      internalID: -1084060274
+      spriteID: 4eb1c250961d23a45969954627538d48
+      internalID: 2005149230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_12
+      name: AtlasClan_11
       rect:
         serializedVersion: 2
-        x: 830
-        y: 104
-        width: 140
-        height: 128
+        x: 384
+        y: 728
+        width: 386
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,20 +364,335 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 402f5bc20524c904481777d8f3ef996e
-      internalID: 1214233967
+      spriteID: 2acdd1d38fdd3d14b98c35caa420891c
+      internalID: -17727353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_13
+      name: AtlasClan_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 265
+        width: 260
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b63ba2d518121449f4da4f9fc78fcf
+      internalID: 400722284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 527
+        width: 272
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48747cf4e4219904d83e94e200615b62
+      internalID: 220961459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_14
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 474
+        width: 260
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d77af4b0c2997d48921d98e11543df7
+      internalID: -424668499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_15
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 440
+        width: 89
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202f011583be89d4a9366f0d549734f2
+      internalID: 1319503845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_16
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 272
+        width: 274
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c45ce88910867945b5b86247c623ca5
+      internalID: 1453304641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_17
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 425
+        width: 129
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88cfbcbca027b7642960b202ed013e46
+      internalID: 182715158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_18
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 440
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a4b55c2d5859e44a910b485c732c58
+      internalID: -1744144203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_21
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 386
+        width: 131
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9481bdcc138a99f44ade3e9514f18ef4
+      internalID: 698440209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_22
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 386
+        width: 62
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083769f33a3d8ac469c97979e00d3221
+      internalID: 1057055763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_23
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 386
+        width: 88
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea66f4053ff007418f5ea1611817eef
+      internalID: 1532746832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_24
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 348
+        width: 260
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd26ccb7e7aff04586c6132bc46dbce
+      internalID: -595886389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_25
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 310
+        width: 260
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e333a1f10694a4ab5453fb7762c27a
+      internalID: 1129604517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_26
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 277
+        width: 89
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a90223459442e4db3d6b8ab80ccc31
+      internalID: 332831841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_27
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 272
+        width: 260
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b61426990944d64a8445b8aa96299e7
+      internalID: -1647468931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_28
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 240
+        width: 88
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4deda663ee364614cb1d1d7bc6432715
+      internalID: 1330897002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_29
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 124
+        width: 396
+        height: 264
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -385,20 +700,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6183b0c6473803545a4489754e8c4b22
-      internalID: 2098369919
+      spriteID: e85e82d28333087409ebdc72a088b316
+      internalID: 1709368292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_14
+      name: AtlasClan_30
       rect:
         serializedVersion: 2
-        x: 128
+        x: 396
         y: 0
-        width: 141
-        height: 111
+        width: 388
+        height: 270
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,20 +721,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85fb3e25ed9330146b038fef7294a7d0
-      internalID: 579482847
+      spriteID: 0c428ca30d9ff6a478aa10de379aaba4
+      internalID: 2008522136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_15
+      name: AtlasClan_31
       rect:
         serializedVersion: 2
-        x: 413
-        y: 0
-        width: 129
-        height: 131
+        x: 788
+        y: 188
+        width: 80
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,20 +742,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cc26e2169158e740adaa9df1104f8e8
-      internalID: -222762210
+      spriteID: f4341e6312aa766409ef1b33c97186da
+      internalID: 1969077310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_16
+      name: AtlasClan_32
       rect:
         serializedVersion: 2
-        x: 542
-        y: 0
-        width: 141
-        height: 100
+        x: 870
+        y: 224
+        width: 24
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,20 +763,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e3e3c8d7e17f3b4682d3f7a1c74fc0a
-      internalID: 1110595168
+      spriteID: ad9b2a131b0b7b14ba0080fe6e778a30
+      internalID: -6888038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUnlockContentIcon_17
+      name: AtlasClan_33
       rect:
         serializedVersion: 2
-        x: 830
-        y: 0
-        width: 138
-        height: 102
+        x: 896
+        y: 224
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -469,8 +784,323 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6abba7807e00dae4699eaf048ff406d7
-      internalID: -46549249
+      spriteID: c3392080eb1f9574d85c4754aa761824
+      internalID: 1385113329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_34
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 212
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c5fbc03c842e94ea677b7a8f6a8178
+      internalID: 1631108359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_35
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 185
+        width: 63
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0976a1b67cf0fdd4390695ee0a6d9bcf
+      internalID: -721442056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_36
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 186
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e50f53648c24741b9727c4a1fb1f82
+      internalID: 2029967062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_37
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 186
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f6cd9c29b2b9c45ae32f130da86d1d
+      internalID: -1199612267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_38
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 98
+        width: 66
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac009bcad7c87774dab5e41281ed613a
+      internalID: 2145369502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_39
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 148
+        width: 132
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 004847b0e192dd14788717fac9919c03
+      internalID: -389296879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_40
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 57
+        width: 81
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4aadc84f490ab5409d319465bd0bc93
+      internalID: -484822844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_41
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 0
+        width: 68
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c4749c4a199b049b13cda84b9ed66a
+      internalID: 1057022529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_42
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 2
+        width: 67
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f4d2f361d18404e9c69ca7db101924
+      internalID: 743762305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_44
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 0
+        width: 82
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05150cf797b5694fa5977a53274c243
+      internalID: -1039136298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_45
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 8
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d367444f9b58e4a9ff3477ae5975cd
+      internalID: -2068258525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_46
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 0
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d49b573a97add043a1bdc65b3a8b720
+      internalID: 1994253630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_47
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 875
+        width: 70
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e0ac403d04892c4893e5cfc13ebf378
+      internalID: -837150622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_48
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 474
+        width: 162
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0fbfac7d83f0404c8c437646a48de7c
+      internalID: 471846075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasClan_19
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 91
+        width: 81
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c5ca134ed27e6d4da9d494fdd391d3a
+      internalID: 177124981
       vertices: []
       indices: 
       edges: []
@@ -486,24 +1116,55 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AtlasUnlockContentIcon_16: 1110595168
-      AtlasUnlockContentIcon_4: 1304492770
-      AtlasUnlockContentIcon_13: 2098369919
-      AtlasUnlockContentIcon_15: -222762210
-      AtlasUnlockContentIcon_6: 1298372798
-      AtlasUnlockContentIcon_14: 579482847
-      AtlasUnlockContentIcon_10: 48440869
-      AtlasUnlockContentIcon_7: 1610557296
-      AtlasUnlockContentIcon_17: -46549249
-      AtlasUnlockContentIcon_3: -2015274580
-      AtlasUnlockContentIcon_0: 1445751363
-      AtlasUnlockContentIcon_5: 1200579146
-      AtlasUnlockContentIcon_2: -469710997
-      AtlasUnlockContentIcon_1: -35041703
-      AtlasUnlockContentIcon_12: 1214233967
-      AtlasUnlockContentIcon_11: -1084060274
-      AtlasUnlockContentIcon_9: -169068024
-      AtlasUnlockContentIcon_8: -625140648
+      AtlasClan_13: 220961459
+      AtlasClan_35: -721442056
+      AtlasClan_33: 1385113329
+      AtlasClan_16: 1453304641
+      AtlasClan_44: -1039136298
+      AtlasClan_31: 1969077310
+      AtlasClan_34: 1631108359
+      AtlasClan_36: 2029967062
+      AtlasClan_32: -6888038
+      AtlasClan_26: 332831841
+      AtlasClan_19: 177124981
+      AtlasClan_17: 182715158
+      AtlasClan_39: -389296879
+      AtlasClan_41: 1057022529
+      AtlasClan_25: 1129604517
+      AtlasClan_42: 743762305
+      AtlasClan_5: -1892451612
+      AtlasClan_1: 387905425
+      AtlasClan_11: -17727353
+      AtlasClan_3: -1967708391
+      AtlasClan_28: 1330897002
+      AtlasClan_45: -2068258525
+      AtlasClan_30: 2008522136
+      AtlasClan_24: -595886389
+      AtlasClan_47: -837150622
+      AtlasClan_22: 1057055763
+      AtlasClan_20: 1581527923
+      AtlasClan_38: 2145369502
+      AtlasClan_29: 1709368292
+      AtlasClan_21: 698440209
+      AtlasClan_46: 1994253630
+      AtlasClan_9: -1513879581
+      AtlasClan_37: -1199612267
+      AtlasClan_10: 2005149230
+      AtlasClan_14: -424668499
+      AtlasClan_23: 1532746832
+      AtlasClan_43: -1406157936
+      AtlasClan_7: 1347409760
+      AtlasClan_27: -1647468931
+      AtlasClan_4: -76306967
+      AtlasClan_6: -366953023
+      AtlasClan_18: -1744144203
+      AtlasClan_48: 471846075
+      AtlasClan_12: 400722284
+      AtlasClan_40: -484822844
+      AtlasClan_15: 1319503845
+      AtlasClan_0: 1123337063
+      AtlasClan_2: -657987786
+      AtlasClan_8: -497407543
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

@@ -23,8 +23,8 @@ namespace ARPG
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
 
-        
-        
+
+
         //--------------------------Movenemt--------------------------//
         [HideInInspector]public Rigidbody2D rb;
         /// <summary>
@@ -175,7 +175,8 @@ namespace ARPG
             {
                 State.HP = 0;
                 anim.SetTrigger(s_Die);
-                Debug.Log("玩家死亡,战斗结束");
+                isAI = true;
+                GameManager.Instance.GameOverScnen();
                 return;
             }
             anim.SetTrigger(s_Damage);

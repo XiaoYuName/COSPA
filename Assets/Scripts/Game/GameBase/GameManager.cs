@@ -129,6 +129,9 @@ namespace ARPG
             _coroutine = null;
         }
 
+        /// <summary>
+        /// 结算完结，退出战斗场景,回到GameScene场景
+        /// </summary>
         public void VictoryQuitScene()
         {
             isGameScnen = false;
@@ -140,6 +143,37 @@ namespace ARPG
             Destroy(Player.gameObject);
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
+
+        /// <summary>
+        /// 玩家死亡，弹出死亡界面UI,之后等待点击按钮后回到主界面GameScnen场景
+        /// </summary>
+        public void GameOverScnen()
+        {
+            StartCoroutine(GameOverWait());
+        }
+        
+
+        /// <summary>
+        /// 死亡结算界面，写成携程是希望之后添加其他DoTween动画
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator GameOverWait()
+        {
+            UISystem.Instance.CloseUI("GameMemu");
+            UISystem.Instance.CloseUI("DownTime");
+            DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
+            joystick.gameObject.SetActive(false);
+            UISystem.Instance.CloseUI("AttackButton");
+            EnemyManager.Instance.QuitGameScene();
+            yield return new WaitForSeconds(1);
+            void Func(GameEnd ui)
+            {
+                ui.ShowGameOver();
+            }
+            UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
+            
+        }
+
 
 
         /// <summary>
@@ -178,6 +212,8 @@ namespace ARPG
                     var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence)*(1+(attackState.SkillAttack/100) + (1+attackState.CirticalAttack/100));
                     //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
                     Magic += item.Diamage;
+                    //1.1 伤害要减去地方防御力
+                    Magic -= targetState.Defense;
                     //2.基础攻击力加技能基础伤害
                     target.IDamage((int)Math.Round(Magic,0));
                     break;
@@ -189,6 +225,9 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 解除当前场景的视角跟随
+        /// </summary>
         public void RelieveFollowPlayer()
         {
             virtualCamera.Follow = null;
