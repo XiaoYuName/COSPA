@@ -15,13 +15,10 @@ namespace ARPG.UI
         /// </summary>
         public Button XunLianBtn;
         public Button OpenSwicthMapPanel;
-        public MoneyUI MoneyUI;
         public override void Init()
         {
             XunLianBtn = Get<Button>("UIMask/Right/ChileBtn_XunLian");
             OpenSwicthMapPanel = Get<Button>("UIMask/Right/MainPrincLine");
-            MoneyUI = Get<MoneyUI>("UIMask/Right/UserInfo/MoneyPoint/MoneyUI");
-            MoneyUI.Init();
 
             Bind(OpenSwicthMapPanel, delegate
             {

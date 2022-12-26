@@ -90,12 +90,12 @@ namespace ARPG
                 return;
             }
             Object Obj = Activator.CreateInstance(Type);
-            if (FSM != null)
-                FSM.BehaviourEnd(this);
+            FSM?.BehaviourEnd(this);
             FSM = Obj as FSMBehaviour;
+            if (anim != null) ;
             anim.SetInteger(s_State,animState);
-            if (FSM != null) FSM.BehaviourStart(this);
-            
+            FSM?.BehaviourStart(this);
+
         }
 
         public void QuitFSM()

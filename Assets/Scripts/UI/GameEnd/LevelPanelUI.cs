@@ -38,6 +38,11 @@ namespace ARPG.UI
         }
 
 
+        /// <summary>
+        /// 运算奖励道具
+        /// </summary>
+        /// <param name="Reword"></param>
+        /// <returns></returns>
         public IEnumerator OpentionLevelAndFavorability(MapItem Reword)
         {
             CharacterBag characterBag = InventoryManager.Instance.GetBag(
@@ -54,7 +59,8 @@ namespace ARPG.UI
                 if (Reword.MoneyReword[i].itemBag.ID != Settings.ExpID) continue;
                 if (Reword.MoneyReword[i].itemBag.count > 0)
                 {
-                    yield return AddUserExp(characterBag, Reword.MoneyReword[i].itemBag.count);
+                    int exp = Reword.MoneyReword[i].itemBag.count;
+                    yield return AddUserExp(characterBag,exp);
                 }
             }
 
@@ -66,6 +72,7 @@ namespace ARPG.UI
             //1.获取经验差值
             int lerp = bag.MaxExp - bag.exp;  // 30
             int temp = 0;
+            LevelSlider.value = bag.exp;
             if (value >= lerp)
             {
                 while (true)
@@ -82,7 +89,7 @@ namespace ARPG.UI
                         bag.exp = 0;
                         int sValue = value - lerp;
                         GameManager.Instance.Player.anim.SetTrigger("UpLevel");
-                        StartCoroutine(AddUserExp(bag, sValue));
+                        yield return StartCoroutine(AddUserExp(bag, sValue));
                         yield break;
                     }
                     LevelSlider.value += temp;
@@ -93,7 +100,7 @@ namespace ARPG.UI
             while (temp < value)
             {
                 temp += 1;
-                LevelSlider.value += temp;
+                LevelSlider.value += 1;
                 bag.exp = temp;
                 LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
                 yield return new WaitForSeconds(0.025f);

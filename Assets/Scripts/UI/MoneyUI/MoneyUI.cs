@@ -17,7 +17,18 @@ namespace ARPG.UI
         private TextMeshProUGUI ManaText;
         private Button AddStGemsthoneBtn;
         private Button AddManaBtn;
-        
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        private void OnEnable()
+        {
+            MessageAction.UpdataeMoney+= SetMoneyUI;
+            InventoryManager.Instance.UpdateMoney();
+        }
+
         private void OnDestroy()
         {
             MessageAction.UpdataeMoney -= SetMoneyUI;
@@ -29,7 +40,7 @@ namespace ARPG.UI
             ManaText = Get<TextMeshProUGUI>("Content/Mana/Amount");
             AddStGemsthoneBtn = Get<Button>("Content/Gemsthone/AddBtn");
             AddManaBtn = Get<Button>("Content/Mana/AddBtn");
-            MessageAction.UpdataeMoney+= SetMoneyUI;
+            
             //初始阶段手动刷新一次
             SetMoneyUI(InventoryManager.Instance.GetItemBag(Settings.GemsthoneID),
                 InventoryManager.Instance.GetItemBag(Settings.ManaID));

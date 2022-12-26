@@ -162,7 +162,7 @@ namespace ARPG
         /// <param name="itemBag"></param>
         public void AddItem(ItemBag itemBag)
         {
-            if (itemBag == null) return;
+            if (itemBag == null || itemBag.ID == Settings.ExpID) return;
             //1.如果是货币的话特殊处理
             if (isMoney(itemBag.ID))
             {
@@ -226,6 +226,15 @@ namespace ARPG
         private bool isMoney(string ID)
         {
             return ID is Settings.GemsthoneID or Settings.ManaID;
+        }
+
+        /// <summary>
+        /// 手动刷新下货币
+        /// </summary>
+        public void UpdateMoney()
+        {
+            MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                ,GetItemBag(Settings.ManaID));
         }
     }
 }

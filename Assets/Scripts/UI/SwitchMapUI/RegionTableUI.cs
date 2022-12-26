@@ -17,7 +17,7 @@ namespace ARPG.UI
         /// <summary>
         /// 是否可点击
         /// </summary>
-        private bool isClick;
+        [HideInInspector]public bool isClick;
         private Image Regionicon;
         public override void Init()
         {
@@ -25,8 +25,6 @@ namespace ARPG.UI
             PrincName = Get<TextMeshProUGUI>("Text");
             StarGameBtn = Get<Button>("Mask");
             Regionicon = Get<Image>("Mask/BG");
-
-         
         }
 
         public void InitData(int index ,RegionItem data,int active)
@@ -62,6 +60,7 @@ namespace ARPG.UI
             {
                 RegionPanel mapPanel =  UISystem.Instance.GetUI<RegionPanel>("RegionPanel");
                 isClick = !isClick;
+                mapPanel.SetCurrentOpenTable(this);
                 mapPanel.SetAnimator(isClick);
                 mapPanel.CreateLineItemChlidUI(index);
             }, "OnChick");

@@ -15,8 +15,8 @@ namespace ARPG.UI
         private RegionTableUI RegionItemUI;
         private RegionConfig MainConfig;
         private Animator anim;
-        private MoneyUI MoneyUI;
-
+        private RegionTableUI OpenTableUI;
+        
         /// <summary>
         /// 副本进度 Vector2(主线x -  章节x)
         /// </summary>
@@ -32,8 +32,6 @@ namespace ARPG.UI
         public override void Init()
         {
             PrincProgress = Vector2Int.zero;
-            MoneyUI = Get<MoneyUI>("UIMask/MoneyUI");
-            MoneyUI.Init();
             MainConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
             RegionItemUI = UISystem.Instance.GetPrefab<RegionTableUI>("RegionTableUI");
             RegionContent = Get<RectTransform>("UIMask/RegionLineView/View/Content");
@@ -96,9 +94,15 @@ namespace ARPG.UI
             anim.SetBool(s_ShowView,isShow);
         }
 
+        public void SetCurrentOpenTable(RegionTableUI tableUI)
+        {
+            OpenTableUI = tableUI;
+        }
+
         public override void Close()
         {
             SetAnimator(false);
+            OpenTableUI.isClick = false;
             base.Close();
             MainPanel.Instance.RemoveTableChild("RegionPanel");
         }

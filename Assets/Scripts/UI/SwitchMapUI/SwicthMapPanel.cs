@@ -15,7 +15,6 @@ namespace ARPG.UI
         private PrincLineItemUI _lineItemUI;
         private PrincipalLineConfig MainConfig;
         private Animator anim;
-        private MoneyUI MoneyUI;
 
         /// <summary>
         /// 主线剧情进度 Vector2(主线x -  章节x)
@@ -34,8 +33,6 @@ namespace ARPG.UI
             _lineItemUI = UISystem.Instance.GetPrefab<PrincLineItemUI>("PrincLineItemUI");
             PrincContent = Get<RectTransform>("UIMask/PrincipalLineView/View/Content");
             PrincChildContent = Get<RectTransform>("UIMask/PrincipaItemView/View/Content");
-            MoneyUI = Get<MoneyUI>("UIMask/MoneyUI");
-            MoneyUI.Init();
             MainPrincList = MainConfig.MianPrincipalLineList;
             anim = GetComponent<Animator>();
             CreateLineItemUI();

@@ -139,7 +139,7 @@ namespace ARPG
         {
             if (!CurrenEnemys.Contains(diEnemy))
             {
-                throw new Exception("出现了不在当前波段中的敌人");
+                return;
             }
             CurrenEnemys.Remove(diEnemy);
             if (CurrenEnemys.Count > 0) //如果当前波段还有敌人,则直接返回,如果没有敌人了,则进行刷新下一波敌人
@@ -158,13 +158,16 @@ namespace ARPG
         /// </summary>
         public void QuitGameScene()
         {
-            foreach (var curren in CurrenEnemys)
+            if (CurrenEnemys != null)
             {
-                curren.gameObject.SetActive(false);
-                curren.QuitFSM();  
+                foreach (var curren in CurrenEnemys)
+                {
+                    curren.gameObject.SetActive(false);
+                    curren.QuitFSM();  
+                }
+                currentIndex = 0;
+                CurrenEnemys.Clear(); 
             }
-            currentIndex = 0;
-            CurrenEnemys.Clear();
             EnemyPoolManager.Instance.RemoveAllPool();
         }
     }
