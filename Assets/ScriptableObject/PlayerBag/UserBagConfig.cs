@@ -105,6 +105,7 @@ namespace ARPG.Config
         public CharacterState Operation()
         {
             CharacterState state = InventoryManager.Instance.GetCharacter(ID).State.Clone() as CharacterState;
+
             for (int i = 0; i < equipHelos.Length; i++)
             {
                 for (int E = 0; E < equipHelos[i].item.attribute.Count; E++)
@@ -142,7 +143,7 @@ namespace ARPG.Config
             }
             
             //TODO: 属性值要套入一遍成长权重公式
-            return state;
+            return Settings.GetGrowthState(state);
         }
 
 

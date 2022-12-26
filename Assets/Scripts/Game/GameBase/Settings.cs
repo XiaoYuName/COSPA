@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -17,6 +18,7 @@ namespace ARPG
         /// <summary>
         /// 获取奖励界面每次生成的间隔时间
         /// </summary>
+        /// 
         public const float RewordTime = 0.5f;
 
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
@@ -39,6 +41,28 @@ namespace ARPG
         /// 经验值ID
         /// </summary>
         public const string ExpID = "92001";
+
+
+
+        /// <summary>
+        /// 计算成长值后的属性
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public static CharacterState GetGrowthState(CharacterState state)
+        {
+            state.PhysicsAttack = (int)(state.PhysicsAttack *  state.Growth);
+            state.MagicAttack = (int)(state.MagicAttack *  state.Growth);
+            state.Defense = (int)(state.Defense *  state.Growth);
+            state.HP = (int)(state.HP *  state.Growth);
+            state.AddHp = (int)(state.AddHp *  state.Growth);
+            state.Cirtical = (int)(state.Cirtical *  state.Growth);
+            state.Power = (int)(state.Power *  state.Growth);
+            state.Intelligence = (int)(state.Intelligence *  state.Growth);
+            state.AttackSpeed = (state.AttackSpeed *  1+(state.Growth*0.125f));
+            state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
+            return state;
+        }
     }
 }
 
