@@ -20,7 +20,8 @@ namespace ARPG
 
         public override void BehaviourUpdate(Enemy enemy)
         {
-            tagretPos = GameManager.Instance.Player.transform.position;
+            Vector3 PlayePoint = GameManager.Instance.Player.transform.position;
+            tagretPos = new Vector3(PlayePoint.x+enemy.data.Attackradius,PlayePoint.y+0.25f,PlayePoint.z);
             //1.判断我与玩家的位置,如果大于普通攻击范围内同时,判断自身类型,如果是普通小怪，则只有普通攻击,如果是精英怪,则随机开始进入一个特殊的技能状态直到结束,则追击到攻击范围内
             if (Vector2.Distance(enemy.transform.position, tagretPos) < enemy.data.Attackradius
                 && AttackCD <= 0)
@@ -34,8 +35,6 @@ namespace ARPG
             {
                 if(AttackCD >=0)
                     AttackCD -= Time.deltaTime;
-                // enemy.transform.position = Vector2.Lerp(enemy.transform.position, 
-                //     tagretPos, enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
                 enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, tagretPos, 
                     enemy.GetState().MovSpeed*valueSpeed* Time.deltaTime);
                 Flip(enemy);
@@ -43,7 +42,8 @@ namespace ARPG
         }
         public void Flip(Enemy enemy)
         {
-            enemy.transform.rotation = Quaternion.Euler(0, enemy.transform.position.x < tagretPos.x ? 180 : 0, 0);
+            Vector3 PlayePoint = GameManager.Instance.Player.transform.position;
+            enemy.transform.rotation = Quaternion.Euler(0, enemy.transform.position.x < PlayePoint.x ? 180 : 0, 0);
         }
         
 

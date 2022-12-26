@@ -30,6 +30,9 @@ namespace ARPG
             currentdata = data;
             this.currentPlayer = Player;
             Collider2D.radius = data.Radius;
+            if(data.RadiusOffset != Vector2.zero)
+                Collider2D.offset = data.RadiusOffset;
+            
             StartCoroutine(WaitDuration(data.Duration));
         }
 
@@ -45,6 +48,8 @@ namespace ARPG
             currentdata = data;
             currentEnemy = enemy;
             Collider2D.radius = data.Radius;
+            if(data.RadiusOffset != Vector2.zero)
+                Collider2D.offset = data.RadiusOffset;
             StartCoroutine(WaitDuration(data.Duration));
         }
 
@@ -63,7 +68,7 @@ namespace ARPG
                 if(!isEnemy)
                     GameManager.Instance.OptionDamage(currentPlayer,col.GetComponent<Enemy>(),currentdata,hitPoint);
                 else
-                    GameManager.Instance.OptionDamage(currentEnemy,col.GetComponent<Character>(),currentdata,hitPoint);
+                    GameManager.Instance.OptionDamage(currentEnemy,col.transform.parent.GetComponent<Character>(),currentdata,hitPoint);
             }
         }
     }

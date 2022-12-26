@@ -59,7 +59,7 @@ namespace ARPG.UI
             //3.在UI坐标系下生成LevelPanel信息
             LevelPanelUI panelUI =  UISystem.Instance.InstanceUI<LevelPanelUI>("LevelPanelUI",gameObject.transform);
             PanelUI = panelUI;
-            panelUI.transform.position = new Vector3(UIPoint.x,UIPoint.y - 30,UIPoint.z);
+            panelUI.transform.position = new Vector3(UIPoint.x,UIPoint.y - 140,UIPoint.z);
             yield return panelUI.OpentionLevelAndFavorability(Reword);
             //4.等待玩家点击下一部,进行奖励界面的处理
             var netPoint = NextBtn.transform.position;

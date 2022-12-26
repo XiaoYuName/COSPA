@@ -40,7 +40,7 @@ namespace ARPG
             if(!isInit) Init();
 
             TMP.text = TextAnimaSettings.GetDamageText(type, isCirct, damage);
-            rb.AddForce(new Vector2(0,Random.Range(5,8)),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(Random.Range(-1.25f,1.25f),Random.Range(5,8)),ForceMode2D.Impulse);
             transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 1.2f);
             WaitTimeAsync();
         }
@@ -55,8 +55,16 @@ namespace ARPG
                 await Task.Delay(1200);
             });
             await t;
-            if(gameObject != null)
-                gameObject.SetActive(false);
+            //结束游戏瞬间,该线程也被结束了,然而由于GameObject 已经被移除,所以只能用try捕获
+            try
+            {
+                if(null != gameObject)
+                    gameObject.SetActive(false);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
         
     }

@@ -212,6 +212,64 @@ MonoBehaviour:
   zPosition: 1
   overrideAlpha: 1
   hierarchy: {fileID: 2357524900361760381}
+--- !u!1 &811428410305363974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5284686020522080391}
+  - component: {fileID: 5035760866049844094}
+  m_Layer: 15
+  m_Name: DamageCollier
+  m_TagString: Character
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5284686020522080391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811428410305363974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2060322555634032042}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5035760866049844094
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811428410305363974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.9874742}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.80485725, y: 2.0701952}
+  m_EdgeRadius: 0
 --- !u!1 &985126446638368744
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +603,7 @@ GameObject:
   - component: {fileID: -3370997453916416644}
   m_Layer: 12
   m_Name: Character
-  m_TagString: Character
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,6 +622,7 @@ Transform:
   m_Children:
   - {fileID: 1046835964636818069}
   - {fileID: 115528288995649655}
+  - {fileID: 5284686020522080391}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -626,8 +685,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bce7022963c0ca448ef2f1753cb4780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpineBodys: []
+  currentBag:
+    ID: 
+    currentStar: 0
+    Favorability: 0
+    Level: 0
+    exp: 0
+    MaxExp: 0
+    Favorabexp: 0
+    equipHelos:
+    - ItemType: 0
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 0
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 0}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+  anim: {fileID: 0}
   animSpeed: 1
+  isAI: 0
+  rb: {fileID: 0}
   body: {fileID: 0}
 --- !u!1 &2577792606247413876
 GameObject:
@@ -1370,8 +1500,8 @@ MonoBehaviour:
   translator:
     autoReset: 1
     useCustomMixMode: 1
-    layerMixModes: 01000000
-    layerBlendModes: 01000000
+    layerMixModes: 0100000001000000
+    layerBlendModes: 0100000002000000
 --- !u!114 &2357524900361760381
 MonoBehaviour:
   m_ObjectHideFlags: 0

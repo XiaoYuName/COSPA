@@ -48,7 +48,8 @@ namespace ARPG
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             anim.runtimeAnimatorController = data.Animator;
             CreateSkillClass();
-            SwitchFSM(FSMType.IdleFSM);
+            //1.如果是BOSS类型敌人入场后直接进行攻击状态
+            SwitchFSM(data.Type == EnemyType.BOSS ? FSMType.AttackFSM : FSMType.IdleFSM);
         }
         
         private void CreateSkillClass()
@@ -92,8 +93,8 @@ namespace ARPG
             Object Obj = Activator.CreateInstance(Type);
             FSM?.BehaviourEnd(this);
             FSM = Obj as FSMBehaviour;
-            if (anim != null) ;
-            anim.SetInteger(s_State,animState);
+            if (anim != null)
+                anim.SetInteger(s_State,animState);
             FSM?.BehaviourStart(this);
 
         }

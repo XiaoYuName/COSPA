@@ -28,7 +28,13 @@ namespace ARPG
         /// <summary>
         /// 范围
         /// </summary>
+        [Tooltip("代表技能的范围")]
         public float Radius;
+        /// <summary>
+        /// 偏移位置
+        /// </summary>
+        [Tooltip("代表技能的偏移位置")]
+        public Vector2 RadiusOffset;
         /// <summary>
         /// 伤害
         /// </summary>

@@ -201,9 +201,11 @@ namespace ARPG
                         // ReSharper disable once PossibleLossOfFraction
                         Physics *= (2.5d+attackState.CirticalAttack/10);
                     }
-
+                    //1.1 伤害要减去地方防御力
                     Physics += item.Diamage;
                     //2.基础攻击力加技能基础伤害
+                    Physics -= targetState.Defense;
+                    Physics = Mathf.Max(1, (int)Physics);
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
                     damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
