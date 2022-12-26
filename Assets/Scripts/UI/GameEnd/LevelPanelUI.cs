@@ -51,10 +51,10 @@ namespace ARPG.UI
             LevelSlider.maxValue = characterBag.MaxExp;
             for (int i = 0; i < Reword.MoneyReword.Length; i++)
             {
-                if (Reword.MoneyReword[i].ID != Settings.ExpID) continue;
-                if (Reword.MoneyReword[i].count > 0)
+                if (Reword.MoneyReword[i].itemBag.ID != Settings.ExpID) continue;
+                if (Reword.MoneyReword[i].itemBag.count > 0)
                 {
-                    yield return AddUserExp(characterBag, Reword.MoneyReword[i].count);
+                    yield return AddUserExp(characterBag, Reword.MoneyReword[i].itemBag.count);
                 }
             }
 

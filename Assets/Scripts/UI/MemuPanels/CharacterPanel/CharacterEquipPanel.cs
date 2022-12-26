@@ -119,7 +119,6 @@ namespace ARPG.UI
                 case 2:
                     break;
                 case 3:
-                    //TODO: 角色播放xxSpine 动画
                     CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(currentCharacterBag.ID);
                     PlaySpineAnimation(character.EquipAnimName);
                     //2.通知刷新各个界面UI

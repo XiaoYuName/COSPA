@@ -129,6 +129,18 @@ namespace ARPG
             _coroutine = null;
         }
 
+        public void VictoryQuitScene()
+        {
+            isGameScnen = false;
+            UISystem.Instance.CloseUI("GameEnd");
+            UISystem.Instance.CloseUI("GameMemu");
+            UISystem.Instance.CloseUI("MemuPanel");
+            UISystem.Instance.CloseUI("DownTime");
+            EnemyManager.Instance.QuitGameScene();
+            Destroy(Player.gameObject);
+            MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+        }
+
 
         /// <summary>
         /// 伤害运算

@@ -127,4 +127,24 @@ namespace ARPG
        Treatment = 3,
    }
 
+
+   /// <summary>
+   /// 奖励类型
+   /// </summary>
+   public enum RewordType
+   {
+       /// <summary>
+       /// 空
+       /// </summary>
+       Not,
+       /// <summary>
+       /// BOSS奖励
+       /// </summary>
+       BOSS,
+       /// <summary>
+       /// 首次通关奖励
+       /// </summary>
+       Star,
+   }
+
 }

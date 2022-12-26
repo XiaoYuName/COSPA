@@ -12,12 +12,24 @@ namespace ARPG.UI
     {
         private Image TitleText;
         private Button NextBtn;
-
+        private RewordUI _RewordUI;
+        private LevelPanelUI PanelUI;
+        
+        //1.记录初始坐标
+        private Vector3 NextBtnStarPoint;
+        private Vector3 TitleStarPoint;
         public override void Init()
         {
             TitleText = Get<Image>("UIMask/TitleText");
-            TitleText.transform.localScale = Vector3.zero;
+            var transform1 = TitleText.transform;
+            transform1.localScale = Vector3.zero;
+            TitleStarPoint = transform1.position;
+
             NextBtn = Get<Button>("UIMask/NextBtn");
+            NextBtnStarPoint = NextBtn.transform.position;
+            
+            _RewordUI = Get<RewordUI>("UIMask/RewordUI");
+            _RewordUI.Init();
         }
 
         public void ShowEndGame(MapItem RewordItem)
@@ -42,6 +54,7 @@ namespace ARPG.UI
             Vector3 UIPoint = Camera.main.WorldToScreenPoint(playerPoint);
             //3.在UI坐标系下生成LevelPanel信息
             LevelPanelUI panelUI =  UISystem.Instance.InstanceUI<LevelPanelUI>("LevelPanelUI",gameObject.transform);
+            PanelUI = panelUI;
             panelUI.transform.position = new Vector3(UIPoint.x,UIPoint.y - 30,UIPoint.z);
             yield return panelUI.OpentionLevelAndFavorability(Reword);
             //4.等待玩家点击下一部,进行奖励界面的处理
@@ -60,12 +73,17 @@ namespace ARPG.UI
         {
             var netPoint = levelPanelUI.transform.position;
             levelPanelUI.transform.DOMove(new Vector3(netPoint.x, netPoint.y - 450, netPoint.z), 1.25f)
-                .SetEase(Ease.OutElastic).OnComplete(()=> levelPanelUI.gameObject.SetActive(false));
+                .OnComplete(()=> levelPanelUI.gameObject.SetActive(false));
+            TitleText.transform.DOMove(
+                new Vector3(TitleText.transform.position.x, TitleText.transform.position.y + 30, transform.position.z),
+                0.25f);
+            
+            NextBtn.interactable = false;
             //2.Player移出屏幕
             Character Player = GameManager.Instance.Player;
             //2.1将视口坐标转化为世界坐标
             var word = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.25f, 0));
-            Vector3 target = new Vector3(word.x + 30, word.y, word.z);
+            Vector3 target = new Vector3(word.x + 3, word.y, word.z);
             //2.2 解除2DCamera 的跟随
             GameManager.Instance.RelieveFollowPlayer();
             //2.3 开始移动
@@ -76,12 +94,36 @@ namespace ARPG.UI
                 yield return null;
             }
             Player.anim.SetBool("isMovenemt",false);
-            
-            
             //逐步生成奖励界面
+            List<RewordItemBag> rewordItemBags = new List<RewordItemBag>();
+            foreach (var Re in  reword.RewordItemList)
+            {
+                rewordItemBags.Add(Re);
+            }
+            foreach (var Re in reword.MoneyReword)
+            {
+                rewordItemBags.Add(Re);
+            }
+            _RewordUI.gameObject.SetActive(true);
+            yield return _RewordUI.InitData(rewordItemBags);
             
+            Bind(NextBtn,GameManager.Instance.VictoryQuitScene,"OutChick");
+            NextBtn.interactable = true;
             
             yield return null;
+        }
+
+
+        public override void Close()
+        {
+            base.Close();
+            Destroy(PanelUI.gameObject);
+            NextBtn.transform.position = NextBtnStarPoint;
+            NextBtn.onClick.RemoveAllListeners();
+            _RewordUI.Close();
+            
+            TitleText.transform.localScale = Vector3.zero;
+            TitleText.transform.position = TitleStarPoint;
         }
     }
 

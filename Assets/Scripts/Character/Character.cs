@@ -138,8 +138,7 @@ namespace ARPG
                 anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
         }
 
-
-        //TODO：使用专门的技能解释器来释放技能
+        
         protected  void Attack()
         {
             if(animSpeed == 0)return;

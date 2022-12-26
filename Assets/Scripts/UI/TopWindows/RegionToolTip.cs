@@ -61,13 +61,13 @@ namespace ARPG.UI
         /// 生成Item信息
         /// </summary>
         /// <param name="Reword"></param>
-        private void CreateSlotUI(List<ItemBag> Reword)
+        private void CreateSlotUI(List<RewordItemBag> Reword)
         {
             UIHelper.Clear(ItemContent);
             foreach (var Item in Reword)
             {
                 SlotUI Slot = UISystem.Instance.InstanceUI<SlotUI>("SlotUI",ItemContent);
-                Slot.InitData(Item,delegate {  });
+                Slot.InitData(Item.itemBag,delegate {  });
             }
         }
         
@@ -89,12 +89,12 @@ namespace ARPG.UI
         /// 生成货币奖励详情
         /// </summary>
         /// <param name="Reword"></param>
-        private void CreateMontySlotUI(ItemBag[] Reword)
+        private void CreateMontySlotUI( RewordItemBag[] Reword)
         {
             foreach (var Item in Reword)
             {
                 MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",RewordContent);
-                Slot.InitData(Item);
+                Slot.InitData(Item.itemBag);
             }
         }
 

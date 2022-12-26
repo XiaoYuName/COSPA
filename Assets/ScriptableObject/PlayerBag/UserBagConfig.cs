@@ -104,8 +104,6 @@ namespace ARPG.Config
         /// <returns></returns>
         public CharacterState Operation()
         {
-            
-            //TODO: 暂时测试返回默认基础属性
             CharacterState state = InventoryManager.Instance.GetCharacter(ID).State.Clone() as CharacterState;
             for (int i = 0; i < equipHelos.Length; i++)
             {
@@ -142,8 +140,8 @@ namespace ARPG.Config
                     }
                 }
             }
-
-
+            
+            //TODO: 属性值要套入一遍成长权重公式
             return state;
         }
 
@@ -291,7 +289,15 @@ namespace ARPG.Config
         /// </summary>
         public Sprite faram;
     }
-    
+
+
+    [Serializable]
+    public class RewordItemBag
+    {
+        public ItemBag itemBag;
+        public RewordType Type;
+    }
+
 
 
 }

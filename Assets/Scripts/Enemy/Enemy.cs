@@ -46,7 +46,6 @@ namespace ARPG
             State = data.State;
             State = data.State.Clone() as CharacterState;
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
-            //TODO: 开始进入FSM状态
             anim.runtimeAnimatorController = data.Animator;
             CreateSkillClass();
             SwitchFSM(FSMType.IdleFSM);

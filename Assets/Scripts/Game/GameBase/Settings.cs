@@ -14,9 +14,14 @@ namespace ARPG
 
         public const float isDownTime = 1.25f;
 
+        /// <summary>
+        /// 获取奖励界面每次生成的间隔时间
+        /// </summary>
+        public const float RewordTime = 0.5f;
+
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
 
-        //基础经验值: 经验值计算公式 :(基础经验值)*当前等级*(角色基础星级)
+        //基础经验值: 经验值计算公式 :(基础经验值)*当前等级*(当前星级)
         public const int deftualExp = 30;
 
 
