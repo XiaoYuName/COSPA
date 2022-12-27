@@ -141,8 +141,6 @@ namespace ARPG.Config
                     }
                 }
             }
-            
-            //TODO: 属性值要套入一遍成长权重公式
             return Settings.GetGrowthState(state);
         }
 
