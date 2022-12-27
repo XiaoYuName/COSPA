@@ -36,6 +36,10 @@ namespace ARPG
         [Tooltip("代表技能的偏移位置")]
         public Vector2 RadiusOffset;
         /// <summary>
+        /// 判定层
+        /// </summary>
+        public LayerMask Mask;
+        /// <summary>
         /// 伤害
         /// </summary>
         public float Diamage;

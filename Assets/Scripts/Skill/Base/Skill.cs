@@ -32,7 +32,6 @@ namespace ARPG
     {
         public override void Play()
         {
-            Debug.Log("战士职业普通攻击");
             Player.StartCoroutine(PlayFx());
         }
 
@@ -53,13 +52,21 @@ namespace ARPG
     {
         public override void Play()
         {
-            Debug.Log("魔法师职业普通攻击");
+            Player.StartCoroutine(PlayFx());
         }
 
         private IEnumerator PlayFx()
         {
             yield return new WaitForSeconds(data.ReleaseTime);
-            
+            Collider2D target = Physics2D.OverlapCircle(Player.body.position, data.Radius, data.Mask);
+            if (target != null && target.CompareTag("Character"))
+            {
+                Vector3 Point = target.bounds.ClosestPoint(Player.body.position);
+                GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, Point, Quaternion.identity);
+                GameManager.Instance.OptionDamage(Player,target.GetComponent<Enemy>(),data,Point);
+                yield return new WaitForSeconds(data.Duration);
+                Fx.gameObject.SetActive(false);
+            }
         }
     }
 

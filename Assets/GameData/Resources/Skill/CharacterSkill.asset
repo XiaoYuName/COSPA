@@ -19,6 +19,9 @@ MonoBehaviour:
     ReleaseTime: 0.5
     Radius: 2.5
     RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 0
     Diamage: 5
     icon: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
     SkillName: "\u6218\u58EB\u804C\u4E1A\u666E\u901A\u653B\u51FB"
@@ -32,31 +35,33 @@ MonoBehaviour:
       count: 10
   - ID: SkillConjurerAttack
     CD: 1
-    Duration: 0
-    ReleaseTime: 0
-    Radius: 0
+    Duration: 0.5
+    ReleaseTime: 0.5
+    Radius: 3.5
     RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
     Diamage: 50
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u9B54\u6CD5\u5E08\u804C\u4E1A\u666E\u901A\u653B\u51FB"
     SkillType:
-      type: 0
+      type: 2
       isMultistage: 0
       MultistageTime: 0
       MultistageDamage: 
     Pools:
-    - prefab: {fileID: 1453648102191072, guid: 6e39ca2f8efb71e48923599f48461c26, type: 3}
-      count: 5
-    - prefab: {fileID: 1479186786842274, guid: 8c07f41bda85c0e41abde22f9f27ed83, type: 3}
-      count: 5
-    - prefab: {fileID: 1460800425478370, guid: c2721edf07119f74ea2f68f2cad99755, type: 3}
-      count: 5
+    - prefab: {fileID: 6151121716400007873, guid: 12d8fdc32c8c208409ada808b9ae24de, type: 3}
+      count: 10
   - ID: SkillEnemySoldierAttack
     CD: 2.5
     Duration: 0.5
     ReleaseTime: 0.5
     Radius: 0.6
     RadiusOffset: {x: -0.79, y: -0.89}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 0
     Diamage: 15
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"

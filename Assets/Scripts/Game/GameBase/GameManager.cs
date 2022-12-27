@@ -110,6 +110,7 @@ namespace ARPG
         /// <returns></returns>
         private IEnumerator MovZeroPoint(Vector3 zeroPoint)
         {
+            Player.transform.rotation = Quaternion.Euler(0,0,0);
             while (Vector3.Distance(Player.transform.position,zeroPoint) >0.5f)
             {
                 Player.transform.localPosition = Vector3.MoveTowards(Player.transform.localPosition, zeroPoint, 3.5f*Time.deltaTime);
@@ -209,21 +210,31 @@ namespace ARPG
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
                     damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
-                    break;
+                    return;
                 case DamageType.Magic:
                     var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence)*(1+(attackState.SkillAttack/100) + (1+attackState.CirticalAttack/100));
                     //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
+                    bool isMagicCirtical = attackState.Cirtical > Random.value;
+                    if (isMagicCirtical)
+                    {
+                        //暴击了
+                        // ReSharper disable once PossibleLossOfFraction
+                        Magic *= (2.5d+attackState.CirticalAttack/10);
+                    }
                     Magic += item.Diamage;
                     //1.1 伤害要减去地方防御力
                     Magic -= targetState.Defense;
                     //2.基础攻击力加技能基础伤害
+                    Magic = Mathf.Max(1, (int)Magic);
                     target.IDamage((int)Math.Round(Magic,0));
-                    break;
+                    DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
+                    damageText.Show(DamageType.Physics,isMagicCirtical,((int)Math.Round(Magic,0)).ToString());
+                    return;
                 case DamageType.Treatment:
-                    break;
+                    return;
                 default:
                     Debug.Log("未知的伤害类型，请检查");
-                    break;
+                    return;
             }
         }
 
