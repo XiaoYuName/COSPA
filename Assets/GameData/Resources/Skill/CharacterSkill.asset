@@ -44,7 +44,13 @@ MonoBehaviour:
       isMultistage: 0
       MultistageTime: 0
       MultistageDamage: 
-    Pools: []
+    Pools:
+    - prefab: {fileID: 1453648102191072, guid: 6e39ca2f8efb71e48923599f48461c26, type: 3}
+      count: 5
+    - prefab: {fileID: 1479186786842274, guid: 8c07f41bda85c0e41abde22f9f27ed83, type: 3}
+      count: 5
+    - prefab: {fileID: 1460800425478370, guid: c2721edf07119f74ea2f68f2cad99755, type: 3}
+      count: 5
   - ID: SkillEnemySoldierAttack
     CD: 2.5
     Duration: 0.5
