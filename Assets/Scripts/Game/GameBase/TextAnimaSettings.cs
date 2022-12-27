@@ -46,20 +46,21 @@ namespace ARPG
         /// <exception cref="Exception">没有没有该文件则报错</exception>
         public static string GetSpineText(string spriteName, string indexName)
         {
+#if UNITY_EDITOR
             string path = Application.dataPath+"/TextMesh Pro/Resources/Sprite Assets/"+spriteName+".asset";
-            if (File.Exists(path))
+            if (!File.Exists(path))
             {
-                char[] arr = indexName.ToCharArray();
-                string line ="";
-                foreach (var c in arr)
-                {
-                    string item = "<sprite=\"" + spriteName + "\" name=\"" + c + "\">";
-                    line += item;
-                }
-                return line;
+                throw new Exception("没有对应的Sprite文件");
             }
-
-            throw new Exception("没有对应的Sprite文件");
+#endif
+            char[] arr = indexName.ToCharArray();
+            string line ="";
+            foreach (var c in arr)
+            {
+                string item = "<sprite=\"" + spriteName + "\" name=\"" + c + "\">";
+                line += item;
+            }
+            return line;
         }
 
         public static string GetDamageText(DamageType type,bool isCirct,string Damage)
