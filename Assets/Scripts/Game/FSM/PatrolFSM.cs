@@ -34,7 +34,6 @@ namespace ARPG
                     GameManager.Instance.Player.transform.position) < enemy.data.Attackradius)
             {
                 targetPos = GameManager.Instance.Player.transform.position;
-                Debug.Log("发现Player进入到攻击范围");
             }
             else
             {

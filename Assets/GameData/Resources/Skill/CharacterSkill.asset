@@ -73,3 +73,23 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
       count: 999
+  - ID: DoubleChop
+    CD: 5
+    Duration: 2
+    ReleaseTime: 1
+    Radius: 3
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
+    Diamage: 35
+    icon: {fileID: 21300000, guid: 11bef36b783d344ad9c15659c603bf1a, type: 3}
+    SkillName: "\u91CD\u65A9"
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 1011157772751556, guid: ca63c6ac7458764498741e0306f78528, type: 3}
+      count: 5

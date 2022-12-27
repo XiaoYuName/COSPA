@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
 using ARPG.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,21 +24,43 @@ namespace ARPG
             SkillBtn_3 = Get<Button>("Button_Skill_03");
         }
 
+        public Image GetSkillCD(int SkillBtnID,out TextMeshProUGUI text)
+        {
+            switch (SkillBtnID)
+            {
+                case 1:
+                    text = Get<TextMeshProUGUI>("Button_Skill_01/CD/value");
+                    return Get<Image>("Button_Skill_01/CD");
+                case 2:
+                    text = Get<TextMeshProUGUI>("Button_Skill_02/CD/value");
+                    return Get<Image>("Button_Skill_02/CD");
+                case 3:
+                    text = Get<TextMeshProUGUI>("Button_Skill_03/CD/value");
+                    return Get<Image>("Button_Skill_03/CD");
+                default:
+                    throw new Exception("没有对应技能Button组件");
+            }
+        }
+
         public void SetUI(SkillType type,SkillItem item)
         {
             switch (type)
             {
                 case SkillType.Attack:
                     AttackBtn.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+                    AttackBtn.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Skill_01:
                     SkillBtn_1.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_1.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Skill_02:
                     SkillBtn_2.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_2.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Skill_03:
                     SkillBtn_3.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_3.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Passive:
                     break;

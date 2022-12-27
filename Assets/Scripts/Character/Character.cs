@@ -19,7 +19,7 @@ namespace ARPG
         protected CharacterConfigInfo data;
         protected SkeletonMecanim Spine;
         [HideInInspector]public Animator anim;
-        protected AttackButton attackButton;
+        [HideInInspector]public AttackButton attackButton;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
 
@@ -148,7 +148,7 @@ namespace ARPG
 
         protected  void Skill_1()
         {
-            
+            SkillDic[SkillType.Skill_01].Play();
         }
 
         protected  void Skill_2()
