@@ -8,7 +8,7 @@ namespace ARPG.BasePool
     /// <summary>
     /// 泛型单例对象池
     /// </summary>
-    public class BasePool<T> : Singleton<BasePool<T>> where  T: Component 
+    public class BasePool<T> : MonoSingleton<BasePool<T>> where  T: Component 
     {
         private ObjectPool<T> Pool;
         [SerializeField,Header("预制体名称")]

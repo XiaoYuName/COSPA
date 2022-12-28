@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace ARPG
 {
-    public class AudioManager : Singleton<AudioManager>
+    public class AudioManager : MonoSingleton<AudioManager>
     {
         private AudioConfig MainAudioData;
         private SettringsConfig audioSettrings;

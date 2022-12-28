@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ARPG.Pool.Skill
 {
-   public class SkillPoolManager : Singleton<SkillPoolManager>
+   public class SkillPoolManager : MonoSingleton<SkillPoolManager>
    {
       public List<Pool> Pools;
 

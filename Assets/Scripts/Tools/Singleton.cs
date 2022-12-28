@@ -1,30 +1,21 @@
-using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T:Singleton<T> //约束该类必须被继承
+/// <summary>
+/// 非继承自MonoBehaviour的单例类
+/// </summary>
+/// <typeparam name="T">该类必须可New()</typeparam>
+public class Singleton<T> where T: new()
 {
-    private static T instance;
-    
-    public static T Instance => instance; //属性保护字段,让其只为Get,不能Set
-    
-    public static bool IsInitialized => instance != null; //用于判断是否为空
-    protected virtual void Awake()
+    private static T _instance;
+
+    public static T Instance
     {
-        if (instance != null)
+        get
         {
-            Destroy(gameObject);
+            if (_instance == null)
+            {
+                _instance = new T();
+            }
+            return _instance;
         }
-        else
-        {
-            instance = (T) this;
-        }
-    }
-    
-    protected virtual void OnDestroy()
-    {
-        if (instance == this)
-        {
-            instance = null; //销毁时,赋值为空
-        }
-        
     }
 }

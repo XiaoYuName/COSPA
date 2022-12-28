@@ -14,7 +14,7 @@ namespace ARPG
     /// <summary>
     /// 战斗场景主管理器
     /// </summary>
-    public class GameManager : Singleton<GameManager>
+    public class GameManager : MonoSingleton<GameManager>
     { 
         //角色的公用预制体
         public Character Player;
@@ -50,7 +50,8 @@ namespace ARPG
         public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionItem regionItem)
         {
             currentRegion = regionItem;
-            var Obj = GameSystem.Instance.GetPrefab<Character>("Character");
+            var data = InventoryManager.Instance.GetCharacter(bags.ID);
+            var Obj = data.Prefab.GetComponent<Character>();
             Player =  Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
             Player.isAI = false;

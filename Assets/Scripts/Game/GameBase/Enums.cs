@@ -164,4 +164,10 @@ namespace ARPG
        UITop,
    }
 
+
+   public enum C2S
+   {
+       EventMsg = 1,
+   }
+
 }

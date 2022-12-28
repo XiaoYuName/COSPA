@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ARPG
 {
-    public class FadeManager : Singleton<FadeManager>
+    public class FadeManager : MonoSingleton<FadeManager>
     {
         private CanvasGroup FadeGroup;
         private bool isFade;

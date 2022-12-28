@@ -38,7 +38,7 @@ namespace ARPG
         /// <summary>
         /// 技能对象子弹,初始化阶段会加载出所有的技能对象,并执行Init初始化,之后在释放时调用Play方法
         /// </summary>
-        private Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
+        [HideInInspector]public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
 
         [HideInInspector]public Transform body;
         private static readonly int s_Die = Animator.StringToHash("Die");
@@ -102,6 +102,14 @@ namespace ARPG
         {
             if(!isAI)
                 Movenemt();
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var skill in SkillDic)
+            {
+                SkillDic[skill.Key].UHandle();
+            }
         }
 
         /// <summary>

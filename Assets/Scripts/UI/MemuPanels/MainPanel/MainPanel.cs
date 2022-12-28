@@ -9,7 +9,7 @@ namespace ARPG.UI
     /// <summary>
     /// 游戏主菜单UI
     /// </summary>
-    public class MainPanel : Singleton<MainPanel>
+    public class MainPanel : MonoSingleton<MainPanel>
     {
         private RootTableConfig Config;
         private RectTransform TabContent;

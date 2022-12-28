@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ARPG
 {
-    public class EnemyPoolManager : Singleton<EnemyPoolManager>
+    public class EnemyPoolManager : MonoSingleton<EnemyPoolManager>
     {
        public List<Pool.Skill.Pool> Pools;
 

@@ -9,7 +9,7 @@ namespace ARPG
     /// <summary>
     /// 战斗场景工场
     /// </summary>
-    public class GameSystem : Singleton<GameSystem>
+    public class GameSystem : MonoSingleton<GameSystem>
     {
         /// <summary>
         /// Prefab 配置表

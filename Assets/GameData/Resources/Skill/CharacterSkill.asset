@@ -94,7 +94,7 @@ MonoBehaviour:
     - prefab: {fileID: 1011157772751556, guid: ca63c6ac7458764498741e0306f78528, type: 3}
       count: 5
   - ID: PrincessRaid
-    CD: 20
+    CD: 1
     Duration: 2
     ReleaseTime: 1
     Radius: 3
@@ -110,4 +110,6 @@ MonoBehaviour:
       isMultistage: 0
       MultistageTime: 0
       MultistageDamage: 
-    Pools: []
+    Pools:
+    - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
+      count: 5

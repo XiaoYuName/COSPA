@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ARPG.BasePool
 {
-    public class VideoManager : Singleton<VideoManager>
+    public class VideoManager : MonoSingleton<VideoManager>
     {
         private VideoConfig config;
         private AvVideoConfig AvVideoConfig;

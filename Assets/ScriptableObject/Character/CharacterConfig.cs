@@ -32,6 +32,8 @@ namespace ARPG.Config
         
         [Header("资源类")]
         public StarSpineAssets[] Assets;
+        [Header("角色预制体")]
+        public GameObject Prefab;
         
         /// <summary>
         /// 角色星级

@@ -23,6 +23,10 @@ namespace ARPG
         }
 
         public abstract void Play();
+
+        public virtual void UHandle()
+        {
+        }
     }
 
     /// <summary>

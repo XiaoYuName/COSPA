@@ -17,7 +17,7 @@ namespace ARPG
     /// UI管理器 :
     ///     UI工厂
     /// </summary>
-    public class UISystem : Singleton<UISystem>
+    public class UISystem : MonoSingleton<UISystem>
     {
         /// <summary>
         /// Table配置表

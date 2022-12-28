@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace ARPG
 {
-    public class EnemyManager : Singleton<EnemyManager>
+    public class EnemyManager : MonoSingleton<EnemyManager>
     {
         public EnemyConfig config;
         private RegionItem currentRegion;

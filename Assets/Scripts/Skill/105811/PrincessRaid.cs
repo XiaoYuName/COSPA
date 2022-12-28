@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using ARPG;
 using ARPG.BasePool;
+using ARPG.Pool.Skill;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,26 +20,47 @@ namespace ARPG
             base.Init(character, item);
             Mask = Player.attackButton.GetSkillCD(3, out CdText);
             isCold = false;
+            MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
         }
-    
+
+        public void AniamtorMsg(string EventName)
+        {
+            switch (EventName)
+            {
+                case "StopVideoSkill3":
+                    Player.StartCoroutine(WaitVideo());
+                    break;
+                case "StopSkill_3":
+                    Player.anim.speed = 0;
+                    break;
+                case "CreateSword":
+                    PlaySkillFx();
+                    break;
+            }
+        }
+
         public override void Play()
         {
             //1.首先判断技能是否在CD 并且该技能没有在播放中
             if (isCold || Player.animSpeed == 0) return;
             Player.StartCoroutine(WaitSkillTime(data.CD));
             //3.释放技能特效
-            Player.StartCoroutine(PlayFx());
+            Player.anim.SetTrigger("Skill_3");
+        }
+        
+        public IEnumerator WaitVideo()
+        {
+            VideoManager.Instance.PlayerAvVideo(data.ID);
+            yield return new WaitForSecondsRealtime(1.9f);
+            Player.anim.speed = 1;
         }
 
-        public IEnumerator PlayFx()
+        public void PlaySkillFx()
         {
-           VideoManager.Instance.PlayerAvVideo(data.ID);
-           Player.anim.SetTrigger("Skill_3");
-           yield return new WaitForSeconds(0.25f);
-           Time.timeScale = 0;
-           yield return new WaitForSecondsRealtime(2f);
-           Time.timeScale = 1;
-          
+            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90; 
+            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, Player.body.position,
+                Quaternion.Euler(0,rotationY,-90)).GetComponent<_FxItem>();
+            fxItem.Play(Player,data);
         }
 
         /// <summary>
@@ -63,6 +85,13 @@ namespace ARPG
             Mask.fillAmount = 0;
             CdText.gameObject.SetActive(false);
             isCold = false;
+        }
+
+
+        public override void UHandle()
+        {
+            base.UHandle();
+            MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
         }
     }
 }

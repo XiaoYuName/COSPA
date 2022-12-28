@@ -10,7 +10,7 @@ namespace ARPG
     /// <summary>
     /// 玩家背包管理器
     /// </summary>
-    public class InventoryManager : Singleton<InventoryManager>
+    public class InventoryManager : MonoSingleton<InventoryManager>
     {
         /// <summary>
         /// 玩家背包
