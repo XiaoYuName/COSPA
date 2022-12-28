@@ -10,6 +10,7 @@ namespace ARPG
         {
             WaitUtils.WaitTimeDo(1, () =>
             {
+                if(enemy== null || enemy.gameObject ==null)return;
                 enemy.gameObject.SetActive(false);//释放线程池资源
                 EnemyManager.Instance.DieCurrentEnemy(enemy);
             });

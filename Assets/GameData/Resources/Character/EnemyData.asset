@@ -46,8 +46,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 30
       MagicAttack: 15
-      Defense: 8
-      HP: 150
+      Defense: 999
+      HP: 999
       AddHp: 2
       SkillAttack: 1
       Cirtical: 0.25
@@ -55,7 +55,7 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
-      MovSpeed: 2.25
+      MovSpeed: 0.5
       Growth: 0.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack

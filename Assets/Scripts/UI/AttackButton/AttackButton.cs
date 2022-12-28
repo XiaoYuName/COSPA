@@ -56,27 +56,28 @@ namespace ARPG
                     AttackBtn.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Skill_01:
-                    SkillBtn_1.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
-                    SkillBtn_1.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
-                    SkillBtn_1.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_1.GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_1.GetComponent<Image>().SetNativeSize();
+                    SkillBtn_1.transform.Find("CD").GetComponent<Image>().fillAmount = 0;
                     SkillBtn_1.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Skill_02:
-                    SkillBtn_2.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
-                    SkillBtn_2.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
-                    SkillBtn_2.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_2.GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_2.GetComponent<Image>().SetNativeSize();
+                    SkillBtn_2.transform.Find("CD").GetComponent<Image>().fillAmount = 0;
                     SkillBtn_2.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Skill_03:
-                    SkillBtn_3.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
-                    SkillBtn_3.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
-                    SkillBtn_3.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_3.GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_3.GetComponent<Image>().SetNativeSize();
+                    SkillBtn_3.transform.Find("CD").GetComponent<Image>().fillAmount = 0;
                     SkillBtn_3.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Evolution:
-                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
-                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
-                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
+                    SkillBtn_4.GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_4.GetComponent<Image>().SetNativeSize();
+                    SkillBtn_4.transform.Find("CD").GetComponent<Image>().fillAmount = 0;
+                    SkillBtn_4.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Passive:
                     break;
