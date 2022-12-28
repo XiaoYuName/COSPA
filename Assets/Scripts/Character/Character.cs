@@ -158,7 +158,7 @@ namespace ARPG
 
         protected  void Skill_3()
         {
-            
+            SkillDic[SkillType.Skill_03].Play();
         }
 
         

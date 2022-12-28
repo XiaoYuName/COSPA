@@ -12,10 +12,12 @@ namespace ARPG.BasePool
     public class UIAvVideoItem : UIBase
     {
         private MediaPlayer VideoPlayer;
+        private DisplayUGUI VideoImage;
 
         public override void Init()
         {
             VideoPlayer = GetComponent<MediaPlayer>();
+            VideoImage = GetComponent<DisplayUGUI>();
         }
         
         public void StarPlay(AvProItem item)
@@ -31,7 +33,7 @@ namespace ARPG.BasePool
             {
                 AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,0.5f);
             }
-
+            VideoImage.transform.localScale = new Vector3(2, 2, 2);
             VideoPlayer.Play();
         }
 
