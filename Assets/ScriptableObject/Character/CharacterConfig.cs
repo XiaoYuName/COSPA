@@ -25,18 +25,13 @@ namespace ARPG.Config
     public class CharacterConfigInfo : ConfigData
     {
         /// <summary>
-        /// Icon
-        /// </summary>
-        [Header("角色界面角色ICON")] 
-        public Sprite CharacterPanelIcon;
-        /// <summary>
         /// 头像
         /// </summary>
         [Header("头像")]
         public Sprite Headicon;
-
-        [Header("大图立绘")]
-        public Sprite OringIcon;
+        
+        [Header("资源类")]
+        public StarSpineAssets[] Assets;
         
         /// <summary>
         /// 角色星级
@@ -53,12 +48,6 @@ namespace ARPG.Config
         /// </summary>
         [Header("职业")]
         public BattleType battle;
-
-        /// <summary>
-        /// Spine 数据文件
-        /// </summary>
-        [Header("Spine 动画源文件")]
-        public SkeletonDataAsset SpineAsset;
         
         [Header("动画参数")]
         public string SpineIdleName;
@@ -87,6 +76,7 @@ namespace ARPG.Config
                 new CharacterSkill() {Type = SkillType.Passive},
                 new CharacterSkill(){Type = SkillType.Evolution}
             };
+            
         }
 
         public CharacterSkill GetSkillNameID(SkillType type)
@@ -94,13 +84,26 @@ namespace ARPG.Config
             return SkillTable?.ToList().Find(t => t.Type == type);
         }
 
-
+        /// <summary>
+        /// 获取星级对应资源
+        /// </summary>
+        /// <param name="Star"></param>
+        /// <returns></returns>
+        public StarSpineAssets GetAssets(int Star)
+        {
+            return Star switch
+            {
+                <3 => Assets[0],
+                <6 => Assets[1],
+                _ => Assets[2]
+            };
+        }
 
         [Header("故事"),ResizableTextArea]
         public string des;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class CharacterState:ICloneable
     {
         [Header("物理攻击")]
@@ -148,7 +151,7 @@ namespace ARPG.Config
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class CharacterSkill
     {
         public string SkillID;
@@ -186,9 +189,22 @@ namespace ARPG.Config
     /// <summary>
     /// 角色星级对应的Spine
     /// </summary>
+    [Serializable]
     public class StarSpineAssets
     {
+        /// <summary>
+        /// 星级
+        /// </summary>
         public int Star;
+        [Header("大图立绘")]
+        public Sprite OringIcon;
+        
+        [Header("角色界面角色ICON")] 
+        public Sprite CharacterPanelIcon;
+        
+        /// <summary>
+        /// 对应的Spine动画
+        /// </summary>
         public SkeletonDataAsset Spinedata;
     }
 }

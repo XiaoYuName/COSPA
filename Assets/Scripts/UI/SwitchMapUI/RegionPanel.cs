@@ -102,7 +102,8 @@ namespace ARPG.UI
         public override void Close()
         {
             SetAnimator(false);
-            OpenTableUI.isClick = false;
+            if(OpenTableUI != null)
+             OpenTableUI.isClick = false;
             base.Close();
             MainPanel.Instance.RemoveTableChild("RegionPanel");
         }

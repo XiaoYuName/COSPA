@@ -27,7 +27,7 @@ namespace ARPG.UI
         {
             CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(info.ID);
             CharacterID = info.ID;
-            icon.sprite = character.CharacterPanelIcon;
+            icon.sprite = character.GetAssets(info.currentStar).CharacterPanelIcon;
             Level.text = "等级 "+info.Level;
             SetInfoStar(info.currentStar);
             Bind(btn, delegate

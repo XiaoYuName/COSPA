@@ -14,13 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseDatas:
   - ID: plate_100211
-    CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
     Headicon: {fileID: 21300000, guid: 061bb7dc0548b6e4d9d19297d5a95ae2, type: 3}
-    OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
-    CharacterStarType: 0
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
+      Spinedata: {fileID: 11400000, guid: 7bbc324d974bba142b075cc637b7b28d, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
+      Spinedata: {fileID: 11400000, guid: 203d5eeb4410b8743beb052ffeb31c98, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: 844d3fdcc08503644ba8b71d326f4c3d, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: a2f450c7d37a5fe4b9cfcb89eb2d0479, type: 3}
+      Spinedata: {fileID: 11400000, guid: 2291fa5ee34e3674cb8355126e045095, type: 2}
+    CharacterStarType: 6
     CharacterName: "\u4F18\u8863"
     battle: 2
-    SpineAsset: {fileID: 11400000, guid: 7bbc324d974bba142b075cc637b7b28d, type: 2}
     SpineIdleName: 07_idle
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
@@ -51,13 +61,23 @@ MonoBehaviour:
       Type: 4
     des: xxx
   - ID: plate_1058
-    CharacterPanelIcon: {fileID: 21300000, guid: f929969deefa16d49b09c191ad2433df, type: 3}
     Headicon: {fileID: 21300000, guid: eb1f391e437653f44bdb82d15530fff6, type: 3}
-    OringIcon: {fileID: 21300000, guid: fcc29a02fc44b52419f6ec39ef5714ca, type: 3}
-    CharacterStarType: 2
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 36c063d876c25524887ce66441c0cfd2, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 51461f5232148ca4cbd15f12a72e55aa, type: 3}
+      Spinedata: {fileID: 11400000, guid: 15ae455bd6167e64186c3c8f28d3ff18, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 36c063d876c25524887ce66441c0cfd2, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 51461f5232148ca4cbd15f12a72e55aa, type: 3}
+      Spinedata: {fileID: 11400000, guid: aee5e69460891174fa91c593669c33bc, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: fcc29a02fc44b52419f6ec39ef5714ca, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: fa4ce0ec8b9754f4aadd38c9b65bfe02, type: 3}
+      Spinedata: {fileID: 11400000, guid: d8c95339ba2027443a2594a9140e4c7c, type: 2}
+    CharacterStarType: 6
     CharacterName: "\u65E0\u8272\u8F89\u706B"
     battle: 0
-    SpineAsset: {fileID: 11400000, guid: 15ae455bd6167e64186c3c8f28d3ff18, type: 2}
     SpineIdleName: 05_idle
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}

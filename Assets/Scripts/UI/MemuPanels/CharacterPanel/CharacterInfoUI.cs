@@ -70,6 +70,7 @@ namespace ARPG.UI
                 CharacterStarType.三星 => ItemMode.普通,
                 CharacterStarType.四星 => ItemMode.稀有,
                 CharacterStarType.五星 => ItemMode.神器,
+                CharacterStarType.六星 => ItemMode.神器,
                 _ => ItemMode.普通,
             };
             Faram.sprite = InventoryManager.Instance.GetFaramIcon(mode);

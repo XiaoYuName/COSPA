@@ -80,7 +80,7 @@ namespace ARPG.UI
             CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(data.ID);
             currentBag = data;
             currentInfo = info;
-            icon.sprite = info.OringIcon;
+            icon.sprite = info.GetAssets(currentBag.currentStar).OringIcon;
             CharacterName.text = info.CharacterName;
             LevelValue.Show("等级",data.Level.ToString());
             Star.Show(data.currentStar);

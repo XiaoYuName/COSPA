@@ -60,7 +60,7 @@ namespace ARPG.UI
             CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(data.ID);
             currentCharacterBag = data;
             NameText.text = character.CharacterName;
-            SpineController.skeletonDataAsset = character.SpineAsset;
+            SpineController.skeletonDataAsset = character.GetAssets(data.currentStar).Spinedata;
             SpineController.AnimationState.ClearTracks();
             SpineController.Initialize(true);
             SpineController.AnimationState.SetAnimation(0, character.SpineIdleName, true);

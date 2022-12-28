@@ -63,7 +63,7 @@ namespace ARPG
             data = InventoryManager.Instance.GetCharacter(bag.ID);
             State = bag.CurrentCharacterState.Clone() as CharacterState;
             NameTextUI.text = data.CharacterName;
-            Spine.skeletonDataAsset = data.SpineAsset;
+            Spine.skeletonDataAsset = data.GetAssets(bag.currentStar).Spinedata;
             Spine.Initialize(true);
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3,Skill_4);
             anim.runtimeAnimatorController = data.AnimatorController;

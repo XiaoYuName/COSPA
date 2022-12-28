@@ -9,6 +9,7 @@ namespace ARPG
        三星=3,
        四星=4,
        五星=5,
+       六星=6,
    }
 
    /// <summary>
