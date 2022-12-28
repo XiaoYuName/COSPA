@@ -65,7 +65,7 @@ namespace ARPG
             NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.SpineAsset;
             Spine.Initialize(true);
-            attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3);
+            attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3,Skill_4);
             anim.runtimeAnimatorController = data.AnimatorController;
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             CreateSkillClass();
@@ -157,6 +157,12 @@ namespace ARPG
         }
 
         protected  void Skill_3()
+        {
+            
+        }
+
+        
+        protected void Skill_4()
         {
             
         }

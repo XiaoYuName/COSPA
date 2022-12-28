@@ -85,6 +85,7 @@ namespace ARPG.Config
                 new CharacterSkill() {Type = SkillType.Skill_02},
                 new CharacterSkill() {Type = SkillType.Skill_03},
                 new CharacterSkill() {Type = SkillType.Passive},
+                new CharacterSkill(){Type = SkillType.Evolution}
             };
         }
 
@@ -176,6 +177,19 @@ namespace ARPG.Config
         /// 被动技能
         /// </summary>
         Passive,
+        /// <summary>
+        /// 觉醒技能
+        /// </summary>
+        Evolution
+    }
+
+    /// <summary>
+    /// 角色星级对应的Spine
+    /// </summary>
+    public class StarSpineAssets
+    {
+        public int Star;
+        public SkeletonDataAsset Spinedata;
     }
 }
 

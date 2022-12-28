@@ -15,6 +15,7 @@ namespace ARPG
         private Button SkillBtn_1;
         private Button SkillBtn_2;
         private Button SkillBtn_3;
+        private Button SkillBtn_4;
 
         public override void Init()
         {
@@ -22,6 +23,7 @@ namespace ARPG
             SkillBtn_1 = Get<Button>("Button_Skill_01");
             SkillBtn_2 = Get<Button>("Button_Skill_02");
             SkillBtn_3 = Get<Button>("Button_Skill_03");
+            SkillBtn_4 = Get<Button>("Button_Skill_04");
         }
 
         public Image GetSkillCD(int SkillBtnID,out TextMeshProUGUI text)
@@ -37,6 +39,9 @@ namespace ARPG
                 case 3:
                     text = Get<TextMeshProUGUI>("Button_Skill_03/CD/value");
                     return Get<Image>("Button_Skill_03/CD");
+                case 4:
+                    text =Get<TextMeshProUGUI>("Button_Skill_04/CD/value");
+                    return Get<Image>("Button_Skill_04/CD");
                 default:
                     throw new Exception("没有对应技能Button组件");
             }
@@ -53,27 +58,47 @@ namespace ARPG
                 case SkillType.Skill_01:
                     SkillBtn_1.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
                     SkillBtn_1.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
+                    SkillBtn_1.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_1.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Skill_02:
                     SkillBtn_2.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
                     SkillBtn_2.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
+                    SkillBtn_2.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_2.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
                     break;
                 case SkillType.Skill_03:
                     SkillBtn_3.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
                     SkillBtn_3.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
+                    SkillBtn_3.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_3.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
+                    break;
+                case SkillType.Evolution:
+                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().fillAmount = 1;
+                    SkillBtn_4.transform.Find("Icon").GetComponent<Image>().SetNativeSize();
                     break;
                 case SkillType.Passive:
                     break;
             }
         }
 
-        public void InitBindButton(Action attack, Action skill_1, Action skill_2, Action skill_3)
+        /// <summary>
+        /// 绑定技能按钮
+        /// </summary>
+        /// <param name="attack">普攻</param>
+        /// <param name="skill_1">技能1</param>
+        /// <param name="skill_2">技能2</param>
+        /// <param name="skill_3">技能3</param>
+        /// <param name="skill_4">技能4(觉醒技)</param>
+        public void InitBindButton(Action attack, Action skill_1, Action skill_2, Action skill_3,Action skill_4)
         {
             Open();
             Bind(AttackBtn,attack,"OnChick");
             Bind(SkillBtn_1,skill_1,"OnChick");
             Bind(SkillBtn_2,skill_2,"OnChick");
             Bind(SkillBtn_3,skill_3,"OnChick");
+            Bind(SkillBtn_4,skill_4,"OnChick");
         }
     }
 }
