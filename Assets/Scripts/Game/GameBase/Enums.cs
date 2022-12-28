@@ -148,4 +148,20 @@ namespace ARPG
        Star,
    }
 
+   public enum UITableType
+   {
+       /// <summary>
+       /// 低UI宽度自适应层
+       /// </summary>
+       UIDonw,
+       /// <summary>
+       /// UI高度自适应层
+       /// </summary>
+       UIRoot,
+       /// <summary>
+       /// 高UI宽度自适应层
+       /// </summary>
+       UITop,
+   }
+
 }

@@ -17,91 +17,109 @@ MonoBehaviour:
     Prefab: {fileID: 7713498112199037532, guid: 6caf531bd49bdf94f9e2f803ed6311ba, type: 3}
     details: "\u4E3B\u83DC\u5355"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: PopSingleton
     Prefab: {fileID: 2788787069707487055, guid: d4b5e0e111a628b4399402f8b270b3aa, type: 3}
     details: "\u5355\u9879\u63D0\u793A\u5F39\u7A97"
     parentName: UIPop
+    Type: 1
     isInit: 0
   - ID: PlotPanel
     Prefab: {fileID: 9218665142398917949, guid: 148291c608df9a347b2a427e6a75b09f, type: 3}
     details: "\u5267\u60C5\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: CharacterPanel
     Prefab: {fileID: 427020988299271155, guid: 2e57f09c0da41e7428d4ab99bf3edcd3, type: 3}
     details: "\u89D2\u8272\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: AdventurePanel
     Prefab: {fileID: 4508358497244703935, guid: e722d4f8b5978df4184a60fc695bc3c3, type: 3}
     details: "\u5192\u9669\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: CharacterEquipPanel
     Prefab: {fileID: 8984404200436457994, guid: 1a83d665d41e41048aed4457f3480cbe, type: 3}
     details: "\u89D2\u8272\u5F3A\u5316\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: SwicthMapPanel
     Prefab: {fileID: 2856197350424528996, guid: ef7d3756e3fca2140b760c1ea925bdf2, type: 3}
     details: "\u5267\u60C5\u51FA\u7AD9\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: RegionPanel
     Prefab: {fileID: 6258861247635783004, guid: 65a7f479b7f34644dbdf654853bdb447, type: 3}
     details: "\u526F\u672C\u8FDB\u5165\u754C\u9762"
     parentName: UIPanel
+    Type: 1
     isInit: 0
   - ID: CharacterToolTip
     Prefab: {fileID: 472540474430300532, guid: 3b1214aad6827a04db109f3877247ff3, type: 3}
     details: "\u89D2\u8272\u5C5E\u6027\u5F39\u7A97"
     parentName: UIPop
+    Type: 1
     isInit: 0
   - ID: PopDialogue
     Prefab: {fileID: 4677419080069590719, guid: 4d139a69ed293d4469cfe71c025afa40, type: 3}
     details: "\u663E\u793A\u5BF9\u8BDD\u5F39\u7A97"
     parentName: UIPop
+    Type: 1
     isInit: 0
   - ID: RegionToolTip
     Prefab: {fileID: 2151074576823801710, guid: 72071dd35bc95f947b22d15fd155765e, type: 3}
     details: "\u663E\u793A\u526F\u672C\u4FE1\u606F"
     parentName: UIPop
+    Type: 1
     isInit: 0
   - ID: SwitchCharacterPanel
     Prefab: {fileID: 3460902907998256606, guid: a0f78411f1d5eb540977b67c2d6650e9, type: 3}
     details: "\u89D2\u8272\u9009\u62E9\u51FA\u6218\u754C\u9762"
     parentName: UIPop
+    Type: 1
     isInit: 0
   - ID: DynamicJoystick
     Prefab: {fileID: 9123182228911863454, guid: 16bbeeb81b9ae14428e89b1b2a23e392, type: 3}
     details: "\u79FB\u52A8\u6447\u6746"
     parentName: UIPanel
+    Type: 2
     isInit: 0
   - ID: AttackButton
     Prefab: {fileID: 4145848044005485310, guid: 7a8eed6e72bd5d54aa168a06bff43119, type: 3}
     details: "\u653B\u51FB\u6309\u94AE\u7EC4"
     parentName: UIPanel
+    Type: 2
     isInit: 0
   - ID: GameMemu
     Prefab: {fileID: 3678736201650618525, guid: 598b0366325a999428cf996ab677012f, type: 3}
     details: "\u6E38\u620F\u573A\u666F\u4E0A\u65B9\u83DC\u5355"
     parentName: UIPanel
+    Type: 2
     isInit: 0
   - ID: MemuPanel
     Prefab: {fileID: 5318941951844196720, guid: cb73512df6a2224438e4f073aa39268d, type: 3}
     details: "\u4E3B\u83DC\u5355\u754C\u9762"
     parentName: UIPop
+    Type: 2
     isInit: 0
   - ID: DownTime
     Prefab: {fileID: 2844500558598246377, guid: 43d8ac125e0499b44b2e2772345f2a06, type: 3}
     details: "\u5012\u8BA1\u65F6UI"
     parentName: UITop
+    Type: 0
     isInit: 0
   - ID: GameEnd
     Prefab: {fileID: 6841626619055234857, guid: 6b9d95ee345f553428d341b3784b3d85, type: 3}
     details: "\u6218\u6597\u7ED3\u675F\u7ED3\u7B97UI"
     parentName: UIPanel
+    Type: 0
     isInit: 0
   UIParents:
   - UIPanel

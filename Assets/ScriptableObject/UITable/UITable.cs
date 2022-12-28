@@ -38,6 +38,9 @@ namespace ARPG.Config
 
         [Header("UI父级名称"),Layer]
         public string parentName;
+
+        [Header("适配UI层级")]
+        public UITableType Type;
         
         [Header("是否一开始就加载")]
         public bool isInit;

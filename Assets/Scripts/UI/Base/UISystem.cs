@@ -27,12 +27,19 @@ namespace ARPG
         /// Prefab 配置表
         /// </summary>
         private UIPrefab prefabConfig;
-
         private Dictionary<string, GameObject> UiTableDic;
         /// <summary>
         /// UI跟节点
         /// </summary>
         private List<RectTransform> UIRoot;
+        /// <summary>
+        /// 已宽度适配的UI画布根节点:该节点物体渲染高于UIRoot
+        /// </summary>
+        private List<RectTransform> AutoUIRootTop;
+        /// <summary>
+        /// 已宽度适配的UI画布根节点:该节点物体渲染低于UIRoot
+        /// </summary>
+        private List<RectTransform> AutoUIRootDonw;
 
         protected override void Awake()
         {
@@ -48,6 +55,8 @@ namespace ARPG
             prefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/UIPrefab");
             UiTableDic = new Dictionary<string, GameObject>();
             UIRoot = new List<RectTransform>();
+            AutoUIRootTop = new List<RectTransform>();
+            AutoUIRootDonw = new List<RectTransform>();
             InitParent();
             InitLoadPrefab();
         }
@@ -72,6 +81,32 @@ namespace ARPG
                     UIRoot.Add(Parent);
                 }
 
+                var TopParent = transform.parent.Find("AutoUITop").Find(ParentName) as RectTransform;
+                if (TopParent == null)
+                {
+                    GameObject obj = new GameObject(ParentName);
+                    obj.transform.parent = transform;
+                    obj.transform.localPosition = Vector3.zero;
+                    AutoUIRootTop.Add(obj.transform as RectTransform);
+                }
+                else
+                {
+                    AutoUIRootTop.Add(TopParent);
+                }
+
+                var DownParent = transform.parent.Find("AutoUIDown").Find(ParentName)as RectTransform;
+                if (DownParent == null)
+                {
+                    GameObject obj = new GameObject(ParentName);
+                    obj.transform.parent = transform;
+                    obj.transform.localPosition = Vector3.zero;
+                    AutoUIRootDonw.Add(obj.transform as RectTransform);
+                }
+                else
+                {
+                    AutoUIRootDonw.Add(DownParent);
+                }
+
             }
         }
         
@@ -84,7 +119,7 @@ namespace ARPG
             foreach (var Table in Inits)
             {
                 var Obj = Instantiate(Table.Prefab, String.IsNullOrEmpty(Table.parentName) ? 
-                    transform : GetPanrent(Table.parentName));
+                    transform : GetPanrent(Table.Type,Table.parentName));
                 Obj.SetActive(true);
                 if (Obj.GetComponent<UIBase>() == null)
                 {
@@ -106,9 +141,15 @@ namespace ARPG
         /// </summary>
         /// <param name="uiname">父级名称</param>
         /// <returns></returns>
-        private RectTransform GetPanrent(string uiname)
+        private RectTransform GetPanrent(UITableType type,string uiname)
         {
-            return UIRoot.Find(a => a.name == uiname);
+            return type switch
+            {
+                UITableType.UIRoot => UIRoot.Find(a => a.name == uiname),
+                UITableType.UITop => AutoUIRootTop.Find(a => a.name == uiname),
+                UITableType.UIDonw => AutoUIRootDonw.Find(a => a.name == uiname),
+                _=>  UIRoot.Find(a => a.name == uiname),
+            };
         }
 
         #endregion
@@ -243,7 +284,7 @@ namespace ARPG
         {
             UITableItem item = tableConfig.Get(uiname);
             if (item == null) throw new Exception("表中没有对应的UI组件");
-            var Obj = Instantiate(item.Prefab, GetPanrent(item.parentName));
+            var Obj = Instantiate(item.Prefab, GetPanrent(item.Type,item.parentName));
             if(Obj.GetComponent<UIBase>() != null)
                 Obj.GetComponent<UIBase>().Init();
             UiTableDic.Add(uiname,Obj);
