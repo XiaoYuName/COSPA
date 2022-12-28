@@ -22,6 +22,7 @@ namespace ARPG
         [HideInInspector]public AttackButton attackButton;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
+        public Collider2D DamageCollider2D;
 
 
 
@@ -38,7 +39,7 @@ namespace ARPG
         /// <summary>
         /// 技能对象子弹,初始化阶段会加载出所有的技能对象,并执行Init初始化,之后在释放时调用Play方法
         /// </summary>
-        [HideInInspector]public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
+        public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
 
         [HideInInspector]public Transform body;
         private static readonly int s_Die = Animator.StringToHash("Die");
@@ -54,6 +55,7 @@ namespace ARPG
             Joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             Joystick.gameObject.SetActive(true);
             attackButton = UISystem.Instance.GetUI<AttackButton>("AttackButton");
+            DamageCollider2D = transform.Find("DamageCollier").GetComponent<Collider2D>();
         }
 
         public void Init(CharacterBag bag)

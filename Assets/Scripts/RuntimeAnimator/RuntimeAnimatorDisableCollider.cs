@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using ARPG;
 using UnityEngine;
 
-public class CharacterAnimatorController : StateMachineBehaviour
+public class RuntimeAnimatorDisableCollider : StateMachineBehaviour
 {
     private Character character;
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    { 
         character = GameManager.Instance.Player;
         if(character != null)
-            character.animSpeed = 0;
+            character.DamageCollider2D.enabled = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,8 +23,8 @@ public class CharacterAnimatorController : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (character != null)
-            character.animSpeed = 1;
+        if(character != null)
+            character.DamageCollider2D.enabled = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

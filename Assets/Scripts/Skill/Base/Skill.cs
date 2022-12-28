@@ -36,6 +36,7 @@ namespace ARPG
     {
         public override void Play()
         {
+            if(Player.animSpeed == 0)return;
             Player.StartCoroutine(PlayFx());
         }
 
