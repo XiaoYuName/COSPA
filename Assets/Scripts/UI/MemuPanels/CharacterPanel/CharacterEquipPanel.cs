@@ -27,12 +27,12 @@ namespace ARPG.UI
         /// 当前界面角色
         /// </summary>
         private CharacterBag currentCharacterBag;
-        
         /// <summary>
         /// 装备列表
         /// </summary>
         private EquipHeloUI[] _equipHeloUis;
-        
+
+        private RectTransform SkillContent;
         
         public override void Init()
         {
@@ -40,7 +40,7 @@ namespace ARPG.UI
             Bind(CloseBtn,Close,"OutChick");
             NameText = Get<TextMeshProUGUI>("UIMask/Left/Name/NameText");
             SpineController = Get<SkeletonGraphic>("UIMask/Left/Spine");
-            content = Get<RectTransform>("UIMask/Right/Scroll Rect/Content");
+            content = Get<RectTransform>("UIMask/Right/SwitchTablePanel/EquipRect");
             SpineController.gameObject.SetActive(false);
             CharacterInfoUI = GetComponentInChildren<CharacterInfoUI>();
             _toolTip = GetComponentInChildren<ItemToolTip>(true);
@@ -49,6 +49,7 @@ namespace ARPG.UI
             _toolTip.Init();
             _toolTip.Close();
             _equipHeloUis = GetComponentsInChildren<EquipHeloUI>();
+            SkillContent = Get<RectTransform>("UIMask/Right/SwitchTablePanel/SkillContent");
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace ARPG.UI
             CharacterInfoUI.InitData(data);
             CreateEquipHelo(data);
             CreateSlotUI();
+            CreateSkillSlotUI(data, character);
         }
         
         /// <summary>
@@ -158,6 +160,20 @@ namespace ARPG.UI
             CharacterConfigInfo character = InventoryManager.Instance.GetCharacter(currentCharacterBag.ID);
             SpineController.AnimationState.AddAnimation(0,character.SpineIdleName,true,1.333f);
         }
+        
+        
+        //-------------------------------------分页切换------------------------------------------//
+        private void CreateSkillSlotUI(CharacterBag bag, CharacterConfigInfo info)
+        {
+            UIHelper.Clear(SkillContent);
+            foreach (var characterSkill in info.SkillTable)
+            {
+                if(characterSkill.Type == SkillType.Attack)continue;
+                SkillSlotUI slotUI = UISystem.Instance.InstanceUI<SkillSlotUI>("SkillSlotUI");
+                slotUI.InitData(bag.currentStar,characterSkill.Type,GameSystem.Instance.GetSkill(characterSkill.SkillID));
+            }
+        }
+
 
         public override void Close()
         {

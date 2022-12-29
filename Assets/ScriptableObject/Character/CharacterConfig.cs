@@ -75,7 +75,6 @@ namespace ARPG.Config
                 new CharacterSkill() {Type = SkillType.Skill_01},
                 new CharacterSkill() {Type = SkillType.Skill_02},
                 new CharacterSkill() {Type = SkillType.Skill_03},
-                new CharacterSkill() {Type = SkillType.Passive},
                 new CharacterSkill(){Type = SkillType.Evolution}
             };
             
@@ -181,10 +180,6 @@ namespace ARPG.Config
         /// 技能3
         /// </summary>
         Skill_03,
-        /// <summary>
-        /// 被动技能
-        /// </summary>
-        Passive,
         /// <summary>
         /// 觉醒技能
         /// </summary>

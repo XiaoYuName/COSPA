@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace ARPG
@@ -51,6 +52,14 @@ namespace ARPG
         /// 技能名称
         /// </summary>
         public string SkillName;
+        /// <summary>
+        /// 技能描述
+        /// </summary>
+        [ResizableTextArea]
+        public string SkillDes;
+        [Header("解锁星级")]
+        public int ActionStar;
+        
         /// <summary>
         /// 技能类型
         /// </summary>

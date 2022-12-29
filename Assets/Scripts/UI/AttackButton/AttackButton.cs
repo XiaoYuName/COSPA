@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using ARPG.Config;
 using ARPG.UI;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace ARPG
@@ -78,8 +75,6 @@ namespace ARPG
                     SkillBtn_4.GetComponent<Image>().SetNativeSize();
                     SkillBtn_4.transform.Find("CD").GetComponent<Image>().fillAmount = 0;
                     SkillBtn_4.transform.Find("name").GetComponent<TextMeshProUGUI>().text = item.SkillName;
-                    break;
-                case SkillType.Passive:
                     break;
             }
         }
