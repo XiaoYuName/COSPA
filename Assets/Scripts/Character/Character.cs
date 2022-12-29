@@ -177,7 +177,7 @@ namespace ARPG
         
         protected void Skill_4()
         {
-            
+            SkillDic[SkillType.Evolution].Play();
         }
 
         //----------------------------攻击接口---------------------------//

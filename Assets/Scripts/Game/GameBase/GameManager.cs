@@ -270,15 +270,21 @@ namespace ARPG
         }
 
         /// <summary>
-        /// 多个敌人命中上海类型运算
+        /// 多个敌人命中伤害类型类型运算
         /// </summary>
         /// <param name="attack">攻击者</param>
         /// <param name="targets">目标列表</param>
         /// <param name="item">使用的技能</param>
         /// <param name="BoundPoint">命中点</param>
-        public void OptionAllDamage(IDamage attack, List<IDamage> targets, SkillItem item, Vector3[] BoundPoint)
+        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, Vector3[] BoundPoint)
         {
-            
+            if (BoundPoint.Length != targets.Length)
+                throw new Exception("命中点与敌人数不匹配");
+
+            for (int i = 0; i < targets.Length; i++)
+            {
+                OptionDamage(attack,targets[i],item,BoundPoint[i]);
+            }
         }
 
 

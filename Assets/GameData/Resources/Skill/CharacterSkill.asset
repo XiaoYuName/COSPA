@@ -131,3 +131,21 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 5
+  - ID: Broken
+    CD: 60
+    Duration: -1
+    ReleaseTime: -1
+    Radius: 1500
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
+    Diamage: 1500
+    icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
+    SkillName: "\u7834\u788E\u65A9"
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools: []
