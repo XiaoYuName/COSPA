@@ -26,20 +26,20 @@ namespace ARPG
             SkillBtn_4 = Get<Button>("Button_Skill_04");
         }
 
-        public Image GetSkillCD(int SkillBtnID,out TextMeshProUGUI text)
+        public Image GetSkillCD(SkillType type,out TextMeshProUGUI text)
         {
-            switch (SkillBtnID)
+            switch (type)
             {
-                case 1:
+                case SkillType.Skill_01:
                     text = Get<TextMeshProUGUI>("Button_Skill_01/CD/value");
                     return Get<Image>("Button_Skill_01/CD");
-                case 2:
+                case SkillType.Skill_02:
                     text = Get<TextMeshProUGUI>("Button_Skill_02/CD/value");
                     return Get<Image>("Button_Skill_02/CD");
-                case 3:
+                case SkillType.Skill_03:
                     text = Get<TextMeshProUGUI>("Button_Skill_03/CD/value");
                     return Get<Image>("Button_Skill_03/CD");
-                case 4:
+                case SkillType.Evolution:
                     text =Get<TextMeshProUGUI>("Button_Skill_04/CD/value");
                     return Get<Image>("Button_Skill_04/CD");
                 default:

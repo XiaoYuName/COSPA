@@ -11,7 +11,7 @@ namespace ARPG
         public override void BehaviourStart(Enemy enemy)
         {
             enemy.anim.SetTrigger(s_Damage);
-            enemy.SwitchFSM(enemy.GetState().HP > 0 ? FSMType.AttackFSM : FSMType.DieFSM);
+            enemy.SwitchFSM(enemy.GetState().currentHp > 0 ? FSMType.AttackFSM : FSMType.DieFSM);
         }
 
         public override void BehaviourUpdate(Enemy enemy)

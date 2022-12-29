@@ -188,6 +188,12 @@ namespace ARPG
         public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint)
         {
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
+            if (item.SkillType.type == DamageType.Treatment)
+            {
+                OptionAddHp(attack,item,BoundPoint);
+                return;
+            }
+
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
             //1.1 获取攻击者的基础力量*物理攻击力
@@ -229,15 +235,52 @@ namespace ARPG
                     Magic = Mathf.Max(1, (int)Magic);
                     target.IDamage((int)Math.Round(Magic,0));
                     DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
-                    damageText.Show(DamageType.Physics,isMagicCirtical,((int)Math.Round(Magic,0)).ToString());
-                    return;
-                case DamageType.Treatment:
+                    damageText.Show(DamageType.Magic,isMagicCirtical,((int)Math.Round(Magic,0)).ToString());
                     return;
                 default:
                     Debug.Log("未知的伤害类型，请检查");
                     return;
             }
         }
+
+        /// <summary>
+        /// 回复技能运算
+        /// </summary>
+        /// <param name="attack">攻击者</param>
+        /// <param name="item">技能数据</param>
+        /// <param name="Point">命中点坐标</param>
+        private void OptionAddHp(IDamage attack, SkillItem item,Vector3 Point)
+        {
+            CharacterState attackState = attack.GetState();
+            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
+            bool isCirtical = attackState.Cirtical > Random.value;
+            if (isCirtical)
+            {
+                //暴击了
+                // ReSharper disable once PossibleLossOfFraction
+                Physics *= (2.5d+attackState.CirticalAttack/10);
+            }
+            Physics += item.Diamage;
+            //2.基础攻击力加技能基础伤害
+            Physics = Mathf.Max(1, (int)Physics);
+            attack.IReply((int)Math.Round(Physics,0));
+            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
+        }
+
+        /// <summary>
+        /// 多个敌人命中上海类型运算
+        /// </summary>
+        /// <param name="attack">攻击者</param>
+        /// <param name="targets">目标列表</param>
+        /// <param name="item">使用的技能</param>
+        /// <param name="BoundPoint">命中点</param>
+        public void OptionAllDamage(IDamage attack, List<IDamage> targets, SkillItem item, Vector3[] BoundPoint)
+        {
+            
+        }
+
 
         /// <summary>
         /// 解除当前场景的视角跟随

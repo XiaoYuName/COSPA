@@ -1,4 +1,5 @@
 using System.Collections;
+using ARPG.Config;
 using ARPG.Pool.Skill;
 using UnityEngine;
 
@@ -9,11 +10,13 @@ namespace ARPG
         protected Character Player;
         protected SkillItem data;
         protected Enemy Enemy;
+        protected SkillType _type;
 
-        public virtual void Init(Character character, SkillItem item)
+        public virtual void Init(Character character, SkillType type,SkillItem item)
         {
             Player = character;
             data = item;
+            _type = type;
         }
 
         public virtual void Init(Enemy enemy, SkillItem item)

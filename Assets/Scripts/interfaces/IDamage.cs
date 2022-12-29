@@ -16,4 +16,10 @@ public interface IDamage
     /// </summary>
     /// <param name="Damage">受到的伤害值</param>
     void IDamage(int Damage);
+
+    /// <summary>
+    /// 回复血量
+    /// </summary>
+    /// <param name="Reply"></param>
+    void IReply(int Reply);
 }

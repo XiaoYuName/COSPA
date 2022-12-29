@@ -93,8 +93,26 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1011157772751556, guid: ca63c6ac7458764498741e0306f78528, type: 3}
       count: 5
+  - ID: Lunchtime
+    CD: 15
+    Duration: -1
+    ReleaseTime: -1
+    Radius: -1
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 0
+    Diamage: 30
+    icon: {fileID: 21300000, guid: d05369c33b9d7d647b48a6c314e2c047, type: 3}
+    SkillName: "\u5348\u9910\u65F6\u95F4"
+    SkillType:
+      type: 3
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools: []
   - ID: PrincessRaid
-    CD: 1
+    CD: 30
     Duration: 2
     ReleaseTime: 1
     Radius: 3

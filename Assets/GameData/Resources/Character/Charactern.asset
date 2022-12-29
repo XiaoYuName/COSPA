@@ -40,6 +40,7 @@ MonoBehaviour:
       MagicAttack: 10
       Defense: 8
       HP: 150
+      currentHp: 0
       AddHp: 150
       SkillAttack: 1
       Cirtical: 0.15
@@ -88,6 +89,7 @@ MonoBehaviour:
       MagicAttack: 10
       Defense: 999
       HP: 150
+      currentHp: 0
       AddHp: 150
       SkillAttack: 1
       Cirtical: 0.15
@@ -102,7 +104,7 @@ MonoBehaviour:
       Type: 0
     - SkillID: DoubleChop
       Type: 1
-    - SkillID: 
+    - SkillID: Lunchtime
       Type: 2
     - SkillID: PrincessRaid
       Type: 3

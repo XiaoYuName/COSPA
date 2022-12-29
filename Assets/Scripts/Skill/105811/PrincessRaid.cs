@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
-using ARPG;
 using ARPG.BasePool;
+using ARPG.Config;
 using ARPG.Pool.Skill;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,10 +14,10 @@ namespace ARPG
         private Image Mask;
         private TextMeshProUGUI CdText;
         private bool isCold;
-        public override void Init(Character character, SkillItem item)
+        public override void Init(Character character,SkillType type, SkillItem item)
         {
-            base.Init(character, item);
-            Mask = Player.attackButton.GetSkillCD(3, out CdText);
+            base.Init(character,type, item);
+            Mask = Player.attackButton.GetSkillCD(SkillType.Skill_03, out CdText);
             isCold = false;
             MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
         }

@@ -64,6 +64,9 @@ namespace ARPG
             currentBag = bag;
             data = InventoryManager.Instance.GetCharacter(bag.ID);
             State = bag.CurrentCharacterState.Clone() as CharacterState;
+            //生成的时候赋值一次当前生命值=最大生命值
+            State.currentHp = State.HP;
+            
             NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.GetAssets(bag.currentStar).Spinedata;
             Spine.Initialize(true);
@@ -84,7 +87,7 @@ namespace ARPG
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;
                 SkillDic.Add(data.SkillTable[i].Type,skill);
-                if (skill != null) skill.Init(this, skillItem);
+                if (skill != null) skill.Init(this,data.SkillTable[i].Type,skillItem);
                 attackButton.SetUI(data.SkillTable[i].Type, skillItem);
                 foreach (var pool in skillItem.Pools)
                 {
@@ -163,7 +166,7 @@ namespace ARPG
 
         protected  void Skill_2()
         {
-            
+            SkillDic[SkillType.Skill_02].Play();
         }
 
         protected  void Skill_3()
@@ -186,7 +189,7 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-            State.HP -= Damage;
+            State.currentHp -= Damage;
             if (State.HP <= 0)
             {
                 State.HP = 0;
@@ -197,6 +200,11 @@ namespace ARPG
                 return;
             }
             anim.SetTrigger(s_Damage);
+        }
+
+        public void IReply(int Reply)
+        {
+            State.currentHp += Mathf.Min(Reply,State.HP);
         }
     }
 }

@@ -43,15 +43,20 @@ namespace ARPG
         public virtual void Init(int sort,EnemyData Data)
         {
             data = Data;
-            State = data.State;
             State = data.State.Clone() as CharacterState;
+            State.currentHp = State.HP;
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             anim.runtimeAnimatorController = data.Animator;
             CreateSkillClass();
             //1.如果是BOSS类型敌人入场后直接进行攻击状态
             SwitchFSM(data.Type == EnemyType.BOSS ? FSMType.AttackFSM : FSMType.IdleFSM);
         }
-        
+
+        public void IReply(int Reply)
+        {
+            State.currentHp = Mathf.Min(Reply, State.HP);
+        }
+
         private void CreateSkillClass()
         {
             SkillDic.Clear();
@@ -122,7 +127,7 @@ namespace ARPG
 
         public void IDamage(int Damage)
         {
-            State.HP -= Damage;
+            State.currentHp -= Damage;
             SwitchFSM(FSMType.DamageFSM);
         }
     }

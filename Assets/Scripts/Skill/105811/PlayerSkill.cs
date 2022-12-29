@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using ARPG;
 using ARPG.Config;
-using ARPG.Pool.Skill;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace ARPG
 {
     /// <summary>
-    /// Skill 技能重斩
+    /// 公用Player Skill 子类
     /// </summary>
-    public class DoubleChop : Skill
+    public class PlayerSkill : Skill
     {
         private Image Mask;
         private TextMeshProUGUI CdText;
@@ -21,29 +19,15 @@ namespace ARPG
         public override void Init(Character character,SkillType type, SkillItem item)
         {
             base.Init(character,type, item);
-            Mask = Player.attackButton.GetSkillCD(_type, out CdText);
-            isCold = false;
+            Mask = Player.attackButton.GetSkillCD(type, out CdText);
         }
 
         public override void Play()
         {
-            //1.首先判断技能是否在CD 并且该技能没有在播放中
-            if (isCold || Player.animSpeed == 0) return;
-            //2.释放技能
-            Player.anim.SetTrigger("Skill_1");
+            if(isCold || Player.animSpeed ==0)return;
             Player.StartCoroutine(WaitSkillTime(data.CD));
-            //3.释放技能特效
-            Player.StartCoroutine(PlayFx());
         }
-        private IEnumerator PlayFx()
-        {
-            yield return new WaitForSeconds(data.ReleaseTime);
-            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? 180:0; 
-            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, Player.body.position,
-                Quaternion.Euler(0,rotationY,0)).GetComponent<_FxItem>();
-            fxItem.Play(Player,data);
-        }
-
+        
         /// <summary>
         /// 计算技能了冷却CD
         /// </summary>

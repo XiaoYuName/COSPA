@@ -119,6 +119,9 @@ namespace ARPG.Config
 
         [Header("生命值")]
         public int HP;
+        
+        [Header("当前生命值")]
+        public int currentHp;
 
         [Header("生命回复")]
         public int AddHp;
