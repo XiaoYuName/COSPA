@@ -58,6 +58,7 @@ namespace ARPG
             UISystem.Instance.OpenUI("GameMemu");
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
+            SceenDestruction.Instance._Camera = Camera.main;
             isGameScnen = true;
             ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(new Pool.Skill.Pool
             {
@@ -96,8 +97,17 @@ namespace ARPG
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");
+            StartCoroutine(WaitPlayAnimator());
+        }
+
+        private IEnumerator WaitPlayAnimator()
+        {
             Vector3 wordPoint = Camera.main.ViewportToWorldPoint(Settings.zeroView);
             wordPoint.z = 0;
+            while (Player.animSpeed <= 0)  //如果Player正在播放其他动画，则等待动画播放完毕
+            {
+                yield return null;
+            }
             Player.animSpeed = 0;
             Player.isAI = true;
             Player.rb.velocity = Vector2.zero;

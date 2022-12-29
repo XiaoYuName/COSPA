@@ -13,9 +13,9 @@ namespace ARPG
     /// </summary>
     public class PlayerSkill : Skill
     {
-        private Image Mask;
-        private TextMeshProUGUI CdText;
-        private bool isCold;
+        protected Image Mask;
+        protected TextMeshProUGUI CdText;
+        protected bool isCold;
         public override void Init(Character character,SkillType type, SkillItem item)
         {
             base.Init(character,type, item);
@@ -24,15 +24,14 @@ namespace ARPG
 
         public override void Play()
         {
-            if(isCold || Player.animSpeed ==0)return;
-            Player.StartCoroutine(WaitSkillTime(data.CD));
+            
         }
-        
+
         /// <summary>
         /// 计算技能了冷却CD
         /// </summary>
         /// <returns></returns>
-        public IEnumerator WaitSkillTime(float skillCd)
+        protected IEnumerator WaitSkillTime(float skillCd)
         {
             isCold = true;
             Mask.fillAmount = 1;

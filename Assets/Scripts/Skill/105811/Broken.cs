@@ -18,7 +18,8 @@ namespace ARPG
 
         public override void Play()
         {
-            base.Play();
+            if(isCold || Player.animSpeed ==0)return;
+            Player.StartCoroutine(WaitSkillTime(data.CD));
             Player.anim.SetTrigger("Skill_4");
         }
 
@@ -26,21 +27,26 @@ namespace ARPG
         {
             if(EventName != "Broken")return;
             //1.播放截屏屏幕破碎效果
-            
-            //2.造成伤害
-            Collider2D[] targets = new Collider2D[30];
-            var size = Physics2D.OverlapCircleNonAlloc(Player.body.position, data.Radius, targets, data.Mask);
-            Vector3[] Bounds = new Vector3[size];
-            IDamage[] Enemys = new IDamage[size];
-            
-            for (int i = 0; i < size; i++)
+            WaitUtils.WaitTimeDo(2.25f, delegate
             {
-                //获取最近的碰撞点列表
-                Bounds[i] = targets[i].bounds.ClosestPoint(Player.body.position);
-                Enemys[i] = targets[i].transform.GetComponent<IDamage>();
-            }
+                //2.造成伤害
+                Collider2D[] targets = new Collider2D[30];
+                var size = Physics2D.OverlapCircleNonAlloc(Player.body.position, data.Radius, targets, data.Mask);
+                Vector3[] Bounds = new Vector3[size];
+                IDamage[] Enemys = new IDamage[size];
             
-            GameManager.Instance.OptionAllDamage(Player,Enemys,data,Bounds);
+                for (int i = 0; i < size; i++)
+                {
+                    //获取最近的碰撞点列表
+                    Bounds[i] = targets[i].bounds.ClosestPoint(Player.body.position);
+                    Enemys[i] = targets[i].transform.GetComponent<IDamage>();
+                }
+            
+                GameManager.Instance.OptionAllDamage(Player,Enemys,data,Bounds);
+                
+                SceenDestruction.Instance.Destruction();
+            }); 
+            
 
         }
 

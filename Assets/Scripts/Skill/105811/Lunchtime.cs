@@ -8,7 +8,7 @@ namespace ARPG
     {
         public override void Play()
         {
-            base.Play();
+            if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_2");
             GameManager.Instance.OptionDamage(Player,null,data,Player.transform.position);
         }
