@@ -19,6 +19,7 @@ namespace ARPG.UI
         private TextMeshProUGUI SkillRunTime;
         private TextMeshProUGUI SkillRadius;
         private GameObject NotPanel;
+        private TextMeshProUGUI StepUpDes;
         private Image icon;
         
         public override void Init()
@@ -31,11 +32,12 @@ namespace ARPG.UI
             SkillRadius = Get<TextMeshProUGUI>("Mask/SkilRadius");
             NotPanel = Get("NotPanel");
             icon = Get<Image>("icon");
+            StepUpDes = Get<TextMeshProUGUI>("NotPanel/SkillDes");
         }
 
         public void InitData(int currentStar,SkillType SkillType,SkillItem data)
         {
-            NotPanel.gameObject.SetActive(currentStar >= data.ActionStar);
+            NotPanel.gameObject.SetActive(currentStar < data.ActionStar);
             type = SkillType;
             SkillName.text = data.SkillName;
             SkillMode.text = data.SkillType.type.ToString();
@@ -44,6 +46,7 @@ namespace ARPG.UI
             SkillRadius.text = "范围:" + data.Radius+"xp";
             icon.sprite = data.icon;
             SkillDes.text = data.SkillDes;
+            StepUpDes.text = data.StepUpDes;
 
         }
 

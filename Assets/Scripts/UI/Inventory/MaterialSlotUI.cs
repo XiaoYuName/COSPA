@@ -22,8 +22,16 @@ namespace ARPG.UI
         public void InitData(ItemBag bag)
         {
             Item item = InventoryManager.Instance.GetItem(bag.ID);
+            Count.gameObject.SetActive(true);
             Count.text = bag.count.ToString();
             icon.sprite = item.icon;
+        }
+
+
+        public void InitData(Item item)
+        {
+            icon.sprite = item.icon;
+            Count.gameObject.SetActive(false);
         }
         //TODO: 给武器添加显示详情弹窗
     }

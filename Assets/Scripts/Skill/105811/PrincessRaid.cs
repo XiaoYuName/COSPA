@@ -24,6 +24,10 @@ namespace ARPG
 
         public void AniamtorMsg(string EventName)
         {
+            if (Player == null)
+            {
+                Player = GameManager.Instance.Player;
+            }
             switch (EventName)
             {
                 case "StopVideoSkill3":

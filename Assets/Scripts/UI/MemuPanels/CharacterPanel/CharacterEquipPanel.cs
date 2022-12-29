@@ -31,8 +31,18 @@ namespace ARPG.UI
         /// 装备列表
         /// </summary>
         private EquipHeloUI[] _equipHeloUis;
-
+        
         private RectTransform SkillContent;
+
+        private Button EquitBtn; //装备分页
+        private Button SkillBtn;//技能分页
+        private Button PowerBtn;//强化分页
+        private Button StepBtn;//升阶分页
+        private GameObject EquitPanel;
+        private GameObject SkillPanel;
+        private GameObject PowerPanel;
+        private GameObject StepPanel;
+        private SetpUI _setpUI;
         
         public override void Init()
         {
@@ -40,7 +50,7 @@ namespace ARPG.UI
             Bind(CloseBtn,Close,"OutChick");
             NameText = Get<TextMeshProUGUI>("UIMask/Left/Name/NameText");
             SpineController = Get<SkeletonGraphic>("UIMask/Left/Spine");
-            content = Get<RectTransform>("UIMask/Right/SwitchTablePanel/EquipRect");
+            content = Get<RectTransform>("UIMask/Right/SwitchTablePanel/EquipRect/Content");
             SpineController.gameObject.SetActive(false);
             CharacterInfoUI = GetComponentInChildren<CharacterInfoUI>();
             _toolTip = GetComponentInChildren<ItemToolTip>(true);
@@ -50,6 +60,26 @@ namespace ARPG.UI
             _toolTip.Close();
             _equipHeloUis = GetComponentsInChildren<EquipHeloUI>();
             SkillContent = Get<RectTransform>("UIMask/Right/SwitchTablePanel/SkillContent");
+            InitBtns();
+            _setpUI = Get<SetpUI>("UIMask/Right/SwitchTablePanel/SetpPanel/SetpUI");
+            _setpUI.Init();
+        }
+
+        private void  InitBtns()
+        {
+            EquitBtn = Get<Button>("UIMask/Right/SwitchTable/EquipBtn");
+            SkillBtn = Get<Button>("UIMask/Right/SwitchTable/SkillBtn");
+            PowerBtn = Get<Button>("UIMask/Right/SwitchTable/PowerBtn");
+            StepBtn = Get<Button>("UIMask/Right/SwitchTable/StepBtn");
+            EquitPanel = Get("UIMask/Right/SwitchTablePanel/EquipRect");
+            SkillPanel = Get("UIMask/Right/SwitchTablePanel/SkillContent");
+            PowerPanel = Get("UIMask/Right/SwitchTablePanel/PowerPanel");
+            StepPanel = Get("UIMask/Right/SwitchTablePanel/SetpPanel");
+            Bind(EquitBtn,()=>SwitchRightTableUI(1),"UI_click");
+            Bind(SkillBtn,()=>SwitchRightTableUI(2),"UI_click");
+            Bind(PowerBtn,()=>SwitchRightTableUI(3),"UI_click");
+            Bind(StepBtn,()=>SwitchRightTableUI(4),"UI_click");
+            SwitchRightTableUI(1);
         }
 
         /// <summary>
@@ -70,6 +100,7 @@ namespace ARPG.UI
             CreateEquipHelo(data);
             CreateSlotUI();
             CreateSkillSlotUI(data, character);
+            _setpUI.InitData(character);
         }
         
         /// <summary>
@@ -169,11 +200,33 @@ namespace ARPG.UI
             foreach (var characterSkill in info.SkillTable)
             {
                 if(characterSkill.Type == SkillType.Attack)continue;
-                SkillSlotUI slotUI = UISystem.Instance.InstanceUI<SkillSlotUI>("SkillSlotUI");
+                SkillSlotUI slotUI = UISystem.Instance.InstanceUI<SkillSlotUI>("SkillSlotUI",SkillContent);
                 slotUI.InitData(bag.currentStar,characterSkill.Type,GameSystem.Instance.GetSkill(characterSkill.SkillID));
             }
         }
 
+
+        /// <summary>
+        /// 切换分页显示
+        ///     
+        /// </summary>
+        /// <param name="key">
+        ///     1: 装备页
+        ///     2: 技能页
+        ///     3: 强化页
+        ///     4: 觉醒页
+        /// </param>
+        private void SwitchRightTableUI(int key)
+        {
+            EquitPanel.gameObject.SetActive(key==1);
+            SkillPanel.gameObject.SetActive(key==2);
+            PowerPanel.gameObject.SetActive(key==3);
+            StepPanel.gameObject.SetActive(key==4);
+            EquitBtn.GetComponent<Image>().color = key == 1 ? new Color(1, 1, 1, 0) : Color.white;
+            SkillBtn.GetComponent<Image>().color = key == 2 ? new Color(1, 1, 1, 0) : Color.white;
+            PowerBtn.GetComponent<Image>().color = key == 3 ? new Color(1, 1, 1, 0) : Color.white;
+            StepBtn.GetComponent<Image>().color = key == 4 ? new Color(1, 1, 1, 0) : Color.white;
+        }
 
         public override void Close()
         {

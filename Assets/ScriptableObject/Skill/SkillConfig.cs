@@ -57,6 +57,8 @@ namespace ARPG
         /// </summary>
         [ResizableTextArea]
         public string SkillDes;
+        [ResizableTextArea]
+        public string StepUpDes;
         [Header("解锁星级")]
         public int ActionStar;
         

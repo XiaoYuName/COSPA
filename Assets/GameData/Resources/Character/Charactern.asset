@@ -32,6 +32,27 @@ MonoBehaviour:
     CharacterStarType: 6
     CharacterName: "\u4F18\u8863"
     battle: 2
+    StepData:
+    - Star: 2
+      ItemID: 
+      Amount: 99
+      Gold: 9999
+    - Star: 3
+      ItemID: 
+      Amount: 99
+      Gold: 9999
+    - Star: 4
+      ItemID: 
+      Amount: 99
+      Gold: 9999
+    - Star: 5
+      ItemID: 
+      Amount: 99
+      Gold: 9999
+    - Star: 6
+      ItemID: 
+      Amount: 99
+      Gold: 9999
     SpineIdleName: 07_idle
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
@@ -81,6 +102,27 @@ MonoBehaviour:
     CharacterStarType: 6
     CharacterName: "\u65E0\u8272\u8F89\u706B"
     battle: 0
+    StepData:
+    - Star: 2
+      ItemID: 31058
+      Amount: 10
+      Gold: 200
+    - Star: 3
+      ItemID: 31058
+      Amount: 30
+      Gold: 500
+    - Star: 4
+      ItemID: 31058
+      Amount: 30
+      Gold: 1000
+    - Star: 5
+      ItemID: 31058
+      Amount: 50
+      Gold: 3100
+    - Star: 6
+      ItemID: 31058
+      Amount: 100
+      Gold: 5000
     SpineIdleName: 05_idle
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
@@ -109,7 +151,5 @@ MonoBehaviour:
     - SkillID: PrincessRaid
       Type: 3
     - SkillID: Broken
-      Type: 5
-    - SkillID: 
       Type: 4
     des: "\u8001\u5A46 <color=red>\u706B\u706B</color>\n\u4F7F\u7528\u65F6\u53D1\u52A8\u5F3A\u529B\u5FC5\u6740,'\u90A6\u90A6'\n\u5FC5\u8FC7\u5BC2\u706D\u7279\u5F02\u533A"

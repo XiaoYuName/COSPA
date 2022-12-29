@@ -108,7 +108,6 @@ public class Explodable : MonoBehaviour
         {
             if (p != null)
             {
-                Debug.Log("Mask 报错名称: "+fragmentLayer);
                 p.layer = LayerMask.NameToLayer(fragmentLayer);
                 p.GetComponent<Renderer>().sortingLayerName = sortingLayerName;
                 p.GetComponent<Renderer>().sortingOrder = orderInLayer;
@@ -131,6 +130,7 @@ public class Explodable : MonoBehaviour
         foreach (GameObject frag in fragments)
         {
             polygon = new List<Vector2>();
+            if (frag == null) return;
             foreach (Vector2 point in frag.GetComponent<PolygonCollider2D>().points)
             {
                 Vector2 offset = rotateAroundPivot((Vector2)frag.transform.position, (Vector2)transform.position, Quaternion.Inverse(transform.rotation)) - (Vector2)transform.position;

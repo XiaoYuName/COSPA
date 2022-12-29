@@ -50,6 +50,9 @@ namespace ARPG.Config
         /// </summary>
         [Header("职业")]
         public BattleType battle;
+
+        [Header("觉醒参数配置")]
+        public StepInI[] StepData;
         
         [Header("动画参数")]
         public string SpineIdleName;
@@ -77,7 +80,14 @@ namespace ARPG.Config
                 new CharacterSkill() {Type = SkillType.Skill_03},
                 new CharacterSkill(){Type = SkillType.Evolution}
             };
-            
+            StepData = new[]
+            {
+                new StepInI() {Star = 2, Amount = 99, ItemID = "",Gold = 9999},
+                new StepInI() {Star = 3, Amount = 99, ItemID = "",Gold = 9999},
+                new StepInI() {Star = 4, Amount = 99, ItemID = "",Gold = 9999},
+                new StepInI() {Star = 5, Amount = 99, ItemID = "",Gold = 9999},
+                new StepInI() {Star = 6, Amount = 99, ItemID = "",Gold = 9999},
+            };
         }
 
         public CharacterSkill GetSkillNameID(SkillType type)
@@ -206,6 +216,19 @@ namespace ARPG.Config
         /// 对应的Spine动画
         /// </summary>
         public SkeletonDataAsset Spinedata;
+    }
+
+    [Serializable]
+    public class StepInI
+    {
+        [Tooltip("星级")]
+        public int Star;
+        [Tooltip("需求材料ID")]
+        public string ItemID;
+        [Tooltip("需求材料数量")]
+        public int Amount;
+        [Tooltip("消耗的玛那数量")]
+        public int Gold;
     }
 }
 
