@@ -26,7 +26,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -36,7 +36,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -46,7 +46,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -56,7 +56,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -66,7 +66,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -76,7 +76,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -84,9 +84,9 @@ MonoBehaviour:
   - ID: plate_1058
     currentStar: 1
     Favorability: 1
-    Level: 1
-    exp: 0
-    MaxExp: 30
+    Level: 2
+    exp: 1
+    MaxExp: 60
     Favorabexp: 0
     equipHelos:
     - ItemType: 0
@@ -103,22 +103,22 @@ MonoBehaviour:
       Powor: 0
     - ItemType: 0
       item:
-        ID: 101011
-        ItemName: "\u65B0\u624B\u6B66\u5668"
+        ID: 101012
+        ItemName: "\u5FC3\u7075\u4E4B\u5203"
         level: 1
-        icon: {fileID: 21300000, guid: bab134b772fd12949a527bbfba3dd299, type: 3}
+        icon: {fileID: 21300000, guid: b06ca25278f63fd4ca20bfc38ae9adc0, type: 3}
         Type: 0
-        Mode: 0
+        Mode: 1
         attribute:
         - Mode: 0
-          value: 8
+          value: 18
       Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -128,7 +128,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -138,7 +138,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -148,7 +148,7 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
         Type: 0
         Mode: 0
         attribute: []
@@ -157,18 +157,21 @@ MonoBehaviour:
   - ID: 101012
     count: 1
     power: 0
-  - ID: 101012
-    count: 1
+  - ID: 101011
+    count: 2
+    power: 0
+  - ID: 91001
+    count: 80
+    power: 0
+  - ID: 94001
+    count: 150
     power: 0
   - ID: 101011
     count: 1
-    power: 0
-  - ID: 91001
-    count: 50
-    power: 0
-  - ID: 94001
-    count: 50
-    power: 0
+    power: 5
+  - ID: 101012
+    count: 1
+    power: 8
   FaramIcons:
   - Mode: 0
     faram: {fileID: 21300000, guid: ca860c1d4cc8ece48b0fe4f8a1cf01c3, type: 3}

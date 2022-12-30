@@ -63,6 +63,8 @@ namespace ARPG
             state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
             return state;
         }
+
+        public static readonly string JsonSavePath = "";
     }
 }
 

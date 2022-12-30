@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ARPG.Config;
+using ARPG.GameSave;
 using UnityEngine;
 
 namespace ARPG
@@ -10,19 +12,21 @@ namespace ARPG
     /// <summary>
     /// 玩家背包管理器
     /// </summary>
-    public class InventoryManager : MonoSingleton<InventoryManager>
+    public class InventoryManager : MonoSingleton<InventoryManager>,ISaveable
     {
         /// <summary>
         /// 玩家背包
         /// </summary>
         private UserBagConfig UserBag;
+
+ 
+
         /// <summary>
         /// 角色配置总表
         /// </summary>
         private CharacterConfig CharacterInfoConfig;
 
         private BaseItemConfig _itemConfig;
-
         protected override void Awake()
         {
             base.Awake();
@@ -236,6 +240,44 @@ namespace ARPG
             MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                 ,GetItemBag(Settings.ManaID));
         }
+
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                SaveGameManager.Instance.Save(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SaveGameManager.Instance.Load(1);
+            }
+        }
+
+        public string GUID => "InventoryManager";
+
+        public void Start()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            // GameSaveData data = new GameSaveData
+            // {
+            //     UserActivityIni = UserBag
+            // };
+            JsonTool.SavaGame(UserBag,"Bag");
+            return new GameSaveData();
+        }
+        public void RestoreData(GameSaveData GameSave)
+        {
+            // UserBag = ScriptableObject.Instantiate(GameSave.UserActivityIni);
+            UserBagConfig Test =  JsonTool.LoadGame<UserBagConfig>("Bag");
+        }
+        
     }
 }
 
