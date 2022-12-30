@@ -170,3 +170,24 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+  - ID: MagicBomb
+    CD: 5
+    Duration: -1
+    ReleaseTime: -1
+    Radius: 15
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
+    Diamage: 50
+    icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
+    SkillName: "\u9B54\u6CD5\u7206\u70B8"
+    SkillDes: "\u5F15\u5BFC\u540E\u53D1\u52A8\u7206\u70B8\uFF0C\u5BF9\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
+    StepUpDes: 
+    ActionStar: 1
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools: []
