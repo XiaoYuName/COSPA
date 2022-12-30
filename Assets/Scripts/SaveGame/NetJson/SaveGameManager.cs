@@ -56,12 +56,7 @@ namespace ARPG.GameSave
             }
 
             var path = JsonSavePath + "/User" + UID + ".scriptable";
-            // var JsonData = JsonConvert.SerializeObject(User, Formatting.Indented);
-            
-            var JsonData = JsonConvert.SerializeObject(User, Formatting.Indented,new JsonSerializerSettings()
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            });
+            var JsonData = JsonConvert.SerializeObject(User, Formatting.Indented);
             if (!Directory.Exists(JsonSavePath))
             {
                 Directory.CreateDirectory(JsonSavePath);
@@ -78,10 +73,7 @@ namespace ARPG.GameSave
         {
             var path = JsonSavePath + "/User" + UID + ".scriptable";
             var JsonData = File.ReadAllText(path);
-            UserSlotData slotData =  JsonConvert.DeserializeObject<UserSlotData>(JsonData,new JsonSerializerSettings()
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            });
+            UserSlotData slotData =  JsonConvert.DeserializeObject<UserSlotData>(JsonData);
             foreach (var SaveItem in Saveables)
             {
                 SaveItem.RestoreData(slotData.UserDatas.ContainsKey(SaveItem.GUID)

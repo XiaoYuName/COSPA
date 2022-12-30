@@ -150,7 +150,7 @@ namespace ARPG.Config
        /// </summary>
        /// <param name="bag">装备</param>
        /// <returns>返回Code 值: 1 等级不足  2 : 没有找到对应的装备槽，3：装备成果</returns>
-        public int SetEquipHelo(ItemBag bag)
+       public int SetEquipHelo(ItemBag bag)
        {
             Item item = InventoryManager.Instance.GetItem(bag.ID);
             

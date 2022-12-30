@@ -265,17 +265,13 @@ namespace ARPG
 
         public GameSaveData GenerateSaveData()
         {
-            // GameSaveData data = new GameSaveData
-            // {
-            //     UserActivityIni = UserBag
-            // };
+            GameSaveData data = new GameSaveData();
             JsonTool.SavaGame(UserBag,"Bag");
-            return new GameSaveData();
+            return  data;
         }
         public void RestoreData(GameSaveData GameSave)
         {
-            // UserBag = ScriptableObject.Instantiate(GameSave.UserActivityIni);
-            UserBagConfig Test =  JsonTool.LoadGame<UserBagConfig>("Bag");
+            UserBag  =  JsonTool.LoadGame<UserBagConfig>("Bag");
         }
         
     }

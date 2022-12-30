@@ -34,8 +34,37 @@ public static class JsonTool
         file.Close(); //关闭流读写器;
         Debug.Log("文件路径"+path);
     }
+    
+    /// <summary>
+    /// 保存ScriptableObject 数据到本机磁盘
+    /// </summary>
+    /// <param name="t">数据类型</param>
+    /// <param name="DataName">保存的文件名</param>
+    /// <param name="persistentDataPath">保存路径</param>
+    /// <typeparam name="T">T 必须继承自ScriptableObject</typeparam>
+    public static void SavaGame<T>(T t,string DataName,string persistentDataPath) where T : ScriptableObject
+    {
 
+        string path = persistentDataPath + "/Sava_GameData";
+        //判断是否有该文件夹
+        if (!Directory.Exists(path)) 
+        {
+            //如果没有 则创建一个文件夹
+            Directory.CreateDirectory(path);
+        }
+        BinaryFormatter formatter = new BinaryFormatter(); //二进制转换
 
+        FileStream file =  File.Create(path +"/"+ DataName); //创建文件   
+
+        var json = JsonUtility.ToJson(t);  // 将ScriptableObject 转换未Json文件
+
+        formatter.Serialize(file, json); //序列化Json 文件，转存到file 的文件中
+
+        file.Close(); //关闭流读写器;
+        Debug.Log("文件路径"+path);
+    }
+    
+    
     /// <summary>
     /// 保存ScriptableObject 数据
     /// </summary>
