@@ -254,7 +254,9 @@ namespace ARPG
                 SaveGameManager.Instance.Load(1);
             }
         }
-
+        
+        
+        //--SaveGame 游戏存储接口
         public string GUID => "InventoryManager";
 
         public void Start()

@@ -25,12 +25,7 @@ namespace ARPG
         
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
-        /// <summary>
-        /// 是否在战斗场景
-        /// </summary>
-        [HideInInspector]public bool isGameScnen;
-
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -59,7 +54,6 @@ namespace ARPG
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             virtualCamera.Follow = Player.transform;
             SceenDestruction.Instance._Camera = Camera.main;
-            isGameScnen = true;
             ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(new Pool.Skill.Pool
             {
                 prefab = DamageWordUI,
@@ -74,7 +68,6 @@ namespace ARPG
         /// </summary>
         public void QuitGameScene()
         {
-            isGameScnen = false;
             UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("MemuPanel");
             UISystem.Instance.CloseUI("DownTime");
@@ -99,7 +92,11 @@ namespace ARPG
             UISystem.Instance.CloseUI("AttackButton");
             StartCoroutine(WaitPlayAnimator());
         }
-
+        
+        /// <summary>
+        /// 战斗结束时，如果Player还在表演动画，则等待动画表演完毕，再进行进入到结算动画
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator WaitPlayAnimator()
         {
             Vector3 wordPoint = Camera.main.ViewportToWorldPoint(Settings.zeroView);
@@ -146,7 +143,6 @@ namespace ARPG
         /// </summary>
         public void VictoryQuitScene()
         {
-            isGameScnen = false;
             UISystem.Instance.CloseUI("GameEnd");
             UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("MemuPanel");

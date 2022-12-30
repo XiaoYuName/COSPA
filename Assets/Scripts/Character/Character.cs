@@ -145,13 +145,18 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 设置动画
+        /// </summary>
         private void SwitchAnimation()
         {
             if(!isAI)
                 anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
         }
 
-        
+        /// <summary>
+        /// 普攻技能回调函数
+        /// </summary>
         protected  void Attack()
         {
             if(animSpeed == 0)return;
@@ -159,22 +164,33 @@ namespace ARPG
             SkillDic[SkillType.Attack].Play();
         }
 
+        /// <summary>
+        /// 技能1回调函数
+        /// </summary>
         protected  void Skill_1()
         {
             SkillDic[SkillType.Skill_01].Play();
         }
-
+    
+        /// <summary>
+        /// 技能2回调函数
+        /// </summary>
         protected  void Skill_2()
         {
             SkillDic[SkillType.Skill_02].Play();
         }
 
+        /// <summary>
+        /// 技能3回调函数
+        /// </summary>
         protected  void Skill_3()
         {
             SkillDic[SkillType.Skill_03].Play();
         }
 
-        
+        /// <summary>
+        /// 觉醒回调函数
+        /// </summary>
         protected void Skill_4()
         {
             SkillDic[SkillType.Evolution].Play();
