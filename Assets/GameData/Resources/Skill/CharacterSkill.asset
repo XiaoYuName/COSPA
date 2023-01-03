@@ -174,7 +174,7 @@ MonoBehaviour:
     CD: 5
     Duration: -1
     ReleaseTime: -1
-    Radius: 15
+    Radius: 200
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
@@ -190,4 +190,6 @@ MonoBehaviour:
       isMultistage: 0
       MultistageTime: 0
       MultistageDamage: 
-    Pools: []
+    Pools:
+    - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
+      count: 5
