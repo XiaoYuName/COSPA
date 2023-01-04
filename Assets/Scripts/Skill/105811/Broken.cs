@@ -53,7 +53,7 @@ namespace ARPG
         public override void UHandle()
         {
             base.UHandle();
-            MessageManager.Instance.Register<string>(C2S.EventMsg,PlaySkill);
+            MessageManager.Instance.URegister<string>(C2S.EventMsg,PlaySkill);
         }
     }
 }
