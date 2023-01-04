@@ -214,3 +214,26 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 140000001400000014000000140000001400000014000000
     Pools: []
+  - ID: MagicThunder
+    CD: 20
+    Duration: 0.5
+    ReleaseTime: 8
+    Radius: 200
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
+    Diamage: 150
+    icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
+    SkillName: "\u5F15\u96F7\u9635"
+    SkillDes: "\u5728\u81EA\u8EAB200px\u8303\u56F4\u5185\u53EC\u5524\u5929\u96F7,\u5929\u96F7\u5BF9\u654C\u65B9\u9020\u6210150\u70B9\u4F24\u5BB3"
+    StepUpDes: "\n\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F33\u9636"
+    ActionStar: 3
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 1
+      MultistageDamage: 140000001400000014000000140000001400000014000000
+    Pools:
+    - prefab: {fileID: 3435570873089584574, guid: 5fa4619c39d9e7e41a5d9ea779f4946d, type: 3}
+      count: 15

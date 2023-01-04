@@ -1739,7 +1739,21 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.0333
+    functionName: SpineEvent
+    data: StopVideoSkill3
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 1
+  - time: 2.4
+    functionName: SpineEvent
+    data: MagicThunder
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 1
 --- !u!74 &-4244991350100056734
 AnimationClip:
   m_ObjectHideFlags: 0
