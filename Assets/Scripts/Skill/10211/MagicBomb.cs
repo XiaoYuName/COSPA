@@ -24,6 +24,7 @@ namespace ARPG
         {
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_1");
+            base.Play();
         }
         
         public void AniamtorMsg(string EventName)

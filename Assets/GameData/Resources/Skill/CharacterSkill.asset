@@ -193,3 +193,24 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
       count: 5
+  - ID: HealingMagic
+    CD: 5
+    Duration: -1
+    ReleaseTime: -1
+    Radius: 99
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 8192
+    Diamage: 50
+    icon: {fileID: 21300000, guid: 6afd675ae8e0f0c4382795a5a166766f, type: 3}
+    SkillName: "\u6CBB\u6108\u9B54\u6CD5"
+    SkillDes: "\u91CA\u653E\u540E\u7ACB\u5373\u56DE\u590D\u81EA\u8EABHP+50,\u4E4B\u540E\u6CA15\u79D2\u56DE\u590D20HP,\u6301\u7EED30\u79D2"
+    StepUpDes: 
+    ActionStar: 1
+    SkillType:
+      type: 3
+      isMultistage: 1
+      MultistageTime: 1
+      MultistageDamage: 140000001400000014000000140000001400000014000000
+    Pools: []

@@ -24,7 +24,7 @@ namespace ARPG
 
         public override void Play()
         {
-            
+            Player.StartCoroutine(WaitSkillTime(data.CD));
         }
 
         /// <summary>

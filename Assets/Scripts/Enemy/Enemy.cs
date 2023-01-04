@@ -52,10 +52,7 @@ namespace ARPG
             SwitchFSM(data.Type == EnemyType.BOSS ? FSMType.AttackFSM : FSMType.IdleFSM);
         }
 
-        public void IReply(int Reply)
-        {
-            State.currentHp = Mathf.Min(Reply, State.HP);
-        }
+  
 
         private void CreateSkillClass()
         {
@@ -125,10 +122,20 @@ namespace ARPG
             return State;
         }
 
+        public Vector3 GetPoint()
+        {
+            return transform.position;
+        }
+
         public void IDamage(int Damage)
         {
             State.currentHp -= Damage;
             SwitchFSM(FSMType.DamageFSM);
+        }
+        
+        public void IReply(int Reply)
+        {
+            State.currentHp = Mathf.Min(State.currentHp+Reply, State.HP);
         }
     }
 }

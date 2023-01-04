@@ -87,6 +87,7 @@ namespace ARPG
         {
             UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("DownTime");
+            UISystem.Instance.CloseUI("PlayerState");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");
@@ -169,6 +170,7 @@ namespace ARPG
         {
             UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("DownTime");
+            UISystem.Instance.CloseUI("PlayerState");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");
@@ -181,9 +183,7 @@ namespace ARPG
             UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
             
         }
-
-
-
+        
         /// <summary>
         /// 伤害运算
         /// </summary>
@@ -197,6 +197,10 @@ namespace ARPG
             if (item.SkillType.type == DamageType.Treatment)
             {
                 OptionAddHp(attack,item,BoundPoint);
+                if (item.SkillType.isMultistage)
+                {
+                    StartCoroutine(WaitMultistage(attack,item,BoundPoint));
+                }
                 return;
             }
 
@@ -273,6 +277,52 @@ namespace ARPG
             attack.IReply((int)Math.Round(Physics,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
             damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
+        }
+        
+        /// <summary>
+        /// 回复技能运算
+        /// </summary>
+        /// <param name="attack">技能发动者</param>
+        /// <param name="value">基础数值</param>
+        /// <param name="Point">发动点</param>
+        private void OptionAddHp(IDamage attack, int value)
+        {
+            CharacterState attackState = attack.GetState();
+            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
+            bool isCirtical = attackState.Cirtical > Random.value;
+            if (isCirtical)
+            {
+                //暴击了
+                // ReSharper disable once PossibleLossOfFraction
+                Physics *= (2.5d+attackState.CirticalAttack/10);
+            }
+            Physics += value;
+            //2.基础攻击力加技能基础伤害
+            Physics = Mathf.Max(1, (int)Physics);
+            attack.IReply((int)Math.Round(Physics,0));
+            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
+        }
+        
+        /// <summary>
+        /// 延迟多段回复效果
+        /// </summary>
+        /// <param name="attack">攻击者</param>
+        /// <param name="item">技能配置</param>
+        /// <param name="Point">发动点</param>
+        /// <returns></returns>
+        private IEnumerator WaitMultistage(IDamage attack, SkillItem item,Vector3 Point)
+        {
+            yield return new WaitForSeconds(item.SkillType.MultistageTime);
+            if (Player != null)
+            {
+                for (int i = 0; i < item.SkillType.MultistageDamage.Count; i++)
+                {
+                    OptionAddHp(attack,item.SkillType.MultistageDamage[i]);
+                    yield return new WaitForSeconds(item.SkillType.MultistageTime);
+                }
+            }
         }
 
         /// <summary>

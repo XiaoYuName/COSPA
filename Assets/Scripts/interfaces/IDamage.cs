@@ -10,6 +10,12 @@ public interface IDamage
     /// </summary>
     /// <returns></returns>
     CharacterState GetState();
+
+    /// <summary>
+    /// 获取自身位置坐标:主要用于跟踪技能位置的锁定
+    /// </summary>
+    /// <returns></returns>
+    Vector3 GetPoint();
     
     /// <summary>
     /// 受伤

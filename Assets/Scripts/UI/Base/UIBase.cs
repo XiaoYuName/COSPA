@@ -11,6 +11,7 @@ namespace ARPG.UI
     /// </summary>
     public abstract class  UIBase : MonoBehaviour
     {
+        public bool isOpen;
         /// <summary>
         /// 初始化方法,一般不需要手动调用
         /// </summary>
@@ -21,6 +22,7 @@ namespace ARPG.UI
         /// </summary>
         public virtual void Open()
         {
+            isOpen = true;
             gameObject.SetActive(true);
         }
 
@@ -29,6 +31,7 @@ namespace ARPG.UI
         /// </summary>
         public virtual void Close()
         {
+            isOpen = false;
             gameObject.SetActive(false);
         }
         

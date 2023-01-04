@@ -81,7 +81,7 @@ namespace ARPG
         [Tooltip("是否是多段伤害的")]
         public bool isMultistage;
         [Tooltip("多段伤害的伤害间隔")]
-        public bool MultistageTime; 
+        public float MultistageTime; 
         [Tooltip("多段伤害的数据： 请注意多段伤害的计算是：首先命中目标后立即执行技能基础伤害,之后每x秒间隔后执行下一段伤害")]
         public List<int> MultistageDamage;
     }

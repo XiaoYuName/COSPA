@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI;
 using Spine.Unity;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace ARPG
         protected SkeletonMecanim Spine;
         [HideInInspector]public Animator anim;
         [HideInInspector]public AttackButton attackButton;
+        private PlayerState StateUI;
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
         public Collider2D DamageCollider2D;
@@ -56,6 +58,7 @@ namespace ARPG
             Joystick.gameObject.SetActive(true);
             attackButton = UISystem.Instance.GetUI<AttackButton>("AttackButton");
             DamageCollider2D = transform.Find("DamageCollier").GetComponent<Collider2D>();
+            StateUI = UISystem.Instance.GetUI<PlayerState>("PlayerState");
         }
 
         public void Init(CharacterBag bag)
@@ -66,7 +69,7 @@ namespace ARPG
             State = bag.CurrentCharacterState.Clone() as CharacterState;
             //生成的时候赋值一次当前生命值=最大生命值
             State.currentHp = State.HP;
-            
+            StateUI.InitData(data,bag,State);
             NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.GetAssets(bag.currentStar).Spinedata;
             Spine.Initialize(true);
@@ -201,26 +204,33 @@ namespace ARPG
         {
             return State;
         }
-        
+
+        public Vector3 GetPoint()
+        {
+            return body.transform.position;
+        }
+
 
         public void IDamage(int Damage)
         {
             State.currentHp -= Damage;
-            if (State.HP <= 0)
+            if (State.currentHp <= 0)
             {
-                State.HP = 0;
+                State.currentHp = 0;
                 anim.SetTrigger(s_Die);
                 isAI = true;
                 rb.velocity = Vector2.zero;
                 GameManager.Instance.GameOverScnen();
                 return;
             }
+            StateUI.UpdateState(State);
             anim.SetTrigger(s_Damage);
         }
 
         public void IReply(int Reply)
         {
-            State.currentHp += Mathf.Min(Reply,State.HP);
+            State.currentHp = Mathf.Min(State.currentHp+Reply,State.HP);
+            StateUI.UpdateState(State);
         }
     }
 }
