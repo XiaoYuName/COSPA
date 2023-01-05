@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ARPG
@@ -23,9 +25,6 @@ namespace ARPG
             }
             return config;
         }
-        
-        
-        
     }
     
     /// <summary>
@@ -43,7 +42,11 @@ namespace ARPG
         /// <returns></returns>
         public virtual C Get(string ID)
         {
-            return BaseDatas.Find(t => t.ID == ID);
+            if (BaseDatas.Any(c => c.ID == ID))
+            {
+                return BaseDatas.Find(t => t.ID == ID);
+            }
+            throw new Exception("没有对应ID的数据: " + ID);
         }
 
         /// <summary>

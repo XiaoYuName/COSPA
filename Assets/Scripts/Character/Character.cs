@@ -86,6 +86,12 @@ namespace ARPG
             {
                 if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
                 SkillItem skillItem = GameSystem.Instance.GetSkill(data.SkillTable[i].SkillID);
+                if (currentBag.currentStar < skillItem.ActionStar)
+                {
+                    attackButton.SetUI(data.SkillTable[i].Type, null);
+                    return;
+                }
+
                 Type type = Type.GetType("ARPG." +skillItem.ID);
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;
@@ -172,7 +178,8 @@ namespace ARPG
         /// </summary>
         protected  void Skill_1()
         {
-            SkillDic[SkillType.Skill_01].Play();
+            if(SkillDic.ContainsKey(SkillType.Skill_01))
+                SkillDic[SkillType.Skill_01].Play();
         }
     
         /// <summary>
@@ -180,7 +187,8 @@ namespace ARPG
         /// </summary>
         protected  void Skill_2()
         {
-            SkillDic[SkillType.Skill_02].Play();
+            if(SkillDic.ContainsKey(SkillType.Skill_02))
+                SkillDic[SkillType.Skill_02].Play();
         }
 
         /// <summary>
@@ -188,7 +196,8 @@ namespace ARPG
         /// </summary>
         protected  void Skill_3()
         {
-            SkillDic[SkillType.Skill_03].Play();
+            if(SkillDic.ContainsKey(SkillType.Skill_03))
+                SkillDic[SkillType.Skill_03].Play();
         }
 
         /// <summary>
@@ -196,7 +205,8 @@ namespace ARPG
         /// </summary>
         protected void Skill_4()
         {
-            SkillDic[SkillType.Evolution].Play();
+            if(SkillDic.ContainsKey(SkillType.Evolution))
+                SkillDic[SkillType.Evolution].Play();
         }
 
         //----------------------------攻击接口---------------------------//

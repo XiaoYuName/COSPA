@@ -20,8 +20,15 @@ namespace ARPG
         /// 副本奖励配置表
         /// </summary>
         private MapConfig MapConfig;
-        
+        /// <summary>
+        /// 技能配置表
+        /// </summary>
         private SkillConfig SkillConfig;
+
+        /// <summary>
+        /// 精灵配置图集
+        /// </summary>
+        private SpriteConfig SpriteConfig;
 
         protected override void Awake()
         {
@@ -34,8 +41,14 @@ namespace ARPG
             PrefabConfig = ConfigManager.LoadConfig<UIPrefab>("UIPrefab/GamePrefab");
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
             SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
+            SpriteConfig = ConfigManager.LoadConfig<SpriteConfig>("Character/SpriteConfig");
         }
 
+        /// <summary>
+        /// 获取技能配置数据
+        /// </summary>
+        /// <param name="id">技能ID</param>
+        /// <returns></returns>
         public SkillItem GetSkill(string id)
         {
             return SkillConfig.Get(id);
@@ -49,6 +62,16 @@ namespace ARPG
         public MapItem GetMapReword(string id)
         {
             return MapConfig.Get(id);
+        }
+
+        /// <summary>
+        /// 获取精灵
+        /// </summary>
+        /// <param name="id">配置表ID</param>
+        /// <returns></returns>
+        public Sprite GetSprite(string id)
+        {
+            return SpriteConfig.Get(id).Sprite;
         }
 
         
