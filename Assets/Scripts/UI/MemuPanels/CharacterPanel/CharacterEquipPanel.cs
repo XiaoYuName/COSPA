@@ -63,6 +63,18 @@ namespace ARPG.UI
             InitBtns();
             _setpUI = Get<SetpUI>("UIMask/Right/SwitchTablePanel/SetpPanel/SetpUI");
             _setpUI.Init();
+            MessageAction.UpCharacterBag += RefCharacterBag;
+        }
+
+        /// <summary>
+        /// 刷新角色晋升变化回调
+        /// </summary>
+        /// <param name="obj"></param>
+        private void RefCharacterBag(CharacterBag obj)
+        {
+            CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(obj.ID);
+            PlaySpineAnimation(info.EquipAnimName);
+            CreateSkillSlotUI(obj,info);
         }
 
         private void  InitBtns()
@@ -233,6 +245,11 @@ namespace ARPG.UI
             MainPanel.Instance.RemoveTableChild("CharacterEquipPanel");
             FadeManager.Instance.PlayFade(1,base.Close,1);
             _toolTip.Close();
+        }
+
+        public void OnDestroy()
+        {
+            MessageAction.UpCharacterBag -= RefCharacterBag;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ARPG.UI
         private TextMeshProUGUI ExpendGold;
         private TextMeshProUGUI Gold;
         private Button StepBtn;
+        private CharacterBag currentBag;
         
         public override void Init()
         {
@@ -27,11 +28,21 @@ namespace ARPG.UI
             Gold = Get<TextMeshProUGUI>("Gold/Value");
             StepBtn = Get<Button>("StepBtn");
             SlotUI.Init();
+            MessageAction.UpCharacterBag += MessageActionOnUpCharacterBag;
         }
 
+        private void OnDestroy()
+        {
+            MessageAction.UpCharacterBag -= MessageActionOnUpCharacterBag;
+        }
+
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
+        /// <param name="info"></param>
         public void InitData(CharacterConfigInfo info)
         {
-            CharacterBag currentBag = InventoryManager.Instance.GetBag(info.ID);
+            currentBag = InventoryManager.Instance.GetBag(info.ID);
             if (currentBag.currentStar >= info.StepData.Length)
             {
                 Debug.Log("已经满级");
@@ -48,7 +59,14 @@ namespace ARPG.UI
             Slider.minValue = 0;
             Slider.maxValue = data.Amount;
             Slider.value = itemBag?.count ?? 0;
-            SliderValue.text = Slider.value + "/" + Slider.maxValue;
+            if (itemBag == null ||itemBag.count == 0)
+            {
+                SliderValue.text = 0 + "/" + Slider.maxValue;
+            }
+            else
+            {
+                SliderValue.text = itemBag.count + "/" + Slider.maxValue;
+            }
             ExpendGold.text = data.Gold.ToString();
             Gold.text = InventoryManager.Instance.GetItemBag(Settings.ManaID).count.ToString();
             Bind(StepBtn, delegate
@@ -63,8 +81,29 @@ namespace ARPG.UI
                     UISystem.Instance.ShowPopWindows("提示","材料不满足要求","确定");
                     return;
                 }
-                Debug.Log("晋升");
+
+                ItemBag maNaBag = InventoryManager.Instance.GetItemBag(Settings.ManaID);
+                if (maNaBag.count < data.Gold)
+                {
+                    UISystem.Instance.ShowPopWindows("提示","玛那不足","确定");
+                    return;
+                }
+
+                currentBag.currentStar++;
+                InventoryManager.Instance.DeleteItemBag(maNaBag,data.Gold);
+                InventoryManager.Instance.DeleteItemBag(itemBag,data.Amount);
+                MessageAction.OnUpCharacterBag(currentBag);
+                UISystem.Instance.ShowPopWindows("提示","觉醒成功","确定");
             }, "UI_click");
+        }
+        
+        //刷新数据
+        private void MessageActionOnUpCharacterBag(CharacterBag characterBag)
+        {
+            if (currentBag.ID == characterBag.ID)
+            {
+                InitData(InventoryManager.Instance.GetCharacter(characterBag.ID));
+            }
         }
     }
 }

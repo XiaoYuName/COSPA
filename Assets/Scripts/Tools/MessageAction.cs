@@ -85,10 +85,24 @@ namespace ARPG
             UpdataeMoney?.Invoke(Gemsthone, Mana);
         }
 
+        /// <summary>
+        /// 刷新角色背包
+        /// </summary>
+        public static event Action<CharacterBag> UpCharacterBag;
+        /// <summary>
+        /// 刷新角色背包
+        /// </summary>
+        public static void OnUpCharacterBag(CharacterBag obj)
+        {
+            UpCharacterBag?.Invoke(obj);
+        }
+        
+
 
         #endregion
 
-        
+
+       
     }
 }
 

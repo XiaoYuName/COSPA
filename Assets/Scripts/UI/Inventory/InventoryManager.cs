@@ -126,6 +126,11 @@ namespace ARPG
             if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
             {
                 UserBag.ItemBags.Remove(itemBag);
+                if (isMoney(itemBag.ID))
+                {
+                    MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                        ,GetItemBag(Settings.ManaID));
+                }
             }
         }
         
@@ -148,6 +153,11 @@ namespace ARPG
                         {
                             DeleteItemBag(itemBag);
                             return;
+                        }
+                        if (isMoney(itemBag.ID))
+                        {
+                            MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                                ,GetItemBag(Settings.ManaID));
                         }
                     }
                 }

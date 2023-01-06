@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -20,7 +21,7 @@ namespace ARPG.UI
             StarContent = Get("StarContent").transform;
             Level = Get<TextMeshProUGUI>("Faram/Level");
             btn = GetComponent<Button>();
-
+            MessageAction.UpCharacterBag += RefData;
         }
 
         public void InitData(CharacterBag info)
@@ -57,6 +58,18 @@ namespace ARPG.UI
             }
         }
 
+        private void RefData(CharacterBag Bag)
+        {
+            if (CharacterID == Bag.ID)
+            {
+                InitData(Bag);
+            }
+        }
+
+        public void OnDestroy()
+        {
+            MessageAction.UpCharacterBag -= RefData;
+        }
     }
 }
 
