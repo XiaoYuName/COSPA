@@ -44,9 +44,28 @@ MonoBehaviour:
     - RegionItemName: "\u706B\u706B\u8001\u5BB6"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
       targetScene: HUOHUO
-      Press: {x: 1, y: 0}
-      StarPos: {x: 0, y: 0, z: 0}
-      WaveItems: []
+      Press: {x: 0, y: 1}
+      StarPos: {x: -9.74, y: -2, z: 0}
+      WaveItems:
+      - EnemyList:
+        - dataID: 200700
+          count: 1
+          CreatePos: {x: 2.56, y: -1.87, z: 0}
+          MaxRadius: -4
+          MinRandius: 0
+        CreateTime: 0
+      - EnemyList:
+        - dataID: 200700
+          count: 10
+          CreatePos: {x: 2.56, y: -1.87, z: 0}
+          MaxRadius: -4
+          MinRandius: 0
+        - dataID: 200900
+          count: 1
+          CreatePos: {x: 0, y: 0, z: 0}
+          MaxRadius: 0
+          MinRandius: 0
+        CreateTime: 0
   - RegionName: "\u5929\u7A7A\u4E4B\u57CE"
     backIcon: {fileID: 21300000, guid: edf3ccfd7bd331d469d9eae52861d1e2, type: 3}
     RegionItemList:
