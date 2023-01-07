@@ -45,7 +45,7 @@ namespace ARPG.UI
             currentBag = InventoryManager.Instance.GetBag(info.ID);
             if (currentBag.currentStar >= info.StepData.Length)
             {
-                Debug.Log("已经满级");
+                SliderValue.text = "max";
                 return;
             }
 
@@ -71,6 +71,13 @@ namespace ARPG.UI
             Gold.text = InventoryManager.Instance.GetItemBag(Settings.ManaID).count.ToString();
             Bind(StepBtn, delegate
             {
+                if (currentBag.currentStar >= info.StepData.Length)
+                {
+                    UISystem.Instance.ShowPopWindows("提示","已经满级","确定");
+                    return;
+                }
+                
+                
                 if (itemBag == null)
                 {
                     UISystem.Instance.ShowPopWindows("提示","背包没有该材料","确定");

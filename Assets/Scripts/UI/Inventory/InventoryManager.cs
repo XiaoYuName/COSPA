@@ -18,7 +18,8 @@ namespace ARPG
         /// 玩家背包
         /// </summary>
         private UserBagConfig UserBag;
-
+        
+        private User currentUser;
  
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace ARPG
             UserBag = ConfigManager.LoadConfig<UserBagConfig>("PlayerBag/User");
             CharacterInfoConfig = ConfigManager.LoadConfig<CharacterConfig>("Character/Charactern");
             _itemConfig = ConfigManager.LoadConfig<BaseItemConfig>("Character/ItemConfig");
+            MessageAction.newUser += NewSave;
         }
 
         #region 查
@@ -110,6 +112,15 @@ namespace ARPG
         public ItemBag GetItemBag(string ID)
         {
             return UserBag.ItemBags.Find(p => p.ID == ID);
+        }
+
+        /// <summary>
+        /// 获取主线进度
+        /// </summary>
+        /// <returns></returns>
+        public Vector2Int GetPrincPress()
+        {
+            return UserBag.PrincProgress;
         }
 
         #endregion
@@ -230,6 +241,20 @@ namespace ARPG
         #endregion
 
 
+        #region 改
+
+        /// <summary>
+        /// 设置主线章节进度
+        /// </summary>
+        /// <param name="press"></param>
+        public void SetPress(Vector2Int press)
+        {
+            UserBag.PrincProgress = press;
+            MessageAction.OnRefRegionPress();
+        }
+
+
+        #endregion
 
 
         /// <summary>
@@ -264,8 +289,13 @@ namespace ARPG
                 SaveGameManager.Instance.Load(1);
             }
         }
-        
-        
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            MessageAction.newUser -= NewSave;
+        }
+
         //--SaveGame 游戏存储接口
         public string GUID => "InventoryManager";
 
@@ -278,14 +308,38 @@ namespace ARPG
         public GameSaveData GenerateSaveData()
         {
             GameSaveData data = new GameSaveData();
-            JsonTool.SavaGame(UserBag,"Bag");
+            JsonTool.SavaGame(UserBag,currentUser.UID+"Bag.save");
             return  data;
         }
+        
         public void RestoreData(GameSaveData GameSave)
         {
-            UserBag  =  JsonTool.LoadGame<UserBagConfig>("Bag");
+            UserBag  = JsonTool.LoadGame<UserBagConfig>(currentUser.UID+"Bag.save");
+            currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
+            currentUser.MonaAmount = GetItemBag(Settings.ManaID).count;
         }
-        
+
+        /// <summary>
+        /// 创建新用户
+        /// </summary>
+        /// <param name="user"></param>
+        private void NewSave(User user)
+        {
+            currentUser = user;
+            UserBagConfig deftual = ConfigManager.LoadConfig<UserBagConfig>("SaveDefual/DeftualBag");
+            UserBag = ScriptableObject.Instantiate<UserBagConfig>(deftual);
+        }
+
+
+        /// <summary>
+        /// 设置当前游戏用户
+        /// </summary>
+        /// <param name="user"></param>
+        public void SetCurrentUser(User user)
+        {
+            currentUser = user;
+        }
+
     }
 }
 

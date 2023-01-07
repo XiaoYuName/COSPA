@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449e8e274ed13b64aa67d2363a6d1784, type: 3}
+  m_Name: DeftualBag
+  m_EditorClassIdentifier: 
+  CharacterBags:
+  - ID: plate_100211
+    currentStar: 1
+    Favorability: 1
+    Level: 1
+    exp: 0
+    MaxExp: 30
+    Favorabexp: 0
+    equipHelos:
+    - ItemType: 0
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 0
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+  - ID: plate_1058
+    currentStar: 1
+    Favorability: 1
+    Level: 2
+    exp: 1
+    MaxExp: 60
+    Favorabexp: 0
+    equipHelos:
+    - ItemType: 0
+      item:
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        icon: {fileID: 21300000, guid: bab134b772fd12949a527bbfba3dd299, type: 3}
+        Type: 0
+        Mode: 0
+        attribute:
+        - Mode: 0
+          value: 8
+      Powor: 0
+    - ItemType: 0
+      item:
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        icon: {fileID: 21300000, guid: bab134b772fd12949a527bbfba3dd299, type: 3}
+        Type: 0
+        Mode: 0
+        attribute:
+        - Mode: 0
+          value: 8
+      Powor: 5
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        icon: {fileID: 21300000, guid: 1a35f819d69c30d458d0fca42482f2b7, type: 3}
+        Type: 0
+        Mode: 0
+        attribute: []
+      Powor: 0
+  ItemBags:
+  - ID: 91001
+    count: 80
+    power: 0
+  - ID: 94001
+    count: 4992100
+    power: 0
+  FaramIcons:
+  - Mode: 0
+    faram: {fileID: 21300000, guid: ca860c1d4cc8ece48b0fe4f8a1cf01c3, type: 3}
+  - Mode: 1
+    faram: {fileID: 21300000, guid: 7d755b39cbc337d4a9ded5c96fb2a121, type: 3}
+  - Mode: 2
+    faram: {fileID: 21300000, guid: 53170fd726f1096408e2a5efc770af68, type: 3}
+  PrincProgress: {x: 0, y: 0}

@@ -25,6 +25,7 @@ namespace ARPG
         
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
+        private Vector2Int currentPress;
         
         protected override void Awake()
         {
@@ -45,6 +46,7 @@ namespace ARPG
         public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionItem regionItem)
         {
             currentRegion = regionItem;
+            currentPress = regionItem.Press;
             var data = InventoryManager.Instance.GetCharacter(bags.ID);
             var Obj = data.Prefab.GetComponent<Character>();
             Player =  Instantiate(Obj, pos, Quaternion.identity);
@@ -151,6 +153,7 @@ namespace ARPG
             UISystem.Instance.CloseUI("DownTime");
             EnemyManager.Instance.QuitGameScene();
             Destroy(Player.gameObject);
+            InventoryManager.Instance.SetPress(currentPress);
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
 

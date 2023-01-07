@@ -19,6 +19,7 @@ MonoBehaviour:
     - RegionItemName: "\u6DF1\u6797\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: ce2cb9615ddbdb94ba3fe346092c1615, type: 3}
       targetScene: SenLin
+      Press: {x: 0, y: 1}
       StarPos: {x: -9.74, y: -2, z: 0}
       WaveItems:
       - EnemyList:
@@ -42,7 +43,8 @@ MonoBehaviour:
         CreateTime: 0
     - RegionItemName: "\u706B\u706B\u8001\u5BB6"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
-      targetScene: Root
+      targetScene: HUOHUO
+      Press: {x: 1, y: 0}
       StarPos: {x: 0, y: 0, z: 0}
       WaveItems: []
   - RegionName: "\u5929\u7A7A\u4E4B\u57CE"
@@ -51,10 +53,12 @@ MonoBehaviour:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
       targetScene: Root
+      Press: {x: 0, y: 0}
       StarPos: {x: 0, y: 0, z: 0}
       WaveItems: []
     - RegionItemName: "\u65AD\u57A3\u6B8B\u58C1"
       backIcon: {fileID: 21300000, guid: 20e98a6e84a0e1540819ec78ab0d38e2, type: 3}
       targetScene: Root
+      Press: {x: 0, y: 0}
       StarPos: {x: 0, y: 0, z: 0}
       WaveItems: []

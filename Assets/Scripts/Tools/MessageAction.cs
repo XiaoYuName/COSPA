@@ -96,13 +96,34 @@ namespace ARPG
         {
             UpCharacterBag?.Invoke(obj);
         }
-        
 
+        /// <summary>
+        /// 通关后,刷新当前进度
+        /// </summary>
+        public static event Action RefRegionPress;
+        public static void OnRefRegionPress()
+        {
+            RefRegionPress?.Invoke();
+        }
+
+        /// <summary>
+        /// 创建新用户事件
+        /// </summary>
+        public static event Action<User> newUser;
+        
+        /// <summary>
+        /// 创建新用户事件
+        /// </summary>
+        /// <param name="CreatNewUser">创建的用户</param>
+        public static void OnNewUser(User CreatNewUser)
+        {
+            newUser?.Invoke(CreatNewUser);
+        }
 
         #endregion
 
 
-       
+        
     }
 }
 

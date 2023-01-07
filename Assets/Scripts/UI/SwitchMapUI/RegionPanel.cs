@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace ARPG.UI
 
         public override void Init()
         {
-            PrincProgress = Vector2Int.zero;
+            PrincProgress = InventoryManager.Instance.GetPrincPress();
             MainConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
             RegionItemUI = UISystem.Instance.GetPrefab<RegionTableUI>("RegionTableUI");
             RegionContent = Get<RectTransform>("UIMask/RegionLineView/View/Content");
@@ -39,8 +40,19 @@ namespace ARPG.UI
             MainPrincList = MainConfig.RegionList;
             anim = GetComponent<Animator>();
             CreateLineItemUI();
+            MessageAction.RefRegionPress += SetUpdateRegionPress;
         }
-        
+
+        /// <summary>
+        /// 刷新主线进度
+        /// </summary>
+        public void SetUpdateRegionPress()
+        {
+            PrincProgress = InventoryManager.Instance.GetPrincPress();
+            CreateLineItemUI();
+        }
+
+
         /// <summary>
         /// 生成章节
         /// </summary>
@@ -106,6 +118,11 @@ namespace ARPG.UI
              OpenTableUI.isClick = false;
             base.Close();
             MainPanel.Instance.RemoveTableChild("RegionPanel");
+        }
+
+        public void OnDestroy()
+        {
+            MessageAction.RefRegionPress -= SetUpdateRegionPress;
         }
     }
 }

@@ -49,6 +49,11 @@ namespace ARPG
         /// <returns></returns>
         private void SetRandomPoint()
         {
+            if (GameManager.Instance.Player == null)
+            {
+                return;
+            }
+
             Vector3 Player = GameManager.Instance.Player.transform.position;
             float randomX = Player.x+ Random.Range(-5, 5);
             float randomY = Player.y+Random.Range(-2, 2);

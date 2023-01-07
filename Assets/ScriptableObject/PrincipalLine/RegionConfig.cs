@@ -22,8 +22,7 @@ namespace ARPG.UI.Config
     {
         [Header("章节名称")]
         public string RegionName;
-
-       
+        
         public Sprite backIcon;
         
         /// <summary>
@@ -44,6 +43,9 @@ namespace ARPG.UI.Config
 
         [Header("地图场景名称"),Scene]
         public string targetScene;
+
+        [Tooltip("主线章节进度")]
+        public Vector2Int Press;
 
         [Header("该场景的起始点坐标")]
         public Vector3 StarPos;

@@ -11,7 +11,7 @@ namespace ARPG.UI
     /// </summary>
     public abstract class  UIBase : MonoBehaviour
     {
-        public bool isOpen;
+        [HideInInspector]public bool isOpen;
         /// <summary>
         /// 初始化方法,一般不需要手动调用
         /// </summary>

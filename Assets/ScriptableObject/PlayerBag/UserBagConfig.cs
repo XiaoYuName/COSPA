@@ -37,6 +37,13 @@ namespace ARPG.Config
         {
             return FaramIcons.Find(f => f.Mode == mode).faram;
         }
+
+        /// <summary>
+        /// 主线任务进度表
+        /// </summary>
+        public Vector2Int PrincProgress;
+
+        
     }
 
     [System.Serializable]

@@ -217,7 +217,14 @@ namespace ARPG
 
         public Vector3 GetPoint()
         {
-            return gameObject == null ? Vector3.zero : body.transform.position;
+            try
+            {
+                return gameObject == null ? Vector3.zero : body.transform.position;
+            }
+            catch (Exception)
+            {
+                return Vector3.zero;
+            }
         }
 
 

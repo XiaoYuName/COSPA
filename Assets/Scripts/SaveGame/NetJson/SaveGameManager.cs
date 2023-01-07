@@ -55,11 +55,11 @@ namespace ARPG.GameSave
                 User.UserDatas.Add(SaveItem.GUID, SaveItem.GenerateSaveData());
             }
 
-            var path = JsonSavePath + "/User" + UID + ".scriptable";
+            var path = JsonSavePath + "/Sava_GameData"+ "/User" + UID + ".scriptable";
             var JsonData = JsonConvert.SerializeObject(User, Formatting.Indented);
-            if (!Directory.Exists(JsonSavePath))
+            if (!Directory.Exists(JsonSavePath+ "/Sava_GameData"))
             {
-                Directory.CreateDirectory(JsonSavePath);
+                Directory.CreateDirectory(JsonSavePath+ "/Sava_GameData");
             }
             File.WriteAllText(path, JsonData);
         }
@@ -71,16 +71,18 @@ namespace ARPG.GameSave
         /// <returns></returns>
         public void Load(int UID)
         {
-            var path = JsonSavePath + "/User" + UID + ".scriptable";
-            var JsonData = File.ReadAllText(path);
-            UserSlotData slotData =  JsonConvert.DeserializeObject<UserSlotData>(JsonData);
-            foreach (var SaveItem in Saveables)
+            var path = JsonSavePath + "/Sava_GameData"+ "/User" + UID + ".scriptable";
+            if (File.Exists(path))
             {
-                SaveItem.RestoreData(slotData.UserDatas.ContainsKey(SaveItem.GUID)
-                    ? slotData.UserDatas[SaveItem.GUID]
-                    : new GameSaveData());
+                var JsonData = File.ReadAllText(path);
+                UserSlotData slotData =  JsonConvert.DeserializeObject<UserSlotData>(JsonData);
+                foreach (var SaveItem in Saveables)
+                {
+                    SaveItem.RestoreData(slotData.UserDatas.ContainsKey(SaveItem.GUID)
+                        ? slotData.UserDatas[SaveItem.GUID]
+                        : new GameSaveData());
+                }
             }
-            
         }
     }
 }
