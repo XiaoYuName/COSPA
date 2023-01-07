@@ -34,8 +34,8 @@ namespace ARPG.UI
 
         private void LoadGameScnen()
         {
-            SaveGameManager.Instance.Load(currentUser.UID);
             InventoryManager.Instance.SetCurrentUser(currentUser);
+            SaveGameManager.Instance.Load(currentUser.UID);
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
     }
