@@ -7,19 +7,15 @@ using UnityEngine;
 
 namespace ARPG.UI
 {
-    public class ArchiveUI : UIBase
+    public class ArchiveUI : UIBase,ISaveable
     {
         private List<User> Users = new List<User>();
         private RectTransform content;
-        private ArchiveItemUI LoadUI;
-        private CreatArchiveUI SaveUI;
-        
+
         public override void Init()
         {
             content = Get<RectTransform>("UIMask/Scroll View/Viewport/Content");
             Users = LoadUsers();
-            LoadUI = UISystem.Instance.GetPrefab<ArchiveItemUI>("ArchiveItemUI");
-            SaveUI = UISystem.Instance.GetPrefab<CreatArchiveUI>("CreatArchiveUI");
             CreatArchiveUI();
         }
 
@@ -76,6 +72,25 @@ namespace ARPG.UI
             CreatArchiveUI();
         }
 
+        public string GUID => "ArchiveUI";
+
+        public void Start()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            SaveUsers();
+            return new GameSaveData();
+        }
+
+        public void RestoreData(GameSaveData GameSave)
+        {
+            Users =LoadUsers();
+            CreatArchiveUI();
+        }
     }
 }
 

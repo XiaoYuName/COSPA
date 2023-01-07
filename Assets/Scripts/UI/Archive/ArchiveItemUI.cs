@@ -27,7 +27,7 @@ namespace ARPG.UI
         public void InitData(User user)
         {
             currentUser = user;
-            ManaAmount.text = user.MonaAmount.ToString();
+            ManaAmount.text = user.ManaAmount.ToString();
             GemsthoneAmount.text = user.GemsthoneAmount.ToString();
             DateTimeText.text = user.SaveTime.ToString(CultureInfo.InvariantCulture);
         }
@@ -36,6 +36,7 @@ namespace ARPG.UI
         {
             InventoryManager.Instance.SetCurrentUser(currentUser);
             SaveGameManager.Instance.Load(currentUser.UID);
+            UISystem.Instance.CloseUI("ArchiveUI");
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
     }

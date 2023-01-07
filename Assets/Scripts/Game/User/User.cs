@@ -20,7 +20,7 @@ namespace ARPG
         /// <summary>
         /// 玛那数量
         /// </summary>
-        public int MonaAmount;
+        public int ManaAmount;
         /// <summary>
         /// 宝石数量
         /// </summary>
@@ -31,13 +31,13 @@ namespace ARPG
         /// </summary>
         /// <param name="UID">UID</param>
         /// <param name="SaveTime">创建时间</param>
-        /// <param name="MonaAmount">玛那数量</param>
+        /// <param name="ManaAmount">玛那数量</param>
         /// <param name="GemsthoneAmount">宝石数量</param>
-        public User(int UID,DateTime SaveTime,int MonaAmount,int GemsthoneAmount)
+        public User(int UID,DateTime SaveTime,int ManaAmount,int GemsthoneAmount)
         {
             this.UID = UID;
             this.SaveTime = SaveTime;
-            this.MonaAmount = MonaAmount;
+            this.ManaAmount = ManaAmount;
             this.GemsthoneAmount = GemsthoneAmount;
         }
     }

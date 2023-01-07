@@ -24,6 +24,7 @@ MonoBehaviour:
       MagicAttack: 30
       Defense: 8
       HP: 100
+      currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 0.25
@@ -46,8 +47,9 @@ MonoBehaviour:
     State:
       PhysicsAttack: 30
       MagicAttack: 15
-      Defense: 999
+      Defense: 10
       HP: 999
+      currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 0.25
@@ -72,6 +74,7 @@ MonoBehaviour:
       MagicAttack: 30
       Defense: 8
       HP: 100
+      currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 0.25
@@ -96,6 +99,7 @@ MonoBehaviour:
       MagicAttack: 30
       Defense: 8
       HP: 100
+      currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 0.25

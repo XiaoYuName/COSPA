@@ -41,9 +41,7 @@ namespace ARPG
         /// 经验值ID
         /// </summary>
         public const string ExpID = "92001";
-
-
-
+        
         /// <summary>
         /// 计算成长值后的属性
         /// </summary>
@@ -63,8 +61,6 @@ namespace ARPG
             state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
             return state;
         }
-
-        public static readonly string JsonSavePath = "";
     }
 }
 

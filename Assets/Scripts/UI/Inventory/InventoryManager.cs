@@ -316,7 +316,7 @@ namespace ARPG
         {
             UserBag  = JsonTool.LoadGame<UserBagConfig>(currentUser.UID+"Bag.save");
             currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
-            currentUser.MonaAmount = GetItemBag(Settings.ManaID).count;
+            currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
         }
 
         /// <summary>
@@ -338,6 +338,18 @@ namespace ARPG
         public void SetCurrentUser(User user)
         {
             currentUser = user;
+        }
+
+        /// <summary>
+        /// 保存当前数据到文件
+        /// </summary>
+        public void SaveUserData()
+        {
+            currentUser.SaveTime = DateTime.Now;
+            currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
+            currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
+            SaveGameManager.Instance.Save(currentUser.UID);
+            UISystem.Instance.ShowPopWindows("提示","数据保存成功","确定");
         }
 
     }
