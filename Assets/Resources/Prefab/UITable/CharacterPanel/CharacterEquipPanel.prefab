@@ -5843,6 +5843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 2
   currentdata:
     ItemType: 0
@@ -6373,6 +6374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 1
   currentdata:
     ItemType: 0
@@ -6553,6 +6555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 0
   currentdata:
     ItemType: 0
@@ -6625,6 +6628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38b7cc9ed651244c8aca55a8f5d7027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!1 &8984404200469321323
 GameObject:
   m_ObjectHideFlags: 0
@@ -8046,6 +8050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 0
   currentdata:
     ItemType: 0
@@ -8150,6 +8155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 1
   currentdata:
     ItemType: 0
@@ -8411,6 +8417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ba4f871cc338e4e90c564f89166822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!1 &8984404200809981983
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,7 +9123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42, y: -29}
+  m_AnchoredPosition: {x: 138, y: -29}
   m_SizeDelta: {x: 74, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8984404200922792199
@@ -10373,6 +10380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af97e5b0db499c4891fbc3684ebf8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   type: 2
   currentdata:
     ItemType: 0
@@ -12559,7 +12567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5286866892711951150, guid: e0b8493bd73aa5e4b83c57a8379e51d6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 98
+      value: 194
       objectReference: {fileID: 0}
     - target: {fileID: 5286866892711951150, guid: e0b8493bd73aa5e4b83c57a8379e51d6, type: 3}
       propertyPath: m_AnchoredPosition.y

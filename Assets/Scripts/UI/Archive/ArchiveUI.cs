@@ -83,13 +83,14 @@ namespace ARPG.UI
         public GameSaveData GenerateSaveData()
         {
             SaveUsers();
+            Users =LoadUsers();
+            CreatArchiveUI();
             return new GameSaveData();
         }
 
         public void RestoreData(GameSaveData GameSave)
         {
-            Users =LoadUsers();
-            CreatArchiveUI();
+            
         }
     }
 }
