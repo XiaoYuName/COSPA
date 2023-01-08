@@ -24,20 +24,7 @@ namespace ARPG.Config
         /// </summary>
         [Header("背包道具Item")]
         public List<ItemBag> ItemBags = new List<ItemBag>();
-
-        [Header("稀有度设定")]
-        public List<FaramIcon> FaramIcons = new List<FaramIcon>();
-
-        /// <summary>
-        /// 获取稀有度对应Icon
-        /// </summary>
-        /// <param name="mode">稀有度</param>
-        /// <returns></returns>
-        public Sprite GetFaram(ItemMode mode)
-        {
-            return FaramIcons.Find(f => f.Mode == mode).faram;
-        }
-
+        
         /// <summary>
         /// 主线任务进度表
         /// </summary>
@@ -283,18 +270,7 @@ namespace ARPG.Config
     }
 
 
-    [System.Serializable]
-    public class FaramIcon
-    {
-        /// <summary>
-        /// 稀有度
-        /// </summary>
-        public ItemMode Mode;
-        /// <summary>
-        /// 边框
-        /// </summary>
-        public Sprite faram;
-    }
+
 
 
     [Serializable]

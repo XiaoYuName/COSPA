@@ -80,7 +80,7 @@ namespace ARPG
         /// <returns>图片</returns>
         public Sprite GetFaramIcon(ItemMode mode)
         {
-            return UserBag.GetFaram(mode);
+            return GameSystem.Instance.GetFaram(mode);
         }
 
 
@@ -137,11 +137,6 @@ namespace ARPG
             if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
             {
                 UserBag.ItemBags.Remove(itemBag);
-                if (isMoney(itemBag.ID))
-                {
-                    MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
-                        ,GetItemBag(Settings.ManaID));
-                }
             }
         }
         
@@ -159,16 +154,18 @@ namespace ARPG
                 {
                     if (UserBag.ItemBags[i].ID == itemBag.ID)
                     {
+                        if (isMoney(itemBag.ID))
+                        {
+                            UserBag.ItemBags[i].count = Mathf.Max(UserBag.ItemBags[i].count - Amount, 0);
+                            MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                                ,GetItemBag(Settings.ManaID));
+                            return;
+                        }
                         UserBag.ItemBags[i].count -= Amount;
-                        if (UserBag.ItemBags[i].count <= 1)
+                        if (UserBag.ItemBags[i].count <= 0)
                         {
                             DeleteItemBag(itemBag);
                             return;
-                        }
-                        if (isMoney(itemBag.ID))
-                        {
-                            MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
-                                ,GetItemBag(Settings.ManaID));
                         }
                     }
                 }

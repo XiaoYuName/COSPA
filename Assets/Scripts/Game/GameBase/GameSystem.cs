@@ -30,6 +30,11 @@ namespace ARPG
         /// </summary>
         private SpriteConfig SpriteConfig;
 
+        /// <summary>
+        /// 游戏设定配置
+        /// </summary>
+        private GameConfig GameConfig;
+
         protected override void Awake()
         {
             base.Awake();
@@ -42,6 +47,7 @@ namespace ARPG
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");
             SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
             SpriteConfig = ConfigManager.LoadConfig<SpriteConfig>("Character/SpriteConfig");
+            GameConfig = ConfigManager.LoadConfig<GameConfig>("GameIni/GameIni");
         }
 
         /// <summary>
@@ -74,7 +80,17 @@ namespace ARPG
             return SpriteConfig.Get(id).Sprite;
         }
 
-        
+        /// <summary>
+        /// 获取稀有度框
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public Sprite GetFaram(ItemMode mode)
+        {
+            return GameConfig.GetFaram(mode);
+        }
+
+
         /// <summary>
         /// 获取一个预制体GameObject 对象
         /// </summary>
