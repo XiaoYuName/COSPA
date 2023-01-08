@@ -49,6 +49,11 @@ namespace ARPG
             anim.runtimeAnimatorController = data.Animator;
             CreateSkillClass();
             //1.如果是BOSS类型敌人入场后直接进行攻击状态
+            if (data.Type == EnemyType.BOSS)
+            {
+                UISystem.Instance.OpenUI("BOSSAppear");
+            }
+
             SwitchFSM(data.Type == EnemyType.BOSS ? FSMType.AttackFSM : FSMType.IdleFSM);
         }
 
