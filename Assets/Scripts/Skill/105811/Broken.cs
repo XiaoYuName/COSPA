@@ -14,7 +14,7 @@ namespace ARPG
         public override void Init(Character character, SkillType type, SkillItem item)
         {
             base.Init(character, type, item);
-            MessageManager.Instance.Register<string>(C2S.EventMsg,PlaySkill);
+            MessageManager.Instance.Register<string>(C2C.EventMsg,PlaySkill);
         }
 
         public override void Play()
@@ -38,7 +38,7 @@ namespace ARPG
                 {
                     //获取最近的碰撞点列表
                     Bounds[i] = targets[i].bounds.ClosestPoint(Player.body.position);
-                    Enemys[i] = targets[i].transform.GetComponent<IDamage>();
+                    Enemys[i] = targets[i].transform.parent.GetComponent<IDamage>();
                 }
                 GameManager.Instance.OptionAllDamage(Player,Enemys,data,Bounds);
                 
@@ -53,7 +53,7 @@ namespace ARPG
         public override void UHandle()
         {
             base.UHandle();
-            MessageManager.Instance.URegister<string>(C2S.EventMsg,PlaySkill);
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,PlaySkill);
         }
     }
 }

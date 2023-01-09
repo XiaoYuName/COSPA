@@ -24,7 +24,7 @@ namespace ARPG
         /// <param name="Key">消息Key</param>
         /// <param name="action">回调委托</param>
         /// <typeparam name="T">传输数据</typeparam>
-        public void Register<T>(C2S Key, UnityAction<T> action)
+        public void Register<T>(C2C Key, UnityAction<T> action)
         {
             if (MessageTable.TryGetValue((int)Key, out var previousActon))
             {
@@ -45,7 +45,7 @@ namespace ARPG
         /// <param name="Key">消息Key</param>
         /// <param name="action">注册时的回调函数</param>
         /// <typeparam name="T">数据类型</typeparam>
-        public void URegister<T>(C2S Key, UnityAction<T> action)
+        public void URegister<T>(C2C Key, UnityAction<T> action)
         {
             if (MessageTable.TryGetValue((int)Key, out var previousAction))
             {
@@ -62,7 +62,7 @@ namespace ARPG
         /// <param name="Key">Key</param>
         /// <param name="data">数据</param>
         /// <typeparam name="T">数据类型</typeparam>
-        public void Send<T>(C2S Key, T data)
+        public void Send<T>(C2C Key, T data)
         {
             if (MessageTable.TryGetValue((int)Key, out var previousAction))
             {

@@ -33,11 +33,14 @@ namespace ARPG
         [HideInInspector]public Rigidbody2D rb;
         private static readonly int s_State = Animator.StringToHash("State");
         public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
+        //受击Collider
+        [HideInInspector]public Collider2D DamageCollider2D;
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
             rb = GetComponent<Rigidbody2D>();
+            DamageCollider2D = transform.Find("DamageCollider").GetComponent<Collider2D>();
         }
 
         public virtual void Init(int sort,EnemyData Data)
@@ -52,9 +55,13 @@ namespace ARPG
             if (data.Type == EnemyType.BOSS)
             {
                 UISystem.Instance.OpenUI("BOSSAppear");
+                animState = 999;
+                anim.SetInteger(s_State,animState);
+                SwitchFSM(FSMType.BOSSBehaviour);
+                return;
             }
 
-            SwitchFSM(data.Type == EnemyType.BOSS ? FSMType.AttackFSM : FSMType.IdleFSM);
+            SwitchFSM(FSMType.IdleFSM);
         }
 
   
@@ -88,19 +95,23 @@ namespace ARPG
                 FSM = null;
                 return;
             }
-
             string ClassName = "ARPG."+type;
             animState = (int)type;
+            if (type== FSMType.AttackFSM && data.Type == EnemyType.BOSS)
+            {
+                ClassName = "ARPG."+"BOSS"+type;
+                animState = (int)FSMType.AttackFSM;
+            }
             var Type = System.Type.GetType(ClassName);
             if (Type == null)
             {
-                Debug.LogError("没有对应FSM状态行为脚本,请确保命名规范");
+                Debug.LogError("没有对应FSM状态行为脚本,请确保命名规范 :"+ClassName);
                 return;
             }
             Object Obj = Activator.CreateInstance(Type);
             FSM?.BehaviourEnd(this);
             FSM = Obj as FSMBehaviour;
-            if (anim != null)
+            if (anim != null && !ClassName.Contains("BOSS"))
                 anim.SetInteger(s_State,animState);
             FSM?.BehaviourStart(this);
 

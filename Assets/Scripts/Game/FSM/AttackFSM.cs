@@ -40,6 +40,8 @@ namespace ARPG
                 Flip(enemy);
             }
         }
+        
+        
         public void Flip(Enemy enemy)
         {
             Vector3 PlayePoint = GameManager.Instance.Player.transform.position;

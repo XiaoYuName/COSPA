@@ -17,7 +17,7 @@ namespace ARPG
         public override void Init(Character character, SkillType type, SkillItem item)
         {
             base.Init(character, type, item);
-            MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.Register<string>(C2C.EventMsg,AniamtorMsg);
              targets = new List<Enemy>();
              FxFlame = new List<GameObject>();
         }
@@ -62,14 +62,14 @@ namespace ARPG
                 Collider2D target = Physics2D.OverlapCircle(Player.body.transform.position, data.Radius, data.Mask);
                 if (target != null && target.CompareTag("Character"))
                 {
-                    ARPG.Enemy tarEnemy = target.GetComponent<Enemy>();
+                    ARPG.Enemy tarEnemy = target.transform.parent.GetComponent<Enemy>();
                     if (!targets.Contains(tarEnemy))
                     {
                         targets.Add(tarEnemy);
                         GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, target.transform.position, Quaternion.identity);
                         Fx.transform.parent = target.transform;
                         FxFlame.Add(Fx);
-                        yield return new WaitForSeconds(0.15f);
+                        yield return new WaitForSeconds(0.05f);
                     }
                     yield return null;
                 }
@@ -100,7 +100,7 @@ namespace ARPG
         public override void UHandle()
         {
             base.UHandle();
-            MessageManager.Instance.URegister<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,AniamtorMsg);
         }
     }
 

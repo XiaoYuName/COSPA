@@ -106,6 +106,14 @@ namespace ARPG
        /// 死亡状态
        /// </summary>
        DieFSM = 10,
+       /// <summary>
+       /// BOSS特殊状态
+       /// </summary>
+       BOSSBehaviour=11,
+       /// <summary>
+       /// BOSS攻击状态
+       /// </summary>
+       BOSSAttackFSM=12,
    }
 
    
@@ -165,9 +173,10 @@ namespace ARPG
    }
 
 
-   public enum C2S
+   public enum C2C
    {
        EventMsg = 1,
+       BOSSEventMsg=2,
    }
 
 }

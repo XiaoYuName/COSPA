@@ -16,7 +16,7 @@ namespace ARPG
         public override void Init(Character character, SkillType type, SkillItem item)
         {
             base.Init(character, type, item);
-            MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.Register<string>(C2C.EventMsg,AniamtorMsg);
         }
 
         public override void Play()
@@ -59,7 +59,7 @@ namespace ARPG
                {
                    Vector3 Point = target.bounds.ClosestPoint(Player.body.position);
                    GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, target.transform.position, Quaternion.identity);
-                   GameManager.Instance.OptionDamage(Player,target.GetComponent<Enemy>(),data,Point);
+                   GameManager.Instance.OptionDamage(Player,target.transform.parent.GetComponent<Enemy>(),data,Point);
                    WaitUtils.WaitTimeDo(data.Duration, () => Fx.gameObject.SetActive(false));
                    yield return new WaitForSeconds(0.25f);
                }
@@ -71,7 +71,7 @@ namespace ARPG
         public override void UHandle()
         {
             base.UHandle();
-            MessageManager.Instance.URegister<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,AniamtorMsg);
         }
     }
 }

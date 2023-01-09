@@ -66,7 +66,7 @@ namespace ARPG
                 var hitPoint = col.bounds.ClosestPoint(transform.position);
                 
                 if(!isEnemy)
-                    GameManager.Instance.OptionDamage(currentPlayer,col.GetComponent<Enemy>(),currentdata,hitPoint);
+                    GameManager.Instance.OptionDamage(currentPlayer,col.transform.parent.GetComponent<Enemy>(),currentdata,hitPoint);
                 else
                     GameManager.Instance.OptionDamage(currentEnemy,col.transform.parent.GetComponent<Character>(),currentdata,hitPoint);
             }

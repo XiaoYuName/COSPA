@@ -71,7 +71,7 @@ namespace ARPG
             {
                 Vector3 Point = target.bounds.ClosestPoint(Player.body.position);
                 GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, Point, Quaternion.identity);
-                GameManager.Instance.OptionDamage(Player,target.GetComponent<Enemy>(),data,Point);
+                GameManager.Instance.OptionDamage(Player,target.transform.parent.GetComponent<Enemy>(),data,Point);
                 yield return new WaitForSeconds(data.Duration);
                 Fx.gameObject.SetActive(false);
             }

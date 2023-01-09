@@ -22,7 +22,7 @@ namespace ARPG
             base.Init(character,type, item);
             Mask = Player.attackButton.GetSkillCD(SkillType.Skill_03, out CdText);
             isCold = false;
-            MessageManager.Instance.Register<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.Register<string>(C2C.EventMsg,AniamtorMsg);
         }
 
         public void AniamtorMsg(string EventName)
@@ -97,7 +97,7 @@ namespace ARPG
         public override void UHandle()
         {
             base.UHandle();
-            MessageManager.Instance.URegister<string>(C2S.EventMsg,AniamtorMsg);
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,AniamtorMsg);
         }
     }
 }
