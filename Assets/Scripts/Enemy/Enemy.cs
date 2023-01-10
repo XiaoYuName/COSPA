@@ -20,7 +20,7 @@ namespace ARPG
         /// 动画控制器
         /// </summary>
         [HideInInspector]public Animator anim;
-        protected int animState = 0; 
+        [HideInInspector]public int animState = 0; 
         /// <summary>
         /// 数据
         /// </summary>

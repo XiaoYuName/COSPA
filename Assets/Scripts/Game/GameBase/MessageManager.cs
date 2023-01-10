@@ -66,7 +66,7 @@ namespace ARPG
         {
             if (MessageTable.TryGetValue((int)Key, out var previousAction))
             {
-                (previousAction as MessageData<T>)?.MessageEvents.Invoke(data);
+                (previousAction as MessageData<T>)?.MessageEvents?.Invoke(data);
             }
         }
 
