@@ -16,7 +16,6 @@ namespace ARPG
         /// </summary>
         [HideInInspector] public CharacterBag currentBag;
         protected CharacterState State;
-        private TextMeshPro NameTextUI;
         protected CharacterConfigInfo data;
         protected SkeletonMecanim Spine;
         [HideInInspector]public Animator anim;
@@ -50,7 +49,6 @@ namespace ARPG
 
         private void Awake()
         {
-            NameTextUI = transform.Find("CharacterName").GetComponent<TextMeshPro>();
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
             anim = Spine.GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
@@ -70,7 +68,6 @@ namespace ARPG
             //生成的时候赋值一次当前生命值=最大生命值
             State.currentHp = State.HP;
             StateUI.InitData(data,bag,State);
-            NameTextUI.text = data.CharacterName;
             Spine.skeletonDataAsset = data.GetAssets(bag.currentStar).Spinedata;
             Spine.Initialize(true);
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3,Skill_4);
@@ -150,7 +147,6 @@ namespace ARPG
             if (InputSpeed != Vector2.zero && animSpeed != 0)
             {
                 transform.rotation = Quaternion.Euler(0,InputSpeed.x <0 ? 180:0,0);
-                NameTextUI.transform.rotation = Quaternion.Euler(0,0,0);
             }
         }
 

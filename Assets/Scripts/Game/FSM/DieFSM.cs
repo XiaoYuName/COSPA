@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -8,6 +9,11 @@ namespace ARPG
     {
         public override void BehaviourStart(Enemy enemy)
         {
+            if (enemy.data.Type == EnemyType.BOSS && enemy.stateUI != null)
+            {
+                UISystem.Instance.CloseUI("BossStateUI");
+            }
+            
             WaitUtils.WaitTimeDo(1, () =>
             {
                 if(enemy== null || enemy.gameObject ==null)return;

@@ -74,6 +74,7 @@ namespace ARPG
             UISystem.Instance.CloseUI("MemuPanel");
             UISystem.Instance.CloseUI("DownTime");
             UISystem.Instance.CloseUI("PlayerState");
+            UISystem.Instance.CloseUI("BossStateUI");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");
@@ -175,6 +176,7 @@ namespace ARPG
             UISystem.Instance.CloseUI("GameMemu");
             UISystem.Instance.CloseUI("DownTime");
             UISystem.Instance.CloseUI("PlayerState");
+            UISystem.Instance.CloseUI("BossStateUI");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
             UISystem.Instance.CloseUI("AttackButton");

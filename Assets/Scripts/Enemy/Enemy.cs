@@ -35,6 +35,8 @@ namespace ARPG
         public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
         //受击Collider
         [HideInInspector]public Collider2D DamageCollider2D;
+
+        [HideInInspector]public BossStateUI stateUI;
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
@@ -55,6 +57,9 @@ namespace ARPG
             if (data.Type == EnemyType.BOSS)
             {
                 UISystem.Instance.OpenUI("BOSSAppear");
+                
+                stateUI = UISystem.Instance.GetUI<BossStateUI>("BossStateUI");
+                stateUI.InitData(State);
                 animState = 999;
                 anim.SetInteger(s_State,animState);
                 SwitchFSM(FSMType.BOSSBehaviour);

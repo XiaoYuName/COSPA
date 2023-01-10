@@ -63,15 +63,11 @@ namespace ARPG
                 if (target != null && target.CompareTag("Character"))
                 {
                     ARPG.Enemy tarEnemy = target.transform.parent.GetComponent<Enemy>();
-                    if (!targets.Contains(tarEnemy))
-                    {
-                        targets.Add(tarEnemy);
-                        GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, target.transform.position, Quaternion.identity);
-                        Fx.transform.parent = target.transform;
-                        FxFlame.Add(Fx);
-                        yield return new WaitForSeconds(0.05f);
-                    }
-                    yield return null;
+                    targets.Add(tarEnemy);
+                    GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, target.transform.position, Quaternion.identity);
+                    Fx.transform.parent = target.transform;
+                    FxFlame.Add(Fx);
+                    yield return new WaitForSeconds(0.25f);
                 }
 
                 yield return null;

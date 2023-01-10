@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -10,6 +11,11 @@ namespace ARPG
 
         public override void BehaviourStart(Enemy enemy)
         {
+            if (enemy.data.Type == EnemyType.BOSS && enemy.stateUI != null)
+            {
+                enemy.stateUI.UpdateSlider(enemy.GetState());
+            }
+
             enemy.anim.SetTrigger(s_Damage);
             enemy.SwitchFSM(enemy.GetState().currentHp > 0 ? FSMType.AttackFSM : FSMType.DieFSM);
         }

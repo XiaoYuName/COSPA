@@ -145,6 +145,12 @@ MonoBehaviour:
     parentName: UIPop
     Type: 2
     isInit: 0
+  - ID: BossStateUI
+    Prefab: {fileID: 3470190272107912337, guid: 1703920bb39c58a42829fdacc57e6c8f, type: 3}
+    details: "BOSS\u8840\u6761"
+    parentName: UIPanel
+    Type: 0
+    isInit: 0
   UIParents:
   - UIPanel
   - UIDialogue

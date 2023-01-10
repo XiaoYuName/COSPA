@@ -257,6 +257,7 @@ namespace ARPG
         /// <param name="uiname">ui名称</param>
         public void CloseUI(string uiname)
         {
+            if(!UiTableDic.ContainsKey(uiname))return;
             UIBase Obj = GetUI(uiname).GetComponent<UIBase>();
             Obj.transform.SetAsFirstSibling();
             Obj.Close();
@@ -270,6 +271,7 @@ namespace ARPG
         /// <typeparam name="T">类型</typeparam>
         public void CloseUI<T>(string uiname, Call<T> func) where T : UIBase
         {
+            if(!UiTableDic.ContainsKey(uiname))return;
             var Obj = GetUI(uiname);
             Obj.transform.SetAsFirstSibling();
             var conmop = Obj.GetComponent<T>();
