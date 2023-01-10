@@ -14,6 +14,11 @@ namespace ARPG
                 UISystem.Instance.CloseUI("BossStateUI");
             }
             
+            foreach (var skill in enemy.SkillDic)
+            {
+                enemy.SkillDic[skill.Key].UHandle();
+            }
+            
             WaitUtils.WaitTimeDo(1, () =>
             {
                 if(enemy== null || enemy.gameObject ==null)return;

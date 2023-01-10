@@ -8,7 +8,7 @@ namespace ARPG
     public abstract class Skill
     {
         protected Character Player;
-        protected SkillItem data;
+        public SkillItem data;
         protected Enemy Enemy;
         protected SkillType _type;
 
