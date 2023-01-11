@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace ARPG
         /// 下一次发起攻击的技能
         /// </summary>
         private EnemySkill selectSkillItem;
+
+        private bool waitNextTime;
+        private WaitForSeconds durntTime;
         
         public override void BehaviourStart(Enemy enemy)
         {
@@ -26,6 +30,7 @@ namespace ARPG
             InitSkill();
             selectSkillItem = Base.SkillDic[SkillType.Attack] as EnemySkill;
             enemy.animState = 2;
+            durntTime = new WaitForSeconds(enemy.SkillDic[SkillType.Attack].data.CD);
             Base.anim.SetInteger("State",enemy.animState);
         }
 
@@ -35,7 +40,7 @@ namespace ARPG
             tagretPos = new Vector3(PlayePoint.x+enemy.data.Attackradius,PlayePoint.y+0.25f,PlayePoint.z);
             //1.判断我与玩家的位置,如果大于普通攻击范围内同时,判断自身类型,如果是普通小怪，则只有普通攻击,如果是精英怪,则随机开始进入一个特殊的技能状态直到结束,则追击到攻击范围内
             if (Vector2.Distance(enemy.transform.position, tagretPos) < 
-                selectSkillItem.data.Radius && !selectSkillItem.isTimeCD)
+                selectSkillItem.data.Radius && !selectSkillItem.isTimeCD && !waitNextTime)
             {
                 selectSkillItem.Play(RandomSkill);
             }
@@ -61,9 +66,11 @@ namespace ARPG
         /// </summary>
         public void RandomSkill()
         {
-          
+
+            waitNextTime = true;
+            Base.StartCoroutine(WaitTime());
             List<EnemySkill> NotTimeSkill = SkillTime.FindAll(s => s.isTimeCD == false);
-            if (NotTimeSkill.Count <= 1)
+            if (NotTimeSkill.Count <= 0)
             {
                 selectSkillItem = Base.SkillDic[SkillType.Attack] as EnemySkill;
                 return;
@@ -73,6 +80,11 @@ namespace ARPG
 
         }
 
+        public IEnumerator WaitTime()
+        {
+            yield return durntTime;
+            waitNextTime = false;
+        }
 
 
 
