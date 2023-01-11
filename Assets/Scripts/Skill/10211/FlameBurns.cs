@@ -83,6 +83,7 @@ namespace ARPG
             if (FxFlame.Count != targets.Count) yield break;
             for (int i = 0; i < targets.Count; i++)
             {
+                if(targets[i] == null)continue;
                 GameObject Fx = SkillPoolManager.Release(data.Pools[1].prefab, targets[i].transform.position, 
                     Quaternion.identity);
                 WaitUtils.WaitTimeDo(data.Duration, () => Fx.gameObject.SetActive(false));

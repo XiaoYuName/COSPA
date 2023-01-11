@@ -158,6 +158,13 @@ namespace ARPG
         {
             State.currentHp = Mathf.Min(State.currentHp+Reply, State.HP);
         }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.Find("AttackPoint").position,SkillDic[SkillType.Attack].data.Radius);
+        }
     }
 }
 
