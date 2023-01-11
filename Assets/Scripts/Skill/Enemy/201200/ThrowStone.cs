@@ -32,7 +32,9 @@ namespace ARPG
         {
             if (!Evernt.Equals("ThrowStone")) return; 
             Debug.Log("扔石头");
-            MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab).GetComponent<MovFxItem>();
+            Transform SkillPoint = Enemy.transform.Find("SkillPoint");
+            MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab,SkillPoint.position,
+                SkillPoint.rotation).GetComponent<MovFxItem>();
             movFxItem.StarMovTarget(Enemy,GameManager.Instance.Player.transform.position,data,_action);
         }
 

@@ -26,7 +26,7 @@ namespace ARPG
 
         private void AnimatorEvent(string Evernt)
         {
-            if (!Evernt.Equals("BossAttack")) return; 
+            if (!Evernt.Equals("BossAttack")) return;
             Endaction?.Invoke();
            Collider2D other  = Physics2D.OverlapCircle(AttackPoint.position, data.Radius,data.Mask);
            if (other == null || !other.CompareTag("Character")) return;

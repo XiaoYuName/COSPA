@@ -29,17 +29,17 @@ public class MovFxItem : MonoBehaviour
         Vector3 dir = enemy.GetPoint() - target;
         this.attack = enemy;
         this.Item = skillItem;
-        StartCoroutine(MovToTarget(target, endAction));
+        StartCoroutine(MovToTarget(enemy,target, endAction));
 
     }
 
-    public IEnumerator MovToTarget(Vector3 dir,Action action)
+    public IEnumerator MovToTarget(IDamage damage,Vector3 dir,Action action)
     {
         float time = 5;
         while (gameObject.activeSelf && time > 0)
         {
             time -= Time.deltaTime;
-            transform.Translate(dir*Time.deltaTime);
+            transform.Translate(dir*damage.GetState().AttackSpeed*Time.deltaTime);
             yield return null;
         }
         gameObject.SetActive(false);
