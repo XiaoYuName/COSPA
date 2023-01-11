@@ -66,7 +66,6 @@ namespace ARPG
         /// </summary>
         public void RandomSkill()
         {
-
             waitNextTime = true;
             Base.StartCoroutine(WaitTime());
             List<EnemySkill> NotTimeSkill = SkillTime.FindAll(s => s.isTimeCD == false);
@@ -77,7 +76,7 @@ namespace ARPG
             }
             int index = Random.Range(0, NotTimeSkill.Count);
             selectSkillItem = NotTimeSkill[index];
-
+            Debug.LogError("BOSS随机选取技能 :" + selectSkillItem.data.SkillName);
         }
 
         public IEnumerator WaitTime()

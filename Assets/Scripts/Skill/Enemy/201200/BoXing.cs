@@ -27,12 +27,13 @@ namespace ARPG
         private void AnimatorEvent(string Evernt)
         {
             if (!Evernt.Equals("BossAttack")) return; 
+            Endaction?.Invoke();
            Collider2D other  = Physics2D.OverlapCircle(AttackPoint.position, data.Radius,data.Mask);
            if (other == null || !other.CompareTag("Character")) return;
            IDamage target = other.GetComponentInParent<Character>();
            Vector3 attackPoint = other.bounds.ClosestPoint(AttackPoint.position);
            GameManager.Instance.OptionDamage(Enemy,target,data,attackPoint);
-           Endaction?.Invoke();
+           
         }
 
         public override void UHandle()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG;
+using ARPG.Pool.Skill;
 using UnityEngine;
 
 namespace ARPG
@@ -31,7 +32,8 @@ namespace ARPG
         {
             if (!Evernt.Equals("ThrowStone")) return; 
             Debug.Log("扔石头");
-            _action?.Invoke();
+            MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab).GetComponent<MovFxItem>();
+            movFxItem.StarMovTarget(Enemy,GameManager.Instance.Player.transform.position,data,_action);
         }
 
         public override void UHandle()

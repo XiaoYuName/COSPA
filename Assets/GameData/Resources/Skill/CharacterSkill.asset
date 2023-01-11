@@ -273,7 +273,7 @@ MonoBehaviour:
       m_Bits: 32768
     Diamage: 50
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
-    SkillName: "\u70C8\u7130\u711A\u70EC"
+    SkillName: "\u594B\u529B\u62F3\u51FB"
     SkillDes: "\u594B\u529B\u62F3\u51FB"
     StepUpDes: "\u77F3\u5934\u4EBA\u6280\u80FD-\u594B\u529B\u62F3\u51FB"
     ActionStar: 0
@@ -303,4 +303,6 @@ MonoBehaviour:
       isMultistage: 0
       MultistageTime: 1
       MultistageDamage: 
-    Pools: []
+    Pools:
+    - prefab: {fileID: 1074851301299871247, guid: 78826927a5b8ffa4bb3d80cd2d4b186c, type: 3}
+      count: 2
