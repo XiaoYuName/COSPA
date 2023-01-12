@@ -13,14 +13,26 @@ namespace ARPG.UI
         private Button SaveBtn;
         private MoneyUI MoneyUI;
         private Button ReturnHomeBtn;
+
+        private Button InventoryBtn;
         public override void Init()
         {
             SaveBtn = Get<Button>("UIMask/Content/SaveUser");
             MoneyUI = Get<MoneyUI>("UIMask/MoneyPoint/MoneyUI");
             ReturnHomeBtn = Get<Button>("UIMask/Content/ReturnHome");
+            InventoryBtn = Get<Button>("UIMask/Content/ItemBag");
             MoneyUI.Init();
             Bind(SaveBtn,()=>InventoryManager.Instance.SaveUserData(),"UI_click");
             Bind(ReturnHomeBtn,ReturnHome,"UI_click");
+            Bind(InventoryBtn, delegate
+            {
+                FadeManager.Instance.PlayFade(0.5f, delegate
+                {
+                    Close();
+                    UISystem.Instance.OpenUI("InventoryUI");
+                },0.5f);
+
+            }, "UI_click");
         }
 
         private void ReturnHome()

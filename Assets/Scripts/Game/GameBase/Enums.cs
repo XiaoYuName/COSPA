@@ -48,6 +48,7 @@ namespace ARPG
        防具,
        首饰,
        材料,
+       记忆碎片,
    }
 
    /// <summary>
