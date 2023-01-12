@@ -25,9 +25,9 @@ namespace ARPG.Config
         /// </summary>
         public int level;
         /// <summary>
-        /// 图标
+        /// 图标ID 
         /// </summary>
-        public Sprite icon;
+        public string spriteID;
         
         /// <summary>
         /// Item 类型

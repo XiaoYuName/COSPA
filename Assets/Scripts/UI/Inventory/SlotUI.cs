@@ -28,7 +28,7 @@ namespace ARPG.UI
         {
             Item item = InventoryManager.Instance.GetItem(bag.ID);
             count.text = bag.count.ToString();
-            icon.sprite = item.icon;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             Level.text = "lv: "+item.level;
             powor.text = "+" + bag.power;
             Bind(ActionBtn, delegate
@@ -42,7 +42,7 @@ namespace ARPG.UI
         {
             Item item = InventoryManager.Instance.GetItem(bag.ID);
             count.text = bag.count.ToString();
-            icon.sprite = item.icon;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             Level.text = "lv: "+item.level;
             powor.text = "+" + bag.power;
             Bind(ActionBtn,func,UI_ToolAudio.UI_click.ToString());

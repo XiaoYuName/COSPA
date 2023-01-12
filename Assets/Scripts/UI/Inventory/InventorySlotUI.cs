@@ -34,14 +34,14 @@ namespace ARPG.UI
             Item item = InventoryManager.Instance.GetItem(data.ID);
             if (item.Type == ItemType.材料 || item.Type == ItemType.记忆碎片)
             {
-                icon.sprite = item.icon;
+                icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
                 Count.text = data.count.ToString("N0");
                 Powor.gameObject.SetActive(false);
                 Level.gameObject.SetActive(false);
             }
             else
             {
-                icon.sprite = item.icon;
+                icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
                 Count.text = data.count.ToString("N0");
                 Powor.text = data.power.ToString("N0");
                 Level.text = item.level.ToString("N0");

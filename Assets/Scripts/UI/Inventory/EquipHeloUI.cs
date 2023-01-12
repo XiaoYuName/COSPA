@@ -54,7 +54,7 @@ namespace ARPG.UI
             else
             {
                 currentdata = data;
-                iconImage.sprite = data.item.icon;
+                iconImage.sprite = GameSystem.Instance.GetSprite(data.item.spriteID);
                 Level.text = "Lv "+data.item.level;
                 powor.text = "+" + data.Powor;
             }

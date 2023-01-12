@@ -24,13 +24,13 @@ namespace ARPG.UI
             Item item = InventoryManager.Instance.GetItem(bag.ID);
             Count.gameObject.SetActive(true);
             Count.text = bag.count.ToString();
-            icon.sprite = item.icon;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);;
         }
 
 
         public void InitData(Item item)
         {
-            icon.sprite = item.icon;
+            icon.sprite =GameSystem.Instance.GetSprite(item.spriteID);
             Count.gameObject.SetActive(false);
         }
         //TODO: 给武器添加显示详情弹窗

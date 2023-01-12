@@ -43,7 +43,7 @@ namespace ARPG.UI
 
         public void ShowEquip(RewordItemBag RewordItem,Item item)
         {
-            icon.sprite = item.icon;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             count.text = RewordItem.itemBag.count.ToString();
             
             Level.gameObject.SetActive(true);
@@ -54,7 +54,7 @@ namespace ARPG.UI
 
         public void ShowMaterial(RewordItemBag RewordItem,Item item)
         {
-            icon.sprite = item.icon;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             count.text = RewordItem.itemBag.count.ToString();
             Level.gameObject.SetActive(false);
             Powor.gameObject.SetActive(false);

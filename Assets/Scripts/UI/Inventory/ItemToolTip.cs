@@ -44,7 +44,7 @@ namespace ARPG.UI
             ItemType.text = item.Type.ToString();
             Level.text = "lv: "+item.level;
             Powor.text = "+" +itemBag.power;
-            Slot.sprite = item.icon;
+            Slot.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             Count.text = "*" + itemBag.count;
             UIHelper.Clear(content);
             foreach (var t in item.attribute)
