@@ -13,12 +13,29 @@ MonoBehaviour:
   m_Name: DialogData
   m_EditorClassIdentifier: 
   BaseDatas:
-  - ID: Map_001
+  - ID: Star1
     Pieces:
-    - dialogID: 1
+    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-1"
+      dialogID: 0
       dialogName: "\u706B\u706B"
-      dialogSprite: {fileID: 0}
-      dialogueSpine: {fileID: 0}
-      dialogClipName: 
-      dialogText: 
+      isLeftSpine: 1
+      dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
+      AudioID: 
+      isLoop: 1
+      SpineAnimationName: 4
+      SpineSkinName: 1
+      dialogText: "\u4F60\u597D\u554A\u5192\u9669\u5BB6\uFF0C\u6B22\u8FCE\u6765\u5230\u8FD9\u91CC"
+      Options:
+      - OpentionText: "\u8FD9\u91CC\u662F"
+        targetPirecID: 0
+    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-2"
+      dialogID: 2
+      dialogName: "\u706B\u706B"
+      isLeftSpine: 1
+      dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
+      AudioID: 
+      isLoop: 1
+      SpineAnimationName: 7
+      SpineSkinName: 1
+      dialogText: "\u8FD9\u91CC\u662Fxxxxxxxx\u6211\u662F\u4F60\u7684\u5F15\u5BFC\u7CBE\u7075"
       Options: []

@@ -14,10 +14,6 @@ namespace ARPG.UI.Config
         /// 跳到下个对话的ID
         /// </summary>
         public int targetPirecID;
-        /// <summary>
-        /// 是否接取任务
-        /// </summary>
-        public bool isTaskQuest;
     }
 }
 

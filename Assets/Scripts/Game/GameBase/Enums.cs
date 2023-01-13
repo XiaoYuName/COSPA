@@ -184,6 +184,33 @@ namespace ARPG
    }
 
 
+   public enum SpineDialogueSkin
+   {
+       not,
+       anger,
+       joy,
+       normal,
+       sad,
+       shy,
+       special_a,
+       surprised,
+   }
+
+   public enum SpineDialogueAnimation
+   {
+       Not,
+       eye_blink,
+       eye_close,
+       eye_idle,
+       eye_open,
+       mouth_close,
+       mouth_idle,
+       mouth_oepn,
+       mouth_talk,
+       pseudo_setup_pose,
+   }
+
+
    public enum C2C
    {
        EventMsg = 1,

@@ -11,6 +11,9 @@ namespace ARPG.UI.Config
     [System.Serializable]
     public class DialogPiece
     {
+        [Header("没有任何意义,只是方便Scriptable 里观看")]
+        public string DataInof;
+        
         /// <summary>
         /// 对话唯一ID
         /// </summary>
@@ -19,10 +22,8 @@ namespace ARPG.UI.Config
         /// 对话者的名字
         /// </summary>
         public string dialogName;
-        /// <summary>
-        /// 对话者图标
-        /// </summary>
-        public Sprite dialogSprite;
+        [Header("是否在左边")]
+        public bool isLeftSpine;
         /// <summary>
         /// 对话Spine动画
         /// </summary>
@@ -30,7 +31,19 @@ namespace ARPG.UI.Config
         /// <summary>
         /// 对话者语音
         /// </summary>
-        public string dialogClipName;
+        public string AudioID;
+
+        /// <summary>
+        /// 是否循环播放该动画
+        /// </summary>
+        public bool isLoop;
+        [Header("Spine动画播放名字")]
+        public SpineDialogueAnimation SpineAnimationName;
+        
+        [Header("Spine Skin 皮肤名称")]
+        public SpineDialogueSkin SpineSkinName;
+        
+        
         /// <summary>
         /// 对话内容
         /// </summary>
@@ -40,7 +53,6 @@ namespace ARPG.UI.Config
         /// 对话反馈的选项
         /// </summary>
         public List<DialogOption> Options = new List<DialogOption>();
-        
     }
 }
 
