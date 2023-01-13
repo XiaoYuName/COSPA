@@ -196,13 +196,13 @@ namespace ARPG
                     if (UserBag.ItemBags[i].ID == itemBag.ID)
                     {
                         UserBag.ItemBags[i].count += itemBag.count;
+                        //2.添加货币后发送刷新事件
+                        MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
+                            ,GetItemBag(Settings.ManaID));
+                        MessageAction.OnRefreshItemBag(GetItemAllBag());
                         return;
                     }
                 }
-                //2.添加货币后发送刷新事件
-                MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
-                    ,GetItemBag(Settings.ManaID));
-                MessageAction.OnRefreshItemBag(GetItemAllBag());
                 return;
             } 
 
@@ -239,6 +239,27 @@ namespace ARPG
                 power = default,
             };
             AddItem(bag);
+        }
+
+
+        /// <summary>
+        /// 添加货币
+        /// </summary>
+        /// <param name="type">货币类型</param>
+        /// <param name="Amount">添加数量</param>
+        public void AddGold(GoldType type,int Amount)
+        {
+            string id = type switch
+            {
+                GoldType.玛那 => Settings.ManaID,
+                GoldType.宝石 => Settings.GemsthoneID,
+                _ => String.Empty
+            };
+            if(String.IsNullOrEmpty(id))return;
+            
+            ItemBag value = GetItemBag(id);
+            value.count = Amount;
+            AddItem(value);
         }
 
         #endregion

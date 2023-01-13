@@ -68,8 +68,18 @@ namespace ARPG.UI
         protected virtual void OnClick()
         {
             if (currentBag == null) return;
-            UISystem.Instance.ShowPopDialogue("提示","确定要出售该物品吗","确定","取消",null,null);
+            UISystem.Instance.ShowPopDialogue("提示","确定要出售该物品吗","确定","取消",Sell,null);
             //出售后关闭自身
+        }
+
+        protected virtual void Sell()
+        {
+            Item item = InventoryManager.Instance.GetItem(currentBag.ID);
+            int ManaAmount = item.sellAmount;
+            InventoryManager.Instance.DeleteItemBag(currentBag,1);
+            InventoryManager.Instance.AddGold(GoldType.玛那,ManaAmount);
+            Close();
+            UISystem.Instance.ShowPopWindows("提示","出售成功","确定");
         }
     }
 

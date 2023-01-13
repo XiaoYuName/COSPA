@@ -49,16 +49,16 @@ namespace ARPG.UI
             MaterialBtn = Get<Button>("UIMask/SwitchTable/StateBtn");
             EquitBtn = Get<Button>("UIMask/SwitchTable/EquipBtn");
             HeadBtn = Get<Button>("UIMask/SwitchTable/HeadBtn");
-            CreatInventorySlotUI();
             Bind(MaterialBtn,()=>SwitchTable(ItemType.材料),"OnChick");
             Bind(EquitBtn,()=>SwitchTable(ItemType.武器),"OnChick");
             Bind(HeadBtn,()=>SwitchTable(ItemType.记忆碎片),"OnChick");
-            itemToolTip = GetComponentInChildren<InventoryItemToolTip>();
+            itemToolTip = Get<InventoryItemToolTip>("UIMask/Slot/InventoryItemToolTip");
             itemToolTip.Init();
             SwitchTable(ItemType.材料);
             CloseBtn = Get<Button>("UIMask/Close");
             Bind(CloseBtn,Close,"OutChick");
             MessageAction.RefreshItemBag += CreatItemBages;
+            CreatInventorySlotUI();
         }
 
   
@@ -96,6 +96,7 @@ namespace ARPG.UI
                     ItemEquipSlot.Add(slotUI);
                 }
             }
+            SwitchTable(CurrentTable);
         }
 
 

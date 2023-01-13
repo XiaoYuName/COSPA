@@ -174,6 +174,16 @@ namespace ARPG
    }
 
 
+   /// <summary>
+   /// 货币类型
+   /// </summary>
+   public enum GoldType
+   {
+       玛那,
+       宝石,
+   }
+
+
    public enum C2C
    {
        EventMsg = 1,

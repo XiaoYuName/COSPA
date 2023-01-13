@@ -26,11 +26,10 @@ namespace ARPG.UI
             Bind(ReturnHomeBtn,ReturnHome,"UI_click");
             Bind(InventoryBtn, delegate
             {
-                FadeManager.Instance.PlayFade(0.5f, delegate
+                FadeManager.Instance.PlayFade(0.2f, delegate
                 {
-                    Close();
                     UISystem.Instance.OpenUI("InventoryUI");
-                },0.5f);
+                },0f);
 
             }, "UI_click");
         }
@@ -43,6 +42,7 @@ namespace ARPG.UI
 
         private void CloseOpenUI()
         {
+            Close();
             MessageAction.OnTransitionEvent("LoadingScene",Vector3.zero);
         }
     }
