@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ARPG.Config;
 using ARPG.UI.Config;
 using UnityEngine;
@@ -118,6 +119,21 @@ namespace ARPG
         public static void OnNewUser(User CreatNewUser)
         {
             newUser?.Invoke(CreatNewUser);
+        }
+
+
+        /// <summary>
+        /// 刷新背包道具
+        /// </summary>
+        public static event Action<List<ItemBag>> RefreshItemBag;
+        
+        /// <summary>
+        /// 刷新背包道具
+        /// </summary>
+        /// <param name="ListBags"></param>
+        public static void OnRefreshItemBag(List<ItemBag> ListBags)
+        {
+            RefreshItemBag?.Invoke(ListBags);
         }
 
         #endregion

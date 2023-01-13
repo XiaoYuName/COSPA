@@ -43,6 +43,28 @@ namespace ARPG.Config
         /// 属性
         /// </summary>
         public List<StateValue> attribute;
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [TextArea]
+        public string description;
+
+        /// <summary>
+        /// 出售价格
+        /// </summary>
+        public int sellAmount;
+
+        /// <summary>
+        /// 购买价格
+        /// </summary>
+        public int purchase;
+
+        /// <summary>
+        /// 是否可交易
+        /// </summary>
+        public bool isSell;
+
     }
 
     [System.Serializable]

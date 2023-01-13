@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -11,6 +12,8 @@ namespace ARPG.UI
         private MoneyUI _moneyUI;
         private InventorySlotUI _InventorySlotUI;
         private RectTransform content;
+        private InventoryItemToolTip itemToolTip;
+        private Button CloseBtn;
         
         /// <summary>
         /// 当前选中分页
@@ -50,9 +53,15 @@ namespace ARPG.UI
             Bind(MaterialBtn,()=>SwitchTable(ItemType.材料),"OnChick");
             Bind(EquitBtn,()=>SwitchTable(ItemType.武器),"OnChick");
             Bind(HeadBtn,()=>SwitchTable(ItemType.记忆碎片),"OnChick");
-
+            itemToolTip = GetComponentInChildren<InventoryItemToolTip>();
+            itemToolTip.Init();
             SwitchTable(ItemType.材料);
+            CloseBtn = Get<Button>("UIMask/Close");
+            Bind(CloseBtn,Close,"OutChick");
+            MessageAction.RefreshItemBag += CreatItemBages;
         }
+
+  
 
         /// <summary>
         /// 创建生成ItemUI，ItemUI点击后显示ItemToolTip
@@ -60,12 +69,16 @@ namespace ARPG.UI
         private void CreatInventorySlotUI()
         {
             //获取背包中所有的Item
+            CreatItemBages(InventoryManager.Instance.GetItemAllBag());
+        }
+
+        private void CreatItemBages(List<ItemBag> itemBags)
+        {
             UIHelper.Clear(content);
             ItemEquipSlot.Clear();
             ItemMaterialSlot.Clear();
             ItemHeadSlotUis.Clear();
-            List<ItemBag> itemBags = InventoryManager.Instance.GetItemAllBag();
-
+            if (itemBags.Count <= 0) return;
             for (int i = 0; i < itemBags.Count; i++)
             {
                 InventorySlotUI slotUI = Instantiate(_InventorySlotUI, content);
@@ -86,12 +99,14 @@ namespace ARPG.UI
         }
 
 
+
         /// <summary>
         /// 选择当前选中页
         /// </summary>
         /// <param name="table"></param>
         private void SwitchTable(ItemType table)
         {
+            itemToolTip.Close();
             MaterialBtn.GetComponent<Image>().color = table == ItemType.材料 ? Color.white : new Color(1, 1, 1, 0);
             EquitBtn.GetComponent<Image>().color =
                 table != ItemType.材料 && table != ItemType.记忆碎片 ? Color.white : new Color(1, 1, 1, 0);
@@ -129,6 +144,12 @@ namespace ARPG.UI
                     }
                     break;
             }
+        }
+
+
+        public void ShowItemToolTip(ItemBag data)
+        {
+            itemToolTip.InitData(data);
         }
     }
 }

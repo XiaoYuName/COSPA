@@ -137,6 +137,7 @@ namespace ARPG
             if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
             {
                 UserBag.ItemBags.Remove(itemBag);
+                MessageAction.OnRefreshItemBag(GetItemAllBag());
             }
         }
         
@@ -159,12 +160,14 @@ namespace ARPG
                             UserBag.ItemBags[i].count = Mathf.Max(UserBag.ItemBags[i].count - Amount, 0);
                             MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                                 ,GetItemBag(Settings.ManaID));
+                            MessageAction.OnRefreshItemBag(GetItemAllBag());
                             return;
                         }
                         UserBag.ItemBags[i].count -= Amount;
                         if (UserBag.ItemBags[i].count <= 0)
                         {
                             DeleteItemBag(itemBag);
+                            MessageAction.OnRefreshItemBag(GetItemAllBag());
                             return;
                         }
                     }
@@ -199,6 +202,7 @@ namespace ARPG
                 //2.添加货币后发送刷新事件
                 MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                     ,GetItemBag(Settings.ManaID));
+                MessageAction.OnRefreshItemBag(GetItemAllBag());
                 return;
             } 
 
@@ -210,6 +214,7 @@ namespace ARPG
                     if (UserBag.ItemBags[i].ID == itemBag.ID)
                     {
                         UserBag.ItemBags[i].count += itemBag.count;
+                        MessageAction.OnRefreshItemBag(GetItemAllBag());
                         return;
                     }
                 }
@@ -218,6 +223,7 @@ namespace ARPG
             {
                 UserBag.ItemBags.Add(itemBag);
             }
+            MessageAction.OnRefreshItemBag(GetItemAllBag());
         }
 
         /// <summary>
@@ -272,7 +278,7 @@ namespace ARPG
             MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                 ,GetItemBag(Settings.ManaID));
         }
-
+        
 
         public void Update()
         {

@@ -43,7 +43,6 @@ namespace ARPG.UI
 
         private void CloseOpenUI()
         {
-            Close();
             MessageAction.OnTransitionEvent("LoadingScene",Vector3.zero);
         }
     }
