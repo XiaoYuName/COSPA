@@ -174,6 +174,7 @@ namespace ARPG
                 index = 0;
                 currentData = null;
                 Close();
+                OptionContent.Close();
                 return;
             }
             Play(currentData.Pieces[index]);
@@ -186,11 +187,12 @@ namespace ARPG
         public void ToTargetDialogue(int targetID)
         {
             if (isDialogue || currentData == null) return;
-            if (targetID == - 1) //表示没有下一个对话了,直接关闭该对话
+            if (targetID < 0) //表示没有下一个对话了,直接关闭该对话
             {
                 index = 0;
                 currentData = null;
                 Close();
+                OptionContent.Close();
                 return;
             }
 
