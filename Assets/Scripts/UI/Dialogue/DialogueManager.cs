@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using ARPG.UI;
 using UnityEngine;
 using ARPG.UI.Config;
 using Spine.Unity;
@@ -15,6 +17,10 @@ namespace ARPG
         /// 对话数据配置表
         /// </summary>
         private DialogConfig data;
+        /// <summary>
+        /// 当前对话
+        /// </summary>
+        private DialogPiece currentPiece;
 
         #region Conmponent
 
@@ -48,6 +54,11 @@ namespace ARPG
         /// </summary>
         private DialogData currentData;
 
+        /// <summary>
+        /// 对话面板控制器
+        /// </summary>
+        private OptionContent OptionContent;
+
         #endregion
 
         /// <summary>
@@ -67,7 +78,9 @@ namespace ARPG
             isDialogue = false;
             dialogueName = Get<TextMeshProUGUI>("UIMask/BG/TitleBG/Name");
             description = Get<TextMeshProUGUI>("UIMask/BG/description");
-            NextBtn = Get<Button>("UIMask/BG/Next");
+            NextBtn = Get<Button>("UIMask");
+            OptionContent = Get<OptionContent>("Opention");
+            OptionContent.Init();
             LeftSpine = Get<SkeletonGraphic>("UIMask/BG/LeftDialogueSpine");
             RightSpine = Get<SkeletonGraphic>("UIMask/BG/RightDialogueSpine");
             NextBtn.onClick.AddListener(NextDialogue);
@@ -79,12 +92,10 @@ namespace ARPG
         {
             if (Input.GetKeyUp(KeyCode.G))
             {
-                StarPlayDialogueUI("Star1");
+                StarPlayDialogueUI("Star2");
             }
         }
         
-
-
         /// <summary>
         /// 开启一条对话
         /// </summary>
@@ -94,11 +105,17 @@ namespace ARPG
             if (isDialogue) return;
             Open();
             index = 0;
+            currentData = data.Get(ID);
             Play(data.Get(ID).Pieces[index]);
         }
         
+        /// <summary>
+        /// 开始显示对话
+        /// </summary>
+        /// <param name="Piece">对话信息</param>
         private void Play(DialogPiece Piece)
         {
+            currentPiece = Piece;
             dialogueName.text = Piece.dialogName;
             description.text = Piece.dialogText;
             if (Piece.dialogueSpine == null && Piece.SpineAnimationName != SpineDialogueAnimation.Not)
@@ -137,19 +154,66 @@ namespace ARPG
             {
                 AudioManager.Instance.PlayAudio(Piece.AudioID);
             }
+
+            if (Piece.Options is {Count: > 0})
+            {
+                OptionContent.InitData(Piece.Options);
+                OptionContent.Open();
+            }
+            else
+            {
+                OptionContent.Close();
+            }
         }
 
-
+        /// <summary>
+        /// 继续下一条对话
+        /// </summary>
         private void NextDialogue()
         {
-            if (!isDialogue || currentData == null) return;
+            if (isDialogue || currentData == null) return;
             index++;
-            if (index > currentData.Pieces.Count)
+            if (index >= currentData.Pieces.Count)
             {
                 index = 0;
                 currentData = null;
                 Close();
+                return;
             }
+            Play(currentData.Pieces[index]);
+        }
+
+        /// <summary>
+        /// 跳转到当前目标对话
+        /// </summary>
+        /// <param name="targetID"></param>
+        public void ToTargetDialogue(int targetID)
+        {
+            if (isDialogue || currentData == null) return;
+            if (targetID == - 1) //表示没有下一个对话了,直接关闭该对话
+            {
+                index = 0;
+                currentData = null;
+                Close();
+                return;
+            }
+
+            if (currentData.Pieces.Any(a => a.dialogID == targetID))
+            {
+                //将index设置为该index
+                for (int i = 0; i < currentData.Pieces.Count; i++)
+                {
+                    if (currentData.Pieces[i].dialogID == targetID)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                DialogPiece piece =  currentData.Pieces.Find(a => a.dialogID == targetID);
+                Play(piece);
+            }
+           
         }
 
         public override void Close()

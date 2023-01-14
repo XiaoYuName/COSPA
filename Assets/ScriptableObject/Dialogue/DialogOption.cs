@@ -10,6 +10,9 @@ namespace ARPG.UI.Config
         /// 反馈的选项
         /// </summary>
         public string OpentionText;
+
+        public DialogueFarmeMode Mode;
+        
         /// <summary>
         /// 跳到下个对话的ID
         /// </summary>

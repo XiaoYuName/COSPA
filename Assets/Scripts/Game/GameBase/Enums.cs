@@ -210,6 +210,22 @@ namespace ARPG
        pseudo_setup_pose,
    }
 
+   public enum DialogueFarmeMode
+   {
+       /// <summary>
+       /// 黄色边框
+       /// </summary>
+       DialogueYellow,
+       /// <summary>
+       /// 红色边框
+       /// </summary>
+       DialogueRed,
+       /// <summary>
+       /// 蓝色边框
+       /// </summary>
+       DialogueBule,
+   }
+
 
    public enum C2C
    {
