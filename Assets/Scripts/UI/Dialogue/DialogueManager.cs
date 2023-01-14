@@ -17,10 +17,6 @@ namespace ARPG
         /// 对话数据配置表
         /// </summary>
         private DialogConfig data;
-        /// <summary>
-        /// 当前对话
-        /// </summary>
-        private DialogPiece currentPiece;
 
         #region Conmponent
 
@@ -115,7 +111,6 @@ namespace ARPG
         /// <param name="Piece">对话信息</param>
         private void Play(DialogPiece Piece)
         {
-            currentPiece = Piece;
             dialogueName.text = Piece.dialogName;
             description.text = Piece.dialogText;
             if (Piece.dialogueSpine == null && Piece.SpineAnimationName != SpineDialogueAnimation.Not)
@@ -165,6 +160,7 @@ namespace ARPG
                 OptionContent.Close();
             }
         }
+        
 
         /// <summary>
         /// 继续下一条对话
@@ -209,7 +205,6 @@ namespace ARPG
                         break;
                     }
                 }
-
                 DialogPiece piece =  currentData.Pieces.Find(a => a.dialogID == targetID);
                 Play(piece);
             }
