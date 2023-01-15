@@ -40,5 +40,23 @@ namespace ARPG
             yield return new WaitForSeconds(skillCd);
             isTimeCD = false;
         }
+
+        /// <summary>
+        /// 技能Skill检测
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool SkillCheck(Enemy enemy,Vector3 tagretPos)
+        {
+            return Vector2.Distance(enemy.transform.position, tagretPos) < data.Radius;
+        }
+
+        /// <summary>
+        /// 编辑器内绘制技能范围
+        /// </summary>
+        public virtual void OnGizmosRadius()
+        {
+            if(Enemy!= null && Enemy.gameObject.activeSelf)
+                Gizmos.DrawWireSphere(Enemy.GetPoint(),data.Radius);
+        }
     }
 }

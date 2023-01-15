@@ -29,7 +29,7 @@ namespace ARPG
                 //发送攻击,TODO: 发动技能
                 AttackCD =  GameSystem.Instance.GetSkill(enemy.data.SkillTable[0].SkillID).CD;
                 enemy.anim.SetTrigger(s_Attack);
-                enemy.SkillDic[SkillType.Attack].Play();
+                enemy.SkillDic[SkillType.Attack].Play(null);
             }
             else
             {

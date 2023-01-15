@@ -37,9 +37,7 @@ namespace ARPG.UI.Config
         /// 是否循环播放该动画
         /// </summary>
         public bool isLoop;
-
-        [Header("如果希望该条对话跳转到此后关闭,请勾选")]
-        public bool isEnd;
+        
         [Header("Spine动画播放名字")]
         public SpineDialogueAnimation SpineAnimationName;
         

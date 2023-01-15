@@ -28,7 +28,8 @@ namespace ARPG
         {
             if (!Evernt.Equals("BossAttack")) return;
             Endaction?.Invoke();
-           Collider2D other  = Physics2D.OverlapCircle(AttackPoint.position, data.Radius,data.Mask);
+            if(Enemy == null)return;
+            Collider2D other  = Physics2D.OverlapCircle(AttackPoint.position, data.Radius,data.Mask);
            if (other == null || !other.CompareTag("Character")) return;
            IDamage target = other.GetComponentInParent<Character>();
            Vector3 attackPoint = other.bounds.ClosestPoint(AttackPoint.position);

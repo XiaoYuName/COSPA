@@ -30,8 +30,7 @@ namespace ARPG
 
         private void AnimatorEvent(string Evernt)
         {
-            if (!Evernt.Equals("ThrowStone")) return; 
-            Debug.Log("扔石头");
+            if (!Evernt.Equals("ThrowStone")) return;
             Transform SkillPoint = Enemy.transform.Find("SkillPoint");
             MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab,SkillPoint.position,
                 SkillPoint.rotation).GetComponent<MovFxItem>();
@@ -42,6 +41,25 @@ namespace ARPG
         {
             base.UHandle();
             MessageManager.Instance.URegister<string>(C2C.BOSSEventMsg,AnimatorEvent);
+        }
+
+        public override bool SkillCheck(Enemy enemy, Vector3 tagretPos)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(enemy.GetPoint(), -enemy.GetTransform().right.normalized, data.Radius,data.Mask);
+           if (hit.transform == null) return false;
+           if (hit.transform.CompareTag("Character"))
+           {
+               return true;
+           }
+           return false;
+
+        }
+
+
+        public override void OnGizmosRadius()
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawRay(Enemy.GetPoint(), -Enemy.GetTransform().right.normalized * data.Radius);
         }
     }
 }

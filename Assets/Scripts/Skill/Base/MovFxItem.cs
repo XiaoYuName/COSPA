@@ -26,11 +26,10 @@ public class MovFxItem : MonoBehaviour
     {
         //1.获得目标方向
         endAction = action;
-        Vector3 dir = enemy.GetPoint() - target;
         this.attack = enemy;
         this.Item = skillItem;
-        StartCoroutine(MovToTarget(enemy,target, endAction));
-
+        Vector3 dir = target - transform.right;
+        StartCoroutine(MovToTarget(enemy,dir,endAction));
     }
 
     public IEnumerator MovToTarget(IDamage damage,Vector3 dir,Action action)

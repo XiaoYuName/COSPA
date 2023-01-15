@@ -166,6 +166,8 @@ namespace ARPG
             var ui = Instantiate(Obj, pos, rotation);
             return ui;
         }
+
+        
     }
     
 }

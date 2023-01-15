@@ -39,8 +39,7 @@ namespace ARPG
             Vector3 PlayePoint = GameManager.Instance.Player.transform.position;
             tagretPos = new Vector3(PlayePoint.x+enemy.data.Attackradius,PlayePoint.y+0.25f,PlayePoint.z);
             //1.判断我与玩家的位置,如果大于普通攻击范围内同时,判断自身类型,如果是普通小怪，则只有普通攻击,如果是精英怪,则随机开始进入一个特殊的技能状态直到结束,则追击到攻击范围内
-            if (Vector2.Distance(enemy.transform.position, tagretPos) < 
-                selectSkillItem.data.Radius && !selectSkillItem.isTimeCD && !waitNextTime)
+            if (selectSkillItem.SkillCheck(enemy,tagretPos) && !selectSkillItem.isTimeCD && !waitNextTime)
             {
                 selectSkillItem.Play(RandomSkill);
             }
@@ -67,11 +66,11 @@ namespace ARPG
         public void RandomSkill()
         {
             waitNextTime = true;
-            Base.StartCoroutine(WaitTime());
+            GameSystem.Instance.StartCoroutine(WaitTime());
             List<EnemySkill> NotTimeSkill = SkillTime.FindAll(s => s.isTimeCD == false);
             if (NotTimeSkill.Count <= 0)
             {
-                selectSkillItem = Base.SkillDic[SkillType.Attack] as EnemySkill;
+                selectSkillItem = Base.SkillDic[SkillType.Attack];
                 return;
             }
             int index = Random.Range(0, NotTimeSkill.Count);

@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5284686020522080391}
   - component: {fileID: 5035760866049844094}
+  - component: {fileID: 3005107150600440216}
   m_Layer: 15
   m_Name: DamageCollier
   m_TagString: Character
@@ -270,6 +271,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.80485725, y: 2.0701952}
   m_EdgeRadius: 0
+--- !u!50 &3005107150600440216
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811428410305363974}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &985126446638368744
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,60 +720,84 @@ MonoBehaviour:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
     - ItemType: 0
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
     - ItemType: 1
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
     - ItemType: 2
       item:
         ID: 
         ItemName: 
         level: 0
-        icon: {fileID: 0}
+        spriteID: 
         Type: 0
         Mode: 0
         attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
       Powor: 0
   anim: {fileID: 0}
   attackButton: {fileID: 0}

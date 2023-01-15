@@ -17,7 +17,7 @@ namespace ARPG
     public class GameManager : MonoSingleton<GameManager>
     { 
         //角色的公用预制体
-        public Character Player;
+        [HideInInspector]public Character Player;
         /// <summary>
         /// 当前战斗的副本
         /// </summary>
@@ -34,9 +34,7 @@ namespace ARPG
             DamageWordUI = GameSystem.Instance.GetPrefab("DamageText");
         }
 
-
-
-
+        
         /// <summary>
         /// 初始化加载战斗场景
         /// </summary>
@@ -284,13 +282,12 @@ namespace ARPG
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
             damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
         }
-        
+
         /// <summary>
         /// 回复技能运算
         /// </summary>
         /// <param name="attack">技能发动者</param>
         /// <param name="value">基础数值</param>
-        /// <param name="Point">发动点</param>
         private void OptionAddHp(IDamage attack, int value)
         {
             CharacterState attackState = attack.GetState();

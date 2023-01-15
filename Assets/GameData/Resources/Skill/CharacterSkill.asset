@@ -67,7 +67,7 @@ MonoBehaviour:
     RadiusOffset: {x: -0.79, y: -0.89}
     Mask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 32768
     Diamage: 15
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"
@@ -284,10 +284,10 @@ MonoBehaviour:
       MultistageDamage: 
     Pools: []
   - ID: ThrowStone
-    CD: 40
+    CD: 5
     Duration: 0.5
     ReleaseTime: 8
-    Radius: 2.5
+    Radius: 250
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2

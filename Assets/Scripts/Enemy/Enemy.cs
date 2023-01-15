@@ -29,20 +29,31 @@ namespace ARPG
         /// 属性
         /// </summary>
         protected CharacterState State;
+        /// <summary>
+        /// FSM 状态机
+        /// </summary>
         protected FSMBehaviour FSM;
         [HideInInspector]public Rigidbody2D rb;
         private static readonly int s_State = Animator.StringToHash("State");
-        public Dictionary<SkillType, Skill> SkillDic = new Dictionary<SkillType, Skill>();
+        /// <summary>
+        /// 技能配置字典
+        /// </summary>
+        public Dictionary<SkillType, EnemySkill> SkillDic = new Dictionary<SkillType, EnemySkill>();
         //受击Collider
         [HideInInspector]public Collider2D DamageCollider2D;
-
+        
         [HideInInspector]public BossStateUI stateUI;
+        /// <summary>
+        /// 自定义中心点
+        /// </summary>
+        private Transform CentenPoint;
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
             rb = GetComponent<Rigidbody2D>();
             DamageCollider2D = transform.Find("DamageCollider").GetComponent<Collider2D>();
+            CentenPoint = transform.Find("GetPoint");
         }
 
         public virtual void Init(int sort,EnemyData Data)
@@ -70,7 +81,9 @@ namespace ARPG
         }
 
   
-
+        /// <summary>
+        /// 创建技能Skill对象和映射字典
+        /// </summary>
         private void CreateSkillClass()
         {
             SkillDic.Clear();
@@ -80,7 +93,7 @@ namespace ARPG
                 SkillItem skillItem = GameSystem.Instance.GetSkill(data.SkillTable[i].SkillID);
                 Type type = Type.GetType("ARPG." +skillItem.ID);
                 if (type == null) return;
-                Skill skill = Activator.CreateInstance(type) as Skill;
+                EnemySkill skill = Activator.CreateInstance(type) as EnemySkill;
                 SkillDic.Add(data.SkillTable[i].Type,skill);
                 if (skill != null) skill.Init(this, skillItem);
             }
@@ -92,6 +105,10 @@ namespace ARPG
             FSM?.BehaviourUpdate(this);
         }
 
+        /// <summary>
+        /// 切换FSM 状态
+        /// </summary>
+        /// <param name="type">状态类型</param>
         public void SwitchFSM(FSMType type)
         {
             if (type == FSMType.Note)
@@ -122,6 +139,9 @@ namespace ARPG
 
         }
 
+        /// <summary>
+        /// 退出FSM 状态
+        /// </summary>
         public void QuitFSM()
         {
             SwitchFSM(FSMType.Note);
@@ -138,22 +158,47 @@ namespace ARPG
             FSM.OnColliderExit2D(other,this);
         }
 
+        /// <summary>
+        /// 获取自身属性状态
+        /// </summary>
+        /// <returns></returns>
         public CharacterState GetState()
         {
             return State;
         }
 
+        /// <summary>
+        /// 获取自身位置
+        /// </summary>
+        /// <returns></returns>
         public Vector3 GetPoint()
         {
-            return transform.position;
+            return CentenPoint.position;
         }
-
+        
+        /// <summary>
+        /// 获取自身Ttransfom 组件
+        /// </summary>
+        /// <returns></returns>
+        public Transform GetTransform()
+        {
+            return CentenPoint;
+        }
+        
+        /// <summary>
+        /// 受伤
+        /// </summary>
+        /// <param name="Damage">受到伤害点数</param>
         public void IDamage(int Damage)
         {
             State.currentHp -= Damage;
             SwitchFSM(FSMType.DamageFSM);
         }
         
+        /// <summary>
+        /// 回复血量
+        /// </summary>
+        /// <param name="Reply">回复值</param>
         public void IReply(int Reply)
         {
             State.currentHp = Mathf.Min(State.currentHp+Reply, State.HP);
@@ -162,8 +207,7 @@ namespace ARPG
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.Find("AttackPoint").position,SkillDic[SkillType.Attack].data.Radius);
+             SkillDic[SkillType.Skill_01].OnGizmosRadius();
         }
     }
 }
