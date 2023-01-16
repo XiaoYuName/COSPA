@@ -13,7 +13,7 @@ namespace ARPG.UI
         private Button SaveBtn;
         private MoneyUI MoneyUI;
         private Button ReturnHomeBtn;
-
+        private Button StoreBtn;
         private Button InventoryBtn;
         public override void Init()
         {
@@ -21,6 +21,7 @@ namespace ARPG.UI
             MoneyUI = Get<MoneyUI>("UIMask/MoneyPoint/MoneyUI");
             ReturnHomeBtn = Get<Button>("UIMask/Content/ReturnHome");
             InventoryBtn = Get<Button>("UIMask/Content/ItemBag");
+            StoreBtn = Get<Button>("UIMask/Content/GemsthoneShop");
             MoneyUI.Init();
             Bind(SaveBtn,()=>InventoryManager.Instance.SaveUserData(),"UI_click");
             Bind(ReturnHomeBtn,ReturnHome,"UI_click");
@@ -32,6 +33,14 @@ namespace ARPG.UI
                 },0f);
 
             }, "UI_click");
+            
+            Bind(StoreBtn, delegate
+            {
+                FadeManager.Instance.PlayFade(0.2f, delegate
+                {
+                    UISystem.Instance.OpenUI("StorePanel");
+                },0f);
+            },"UI_click");
         }
 
         private void ReturnHome()
