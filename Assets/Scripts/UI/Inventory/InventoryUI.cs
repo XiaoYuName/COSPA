@@ -152,6 +152,12 @@ namespace ARPG.UI
         {
             itemToolTip.InitData(data);
         }
+
+        public override void Close()
+        {
+            base.Close();
+            MainPanel.Instance.RemoveTableChild("InventoryUI");
+        }
     }
 }
 

@@ -19,6 +19,12 @@ namespace ARPG.UI
             GemsthoneBtn = Get<Button>("UIMask/SwitchBtns/GemsthoneBtn");
             Bind(GemsthoneBtn,()=>UISystem.Instance.OpenUI("StorePopWindows"),"OnChick");
         }
+
+        public override void Close()
+        {
+            base.Close();
+            MainPanel.Instance.RemoveTableChild("StorePanel");
+        }
     }
 }
 

@@ -30,6 +30,7 @@ namespace ARPG.UI
                 FadeManager.Instance.PlayFade(0.2f, delegate
                 {
                     UISystem.Instance.OpenUI("InventoryUI");
+                    MainPanel.Instance.AddTbaleChild("InventoryUI");
                 },0f);
 
             }, "UI_click");
@@ -39,6 +40,7 @@ namespace ARPG.UI
                 FadeManager.Instance.PlayFade(0.2f, delegate
                 {
                     UISystem.Instance.OpenUI("StorePanel");
+                    MainPanel.Instance.AddTbaleChild("StorePanel");
                 },0f);
             },"UI_click");
         }
