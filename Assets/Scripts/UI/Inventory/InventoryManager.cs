@@ -258,8 +258,12 @@ namespace ARPG
             if(String.IsNullOrEmpty(id))return;
             
             ItemBag value = GetItemBag(id);
-            value.count = Amount;
-            AddItem(value);
+            ItemBag newBag = new ItemBag()
+            {
+                ID = value.ID,
+                count = Amount,
+            };
+            AddItem(newBag);
         }
 
         #endregion
