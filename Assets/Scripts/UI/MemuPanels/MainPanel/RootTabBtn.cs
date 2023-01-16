@@ -42,11 +42,11 @@ namespace ARPG.UI
                     UISystem.Instance.ShowPopWindows("提示","暂未开放","确定");
                     return;
                 }
-                FadeManager.Instance.PlayFade(1, delegate
+                FadeManager.Instance.PlayFade(0.25f, delegate
                 {
                     MainPanel.Instance.SwitchTabBtn(_type);
                     UISystem.Instance.OpenUI(data.OpenUIName);
-                },2);
+                },0.25f);
             }, "UI_click");
         }
 

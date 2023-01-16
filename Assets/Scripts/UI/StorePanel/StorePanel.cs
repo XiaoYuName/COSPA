@@ -11,10 +11,13 @@ namespace ARPG.UI
     public class StorePanel : UIBase
     {
         private Button CloseBtn;
+        private Button GemsthoneBtn;
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Close");
-            Bind(CloseBtn,Close,"UI_click");
+            Bind(CloseBtn,Close,"OutChick");
+            GemsthoneBtn = Get<Button>("UIMask/SwitchBtns/GemsthoneBtn");
+            Bind(GemsthoneBtn,()=>UISystem.Instance.OpenUI("StorePopWindows"),"OnChick");
         }
     }
 }
