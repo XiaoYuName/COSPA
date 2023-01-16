@@ -33,8 +33,8 @@ namespace ARPG
             if (!Evernt.Equals("ThrowStone")) return;
             Transform SkillPoint = Enemy.transform.Find("SkillPoint");
             MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab,SkillPoint.position,
-                SkillPoint.rotation).GetComponent<MovFxItem>();
-            movFxItem.StarMovTarget(Enemy,GameManager.Instance.Player.transform.position,data,_action);
+                Quaternion.identity).GetComponent<MovFxItem>();
+            movFxItem.StarMovTarget(Enemy,-Enemy.GetTransform().right.normalized,data,_action);
         }
 
         public override void UHandle()

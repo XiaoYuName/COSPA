@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG;
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -14,7 +15,13 @@ public class MovFxItem : MonoBehaviour
     private Action endAction;
     private IDamage attack;
     private SkillItem Item;
-    
+    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     /// <summary>
     /// 朝向目标点位置移动
     /// </summary>
@@ -22,23 +29,25 @@ public class MovFxItem : MonoBehaviour
     /// <param name="target">目标点</param>
     /// <param name="skillItem">技能数据</param>
     /// <param name="action">结束后回调</param>
-    public void StarMovTarget(IDamage enemy,Vector3 target,SkillItem skillItem,Action action)
+    public void StarMovTarget(Enemy enemy,Vector3 target,SkillItem skillItem,Action action)
     {
         //1.获得目标方向
         endAction = action;
         this.attack = enemy;
         this.Item = skillItem;
-        Vector3 dir = target - transform.right;
-        StartCoroutine(MovToTarget(enemy,dir,endAction));
+
+        StartCoroutine(MovToTarget(enemy,target,endAction));
     }
 
-    public IEnumerator MovToTarget(IDamage damage,Vector3 dir,Action action)
+    public IEnumerator MovToTarget(Enemy damage,Vector3 dir,Action action)
     {
         float time = 5;
+        Debug.Log(transform.rotation.eulerAngles);
+        rb.AddForce(dir*15,ForceMode2D.Impulse);
         while (gameObject.activeSelf && time > 0)
         {
             time -= Time.deltaTime;
-            transform.Translate(dir*damage.GetState().AttackSpeed*Time.deltaTime);
+            // transform.Translate( transform.right*15*Time.deltaTime);
             yield return null;
         }
         gameObject.SetActive(false);
