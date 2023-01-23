@@ -25,7 +25,7 @@ namespace ARPG.UI
             titleText = Get<TextMeshProUGUI>("info/Text (TMP)");
             GoBtn = Get<Button>("GoBtn");
             Bind(GoBtn,OnChick,"OnChick");
-        }
+        } 
 
 
         public void InitData(StoreItem item)
