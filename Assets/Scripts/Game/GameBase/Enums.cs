@@ -233,4 +233,14 @@ namespace ARPG
        BOSSEventMsg=2,
    }
 
+   /// <summary>
+   /// 商城分页Type
+   /// </summary>
+   public enum StoreType
+   {
+       宝石,
+       玛娜,
+       道具,
+   }
+
 }

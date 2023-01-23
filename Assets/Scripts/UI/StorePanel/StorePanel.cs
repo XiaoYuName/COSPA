@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,9 @@ namespace ARPG.UI
             GemsthoneBtn = Get<Button>("UIMask/SwitchBtns/GemsthoneBtn");
             Bind(GemsthoneBtn,()=>UISystem.Instance.OpenUI("StorePopWindows"),"OnChick");
         }
+
+       
+
 
         public override void Close()
         {

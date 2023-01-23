@@ -72,6 +72,7 @@ namespace ARPG
 
                 yield return null;
             }
+            // ReSharper disable once IteratorNeverReturns
         }
 
         /// <summary>

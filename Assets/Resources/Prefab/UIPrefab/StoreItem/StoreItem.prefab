@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 5864931383788698883}
   - component: {fileID: 4222640549849053276}
   - component: {fileID: 5845668334291986597}
+  - component: {fileID: 4995978198347761462}
   m_Layer: 5
   m_Name: StoreItem
   m_TagString: Untagged
@@ -368,6 +369,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4995978198347761462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977778217194933049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833958d65d5816347a5a42ca14ced61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!1 &4035029239649231773
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +607,7 @@ GameObject:
   - component: {fileID: 4333434490806416553}
   - component: {fileID: 2330514802736511685}
   m_Layer: 5
-  m_Name: Button
+  m_Name: GoBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
