@@ -169,6 +169,12 @@ MonoBehaviour:
     parentName: UITop
     Type: 1
     isInit: 0
+  - ID: SpecialPanel
+    Prefab: {fileID: 9045961745215794802, guid: aa86bf1bfa787034fa9b627d8105874f, type: 3}
+    details: "\u63A2\u7D22\u754C\u9762"
+    parentName: UIPanel
+    Type: 2
+    isInit: 0
   UIParents:
   - UIPanel
   - UIDialogue
