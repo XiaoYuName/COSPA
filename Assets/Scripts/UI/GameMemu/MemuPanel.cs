@@ -27,6 +27,19 @@ namespace ARPG.UI
                 }, Close);
             }, "OutChick");
         }
+
+
+        public override void Open()
+        {
+            Time.timeScale = 0;
+            base.Open();
+        }
+
+        public override void Close()
+        {
+            Time.timeScale = 1;
+            base.Close();
+        }
     }
 
 }

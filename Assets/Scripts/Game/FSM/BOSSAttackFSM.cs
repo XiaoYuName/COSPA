@@ -75,7 +75,6 @@ namespace ARPG
             }
             int index = Random.Range(0, NotTimeSkill.Count);
             selectSkillItem = NotTimeSkill[index];
-            Debug.LogError("BOSS随机选取技能 :" + selectSkillItem.data.SkillName);
         }
 
         public IEnumerator WaitTime()
