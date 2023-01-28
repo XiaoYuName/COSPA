@@ -29,15 +29,18 @@ namespace ARPG.Config
     public class StoreItem
     {
         /// <summary>
-        /// 唯一标示ID
+        /// 类型
         /// </summary>
-        public int id;
+        public StoreType Type;
         
         /// <summary>
-        /// 价格
+        /// 消耗RMB
         /// </summary>
         public int RMB;
-
+        
+        /// <summary>
+        /// 背景
+        /// </summary>
         public Sprite BG;
 
         /// <summary>
@@ -45,7 +48,11 @@ namespace ARPG.Config
         /// </summary>
         public string description;
 
-        public StoreType Type;
+        /// <summary>
+        /// 奖励数量
+        /// </summary>
+        public int RewordCount;
+
 
     }
     

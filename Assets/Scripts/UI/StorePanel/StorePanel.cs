@@ -13,16 +13,28 @@ namespace ARPG.UI
     {
         private Button CloseBtn;
         private Button GemsthoneBtn;
+        private Button MaNaBtn;
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Close");
             Bind(CloseBtn,Close,"OutChick");
             GemsthoneBtn = Get<Button>("UIMask/SwitchBtns/GemsthoneBtn");
-            Bind(GemsthoneBtn,()=>UISystem.Instance.OpenUI("StorePopWindows"),"OnChick");
+            MaNaBtn = Get<Button>("UIMask/SwitchBtns/ManaBtn");
+            Bind(GemsthoneBtn,()=>OnChick(StoreType.宝石),"OnChick");
+            Bind(MaNaBtn,()=>OnChick(StoreType.玛娜),"OnChick");
         }
 
-       
 
+
+        private void OnChick(StoreType type)
+        {
+            void Func(StorePopWindows pop)
+            {
+                pop.SwitchCreatStoreItemUI(type);
+            }
+
+            UISystem.Instance.OpenUI<StorePopWindows>("StorePopWindows", Func);
+        }
 
         public override void Close()
         {

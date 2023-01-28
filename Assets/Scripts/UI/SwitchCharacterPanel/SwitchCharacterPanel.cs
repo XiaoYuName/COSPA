@@ -58,7 +58,7 @@ namespace ARPG.UI
             currentText.text = "当前出战: <color=red>" + currentCount + "</color>";
             
             maxText.text = "当前出战总上限:<color=red>" + Settings.MaxSelectAmount + "</color>";
-            List<CharacterBag> characterBags =  InventoryManager.Instance.GetAllBag();
+            List<CharacterBag> characterBags =  InventoryManager.Instance.GetCharacterAllBag();
 
             for (int i = 0; i < characterBags.Count; i++)
             {
@@ -94,7 +94,7 @@ namespace ARPG.UI
         /// <param name="index">创建的index</param>
         public void CreateSelectHead(int index)
         {
-            List<CharacterBag> characterBags =  InventoryManager.Instance.GetAllBag();
+            List<CharacterBag> characterBags =  InventoryManager.Instance.GetCharacterAllBag();
             SelectSlotUI Slot = UISystem.Instance.InstanceUI<SelectSlotUI>("SelectSlotUI", selectContent);
             Slot.InitData(currentCount-1 ,characterBags[index]);
             SelectSlotUis[currentCount - 1] = Slot;

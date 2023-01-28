@@ -136,10 +136,25 @@ namespace ARPG
             RefreshItemBag?.Invoke(ListBags);
         }
 
+
+        /// <summary>
+        /// 刷新角色背包状态
+        /// </summary>
+        public static event Action<List<CharacterBag>> RefreshCharacterBag;
+
+        /// <summary>
+        /// 刷新角色背包状态
+        /// </summary>
+        /// <param name="ListBags"></param>
+        public static void OnRefreshCharacterBag(List<CharacterBag> ListBags)
+        {
+            RefreshCharacterBag?.Invoke(ListBags);
+        }
+
         #endregion
 
 
-        
+
     }
 }
 

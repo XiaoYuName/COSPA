@@ -32,7 +32,7 @@ namespace ARPG.UI
         {
             BG.sprite = item.BG;
             infoText.text = item.description;
-            titleText.text = item.RMB.ToString();
+            titleText.text = item.RMB.ToString("C");
             currentdata = item;
         }
 
@@ -40,12 +40,19 @@ namespace ARPG.UI
         private void OnChick()
         {
             if (currentdata == null) return;
-            UISystem.Instance.ShowPopDialogue("购买宝石","要购买宝石，确定吗","关闭","确定",null,
+            GoldType type = currentdata.Type switch
+            {
+                StoreType.宝石 => GoldType.宝石,
+                StoreType.玛娜 => GoldType.玛那,
+                _ => GoldType.宝石
+            };
+
+                UISystem.Instance.ShowPopDialogue("购买物品","要购买"+type.ToString()+",确定吗","关闭","确定",null,
                 delegate
                 {
-                    InventoryManager.Instance.AddGold(GoldType.宝石,currentdata.RMB);
-                    UISystem.Instance.ShowPopWindows("提示","购买成功","成功");
-                });
+                    InventoryManager.Instance.AddGold(type,currentdata.RewordCount);
+                    UISystem.Instance.ShowPopWindows("提示","购买成功","成功",true);
+                },true);
         }
 
     }

@@ -58,7 +58,7 @@ namespace ARPG
         /// 获取玩家所有角色背包
         /// </summary>
         /// <returns></returns>
-        public List<CharacterBag> GetAllBag()
+        public List<CharacterBag> GetCharacterAllBag()
         {
             return UserBag.CharacterBags;
         }
@@ -345,6 +345,8 @@ namespace ARPG
             UserBag  = JsonTool.LoadGame<UserBagConfig>(currentUser.UID+"Bag.save");
             currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
             currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
+            MessageAction.OnRefreshItemBag(GetItemAllBag());
+            MessageAction.OnRefreshCharacterBag(GetCharacterAllBag());
         }
 
         /// <summary>

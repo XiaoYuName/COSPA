@@ -33,7 +33,6 @@ namespace ARPG.UI
             icon.sprite =GameSystem.Instance.GetSprite(item.spriteID);
             Count.gameObject.SetActive(false);
         }
-        //TODO: 给武器添加显示详情弹窗
     }
 }
 

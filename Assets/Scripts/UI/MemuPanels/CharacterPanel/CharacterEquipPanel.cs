@@ -124,7 +124,7 @@ namespace ARPG.UI
             foreach (var Bag in InventoryManager.Instance.GetItemAllBag())
             {
                 Item item = InventoryManager.Instance.GetItem(Bag.ID);
-               if(item.Type == ItemType.材料)continue;
+               if(item.Type == ItemType.材料 || item.Type == ItemType.记忆碎片)continue;
                SlotUI Obj =  Instantiate(_SlotUI, content);
                Obj.Init();
                Obj.InitData(Bag);
@@ -241,7 +241,7 @@ namespace ARPG.UI
         public override void Close()
         {
             MainPanel.Instance.RemoveTableChild("CharacterEquipPanel");
-            FadeManager.Instance.PlayFade(1,base.Close,1);
+            FadeManager.Instance.PlayFade(0.35f,base.Close,0.25f);
             _toolTip.Close();
         }
 

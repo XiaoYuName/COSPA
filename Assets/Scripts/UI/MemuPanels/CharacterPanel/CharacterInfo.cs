@@ -33,7 +33,7 @@ namespace ARPG.UI
             SetInfoStar(info.currentStar);
             Bind(btn, delegate
             {
-                FadeManager.Instance.PlayFade(1, delegate
+                FadeManager.Instance.PlayFade(0.25f, delegate
                 {
                     void func(CharacterEquipPanel ui)
                     {

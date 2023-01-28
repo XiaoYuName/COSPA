@@ -13,11 +13,11 @@ namespace ARPG.UI
             OpenSwicthMapPanel = Get<Button>("UIMask/Right/MianPlot");
             Bind(OpenSwicthMapPanel, delegate
             {
-                FadeManager.Instance.PlayFade(2, delegate
+                FadeManager.Instance.PlayFade(0.25f, delegate
                 {
                     UISystem.Instance.OpenUI("SwicthMapPanel");
                     MainPanel.Instance.AddTbaleChild("SwicthMapPanel");
-                }, 1.5f);
+                }, 0.25f);
             }, "UI_click");
         }
     }

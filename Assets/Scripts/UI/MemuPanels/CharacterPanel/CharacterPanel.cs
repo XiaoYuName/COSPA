@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -14,19 +15,35 @@ namespace ARPG.UI
         {
             content = Get<RectTransform>("UIMask/Scroll View/Content");
             InitData();
+            MessageAction.RefreshCharacterBag += RefInitData;
         }
 
         
         private void InitData()
         {
             UIHelper.Clear(content);
-            characterBags = InventoryManager.Instance.GetAllBag();
+            characterBags = InventoryManager.Instance.GetCharacterAllBag();
 
             foreach (var data in characterBags)
             {
                CharacterInfo Obj =UISystem.Instance.InstanceUI<CharacterInfo>("CharacterInfo", content);
                Obj.InitData(data);
             }
+        }
+
+        private void RefInitData(List<CharacterBag> character)
+        {
+            UIHelper.Clear(content);
+            foreach (var data in character)
+            {
+                CharacterInfo Obj =UISystem.Instance.InstanceUI<CharacterInfo>("CharacterInfo", content);
+                Obj.InitData(data);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            MessageAction.RefreshCharacterBag -= RefInitData;
         }
     }
 }

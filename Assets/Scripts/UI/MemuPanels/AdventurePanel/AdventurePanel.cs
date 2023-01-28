@@ -22,11 +22,11 @@ namespace ARPG.UI
 
             Bind(OpenSwicthMapPanel, delegate
             {
-                FadeManager.Instance.PlayFade(2, delegate
+                FadeManager.Instance.PlayFade(0.25f, delegate
                 {
                     UISystem.Instance.OpenUI("RegionPanel");
                     MainPanel.Instance.AddTbaleChild("RegionPanel");
-                }, 1.5f);
+                }, 0.25f);
             }, "UI_click");
         }
     }

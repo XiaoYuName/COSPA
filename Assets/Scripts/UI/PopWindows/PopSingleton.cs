@@ -43,7 +43,11 @@ namespace ARPG.UI
             desText.text = des;
             QuitText.text = quitText;
             anim.SetTrigger(s_Show);
-            Bind(QuitBtn,Close,"OutChick");
+            Bind(QuitBtn, delegate
+            {
+                UIMaskManager.Instance.SetMainScnenMask(false);
+                Close();
+            },"OutChick");
             
         }
         
@@ -65,6 +69,7 @@ namespace ARPG.UI
             Bind(QuitBtn, delegate
             {
                 func?.Invoke();
+                UIMaskManager.Instance.SetMainScnenMask(false);
                 Close();
             }, "OutChick");
           

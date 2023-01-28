@@ -43,17 +43,18 @@ namespace ARPG.UI
         public void InitData(CharacterConfigInfo info)
         {
             currentBag = InventoryManager.Instance.GetBag(info.ID);
-            if (currentBag.currentStar >= info.StepData.Length)
-            {
-                SliderValue.text = "max";
-                return;
-            }
-
             StepInI data = info.StepData[currentBag.currentStar -1];
             Item item = InventoryManager.Instance.GetItem(data.ItemID);
             ItemName.text = item.ItemName;
             SlotUI.InitData(item);
-            
+            if (currentBag.currentStar >= info.StepData.Length)
+            {
+                SliderValue.text = "max";
+                Slider.value = Slider.maxValue;
+                ExpendGold.text = "max";
+                Gold.text = InventoryManager.Instance.GetItemBag(Settings.ManaID).count.ToString();
+                return;
+            }
             ItemBag itemBag = InventoryManager.Instance.GetItemBag(item.ID);
             
             Slider.minValue = 0;

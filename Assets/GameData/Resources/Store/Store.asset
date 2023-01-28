@@ -13,18 +13,43 @@ MonoBehaviour:
   m_Name: Store
   m_EditorClassIdentifier: 
   StoreItems:
-  - id: 1
-    RMB: 25
+  - Type: 0
+    RMB: 6
+    BG: {fileID: 21300000, guid: 167f7bd92c0229e458c2ed82718cecbb, type: 3}
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F9760\u5B9D\u77F3"
+    RewordCount: 60
+  - Type: 0
+    RMB: 128
+    BG: {fileID: 21300000, guid: 167f7bd92c0229e458c2ed82718cecbb, type: 3}
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F971280\u5B9D\u77F3"
+    RewordCount: 1280
+  - Type: 0
+    RMB: 328
+    BG: {fileID: 21300000, guid: 167f7bd92c0229e458c2ed82718cecbb, type: 3}
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F973280\u5B9D\u77F3"
+    RewordCount: 3280
+  - Type: 0
+    RMB: 648
+    BG: {fileID: 21300000, guid: 167f7bd92c0229e458c2ed82718cecbb, type: 3}
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F976480\u5B9D\u77F3"
+    RewordCount: 6480
+  - Type: 1
+    RMB: 6
     BG: {fileID: 21300000, guid: a5f22704bc1575b44bede3a6960927c8, type: 3}
-    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F9725\u5B9D\u77F3"
-    Type: 0
-  - id: 2
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F9760\u739B\u5A1C"
+    RewordCount: 600
+  - Type: 1
+    RMB: 30
+    BG: {fileID: 21300000, guid: a5f22704bc1575b44bede3a6960927c8, type: 3}
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F973000\u739B\u5A1C"
+    RewordCount: 3000
+  - Type: 1
     RMB: 128
     BG: {fileID: 21300000, guid: a5f22704bc1575b44bede3a6960927c8, type: 3}
-    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F97128\u5B9D\u77F3"
-    Type: 0
-  - id: 3
-    RMB: 328
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F9712800\u739B\u5A1C"
+    RewordCount: 128000
+  - Type: 1
+    RMB: 648
     BG: {fileID: 21300000, guid: a5f22704bc1575b44bede3a6960927c8, type: 3}
-    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F97328\u5B9D\u77F3"
-    Type: 0
+    description: "\u8D2D\u4E70\u7ACB\u5373\u83B7\u5F9764800\u739B\u5A1C"
+    RewordCount: 648000

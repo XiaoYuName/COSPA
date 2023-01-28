@@ -51,11 +51,13 @@ namespace ARPG.UI
             Bind(QuitBtn, delegate
             {
                 quitFunc?.Invoke();
+                UIMaskManager.Instance.SetMainScnenMask(false);
                 Close();
             }, "UI_click");
             Bind(FuncBtn, delegate
             {
                 func?.Invoke();
+                UIMaskManager.Instance.SetMainScnenMask(false);
                 Close();
             },"UI_click");
         }

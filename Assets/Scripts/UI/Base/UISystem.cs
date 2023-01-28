@@ -384,12 +384,14 @@ namespace ARPG
         /// <param name="title">标题</param>
         /// <param name="des">内容</param>
         /// <param name="quit">退出</param>
-        public void ShowPopWindows(string title, string des, string quit)
+        /// <param name="isMask">是否开启遮罩</param>
+        public void ShowPopWindows(string title, string des, string quit,bool isMask = false)
         {
             PopSingleton ui = GetUI<PopSingleton>("PopSingleton");
             ui.transform.SetAsLastSibling();
             ui.ShowPopWindows(title,des,quit);
             ui.Open();
+            UIMaskManager.Instance.SetMainScnenMask(isMask);
         }
 
         /// <summary>
@@ -399,11 +401,13 @@ namespace ARPG
         /// <param name="des">内容</param>
         /// <param name="quit">退出</param>
         /// <param name="func">点击确认后的回调</param>
-        public void ShowPopWindows(string title, string des, string quit,Action func)
+        /// <param name="isMask">是否开启遮罩</param>
+        public void ShowPopWindows(string title, string des, string quit,Action func,bool isMask = false)
         {
             PopSingleton ui = GetUI<PopSingleton>("PopSingleton");
             ui.transform.SetAsLastSibling();
             ui.ShowPopWindows(title,des,quit,func);
+            UIMaskManager.Instance.SetMainScnenMask(isMask);
         }
 
 
@@ -416,11 +420,13 @@ namespace ARPG
         /// <param name="btn2">按钮2 文字</param>
         /// <param name="func1">按钮1 委托</param>
         /// <param name="func2">按钮2 委托</param>
-        public void ShowPopDialogue(string title, string des, string btn1, string btn2, Action func1, Action func2)
+        /// <param name="isMask">是否开启遮罩</param>
+        public void ShowPopDialogue(string title, string des, string btn1, string btn2, Action func1, Action func2,bool isMask = false)
         {
             PopDialogue ui = GetUI<PopDialogue>("PopDialogue");
             ui.transform.SetAsLastSibling();
             ui.ShowPopWindows(title,des,btn1,btn2,func1,func2);
+            UIMaskManager.Instance.SetMainScnenMask(isMask);
         }
 
         /// <summary>

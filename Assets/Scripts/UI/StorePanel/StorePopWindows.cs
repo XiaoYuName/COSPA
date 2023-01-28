@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace ARPG.UI
     {
         private Button CloseBtn;
         private RectTransform content;
+        private TextMeshProUGUI titleText;
         
         /// <summary>
         /// 商城配置
@@ -28,25 +30,24 @@ namespace ARPG.UI
             Bind(CloseBtn, Close, "OutChick");
             content = Get<RectTransform>("UIMask/Back/Scroll View/Viewport/Content");
             data = ConfigManager.LoadConfig<StoreConfig>("Store/Store");
-            CreatStoreItemUI();
+            titleText = Get<TextMeshProUGUI>("UIMask/Back/Top/title");
         }
-
-
         /// <summary>
-        /// 生成StoreItemUI
+        /// 切換與生產商城Item
         /// </summary>
-        private void CreatStoreItemUI()
+        public void SwitchCreatStoreItemUI(StoreType type)
         {
-            List<StoreItem> storeItems = data.GetTypeStore(StoreType.宝石);
-
+            UIHelper.Clear(content);
+            List<StoreItem> storeItems = data.GetTypeStore(type);
+            titleText.text = type+"商店";
             foreach (var t in storeItems)
             {
                 StoreItemUI itemUI =  UISystem.Instance.InstanceUI<StoreItemUI>("StoreItemUI",content);
                 itemUI.InitData(t);
             }
         }
-        
-        
+
+
         public override void Close()
         {
             base.Close();

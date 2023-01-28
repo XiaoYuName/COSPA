@@ -21,15 +21,7 @@ namespace ARPG
             SpriteIcon = transform.Find("Icon").GetComponent<Image>();
             FadeGroup = GetComponent<CanvasGroup>();
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                PlayFade(1,delegate { Debug.Log("Fade中间"); },2.5f);
-            }
-        }
-
+        
 
         /// <summary>
         /// 播放一个淡入淡出
