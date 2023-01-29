@@ -44,10 +44,8 @@ namespace ARPG.UI
             //初始阶段手动刷新一次
             SetMoneyUI(InventoryManager.Instance.GetItemBag(Settings.GemsthoneID),
                 InventoryManager.Instance.GetItemBag(Settings.ManaID));
-            Bind(AddStGemsthoneBtn,()=>UISystem.Instance.ShowPopWindows("提示","暂未开放","确认"),
-                "UI_click");
-            Bind(AddManaBtn,()=>UISystem.Instance.ShowPopWindows("提示","暂未开放","确认"),
-                "UI_click");
+            Bind(AddStGemsthoneBtn,()=>OnChick(StoreType.宝石), "UI_click");
+            Bind(AddManaBtn,()=>OnChick(StoreType.玛娜), "UI_click");
         }
         
         /// <summary>
@@ -59,6 +57,17 @@ namespace ARPG.UI
         {
             GemsthoneText.text = Gemsthone.count.ToString();
             ManaText.text = Mana.count.ToString();
+        }
+        
+        
+        private void OnChick(StoreType type)
+        {
+            void Func(StorePopWindows pop)
+            {
+                pop.SwitchCreatStoreItemUI(type);
+            }
+
+            UISystem.Instance.OpenUI<StorePopWindows>("StorePopWindows", Func);
         }
     }
 }
