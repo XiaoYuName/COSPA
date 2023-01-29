@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
+using ARPG.UI.Config;
 using UnityEngine;
 
 namespace ARPG
@@ -35,6 +36,11 @@ namespace ARPG
         /// </summary>
         private GameConfig GameConfig;
 
+        /// <summary>
+        /// 玩法帮助文本配置
+        /// </summary>
+        private HelpConfig helpConfig;
+
         protected override void Awake()
         {
             base.Awake();
@@ -48,6 +54,7 @@ namespace ARPG
             SkillConfig = ConfigManager.LoadConfig<SkillConfig>("Skill/CharacterSkill");
             SpriteConfig = ConfigManager.LoadConfig<SpriteConfig>("Character/SpriteConfig");
             GameConfig = ConfigManager.LoadConfig<GameConfig>("GameIni/GameIni");
+            helpConfig = ConfigManager.LoadConfig<HelpConfig>("HelpText/HelpTextConfig");
         }
 
         /// <summary>
@@ -88,6 +95,16 @@ namespace ARPG
         public Sprite GetFaram(ItemMode mode)
         {
             return GameConfig.GetFaram(mode);
+        }
+
+        /// <summary>
+        /// 获取说明配置文本
+        /// </summary>
+        /// <param name="helpType">说明类型</param>
+        /// <returns></returns>
+        public HelpTextItem GetHelpItem(HelpType helpType)
+        {
+            return helpConfig.Get(helpType);
         }
 
 

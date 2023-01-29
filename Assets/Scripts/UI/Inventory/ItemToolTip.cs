@@ -51,7 +51,7 @@ namespace ARPG.UI
             {
                 PropValue value =Instantiate(Obj, content);
                 value.Init();
-                value.Show(t.Mode.ToString(),t.value.ToString());
+                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,itemBag.power)).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
             Bind(BindBtn, SetEquip, "OnChick");

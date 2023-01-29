@@ -107,28 +107,28 @@ namespace ARPG.Config
                     switch (equipHelos[i].item.attribute[E].Mode)
                     {
                         case StateMode.物理攻击力:
-                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value;
+                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.魔法攻击力:
-                            state.MagicAttack += equipHelos[i].item.attribute[E].value;
+                            state.MagicAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.生命值:
-                            state.HP += equipHelos[i].item.attribute[E].value;
+                            state.HP += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.生命恢复:
-                            state.AddHp += equipHelos[i].item.attribute[E].value;
+                            state.AddHp += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.防御力:
-                            state.Defense += equipHelos[i].item.attribute[E].value;
+                            state.Defense += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.技能攻击力:
-                            state.SkillAttack += equipHelos[i].item.attribute[E].value;
+                            state.SkillAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.暴击率:
-                            state.Cirtical += equipHelos[i].item.attribute[E].value;
+                            state.Cirtical += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.暴击伤害:
-                            state.CirticalAttack += equipHelos[i].item.attribute[E].value;
+                            state.CirticalAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         default:
                             break;

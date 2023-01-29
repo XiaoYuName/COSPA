@@ -58,7 +58,7 @@ namespace ARPG.UI
             foreach (var stateValue in item.attribute)
             {
                 PropValue propValue = UISystem.Instance.InstanceUI<PropValue>("InventoryPropValue",StateConent);
-                propValue.Show(stateValue.Mode.ToString(),stateValue.value.ToString());
+                propValue.Show(stateValue.Mode.ToString(),(stateValue.value*Mathf.Max(1,itemBag.power)).ToString());
             }
             SellBtn.interactable = item.isSell;
             currentBag = itemBag;
