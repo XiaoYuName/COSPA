@@ -29,7 +29,7 @@ namespace ARPG
         private UIPrefab prefabConfig;
         private Dictionary<string, GameObject> UiTableDic;
         /// <summary>
-        /// UI跟节点
+        /// UI根节点
         /// </summary>
         private List<RectTransform> UIRoot;
         /// <summary>
@@ -40,6 +40,10 @@ namespace ARPG
         /// 已宽度适配的UI画布根节点:该节点物体渲染低于UIRoot
         /// </summary>
         private List<RectTransform> AutoUIRootDonw;
+        /// <summary>
+        /// 已高度适配的UI画布根节点:该节点物体渲染处于最顶级
+        /// </summary>
+        private List<RectTransform> TopAutoUIRootTop;
 
         protected override void Awake()
         {
@@ -57,7 +61,8 @@ namespace ARPG
             UIRoot = new List<RectTransform>();
             AutoUIRootTop = new List<RectTransform>();
             AutoUIRootDonw = new List<RectTransform>();
-            InitParent();
+            TopAutoUIRootTop = new List<RectTransform>();
+                InitParent();
             InitLoadPrefab();
         }
         
@@ -107,6 +112,19 @@ namespace ARPG
                     AutoUIRootDonw.Add(DownParent);
                 }
 
+                var TopRoot = transform.parent.Find("TopUICanvas").Find(ParentName) as RectTransform;
+                if (TopRoot == null)
+                {
+                    GameObject obj = new GameObject(ParentName);
+                    obj.transform.parent = transform;
+                    obj.transform.localPosition = Vector3.zero;
+                    TopAutoUIRootTop.Add(obj.transform as RectTransform);
+                }
+                else
+                {
+                    TopAutoUIRootTop.Add(TopRoot);
+                }
+
             }
         }
         
@@ -148,6 +166,7 @@ namespace ARPG
                 UITableType.UIRoot => UIRoot.Find(a => a.name == uiname),
                 UITableType.UITop => AutoUIRootTop.Find(a => a.name == uiname),
                 UITableType.UIDonw => AutoUIRootDonw.Find(a => a.name == uiname),
+                UITableType.TopUIRoot => TopAutoUIRootTop.Find(a=>a.name == uiname),
                 _=>  UIRoot.Find(a => a.name == uiname),
             };
         }

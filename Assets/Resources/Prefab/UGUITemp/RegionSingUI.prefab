@@ -146,8 +146,9 @@ GameObject:
   - component: {fileID: 7069292209962667224}
   - component: {fileID: 4444493502017317174}
   - component: {fileID: 8194342274304704513}
+  - component: {fileID: -3462818626321211477}
   m_Layer: 5
-  m_Name: RegionItem
+  m_Name: RegionSingUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,6 +214,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-3462818626321211477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5152918302486231659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf90e3521c35035499c031776b27456c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  RegionType: 0
 --- !u!1 &5798786972490194237
 GameObject:
   m_ObjectHideFlags: 0

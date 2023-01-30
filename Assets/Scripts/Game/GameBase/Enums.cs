@@ -171,6 +171,10 @@ namespace ARPG
        /// 高UI宽度自适应层
        /// </summary>
        UITop,
+       /// <summary>
+       /// 高UI高度自适应层
+       /// </summary>
+       TopUIRoot,
    }
 
 

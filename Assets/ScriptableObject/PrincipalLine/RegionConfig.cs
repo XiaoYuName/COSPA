@@ -15,6 +15,22 @@ namespace ARPG.UI.Config
         /// 所有的地区
         /// </summary>
         public List<RegionLine> RegionList = new List<RegionLine>();
+        
+        /// <summary>
+        /// 独立副本
+        /// </summary>
+        public List<RegionItem> RegionSingleton = new List<RegionItem>();
+
+
+        /// <summary>
+        /// 根据副本名称获取独立副本配置
+        /// </summary>
+        /// <param name="RegionItemName">副本名称</param>
+        /// <returns></returns>
+        public RegionItem GetRegionSingleton(string RegionItemName)
+        {
+            return RegionSingleton.Find(n => n.RegionItemName == RegionItemName);
+        }
     }
     
     [System.Serializable]
