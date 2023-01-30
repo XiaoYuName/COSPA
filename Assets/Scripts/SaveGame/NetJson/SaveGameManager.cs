@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using ARPG.UI;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -83,6 +84,30 @@ namespace ARPG.GameSave
                         : new GameSaveData());
                 }
             }
+        }
+
+
+        /// <summary>
+        /// 删除用户数据
+        /// </summary>
+        /// <param name="UID"></param>
+        public void Delete(int UID)
+        {
+            var path = JsonSavePath + "/Sava_GameData"+ "/User" + UID + ".scriptable";
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            
+            //删除一些特殊存储的路径
+            var BagPath = JsonSavePath + "/Sava_GameData"+ "/" + UID + "Bag.save";
+            if (File.Exists(BagPath))
+            {
+                File.Delete(BagPath);
+            }
+
+           
+            
         }
     }
 }

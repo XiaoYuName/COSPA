@@ -92,6 +92,17 @@ namespace ARPG.UI
         {
             
         }
+
+
+        public void DeleteData(User User)
+        {
+            if (Users.Contains(User))
+            {
+                Users.Remove(User);
+                SaveUsers();
+                CreatArchiveUI();
+            }
+        }
     }
 }
 
