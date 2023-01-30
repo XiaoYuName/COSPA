@@ -29,6 +29,7 @@ namespace ARPG.UI
 
         private void OnClick()
         {
+            MainPanel.Instance.AddTbaleChild("RegionToolTip");
             UISystem.Instance.OpenUI<RegionToolTip>("RegionToolTip",(ui)=>ui.InitData(ConfigSystem.Instance.GetSingRegion(RegionType.ToString())));
         }
         public enum SingRegionType

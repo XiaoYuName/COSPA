@@ -153,10 +153,11 @@ namespace ARPG
                 UiTableDic.Add(Table.ID, Obj);
             }
         }
-        
+
         /// <summary>
         /// 获取UI父级: 内部调用
         /// </summary>
+        /// <param name="type">适配层级</param>
         /// <param name="uiname">父级名称</param>
         /// <returns></returns>
         private RectTransform GetPanrent(UITableType type,string uiname)
