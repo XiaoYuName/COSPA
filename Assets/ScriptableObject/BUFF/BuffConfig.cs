@@ -36,6 +36,8 @@ namespace ARPG
         /// </summary>
         public int buffPic;
 
+        
+
         [Tooltip("增益类型")]
         public StateMode PicMode;
 
@@ -53,6 +55,16 @@ namespace ARPG
         /// 最大层数
         /// </summary>
         public int maxLevel;
+        
+        /// <summary>
+        /// BUFF层
+        /// </summary>
+        public BuffLayer layer;
+
+        /// <summary>
+        /// 每层增加的值
+        /// </summary>
+        public float valueBuff;
 
         /// <summary>
         /// Buff触发器

@@ -42,7 +42,6 @@ public class MovFxItem : MonoBehaviour
     public IEnumerator MovToTarget(Enemy damage,Vector3 dir,Action action)
     {
         float time = 5;
-        Debug.Log(transform.rotation.eulerAngles);
         rb.AddForce(dir*15,ForceMode2D.Impulse);
         while (gameObject.activeSelf && time > 0)
         {

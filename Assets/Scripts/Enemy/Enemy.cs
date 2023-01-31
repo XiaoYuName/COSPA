@@ -213,7 +213,12 @@ namespace ARPG
         {
             return this;
         }
-        
+
+        public BuffStateUI GetStateUI()
+        {
+            return null;
+        }
+
         private void OnDrawGizmosSelected()
         {
              SkillDic[SkillType.Skill_01].OnGizmosRadius();

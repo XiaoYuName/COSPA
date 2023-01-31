@@ -9,8 +9,8 @@ namespace ARPG
         /// <summary>
         /// 当前BUFF增益字典
         /// </summary>
-        private Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, int>>> CurretnBUFF =
-            new Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, int>>>();
+        private Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, float>>> CurretnBUFF =
+            new Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, float>>>();
 
 
         /// <summary>
@@ -20,12 +20,12 @@ namespace ARPG
         /// <param name="type">BUFF类型</param>
         /// <param name="Buff">BUFF技能</param>
         /// <param name="value">增益值</param>
-        public void AddDictionary(IBuffLogic character,BuffType type,IBuff Buff,int value)
+        public void AddDictionary(IBuffLogic character,BuffType type,IBuff Buff,float value)
         {
             if (!CurretnBUFF.ContainsKey(character))
-                CurretnBUFF.Add(character,new Dictionary<BuffType, Dictionary<IBuff, int>>());
+                CurretnBUFF.Add(character,new Dictionary<BuffType, Dictionary<IBuff, float>>());
             if (!CurretnBUFF[character].ContainsKey(type))
-                CurretnBUFF[character].Add(type,new Dictionary<IBuff, int>());
+                CurretnBUFF[character].Add(type,new Dictionary<IBuff, float>());
             if(!CurretnBUFF[character][type].ContainsKey(Buff))
                 CurretnBUFF[character][type].Add(Buff,value);
             CurretnBUFF[character][type][Buff] = value;
@@ -82,9 +82,9 @@ namespace ARPG
         /// </summary>
         /// <param name="character">角色</param>
         /// <param name="type">类型</param>
-        public int GetTyepValue(IBuffLogic character, BuffType type)
+        public float GetTyepValue(IBuffLogic character, BuffType type)
         {
-            int res = 1;
+            float res = 1;
             if (CurretnBUFF.ContainsKey(character))
             {
                 foreach (var KeyBUFF in CurretnBUFF[character])

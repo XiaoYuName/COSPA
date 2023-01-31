@@ -273,6 +273,11 @@ namespace ARPG
             return this;
         }
 
+        public BuffStateUI GetStateUI()
+        {
+            return StateUI.GetBuffStateUI();
+        }
+
         public IDamage GetIDamage()
         {
             return this;

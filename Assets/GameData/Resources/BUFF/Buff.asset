@@ -20,7 +20,22 @@ MonoBehaviour:
     buffPic: 5
     PicMode: 0
     Pool: []
-    continueTime: 5
+    continueTime: -1
     maxLevel: 1
+    layer: 0
+    valueBuff: 0
     buffTrigger: 0
     description: "\u653B\u51FB\u65F6\u4F24\u5BB3\u589E\u52A0\u91CF+5%"
+  - BuffName: "\u5251\u6C14"
+    SpriteID: 
+    buffType: 1
+    random: 1
+    buffPic: -1
+    PicMode: 0
+    Pool: []
+    continueTime: 5
+    maxLevel: 8
+    layer: 0
+    valueBuff: 0.1
+    buffTrigger: 0
+    description: "\u653B\u51FB\u65F6\u53E0\u52A0\u5C42\u6570\uFF0C\u6BCF\u5C42\u653B\u51FB\u901F\u5EA6+0.1\uFF0C\u4E0A\u96508\u5C42"

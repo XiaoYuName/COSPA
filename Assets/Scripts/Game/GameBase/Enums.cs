@@ -267,4 +267,10 @@ namespace ARPG
        攻击领主时,
    }
 
+   public enum BuffLayer
+   {
+       单层,
+       全部,
+   }
+
 }

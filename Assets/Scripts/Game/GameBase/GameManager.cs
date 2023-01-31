@@ -210,7 +210,7 @@ namespace ARPG
 
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
-            int BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害);
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害);
             //1.1 获取攻击者的基础力量*物理攻击力
             switch (item.SkillType.type)
             {

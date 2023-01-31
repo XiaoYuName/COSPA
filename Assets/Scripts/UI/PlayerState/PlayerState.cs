@@ -11,6 +11,7 @@ namespace ARPG.UI
         private Slider HP;
         private StarContent Content;
         private TextMeshProUGUI SliderText;
+        private BuffStateUI StateUI;
         public override void Init()
         {
             NameText = Get<TextMeshProUGUI>("UIMask/Name");
@@ -18,6 +19,7 @@ namespace ARPG.UI
             HP = Get<Slider>("UIMask/Slider");
             Content = Get<StarContent>("UIMask/StarContent");
             SliderText = Get<TextMeshProUGUI>("UIMask/Slider/SliderText");
+            StateUI = Get<BuffStateUI>("UIMask/BUFFStateUI");
         }
 
         public void InitData(CharacterConfigInfo info,CharacterBag bag,CharacterState state)
@@ -38,6 +40,11 @@ namespace ARPG.UI
         {
             HP.value = state.currentHp;
             SliderText.text = "HP: " + state.currentHp + "/" + state.HP;
+        }
+
+        public BuffStateUI GetBuffStateUI()
+        {
+            return StateUI;
         }
     }
 
