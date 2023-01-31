@@ -49,6 +49,20 @@ namespace ARPG.UI
                 Destroy(ui.gameObject);
             }
         }
+
+
+        /// <summary>
+        /// 清除所有UI：适用于游戏结束与对应BUFF获得者死亡
+        /// </summary>
+        public void RemoveAll_UI()
+        {
+            foreach (var Key in BuffUis)
+            {
+                Destroy(BuffUis[Key.Key]);
+            }
+            BuffUis.Clear();
+        }
+        
     }
 }
 

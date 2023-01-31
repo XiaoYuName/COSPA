@@ -236,6 +236,7 @@ namespace ARPG
                 anim.SetTrigger(s_Die);
                 isAI = true;
                 rb.velocity = Vector2.zero;
+                GetStateUI().RemoveAll_UI();
                 GameManager.Instance.GameOverScnen();
                 return;
             }
