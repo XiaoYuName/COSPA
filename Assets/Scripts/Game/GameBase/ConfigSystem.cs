@@ -12,7 +12,9 @@ namespace ARPG
     public class ConfigSystem : MonoSingleton<ConfigSystem>
     {
         private RegionConfig RegionConfig;
-        
+
+        private BuffConfig buffConfig;
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,6 +24,7 @@ namespace ARPG
         private void LoadConfig()
         {
             RegionConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
+            buffConfig = ConfigManager.LoadConfig<BuffConfig>("BUFF/Buff");
         }
 
 
@@ -29,6 +32,11 @@ namespace ARPG
         public RegionItem GetSingRegion(string Name)
         {
             return RegionConfig.GetRegionSingleton(Name);
+        }
+
+        public BuffData GetBUFFData(string name)
+        {
+            return buffConfig.BuffDatas.Find(b => b.BuffName == name);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace ARPG.Config
@@ -14,6 +15,9 @@ namespace ARPG.Config
     public class SpriteItem : ConfigData
     {
         public Sprite Sprite;
+        
+        [ResizableTextArea,Tooltip("描述")]
+        public string description;
     }
 }
 

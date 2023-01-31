@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace ARPG
 {
-    public  class Character : MonoBehaviour,IDamage
+    public  class Character : MonoBehaviour,IDamage,IBuffLogic
     {
         /// <summary>
         /// 在背包的数据
@@ -45,7 +45,8 @@ namespace ARPG
         [HideInInspector]public Transform body;
         private static readonly int s_Die = Animator.StringToHash("Die");
         private static readonly int s_Damage = Animator.StringToHash("Damage");
-
+        //---------------------------Buff--------------------------------//
+        [HideInInspector]public List<IBuff> Buffs = new List<IBuff>();
 
         private void Awake()
         {
@@ -74,6 +75,7 @@ namespace ARPG
             anim.runtimeAnimatorController = data.AnimatorController;
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             CreateSkillClass();
+            CreatBuff();
         }
 
         private void CreateSkillClass()
@@ -167,6 +169,7 @@ namespace ARPG
             if(animSpeed == 0)return;
             anim.SetTrigger(s_Attack);
             SkillDic[SkillType.Attack].Play();
+            BuffTriggerEvent(BuffTrigger.攻击时);
         }
 
         /// <summary>
@@ -244,6 +247,35 @@ namespace ARPG
         {
             State.currentHp = Mathf.Min(State.currentHp+Reply,State.HP);
             StateUI.UpdateState(State);
+        }
+
+
+        //--------------------------------BUFF接口----------------------------------------//
+        private void BuffTriggerEvent(BuffTrigger type)
+        {
+            for (int i = 0; i < Buffs.Count; i++)
+            {
+                Buffs[i].Trigger(type);
+            }
+        }
+
+        private void CreatBuff()
+        {
+            for (int i = 0; i < data.deftualBuffID.Count; i++)
+            {
+                BuffData newBuff = ConfigSystem.Instance.GetBUFFData(data.deftualBuffID[i]);
+                Buffs.Add(newBuff.ToBuff(this));
+            }
+        }
+
+        public IBuffLogic GetBuffLogic()
+        {
+            return this;
+        }
+
+        public IDamage GetIDamage()
+        {
+            return this;
         }
     }
 }

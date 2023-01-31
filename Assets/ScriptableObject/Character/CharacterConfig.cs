@@ -112,6 +112,9 @@ namespace ARPG.Config
 
         [Header("故事"),ResizableTextArea]
         public string des;
+        
+        [Header("初始默认拥有的BUFF")]
+        public List<string> deftualBuffID = new List<string>();
     }
 
     [Serializable]

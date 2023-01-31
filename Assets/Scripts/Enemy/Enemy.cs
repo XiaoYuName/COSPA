@@ -10,7 +10,7 @@ using Object = System.Object;
 
 namespace ARPG
 {
-    public class Enemy : MonoBehaviour,IDamage
+    public class Enemy : MonoBehaviour,IDamage,IBuffLogic
     {
         /// <summary>
         /// Spine 动画
@@ -204,11 +204,22 @@ namespace ARPG
             State.currentHp = Mathf.Min(State.currentHp+Reply, State.HP);
         }
 
-
+        //----------------------------BUFF--------------------------------//
+        public IBuffLogic GetBuffLogic()
+        {
+            return this;
+        }
+        public IDamage GetIDamage()
+        {
+            return this;
+        }
+        
         private void OnDrawGizmosSelected()
         {
              SkillDic[SkillType.Skill_01].OnGizmosRadius();
         }
+
+       
     }
 }
 

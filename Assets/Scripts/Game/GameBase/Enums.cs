@@ -247,4 +247,24 @@ namespace ARPG
        道具,
    }
 
+   public enum BuffType
+   {
+       伤害,
+       增益,
+       减益,
+       召唤,
+       治疗,
+       控制
+       
+   }
+
+   public enum BuffTrigger
+   {
+       攻击时,
+       释放技能时,
+       受击时,
+       死亡时,
+       攻击领主时,
+   }
+
 }

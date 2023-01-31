@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG;
 using ARPG.Config;
 using UnityEngine;
 
@@ -28,4 +29,6 @@ public interface IDamage
     /// </summary>
     /// <param name="Reply"></param>
     void IReply(int Reply);
+
+    IBuffLogic GetBuffLogic();
 }

@@ -210,6 +210,7 @@ namespace ARPG
 
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
+            int BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害);
             //1.1 获取攻击者的基础力量*物理攻击力
             switch (item.SkillType.type)
             {
@@ -227,6 +228,7 @@ namespace ARPG
                     Physics += item.Diamage;
                     //2.基础攻击力加技能基础伤害
                     Physics -= targetState.Defense;
+                    Physics *= (1+(BuffValue/10));
                     Physics = Mathf.Max(1, (int)Physics);
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -245,6 +247,7 @@ namespace ARPG
                     Magic += item.Diamage;
                     //1.1 伤害要减去地方防御力
                     Magic -= targetState.Defense;
+                    
                     //2.基础攻击力加技能基础伤害
                     Magic = Mathf.Max(1, (int)Magic);
                     target.IDamage((int)Math.Round(Magic,0));
