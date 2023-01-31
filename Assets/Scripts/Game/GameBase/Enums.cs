@@ -273,4 +273,10 @@ namespace ARPG
        全部,
    }
 
+   public enum BuffBehaviourType
+   {
+       光环,
+       瞬时,
+   }
+
 }

@@ -20,6 +20,7 @@ namespace ARPG.UI
             Content = Get<StarContent>("UIMask/StarContent");
             SliderText = Get<TextMeshProUGUI>("UIMask/Slider/SliderText");
             StateUI = Get<BuffStateUI>("UIMask/BUFFStateUI");
+            StateUI.Init();
         }
 
         public void InitData(CharacterConfigInfo info,CharacterBag bag,CharacterState state)

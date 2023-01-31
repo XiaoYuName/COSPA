@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffDatas:
   - BuffName: "\u65E0\u6211"
-    SpriteID: 
+    SpriteID: "\u65E0\u6211BUFF"
     buffType: 0
     random: 1
     buffPic: 5
+    behaviourType: 0
     PicMode: 0
     Pool: []
     continueTime: -1
@@ -27,10 +28,11 @@ MonoBehaviour:
     buffTrigger: 0
     description: "\u653B\u51FB\u65F6\u4F24\u5BB3\u589E\u52A0\u91CF+5%"
   - BuffName: "\u5251\u6C14"
-    SpriteID: 
+    SpriteID: "\u5251\u6C14BUFF"
     buffType: 1
     random: 1
     buffPic: -1
+    behaviourType: 1
     PicMode: 0
     Pool: []
     continueTime: 5

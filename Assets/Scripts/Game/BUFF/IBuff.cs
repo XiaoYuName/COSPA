@@ -35,8 +35,9 @@ namespace ARPG
         public void Trigger(BuffTrigger trigger)
         {
             if (data.buffTrigger != trigger) return;
-            LogicBehaviour();
             stateUI = tag.GetStateUI();
+            LogicBehaviour();
+           
         }
 
         public void LogicBehaviour()
@@ -54,7 +55,7 @@ namespace ARPG
                         if(curretnLevel<data.maxLevel)
                             curretnLevel++;
                         //重新计算层数冷却
-                        Debug.LogError("持续结束层数减少剩余层数:" +curretnLevel);
+                        RefBuffUI();
                         return;
                     }
                     piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
@@ -77,22 +78,48 @@ namespace ARPG
         {
             //1.显示UI,
             curretnLevel = 1;
-            stateUI.AddBuffItemUI();
+            AddBuffUI();
             BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.buffPic);
             while (true)
             {
                 yield return new WaitForSeconds(data.continueTime); //持续时间内
+                if (data.layer == BuffLayer.全部)
+                {
+                    RemoveBuffUI();
+                    BUFFManager.Instance.RemoveDictionary(tag,data.buffType,this);
+                    piccorotine = null;
+                    yield break;
+                }
                 curretnLevel--;
-                Debug.LogError("持续结束层数减少剩余层数:" +curretnLevel);
+                RefBuffUI();
                 BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.valueBuff*curretnLevel);
                 if (curretnLevel <= 0)
                 {
+                    RemoveBuffUI();
                     BUFFManager.Instance.RemoveDictionary(tag,data.buffType,this);
                     piccorotine = null;
                     yield break;
                 }
             }
-            
+        }
+
+
+        private void AddBuffUI()
+        {
+            if(stateUI!= null)
+                stateUI.AddBuffItemUI(this);
+        }
+
+        private void RefBuffUI()
+        {
+            if(stateUI!= null)
+                stateUI.RefBUFF_UI(this);
+        }
+
+        private void RemoveBuffUI()
+        {
+            if(stateUI!= null)
+                stateUI.RemoveBUFF_UI(this);
         }
     }
 }

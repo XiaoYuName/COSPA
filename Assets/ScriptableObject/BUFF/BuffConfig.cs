@@ -36,7 +36,8 @@ namespace ARPG
         /// </summary>
         public int buffPic;
 
-        
+        [Tooltip("BUFF类型,光环类的直到战斗结束才会消失")]
+        public BuffBehaviourType behaviourType;
 
         [Tooltip("增益类型")]
         public StateMode PicMode;
