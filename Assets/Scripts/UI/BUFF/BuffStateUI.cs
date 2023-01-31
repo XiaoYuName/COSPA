@@ -56,10 +56,7 @@ namespace ARPG.UI
         /// </summary>
         public void RemoveAll_UI()
         {
-            foreach (var Key in BuffUis)
-            {
-                Destroy(BuffUis[Key.Key]);
-            }
+            UIHelper.Clear(content);
             BuffUis.Clear();
         }
         

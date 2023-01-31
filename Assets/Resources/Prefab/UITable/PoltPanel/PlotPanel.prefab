@@ -1457,6 +1457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707dc47c02ede524e89e3964c0ef49cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   OpenSwicthMapPanel: {fileID: 0}
 --- !u!114 &1977420668204501469
 MonoBehaviour:
@@ -2439,6 +2440,10 @@ PrefabInstance:
     - target: {fileID: 4515416336383341273, guid: 1d19897d7d7437a4e899bc94419b6cad, type: 3}
       propertyPath: m_Name
       value: AVPro Video
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515416336383341275, guid: 1d19897d7d7437a4e899bc94419b6cad, type: 3}
+      propertyPath: _mediaPath._path
+      value: Character/101861/character_101861_000002.mkv
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
