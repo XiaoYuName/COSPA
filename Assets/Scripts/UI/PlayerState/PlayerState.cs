@@ -47,6 +47,12 @@ namespace ARPG.UI
         {
             return StateUI;
         }
+
+        public override void Close()
+        {
+            base.Close();
+            StateUI.RemoveAll_UI();
+        }
     }
 
 }
