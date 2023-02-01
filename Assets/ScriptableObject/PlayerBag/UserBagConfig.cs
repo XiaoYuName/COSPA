@@ -130,6 +130,12 @@ namespace ARPG.Config
                         case StateMode.暴击伤害:
                             state.CirticalAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
+                        case StateMode.攻击速度:
+                            state.AttackSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            break;
+                        case StateMode.移动速度:
+                            state.MovSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            break;
                         default:
                             break;
                     }

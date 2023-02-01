@@ -46,7 +46,7 @@ namespace ARPG
             {
                 case BuffType.伤害:
                     //TODO： 在进行计算伤害时，计算伤害增加量
-                    BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.buffPic);
+                    BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.buffPic);
                     break;
                 case BuffType.增益:
                     //TODO: 开始增益自身属性
@@ -56,6 +56,7 @@ namespace ARPG
                             curretnLevel++;
                         //重新计算层数冷却
                         RefBuffUI();
+                        BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
                         return;
                     }
                     piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
@@ -79,7 +80,7 @@ namespace ARPG
             //1.显示UI,
             curretnLevel = 1;
             AddBuffUI();
-            BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.buffPic);
+            BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
             while (true)
             {
                 yield return new WaitForSeconds(data.continueTime); //持续时间内
@@ -92,7 +93,7 @@ namespace ARPG
                 }
                 curretnLevel--;
                 RefBuffUI();
-                BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.valueBuff*curretnLevel);
+                BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
                 if (curretnLevel <= 0)
                 {
                     RemoveBuffUI();
@@ -121,6 +122,7 @@ namespace ARPG
             if(stateUI!= null)
                 stateUI.RemoveBUFF_UI(this);
         }
+        
     }
 }
 

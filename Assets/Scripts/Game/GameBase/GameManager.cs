@@ -210,7 +210,7 @@ namespace ARPG
 
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害);
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
             //1.1 获取攻击者的基础力量*物理攻击力
             switch (item.SkillType.type)
             {
@@ -224,11 +224,15 @@ namespace ARPG
                         // ReSharper disable once PossibleLossOfFraction
                         Physics *= (2.5d+attackState.CirticalAttack/10);
                     }
-                    //1.1 伤害要减去地方防御力
+                    //1.1 计算基础攻击力
                     Physics += item.Diamage;
-                    //2.基础攻击力加技能基础伤害
-                    Physics -= targetState.Defense;
+                    //2.  扣除防御力加成
+                    Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+                    //3.计算BUFF加成
+                    Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
+                    //4.计算最终伤害
                     Physics *= (1+(BuffValue/10));
+                    
                     Physics = Mathf.Max(1, (int)Physics);
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -246,9 +250,12 @@ namespace ARPG
                     }
                     Magic += item.Diamage;
                     //1.1 伤害要减去地方防御力
-                    Magic -= targetState.Defense;
-                    
+                    Magic -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
                     //2.基础攻击力加技能基础伤害
+                    
+                    Magic += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.魔法攻击力);
+                    Magic *= (1+(BuffValue/10));
+
                     Magic = Mathf.Max(1, (int)Magic);
                     target.IDamage((int)Math.Round(Magic,0));
                     DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -270,6 +277,7 @@ namespace ARPG
         {
             CharacterState attackState = attack.GetState();
             var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
             //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
             bool isCirtical = attackState.Cirtical > Random.value;
             if (isCirtical)
@@ -280,6 +288,8 @@ namespace ARPG
             }
             Physics += item.Diamage;
             //2.基础攻击力加技能基础伤害
+            Physics *= (1+(BuffValue/10));
+            
             Physics = Mathf.Max(1, (int)Physics);
             attack.IReply((int)Math.Round(Physics,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -295,6 +305,7 @@ namespace ARPG
         {
             CharacterState attackState = attack.GetState();
             var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
             //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
             bool isCirtical = attackState.Cirtical > Random.value;
             if (isCirtical)
@@ -304,6 +315,9 @@ namespace ARPG
                 Physics *= (2.5d+attackState.CirticalAttack/10);
             }
             Physics += value;
+            
+            Physics *= (1+(BuffValue/10));
+            
             //2.基础攻击力加技能基础伤害
             Physics = Mathf.Max(1, (int)Physics);
             attack.IReply((int)Math.Round(Physics,0));

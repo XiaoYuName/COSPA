@@ -9,8 +9,8 @@ namespace ARPG
         /// <summary>
         /// 当前BUFF增益字典
         /// </summary>
-        private Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, float>>> CurretnBUFF =
-            new Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, float>>>();
+        private Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, Dictionary<StateMode,float>>>> CurretnBUFF =
+            new Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, Dictionary<StateMode,float>>>>();
 
 
         /// <summary>
@@ -20,15 +20,18 @@ namespace ARPG
         /// <param name="type">BUFF类型</param>
         /// <param name="Buff">BUFF技能</param>
         /// <param name="value">增益值</param>
-        public void AddDictionary(IBuffLogic character,BuffType type,IBuff Buff,float value)
+        public void AddDictionary(IBuffLogic character,BuffType type,IBuff Buff,StateMode BUFFMode,float value)
         {
             if (!CurretnBUFF.ContainsKey(character))
-                CurretnBUFF.Add(character,new Dictionary<BuffType, Dictionary<IBuff, float>>());
+                CurretnBUFF.Add(character,new Dictionary<BuffType, Dictionary<IBuff, Dictionary<StateMode, float>>>());
             if (!CurretnBUFF[character].ContainsKey(type))
-                CurretnBUFF[character].Add(type,new Dictionary<IBuff, float>());
+                CurretnBUFF[character].Add(type,new Dictionary<IBuff, Dictionary<StateMode, float>>());
             if(!CurretnBUFF[character][type].ContainsKey(Buff))
-                CurretnBUFF[character][type].Add(Buff,value);
-            CurretnBUFF[character][type][Buff] = value;
+                CurretnBUFF[character][type].Add(Buff,new Dictionary<StateMode, float>());
+            if(!CurretnBUFF[character][type][Buff].ContainsKey(BUFFMode))
+                CurretnBUFF[character][type][Buff].Add(BUFFMode,value);
+            CurretnBUFF[character][type][Buff][BUFFMode] = value;
+            
         }
 
         /// <summary>
@@ -82,16 +85,21 @@ namespace ARPG
         /// </summary>
         /// <param name="character">角色</param>
         /// <param name="type">类型</param>
-        public float GetTyepValue(IBuffLogic character, BuffType type)
+        /// <param name="Mode">修改的状态类型</param>
+        public float GetTyepValue(IBuffLogic character, BuffType type,StateMode Mode)
         {
-            float res = 1;
+            float res = type == BuffType.伤害?1:0;
             if (CurretnBUFF.ContainsKey(character))
             {
-                foreach (var KeyBUFF in CurretnBUFF[character])
+                if (CurretnBUFF[character].ContainsKey(type))
                 {
-                    foreach (var Value in KeyBUFF.Value)
+                    foreach (var KeyBUFF in CurretnBUFF[character][type])
                     {
-                        res += CurretnBUFF[character][KeyBUFF.Key][Value.Key];
+                        if (CurretnBUFF[character][type].ContainsKey(KeyBUFF.Key))
+                        {
+                            if(CurretnBUFF[character][type][KeyBUFF.Key].ContainsKey(Mode))
+                                res += CurretnBUFF[character][type][KeyBUFF.Key][Mode];
+                        }
                     }
                 }
             }

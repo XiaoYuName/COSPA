@@ -19,12 +19,12 @@ MonoBehaviour:
     random: 1
     buffPic: 5
     behaviourType: 0
-    PicMode: 0
+    PicMode: 10
     Pool: []
     continueTime: -1
-    maxLevel: 1
+    maxLevel: -1
     layer: 0
-    valueBuff: 0
+    valueBuff: -1
     buffTrigger: 0
     description: "\u653B\u51FB\u65F6\u4F24\u5BB3\u589E\u52A0\u91CF+5%"
   - BuffName: "\u5251\u6C14"
@@ -33,7 +33,7 @@ MonoBehaviour:
     random: 1
     buffPic: -1
     behaviourType: 1
-    PicMode: 0
+    PicMode: 8
     Pool: []
     continueTime: 5
     maxLevel: 8
