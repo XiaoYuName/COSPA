@@ -281,6 +281,19 @@ namespace ARPG
             MessageAction.OnRefRegionPress();
         }
 
+        /// <summary>
+        /// Debug 调试模式使用
+        /// </summary>
+        /// <param name="star"></param>
+        public void SetAllCharacterStar(int star)
+        {
+            foreach (var characterBag in UserBag.CharacterBags)
+            {
+                characterBag.currentStar = Mathf.Min(star,6);
+                MessageAction.OnUpCharacterBag(characterBag);
+            }
+        }
+
 
         #endregion
 
