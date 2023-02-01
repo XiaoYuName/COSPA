@@ -73,6 +73,7 @@ MonoBehaviour:
       Power: 10
       Intelligence: 0
       AttackSpeed: 1
+      ReleaseSpeed: 1
       MovSpeed: 135
       Growth: 0.135
     SkillTable:
@@ -87,7 +88,9 @@ MonoBehaviour:
     - SkillID: FlameBurns
       Type: 4
     des: xxx
-    deftualBuffID: []
+    deftualBuffID:
+    - "\u6025\u901F"
+    - "\u5FEB\u901F\u65BD\u6CD5"
   - ID: plate_1058
     Headicon: {fileID: 21300000, guid: eb1f391e437653f44bdb82d15530fff6, type: 3}
     Assets:
@@ -148,6 +151,7 @@ MonoBehaviour:
       Power: 40
       Intelligence: 5
       AttackSpeed: 1
+      ReleaseSpeed: 1
       MovSpeed: 100
       Growth: 0.135
     SkillTable:

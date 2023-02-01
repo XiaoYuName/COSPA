@@ -242,6 +242,7 @@ namespace ARPG
             }
             StateUI.UpdateState(State);
             anim.SetTrigger(s_Damage);
+            BuffTriggerEvent(BuffTrigger.受击时);
         }
 
         public void IReply(int Reply)
@@ -252,7 +253,7 @@ namespace ARPG
 
 
         //--------------------------------BUFF接口----------------------------------------//
-        private void BuffTriggerEvent(BuffTrigger type)
+        public void BuffTriggerEvent(BuffTrigger type)
         {
             for (int i = 0; i < Buffs.Count; i++)
             {

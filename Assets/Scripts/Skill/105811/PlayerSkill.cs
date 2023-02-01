@@ -25,6 +25,7 @@ namespace ARPG
         public override void Play()
         {
             Player.StartCoroutine(WaitSkillTime(data.CD));
+            Player.BuffTriggerEvent(BuffTrigger.释放技能时);
         }
 
         /// <summary>

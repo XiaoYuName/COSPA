@@ -31,6 +31,7 @@ namespace ARPG
         private void AnimatorEvent(string Evernt)
         {
             if (!Evernt.Equals("ThrowStone")) return;
+            if (Enemy == null) return;
             Transform SkillPoint = Enemy.transform.Find("SkillPoint");
             MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab,SkillPoint.position,
                 Quaternion.identity).GetComponent<MovFxItem>();

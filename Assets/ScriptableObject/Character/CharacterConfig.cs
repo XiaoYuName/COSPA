@@ -156,6 +156,9 @@ namespace ARPG.Config
         [Header("攻击速度")]
         public float AttackSpeed;
 
+        [Header("释放速度")]
+        public float ReleaseSpeed;
+
         [Header("移动速度")]
         public float MovSpeed;
 
