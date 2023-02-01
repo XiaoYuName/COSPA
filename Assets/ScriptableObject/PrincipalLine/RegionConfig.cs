@@ -110,5 +110,18 @@ namespace ARPG.UI.Config
         [Tooltip("随机最小范围")]
         public float MinRandius;
     }
+    
+    
+    /// <summary>
+    /// 剧情
+    /// </summary>
+    [System.Serializable]
+    public class PrincItem
+    {
+        [Header("章节名称")]
+        public string PrincItemName;
+        [Header("跳转剧情场景名称"),Scene]
+        public string SceneName;
+    }
 }
 
