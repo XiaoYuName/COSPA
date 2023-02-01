@@ -23,14 +23,15 @@ namespace ARPG.UI
         {
             icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
             Name.text = data.BuffName;
-            Level.gameObject.SetActive(data.behaviourType != BuffBehaviourType.光环); 
-            
+            Level.gameObject.SetActive(data.behaviourType != BuffBehaviourType.光环);
+            Level.text = "1";
             if (data.behaviourType == BuffBehaviourType.光环)
             {
                 Level.text = "99";
                 FillAmount.fillAmount = 0;
                 return;
             }
+            
             StartCoroutine(FillAmountTween(data.continueTime));
         }
 
