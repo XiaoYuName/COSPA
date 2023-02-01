@@ -1,22 +1,27 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace ARPG.UI
 {
-    public class BuffUI : UIBase
+    public class BuffUI : UIBase,IPointerEnterHandler,IPointerExitHandler
     {
         private Image icon;
         private TextMeshProUGUI Name;
         private TextMeshProUGUI Level;
         private Image FillAmount;
+        private GameObject Descriptioninfo;
+        private TextMeshProUGUI Description;
         public override void Init()
         {
             icon = Get<Image>("icon");
             Name = Get<TextMeshProUGUI>("BuffName");
             Level = Get<TextMeshProUGUI>("BuffLevel");
             FillAmount = Get<Image>("FillAmount");
+            Descriptioninfo = Get("Descriptioninfo");
+            Description = Get<TextMeshProUGUI>("Descriptioninfo/Description");
         }
 
         public void InitData(BuffData data)
@@ -25,6 +30,7 @@ namespace ARPG.UI
             Name.text = data.BuffName;
             Level.gameObject.SetActive(data.behaviourType != BuffBehaviourType.光环);
             Level.text = "1";
+            Description.text = data.description;
             if (data.behaviourType == BuffBehaviourType.光环)
             {
                 Level.text = "99";
@@ -62,6 +68,18 @@ namespace ARPG.UI
             }
         }
 
+        
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            Descriptioninfo.gameObject.SetActive(true);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(Descriptioninfo.GetComponent<RectTransform>());
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            Descriptioninfo.gameObject.SetActive(false);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(Descriptioninfo.GetComponent<RectTransform>());
+        }
     }
 }
 
