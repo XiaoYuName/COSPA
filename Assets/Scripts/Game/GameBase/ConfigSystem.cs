@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using ARPG.UI.Config;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace ARPG
 
         private BuffConfig buffConfig;
 
+        private TaleConfig taleConfig;
+
         protected override void Awake()
         {
             base.Awake();
@@ -25,6 +28,7 @@ namespace ARPG
         {
             RegionConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
             buffConfig = ConfigManager.LoadConfig<BuffConfig>("BUFF/Buff");
+            taleConfig = ConfigManager.LoadConfig<TaleConfig>("TaleConfig/Tale");
         }
 
 
@@ -37,6 +41,11 @@ namespace ARPG
         public BuffData GetBUFFData(string name)
         {
             return buffConfig.BuffDatas.Find(b => b.BuffName == name);
+        }
+
+        public List<TaleItemData> GetAllTale()
+        {
+            return taleConfig.TaleItemDatas;
         }
     }
 }
