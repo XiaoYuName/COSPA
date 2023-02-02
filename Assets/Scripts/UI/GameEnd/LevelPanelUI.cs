@@ -67,44 +67,140 @@ namespace ARPG.UI
             yield return null;
         }
 
-        private IEnumerator AddUserExp(CharacterBag bag,int value)
+        // private IEnumerator AddUserExp(CharacterBag bag,int value)
+        // {
+        //     //1.获取经验差值
+        //     int lerp = bag.MaxExp - bag.exp;  // 30
+        //     int temp = 0;
+        //     LevelSlider.value = bag.exp;
+        //     if (value >= lerp)
+        //     {
+        //         while (true)
+        //         {
+        //             temp += 1;
+        //             if (temp >= LevelSlider.maxValue)
+        //             {
+        //                 bag.Level++;
+        //                 LevelSlider.maxValue = (Settings.deftualExp * bag.Level) * bag.currentStar;
+        //                 LevelText.text = bag.Level.ToString();
+        //                 LevelSlider.value = 0;
+        //                 LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+        //                 bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;
+        //                 bag.exp = 0;
+        //                 int sValue = value - lerp;
+        //                 GameManager.Instance.Player.anim.SetTrigger("UpLevel");
+        //                 yield return StartCoroutine(AddUserExp(bag, sValue));
+        //                 yield break;
+        //             }
+        //             LevelSlider.value += temp;
+        //             LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+        //             yield return new WaitForSeconds(0.025f);
+        //         }
+        //     }
+        //     while (temp < value)
+        //     {
+        //         temp += 1;
+        //         LevelSlider.value += 1;
+        //         bag.exp = temp;
+        //         LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+        //         yield return new WaitForSeconds(0.025f);
+        //     }
+        //     
+        // }
+        private IEnumerator AddUserExp(CharacterBag bag,int value)  
         {
-            //1.获取经验差值
-            int lerp = bag.MaxExp - bag.exp;  // 30
-            int temp = 0;
-            LevelSlider.value = bag.exp;
-            if (value >= lerp)
+            //1.获取添加的经验总值
+            int CurrentExp = value;
+            //2.循环体： 当经验总值为0 退出
+            while (CurrentExp >= 0)
             {
+                //3.计算当前等级升满所需经验值
+                int currentLevel = bag.MaxExp - bag.exp;
+                //4.循环体进入累加经验值循环,直到经验值满足条件
+                int temp = 0;
+                LevelSlider.value = bag.exp;
+                float t= 0;
+                if (CurrentExp < currentLevel) //当前所要添加的经验值不足以进行升级
+                {
+                    while (true)
+                    {
+                        if (temp >= CurrentExp)
+                        {
+                            yield break;
+                        }
+                        t += Time.deltaTime;
+                        temp = (int)Mathf.LerpUnclamped(temp, CurrentExp, t);
+                        LevelSlider.value = temp;
+                        LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+                        yield return null;
+                    }
+                }
+                CurrentExp -= currentLevel;
                 while (true)
                 {
-                    temp += 1;
-                    if (temp >= LevelSlider.maxValue)
-                    {
-                        bag.Level++;
-                        LevelSlider.maxValue = (Settings.deftualExp * bag.Level) * bag.currentStar;
-                        LevelText.text = bag.Level.ToString();
-                        LevelSlider.value = 0;
-                        LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
-                        bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;
-                        bag.exp = 0;
-                        int sValue = value - lerp;
-                        GameManager.Instance.Player.anim.SetTrigger("UpLevel");
-                        yield return StartCoroutine(AddUserExp(bag, sValue));
-                        yield break;
-                    }
-                    LevelSlider.value += temp;
+                    LevelSlider.value = temp;
                     LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
-                    yield return new WaitForSeconds(0.025f);
+                    if (temp >= currentLevel)
+                    {
+                        //进行升级操作
+                        bag.Level++; //等级增加
+                        LevelSlider.maxValue = (Settings.deftualExp * bag.Level) * bag.currentStar; //重新计算最大经验值
+                        LevelText.text = bag.Level.ToString();//刷新Text显示
+                        LevelSlider.value = 0;//升级后重置当前经验值
+                        LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;////刷新Text显示
+                        bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;//重新计算最大经验值
+                        bag.exp = 0;
+                        GameManager.Instance.Player.anim.SetTrigger("UpLevel");
+                        break;
+                    }
+                    t += Time.deltaTime;
+                    temp = (int)Mathf.LerpUnclamped(temp, currentLevel, t);
+                    LevelSlider.value = temp;
+                    LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+                    yield return null;
                 }
+                
+                yield return null;
             }
-            while (temp < value)
-            {
-                temp += 1;
-                LevelSlider.value += 1;
-                bag.exp = temp;
-                LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
-                yield return new WaitForSeconds(0.025f);
-            }
+            
+            
+            
+            
+            // int lerp = bag.MaxExp - bag.exp;  // 30
+            // int temp = 0;
+            // LevelSlider.value = bag.exp;
+            // if (value >= lerp)
+            // {
+            //     while (true)
+            //     {
+            //         temp += 1;
+            //         if (temp >= LevelSlider.maxValue)
+            //         {
+            //             bag.Level++;
+            //             LevelSlider.maxValue = (Settings.deftualExp * bag.Level) * bag.currentStar;
+            //             LevelText.text = bag.Level.ToString();
+            //             LevelSlider.value = 0;
+            //             LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+            //             bag.MaxExp = (Settings.deftualExp * bag.Level) * bag.currentStar;
+            //             bag.exp = 0;
+            //             int sValue = value - lerp;
+            //             GameManager.Instance.Player.anim.SetTrigger("UpLevel");
+            //             yield return StartCoroutine(AddUserExp(bag, sValue));
+            //             yield break;
+            //         }
+            //         LevelSlider.value += temp;
+            //         LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+            //         yield return new WaitForSeconds(0.025f);
+            //     }
+            // }
+            // while (temp < value)
+            // {
+            //     temp += 1;
+            //     LevelSlider.value += 1;
+            //     bag.exp = temp;
+            //     LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
+            //     yield return new WaitForSeconds(0.025f);
+            // }
             
         }
     }
