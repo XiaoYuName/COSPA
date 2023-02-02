@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ARPG.BasePool;
 using ARPG.UI;
 using UnityEngine;
 using ARPG.UI.Config;
+using RenderHeads.Media.AVProVideo;
 using Spine.Unity;
 using TMPro;
 using UnityEngine.UI;
@@ -55,6 +57,13 @@ namespace ARPG
         /// </summary>
         private OptionContent OptionContent;
 
+        /// <summary>
+        /// AV Pro 视频播放器
+        /// </summary>
+        private MediaPlayer VideoContent;
+
+        private Image BG;
+
         #endregion
 
         /// <summary>
@@ -79,18 +88,11 @@ namespace ARPG
             OptionContent.Init();
             LeftSpine = Get<SkeletonGraphic>("UIMask/BG/LeftDialogueSpine");
             RightSpine = Get<SkeletonGraphic>("UIMask/BG/RightDialogueSpine");
+            VideoContent = Get<MediaPlayer>("UIMask/AVPro Video");
+            BG = Get<Image>("UIMask/MainBG");
             NextBtn.onClick.AddListener(NextDialogue);
         }
 
-    
-        //TODO：删除测试代码
-        private void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.G))
-            {
-                StarPlayDialogueUI("Star2");
-            }
-        }
         
         /// <summary>
         /// 开启一条对话
@@ -148,6 +150,27 @@ namespace ARPG
             if (!String.IsNullOrEmpty(Piece.AudioID))
             {
                 AudioManager.Instance.PlayAudio(Piece.AudioID);
+            }
+
+            if (Piece.isVideoOrBG)
+            {
+                if (!string.IsNullOrEmpty(Piece.VideoID))
+                {
+                    VideoContent.gameObject.SetActive(true);
+                    BG.gameObject.SetActive(false);
+                    VideoContent.OpenMedia(VideoManager.Instance.GetVideo(Piece.VideoID));
+                }else if (Piece.BG != null)
+                {
+                    VideoContent.gameObject.SetActive(false);
+                    BG.gameObject.SetActive(true);
+
+                    BG.sprite = Piece.BG;
+                }
+            }
+            else
+            {
+                VideoContent.gameObject.SetActive(false);
+                BG.gameObject.SetActive(false);
             }
 
             if (Piece.Options is {Count: > 0})

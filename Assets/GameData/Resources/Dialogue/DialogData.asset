@@ -22,85 +22,70 @@ MonoBehaviour:
       dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
       AudioID: 
       isLoop: 1
-      isEnd: 0
+      isVideoOrBG: 1
+      BG: {fileID: 0}
+      VideoID: StarDialogue
       SpineAnimationName: 8
       SpineSkinName: 1
-      dialogText: "\u4F60\u597D\u554A\u5192\u9669\u5BB6\uFF0C\u6B22\u8FCE\u6765\u5230\u8FD9\u91CC"
+      dialogText: "\u4F60\u9192\u4E86"
       Options:
-      - OpentionText: "\u8FD9\u91CC\u662F"
+      - OpentionText: "\u8FD9\u91CC\u662F\uFF1F"
         Mode: 0
-        targetPirecID: 0
-    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-2"
-      dialogID: 2
-      dialogName: "\u706B\u706B"
-      isLeftSpine: 1
-      dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
-      AudioID: 
-      isLoop: 1
-      isEnd: 0
-      SpineAnimationName: 8
-      SpineSkinName: 1
-      dialogText: "\u8FD9\u91CC\u662Fxxxxxxxx\u6211\u662F\u4F60\u7684\u5F15\u5BFC\u7CBE\u7075"
-      Options: []
-  - ID: Star2
-    Pieces:
-    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-1"
-      dialogID: 0
-      dialogName: "\u65E0\u75D5"
-      isLeftSpine: 1
-      dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
-      AudioID: 
-      isLoop: 1
-      isEnd: 0
-      SpineAnimationName: 8
-      SpineSkinName: 1
-      dialogText: "\u6211\u662F\u65E0\u75D5,\u6211\u60F3\u88AB\u7206\u8D85"
-      Options:
-      - OpentionText: "\u8D85\u5E02\u4F60"
-        Mode: 0
-        targetPirecID: 1
-      - OpentionText: "\u90A6\u90A6\u6DF1\u6E0A\u5C31\u8D85\u4F60"
+        targetPirecID: 2
+      - OpentionText: "\u6211\u5728\u54EA\uFF1F"
         Mode: 0
         targetPirecID: 3
     - DataInof: "\u65B0\u624B\u5BF9\u8BDD-2"
-      dialogID: 1
-      dialogName: "\u706B\u706B"
-      isLeftSpine: 0
-      dialogueSpine: {fileID: 11400000, guid: e37bcb452807d0e42b26ad808185a5d7, type: 2}
-      AudioID: 
-      isLoop: 1
-      isEnd: 1
-      SpineAnimationName: 8
-      SpineSkinName: 1
-      dialogText: "\u6211\u4E5F\u4E00\u8D77\u8D85!"
-      Options: []
-    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-3"
       dialogID: 2
-      dialogName: "\u65E0\u75D5"
+      dialogName: "\u706B\u706B"
       isLeftSpine: 1
       dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
       AudioID: 
       isLoop: 1
-      isEnd: 0
+      isVideoOrBG: 1
+      BG: {fileID: 0}
+      VideoID: StarDialogue01
       SpineAnimationName: 8
       SpineSkinName: 1
-      dialogText: "\u72E0\u72E0\u7684\u8D85\u5E02\u6211!"
+      dialogText: "\u6211\u662F\u4F60\u7684\u5F15\u5BFC\u7CBE\u7075\uFF0C\u5192\u9669\u5BB6"
       Options:
-      - OpentionText: "\u597D\u7684(\u4E00\u8D77)"
+      - OpentionText: "\u597D\u5427"
+        Mode: 0
+        targetPirecID: 4
+      - OpentionText: "\u8FD9\u91CC\u662F\u54EA\u91CC\uFF1F"
         Mode: 1
-        targetPirecID: -5
-    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-4"
+        targetPirecID: 3
+    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-3"
       dialogID: 3
-      dialogName: "\u65E0\u75D5"
+      dialogName: "\u706B\u706B"
       isLeftSpine: 1
       dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
       AudioID: 
       isLoop: 1
-      isEnd: 0
+      isVideoOrBG: 1
+      BG: {fileID: 0}
+      VideoID: StarDialogue02
       SpineAnimationName: 8
       SpineSkinName: 1
-      dialogText: "\u72E0\u72E0\u7684\u8D85\u5E02\u6211!"
+      dialogText: "\u4F60\u5728XXX\u5927\u9646,\u8FD9\u662F\u4E00\u4E2A\u5251\u4E0E\u9B54\u6CD5\u5171\u5B58\u7684\u5927\u9646"
       Options:
-      - OpentionText: "\u597D\u7684"
+      - OpentionText: "\u4F60\u662F\u8C01\uFF1F"
         Mode: 2
-        targetPirecID: -5
+        targetPirecID: 2
+      - OpentionText: "\u597D\u7684\u5F00\u542F\u5192\u9669\u5427"
+        Mode: 0
+        targetPirecID: 4
+    - DataInof: "\u65B0\u624B\u5BF9\u8BDD-End"
+      dialogID: 4
+      dialogName: "\u706B\u706B"
+      isLeftSpine: 1
+      dialogueSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
+      AudioID: 
+      isLoop: 1
+      isVideoOrBG: 1
+      BG: {fileID: 21300000, guid: 8352ded3a91a5234a8052bd33e2774be, type: 3}
+      VideoID: 
+      SpineAnimationName: 8
+      SpineSkinName: 1
+      dialogText: "\u90A3\u4E48\u5F00\u542F\u60A8\u7684\u5192\u9669\u4E4B\u65C5\u5427!"
+      Options: []

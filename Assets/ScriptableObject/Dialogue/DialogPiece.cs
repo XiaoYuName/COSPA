@@ -37,6 +37,19 @@ namespace ARPG.UI.Config
         /// 是否循环播放该动画
         /// </summary>
         public bool isLoop;
+
+        /// <summary>
+        /// 是否包含BG或者Video
+        /// </summary>
+        public bool isVideoOrBG;
+        /// <summary>
+        /// 背景图片
+        /// </summary>
+        public Sprite BG;
+        /// <summary>
+        /// 视频ID
+        /// </summary>
+        public string VideoID;
         
         [Header("Spine动画播放名字")]
         public SpineDialogueAnimation SpineAnimationName;

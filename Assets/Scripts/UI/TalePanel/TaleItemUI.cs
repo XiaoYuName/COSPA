@@ -35,6 +35,16 @@ namespace ARPG.UI
         private void OnClick()
         {
             if (curretnData == null) return;
+            UISystem.Instance.ShowPopDialogue("提示","要进入"+Title+"剧情吗？","进入","关闭",
+                delegate
+                {
+                    FadeManager.Instance.PlayFade(0.45f, delegate
+                    {
+                        DialogueManager manager = DialogueManager.Instance.GetComponent<DialogueManager>();
+                        manager.StarPlayDialogueUI(curretnData.DialogueID);
+                    },0.15f);
+                }, null);
+            
         }
     }
 }

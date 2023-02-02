@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
 using NaughtyAttributes;
+using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 
 namespace ARPG.BasePool
@@ -43,6 +44,11 @@ namespace ARPG.BasePool
             UIAvVideoItem avVideoItem = AvVideoPool.Instance.Get();
             avVideoItem.Init();
             avVideoItem.StarPlay(AvVideoConfig.Get(videoID));
+        }
+
+        public MediaReference GetVideo(string ID)
+        {
+            return AvVideoConfig.Get(ID).MediaReference;
         }
     }
 }
