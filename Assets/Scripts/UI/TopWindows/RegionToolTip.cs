@@ -25,7 +25,10 @@ namespace ARPG.UI
             Bind(CloseBtn,Close,UI_ToolAudio.OutChick.ToString());
             ItemContent = Get<RectTransform>("UIMask/Back/LeftPanel/ItemRow/Content");
             RewordContent = Get<RectTransform>("UIMask/Back/LeftPanel/RewordRow/Content");
-            EnemyContent = Get<RectTransform>("UIMask/Back/LeftPanel/EnemyRow/Panel");
+            
+            //Canvas (Environment)/RegionToolTip/UIMask/Back/LeftPanel/EnemyRow/EnemyView/Viewport/Content
+            //EnemyContent = Get<RectTransform>("UIMask/Back/LeftPanel/EnemyRow/Panel");
+            EnemyContent = Get<RectTransform>("UIMask/Back/LeftPanel/EnemyRow/EnemyView/Viewport/Content");
             BackImage = Get<Image>("UIMask/Back/Mask/Back");
             MapName = Get<TextMeshProUGUI>("UIMask/Back/Mask/Back/Farme/MapName");
             MapConfig = ConfigManager.LoadConfig<MapConfig>("Map/MapData");

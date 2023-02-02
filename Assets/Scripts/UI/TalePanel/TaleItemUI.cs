@@ -37,7 +37,7 @@ namespace ARPG.UI
         {
             if (curretnData == null) return;
             if (String.IsNullOrEmpty(curretnData.DialogueID)) return;
-            UISystem.Instance.ShowPopDialogue("提示","要进入"+Title.text+"剧情吗？","进入","关闭",
+            UISystem.Instance.ShowPopDialogue("提示","要进入<color=red>"+Title.text+"</color>剧情吗？","进入","关闭",
                 delegate
                 {
                     FadeManager.Instance.PlayFade(0.45f, delegate
