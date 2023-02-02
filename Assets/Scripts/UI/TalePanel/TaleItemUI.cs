@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -35,7 +36,8 @@ namespace ARPG.UI
         private void OnClick()
         {
             if (curretnData == null) return;
-            UISystem.Instance.ShowPopDialogue("提示","要进入"+Title+"剧情吗？","进入","关闭",
+            if (String.IsNullOrEmpty(curretnData.DialogueID)) return;
+            UISystem.Instance.ShowPopDialogue("提示","要进入"+Title.text+"剧情吗？","进入","关闭",
                 delegate
                 {
                     FadeManager.Instance.PlayFade(0.45f, delegate

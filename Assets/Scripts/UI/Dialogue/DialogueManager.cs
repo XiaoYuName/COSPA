@@ -64,6 +64,8 @@ namespace ARPG
 
         private Image BG;
 
+        private string currentVideoID;
+
         #endregion
 
         /// <summary>
@@ -158,7 +160,11 @@ namespace ARPG
                 {
                     VideoContent.gameObject.SetActive(true);
                     BG.gameObject.SetActive(false);
-                    VideoContent.OpenMedia(VideoManager.Instance.GetVideo(Piece.VideoID));
+                    if (Piece.isNewVideo && currentVideoID != Piece.VideoID)
+                    {
+                        currentVideoID = Piece.VideoID;
+                        VideoContent.OpenMedia(VideoManager.Instance.GetVideo(Piece.VideoID));
+                    }
                 }else if (Piece.BG != null)
                 {
                     VideoContent.gameObject.SetActive(false);

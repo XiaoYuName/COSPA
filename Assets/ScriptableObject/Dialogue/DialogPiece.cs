@@ -46,6 +46,12 @@ namespace ARPG.UI.Config
         /// 背景图片
         /// </summary>
         public Sprite BG;
+
+        /// <summary>
+        /// 是否延续上一个Video
+        /// </summary>
+        [Tooltip("是否延续上一个Video或者BG")]
+        public bool isNewVideo;
         /// <summary>
         /// 视频ID
         /// </summary>
