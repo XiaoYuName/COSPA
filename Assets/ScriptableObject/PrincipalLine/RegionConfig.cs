@@ -80,8 +80,14 @@ namespace ARPG.UI.Config
         /// </summary>
         public List<EnemyBag> EnemyList;
 
-        [Tooltip("每个怪物生成的时间间隔")]
-        public float CreateTime;
+        [Header("BUFF 设定")]
+        
+        [Tooltip("本波是否有BUFF")]
+        public bool isOpenBuff;
+        /// <summary>
+        /// BUFF 
+        /// </summary>
+        public RegionBuffData BuffList;
     }
 
     /// <summary>
@@ -122,6 +128,19 @@ namespace ARPG.UI.Config
         public string PrincItemName;
         [Header("跳转剧情场景名称"),Scene]
         public string SceneName;
+    }
+
+    /// <summary>
+    /// 波数BUFF列表
+    /// </summary>
+    [System.Serializable]
+    public class RegionBuffData
+    {
+        [Header("BUFF选择器")]
+        public List<string> Buff_ID = new List<string>();
+
+        [Tooltip("表示当前波中可以选择几个BUFF")]
+        public int count;
     }
 }
 

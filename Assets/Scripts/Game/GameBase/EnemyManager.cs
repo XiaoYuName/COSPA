@@ -147,13 +147,22 @@ namespace ARPG
                 Debug.Log("当前波段还有敌人");
                 return;
             }
-
+            
             currentIndex++;
             //TODO: 神圣殿堂BUFF选择界面
+            StartCoroutine(isBuff());
+        }
+
+        public IEnumerator isBuff()
+        {
+            if (currentRegion.WaveItems[currentIndex].isOpenBuff)
+            {
+                SwitchBuffPanel switchBuffPanel = UISystem.Instance.GetUI<SwitchBuffPanel>("SwitchBuffPanel");
+                yield return switchBuffPanel.OpenSwitchBuff(currentRegion.WaveItems[currentIndex].BuffList);
+            }
             InstanceEnemy();
         }
 
-        
         /// <summary>
         /// 退出战斗场景事件
         /// </summary>

@@ -283,4 +283,11 @@ namespace ARPG
        瞬时,
    }
 
+
+   public enum BuffIDMode
+   {
+       无我,
+       
+   }
+
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1526750906894032835}
   - component: {fileID: 1526750906894032834}
   m_Layer: 5
-  m_Name: Particle_Burst_Star
+  m_Name: Particle_BombStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,7 +677,7 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 1
+    enabled: 0
     type: 4
     angle: 25
     length: 5
@@ -879,7 +879,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
