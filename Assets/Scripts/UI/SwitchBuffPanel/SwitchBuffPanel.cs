@@ -37,6 +37,7 @@ namespace ARPG
             CurrentWaweBuff = buffData;
             UIHelper.Clear(content);
             Title.text = "选择你的BUFF";
+            Open();
             yield return CreatBuffSwitchUI(buffData.Buff_ID);
         }
 
@@ -72,6 +73,7 @@ namespace ARPG
             isEndClick = true;
             UIHelper.Clear(content);
             CurrentWaweBuff = null;
+            SelectBuffList.Clear();
             Close();
             
         }

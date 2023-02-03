@@ -133,10 +133,12 @@ namespace ARPG
             if (InputSpeed != Vector2.zero)
             {
                 rb.velocity = InputSpeed.normalized * State.MovSpeed  * animSpeed* Time.fixedDeltaTime;
+                BuffTriggerEvent(BuffTrigger.移动时);
             }
             else
             {
                 rb.velocity = Vector2.zero;
+                BuffTriggerEvent(BuffTrigger.站立时);
             }
             Flip();
         }

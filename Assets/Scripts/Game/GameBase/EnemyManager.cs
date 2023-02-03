@@ -186,6 +186,7 @@ namespace ARPG
                 CurrenEnemys.Clear(); 
             }
             EnemyPoolManager.Instance.RemoveAllPool();
+            GameMemu.SetVaveText("0/0");
         }
     }
 }
