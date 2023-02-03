@@ -30,7 +30,7 @@ MonoBehaviour:
           MinRandius: 0
         isOpenBuff: 0
         BuffList:
-          Buff_ID: []
+          Buff_ID: 
           count: 0
       - EnemyList:
         - dataID: 200700
@@ -45,7 +45,7 @@ MonoBehaviour:
           MinRandius: 0
         isOpenBuff: 0
         BuffList:
-          Buff_ID: []
+          Buff_ID: 
           count: 0
     - RegionItemName: "\u706B\u706B\u8001\u5BB6"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
           MinRandius: 0
         isOpenBuff: 0
         BuffList:
-          Buff_ID: []
+          Buff_ID: 
           count: 0
       - EnemyList:
         - dataID: 200700
@@ -86,7 +86,7 @@ MonoBehaviour:
           MinRandius: 0
         isOpenBuff: 0
         BuffList:
-          Buff_ID: []
+          Buff_ID: 
           count: 0
   - RegionName: "\u5929\u7A7A\u4E4B\u57CE"
     backIcon: {fileID: 21300000, guid: edf3ccfd7bd331d469d9eae52861d1e2, type: 3}
@@ -123,7 +123,7 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
     - EnemyList:
       - dataID: 200700
@@ -143,7 +143,7 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
   - RegionItemName: "\u739B\u90A3\u5173\u5361"
     backIcon: {fileID: 21300000, guid: ba4fc2b723b53b44f81dc28dec25a40e, type: 3}
@@ -164,7 +164,7 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
     - EnemyList:
       - dataID: 200700
@@ -184,7 +184,7 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
   - RegionItemName: "\u65E0\u5C3D\u661F\u6D77"
     backIcon: {fileID: 21300000, guid: 60cc61058835b6448b7effc902b2bda7, type: 3}
@@ -205,7 +205,7 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
     - EnemyList:
       - dataID: 200700
@@ -225,11 +225,106 @@ MonoBehaviour:
         MinRandius: 0
       isOpenBuff: 0
       BuffList:
-        Buff_ID: []
+        Buff_ID: 
         count: 0
   - RegionItemName: "\u795E\u5723\u6BBF\u5802"
     backIcon: {fileID: 21300000, guid: b28f9b6dc6d6ea54e9506bed5b28948b, type: 3}
     targetScene: HUOHUO
     Press: {x: 0, y: 1}
     StarPos: {x: -9.74, y: -2, z: 0}
-    WaveItems: []
+    WaveItems:
+    - EnemyList:
+      - dataID: 200700
+        count: 1
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      - dataID: 204000
+        count: 2
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      isOpenBuff: 0
+      BuffList:
+        Buff_ID: 0200000003000000
+        count: 0
+    - EnemyList:
+      - dataID: 200700
+        count: 2
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      - dataID: 204000
+        count: 8
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      - dataID: 201200
+        count: 1
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      isOpenBuff: 1
+      BuffList:
+        Buff_ID: 0200000003000000
+        count: 1
+    - EnemyList:
+      - dataID: 200700
+        count: 2
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      - dataID: 204000
+        count: 8
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      - dataID: 201200
+        count: 1
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      isOpenBuff: 0
+      BuffList:
+        Buff_ID: 
+        count: 0
+    - EnemyList:
+      - dataID: 200700
+        count: 2
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      - dataID: 204000
+        count: 8
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      - dataID: 201200
+        count: 1
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      isOpenBuff: 0
+      BuffList:
+        Buff_ID: 
+        count: 0
+    - EnemyList:
+      - dataID: 200700
+        count: 2
+        CreatePos: {x: 2.56, y: -1.87, z: 0}
+        MaxRadius: -4
+        MinRandius: 0
+      - dataID: 204000
+        count: 8
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      - dataID: 201200
+        count: 1
+        CreatePos: {x: 0, y: 0, z: 0}
+        MaxRadius: 0
+        MinRandius: 0
+      isOpenBuff: 0
+      BuffList:
+        Buff_ID: 
+        count: 0

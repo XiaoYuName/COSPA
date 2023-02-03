@@ -137,7 +137,7 @@ namespace ARPG.UI.Config
     public class RegionBuffData
     {
         [Header("BUFF选择器")]
-        public List<string> Buff_ID = new List<string>();
+        public List<BuffIDMode> Buff_ID = new List<BuffIDMode>();
 
         [Tooltip("表示当前波中可以选择几个BUFF")]
         public int count;

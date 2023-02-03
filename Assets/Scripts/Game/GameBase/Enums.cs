@@ -287,7 +287,9 @@ namespace ARPG
    public enum BuffIDMode
    {
        无我,
-       
+       剑气,
+       急速,
+       快速施法,
    }
 
 }

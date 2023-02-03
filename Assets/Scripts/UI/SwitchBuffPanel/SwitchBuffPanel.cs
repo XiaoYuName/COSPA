@@ -14,13 +14,17 @@ namespace ARPG
         private RectTransform content;
         private RegionBuffData CurrentWaweBuff;
         private Button CloseBtn;
-        
+        private bool isEndClick;
+        private List<BuffData> SelectBuffList;
+
+
         public override void Init()
         {
             Title = Get<TextMeshProUGUI>("UIMask/Title");
             content = Get<RectTransform>("UIMask/Content");
             CloseBtn = Get<Button>("UIMask/CloseBtn");
-            Bind(CloseBtn,OnClick,"OnClick");
+            Bind(CloseBtn,OnChick,"OnChick");
+            SelectBuffList = new List<BuffData>();
         }
 
 
@@ -36,19 +40,61 @@ namespace ARPG
             yield return CreatBuffSwitchUI(buffData.Buff_ID);
         }
 
-        private IEnumerator CreatBuffSwitchUI(List<string> Buff)
+        private IEnumerator CreatBuffSwitchUI(List<BuffIDMode> Buff)
         {
+            isEndClick = false;
             for (int i = 0; i < Buff.Count; i++)
             {
-                SwitchBuffUI buffUI =  UISystem.Instance.InstanceUI<SwitchBuffUI>("SwitchBuffUI");
-                buffUI.IniData(Buff[i]);
-                yield return new WaitForSeconds(0.025f);
+                SwitchBuffUI buffUI =  UISystem.Instance.InstanceUI<SwitchBuffUI>("SwitchBuffUI",content);
+                buffUI.IniData(Buff[i].ToString());
+                yield return new WaitForSeconds(0.25f);
             }
+            
+            while (!isEndClick)
+            {
+                //在这里阻塞携程，直到BUFF选择完毕
+                yield return null;
+            }
+           
         }
 
-        private void OnClick()
+        private void OnChick()
         {
             //TODO: 给玩家添加上BUFF,关闭自身
+            if (SelectBuffList.Count < CurrentWaweBuff.count)
+            {
+                //TODO: 提示玩家还有BUFF没有选择
+                Debug.Log("当前还有:" +(CurrentWaweBuff.count - SelectBuffList.Count)+"个BUFF未选择");
+                return;
+            }
+
+            isEndClick = true;
+            UIHelper.Clear(content);
+            CurrentWaweBuff = null;
+            Close();
+            
+        }
+
+
+        public bool Add_BUFF(BuffData data)
+        {
+            if (!SelectBuffList.Contains(data) && SelectBuffList.Count < CurrentWaweBuff.count)
+            {
+                SelectBuffList.Add(data);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Remove_BUFF(BuffData data)
+        {
+            if (SelectBuffList.Contains(data))
+            {
+                SelectBuffList.Remove(data);
+                return true;
+            }
+            return false;
         }
     }
 }

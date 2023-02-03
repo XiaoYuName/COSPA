@@ -38,9 +38,9 @@ namespace ARPG
             return RegionConfig.GetRegionSingleton(Name);
         }
 
-        public BuffData GetBUFFData(string name)
+        public BuffData GetBUFFData(string ID)
         {
-            return buffConfig.BuffDatas.Find(b => b.BuffName == name);
+            return buffConfig.BuffDatas.Find(b => b.BuffName == ID);
         }
 
         public List<TaleItemData> GetAllTale()
