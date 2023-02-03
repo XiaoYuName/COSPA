@@ -60,14 +60,15 @@ namespace ARPG
 
         private void OnChick()
         {
-            //TODO: 给玩家添加上BUFF,关闭自身
+            
             if (SelectBuffList.Count < CurrentWaweBuff.count)
             {
-                //TODO: 提示玩家还有BUFF没有选择
-                Debug.Log("当前还有:" +(CurrentWaweBuff.count - SelectBuffList.Count)+"个BUFF未选择");
+                string des = "当前还有:" + (CurrentWaweBuff.count - SelectBuffList.Count) + "个BUFF未选择";
+                UISystem.Instance.ShowTips(des);
                 return;
             }
 
+            //TODO: 给玩家添加上BUFF,关闭自身
             isEndClick = true;
             UIHelper.Clear(content);
             CurrentWaweBuff = null;

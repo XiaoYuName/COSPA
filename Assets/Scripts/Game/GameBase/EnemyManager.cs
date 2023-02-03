@@ -155,6 +155,13 @@ namespace ARPG
 
         public IEnumerator isBuff()
         {
+            if (currentIndex >= currentRegion.WaveItems.Count)
+            {
+                //表示最后一波
+                InstanceEnemy();
+                yield break;
+            }
+
             if (currentRegion.WaveItems[currentIndex].isOpenBuff)
             {
                 SwitchBuffPanel switchBuffPanel = UISystem.Instance.GetUI<SwitchBuffPanel>("SwitchBuffPanel");

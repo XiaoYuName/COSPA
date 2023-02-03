@@ -31,6 +31,12 @@ MonoBehaviour:
     parentName: UIPanel
     Type: 1
     isInit: 0
+  - ID: PopTips
+    Prefab: {fileID: 797173082641520856, guid: 8e64c382847ab534c86ce85cc426cf0b, type: 3}
+    details: "\u63D0\u793A\u6846"
+    parentName: UITop
+    Type: 2
+    isInit: 0
   - ID: CharacterPanel
     Prefab: {fileID: 427020988299271155, guid: 2e57f09c0da41e7428d4ab99bf3edcd3, type: 3}
     details: "\u89D2\u8272\u754C\u9762"
@@ -184,7 +190,7 @@ MonoBehaviour:
   - ID: SwitchBuffPanel
     Prefab: {fileID: 6207137663822103200, guid: 6670f8b3a868a824aa28f3f0f70f5326, type: 3}
     details: "\u9009\u62E9BUFF\u754C\u9762"
-    parentName: UITop
+    parentName: UIPop
     Type: 2
     isInit: 0
   UIParents:

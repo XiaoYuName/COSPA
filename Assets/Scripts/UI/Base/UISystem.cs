@@ -415,7 +415,7 @@ namespace ARPG
         }
 
         /// <summary>
-        /// 显示提示标题
+        /// 显示提示弹窗
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="des">内容</param>
@@ -450,6 +450,36 @@ namespace ARPG
         }
 
         /// <summary>
+        /// 显示提示弹窗
+        /// </summary>
+        /// <param name="description">文本描述</param>
+        /// <param name="waitTime">等待时长</param>
+        /// <param name="tiem">动画时长</param>
+        /// <param name="endAction">结束回调</param>
+        /// <param name="waitAction">等待时回调</param>
+        public void ShowTips(string description,float waitTime =0.35f,float tiem =0.25f,Action endAction = null,
+            Action waitAction = null)
+        {
+            PopTips ui = GetUI<PopTips>("PopTips");
+            ui.transform.SetAsLastSibling();
+            ui.Show(description,waitTime,tiem);
+        }
+
+        /// <summary>
+        /// 显示提示弹窗
+        /// </summary>
+        /// <param name="description">文本内容</param>
+        /// <param name="waitAction">等待这个协程执行完毕后再执行下一个time</param>
+        /// <param name="tiem">动画总过度时间</param>
+        /// <param name="endAction">结束委托</param>
+        public void ShowTips(string description,IEnumerator waitAction, float tiem = 0.25f, Action endAction = null)
+        {
+            PopTips ui = GetUI<PopTips>("PopTips");
+            ui.transform.SetAsLastSibling();
+            ui.Show(description,waitAction,endAction,tiem);
+        }
+        
+        /// <summary>
         /// 显示倒计时UI
         /// </summary>
         /// <param name="time">倒计时时间</param>
@@ -462,7 +492,6 @@ namespace ARPG
         }
 
         #endregion
-
     }
 }
 
