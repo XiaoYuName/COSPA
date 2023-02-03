@@ -86,7 +86,7 @@ namespace ARPG.UI
                     {
                         if (temp >= bag.exp+CurrentExp)
                         {
-                            bag.exp += value;
+                            bag.exp += CurrentExp;
                             LevelSlider.value = bag.exp;
                             LevelSliderText.text = LevelSlider.value + "/" + LevelSlider.maxValue;
                             yield break;
