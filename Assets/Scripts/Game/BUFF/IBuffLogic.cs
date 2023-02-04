@@ -10,6 +10,8 @@ namespace ARPG
         IDamage GetIDamage();
 
         BuffStateUI GetStateUI();
+
+        void AddBuff(BuffData data);
     }
 }
 

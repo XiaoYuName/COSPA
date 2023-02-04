@@ -45,11 +45,9 @@ namespace ARPG
             switch (data.buffType)
             {
                 case BuffType.伤害:
-                    //TODO： 在进行计算伤害时，计算伤害增加量
                     BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.buffPic);
                     break;
                 case BuffType.增益:
-                    //TODO: 开始增益自身属性
                     if (piccorotine != null)
                     {
                         if(curretnLevel<data.maxLevel)

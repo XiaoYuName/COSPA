@@ -69,3 +69,45 @@ MonoBehaviour:
     valueBuff: 0.25
     buffTrigger: 1
     description: "\u91CA\u653E\u6280\u80FD\u65F6\u53E0\u52A0\u5C42\u6570\uFF0C\u6BCF\u5C42\u65BD\u6CD5\u901F\u5EA6+0.25\uFF0C\u4E0A\u965015\u5C42"
+  - BuffName: "\u6C14\u97F5"
+    SpriteID: "\u6C14\u97F5BUFF"
+    buffType: 1
+    random: 1
+    buffPic: 0
+    behaviourType: 1
+    PicMode: 9
+    Pool: []
+    continueTime: 5
+    maxLevel: 5
+    layer: 1
+    valueBuff: 0.25
+    buffTrigger: 5
+    description: "\u79FB\u52A8\u65F6\u589E\u52A0\u79FB\u52A8\u901F\u5EA6\uFF0C\u6BCF\u5C42\u589E\u52A00.1\uFF0C\u6700\u59275\u5C42"
+  - BuffName: "\u8D85\u8D8A"
+    SpriteID: "\u8D85\u8D8ABUFF"
+    buffType: 0
+    random: 1
+    buffPic: 15
+    behaviourType: 0
+    PicMode: 10
+    Pool: []
+    continueTime: -1
+    maxLevel: -1
+    layer: 0
+    valueBuff: 0
+    buffTrigger: 1
+    description: "\u6700\u7EC8\u4F24\u5BB3+15%"
+  - BuffName: "\u9886\u609F"
+    SpriteID: "\u9886\u609FBUFF"
+    buffType: 0
+    random: 1
+    buffPic: 150
+    behaviourType: 0
+    PicMode: 10
+    Pool: []
+    continueTime: -1
+    maxLevel: -1
+    layer: 0
+    valueBuff: 0
+    buffTrigger: 8
+    description: "\u6BCF\u653B\u51FB\u4E09\u6B21\uFF0C\u4E0B\u6B21\u653B\u51FB\u4F24\u5BB3\u589E\u52A0+150%"

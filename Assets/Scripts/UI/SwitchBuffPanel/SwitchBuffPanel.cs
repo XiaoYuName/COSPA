@@ -70,6 +70,15 @@ namespace ARPG
             }
 
             //TODO: 给玩家添加上BUFF,关闭自身
+            if (GameManager.Instance.Player != null)
+            {
+                foreach (var data in SelectBuffList)
+                {
+                    GameManager.Instance.Player.AddBuff(data);
+                }
+            }
+
+
             isEndClick = true;
             UIHelper.Clear(content);
             CurrentWaweBuff = null;

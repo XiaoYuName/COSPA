@@ -132,7 +132,9 @@ namespace ARPG
         {
             if (InputSpeed != Vector2.zero)
             {
-                rb.velocity = InputSpeed.normalized * State.MovSpeed  * animSpeed* Time.fixedDeltaTime;
+                //加成：面板移动速度+BUFF增加移动速度+动画播放速度
+                rb.velocity = InputSpeed.normalized * State.MovSpeed * animSpeed *
+                              (1 + BUFFManager.Instance.GetTyepValue(this, BuffType.增益, StateMode.移动速度)) * Time.fixedDeltaTime;
                 BuffTriggerEvent(BuffTrigger.移动时);
             }
             else
@@ -173,6 +175,7 @@ namespace ARPG
             SkillDic[SkillType.Attack].Play();
             BuffTriggerEvent(BuffTrigger.攻击时);
         }
+
 
         /// <summary>
         /// 技能1回调函数
@@ -289,6 +292,20 @@ namespace ARPG
         {
             return this;
         }
+        
+        /// <summary>
+        /// 添加BUFF到
+        /// </summary>
+        /// <param name="buff"></param>
+        public void AddBuff(BuffData buff)
+        {
+            BuffData newBuff = buff;
+            if (newBuff.behaviourType == BuffBehaviourType.光环) 
+                GetStateUI().AddBuffItemUI(newBuff.ToBuff(this));
+            Buffs.Add(newBuff.ToBuff(this));
+        }
+
+        
     }
 }
 

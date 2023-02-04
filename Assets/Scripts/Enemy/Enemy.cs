@@ -12,6 +12,8 @@ namespace ARPG
 {
     public class Enemy : MonoBehaviour,IDamage,IBuffLogic
     {
+
+
         /// <summary>
         /// Spine 动画
         /// </summary>
@@ -218,10 +220,10 @@ namespace ARPG
         {
             return null;
         }
-
-        private void OnDrawGizmosSelected()
+        
+        public void AddBuff(BuffData buff)
         {
-             SkillDic[SkillType.Skill_01].OnGizmosRadius();
+            
         }
 
        

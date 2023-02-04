@@ -278,6 +278,19 @@ namespace ARPG
        每释放三次技能_下一次技能,
    }
 
+   public enum StopTrigger
+   {
+       持续,
+       层数清空,
+       攻击时,
+       释放技能时,
+       受击时,
+       死亡时,
+       攻击领主时,
+       移动时,
+       站立时,
+   }
+
    public enum BuffLayer
    {
        单层,
@@ -297,6 +310,9 @@ namespace ARPG
        剑气,
        急速,
        快速施法,
+       气韵,
+       超越,
+       领悟
    }
 
 }

@@ -14,6 +14,7 @@ namespace ARPG.UI
         private Image FillAmount;
         private GameObject Descriptioninfo;
         private TextMeshProUGUI Description;
+        private int currentLevel;
         public override void Init()
         {
             icon = Get<Image>("icon");
@@ -22,10 +23,12 @@ namespace ARPG.UI
             FillAmount = Get<Image>("FillAmount");
             Descriptioninfo = Get("Descriptioninfo");
             Description = Get<TextMeshProUGUI>("Descriptioninfo/Description");
+            currentLevel = 1;
         }
 
         public void InitData(BuffData data)
         {
+            currentLevel = 1;
             icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
             Name.text = data.BuffName;
             Level.gameObject.SetActive(data.behaviourType != BuffBehaviourType.光环);
@@ -46,7 +49,9 @@ namespace ARPG.UI
         /// </summary>
         public void RefUI(int level)
         {
+            if (currentLevel == level) return;
             Level.text = level.ToString();
+            currentLevel = level;
         }
 
         public IEnumerator FillAmountTween(float corontinetime)
