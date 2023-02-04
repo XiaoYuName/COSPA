@@ -144,12 +144,10 @@ namespace ARPG
             CurrenEnemys.Remove(diEnemy);
             if (CurrenEnemys.Count > 0) //如果当前波段还有敌人,则直接返回,如果没有敌人了,则进行刷新下一波敌人
             {
-                Debug.Log("当前波段还有敌人");
                 return;
             }
             
             currentIndex++;
-            //TODO: 神圣殿堂BUFF选择界面
             StartCoroutine(isBuff());
         }
 

@@ -284,10 +284,6 @@ namespace ARPG
        攻击时,
        释放技能时,
        受击时,
-       死亡时,
-       攻击领主时,
-       移动时,
-       站立时,
    }
 
    public enum BuffLayer

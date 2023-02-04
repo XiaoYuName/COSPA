@@ -49,6 +49,7 @@ namespace ARPG
         //---------------------------Buff--------------------------------//
         [HideInInspector]public List<IBuff> Buffs = new List<IBuff>();
         private Dictionary<BuffTrigger, Dictionary<IBuff, int>> BuffNext;
+        public Dictionary<StopTrigger, Dictionary<IBuff,Action>> stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
 
         private void Awake()
         {
@@ -77,6 +78,7 @@ namespace ARPG
             anim.runtimeAnimatorController = data.AnimatorController;
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             BuffNext = new Dictionary<BuffTrigger, Dictionary<IBuff, int>>();
+            stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
             CreateSkillClass();
             CreatBuff();
         }
@@ -84,6 +86,7 @@ namespace ARPG
         private void CreateSkillClass()
         {
             SkillDic.Clear();
+            stopAttackEvent.Clear();
             for (int i = 0; i < data.SkillTable.Length; i++)
             {
                 if(String.IsNullOrEmpty(data.SkillTable[i].SkillID))continue;
@@ -93,7 +96,7 @@ namespace ARPG
                     attackButton.SetUI(data.SkillTable[i].Type, null);
                     return;
                 }
-
+                
                 Type type = Type.GetType("ARPG." +skillItem.ID);
                 if (type == null) return;
                 Skill skill = Activator.CreateInstance(type) as Skill;
@@ -136,8 +139,7 @@ namespace ARPG
             if (InputSpeed != Vector2.zero)
             {
                 //加成：面板移动速度+BUFF增加移动速度+动画播放速度
-                rb.velocity = InputSpeed.normalized * State.MovSpeed * animSpeed *
-                              (1 + BUFFManager.Instance.GetTyepValue(this, BuffType.增益, StateMode.移动速度)) * Time.fixedDeltaTime;
+                rb.velocity = InputSpeed.normalized * State.MovSpeed * animSpeed * BUFFManager.Instance.GetTyepValue(this, BuffType.增益, StateMode.移动速度) * Time.fixedDeltaTime;
                 BuffTriggerEvent(BuffTrigger.移动时);
             }
             else
@@ -178,6 +180,7 @@ namespace ARPG
             SkillDic[SkillType.Attack].Play();
             BuffTriggerEvent(BuffTrigger.攻击时);
             BuffAddTrigger(BuffTrigger.累计攻击);
+            TriggerStopEvent(StopTrigger.攻击时);
         }
 
 
@@ -290,6 +293,37 @@ namespace ARPG
             }
         }
 
+        private void AddStopEvent(StopTrigger trigger,IBuff buff, Action action)
+        {
+            if (!stopAttackEvent.ContainsKey(trigger))
+            {
+                stopAttackEvent.Add(trigger,new Dictionary<IBuff, Action>());
+            }
+
+            if (!stopAttackEvent[trigger].ContainsKey(buff))
+            {
+                stopAttackEvent[trigger].Add(buff,action);
+            }
+            stopAttackEvent[trigger][buff] = action;
+        }
+
+        public void TriggerStopEvent(StopTrigger trigger)
+        {
+            if (stopAttackEvent.ContainsKey(trigger))
+            {
+                for (int i = 0; i < stopAttackEvent[trigger].Count; i++)
+                {
+                    (IBuff Item, Action action) = stopAttackEvent[trigger].ElementAt(i);
+                    if (Item.data.StopTrigger == trigger)
+                    {
+                        action?.Invoke();
+                        stopAttackEvent[trigger].Remove(Item);
+                    }
+                }
+            }
+        }
+
+
         private void CreatBuff()
         {
             for (int i = 0; i < data.deftualBuffID.Count; i++)
@@ -352,20 +386,21 @@ namespace ARPG
             {
                 BuffNext[trigger].Add(IBuff,0);
             }
-
             if (value >= 0)
             {
                 BuffNext[trigger][IBuff] = value;
-
                 if (BUFFManager.Instance.isNextType(IBuff.data.buffTrigger))
                     GetStateUI().RefBUFF_UI(IBuff, value);
             }
-
-            
             if (IBuff.data.NextLevel >=0 && value >= IBuff.data.NextLevel) //满足条件,触发器触发后归0
             {
-                IBuff.Trigger(trigger);
-                BuffNext[trigger][IBuff] = 0;
+                void Action()
+                {
+                    IBuff.Trigger(trigger);
+                    BuffNext[trigger][IBuff] = 0;
+                    GetStateUI().RemoveBUFF_UI(IBuff);
+                }
+                AddStopEvent(IBuff.data.StopTrigger,IBuff,Action);
             }
         }
     }

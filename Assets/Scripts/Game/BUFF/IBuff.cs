@@ -47,7 +47,24 @@ namespace ARPG
                 case BuffType.伤害:
                     if (BUFFManager.Instance.isNextType(data.buffTrigger))
                     {
-                        Debug.LogError("累计伤害类型准备触发");
+                        switch (data.StopTrigger)
+                        {
+                            case StopTrigger.持续:
+                                BUFFManager.Instance.StartCoroutine(WaitNextPic());
+                                break;
+                            case StopTrigger.层数清空:
+                                BUFFManager.Instance.StartCoroutine(SunLevelWait());
+                                break;
+                            case StopTrigger.攻击时:
+                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                                break;
+                            case StopTrigger.释放技能时:
+                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                                break;
+                            case StopTrigger.受击时:
+                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                                break;
+                        }
                     }
                     else
                     {
@@ -80,7 +97,7 @@ namespace ARPG
             }
         }
 
-        public IEnumerator WaitPicLevel()
+        private IEnumerator WaitPicLevel()
         {
             //1.显示UI,
             curretnLevel = 1;
@@ -109,6 +126,24 @@ namespace ARPG
             }
         }
 
+        private IEnumerator WaitNextPic()
+        {
+            yield return new WaitForSeconds(data.continueTime);
+            BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);
+        }
+
+        private IEnumerator SunLevelWait()
+        {
+            int lavel = data.maxLevel;
+            AddBuffUI();
+            for (int i = lavel; i <= 1; i++)
+            {
+                RefBuffUI(i);
+                yield return new WaitForSeconds(data.continueTime);
+            }
+            BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);
+            RemoveBuffUI();
+        }
 
         private void AddBuffUI()
         {
@@ -120,6 +155,11 @@ namespace ARPG
         {
             if(stateUI!= null)
                 stateUI.RefBUFF_UI(this);
+        }
+        private void RefBuffUI(int level)
+        {
+            if(stateUI!= null)
+                stateUI.RefBUFF_UI(this,level);
         }
 
         private void RemoveBuffUI()

@@ -198,6 +198,7 @@ namespace ARPG
         public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint)
         {
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
+            float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
             if (item.SkillType.type == DamageType.Treatment)
             {
                 OptionAddHp(attack,item,BoundPoint);
@@ -207,7 +208,6 @@ namespace ARPG
                 }
                 return;
             }
-
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
             float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
@@ -231,8 +231,8 @@ namespace ARPG
                     //3.计算BUFF加成
                     Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
                     //4.计算最终伤害
-                    Physics *= (1+(BuffValue/10));
-                    
+                    Physics *= (1+(BuffValue/100));
+                    Physics *= (1 + (NextBuffVlaue / 100));
                     Physics = Mathf.Max(1, (int)Physics);
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -252,10 +252,9 @@ namespace ARPG
                     //1.1 伤害要减去地方防御力
                     Magic -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
                     //2.基础攻击力加技能基础伤害
-                    
                     Magic += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.魔法攻击力);
-                    Magic *= (1+(BuffValue/10));
-
+                    Magic *= (1+(BuffValue/100));
+                    Magic *= (1 + (NextBuffVlaue / 100));
                     Magic = Mathf.Max(1, (int)Magic);
                     target.IDamage((int)Math.Round(Magic,0));
                     DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();

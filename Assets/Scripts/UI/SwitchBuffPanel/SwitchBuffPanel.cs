@@ -61,15 +61,12 @@ namespace ARPG
 
         private void OnChick()
         {
-            
             if (SelectBuffList.Count < CurrentWaweBuff.count)
             {
                 string des = "当前还有:" + (CurrentWaweBuff.count - SelectBuffList.Count) + "个BUFF未选择";
                 UISystem.Instance.ShowTips(des);
                 return;
             }
-
-            //TODO: 给玩家添加上BUFF,关闭自身
             if (GameManager.Instance.Player != null)
             {
                 foreach (var data in SelectBuffList)
@@ -77,14 +74,11 @@ namespace ARPG
                     GameManager.Instance.Player.AddBuff(data);
                 }
             }
-
-
             isEndClick = true;
             UIHelper.Clear(content);
             CurrentWaweBuff = null;
             SelectBuffList.Clear();
             Close();
-            
         }
 
 
