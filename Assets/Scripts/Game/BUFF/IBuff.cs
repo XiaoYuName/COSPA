@@ -137,7 +137,7 @@ namespace ARPG
         {
             int lavel = data.maxLevel;
             AddBuffUI();
-            for (int i = lavel; i <= 1; i++)
+            for (int i = lavel; i >= 1; i--)
             {
                 RefBuffUI(i);
                 BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.valueBuff*i);

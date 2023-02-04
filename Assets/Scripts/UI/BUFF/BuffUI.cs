@@ -42,7 +42,13 @@ namespace ARPG.UI
                 FillAmount.fillAmount = 0;
                 return;
             }
-            
+
+            if (BUFFManager.Instance.isNextType(data.buffTrigger) && data.StopTrigger == StopTrigger.层数清空)
+            {
+                StartCoroutine(FillAmountTween(data.maxLevel, data.continueTime));
+                return;
+            }
+
             StartCoroutine(FillAmountTween(data.continueTime));
         }
         public void InitData(BuffData data,bool isActivelevel)
@@ -97,14 +103,34 @@ namespace ARPG.UI
                     time = corontinetime;
                     FillAmount.fillAmount = 1;
                 }
-
                 float fillAmount = Mathf.Min(((1/corontinetime)*Time.deltaTime),0.1f);
                 FillAmount.fillAmount -= Mathf.Max(fillAmount, 0);
                 yield return null;
             }
         }
 
-        
+        public IEnumerator FillAmountTween(int level, float corontinetime)
+        {
+            FillAmount.fillAmount = 1;
+            for (int i = level; i >= 1; i--)
+            {
+                float tiem = corontinetime;
+                while (gameObject.activeSelf)
+                {
+                    tiem -= Time.deltaTime;
+                    if (tiem <= 0)
+                    {
+                        FillAmount.fillAmount = 1;
+                        break;
+                    }
+                    float fillAmount = Mathf.Min(((1/corontinetime)*Time.deltaTime),0.1f);
+                    FillAmount.fillAmount -= Mathf.Max(fillAmount, 0);
+                    yield return null;
+                }
+            }
+        }
+
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             Descriptioninfo.gameObject.SetActive(true);

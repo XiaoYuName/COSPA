@@ -404,6 +404,7 @@ namespace ARPG
                 if (IBuff.data.StopTrigger is StopTrigger.持续 or StopTrigger.层数清空)
                 {
                     Action();
+                    BuffNext[trigger].Remove(IBuff);
                 }
                 else
                 {
