@@ -11,14 +11,15 @@ namespace ARPG
         /// </summary>
         private Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, Dictionary<StateMode,float>>>> CurretnBUFF =
             new Dictionary<IBuffLogic, Dictionary<BuffType, Dictionary<IBuff, Dictionary<StateMode,float>>>>();
-
-
+        
+        
         /// <summary>
         /// 注册BUFF增益字典表
         /// </summary>
         /// <param name="character">释放者</param>
         /// <param name="type">BUFF类型</param>
         /// <param name="Buff">BUFF技能</param>
+        /// <param name="BUFFMode">加成类型</param>
         /// <param name="value">增益值</param>
         public void AddDictionary(IBuffLogic character,BuffType type,IBuff Buff,StateMode BUFFMode,float value)
         {
@@ -104,6 +105,13 @@ namespace ARPG
                 }
             }
             return res;
+        }
+
+        public bool isNextType(BuffTrigger trigger)
+        {
+            if (trigger == BuffTrigger.累计攻击 || trigger == BuffTrigger.累计技能 || trigger == BuffTrigger.累计受击)
+                return true;
+            return false;
         }
     }
 }

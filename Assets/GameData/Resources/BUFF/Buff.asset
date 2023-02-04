@@ -22,7 +22,9 @@ MonoBehaviour:
     PicMode: 10
     Pool: []
     continueTime: -1
+    StopTrigger: 0
     maxLevel: -1
+    NextLevel: -1
     layer: 0
     valueBuff: -1
     buffTrigger: 0
@@ -36,7 +38,9 @@ MonoBehaviour:
     PicMode: 8
     Pool: []
     continueTime: 5
+    StopTrigger: 1
     maxLevel: 8
+    NextLevel: -1
     layer: 0
     valueBuff: 0.1
     buffTrigger: 0
@@ -50,7 +54,9 @@ MonoBehaviour:
     PicMode: 8
     Pool: []
     continueTime: 5
+    StopTrigger: 1
     maxLevel: 15
+    NextLevel: -1
     layer: 0
     valueBuff: 0.1
     buffTrigger: 0
@@ -64,7 +70,9 @@ MonoBehaviour:
     PicMode: 11
     Pool: []
     continueTime: 15
+    StopTrigger: 1
     maxLevel: 15
+    NextLevel: -1
     layer: 0
     valueBuff: 0.25
     buffTrigger: 1
@@ -78,7 +86,9 @@ MonoBehaviour:
     PicMode: 9
     Pool: []
     continueTime: 5
+    StopTrigger: 1
     maxLevel: 5
+    NextLevel: -1
     layer: 1
     valueBuff: 0.25
     buffTrigger: 5
@@ -92,7 +102,9 @@ MonoBehaviour:
     PicMode: 10
     Pool: []
     continueTime: -1
+    StopTrigger: 1
     maxLevel: -1
+    NextLevel: -1
     layer: 0
     valueBuff: 0
     buffTrigger: 1
@@ -102,12 +114,14 @@ MonoBehaviour:
     buffType: 0
     random: 1
     buffPic: 150
-    behaviourType: 0
-    PicMode: 10
+    behaviourType: 1
+    PicMode: 11
     Pool: []
     continueTime: -1
+    StopTrigger: 3
     maxLevel: -1
+    NextLevel: -1
     layer: 0
     valueBuff: 0
     buffTrigger: 8
-    description: "\u6BCF\u653B\u51FB\u4E09\u6B21\uFF0C\u4E0B\u6B21\u653B\u51FB\u4F24\u5BB3\u589E\u52A0+150%"
+    description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4E0B\u6B21\u6280\u80FD\u4F24\u5BB3\u589E\u52A0+150%"

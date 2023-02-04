@@ -44,6 +44,17 @@ namespace ARPG.UI
             StartCoroutine(FillAmountTween(data.continueTime));
         }
 
+        public void InitData(BuffData data, int value)
+        {
+            currentLevel = value;
+            icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
+            Name.text = data.BuffName;
+            Level.gameObject.SetActive(true);
+            Level.text = currentLevel.ToString();
+            Description.text = data.description;
+            FillAmount.fillAmount = 0;
+        }
+
         /// <summary>
         /// 刷新UI显示
         /// </summary>

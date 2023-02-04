@@ -45,7 +45,14 @@ namespace ARPG
             switch (data.buffType)
             {
                 case BuffType.伤害:
-                    BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.buffPic);
+                    if (BUFFManager.Instance.isNextType(data.buffTrigger))
+                    {
+                        Debug.LogError("累计伤害类型准备触发");
+                    }
+                    else
+                    {
+                        BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.buffPic);
+                    }
                     break;
                 case BuffType.增益:
                     if (piccorotine != null)

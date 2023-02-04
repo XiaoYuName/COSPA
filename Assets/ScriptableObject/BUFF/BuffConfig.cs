@@ -53,9 +53,20 @@ namespace ARPG
         public float continueTime;
 
         /// <summary>
+        /// 停止触发器
+        /// </summary>
+        public StopTrigger StopTrigger;
+
+        /// <summary>
         /// 最大层数
         /// </summary>
         public int maxLevel;
+
+        /// <summary>
+        /// 需要连击层数
+        /// </summary>
+        [Tooltip("需连击层数")]
+        public int NextLevel;
         
         /// <summary>
         /// BUFF层

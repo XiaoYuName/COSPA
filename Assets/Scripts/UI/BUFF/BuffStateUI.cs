@@ -25,6 +25,14 @@ namespace ARPG.UI
             BuffUis.Add(iBuff,ui);
         }
 
+        public void AddBuffItemUI(IBuff iBuff,int value)
+        {
+            if(BuffUis.ContainsKey(iBuff))return;
+            BuffUI ui = UISystem.Instance.InstanceUI<BuffUI>("BuffUI",content);
+            ui.InitData(iBuff.data,value);
+            BuffUis.Add(iBuff,ui);
+        }
+
         /// <summary>
         /// 刷新BUFF——UI;
         /// </summary>
@@ -33,6 +41,16 @@ namespace ARPG.UI
             if (BuffUis.ContainsKey(iBuff))
             {
                 BuffUis[iBuff].RefUI(iBuff.curretnLevel);
+            }
+        }
+        /// <summary>
+        /// 刷新BUFF——UI;
+        /// </summary>
+        public void RefBUFF_UI(IBuff iBuff,int value)
+        {
+            if (BuffUis.ContainsKey(iBuff))
+            {
+                BuffUis[iBuff].RefUI(value);
             }
         }
 

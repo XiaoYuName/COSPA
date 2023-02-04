@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ARPG.Config;
 using ARPG.UI;
 using Spine.Unity;
@@ -47,6 +48,7 @@ namespace ARPG
         private static readonly int s_Damage = Animator.StringToHash("Damage");
         //---------------------------Buff--------------------------------//
         [HideInInspector]public List<IBuff> Buffs = new List<IBuff>();
+        private Dictionary<BuffTrigger, Dictionary<IBuff, int>> BuffNext;
 
         private void Awake()
         {
@@ -74,6 +76,7 @@ namespace ARPG
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3,Skill_4);
             anim.runtimeAnimatorController = data.AnimatorController;
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
+            BuffNext = new Dictionary<BuffTrigger, Dictionary<IBuff, int>>();
             CreateSkillClass();
             CreatBuff();
         }
@@ -174,6 +177,7 @@ namespace ARPG
             anim.SetTrigger(s_Attack);
             SkillDic[SkillType.Attack].Play();
             BuffTriggerEvent(BuffTrigger.攻击时);
+            BuffAddTrigger(BuffTrigger.累计攻击);
         }
 
 
@@ -266,15 +270,36 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 触发连击类BUFF
+        /// </summary>
+        /// <param name="type">触发器类型</param>
+        private void BuffAddTrigger(BuffTrigger type)
+        {
+            if (BuffNext.ContainsKey(type))
+            {
+                for (int i = 0; i < BuffNext[type].Count; i++)
+                {
+                    (IBuff Key, int value) = BuffNext[type].ElementAt(i);
+                    if (BuffNext[type].ContainsKey(Key))
+                    {
+                        int newValue = value+1;
+                        RefDicBUFF(type,Key,newValue);
+                    }
+                }
+            }
+        }
+
         private void CreatBuff()
         {
             for (int i = 0; i < data.deftualBuffID.Count; i++)
             {
-                
                 BuffData newBuff = ConfigSystem.Instance.GetBUFFData(data.deftualBuffID[i]);
                 if (newBuff.behaviourType == BuffBehaviourType.光环) 
                     GetStateUI().AddBuffItemUI(newBuff.ToBuff(this));
-                Buffs.Add(newBuff.ToBuff(this));
+                IBuff newIBuff = newBuff.ToBuff(this);
+                Buffs.Add(newIBuff);
+                RefDicBUFF(newBuff.buffTrigger, newIBuff, 0);
             }
         }
 
@@ -300,12 +325,49 @@ namespace ARPG
         public void AddBuff(BuffData buff)
         {
             BuffData newBuff = buff;
+            IBuff newIBuff = newBuff.ToBuff(this);
             if (newBuff.behaviourType == BuffBehaviourType.光环) 
-                GetStateUI().AddBuffItemUI(newBuff.ToBuff(this));
-            Buffs.Add(newBuff.ToBuff(this));
+                GetStateUI().AddBuffItemUI(newIBuff);
+            Buffs.Add(newIBuff);
+            RefDicBUFF(newBuff.buffTrigger, newIBuff, 0);
+            if (BUFFManager.Instance.isNextType(buff.buffTrigger))
+            {
+                GetStateUI().AddBuffItemUI(newIBuff,0);
+            }
         }
 
-        
+        /// <summary>
+        /// 更新BUFF 连击表
+        /// </summary>
+        /// <param name="trigger">触发类型</param>
+        /// <param name="IBuff">BUFF实例</param>
+        /// <param name="value">值</param>
+        private void RefDicBUFF(BuffTrigger trigger,IBuff IBuff,int value)
+        {
+            if (!BuffNext.ContainsKey(trigger))
+            {
+                BuffNext.Add(trigger,new Dictionary<IBuff, int>());
+            }
+            if (!BuffNext[trigger].ContainsKey(IBuff))
+            {
+                BuffNext[trigger].Add(IBuff,0);
+            }
+
+            if (value >= 0)
+            {
+                BuffNext[trigger][IBuff] = value;
+
+                if (BUFFManager.Instance.isNextType(IBuff.data.buffTrigger))
+                    GetStateUI().RefBUFF_UI(IBuff, value);
+            }
+
+            
+            if (IBuff.data.NextLevel >=0 && value >= IBuff.data.NextLevel) //满足条件,触发器触发后归0
+            {
+                IBuff.Trigger(trigger);
+                BuffNext[trigger][IBuff] = 0;
+            }
+        }
     }
 }
 
