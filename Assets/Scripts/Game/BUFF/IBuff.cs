@@ -140,6 +140,7 @@ namespace ARPG
             for (int i = lavel; i <= 1; i++)
             {
                 RefBuffUI(i);
+                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.valueBuff*i);
                 yield return new WaitForSeconds(data.continueTime);
             }
             BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);

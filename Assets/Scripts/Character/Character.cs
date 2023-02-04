@@ -401,7 +401,7 @@ namespace ARPG
                     BuffNext[trigger][IBuff] = 0;
                 }
 
-                if (IBuff.data.StopTrigger == StopTrigger.持续 || IBuff.data.StopTrigger == StopTrigger.层数清空)
+                if (IBuff.data.StopTrigger is StopTrigger.持续 or StopTrigger.层数清空)
                 {
                     Action();
                 }
