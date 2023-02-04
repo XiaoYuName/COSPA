@@ -199,7 +199,6 @@ namespace ARPG
         {
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
             float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
-            Debug.LogError("当前累计BUFF加成:" + NextBuffVlaue);
             if (item.SkillType.type == DamageType.Treatment)
             {
                 OptionAddHp(attack,item,BoundPoint);

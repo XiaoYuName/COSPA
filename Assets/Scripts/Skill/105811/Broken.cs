@@ -20,8 +20,8 @@ namespace ARPG
         public override void Play()
         {
             if(isCold || Player.animSpeed ==0)return;
-            Player.StartCoroutine(WaitSkillTime(data.CD));
             Player.anim.SetTrigger("Skill_4");
+            base.Play();
         }
 
         public void PlaySkill(string EventName)

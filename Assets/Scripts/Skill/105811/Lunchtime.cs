@@ -10,6 +10,7 @@ namespace ARPG
         {
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_2");
+            base.Play();
             GameManager.Instance.OptionDamage(Player,null,data,Player.transform.position);
         }
     }
