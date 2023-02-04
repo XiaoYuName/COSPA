@@ -140,7 +140,7 @@ namespace ARPG
             return mode switch
             {
                 StateMode.技能攻击力 => 0,
-                StateMode.攻击速度 => 1,
+                StateMode.攻击速度 => 0,
                 StateMode.暴击伤害 => 0,
                 StateMode.暴击率 => 0,
                 StateMode.最终伤害 => 0,
@@ -148,7 +148,7 @@ namespace ARPG
                 StateMode.生命值 => 0,
                 StateMode.生命恢复 => 0,
                 StateMode.移动速度 => 1,
-                StateMode.释放速度 => 1,
+                StateMode.释放速度 => 0,
                 StateMode.防御力 => 0,
                 StateMode.魔法攻击力 => 0,
                 _ => 1,
