@@ -396,11 +396,19 @@ namespace ARPG
             {
                 void Action()
                 {
+                    GetStateUI().RemoveBUFF_UI(IBuff);
                     IBuff.Trigger(trigger);
                     BuffNext[trigger][IBuff] = 0;
-                    GetStateUI().RemoveBUFF_UI(IBuff);
                 }
-                AddStopEvent(IBuff.data.StopTrigger,IBuff,Action);
+
+                if (IBuff.data.StopTrigger == StopTrigger.持续 || IBuff.data.StopTrigger == StopTrigger.层数清空)
+                {
+                    Action();
+                }
+                else
+                {
+                    AddStopEvent(IBuff.data.StopTrigger,IBuff,Action);  
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ namespace ARPG.UI
         private GameObject Descriptioninfo;
         private TextMeshProUGUI Description;
         private int currentLevel;
+        public BuffData currentdata;
         public override void Init()
         {
             icon = Get<Image>("icon");
@@ -29,6 +30,7 @@ namespace ARPG.UI
         public void InitData(BuffData data)
         {
             currentLevel = 1;
+            currentdata = data;
             icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
             Name.text = data.BuffName;
             Level.gameObject.SetActive(data.behaviourType != BuffBehaviourType.光环);
@@ -43,10 +45,28 @@ namespace ARPG.UI
             
             StartCoroutine(FillAmountTween(data.continueTime));
         }
-
+        public void InitData(BuffData data,bool isActivelevel)
+        {
+            currentLevel = 1;
+            currentdata = data;
+            icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
+            Name.text = data.BuffName;
+            Level.gameObject.SetActive(isActivelevel);
+            Level.text = "1";
+            Description.text = data.description;
+            if (data.behaviourType == BuffBehaviourType.光环)
+            {
+                Level.text = "99";
+                FillAmount.fillAmount = 0;
+                return;
+            }
+            
+            StartCoroutine(FillAmountTween(data.continueTime));
+        }
         public void InitData(BuffData data, int value)
         {
             currentLevel = value;
+            currentdata = data;
             icon.sprite = GameSystem.Instance.GetSprite(data.SpriteID);
             Name.text = data.BuffName;
             Level.gameObject.SetActive(true);

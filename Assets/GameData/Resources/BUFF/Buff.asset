@@ -125,3 +125,19 @@ MonoBehaviour:
     valueBuff: -1
     buffTrigger: 8
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4E0B\u6B21\u5BF9\u9996\u4E2A\u76EE\u6807\u4F24\u5BB3\u589E\u52A0+150%"
+  - BuffName: "\u89C9\u609F"
+    SpriteID: "\u89C9\u609FBUFF"
+    buffType: 0
+    random: 1
+    buffPic: 50
+    behaviourType: 1
+    PicMode: 10
+    Pool: []
+    continueTime: 30
+    StopTrigger: 0
+    maxLevel: -1
+    NextLevel: 3
+    layer: 0
+    valueBuff: -1
+    buffTrigger: 8
+    description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4F24\u5BB3\u589E\u52A0+50%,\u6548\u679C\u6301\u7EED30s"

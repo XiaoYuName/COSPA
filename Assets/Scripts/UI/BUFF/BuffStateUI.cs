@@ -24,6 +24,17 @@ namespace ARPG.UI
             ui.InitData(iBuff.data);
             BuffUis.Add(iBuff,ui);
         }
+        
+        /// <summary>
+        /// 添加BUFF_UI
+        /// </summary>
+        public void AddBuffItemUI(IBuff iBuff,bool isLevelActive)
+        {
+            if(BuffUis.ContainsKey(iBuff))return;
+            BuffUI ui = UISystem.Instance.InstanceUI<BuffUI>("BuffUI",content);
+            ui.InitData(iBuff.data,isLevelActive);
+            BuffUis.Add(iBuff,ui);
+        }
 
         public void AddBuffItemUI(IBuff iBuff,int value)
         {
@@ -77,7 +88,20 @@ namespace ARPG.UI
             UIHelper.Clear(content);
             BuffUis.Clear();
         }
-        
+
+        public BuffUI GetBUFF_UI(BuffData data)
+        {
+            foreach (var Key in BuffUis)
+            {
+                if (BuffUis[Key.Key].currentdata == data)
+                {
+                    return BuffUis[Key.Key];
+                }
+            }
+
+            return null;
+        }
+
     }
 }
 

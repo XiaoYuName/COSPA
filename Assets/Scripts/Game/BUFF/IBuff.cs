@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ARPG
@@ -47,6 +48,7 @@ namespace ARPG
                 case BuffType.伤害:
                     if (BUFFManager.Instance.isNextType(data.buffTrigger))
                     {
+                        BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                         switch (data.StopTrigger)
                         {
                             case StopTrigger.持续:
@@ -56,13 +58,10 @@ namespace ARPG
                                 BUFFManager.Instance.StartCoroutine(SunLevelWait());
                                 break;
                             case StopTrigger.攻击时:
-                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                                 break;
                             case StopTrigger.释放技能时:
-                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                                 break;
                             case StopTrigger.受击时:
-                                BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                                 break;
                         }
                     }
@@ -128,7 +127,9 @@ namespace ARPG
 
         private IEnumerator WaitNextPic()
         {
+            AddBuffUI(false);
             yield return new WaitForSeconds(data.continueTime);
+            RemoveBuffUI();
             BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);
         }
 
@@ -150,12 +151,19 @@ namespace ARPG
             if(stateUI!= null)
                 stateUI.AddBuffItemUI(this);
         }
+        
+        private void AddBuffUI(bool isActiveLevel)
+        {
+            if(stateUI!= null)
+                stateUI.AddBuffItemUI(this,isActiveLevel);
+        }
 
         private void RefBuffUI()
         {
             if(stateUI!= null)
                 stateUI.RefBUFF_UI(this);
         }
+        
         private void RefBuffUI(int level)
         {
             if(stateUI!= null)
