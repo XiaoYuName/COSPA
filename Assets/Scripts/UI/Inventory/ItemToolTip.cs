@@ -30,7 +30,7 @@ namespace ARPG.UI
             Count = Get<TextMeshProUGUI>("Mask/SlotUI/Count");
             Level = Get<TextMeshProUGUI>("Mask/SlotUI/Level");
             Powor = Get<TextMeshProUGUI>("Mask/SlotUI/Powor");
-            Obj = UISystem.Instance.GetPrefab<PropValue>("PropValue");
+            Obj = UISystem.Instance.GetPrefab<PropValue>("StateValue");
             content = Get<RectTransform>("Mask/Panel/Info/Scroll View/Content");
             CloseBtn = Get<Button>("Mask/Panel/CloseBtn");
             BindBtn = Get<Button>("Mask/Panel/BindBtn");
