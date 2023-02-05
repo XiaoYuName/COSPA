@@ -150,7 +150,6 @@ namespace ARPG
         {
             RefreshCharacterBag?.Invoke(ListBags);
         }
-
         #endregion
 
 

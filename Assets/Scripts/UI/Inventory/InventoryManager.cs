@@ -123,6 +123,17 @@ namespace ARPG
             return UserBag.PrincProgress;
         }
 
+        /// <summary>
+        /// 获取是否有该ID的Item定义
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public bool isItem(string ID)
+        {
+            Item item = _itemConfig.Get(ID);
+            return item != null;
+        }
+
         #endregion
 
         #region 删
@@ -173,6 +184,20 @@ namespace ARPG
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 删除背包的指定道具
+        /// </summary>
+        /// <param name="itemBagID">道具ID</param>
+        /// <param name="Amount">删除数量</param>
+        public void DeleteItemBag(string itemBagID, int Amount)
+        {
+             ItemBag bag = GetItemBag(itemBagID);
+             if (bag != null)
+             {
+                 DeleteItemBag(bag,Amount);
+             }
         }
 
 
@@ -265,6 +290,7 @@ namespace ARPG
             };
             AddItem(newBag);
         }
+        
 
         #endregion
 
@@ -292,6 +318,12 @@ namespace ARPG
                 characterBag.currentStar = Mathf.Min(star,6);
                 MessageAction.OnUpCharacterBag(characterBag);
             }
+        }
+
+
+        public void RefItemBag(string itemID)
+        {
+            
         }
 
 

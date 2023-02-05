@@ -21,7 +21,6 @@ namespace ARPG.UI
         private CharacterInfoUI CharacterInfoUI;
         private RectTransform content;
         private SlotUI _SlotUI;
-        private List<SlotUI> SlotList;
         private ItemToolTip _toolTip;
         /// <summary>
         /// 当前界面角色
@@ -56,7 +55,6 @@ namespace ARPG.UI
             CharacterInfoUI = GetComponentInChildren<CharacterInfoUI>();
             _toolTip = GetComponentInChildren<ItemToolTip>(true);
             _SlotUI = UISystem.Instance.GetPrefab<SlotUI>("SlotUI");
-            SlotList = new List<SlotUI>();
             _toolTip.Init();
             _toolTip.Close();
             _equipHeloUis = GetComponentsInChildren<EquipHeloUI>();
@@ -65,6 +63,7 @@ namespace ARPG.UI
             _setpUI = Get<SetpUI>("UIMask/Right/SwitchTablePanel/SetpPanel/SetpUI");
             _setpUI.Init();
             MessageAction.UpCharacterBag += RefCharacterBag;
+            MessageAction.RefreshItemBag += RefreshItemBag;
             _PowerUI = Get<PowerUI>("UIMask/Right/SwitchTablePanel/PowerPanel/PowerUI");
             _PowerUI.Init();
             
@@ -79,6 +78,16 @@ namespace ARPG.UI
             CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(obj.ID);
             PlaySpineAnimation(info.EquipAnimName);
             CreateSkillSlotUI(obj,info);
+        }
+
+        /// <summary>
+        /// 刷新背包变换回调
+        /// </summary>
+        /// <param name="itemBags"></param>
+        private void RefreshItemBag(List<ItemBag> itemBags)
+        {
+            CreateSlotUI();
+            _toolTip.Close();
         }
 
         private void  InitBtns()
@@ -256,6 +265,7 @@ namespace ARPG.UI
         public void OnDestroy()
         {
             MessageAction.UpCharacterBag -= RefCharacterBag;
+            MessageAction.RefreshItemBag -= RefreshItemBag;
         }
     }
 }

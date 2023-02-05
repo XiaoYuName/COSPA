@@ -19,6 +19,7 @@ namespace ARPG.UI
         private MaterialSlotUI _slotUI;
         private List<ItemBag> CurrentEquips = new List<ItemBag>();
         private int curretnIndex;
+        private int currentPoworAmount;
 
         public override void Init()
         {
@@ -31,12 +32,14 @@ namespace ARPG.UI
             _slotUI.Init();
             Bind(AddIndexBtn,()=>SetCurrentSlotUI(true),"OnChick");
             Bind(SunIndexBtn,()=>SetCurrentSlotUI(false),"OnChick");
+            Bind(PowerBtn,PaworEquip,"OnChick");
+            curretnIndex = 0;
         }
 
         public void InitData(List<ItemBag> Equips)
         {
-            curretnIndex = 0;
             CurrentEquips = Equips;
+            currentPoworAmount = 0;
             SetCurrentSlotUI(curretnIndex);
         }
 
@@ -72,10 +75,37 @@ namespace ARPG.UI
             ItemName.text = "<color=red>+"+itemBag.power+"</color> "+item.ItemName;
             ItemBag PaworItem = InventoryManager.Instance.GetItemBag(Settings.PoworID);
             int PaworAmount = (int)(Settings.PaworDeftualAmount*item.level* MathF.Max(itemBag.power,1));
-            if (PaworItem == null || PaworItem.count > 0)
+            currentPoworAmount = PaworAmount;
+            if (PaworItem == null || PaworItem.count < 0)
             {
                 SliderValue.text = "0" + "/" + PaworAmount;
             }
+            else
+            {
+                SliderValue.text = PaworItem.count + "/" + PaworAmount;
+            }
+        }
+
+        private void PaworEquip()
+        {
+            if (currentPoworAmount <= 0) return;
+            ItemBag PaworItem = InventoryManager.Instance.GetItemBag(Settings.PoworID);
+            if (PaworItem == null|| PaworItem.count < 0 || PaworItem.count < currentPoworAmount)
+            {
+                UISystem.Instance.ShowPopWindows("提示","材料不足","关闭",true);
+                return;
+            }
+            UISystem.Instance.ShowPopDialogue("提示","是否消耗"+currentPoworAmount+"强化石强化",
+                "确定","关闭",Pawor,null);
+        }
+
+        private void Pawor()
+        {
+            ItemBag itemBag = CurrentEquips[curretnIndex];
+            itemBag.power++;
+            InventoryManager.Instance.DeleteItemBag(Settings.PoworID, currentPoworAmount);
+            UISystem.Instance.ShowPopWindows("提示","强化成功","关闭");
+            MessageAction.OnRefreshItemBag(InventoryManager.Instance.GetItemAllBag());
         }
     }
 }
