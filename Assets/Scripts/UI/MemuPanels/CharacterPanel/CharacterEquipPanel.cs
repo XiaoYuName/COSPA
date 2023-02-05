@@ -43,6 +43,7 @@ namespace ARPG.UI
         private GameObject PowerPanel;
         private GameObject StepPanel;
         private SetpUI _setpUI;
+        private PowerUI _PowerUI;
         
         public override void Init()
         {
@@ -64,6 +65,9 @@ namespace ARPG.UI
             _setpUI = Get<SetpUI>("UIMask/Right/SwitchTablePanel/SetpPanel/SetpUI");
             _setpUI.Init();
             MessageAction.UpCharacterBag += RefCharacterBag;
+            _PowerUI = Get<PowerUI>("UIMask/Right/SwitchTablePanel/PowerPanel/PowerUI");
+            _PowerUI.Init();
+            
         }
 
         /// <summary>
@@ -121,6 +125,7 @@ namespace ARPG.UI
         private void CreateSlotUI()
         {
             UIHelper.Clear(content);
+            List<ItemBag> EquipBags = new List<ItemBag>();
             foreach (var Bag in InventoryManager.Instance.GetItemAllBag())
             {
                 Item item = InventoryManager.Instance.GetItem(Bag.ID);
@@ -128,7 +133,10 @@ namespace ARPG.UI
                SlotUI Obj =  Instantiate(_SlotUI, content);
                Obj.Init();
                Obj.InitData(Bag);
+               EquipBags.Add(Bag);
             }
+            if(EquipBags.Count !=0)
+                _PowerUI.InitData(EquipBags);
         }
 
         /// <summary>

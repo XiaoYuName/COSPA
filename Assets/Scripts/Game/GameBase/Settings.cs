@@ -41,6 +41,11 @@ namespace ARPG
         /// 经验值ID
         /// </summary>
         public const string ExpID = "92001";
+
+        /// <summary>
+        /// 强化石ID
+        /// </summary>
+        public const string PoworID = "22001";
         
         /// <summary>
         /// 计算成长值后的属性
@@ -61,6 +66,11 @@ namespace ARPG
             state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
             return state;
         }
+
+        /// <summary>
+        /// 强化的基础消耗材料
+        /// </summary>
+        public const int PaworDeftualAmount = 15;
     }
 }
 
