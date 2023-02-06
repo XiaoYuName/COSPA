@@ -28,6 +28,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: -1
     buffTrigger: 0
+    Trigger: 0
     description: "\u653B\u51FB\u65F6\u4F24\u5BB3\u589E\u52A0\u91CF+5%"
   - BuffName: "\u5251\u6C14"
     SpriteID: "\u5251\u6C14BUFF"
@@ -44,6 +45,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 0.1
     buffTrigger: 0
+    Trigger: 0
     description: "\u653B\u51FB\u65F6\u53E0\u52A0\u5C42\u6570\uFF0C\u6BCF\u5C42\u653B\u51FB\u901F\u5EA6+0.1\uFF0C\u4E0A\u96508\u5C42"
   - BuffName: "\u6025\u901F"
     SpriteID: "\u6025\u901FBUFF"
@@ -60,6 +62,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 0.1
     buffTrigger: 0
+    Trigger: 0
     description: "\u653B\u51FB\u65F6\u53E0\u52A0\u5C42\u6570\uFF0C\u6BCF\u5C42\u653B\u51FB\u901F\u5EA6+0.1\uFF0C\u4E0A\u965015\u5C42"
   - BuffName: "\u5FEB\u901F\u65BD\u6CD5"
     SpriteID: "\u5FEB\u901F\u65BD\u6CD5BUFF"
@@ -76,6 +79,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 0.25
     buffTrigger: 1
+    Trigger: 0
     description: "\u91CA\u653E\u6280\u80FD\u65F6\u53E0\u52A0\u5C42\u6570\uFF0C\u6BCF\u5C42\u65BD\u6CD5\u901F\u5EA6+0.25\uFF0C\u4E0A\u965015\u5C42"
   - BuffName: "\u6C14\u97F5"
     SpriteID: "\u6C14\u97F5BUFF"
@@ -92,6 +96,7 @@ MonoBehaviour:
     layer: 1
     valueBuff: 0.25
     buffTrigger: 5
+    Trigger: 0
     description: "\u79FB\u52A8\u65F6\u589E\u52A0\u79FB\u52A8\u901F\u5EA6\uFF0C\u6BCF\u5C42\u589E\u52A00.25\uFF0C\u6700\u592710\u5C42"
   - BuffName: "\u8D85\u8D8A"
     SpriteID: "\u8D85\u8D8ABUFF"
@@ -108,6 +113,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 0
     buffTrigger: 1
+    Trigger: 0
     description: "\u6700\u7EC8\u4F24\u5BB3+15%"
   - BuffName: "\u9886\u609F"
     SpriteID: "\u9886\u609FBUFF"
@@ -124,6 +130,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: -1
     buffTrigger: 8
+    Trigger: 0
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4E0B\u6B21\u5BF9\u9996\u4E2A\u76EE\u6807\u4F24\u5BB3\u589E\u52A0+150%"
   - BuffName: "\u89C9\u609F"
     SpriteID: "\u89C9\u609FBUFF"
@@ -140,6 +147,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: -1
     buffTrigger: 8
+    Trigger: 0
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4F24\u5BB3\u589E\u52A0+50%,\u6548\u679C\u6301\u7EED30s"
   - BuffName: "\u987F\u609F"
     SpriteID: "\u987F\u609FBUFF"
@@ -156,6 +164,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 8
     buffTrigger: 8
+    Trigger: 0
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u83B7\u5F9715\u5C42\u987F\u609FBUFF,\u6BCF\u5C42\u589E\u52A0<color=red>+8%\u6700\u7EC8\u4F24\u5BB3</color>\n\u6BCF10s\u51CF\u5C11\u4E00\u5C42"
   - BuffName: "\u6C14\u52BF"
     SpriteID: "\u6C14\u52BFBUFF"
@@ -166,10 +175,11 @@ MonoBehaviour:
     PicMode: 10
     Pool: []
     continueTime: 10
-    StopTrigger: 3
-    maxLevel: 2000
-    NextLevel: -1
+    StopTrigger: 0
+    maxLevel: 500
+    NextLevel: 500
     layer: 0
-    valueBuff: 0.01
-    buffTrigger: 5
-    description: "\u79FB\u52A8\u65F6\u589E\u52A0\u6C14\u52BF\u503C\uFF0C\u6BCF\u5C42\u589E\u52A00.01\u6700\u7EC8\u4F24\u5BB3,\u4E0A\u96502000\u5C42\n\u653B\u51FB\u65F6\u6D88\u8017\u6240\u6709\u6C14\u52BF\uFF0C\u83B7\u5F97\u5C42\u6570\u7684\u6700\u7EC8\u4F24\u5BB3,\u6548\u679C\u6301\u7EED15s"
+    valueBuff: 0.02
+    buffTrigger: 11
+    Trigger: 2
+    description: "\u79FB\u52A8\u65F6\u589E\u52A0\u6C14\u52BF\u503C\uFF0C\u6BCF\u5C42\u589E\u52A00.02\u6700\u7EC8\u4F24\u5BB3,\u4E0A\u96502000\u5C42\n\u653B\u51FB\u65F6\u6D88\u8017\u6240\u6709\u6C14\u52BF\uFF0C\u83B7\u5F97\u5C42\u6570\u7684\u6700\u7EC8\u4F24\u5BB3,\u6548\u679C\u6301\u7EED15s"

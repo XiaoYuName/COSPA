@@ -287,6 +287,17 @@ namespace ARPG
        受击时,
    }
 
+   public enum EndTrigger
+   {
+       Not,
+       攻击时,
+       释放技能时,
+       受击时,
+       回复自身时,
+       攻击领主时,
+       移动时,
+   }
+
    public enum BuffLayer
    {
        单层,

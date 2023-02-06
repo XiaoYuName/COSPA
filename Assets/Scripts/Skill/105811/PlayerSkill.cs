@@ -27,6 +27,7 @@ namespace ARPG
             Player.StartCoroutine(WaitSkillTime(data.CD));
             Player.BuffTriggerEvent(BuffTrigger.释放技能时);
             Player.TriggerStopEvent(StopTrigger.释放技能时);
+            Player.TriggerEndEvent(EndTrigger.释放技能时);
         }
 
         /// <summary>

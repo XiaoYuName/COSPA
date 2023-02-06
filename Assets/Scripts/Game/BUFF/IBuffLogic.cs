@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using ARPG.UI;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ namespace ARPG
         BuffStateUI GetStateUI();
 
         void AddBuff(BuffData data);
+
+        void AddBuffEvent(EndTrigger trigger, IBuff IBuff, Action action);
     }
 }
 

@@ -12,7 +12,7 @@ namespace ARPG
 {
     public class Enemy : MonoBehaviour,IDamage,IBuffLogic
     {
-
+        
 
         /// <summary>
         /// Spine 动画
@@ -225,7 +225,10 @@ namespace ARPG
         {
             
         }
-
+        public void AddBuffEvent(EndTrigger trigger, IBuff IBuff, Action action)
+        {
+            
+        }
        
     }
 }

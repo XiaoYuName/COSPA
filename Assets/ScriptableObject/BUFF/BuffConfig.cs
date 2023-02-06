@@ -79,9 +79,12 @@ namespace ARPG
         public float valueBuff;
 
         /// <summary>
-        /// Buff触发器
+        /// 起始触发器
         /// </summary>
         public BuffTrigger buffTrigger;
+
+        [Header("最终触发器")]
+        public EndTrigger Trigger;
 
         [ResizableTextArea,Tooltip("描述")]
         public string description;

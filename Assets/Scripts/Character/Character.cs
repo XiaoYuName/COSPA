@@ -51,6 +51,9 @@ namespace ARPG
         private Dictionary<BuffTrigger, Dictionary<IBuff, int>> BuffNext;
         public Dictionary<StopTrigger, Dictionary<IBuff,Action>> stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
 
+        private Dictionary<EndTrigger, Dictionary<IBuff, Action>> EndBuffTriggers =
+            new Dictionary<EndTrigger, Dictionary<IBuff, Action>>();
+
         private void Awake()
         {
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
@@ -142,6 +145,7 @@ namespace ARPG
                 rb.velocity = InputSpeed.normalized * State.MovSpeed * animSpeed * BUFFManager.Instance.GetTyepValue(this, BuffType.增益, StateMode.移动速度) * Time.fixedDeltaTime;
                 BuffTriggerEvent(BuffTrigger.移动时);
                 BuffAddTrigger(BuffTrigger.累计移动);
+                TriggerEndEvent(EndTrigger.移动时);
             }
             else
             {
@@ -182,6 +186,7 @@ namespace ARPG
             BuffTriggerEvent(BuffTrigger.攻击时);
             BuffAddTrigger(BuffTrigger.累计攻击);
             TriggerStopEvent(StopTrigger.攻击时);
+            TriggerEndEvent(EndTrigger.攻击时);
         }
 
 
@@ -308,6 +313,20 @@ namespace ARPG
             stopAttackEvent[trigger][buff] = action;
         }
 
+        public void AddEndBuff(EndTrigger trigger, IBuff buff, Action action)
+        {
+            if (!EndBuffTriggers.ContainsKey(trigger))
+            {
+                EndBuffTriggers.Add(trigger,new Dictionary<IBuff, Action>());
+            }
+
+            if (!EndBuffTriggers[trigger].ContainsKey(buff))
+            {
+                EndBuffTriggers[trigger].Add(buff,action);
+            }
+            EndBuffTriggers[trigger][buff] = action;
+        }
+
         public void TriggerStopEvent(StopTrigger trigger)
         {
             if (stopAttackEvent.ContainsKey(trigger))
@@ -324,6 +343,21 @@ namespace ARPG
             }
         }
 
+        public void TriggerEndEvent(EndTrigger trigger)
+        {
+            if (EndBuffTriggers.ContainsKey(trigger))
+            {
+                for (int i = 0; i < EndBuffTriggers[trigger].Count; i++)
+                {
+                    (IBuff Item, Action action) = EndBuffTriggers[trigger].ElementAt(i);
+                    if (Item.data.Trigger == trigger)
+                    {
+                        action?.Invoke();
+                        EndBuffTriggers[trigger].Remove(Item);
+                    }
+                }
+            }
+        }
 
         private void CreatBuff()
         {
@@ -371,6 +405,12 @@ namespace ARPG
             }
         }
 
+        public void AddBuffEvent(EndTrigger trigger, IBuff IBuff, Action action)
+        {
+            AddEndBuff(trigger,IBuff,action);
+        }
+
+
         /// <summary>
         /// 更新BUFF 连击表
         /// </summary>
@@ -401,8 +441,9 @@ namespace ARPG
                     IBuff.Trigger(trigger);
                     BuffNext[trigger][IBuff] = 0;
                 }
-
-                if (IBuff.data.StopTrigger is StopTrigger.持续 or StopTrigger.层数清空)
+                
+                
+                if (IBuff.data.StopTrigger is StopTrigger.持续 or StopTrigger.层数清空 && IBuff.data.Trigger == EndTrigger.Not)
                 {
                     Action();
                     BuffNext[trigger].Remove(IBuff);

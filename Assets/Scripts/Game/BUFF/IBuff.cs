@@ -48,18 +48,24 @@ namespace ARPG
                 case BuffType.伤害:
                     if (BUFFManager.Instance.isNextType(data.buffTrigger))
                     {
-                        if (data.buffPic <= 0)
-                        {
-                            BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
-                        }
-                        else
+                        if (data.buffPic > 0)
                         {
                             BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                         }
                         switch (data.StopTrigger)
                         {
                             case StopTrigger.持续:
-                                BUFFManager.Instance.StartCoroutine(WaitNextPic());
+                                if(data.Trigger == EndTrigger.Not)
+                                    BUFFManager.Instance.StartCoroutine(WaitNextPic());
+                                else
+                                {
+                                    tag.AddBuffEvent(data.Trigger,this,
+                                        delegate
+                                        {
+                                            BUFFManager.Instance.StartCoroutine(WaitNextPic());
+                                        });
+                                }
+
                                 break;
                             case StopTrigger.层数清空:
                                 BUFFManager.Instance.StartCoroutine(SunLevelWait());
