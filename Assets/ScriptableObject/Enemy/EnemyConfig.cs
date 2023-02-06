@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using NaughtyAttributes;
 using Spine.Unity;
 using UnityEngine;
 
@@ -46,6 +47,9 @@ namespace ARPG.Config
 
         [Tooltip("复用动画组件")]
         public AnimatorOverrideController Animator;
+
+        [Header("描述"),ResizableTextArea]
+        public string description;
     }
 
     public enum EnemyType

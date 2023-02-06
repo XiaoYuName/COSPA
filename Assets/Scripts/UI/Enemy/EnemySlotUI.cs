@@ -4,12 +4,13 @@ using ARPG.Config;
 using ARPG.UI.Config;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 namespace ARPG.UI
 {
-    public class EnemySlotUI : UIBase
+    public class EnemySlotUI : UIBase,IPointerDownHandler,IPointerUpHandler
     {
         private Image icon;
         protected Image faram;
@@ -41,7 +42,16 @@ namespace ARPG.UI
             count.text = "Count: "+data.count;
         }
 
-        
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if(_data!= null)
+                UISystem.Instance.ShowPopItem(IDType.怪物,_data.ID);
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            UISystem.Instance.ClosePopItem();
+        }
     }
 }
 

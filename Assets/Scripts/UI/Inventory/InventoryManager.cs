@@ -68,6 +68,16 @@ namespace ARPG
         /// </summary>
         /// <param name="ID">ID</param>
         /// <returns></returns>
+        public CharacterBag GetCharacterBag(string ID)
+        {
+            return UserBag.CharacterBags.Find(c =>c.ID == ID);
+        }
+
+        /// <summary>
+        /// 获取角色背包
+        /// </summary>
+        /// <param name="ID">ID</param>
+        /// <returns></returns>
         public CharacterBag GetBag(string ID)
         {
             return UserBag.CharacterBags.Find(c => c.ID == ID);

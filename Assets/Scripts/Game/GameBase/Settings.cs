@@ -21,6 +21,11 @@ namespace ARPG
         /// 
         public const float RewordTime = 0.5f;
 
+        /// <summary>
+        /// ShowItem 动画时间
+        /// </summary>
+        public const float isShowItemTime = 0.25f;
+
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
 
         //基础经验值: 经验值计算公式 :(基础经验值)*当前等级*(当前星级)

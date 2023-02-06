@@ -47,6 +47,8 @@ namespace ARPG
         {
             if (CurretnBUFF.ContainsKey(character))
                 CurretnBUFF.Remove(character);
+            if (CurrentNextBuff.ContainsKey(character))
+                CurrentNextBuff.Remove(character);
         } 
 
         /// <summary>

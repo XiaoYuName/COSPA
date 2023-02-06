@@ -312,4 +312,10 @@ namespace ARPG
        顿悟,
    }
 
+   public enum IDType
+   {
+       物品,
+       怪物,
+       角色,
+   }
 }

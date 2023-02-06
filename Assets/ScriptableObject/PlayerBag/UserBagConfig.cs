@@ -29,8 +29,8 @@ namespace ARPG.Config
         /// 主线任务进度表
         /// </summary>
         public Vector2Int PrincProgress;
-
         
+
     }
 
     [System.Serializable]

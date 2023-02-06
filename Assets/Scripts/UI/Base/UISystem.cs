@@ -491,6 +491,26 @@ namespace ARPG
             downTime.DownTiem(time,func);
         }
 
+        /// <summary>
+        /// 显示ShowItem详情
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="ID">ID</param>
+        public void ShowPopItem(IDType type,string ID)
+        {
+            PopShowItem ui = GetUI<PopShowItem>("PopShowItem");
+            ui.transform.SetAsLastSibling();
+            ui.Show(type,ID);
+        }
+        /// <summary>
+        /// 关闭ShowItem详情
+        /// </summary>
+        public void ClosePopItem()
+        {
+            PopShowItem ui = GetUI<PopShowItem>("PopShowItem");
+            ui.CloseShow();
+        }
+
         #endregion
     }
 }
