@@ -87,7 +87,7 @@ namespace ARPG
                         BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
                         return;
                     }
-                    piccorotine ??= BUFFManager.Instance.=-9765426(WaitPicLevel());
+                    piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
                     break;
                 case BuffType.减益:
                     //TODO: 开始减益目标属性
