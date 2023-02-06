@@ -145,7 +145,7 @@ namespace ARPG
         private void DeleteItemBag(ItemBag itemBag)
         {
             //1.判断背包是否拥有该物品
-            if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID))
+            if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID && i.power == itemBag.power))
             {
                 UserBag.ItemBags.Remove(itemBag);
                 MessageAction.OnRefreshItemBag(GetItemAllBag());
@@ -164,7 +164,7 @@ namespace ARPG
             {
                 for (int i = 0;  i< UserBag.ItemBags.Count; i++)
                 {
-                    if (UserBag.ItemBags[i].ID == itemBag.ID)
+                    if (UserBag.ItemBags[i].ID == itemBag.ID && UserBag.ItemBags[i].power == itemBag.power)
                     {
                         if (isMoney(itemBag.ID))
                         {
