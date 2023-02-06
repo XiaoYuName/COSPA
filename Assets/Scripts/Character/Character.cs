@@ -267,10 +267,15 @@ namespace ARPG
         {
             State.currentHp = Mathf.Min(State.currentHp+Reply,State.HP);
             StateUI.UpdateState(State);
+            BuffTriggerEvent(BuffTrigger.回复自身时);
         }
 
 
         //--------------------------------BUFF接口----------------------------------------//
+        /// <summary>
+        /// 触发触发器
+        /// </summary>
+        /// <param name="type">触发类型</param>
         public void BuffTriggerEvent(BuffTrigger type)
         {
             for (int i = 0; i < Buffs.Count; i++)
@@ -299,6 +304,12 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 添加Stop 触发器类型的BUFF 触发
+        /// </summary>
+        /// <param name="trigger">触发器类型</param>
+        /// <param name="buff">BUFF</param>
+        /// <param name="action">回调函数</param>
         private void AddStopEvent(StopTrigger trigger,IBuff buff, Action action)
         {
             if (!stopAttackEvent.ContainsKey(trigger))
@@ -313,6 +324,12 @@ namespace ARPG
             stopAttackEvent[trigger][buff] = action;
         }
 
+        /// <summary>
+        /// 添加End 触发器类型的BUFF 触发
+        /// </summary>
+        /// <param name="trigger">触发器类型</param>
+        /// <param name="buff">BUFF</param>
+        /// <param name="action">回调函数</param>
         public void AddEndBuff(EndTrigger trigger, IBuff buff, Action action)
         {
             if (!EndBuffTriggers.ContainsKey(trigger))
@@ -327,6 +344,10 @@ namespace ARPG
             EndBuffTriggers[trigger][buff] = action;
         }
 
+        /// <summary>
+        /// 触发所有Stop 类型的trigger
+        /// </summary>
+        /// <param name="trigger">触发器类型</param>
         public void TriggerStopEvent(StopTrigger trigger)
         {
             if (stopAttackEvent.ContainsKey(trigger))
@@ -343,6 +364,10 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 触发End 触发器内所有Trigger 类型的BUFF
+        /// </summary>
+        /// <param name="trigger">触发器类型</param>
         public void TriggerEndEvent(EndTrigger trigger)
         {
             if (EndBuffTriggers.ContainsKey(trigger))
@@ -359,6 +384,9 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 实例化BUFF并添加到自身
+        /// </summary>
         private void CreatBuff()
         {
             for (int i = 0; i < data.deftualBuffID.Count; i++)
@@ -372,16 +400,28 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 获取自身IBuffLogic 接口
+        /// </summary>
+        /// <returns></returns>
         public IBuffLogic GetBuffLogic()
         {
             return this;
         }
 
+        /// <summary>
+        /// 获取显示器UI组件
+        /// </summary>
+        /// <returns></returns>
         public BuffStateUI GetStateUI()
         {
             return StateUI.GetBuffStateUI();
         }
 
+        /// <summary>
+        /// 获取IDamage 接口
+        /// </summary>
+        /// <returns></returns>
         public IDamage GetIDamage()
         {
             return this;
@@ -405,6 +445,12 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 添加End Buff到触发器字典
+        /// </summary>
+        /// <param name="trigger">触发类型</param>
+        /// <param name="IBuff">BUFF 实例</param>
+        /// <param name="action">回调函数</param>
         public void AddBuffEvent(EndTrigger trigger, IBuff IBuff, Action action)
         {
             AddEndBuff(trigger,IBuff,action);

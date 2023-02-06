@@ -46,12 +46,12 @@ namespace ARPG
             switch (data.buffType)
             {
                 case BuffType.伤害:
-                    if (BUFFManager.Instance.isNextType(data.buffTrigger))
+                    if (BUFFManager.Instance.isNextType(data.buffTrigger))  //判断是否是累计型
                     {
                         if (data.buffPic > 0)
                         {
                             BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
-                        }
+                        } //判断是直接加伤还是层数加伤
                         else
                         {
                             Debug.LogFormat("添加加成 : {0},值:{1}",data.PicMode,data.maxLevel*data.valueBuff);
@@ -59,7 +59,7 @@ namespace ARPG
                                 data.valueBuff);
                         }
 
-                        switch (data.StopTrigger)
+                        switch (data.StopTrigger) //根据BUFF的停止类型进行不同处理
                         {
                             case StopTrigger.持续:
                                 BUFFManager.Instance.StartCoroutine(WaitNextPic());
@@ -75,7 +75,7 @@ namespace ARPG
                                 break;
                         }
                     }
-                    else
+                    else //如果不是累计类型,则直接进入加伤阶段
                     {
                         BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.buffPic);
                     }
@@ -105,7 +105,7 @@ namespace ARPG
                     throw new Exception("未知BUFF类型");
             }
         }
-
+        //普通层级类型BUFF 持续时间内增加层数
         private IEnumerator WaitPicLevel()
         {
             //1.显示UI,
@@ -135,6 +135,7 @@ namespace ARPG
             }
         }
 
+        //持续时间类型
         private IEnumerator WaitNextPic()
         {
             AddBuffUI(false);
@@ -143,6 +144,7 @@ namespace ARPG
             BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);
         }
 
+        //减层数类型
         private IEnumerator SunLevelWait()
         {
             int lavel = data.maxLevel;
@@ -157,30 +159,46 @@ namespace ARPG
             RemoveBuffUI();
         }
 
+        /// <summary>
+        /// 添加BUFFUI到战斗面板
+        /// </summary>
         private void AddBuffUI()
         {
             if(stateUI!= null)
                 stateUI.AddBuffItemUI(this);
         }
         
+        /// <summary>
+        /// 添加BUFFUI到战斗面板
+        /// </summary>
+        /// <param name="isActiveLevel">是否显示层数</param>
         private void AddBuffUI(bool isActiveLevel)
         {
             if(stateUI!= null)
                 stateUI.AddBuffItemUI(this,isActiveLevel);
         }
 
+        /// <summary>
+        /// 刷新UI面板的层数显示
+        /// </summary>
         private void RefBuffUI()
         {
             if(stateUI!= null)
                 stateUI.RefBUFF_UI(this);
         }
-        
+        /// <summary>
+        /// 刷新UI面板的层数显示
+        /// </summary>
+        /// <param name="level">层数</param>
         private void RefBuffUI(int level)
         {
             if(stateUI!= null)
                 stateUI.RefBUFF_UI(this,level);
         }
 
+        /// <summary>
+        /// 移除UI面板的BUFF 显示
+        /// </summary>
         private void RemoveBuffUI()
         {
             if(stateUI!= null)
