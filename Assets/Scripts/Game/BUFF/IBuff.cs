@@ -52,20 +52,17 @@ namespace ARPG
                         {
                             BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
                         }
+                        else
+                        {
+                            Debug.LogFormat("添加加成 : {0},值:{1}",data.PicMode,data.maxLevel*data.valueBuff);
+                            BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.maxLevel *
+                                data.valueBuff);
+                        }
+
                         switch (data.StopTrigger)
                         {
                             case StopTrigger.持续:
-                                if(data.Trigger == EndTrigger.Not)
-                                    BUFFManager.Instance.StartCoroutine(WaitNextPic());
-                                else
-                                {
-                                    tag.AddBuffEvent(data.Trigger,this,
-                                        delegate
-                                        {
-                                            BUFFManager.Instance.StartCoroutine(WaitNextPic());
-                                        });
-                                }
-
+                                BUFFManager.Instance.StartCoroutine(WaitNextPic());
                                 break;
                             case StopTrigger.层数清空:
                                 BUFFManager.Instance.StartCoroutine(SunLevelWait());

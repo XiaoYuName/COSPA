@@ -441,8 +441,13 @@ namespace ARPG
                     IBuff.Trigger(trigger);
                     BuffNext[trigger][IBuff] = 0;
                 }
-                
-                
+
+                if (IBuff.data.Trigger != EndTrigger.Not) //满足连击条件,并且有EndTrigger条件
+                {
+                    BuffNext[trigger].Remove(IBuff);
+                    AddEndBuff(IBuff.data.Trigger,IBuff,Action);
+                }
+
                 if (IBuff.data.StopTrigger is StopTrigger.持续 or StopTrigger.层数清空 && IBuff.data.Trigger == EndTrigger.Not)
                 {
                     Action();
