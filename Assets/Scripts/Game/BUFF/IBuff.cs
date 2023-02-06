@@ -48,7 +48,14 @@ namespace ARPG
                 case BuffType.伤害:
                     if (BUFFManager.Instance.isNextType(data.buffTrigger))
                     {
-                        BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                        if (data.buffPic <= 0)
+                        {
+                            BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                        }
+                        else
+                        {
+                            BUFFManager.Instance.AddNextDictionary(tag,data.buffTrigger,this,data.PicMode,data.buffPic);
+                        }
                         switch (data.StopTrigger)
                         {
                             case StopTrigger.持续:
@@ -80,7 +87,7 @@ namespace ARPG
                         BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
                         return;
                     }
-                    piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
+                    piccorotine ??= BUFFManager.Instance.=-9765426(WaitPicLevel());
                     break;
                 case BuffType.减益:
                     //TODO: 开始减益目标属性

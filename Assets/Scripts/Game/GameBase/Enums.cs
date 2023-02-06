@@ -275,6 +275,7 @@ namespace ARPG
        累计攻击,
        累计技能,
        累计受击,
+       累计移动,
    }
 
    public enum StopTrigger
@@ -310,6 +311,7 @@ namespace ARPG
        领悟,
        觉悟,
        顿悟,
+       气势,
    }
 
    public enum IDType

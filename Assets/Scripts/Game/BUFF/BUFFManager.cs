@@ -115,7 +115,7 @@ namespace ARPG
 
         public bool isNextType(BuffTrigger trigger)
         {
-            if (trigger == BuffTrigger.累计攻击 || trigger == BuffTrigger.累计技能 || trigger == BuffTrigger.累计受击)
+            if (trigger == BuffTrigger.累计攻击 || trigger == BuffTrigger.累计技能 || trigger == BuffTrigger.累计受击 || trigger == BuffTrigger.累计移动)
                 return true;
             return false;
         }

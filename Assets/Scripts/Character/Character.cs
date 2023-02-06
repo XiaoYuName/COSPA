@@ -141,6 +141,7 @@ namespace ARPG
                 //加成：面板移动速度+BUFF增加移动速度+动画播放速度
                 rb.velocity = InputSpeed.normalized * State.MovSpeed * animSpeed * BUFFManager.Instance.GetTyepValue(this, BuffType.增益, StateMode.移动速度) * Time.fixedDeltaTime;
                 BuffTriggerEvent(BuffTrigger.移动时);
+                BuffAddTrigger(BuffTrigger.累计移动);
             }
             else
             {
@@ -388,7 +389,7 @@ namespace ARPG
             }
             if (value >= 0)
             {
-                BuffNext[trigger][IBuff] = value;
+                BuffNext[trigger][IBuff] = Mathf.Min(value,IBuff.data.maxLevel);
                 if (BUFFManager.Instance.isNextType(IBuff.data.buffTrigger))
                     GetStateUI().RefBUFF_UI(IBuff, value);
             }
