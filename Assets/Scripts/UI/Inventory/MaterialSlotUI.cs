@@ -16,10 +16,14 @@ namespace ARPG.UI
         private TextMeshProUGUI Count;
         private Image icon;
         private string currentID;
+        private TextMeshProUGUI PowerText;
+        private TextMeshProUGUI LevelText;
         public override void Init()
         {
             icon = GetComponent<Image>();
             Count = Get<TextMeshProUGUI>("Count");
+            PowerText = Get<TextMeshProUGUI>("Power");
+            LevelText = Get<TextMeshProUGUI>("Level");
         }
         
         public void InitData(ItemBag bag)
@@ -28,7 +32,20 @@ namespace ARPG.UI
             Count.gameObject.SetActive(true);
             currentID = bag.ID;
             Count.text = bag.count.ToString();
-            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);;
+            icon.sprite = GameSystem.Instance.GetSprite(item.spriteID);
+            if (InventoryManager.Instance.isEquip(item))
+            {
+                PowerText.gameObject.SetActive(true);
+                LevelText.gameObject.SetActive(true);
+                PowerText.text = "+"+bag.power;
+                LevelText.text = "lv:" + item.level;
+            }
+            else
+            {
+                PowerText.gameObject.SetActive(false);
+                LevelText.gameObject.SetActive(false);
+            }
+
         }
         
         public void InitData(Item item)
@@ -36,6 +53,8 @@ namespace ARPG.UI
             icon.sprite =GameSystem.Instance.GetSprite(item.spriteID);
             currentID = item.ID;
             Count.gameObject.SetActive(false);
+            PowerText.gameObject.SetActive(false);
+            LevelText.gameObject.SetActive(false);
         }
         
         public void OnPointerDown(PointerEventData eventData)

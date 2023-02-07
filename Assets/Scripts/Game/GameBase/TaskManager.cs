@@ -79,7 +79,7 @@ namespace ARPG
                 {
                     GameTask[ID].TaskState = TaskState.待领取;
                 }
-                RefTaskPanelUI(GameTask[ID]);
+                RefTaskPanelUI(ID,GameTask[ID]);
             }
         }
 
@@ -92,10 +92,10 @@ namespace ARPG
             TaskPanel.CreatTaskItemUI(GameTask);
         }
 
-        private void RefTaskPanelUI(TaskBag taskBag)
+        private void RefTaskPanelUI(string ID,TaskBag taskBag)
         {
             SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel");
-            TaskPanel.CreatTaskItemUI(GameTask);
+            TaskPanel.RefTaskItemUI(ID,taskBag);
         }
 
 

@@ -39,6 +39,7 @@ namespace ARPG.UI
             Bind(CommonBtn,()=>SwitchTableContent(TaskTableMode.普通),"OnChick");
             Bind(LimitBtn,()=>SwitchTableContent(TaskTableMode.限定),"OnChick");
             Bind(TitleBtn,()=>SwitchTableContent(TaskTableMode.称号),"OnChick");
+            SwitchTableContent(TaskTableMode.每日);
         }
 
         public void CreatTaskItemUI(Dictionary<string,TaskBag> GameTask)
@@ -47,7 +48,6 @@ namespace ARPG.UI
             UIHelper.Clear(CommonConent);
             UIHelper.Clear(LimitContent);
             UIHelper.Clear(TitleContent);
-            SwitchTableContent(TaskTableMode.普通);
             for (int i = 0; i < GameTask.Count; i++)
             {
                 (string ID, TaskBag taskBag) = GameTask.ElementAt(i);

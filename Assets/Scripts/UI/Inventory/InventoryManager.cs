@@ -144,6 +144,27 @@ namespace ARPG
             return item != null;
         }
 
+        /// <summary>
+        /// 共用判断Item 是否是武器
+        /// </summary>
+        /// <param name="ID">ID</param>
+        /// <returns>如果是返回true,否则返回false</returns>
+        public bool isEquip(string ID)
+        {
+            Item item = _itemConfig.Get(ID);
+            return item.Type is ItemType.武器 or ItemType.防具 or ItemType.首饰;
+        }
+
+        /// <summary>
+        /// 共用判断Item 是否是武器
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <returns>如果是返回true,否则返回false</returns>
+        public bool isEquip(Item item)
+        {
+            return item.Type is ItemType.武器 or ItemType.防具 or ItemType.首饰;
+        }
+
         #endregion
 
         #region 删

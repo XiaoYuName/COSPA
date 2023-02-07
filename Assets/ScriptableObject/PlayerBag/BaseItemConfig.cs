@@ -64,7 +64,6 @@ namespace ARPG.Config
         /// 是否可交易
         /// </summary>
         public bool isSell;
-
     }
 
     [System.Serializable]
