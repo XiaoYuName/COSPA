@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using ARPG.Config;
 using ARPG.GameSave;
+using ARPG.UI;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using Task = System.Threading.Tasks.Task;
@@ -78,15 +79,25 @@ namespace ARPG
                 {
                     GameTask[ID].TaskState = TaskState.待领取;
                 }
+                RefTaskPanelUI(GameTask[ID]);
             }
-            //TODO: 触发任务刷新
         }
 
-        private void ShowTaskPanelUI()
+        /// <summary>
+        /// 初始化PanelTaskUI的任务显示
+        /// </summary>
+        private void InitTaskPanelUI()
         {
-            
+            SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel",false);
+            TaskPanel.CreatTaskItemUI(GameTask);
         }
-        
+
+        private void RefTaskPanelUI(TaskBag taskBag)
+        {
+            SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel");
+            TaskPanel.CreatTaskItemUI(GameTask);
+        }
+
 
         /// <summary>
         /// 根据任务数据ID 获取任务数据
@@ -128,7 +139,6 @@ namespace ARPG
             {
                 Debug.Log("任务计时器:Timer 被强行停止"+e.Message);
             }
-            
         }
 
         /// <summary>
@@ -179,8 +189,11 @@ namespace ARPG
             Dictionary<string, TaskBag> Task = GameSave.SaveTask;
             if (Task != null)
             {
+                GameTask.Clear();
                 GameTask = Task;
+                _tokenSource = new CancellationTokenSource();
                 StarTimer();
+                InitTaskPanelUI();
             }
         }
     }

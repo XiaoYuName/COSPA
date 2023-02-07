@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ARPG.Config;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace ARPG.UI
     {
         private Button CloseBtn;
 
+        private Dictionary<string, TaskItemUI> UITaskDic = new Dictionary<string, TaskItemUI>();
         #region SwitchTable
         private Button DayTaskBtn;
         private Button CommonBtn;
@@ -46,7 +48,22 @@ namespace ARPG.UI
             UIHelper.Clear(LimitContent);
             UIHelper.Clear(TitleContent);
             SwitchTableContent(TaskTableMode.普通);
+            for (int i = 0; i < GameTask.Count; i++)
+            {
+                (string ID, TaskBag taskBag) = GameTask.ElementAt(i);
+                CreatTaskUI(ID,taskBag);
+            }
         }
+
+        
+        public void RefTaskItemUI(string ID, TaskBag data)
+        {
+            if (UITaskDic.ContainsKey(ID))
+            {
+                UITaskDic[ID].RefTaskUI(data);
+            }
+        }
+
 
         /// <summary>
         /// 切换界面的显示状态
@@ -68,9 +85,28 @@ namespace ARPG.UI
             TitleContent.parent.parent.gameObject.SetActive(tableMode == TaskTableMode.称号);
         }
 
-        private void CreatTaskUI()
+        
+        private void CreatTaskUI(string ID,TaskBag taskBag)
         {
-            
+            TaskData data = TaskManager.Instance.GetTaskData(ID);
+            RectTransform content = data.Mode switch
+            {
+                TaskTableMode.每日 => DayTaskConent,
+                TaskTableMode.普通 => CommonConent,
+                TaskTableMode.限定 => LimitContent,
+                TaskTableMode.称号 => TitleContent,
+                _ => DayTaskConent,
+            };
+            TaskItemUI itemUI = UISystem.Instance.InstanceUI<TaskItemUI>("TaskItemUI",content);
+            itemUI.IniData(data,taskBag);
+            AddTaskDic(ID,itemUI);
+        }
+        
+        private void AddTaskDic(string ID, TaskItemUI itemUI)
+        {
+            if(!UITaskDic.ContainsKey(ID))
+                UITaskDic.Add(ID,itemUI);
+            UITaskDic[ID] = itemUI;
         }
     }
 }
