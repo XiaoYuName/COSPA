@@ -11,7 +11,7 @@ namespace ARPG.GameSave
     /// </summary>
     public class GameSaveData
     {
-        
+        public Dictionary<string, TaskBag> SaveTask;
     }
 }
 

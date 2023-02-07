@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13b34d406440f143bde09a9d07f834c, type: 3}
+  m_Name: SystemTask
+  m_EditorClassIdentifier: 
+  TaskDataList:
+  - TaskName: "\u7D2F\u8BA1\u5728\u7EBF5\u5206\u949F"
+    TagUID: NewYear_01
+    Mode: 0
+    TaskMode: 0
+    RefType: 0
+    RewordAmount: 5
+    _TaskTrigger: 1
+    RewordItemList: []
+  - TaskName: "\u7D2F\u8BA1\u5728\u7EBF10\u5206\u949F"
+    TagUID: NewYear_02
+    Mode: 0
+    TaskMode: 0
+    RefType: 0
+    RewordAmount: 10
+    _TaskTrigger: 1
+    RewordItemList: []
+  - TaskName: "\u7D2F\u8BA1\u5728\u7EBF30\u5206\u949F"
+    TagUID: NewYear_03
+    Mode: 0
+    TaskMode: 0
+    RefType: 0
+    RewordAmount: 30
+    _TaskTrigger: 1
+    RewordItemList: []
+  - TaskName: "\u7D2F\u8BA1\u5728\u7EBF60\u5206\u949F"
+    TagUID: NewYear_04
+    Mode: 0
+    TaskMode: 0
+    RefType: 0
+    RewordAmount: 60
+    _TaskTrigger: 1
+    RewordItemList: []

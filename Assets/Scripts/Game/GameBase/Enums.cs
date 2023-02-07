@@ -331,16 +331,48 @@ namespace ARPG
        怪物,
        角色,
    }
-
-   public enum SystemTaskType
-   {
-       系统任务,
-       礼物任务,
-       限定任务,
-   }
-
+   
    public enum TaskTrigger
    {
-       
+       击杀怪物,
+       在线,
+       获得角色,
+       获得道具,
+       通过活动地下城,
+       充值,
+   }
+
+   public enum TaskMode
+   {
+       共享,
+       日常,
+       探索,
+       活动,
+       限定,
+   }
+
+   public enum TaskTableMode
+   {
+       日常,
+       限定,
+       活动,
+       称号,
+   }
+
+   public enum TaskState
+   {
+       未完成=0,
+       未开始=1,
+       待领取=2,
+       已领取=3,
+       不可完成=4,
+   }
+
+   public enum TaskRefType
+   {
+       不刷新=0,
+       每天刷新=1,
+       每小时刷新=2,
+       每月刷新=3,
    }
 }
