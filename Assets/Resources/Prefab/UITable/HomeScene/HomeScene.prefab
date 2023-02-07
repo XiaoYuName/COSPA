@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 6734965869862417250}
   - component: {fileID: 1386387566082075643}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: TaskBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,6 +1242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df459480b0d29b641b416c83f3d59229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!114 &681710471383042791
 MonoBehaviour:
   m_ObjectHideFlags: 0

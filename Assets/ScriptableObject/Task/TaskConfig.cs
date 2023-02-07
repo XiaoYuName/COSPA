@@ -8,6 +8,11 @@ namespace ARPG.Config
     public class TaskConfig : ScriptableObject
     {
         public List<TaskData> TaskDataList = new List<TaskData>();
+
+        public TaskData GetTaskData(string ID)
+        {
+            return TaskDataList.Find(id => id.TagUID == ID);
+        }
     }
 
     [System.Serializable]

@@ -54,6 +54,7 @@ namespace ARPG.UI
         private void CloseOpenUI()
         {
             Close();
+            TaskManager.Instance.StopTimer();
             MessageAction.OnTransitionEvent("LoadingScene",Vector3.zero);
         }
     }

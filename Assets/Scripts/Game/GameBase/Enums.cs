@@ -353,19 +353,17 @@ namespace ARPG
 
    public enum TaskTableMode
    {
-       日常,
+       每日,
+       普通,
        限定,
-       活动,
        称号,
    }
 
    public enum TaskState
    {
        未完成=0,
-       未开始=1,
        待领取=2,
        已领取=3,
-       不可完成=4,
    }
 
    public enum TaskRefType
