@@ -42,7 +42,7 @@ namespace ARPG.UI
             UIHelper.Clear(Content);
             foreach (var Ibag in data.RewordItemList)
             {
-                var SlotUI = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI");
+                var SlotUI = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",Content);
                 SlotUI.InitData(Ibag);
             }
         }
