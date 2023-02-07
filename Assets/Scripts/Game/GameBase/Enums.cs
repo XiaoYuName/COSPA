@@ -331,4 +331,16 @@ namespace ARPG
        怪物,
        角色,
    }
+
+   public enum SystemTaskType
+   {
+       系统任务,
+       礼物任务,
+       限定任务,
+   }
+
+   public enum TaskTrigger
+   {
+       
+   }
 }

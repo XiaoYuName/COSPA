@@ -14,13 +14,16 @@ namespace  ARPG.UI
         private TextMeshProUGUI ItemName;
         private TextMeshProUGUI ItemAmount;
         private TextMeshProUGUI description;
+        private Button CloseBtn;
         private bool isShow;
         public override void Init()
         {
-            icon = Get<Image>("Farme/icon");
-            ItemName = Get<TextMeshProUGUI>("ItemName");
-            ItemAmount = Get<TextMeshProUGUI>("ItemAmount");
-            description = Get<TextMeshProUGUI>("description");
+            icon = Get<Image>("Back/info/Farme/icon");
+            ItemName = Get<TextMeshProUGUI>("Back/info/ItemName");
+            ItemAmount = Get<TextMeshProUGUI>("Back/info/PropValue/Value");
+            description = Get<TextMeshProUGUI>("Back/info/description");
+            CloseBtn = Get<Button>("Back/CloseBtn");
+            Bind(CloseBtn,CloseShow,"OutChick");
             transform.localScale = new Vector3(0, 0, 0);
         }
 
@@ -40,7 +43,7 @@ namespace  ARPG.UI
                      EnemyData config = EnemyManager.Instance.config.Get(ID);
                      ItemName.text = config.EnemyName;
                      icon.sprite = config.icon;
-                     ItemAmount.text = "持有:不可持有";
+                     ItemAmount.text = "不可持有";
                      description.text = config.description;
                     break;
                 case IDType.物品:
@@ -52,15 +55,13 @@ namespace  ARPG.UI
                         ItemBag bag = InventoryManager.Instance.GetItemBag(ID);
                         if (bag == null)
                         {
-                            ItemAmount.text = "持有:0";
+                            ItemAmount.text = "0";
                         }
                         else
                         {
-                            ItemAmount.text = "持有:<color=red>"+bag.count + "</color>";
+                            ItemAmount.text = "<color=red>"+bag.count + "</color>";
                         }
                         description.text = item.description;
-
-
                     }
                     break;
                 case IDType.角色:
@@ -70,10 +71,9 @@ namespace  ARPG.UI
                        ItemName.text = info.CharacterName;
                        icon.sprite = info.Headicon;
                       CharacterBag Bag =  InventoryManager.Instance.GetCharacterBag(ID);
-                      ItemAmount.text = Bag == null ? "持有: 暂未拥有" : "持有: 已拥有";
+                      ItemAmount.text = Bag == null ? "暂未拥有" : "已拥有";
                       description.text = info.des;
                    }
-
                    break;
             }
             transform.DOScale(new Vector3(1, 1, 1), Settings.isShowItemTime).OnComplete(()=>isShow=false);
