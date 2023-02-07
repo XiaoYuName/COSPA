@@ -108,6 +108,13 @@ namespace ARPG.UI
                 UITaskDic.Add(ID,itemUI);
             UITaskDic[ID] = itemUI;
         }
+
+        public override void Close()
+        {
+            if(MainPanel.IsInitialized)
+                MainPanel.Instance.RemoveTableChild("SystemTaskPanel");
+            base.Close();
+        }
     }
 }
 

@@ -16,6 +16,7 @@ public class HoemScnen : UIBase
             FadeManager.Instance.PlayFade(0.25f, delegate
             {
                 UISystem.Instance.OpenUI("SystemTaskPanel");
+                MainPanel.Instance.AddTbaleChild("SystemTaskPanel");
             }, 0.25f);
         },"OnChick");
     }
