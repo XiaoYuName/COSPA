@@ -20,6 +20,7 @@ namespace ARPG.UI
         private List<ItemBag> CurrentEquips = new List<ItemBag>();
         private int curretnIndex;
         private int currentPoworAmount;
+        private bool isNullEquip;
 
         public override void Init()
         {
@@ -40,11 +41,22 @@ namespace ARPG.UI
         {
             CurrentEquips = Equips;
             currentPoworAmount = 0;
+            if (Equips == null || Equips.Count <= 1)
+            {
+                ItemName.text = "暂无装备";
+                SliderValue.text = "0/0";
+                curretnIndex = 0;
+                isNullEquip = true;
+                return;
+            }
+            isNullEquip = false;
             SetCurrentSlotUI(curretnIndex);
         }
 
         private void SetCurrentSlotUI(bool isAdd)
         {
+            if(isNullEquip)return;
+
             if (!isAdd)
             {
                 if (curretnIndex != 0)
@@ -88,6 +100,7 @@ namespace ARPG.UI
 
         private void PaworEquip()
         {
+            if(isNullEquip)return;
             if (currentPoworAmount <= 0) return;
             ItemBag PaworItem = InventoryManager.Instance.GetItemBag(Settings.PoworID);
             if (PaworItem == null|| PaworItem.count < 0 || PaworItem.count < currentPoworAmount)

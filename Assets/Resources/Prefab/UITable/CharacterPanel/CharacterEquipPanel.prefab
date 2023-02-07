@@ -287,7 +287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8738182786990008788
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12525,9 +12525,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2469751890515977069, guid: 2776a22a502c70e44a17076021cb097a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a36f78e9e4c28e94198b36c6efe40ebc, type: 3}
     - target: {fileID: 4087412065914190955, guid: 2776a22a502c70e44a17076021cb097a, type: 3}
       propertyPath: m_Name
       value: PowerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378616783289928189, guid: 2776a22a502c70e44a17076021cb097a, type: 3}
+      propertyPath: m_text
+      value: "\u6682\u65E0\u88C5\u5907"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797735864009019431, guid: 2776a22a502c70e44a17076021cb097a, type: 3}
+      propertyPath: m_text
+      value: 0/0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
