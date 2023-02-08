@@ -52,7 +52,6 @@ namespace ARPG.UI
                 {
                     InventoryManager.Instance.AddGold(type,currentdata.RewordCount);
                     TaskManager.Instance.TriggerTask(TaskTrigger.充值,currentdata.RMB);
-                    UISystem.Instance.ShowPopWindows("提示","购买成功","成功",true);
                 },true);
         }
 

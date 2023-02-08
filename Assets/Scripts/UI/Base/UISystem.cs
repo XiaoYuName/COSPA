@@ -44,6 +44,10 @@ namespace ARPG
         /// 已高度适配的UI画布根节点:该节点物体渲染处于最顶级
         /// </summary>
         private List<RectTransform> TopAutoUIRootTop;
+        /// <summary>
+        /// 宽度适配最顶级
+        /// </summary>
+        private List<RectTransform> AutoTopRootUI;
 
         protected override void Awake()
         {
@@ -62,6 +66,7 @@ namespace ARPG
             AutoUIRootTop = new List<RectTransform>();
             AutoUIRootDonw = new List<RectTransform>();
             TopAutoUIRootTop = new List<RectTransform>();
+            AutoTopRootUI = new List<RectTransform>();
                 InitParent();
             InitLoadPrefab();
         }
@@ -125,6 +130,19 @@ namespace ARPG
                     TopAutoUIRootTop.Add(TopRoot);
                 }
 
+                var TopAuto = transform.parent.Find("AutoTopCanvas").Find(ParentName) as RectTransform;
+                if (TopAuto == null)
+                {
+                    GameObject obj = new GameObject(ParentName);
+                    obj.transform.parent = transform;
+                    obj.transform.localPosition = Vector3.zero;
+                    AutoTopRootUI.Add(obj.transform as RectTransform);
+                }
+                else
+                {
+                    AutoTopRootUI.Add(TopAuto);
+                }
+
             }
         }
         
@@ -168,6 +186,7 @@ namespace ARPG
                 UITableType.UITop => AutoUIRootTop.Find(a => a.name == uiname),
                 UITableType.UIDonw => AutoUIRootDonw.Find(a => a.name == uiname),
                 UITableType.TopUIRoot => TopAutoUIRootTop.Find(a=>a.name == uiname),
+                UITableType.AutoTop => AutoTopRootUI.Find(a=>a.name == uiname),
                 _=>  UIRoot.Find(a => a.name == uiname),
             };
         }
@@ -509,6 +528,27 @@ namespace ARPG
         {
             PopShowItem ui = GetUI<PopShowItem>("PopShowItem");
             ui.CloseShow();
+        }
+
+        /// <summary>
+        /// 显示获取道具弹窗
+        /// </summary>
+        /// <param name="Reword"></param>
+        public void ShowReword(List<ItemBag> Reword)
+        {
+            PopReword ui = GetUI<PopReword>("PopReword");
+            ui.transform.SetAsLastSibling();
+            ui.ShowReword(Reword);
+        }
+        
+        /// <summary>
+        /// 显示获取道具弹窗
+        /// </summary>
+        /// <param name="Item">道具</param>
+        public void ShowReword(ItemBag Item)
+        {
+            List<ItemBag> Reword = new List<ItemBag>(){Item};
+            ShowReword(Reword);
         }
 
         #endregion

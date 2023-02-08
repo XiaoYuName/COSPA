@@ -312,14 +312,13 @@ namespace ARPG
                 _ => String.Empty
             };
             if(String.IsNullOrEmpty(id))return;
-            
-            ItemBag value = GetItemBag(id);
             ItemBag newBag = new ItemBag()
             {
-                ID = value.ID,
+                ID = id,
                 count = Amount,
             };
             AddItem(newBag);
+            UISystem.Instance.ShowReword(newBag);
         }
         
 
