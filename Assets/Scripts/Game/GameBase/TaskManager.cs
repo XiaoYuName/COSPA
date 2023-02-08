@@ -205,8 +205,42 @@ namespace ARPG
                 GameTask.Clear();
                 GameTask = Task;
                 _tokenSource = new CancellationTokenSource();
+                ResetTaskState();
                 StarTimer();
                 InitTaskPanelUI();
+                
+            }
+        }
+
+        public void ResetTaskState()
+        {
+            for (int i = 0; i < GameTask.Count; i++)
+            {
+                (string ID, TaskBag taskBag) = GameTask.ElementAt(i);
+                TaskData data = GetTaskData(ID);
+                if (data != null)
+                {
+                    if(data.RefType == TaskRefType.不刷新) continue;
+                    if (data.RefType == TaskRefType.每天刷新)
+                    {
+                        if ((DateTime.Now -GameTask[ID].SaveTime).Days >= 1)
+                        {
+                            GameTask[ID].currentAmount = 0;
+                            GameTask[ID].TaskState = TaskState.未完成;
+                            GameTask[ID].SaveTime = DateTime.Now;
+                        }
+                    }else if (data.RefType == TaskRefType.每月刷新)
+                    {
+                        if ((DateTime.Now -GameTask[ID].SaveTime).Days >= 30)
+                        {
+                            GameTask[ID].currentAmount = 0;
+                            GameTask[ID].TaskState = TaskState.未完成;
+                            GameTask[ID].SaveTime = DateTime.Now;
+                        }
+                    }
+
+
+                }
             }
         }
     }
