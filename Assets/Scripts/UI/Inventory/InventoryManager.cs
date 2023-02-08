@@ -291,10 +291,22 @@ namespace ARPG
             ItemBag bag = new ItemBag
             {
                 ID = item.ID,
-                count = default,
+                count = 1,
                 power = default,
             };
             AddItem(bag);
+        }
+
+        /// <summary>
+        /// 添加物品列表到背包
+        /// </summary>
+        /// <param name="ItemBags">要添加的背包列表</param>
+        public void AddItem(List<ItemBag> ItemBags)
+        {
+            for (int i = 0; i < ItemBags.Count; i++)
+            {
+                this.AddItem(ItemBags[i]);
+            }
         }
 
 

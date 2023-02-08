@@ -84,6 +84,19 @@ namespace ARPG
         }
 
         /// <summary>
+        /// 设置Task的状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="state"></param>
+        public void SetTaskState(string ID,TaskState state)
+        {
+            if (GameTask.ContainsKey(ID))
+            {
+                GameTask[ID].TaskState = state;
+            }
+        }
+
+        /// <summary>
         /// 初始化PanelTaskUI的任务显示
         /// </summary>
         private void InitTaskPanelUI()

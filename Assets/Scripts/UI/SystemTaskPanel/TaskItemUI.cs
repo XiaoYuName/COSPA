@@ -45,6 +45,7 @@ namespace ARPG.UI
                 var SlotUI = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",Content);
                 SlotUI.InitData(Ibag);
             }
+            
         }
 
         public void RefTaskUI(TaskBag taskBag)
@@ -67,6 +68,11 @@ namespace ARPG.UI
                 UISystem.Instance.ShowTips("任务已领取",1f);
                 return;
             }
+            
+            InventoryManager.Instance.AddItem(CurrentData.RewordItemList);
+            UISystem.Instance.ShowReword(CurrentData.RewordItemList);
+            CurrentBag.TaskState = TaskState.已领取;
+            TaskManager.Instance.SetTaskState(CurrentData.TagUID,TaskState.已领取);
         }
     }
 }
