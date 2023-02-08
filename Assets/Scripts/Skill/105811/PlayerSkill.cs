@@ -28,6 +28,7 @@ namespace ARPG
             Player.BuffTriggerEvent(BuffTrigger.释放技能时);
             Player.TriggerStopEvent(StopTrigger.释放技能时);
             Player.TriggerEndEvent(EndTrigger.释放技能时);
+            TaskManager.Instance.TriggerTask(TaskTrigger.释放技能,1);
         }
 
         /// <summary>

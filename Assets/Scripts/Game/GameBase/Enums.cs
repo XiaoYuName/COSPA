@@ -338,8 +338,9 @@ namespace ARPG
        在线,
        获得角色,
        获得道具,
-       通过活动地下城,
+       通关地下城,
        充值,
+       释放技能,
    }
 
    public enum TaskMode

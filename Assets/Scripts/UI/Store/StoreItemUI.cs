@@ -47,10 +47,11 @@ namespace ARPG.UI
                 _ => GoldType.宝石
             };
 
-                UISystem.Instance.ShowPopDialogue("购买物品","要购买"+type.ToString()+",确定吗","关闭","确定",null,
+                UISystem.Instance.ShowPopDialogue("购买物品","要购买"+type+",确定吗","关闭","确定",null,
                 delegate
                 {
                     InventoryManager.Instance.AddGold(type,currentdata.RewordCount);
+                    TaskManager.Instance.TriggerTask(TaskTrigger.充值,currentdata.RMB);
                     UISystem.Instance.ShowPopWindows("提示","购买成功","成功",true);
                 },true);
         }

@@ -65,7 +65,7 @@ namespace ARPG
         /// </summary>
         /// <param name="trigger">触发器类型</param>
         /// <param name="value">触发器值</param>
-        private void TriggerTask(TaskTrigger trigger, int value)
+        public void TriggerTask(TaskTrigger trigger, int value)
         {
             for (int i = 0; i < GameTask.Count; i++)
             {

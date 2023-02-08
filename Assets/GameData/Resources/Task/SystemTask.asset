@@ -17,7 +17,7 @@ MonoBehaviour:
     TagUID: NewYear_01
     Mode: 0
     TaskMode: 0
-    RefType: 0
+    RefType: 1
     RewordAmount: 5
     _TaskTrigger: 1
     RewordItemList:
@@ -34,7 +34,7 @@ MonoBehaviour:
     TagUID: NewYear_02
     Mode: 0
     TaskMode: 0
-    RefType: 0
+    RefType: 1
     RewordAmount: 10
     _TaskTrigger: 1
     RewordItemList:
@@ -51,7 +51,7 @@ MonoBehaviour:
     TagUID: NewYear_03
     Mode: 0
     TaskMode: 0
-    RefType: 0
+    RefType: 1
     RewordAmount: 30
     _TaskTrigger: 1
     RewordItemList:
@@ -68,7 +68,7 @@ MonoBehaviour:
     TagUID: NewYear_04
     Mode: 0
     TaskMode: 0
-    RefType: 0
+    RefType: 1
     RewordAmount: 60
     _TaskTrigger: 1
     RewordItemList:
@@ -83,4 +83,140 @@ MonoBehaviour:
       power: 0
     - ID: 91001
       count: 100
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD5\u6B21"
+    TagUID: PlayerSkill_5
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 5
+    _TaskTrigger: 6
+    RewordItemList:
+    - ID: 22001
+      count: 50
+      power: 0
+    - ID: 94001
+      count: 50
+      power: 0
+    - ID: 91001
+      count: 50
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD10\u6B21"
+    TagUID: PlayerSkill_10
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 10
+    _TaskTrigger: 6
+    RewordItemList:
+    - ID: 22001
+      count: 50
+      power: 0
+    - ID: 94001
+      count: 50
+      power: 0
+    - ID: 91001
+      count: 50
+      power: 0
+  - TaskName: "\u5145\u503C6\u5143"
+    TagUID: AddGold_6
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 6
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u5145\u503C12\u5143"
+    TagUID: AddGold_12
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 12
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u5145\u503C30\u5143"
+    TagUID: AddGold_30
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 30
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u5145\u503C128\u5143"
+    TagUID: AddGold_128
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 128
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u5145\u503C328\u5143"
+    TagUID: AddGold_328
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 328
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u5145\u503C648\u5143"
+    TagUID: AddGold_648
+    Mode: 1
+    TaskMode: 4
+    RefType: 3
+    RewordAmount: 648
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
       power: 0
