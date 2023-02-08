@@ -93,6 +93,7 @@ namespace ARPG
             UISystem.Instance.CloseUI("PlayerState");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
+            TaskManager.Instance.TriggerTask(TaskTrigger.通关地下城,1);
             UISystem.Instance.CloseUI("AttackButton");
             StartCoroutine(WaitPlayAnimator());
         }

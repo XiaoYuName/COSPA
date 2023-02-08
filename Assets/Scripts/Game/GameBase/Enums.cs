@@ -339,6 +339,7 @@ namespace ARPG
    public enum TaskTrigger
    {
        击杀怪物,
+       击杀BOSS,
        在线,
        获得角色,
        获得道具,

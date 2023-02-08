@@ -76,6 +76,7 @@ namespace ARPG
                     GameTask[ID].currentAmount += value;
                 if (GameTask[ID].currentAmount >= data.RewordAmount)
                 {
+                    GameTask[ID].currentAmount = data.RewordAmount;
                     GameTask[ID].TaskState = TaskState.待领取;
                 }
                 RefTaskPanelUI(ID,GameTask[ID]);

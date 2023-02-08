@@ -220,3 +220,111 @@ MonoBehaviour:
     - ID: 91001
       count: 60
       power: 0
+  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53611\u6B21"
+    TagUID: Region_1
+    Mode: 1
+    TaskMode: 2
+    RefType: 3
+    RewordAmount: 1
+    _TaskTrigger: 4
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53615\u6B21"
+    TagUID: Region_5
+    Mode: 1
+    TaskMode: 2
+    RefType: 3
+    RewordAmount: 1
+    _TaskTrigger: 4
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u51FB\u6740\u602A\u726910\u53EA"
+    TagUID: AttackEnemy_1
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 10
+    _TaskTrigger: 0
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u51FB\u6740\u602A\u726950\u53EA"
+    TagUID: AttackEnemy_50
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 50
+    _TaskTrigger: 0
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u51FB\u6740BOSS 1 \u53EA"
+    TagUID: AttackEnemy_BOSS_1
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 1
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+    - ID: 101251
+      count: 1
+      power: 11
+  - TaskName: "\u51FB\u6740BOSS 50 \u53EA"
+    TagUID: AttackEnemy_BOSS_50
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 50
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 6000
+      power: 0
+    - ID: 101251
+      count: 1
+      power: 50
