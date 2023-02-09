@@ -13,7 +13,7 @@ namespace ARPG.UI
         private List<CharacterBag> characterBags;
         public override void Init()
         {
-            content = Get<RectTransform>("UIMask/Scroll View/Content");
+            content = Get<RectTransform>("UIMask/Character/Mask/Scroll Rect/Content");
             InitData();
             MessageAction.RefreshCharacterBag += RefInitData;
         }

@@ -54,6 +54,7 @@ namespace ARPG
             base.Awake();
             Init();
         }
+        
 
         #region Init
         

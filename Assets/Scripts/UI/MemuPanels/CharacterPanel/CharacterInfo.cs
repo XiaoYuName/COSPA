@@ -11,16 +11,16 @@ namespace ARPG.UI
     public class CharacterInfo : UIBase
     {
         private Image icon;
-        private Transform StarContent;
+        private StarContent StarContent;
         private TextMeshProUGUI Level;
         private Button btn;
         [HideInInspector]public string CharacterID;
         public override void Init()
         {
-            icon = Get<Image>("Mask/icon");
-            StarContent = Get("StarContent").transform;
-            Level = Get<TextMeshProUGUI>("Faram/Level");
-            btn = GetComponent<Button>();
+            icon = Get<Image>("Back/Icon");
+            StarContent = Get<StarContent>("StarContent");
+            Level = Get<TextMeshProUGUI>("Back/Level");
+            btn = Get<Button>("Back");
             MessageAction.UpCharacterBag += RefData;
         }
 
@@ -51,11 +51,7 @@ namespace ARPG.UI
         /// <param name="star"></param>
         private void SetInfoStar(int star)
         {
-            for (int j = 0; j < StarContent.childCount; j++)
-            {
-                GameObject child = StarContent.GetChild(j).gameObject;
-                child.transform.GetChild(0).gameObject.SetActive(j <= star - 1);
-            }
+            StarContent.Show(star);
         }
 
         private void RefData(CharacterBag Bag)
