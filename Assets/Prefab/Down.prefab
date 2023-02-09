@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8378141899327609098}
   - component: {fileID: 8378141899327609099}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8378141899336470896}
   - component: {fileID: 8378141899336470899}
   m_Layer: 5
-  m_Name: animation (2)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 8378141899415719365}
   - component: {fileID: 8378141899415719418}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8378141899442415748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 8378141899509385368}
   - component: {fileID: 8378141899509385371}
   m_Layer: 5
-  m_Name: animation (6)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 8378141899798665834}
   - component: {fileID: 8378141899798665844}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -650,8 +650,9 @@ GameObject:
   - component: {fileID: 8378141899803402645}
   - component: {fileID: 8378141899803402634}
   - component: {fileID: 8378141899803402635}
+  - component: {fileID: 645649032719747419}
   m_Layer: 5
-  m_Name: "\u89D2\u8272"
+  m_Name: CharacterBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,6 +775,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &645649032719747419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141899803402633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 1
 --- !u!1 &8378141899994962251
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +802,7 @@ GameObject:
   - component: {fileID: 8378141899994962260}
   - component: {fileID: 8378141899994962261}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -842,7 +857,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -883,7 +898,7 @@ GameObject:
   - component: {fileID: 8378141900098420647}
   - component: {fileID: 8378141900098420644}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +953,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -1091,7 +1106,7 @@ GameObject:
   - component: {fileID: 8378141900226653089}
   - component: {fileID: 8378141900226653094}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1167,7 +1182,7 @@ GameObject:
   - component: {fileID: 8378141900250161810}
   - component: {fileID: 8378141900250161811}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1257,7 @@ GameObject:
   - component: {fileID: 8378141900256104314}
   - component: {fileID: 8378141900256104261}
   m_Layer: 5
-  m_Name: animation (5)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,8 +1388,9 @@ GameObject:
   - component: {fileID: 8378141900302059349}
   - component: {fileID: 8378141900302059338}
   - component: {fileID: 8378141900302059339}
+  - component: {fileID: 5198608915196071132}
   m_Layer: 5
-  m_Name: "\u516C\u4F1A\u4E4B\u5BB6"
+  m_Name: TradeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1498,6 +1514,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5198608915196071132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141900302059337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 4
 --- !u!1 &8378141900340622998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,8 +1844,9 @@ GameObject:
   - component: {fileID: 8378141900409640282}
   - component: {fileID: 8378141900409640283}
   - component: {fileID: 8378141900409640280}
+  - component: {fileID: 4382412672545389771}
   m_Layer: 5
-  m_Name: "\u5192\u9669"
+  m_Name: AdventureBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1938,6 +1969,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4382412672545389771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141900409640286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 3
 --- !u!1 &8378141900557083091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,7 +1996,7 @@ GameObject:
   - component: {fileID: 8378141900557083100}
   - component: {fileID: 8378141900557083101}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2006,7 +2051,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -2046,7 +2091,7 @@ GameObject:
   - component: {fileID: 8378141900558602921}
   - component: {fileID: 8378141900558602926}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2122,8 +2167,9 @@ GameObject:
   - component: {fileID: 8378141900659992700}
   - component: {fileID: 8378141900659992701}
   - component: {fileID: 8378141900659992690}
+  - component: {fileID: 4546156287652583212}
   m_Layer: 5
-  m_Name: "\u5267\u60C5"
+  m_Name: PlotBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,6 +2292,20 @@ MonoBehaviour:
           m_StringArgument: "\u5267\u60C5"
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4546156287652583212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141900659992688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 2
 --- !u!1 &8378141900683743485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2258,8 +2318,9 @@ GameObject:
   - component: {fileID: 8378141900683743481}
   - component: {fileID: 8378141900683743486}
   - component: {fileID: 8378141900683743487}
+  - component: {fileID: 7958328991106579299}
   m_Layer: 5
-  m_Name: "\u6211\u7684\u4E3B\u9875"
+  m_Name: HomeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2382,6 +2443,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7958328991106579299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141900683743485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 0
 --- !u!1 &8378141900715134471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,7 +2493,7 @@ RectTransform:
   - {fileID: 8378141901277761462}
   - {fileID: 8378141900970494989}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2437,7 +2512,7 @@ GameObject:
   - component: {fileID: 8378141900775422447}
   - component: {fileID: 8378141900775422444}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,7 +2588,7 @@ GameObject:
   - component: {fileID: 8378141900826340284}
   - component: {fileID: 8378141900826340285}
   m_Layer: 5
-  m_Name: Image
+  m_Name: icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2554,7 +2629,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8378141900826340275}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2590,7 +2665,7 @@ GameObject:
   - component: {fileID: 8378141900841814185}
   - component: {fileID: 8378141900841814190}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2645,7 +2720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -2685,8 +2760,9 @@ GameObject:
   - component: {fileID: 8378141900970494990}
   - component: {fileID: 8378141900970494991}
   - component: {fileID: 8378141900970494988}
+  - component: {fileID: 3121880565487704655}
   m_Layer: 5
-  m_Name: "\u4E3B\u83DC\u5355"
+  m_Name: SettingsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2809,6 +2885,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3121880565487704655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141900970494978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 6
 --- !u!1 &8378141900988272931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,7 +2912,7 @@ GameObject:
   - component: {fileID: 8378141900988272940}
   - component: {fileID: 8378141900988272941}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2877,7 +2967,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -2918,7 +3008,7 @@ GameObject:
   - component: {fileID: 8378141901155412119}
   - component: {fileID: 8378141901155412116}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2973,7 +3063,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bedff1a07950d744eb9b4fcaba6428d0, type: 3}
+    m_Font: {fileID: 12800000, guid: 59c3fa83c8f2ade4081e5ac0cc9bd978, type: 3}
     m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
@@ -3012,7 +3102,7 @@ GameObject:
   - component: {fileID: 8378141901157692407}
   - component: {fileID: 8378141901157692406}
   m_Layer: 5
-  m_Name: animation (4)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3066,7 +3156,7 @@ GameObject:
   - component: {fileID: 8378141901212805868}
   - component: {fileID: 8378141901212805871}
   m_Layer: 5
-  m_Name: animation (1)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3121,8 +3211,9 @@ GameObject:
   - component: {fileID: 8378141901277761459}
   - component: {fileID: 8378141901277761456}
   - component: {fileID: 8378141901277761457}
+  - component: {fileID: 7187185237008150780}
   m_Layer: 5
-  m_Name: "\u626D\u86CB"
+  m_Name: TwistAnBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3246,6 +3337,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7187185237008150780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378141901277761463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccf3025462cbe43ac1e44821e4d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  _type: 5
 --- !u!1 &8378141901279619757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3257,7 +3362,7 @@ GameObject:
   - component: {fileID: 8378141901279619756}
   - component: {fileID: 8378141901279619759}
   m_Layer: 5
-  m_Name: animation (3)
+  m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

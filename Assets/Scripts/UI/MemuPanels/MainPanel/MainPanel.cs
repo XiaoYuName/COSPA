@@ -12,19 +12,16 @@ namespace ARPG.UI
     public class MainPanel : MonoSingleton<MainPanel>
     {
         private RootTableConfig Config;
-        private RectTransform TabContent;
-        private RootTabBtn BtnPrefab;
-        private List<RootTabBtn> RootBtns;
+        private Transform TabContent;
+        private RootTabBtn[] RootBtns;
         private TableType currentType; //当前Type
         private List<string> ChildUITabel = new List<string>(); //二级菜单子界面,当打开时,注册列表中,当点击菜单内的按钮时,来控制一键关闭所有子菜单
 
         protected override void Awake()
         {
             base.Awake();
-            TabContent = transform.Find("UIMask/DownUI/Content").GetComponent<RectTransform>();
+            TabContent = transform.Find("UIMask/Down");
             Config = ConfigManager.LoadConfig<RootTableConfig>("RootTable/RootTable");
-            BtnPrefab = UISystem.Instance.GetPrefab<RootTabBtn>("RootBtnItem");
-            RootBtns = new List<RootTabBtn>();
             CreatTbaleBtn();
             SwitchTabBtn(TableType.我的主页);
             currentType = TableType.我的主页;
@@ -36,12 +33,10 @@ namespace ARPG.UI
         /// </summary>
         private void CreatTbaleBtn()
         {
-            foreach (var Btn in Config.tableItems)
+            RootBtns = TabContent.transform.GetComponentsInChildren<RootTabBtn>();
+            foreach (var Tbtn in RootBtns)
             {
-                RootTabBtn btn = Instantiate(BtnPrefab, TabContent);
-                btn.Init();
-                btn.InitData(Btn);
-                RootBtns.Add(btn);
+                Tbtn.Init();
             }
         }
 
@@ -61,15 +56,29 @@ namespace ARPG.UI
                 }
             }
             
-            foreach (var btn in RootBtns)
-            {
-                btn.SetState(btn._type == type);
-            }
             string UIname = Config.GetOpenName(currentType);
+            SetRootBtnAnim(currentType, false);
             UISystem.Instance.CloseUI(UIname);
             currentType = type;
+            SetRootBtnAnim(currentType, true);
         }
 
+        
+        public RootTableItem GetTabeleData(TableType type)
+        {
+            return Config.Get(type);
+        }
+
+        private void SetRootBtnAnim(TableType type,bool isPlay)
+        {
+            foreach (var rootBtn in RootBtns)
+            {
+                if (rootBtn._type == type)
+                {
+                    rootBtn.PlayAnimation(isPlay);
+                }
+            }
+        }
 
         public void AddTbaleChild(string table)
         {

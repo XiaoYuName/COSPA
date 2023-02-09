@@ -37,12 +37,6 @@ namespace ARPG.UI.Config
         
         [Header("打开UI界面的名字")]
         public string OpenUIName;
-
-        [Header("icon"),ShowAssetPreview]
-        public Sprite icon;
-
-        [Header("选中icon"),ShowAssetPreview]
-        public Sprite selecticon;
     }
 
     public enum TableMode
