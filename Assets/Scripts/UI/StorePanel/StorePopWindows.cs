@@ -26,11 +26,11 @@ namespace ARPG.UI
         public override void Init()
         {
             transform.localScale = Vector3.zero;
-            CloseBtn = Get<Button>("UIMask/Back/Close");
+            CloseBtn = Get<Button>("UIMask/Back/Farme/Close");
             Bind(CloseBtn, Close, "OutChick");
-            content = Get<RectTransform>("UIMask/Back/Scroll View/Viewport/Content");
+            content = Get<RectTransform>("UIMask/Back/Farme/Scroll View/Viewport/Content");
             data = ConfigManager.LoadConfig<StoreConfig>("Store/Store");
-            titleText = Get<TextMeshProUGUI>("UIMask/Back/Top/title");
+            titleText = Get<TextMeshProUGUI>("UIMask/Back/Farme/Top/title");
         }
         /// <summary>
         /// 切換與生產商城Item
