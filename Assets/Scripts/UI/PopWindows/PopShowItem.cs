@@ -18,10 +18,10 @@ namespace  ARPG.UI
         private bool isShow;
         public override void Init()
         {
-            icon = Get<Image>("Back/info/Farme/icon");
-            ItemName = Get<TextMeshProUGUI>("Back/info/ItemName");
-            ItemAmount = Get<TextMeshProUGUI>("Back/info/PropValue/Value");
-            description = Get<TextMeshProUGUI>("Back/info/description");
+            icon = Get<Image>("Back/Farme/info/Farme/icon");
+            ItemName = Get<TextMeshProUGUI>("Back/Farme/info/ItemName");
+            ItemAmount = Get<TextMeshProUGUI>("Back/Farme/info/PropValue/Value");
+            description = Get<TextMeshProUGUI>("Back/Farme/info/description/description");
             CloseBtn = Get<Button>("Back/CloseBtn");
             Bind(CloseBtn,CloseShow,"OutChick");
             transform.localScale = new Vector3(0, 0, 0);

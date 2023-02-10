@@ -37,6 +37,12 @@ MonoBehaviour:
     parentName: UIPop
     Type: 4
     isInit: 0
+  - ID: PopDialogue
+    Prefab: {fileID: 4677419080069590719, guid: 4d139a69ed293d4469cfe71c025afa40, type: 3}
+    details: "\u663E\u793A\u5BF9\u8BDD\u5F39\u7A97"
+    parentName: UIPop
+    Type: 4
+    isInit: 0
   - ID: PopTips
     Prefab: {fileID: 797173082641520856, guid: 8e64c382847ab534c86ce85cc426cf0b, type: 3}
     details: "\u63D0\u793A\u6846"
@@ -84,12 +90,6 @@ MonoBehaviour:
     details: "\u89D2\u8272\u5C5E\u6027\u5F39\u7A97"
     parentName: UIPop
     Type: 1
-    isInit: 0
-  - ID: PopDialogue
-    Prefab: {fileID: 4677419080069590719, guid: 4d139a69ed293d4469cfe71c025afa40, type: 3}
-    details: "\u663E\u793A\u5BF9\u8BDD\u5F39\u7A97"
-    parentName: UITop
-    Type: 3
     isInit: 0
   - ID: RegionToolTip
     Prefab: {fileID: 2151074576823801710, guid: 72071dd35bc95f947b22d15fd155765e, type: 3}
