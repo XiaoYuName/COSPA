@@ -15,18 +15,15 @@ namespace ARPG.UI
         private TextMeshProUGUI FuncText;
         private Button QuitBtn;
         private Button FuncBtn;
-        private Animator anim;
-        private static readonly int s_Show = Animator.StringToHash("Show");
 
         public override void Init()
         {
-            titleText = Get<TextMeshProUGUI>("UIMask/Back/Top/title");
-            desText = Get<TextMeshProUGUI>("UIMask/Back/Info/des");
+            titleText = Get<TextMeshProUGUI>("UIMask/Back/Farme/Top/title");
+            desText = Get<TextMeshProUGUI>("UIMask/Back/Farme/Info/des");
             QuitText = Get<TextMeshProUGUI>("UIMask/Back/CloseBtn/BtnText");
             QuitBtn = Get<Button>("UIMask/Back/CloseBtn");
             FuncBtn = Get<Button>("UIMask/Back/FuncBtn");
             FuncText = Get<TextMeshProUGUI>("UIMask/Back/FuncBtn/BtnText");
-            anim = GetComponent<Animator>();
         }
 
 
@@ -47,7 +44,6 @@ namespace ARPG.UI
             desText.text = des;
             QuitText.text = quitText;
             FuncText.text = funcText;
-            anim.SetTrigger(s_Show);
             Bind(QuitBtn, delegate
             {
                 quitFunc?.Invoke();
