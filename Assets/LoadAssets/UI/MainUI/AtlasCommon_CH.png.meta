@@ -3442,7 +3442,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 10, y: 11, z: 11, w: 10}
       outline: []
       physicsShape: []
@@ -3450,6 +3450,27 @@ TextureImporter:
       bones: []
       spriteID: 141d1766c7ce49a4b9f4fc313f11408f
       internalID: 21300276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtlasCommon_CH_0
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1941
+        width: 32
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd95d94f52db766459ca37dab0d625a3
+      internalID: -1546905244
       vertices: []
       indices: 
       edges: []
@@ -3465,11 +3486,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AtlasCommon_84: 21300180
+      AtlasCommon_120: 21300252
       AtlasCommon_99: 21300210
       AtlasCommon_91: 21300194
       AtlasCommon_11: 21300034
-      AtlasCommon_4: 21300008
+      AtlasCommon_6: 21300022
       maoxian_down: 21300016
       AtlasCommon_70: 21300152
       AtlasCommon_104: 21300220
@@ -3557,6 +3578,7 @@ TextureImporter:
       AtlasCommon_16: 21300044
       AtlasCommon_40: 21300092
       AtlasCommon_83: 21300178
+      AtlasCommon_CH_0: -1546905244
       AtlasCommon_44: 21300100
       AtlasCommon_24: 21300060
       AtlasCommon_34: 21300080
@@ -3602,8 +3624,8 @@ TextureImporter:
       AtlasCommon_110: 21300232
       AtlasCommon_36: 21300084
       AtlasCommon_79: 21300170
-      AtlasCommon_6: 21300022
-      AtlasCommon_120: 21300252
+      AtlasCommon_4: 21300008
+      AtlasCommon_84: 21300180
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

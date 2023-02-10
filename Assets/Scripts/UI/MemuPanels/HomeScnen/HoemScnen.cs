@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class HoemScnen : UIBase
 {
     private Button TaskBtn;
+    private Button UpGameBtn;
     public override void Init()
     {
         TaskBtn = Get<Button>("UIMask/DownUI/Content/TaskBtn");
+        UpGameBtn = Get<Button>("UIMask/DownUI/Content/UpGameBtn");
         Bind(TaskBtn, () =>
         {
             FadeManager.Instance.PlayFade(0.25f, delegate

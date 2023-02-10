@@ -386,4 +386,19 @@ namespace ARPG
        PILCK_UP,
        普通扭蛋,
    }
+
+   public enum NoticeType
+   {
+       免责声明=0,
+       更新日志=1,
+       BUG信息=2,
+   }
+
+   public enum NoticeMode
+   {
+       扭蛋,
+       资讯,
+       运行,
+       告知,
+   }
 }
