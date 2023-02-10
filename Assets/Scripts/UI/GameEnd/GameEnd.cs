@@ -41,7 +41,7 @@ namespace ARPG.UI
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
-                    TitleText.transform.DOMove(new Vector3(TitleText.transform.position.x,TitleText.transform.position.y+300,transform.position.z), 1.25f).OnComplete(
+                    TitleText.transform.DOLocalMove(new Vector3(TitleText.transform.localPosition.x,TitleText.transform.localPosition.y+300,transform.position.z), 1.25f).OnComplete(
                         ()=>StartCoroutine(SettlementGameVictory(RewordItem)));
                 });
         }
@@ -53,17 +53,20 @@ namespace ARPG.UI
         public IEnumerator SettlementGameVictory(MapItem Reword)
         {
             //1.获取Player坐标
-            Vector3 playerPoint = GameManager.Instance.Player.transform.position;
-            //2.Player 坐标转换为UI坐标系
-            Vector3 UIPoint = Camera.main.WorldToScreenPoint(playerPoint);
+            Vector3 playerPoint = GameManager.Instance.Player.transform.localPosition;
+            // //2.Player 坐标转换为UI坐标系
+            Vector3 UIPoint = UICamear.Instance.GetUICamera.WorldToScreenPoint(playerPoint);
+            //UI 坐标系转换为RectTransform 坐标系
+            RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)gameObject.transform, UIPoint,
+                UICamear.Instance.GetUICamera, out var rectPoint);
             //3.在UI坐标系下生成LevelPanel信息
             LevelPanelUI panelUI =  UISystem.Instance.InstanceUI<LevelPanelUI>("LevelPanelUI",gameObject.transform);
             PanelUI = panelUI;
-            panelUI.transform.position = new Vector3(UIPoint.x,UIPoint.y - 140,UIPoint.z);
+            panelUI.transform.localPosition = rectPoint;
             yield return panelUI.OpentionLevelAndFavorability(Reword);
             //4.等待玩家点击下一部,进行奖励界面的处理
-            var netPoint = NextBtn.transform.position;
-            NextBtn.transform.DOMove(new Vector3(netPoint.x, netPoint.y + 250, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
+            var netPoint = NextBtn.transform.localPosition;
+            NextBtn.transform.DOLocalMove(new Vector3(netPoint.x, netPoint.y + 250, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(() =>
                 {
                     Bind(NextBtn, delegate

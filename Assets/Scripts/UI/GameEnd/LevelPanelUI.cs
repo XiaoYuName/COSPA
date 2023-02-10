@@ -11,10 +11,6 @@ namespace ARPG.UI
     {
         //等级
         private TextMeshProUGUI LevelText;
-        /// <summary>
-        /// 好感度
-        /// </summary>
-        private TextMeshProUGUI FavorabilityText;
         
         /// <summary>
         /// 经验滑动条
@@ -23,17 +19,10 @@ namespace ARPG.UI
 
         private TextMeshProUGUI LevelSliderText;
 
-        /// <summary>
-        /// 好感度滑动条
-        /// </summary>
-        private Slider FavorabilitySlider;
-        
         public override void Init()
         {
             LevelText = Get<TextMeshProUGUI>("Level/Value");
-            FavorabilityText = Get<TextMeshProUGUI>("Favorability/Value");
             LevelSlider = Get<Slider>("LevelSlider");
-            FavorabilitySlider = Get<Slider>("FavorabilitySlider");
             LevelSliderText = Get<TextMeshProUGUI>("LevelSlider/SliderText");
         }
 
@@ -49,8 +38,7 @@ namespace ARPG.UI
                 GameManager.Instance.Player.currentBag.ID);
             
             LevelText.text = characterBag.Level.ToString();
-            FavorabilityText.text = characterBag.Favorability.ToString();
-            
+
             LevelSlider.value = characterBag.exp;
             LevelSlider.minValue = 0;
             LevelSlider.maxValue = characterBag.MaxExp;
