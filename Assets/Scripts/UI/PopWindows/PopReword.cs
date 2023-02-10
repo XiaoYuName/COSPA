@@ -15,8 +15,8 @@ namespace ARPG.UI
         private bool isTween;
         public override void Init()
         {
-            content = Get<RectTransform>("UIMask/Back/RewordView/Viewport/Content");
-            CloseBtn = Get<Button>("UIMask/Back/CloseBtn");
+            content = Get<RectTransform>("UIMask/Back/Farme/RewordView/Viewport/Content");
+            CloseBtn = Get<Button>("UIMask/Back/Farme/CloseBtn");
             Bind(CloseBtn,Close,"OutChick");
             BackTween = Get("UIMask/Back");
             isTween = false;
