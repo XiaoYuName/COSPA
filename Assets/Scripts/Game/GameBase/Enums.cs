@@ -379,4 +379,11 @@ namespace ARPG
        每小时刷新=2,
        每月刷新=3,
    }
+
+   public enum TwisType
+   {
+       白金扭蛋,
+       PILCK_UP,
+       普通扭蛋,
+   }
 }
