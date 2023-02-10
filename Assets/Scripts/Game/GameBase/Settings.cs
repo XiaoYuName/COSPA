@@ -25,6 +25,10 @@ namespace ARPG
         /// ShowItem 动画时间
         /// </summary>
         public const float isShowItemTime = 0.25f;
+        /// <summary>
+        /// Pop弹窗弹出动画时长
+        /// </summary>
+        public const float PopTweenTime = 0.15f;
 
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
 

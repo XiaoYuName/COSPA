@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,16 +17,14 @@ namespace ARPG.UI
         private TextMeshProUGUI desText;
         private TextMeshProUGUI QuitText;
         private Button QuitBtn;
-        private Animator anim;
-        private static readonly int s_Show = Animator.StringToHash("Show");
 
         public override void Init()
         {
-            titleText = Get<TextMeshProUGUI>("UIMask/Back/Top/title");
-            desText = Get<TextMeshProUGUI>("UIMask/Back/Info/des");
+            titleText = Get<TextMeshProUGUI>("UIMask/Back/Farme/Top/title");
+            desText = Get<TextMeshProUGUI>("UIMask/Back/Farme/Info/des");
             QuitText = Get<TextMeshProUGUI>("UIMask/Back/Button/BtnText");
             QuitBtn = Get<Button>("UIMask/Back/Button");
-            anim = GetComponent<Animator>();
+            transform.localScale = Vector3.zero;
         }
 
 
@@ -38,15 +37,18 @@ namespace ARPG.UI
         public void ShowPopWindows(string title, string des, string quitText)
         {
             Open();
+            transform.DOScale(Vector3.one, Settings.PopTweenTime);
             AudioManager.Instance.PlayAudio("PopWindows");
             titleText.text = title;
             desText.text = des;
             QuitText.text = quitText;
-            anim.SetTrigger(s_Show);
             Bind(QuitBtn, delegate
             {
-                UIMaskManager.Instance.SetMainScnenMask(false);
-                Close();
+                transform.DOScale(Vector3.zero, Settings.PopTweenTime).OnComplete(() =>
+                {
+                    UIMaskManager.Instance.SetMainScnenMask(false);
+                    Close();
+                });
             },"OutChick");
             
         }
@@ -61,16 +63,19 @@ namespace ARPG.UI
         public void ShowPopWindows(string title, string des, string quitText,Action func)
         {
             Open();
+            transform.DOScale(Vector3.one, Settings.PopTweenTime);
             AudioManager.Instance.PlayAudio("PopWindows");
             titleText.text = title;
             desText.text = des;
             QuitText.text = quitText;
-            anim.SetTrigger(s_Show);
             Bind(QuitBtn, delegate
             {
-                func?.Invoke();
-                UIMaskManager.Instance.SetMainScnenMask(false);
-                Close();
+                transform.DOScale(Vector3.zero, Settings.PopTweenTime).OnComplete(() =>
+                {
+                    func?.Invoke();
+                    UIMaskManager.Instance.SetMainScnenMask(false);
+                    Close();
+                });
             }, "OutChick");
           
         }
