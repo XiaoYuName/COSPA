@@ -21,5 +21,6 @@ public class HoemScnen : UIBase
                 MainPanel.Instance.AddTbaleChild("SystemTaskPanel");
             }, 0.25f);
         },"OnChick");
+        Bind(UpGameBtn,()=>UISystem.Instance.ShowPopNotice(),"OnChick");
     }
 }

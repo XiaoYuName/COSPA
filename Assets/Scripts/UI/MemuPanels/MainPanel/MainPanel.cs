@@ -26,6 +26,7 @@ namespace ARPG.UI
             SwitchTabBtn(TableType.我的主页);
             currentType = TableType.我的主页;
             UISystem.Instance.OpenUI("HomeScene");
+            WaitUtils.WaitTimeDo(1.5f, () => UISystem.Instance.ShowPopNotice());
         }
 
         /// <summary>

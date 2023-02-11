@@ -552,6 +552,17 @@ namespace ARPG
             ShowReword(Reword);
         }
 
+        /// <summary>
+        /// 显示通知弹窗
+        /// </summary>
+        /// <param name="type">默认分页标签</param>
+        public void ShowPopNotice(NoticeType type = NoticeType.更新日志)
+        {
+            PopNotice ui = GetUI<PopNotice>("PopNotice");
+            ui.transform.SetAsLastSibling();
+            ui.Show(type);
+        }
+
         #endregion
     }
 }

@@ -389,7 +389,7 @@ namespace ARPG
 
    public enum NoticeType
    {
-       免责声明=0,
+       活动信息=0,
        更新日志=1,
        BUG信息=2,
    }
@@ -398,7 +398,7 @@ namespace ARPG
    {
        扭蛋,
        资讯,
-       运行,
+       运营,
        告知,
    }
 }
