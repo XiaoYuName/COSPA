@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeftualBag
   m_EditorClassIdentifier: 
   CharacterBags:
-  - ID: plate_100211
+  - ID: Character_100211
     currentStar: 1
     Favorability: 1
     Level: 1
@@ -105,7 +105,103 @@ MonoBehaviour:
         purchase: 0
         isSell: 0
       Powor: 0
-  - ID: plate_1058
+  - ID: Character_1058
+    currentStar: 1
+    Favorability: 1
+    Level: 2
+    exp: 1
+    MaxExp: 60
+    Favorabexp: 0
+    equipHelos:
+    - ItemType: 0
+      item:
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        spriteID: 101011
+        Type: 0
+        Mode: 0
+        attribute:
+        - Mode: 0
+          value: 8
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 0
+    - ItemType: 0
+      item:
+        ID: 101011
+        ItemName: "\u65B0\u624B\u6B66\u5668"
+        level: 1
+        spriteID: 101011
+        Type: 0
+        Mode: 0
+        attribute:
+        - Mode: 0
+          value: 8
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 5
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        spriteID: 
+        Type: 0
+        Mode: 0
+        attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 0
+    - ItemType: 1
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        spriteID: 
+        Type: 0
+        Mode: 0
+        attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        spriteID: 
+        Type: 0
+        Mode: 0
+        attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 0
+    - ItemType: 2
+      item:
+        ID: 
+        ItemName: 
+        level: 0
+        spriteID: 
+        Type: 0
+        Mode: 0
+        attribute: []
+        description: 
+        sellAmount: 0
+        purchase: 0
+        isSell: 0
+      Powor: 0
+  - ID: Character_106011
     currentStar: 1
     Favorability: 1
     Level: 2

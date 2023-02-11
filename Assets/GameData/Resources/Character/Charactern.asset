@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charactern
   m_EditorClassIdentifier: 
   BaseDatas:
-  - ID: plate_100211
+  - ID: Character_100211
     Headicon: {fileID: 21300000, guid: 061bb7dc0548b6e4d9d19297d5a95ae2, type: 3}
     Assets:
     - Star: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
     deftualBuffID:
     - "\u6025\u901F"
     - "\u5FEB\u901F\u65BD\u6CD5"
-  - ID: plate_1058
+  - ID: Character_1058
     Headicon: {fileID: 21300000, guid: eb1f391e437653f44bdb82d15530fff6, type: 3}
     Assets:
     - Star: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
     deftualBuffID:
     - "\u65E0\u6211"
     - "\u5251\u6C14"
-  - ID: plate_106011
+  - ID: Character_106011
     Headicon: {fileID: 21300000, guid: 4298f012e392dfe45b19da5420ea370f, type: 3}
     Assets:
     - Star: 1
@@ -188,7 +188,31 @@ MonoBehaviour:
     CharacterStarType: 6
     CharacterName: "\u51EF\u9732"
     battle: 2
-    StepData: []
+    StepData:
+    - Star: 2
+      ItemID: 31002
+      Amount: 10
+      Gold: 200
+    - Star: 3
+      ItemID: 31002
+      Amount: 20
+      Gold: 400
+    - Star: 4
+      ItemID: 31002
+      Amount: 30
+      Gold: 800
+    - Star: 5
+      ItemID: 31002
+      Amount: 50
+      Gold: 1600
+    - Star: 6
+      ItemID: 31002
+      Amount: 100
+      Gold: 3200
+    - Star: 7
+      ItemID: 31002
+      Amount: 200
+      Gold: 6400
     SpineIdleName: 05_idle
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
