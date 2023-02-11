@@ -169,3 +169,55 @@ MonoBehaviour:
     deftualBuffID:
     - "\u65E0\u6211"
     - "\u5251\u6C14"
+  - ID: plate_106011
+    Headicon: {fileID: 21300000, guid: 4298f012e392dfe45b19da5420ea370f, type: 3}
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 41b462a7797b1de4fafa919871e26301, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 73fc56ea8b32ef94f8412c73a0beff3d, type: 3}
+      Spinedata: {fileID: 11400000, guid: 0a8eaaa60bfa63841bca3383d0c7fc86, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 41b462a7797b1de4fafa919871e26301, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 73fc56ea8b32ef94f8412c73a0beff3d, type: 3}
+      Spinedata: {fileID: 11400000, guid: 223b4b64640e7a649862dd05063cffda, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: 22b4d1c216bf2804ba24dd5d2dcb329b, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 256e55655e5f0a74485f2b8dada1a324, type: 3}
+      Spinedata: {fileID: 11400000, guid: 52ccaf86b76abc447a6a64af40e2fc54, type: 2}
+    Prefab: {fileID: 2060322555634032043, guid: a2130fa9414ac834aa0e468ef3293e7b, type: 3}
+    CharacterStarType: 6
+    CharacterName: "\u51EF\u9732"
+    battle: 2
+    StepData: []
+    SpineIdleName: 05_idle
+    EquipAnimName: 000000_smile
+    AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
+    State:
+      PhysicsAttack: 10
+      MagicAttack: 10
+      Defense: 999
+      HP: 150
+      currentHp: 0
+      AddHp: 150
+      SkillAttack: 1
+      Cirtical: 0.15
+      CirticalAttack: 2
+      Power: 40
+      Intelligence: 5
+      AttackSpeed: 1
+      ReleaseSpeed: 1
+      MovSpeed: 100
+      Growth: 0.135
+    SkillTable:
+    - SkillID: SkillSoldierAttack
+      Type: 0
+    - SkillID: 
+      Type: 1
+    - SkillID: 
+      Type: 2
+    - SkillID: 
+      Type: 3
+    - SkillID: 
+      Type: 4
+    des: "\u6362\u5934\u5927\u5E08\u51EF\u9732"
+    deftualBuffID: []
