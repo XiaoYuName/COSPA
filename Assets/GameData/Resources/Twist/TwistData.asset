@@ -26,16 +26,25 @@ MonoBehaviour:
     CharacterDouble: 0.245
     HandDouble: 0.8
     Video: {fileID: 11400000, guid: eece02011bb55f44c8c07cf40e36db36, type: 2}
-    characterID: Character_106011
-    CharacterCradsID: []
-    HandCrads: []
+    characterID:
+    - Character_100211
+    - Character_1058
+    - Character_106011
+    CharacterCradsID:
+    - Character_100211
+    - Character_1058
+    - Character_106011
+    HandCrads:
+    - Character_100211
+    - Character_1058
+    - Character_106011
     EquipList: []
   - _TwisType: 0
     UpDouble: 0
     CharacterDouble: 0
     HandDouble: 0
     Video: {fileID: 0}
-    characterID: 
+    characterID: []
     CharacterCradsID: []
     HandCrads: []
     EquipList: []
@@ -44,7 +53,7 @@ MonoBehaviour:
     CharacterDouble: 0
     HandDouble: 0
     Video: {fileID: 0}
-    characterID: 
+    characterID: []
     CharacterCradsID: []
     HandCrads: []
     EquipList: []

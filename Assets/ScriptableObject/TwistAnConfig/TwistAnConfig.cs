@@ -68,13 +68,13 @@ public class TwistDouble
     [Header("当期视频播放内容")]
     public MediaReference Video;
 
-    [Header("Up 角色卡池")] 
-    public string characterID;
+    [Header("Up 角色(三星)卡池")] 
+    public List<string> characterID;
     
-    [Header("五星角色卡池")]
+    [Header("二星角色卡池")]
     public List<string> CharacterCradsID = new List<string>();
 
-    [Header("普通角色卡池")]
+    [Header("一星角色卡池")]
     public List<string> HandCrads = new List<string>();
 
     [Header("当期装备卡池")]
