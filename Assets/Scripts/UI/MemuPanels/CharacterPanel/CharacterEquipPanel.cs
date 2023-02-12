@@ -138,6 +138,7 @@ namespace ARPG.UI
             foreach (var Bag in InventoryManager.Instance.GetItemAllBag())
             {
                 Item item = InventoryManager.Instance.GetItem(Bag.ID);
+               if(item.isShowBag==false)continue;
                if(item.Type == ItemType.材料 || item.Type == ItemType.记忆碎片)continue;
                SlotUI Obj =  Instantiate(_SlotUI, content);
                Obj.Init();

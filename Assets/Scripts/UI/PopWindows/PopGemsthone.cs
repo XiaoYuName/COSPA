@@ -44,6 +44,8 @@ namespace ARPG.UI
             PropName = Get<TextMeshProUGUI>("UIMask/Back/Back/Farme/Center/PT_Name/PropName");
             PropBagValue = Get<TextMeshProUGUI>("UIMask/Back/Back/Farme/Center/PT_Name/BagValue");
             PropAmount = Get<TextMeshProUGUI>("UIMask/Back/Back/Farme/Center/PT_Name/Amount");
+            CloseBtn = Get<Button>("UIMask/Back/Back/Farme/Down/CloseBtn");
+            FuncBtn = Get<Button>("UIMask/Back/Back/Farme/Down/FuncBtn");
             Bind(CloseBtn,Close,UiAudioID.OutChick);
         }
 

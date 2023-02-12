@@ -81,8 +81,10 @@ namespace ARPG.UI
             if (itemBags.Count <= 0) return;
             for (int i = 0; i < itemBags.Count; i++)
             {
-                InventorySlotUI slotUI = Instantiate(_InventorySlotUI, content);
                 Item item = InventoryManager.Instance.GetItem(itemBags[i].ID);
+                if(item.isShowBag==false)continue;
+                InventorySlotUI slotUI = Instantiate(_InventorySlotUI, content);
+               
                 slotUI.Init();
                 slotUI.InitData(itemBags[i]);
                 if (item.Type == ItemType.材料)

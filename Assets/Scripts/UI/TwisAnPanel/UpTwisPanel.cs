@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.BasePool;
@@ -53,6 +54,7 @@ namespace ARPG.UI
             Bind(OneBtn,OneClick,UiAudioID.OnChick);
             Bind(TenBtn,TenClick,UiAudioID.OnChick);
             Bind(ExchangeBtn,ExchangeOnClick,UiAudioID.OnChick);
+            MessageAction.UpdataeMoney += SetMoneyUI;
         }
 
         public void InitData(TwistData data,TwistDouble Double)
@@ -68,6 +70,16 @@ namespace ARPG.UI
             Video.Play();
         }
 
+        /// <summary>
+        /// 设置/刷新货币
+        /// </summary>
+        /// <param name="Gemsthone"></param>
+        /// <param name="Mana"></param>
+        public void SetMoneyUI(ItemBag Gemsthone, ItemBag Mana)
+        {
+            GemsthoneAmount.text = Gemsthone.count.ToString();
+        }
+
         public override void Close()
         {
             UIMask.gameObject.SetActive(false);
@@ -81,7 +93,7 @@ namespace ARPG.UI
         private void HelpOnClick()
         {
             if (CurrentInfo == null) return;
-            UISystem.Instance.ShowPopWindows("交换",CurrentInfo.Helpdescription,null);
+            UISystem.Instance.ShowPopWindows("交换",CurrentInfo.Helpdescription,"关闭");
         }
 
         private void ExchangeOnClick()
@@ -89,28 +101,53 @@ namespace ARPG.UI
             UISystem.Instance.ShowPopWindows("提示","暂未开放",null);
         }
 
-
         private void SingOnClick()
         {
             string des = "消耗" + CurrentInfo.SinglentAmount + "宝石,招募1次 确定吗?";
             UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.SinglentAmount,
-                "所持角色交换Pt","99999",1,null);
+                "所持角色交换Pt","99999",1, delegate
+                {
+                    InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.SinglentAmount);
+                    OpenTwisScnen(1);
+                });
         }
 
         private void OneClick()
         {
             string des = "消耗" + CurrentInfo.OneTwisAmount + "宝石,招募1次 确定吗?";
-            UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.SinglentAmount,
-                "所持角色交换Pt","99999",1,null);
+            UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.OneTwisAmount,
+                "所持角色交换Pt","99999",1,delegate
+                {
+                    InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.OneTwisAmount);
+                    OpenTwisScnen(1);
+                });
         }
 
         private void TenClick()
         {
             string des = "消耗" + CurrentInfo.TenTwisAmount + "宝石,招募1次 确定吗?";
-            UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.SinglentAmount,
-                "所持角色交换Pt","99999",1,null);
+            UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.TenTwisAmount,
+                "所持角色交换Pt","99999",1,delegate
+                {
+                    InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.TenTwisAmount);
+                    OpenTwisScnen(10);
+                });
         }
 
+        /// <summary>
+        /// 开始进入抽奖
+        /// </summary>
+        /// <param name="count"></param>
+        private void OpenTwisScnen(int count)
+        {
+            Debug.LogError("开始进入扭蛋 : 次数为 "+count);
+        }
+
+
+        private void OnDestroy()
+        {
+            MessageAction.UpdataeMoney -= SetMoneyUI;
+        }
     }
 }
 
