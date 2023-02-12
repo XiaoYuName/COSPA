@@ -36,19 +36,19 @@ namespace ARPG.UI
         public override void Init()
         {
             UIMask = transform.GetChild(0).gameObject;
-            Video = Get<MediaPlayer>("UIMask/VideoPlay");
+            Video = Get<MediaPlayer>("UIMask/VideoMask/VideoPlay");
             TitleName = Get<TextMeshProUGUI>("UIMask/Back/TitleString");
             description = Get<TextMeshProUGUI>("UIMask/Back/description");
-            HelpBtn = Get<Button>("UIMask/HelpBtn");
+            HelpBtn = Get<Button>("UIMask/Back/HelpBtn");
             Bind(HelpBtn,HelpOnClick,UiAudioID.OnChick);
-            SingleBtn = Get<Button>("UIMask/DayBtn");
-            SingBtnAmount = Get<Text>("UIMask/DayBtn/mask/icon/Amount");
-            OneBtn = Get<Button>("UIMask/OneBtn");
-            OneAmount = Get<Text>("UIMask/OneBtn/icon/Amount");
-            TenBtn = Get<Button>("UIMask/TenBtn");
-            TenAmount = Get<Text>("UIMask/TenBtn/icon/Amount");
-            ExchangeBtn = Get<Button>("UIMask/ExchangeBtn");
-            GemsthoneAmount = Get<Text>("UIMask/chiyoushu/fufei/Amount");
+            SingleBtn = Get<Button>("UIMask/Back/DayBtn");
+            SingBtnAmount = Get<Text>("UIMask/Back/DayBtn/mask/icon/Amount");
+            OneBtn = Get<Button>("UIMask/Back/OneBtn");
+            OneAmount = Get<Text>("UIMask/Back/OneBtn/icon/Amount");
+            TenBtn = Get<Button>("UIMask/Back/TenBtn");
+            TenAmount = Get<Text>("UIMask/Back/TenBtn/icon/Amount");
+            ExchangeBtn = Get<Button>("UIMask/Back/ExchangeBtn");
+            GemsthoneAmount = Get<Text>("UIMask/Back/chiyoushu/fufei/Amount");
             Bind(SingleBtn,SingOnClick,UiAudioID.OnChick);
             Bind(OneBtn,OneClick,UiAudioID.OnChick);
             Bind(TenBtn,TenClick,UiAudioID.OnChick);
