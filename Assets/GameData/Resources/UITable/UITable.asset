@@ -223,8 +223,15 @@ MonoBehaviour:
     parentName: UIPanel
     Type: 4
     isInit: 0
+  - ID: PopGemsthone
+    Prefab: {fileID: 4324157829759673222, guid: c4d80e100d1a2c348b4d908c0a349ef6, type: 3}
+    details: "\u6D88\u8017\u652F\u4ED8\u754C\u9762"
+    parentName: UITop
+    Type: 4
+    isInit: 0
   UIParents:
   - UIPanel
   - UIDialogue
   - UIPop
   - UITop
+  - UITwist

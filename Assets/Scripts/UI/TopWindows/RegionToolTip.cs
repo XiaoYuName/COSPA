@@ -22,7 +22,7 @@ namespace ARPG.UI
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Back/RightPanel/CloseBtn");
-            Bind(CloseBtn,Close,UI_ToolAudio.OutChick.ToString());
+            Bind(CloseBtn,Close,UiAudioID.OutChick);
             ItemContent = Get<RectTransform>("UIMask/Back/LeftPanel/ItemRow/Content");
             RewordContent = Get<RectTransform>("UIMask/Back/LeftPanel/RewordRow/Content");
             

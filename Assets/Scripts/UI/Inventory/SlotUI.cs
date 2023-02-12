@@ -44,7 +44,7 @@ namespace ARPG.UI
             Bind(ActionBtn, delegate
             {
                  UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").ShowItemToolTip(bag);
-            },UI_ToolAudio.UI_click.ToString());
+            },UiAudioID.UI_click);
         }
         
         public void InitData(ItemBag bag,Action func)
@@ -62,7 +62,7 @@ namespace ARPG.UI
                 powor.text = "";
             }
             currentID = bag.ID;
-            Bind(ActionBtn,func,UI_ToolAudio.UI_click.ToString());
+            Bind(ActionBtn,func,UiAudioID.UI_click);
         }
 
         public void OnPointerDown(PointerEventData eventData)

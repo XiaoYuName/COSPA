@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: ItemConfig
   m_EditorClassIdentifier: 
   BaseDatas:
+  - ID: 99999
+    ItemName: "PT\u70B9\u6570"
+    level: 1
+    spriteID: 99999
+    Type: 3
+    Mode: 1
+    attribute: []
+    description: "\u626D\u86CB\u9057\u7559\u4EA7\u7269,\u53EF\u4EE5\u7528\u6765\u4EA4\u6362\u4F63\u5175"
+    sellAmount: 0
+    purchase: 0
+    isSell: 0
+    isShowBag: 0
   - ID: 101011
     ItemName: "\u65B0\u624B\u6B66\u5668"
     level: 1
@@ -26,6 +38,7 @@ MonoBehaviour:
     sellAmount: 200
     purchase: 100
     isSell: 1
+    isShowBag: 1
   - ID: 101012
     ItemName: "\u5FC3\u7075\u4E4B\u5203"
     level: 1
@@ -39,6 +52,7 @@ MonoBehaviour:
     sellAmount: 300
     purchase: 200
     isSell: 0
+    isShowBag: 1
   - ID: 91001
     ItemName: "\u5B9D\u77F3"
     level: 1
@@ -50,6 +64,7 @@ MonoBehaviour:
     sellAmount: 0
     purchase: 0
     isSell: 0
+    isShowBag: 1
   - ID: 92001
     ItemName: "\u73A9\u5BB6\u7ECF\u9A8C\u503C"
     level: 0
@@ -61,6 +76,7 @@ MonoBehaviour:
     sellAmount: 0
     purchase: 0
     isSell: 0
+    isShowBag: 1
   - ID: 94001
     ItemName: "\u739B\u90A3"
     level: 0
@@ -72,6 +88,7 @@ MonoBehaviour:
     sellAmount: 0
     purchase: 0
     isSell: 0
+    isShowBag: 1
   - ID: 31058
     ItemName: "\u65E0\u8272\u8F89\u706B\u8BB0\u5FC6\u788E\u7247"
     level: 0
@@ -83,6 +100,7 @@ MonoBehaviour:
     sellAmount: 0
     purchase: 0
     isSell: 0
+    isShowBag: 1
   - ID: 31002
     ItemName: "\u4F18\u8863\u8BB0\u5FC6\u788E\u7247"
     level: 0
@@ -94,6 +112,7 @@ MonoBehaviour:
     sellAmount: 0
     purchase: 0
     isSell: 0
+    isShowBag: 1
   - ID: 101251
     ItemName: "\u6B21\u5143\u9B54\u6756"
     level: 1
@@ -111,6 +130,7 @@ MonoBehaviour:
     sellAmount: 20000
     purchase: 20000
     isSell: 1
+    isShowBag: 1
   - ID: 22001
     ItemName: "\u88C5\u5907\u5F3A\u5316\u77F3"
     level: 1
@@ -122,3 +142,4 @@ MonoBehaviour:
     sellAmount: 20000
     purchase: 20000
     isSell: 1
+    isShowBag: 1

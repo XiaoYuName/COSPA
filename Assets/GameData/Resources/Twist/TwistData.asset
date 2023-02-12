@@ -13,6 +13,38 @@ MonoBehaviour:
   m_Name: TwistData
   m_EditorClassIdentifier: 
   TwistDatas:
-  - _TwisType: 0
+  - _TwisType: 1
     TitleString: "\u65B0\u89D2\u8272  \u4E9A\u91CC\u838E  \u767B\u573A! \u6D3B\u52A8\u4E2D\u51FA\u73B0\u7387\u4E0A\u5347!"
-    description: 
+    description: "\u62BD\u53D6[10\u6B21]\u4E00\u5B9A\u4F1A\u51FA\u73B0*2\u4EE5\u4E0A\u89D2\u82721\u540D!\n\u5DF2\u7ECF\u662F\u540C\u4F34\u7684\u89D2\u8272\u4F1A\u53D8\u6362\u4E3A\u5973\u795E\u7684\u79D8\u77F3."
+    Helpdescription: "\u62BD\u53D6[10\u6B21]\u4E00\u5B9A\u4F1A\u51FA\u73B0*2\u4EE5\u4E0A\u89D2\u82721\u540D!\n\u5DF2\u7ECF\u662F\u540C\u4F34\u7684\u89D2\u8272\u4F1A\u53D8\u6362\u4E3A\u5973\u795E\u7684\u79D8\u77F3."
+    SinglentAmount: 50
+    OneTwisAmount: 150
+    TenTwisAmount: 1500
+  Settings:
+  - _TwisType: 1
+    UpDouble: 0.25
+    CharacterDouble: 0.228
+    HandDouble: 0.452
+    Video: {fileID: 11400000, guid: eece02011bb55f44c8c07cf40e36db36, type: 2}
+    characterID: Character_106011
+    CharacterCradsID: []
+    HandCrads: []
+    EquipList: []
+  - _TwisType: 0
+    UpDouble: 0
+    CharacterDouble: 0
+    HandDouble: 0
+    Video: {fileID: 0}
+    characterID: 
+    CharacterCradsID: []
+    HandCrads: []
+    EquipList: []
+  - _TwisType: 2
+    UpDouble: 0
+    CharacterDouble: 0
+    HandDouble: 0
+    Video: {fileID: 0}
+    characterID: 
+    CharacterCradsID: []
+    HandCrads: []
+    EquipList: []

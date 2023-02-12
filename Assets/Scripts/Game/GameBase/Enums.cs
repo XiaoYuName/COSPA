@@ -65,28 +65,6 @@ namespace ARPG
        神器,
    }
    
-   /// <summary>
-   /// 常用UI音效类型
-   /// </summary>
-   public enum UI_ToolAudio
-   {
-       /// <summary>
-       /// 确认
-       /// </summary>
-       OnChick,
-       /// <summary>
-       /// 退出
-       /// </summary>
-       OutChick,
-       /// <summary>
-       /// 单击
-       /// </summary>
-       UI_click,
-       /// <summary>
-       /// 弹窗
-       /// </summary>
-       PopWindows,
-   }
 
    public enum FSMType
    {

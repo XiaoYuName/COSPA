@@ -81,5 +81,28 @@ namespace ARPG
         /// </summary>
         public const int PaworDeftualAmount = 15;
     }
+
+    /// <summary>
+    /// 常用UI音效类型
+    /// </summary>
+    public static class UiAudioID
+    {
+        /// <summary>
+        /// 确认
+        /// </summary>
+        public const string OnChick = "OnChick";
+        /// <summary>
+        /// 退出
+        /// </summary>
+        public const string OutChick = "OutChick";
+        /// <summary>
+        /// 单击
+        /// </summary>
+        public const string UI_click = "UI_click";
+        /// <summary>
+        /// 弹窗
+        /// </summary>
+        public const string PopWindows = "PopWindows";
+    }
 }
 

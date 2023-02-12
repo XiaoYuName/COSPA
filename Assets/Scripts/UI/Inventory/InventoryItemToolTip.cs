@@ -79,7 +79,6 @@ namespace ARPG.UI
             InventoryManager.Instance.DeleteItemBag(currentBag,1);
             InventoryManager.Instance.AddGold(GoldType.玛那,ManaAmount);
             Close();
-            UISystem.Instance.ShowPopWindows("提示","出售成功","确定");
         }
     }
 

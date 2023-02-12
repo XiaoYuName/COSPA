@@ -64,6 +64,9 @@ namespace ARPG.Config
         /// 是否可交易
         /// </summary>
         public bool isSell;
+
+        [Header("是否显示在背包")]
+        public bool isShowBag;
     }
 
     [System.Serializable]

@@ -563,6 +563,39 @@ namespace ARPG
             ui.Show(type);
         }
 
+        /// <summary>
+        /// 显示消耗弹窗(单消耗)
+        /// </summary>
+        /// <param name="titleName">标题名称</param>
+        /// <param name="description">提示内容</param>
+        /// <param name="goldType">消耗货币类型</param>
+        /// <param name="Amount">消耗数量</param>
+        /// <param name="funcBtn">点击确认后Button回调</param>
+        public void ShowPopConsume(string titleName, string description, GoldType goldType, int Amount, Action funcBtn)
+        {
+            PopGemsthone gemsthone = GetUI<PopGemsthone>("PopGemsthone");
+            gemsthone.transform.SetAsLastSibling();
+            gemsthone.Show(titleName,description,goldType,Amount,funcBtn);
+        }
+
+        /// <summary>
+        /// 显示消耗弹窗(单消耗+加成)
+        /// </summary>
+        /// <param name="titleName">标题名称</param>
+        /// <param name="description">提示内容</param>
+        /// <param name="goldType">消耗货币类型</param>
+        /// <param name="Amount">消耗数量</param>
+        /// <param name="PropName">加成名称</param>
+        /// <param name="PropID">加成ID</param>
+        /// <param name="PropAmount">加成数量</param>
+        /// <param name="funcBtn">点击确认后Button回调</param>
+        public void ShowPopConsume(string titleName, string description, GoldType goldType,int Amount,string PropName,
+            string PropID,int PropAmount,Action funcBtn)
+        {
+            PopGemsthone gemsthone = GetUI<PopGemsthone>("PopGemsthone");
+            gemsthone.transform.SetAsLastSibling();
+            gemsthone.Show(titleName,description,goldType,Amount,PropName,PropID,PropAmount,funcBtn);
+        }
         #endregion
     }
 }

@@ -36,7 +36,7 @@ namespace ARPG.UI
             icon.sprite = info.Headicon;
             Bind(SelectBtn,()=>
                 UISystem.Instance.GetUI<SwitchCharacterPanel>("SwitchCharacterPanel").SetSelect(this.index),
-                UI_ToolAudio.UI_click.ToString());
+                UiAudioID.UI_click);
         }
 
         public void SetSelect(bool active)
