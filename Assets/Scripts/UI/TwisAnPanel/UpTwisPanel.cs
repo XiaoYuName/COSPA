@@ -56,6 +56,7 @@ namespace ARPG.UI
         public void InitData(TwistData data,TwistDouble Double)
         {
             CurrentInfo = data;
+            CurrentDouble = Double;
             TitleName.text = data.TitleString;
             description.text = data.description;
             SingBtnAmount.text = data.SinglentAmount.ToString();
@@ -136,7 +137,8 @@ namespace ARPG.UI
         /// <param name="count"></param>
         private void OpenTwisScnen(int count)
         {
-            Debug.LogError("开始进入扭蛋 : 次数为 "+count);
+            TwistScene twistScene = UISystem.Instance.GetUI<TwistScene>("TwistScene");
+            twistScene.OpenTwisScene(count,CurrentDouble,TwisType.PILCK_UP);
         }
 
 

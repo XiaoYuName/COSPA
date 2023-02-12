@@ -55,6 +55,30 @@ MonoBehaviour:
     InitVolume: 0.6
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: TwistOne
+    audioType: 2
+    clip: {fileID: 8300000, guid: b1eed25622643bd47babef10fb711bfa, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: TwistTen
+    audioType: 2
+    clip: {fileID: 8300000, guid: 6ea1757cafbc3f140aef2dbc6352cfde, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Twist_One
+    audioType: 3
+    clip: {fileID: 8300000, guid: a0187627506074b4198c9cba77fa5f49, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Twist_Three
+    audioType: 3
+    clip: {fileID: 8300000, guid: a0187627506074b4198c9cba77fa5f49, type: 3}
+    InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
   GameAudio: []
   GolodAudioMixer: {fileID: 24100000, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}

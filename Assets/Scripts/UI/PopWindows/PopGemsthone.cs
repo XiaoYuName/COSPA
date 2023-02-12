@@ -70,7 +70,11 @@ namespace ARPG.UI
             GemsBagValue.text = itemCount.ToString();
             GemsAmount.text = Mathf.Max(itemCount - Amount, 0).ToString();
             PropPanel.gameObject.SetActive(false);
-            Bind(FuncBtn,funcBtn,UiAudioID.OnChick);
+            Bind(FuncBtn, () =>
+            {
+                Close();
+                funcBtn?.Invoke();
+            },UiAudioID.OnChick);
         }
         
         /// <summary>
