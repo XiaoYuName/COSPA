@@ -115,6 +115,9 @@ namespace ARPG.Config
         
         [Header("初始默认拥有的BUFF")]
         public List<string> deftualBuffID = new List<string>();
+
+        [Header("扭蛋页所需资源ID")]
+        public TwistAssets twistAssets;
     }
 
     [Serializable]
@@ -235,6 +238,26 @@ namespace ARPG.Config
         public int Amount;
         [Tooltip("消耗的玛那数量")]
         public int Gold;
+    }
+
+
+    /// <summary>
+    /// 扭蛋界面所需资源
+    /// </summary>
+    [Serializable]
+    public class TwistAssets
+    {
+        /// <summary>
+        /// 宣传页VideoID
+        /// </summary>
+        [Header("宣传页VideoID")]
+        public string PropAgAndaVideoID;
+        
+        [Header("VideoID")]
+        public string VideoID;
+
+        [Header("一,二星角色背景ID")]
+        public Sprite NameImage;
     }
 }
 

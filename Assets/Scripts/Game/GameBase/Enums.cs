@@ -2,10 +2,9 @@ namespace ARPG
 {
    public enum CharacterStarType
    {
-       三星=3,
-       四星=4,
-       五星=5,
-       六星=6,
+       一星=4,
+       二星=5,
+       三星=6,
    }
 
    /// <summary>
