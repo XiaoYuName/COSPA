@@ -31,6 +31,10 @@ namespace ARPG
         private Animation Name_3Star;
         private Image Name_3Image;
 
+
+        private RectTransform HeadContent;
+        private GameObject CorotineBtns;
+        
         public override void Init()
         {
             FadeImage = Get<Image>("UIMask/Fade");
@@ -43,6 +47,8 @@ namespace ARPG
             BK_Video = Get<MediaPlayer>("UIMask/Tewwn/BK_Video");
             Name_3Star = Get<Animation>("UIMask/Tewwn/BK_Video/name_3star");
             Name_3Image = Get<Image>("UIMask/Tewwn/BK_Video/name_3star/nnnn");
+            HeadContent = Get<RectTransform>("UIMask/RewordTwist/HeadContent");
+            CorotineBtns = Get("UIMask/RewordTwist/CorotineBtn");
         }
 
         /// <summary>
@@ -69,6 +75,7 @@ namespace ARPG
             SwitchTwistAnim.Stop();
             ShowPanAnim.gameObject.SetActive(false);
             ShowPanAnim.Stop();
+            CorotineBtns.gameObject.SetActive(false);
         }
 
         public IEnumerator OpenTwis(int amount)
@@ -94,6 +101,7 @@ namespace ARPG
         public IEnumerator CreatRewordScnen()
         {
             RewordTistPanel.gameObject.SetActive(true);
+            TwistContent.gameObject.SetActive(true);
             List<string> characterList = new List<string>();
             for (int i = 0; i < TwistAmount; i++)
             {
@@ -148,14 +156,18 @@ namespace ARPG
                 ShowPanAnim.gameObject.SetActive(true);
                 ShowPanAnim.Play();
                 Debug.Log("二阶动画时长 : "+ShowPanAnim.clip.length);
-                yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
-                //根据星级来进行开启不同的流程状态
+                
                 MediaReference reference = VideoManager.Instance.GetVideo(characterData.twistAssets.PropAgAndaVideoID);
+                BK_Video.OpenMedia(reference,false);
+                
+                yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
+                
+                //根据星级来进行开启不同的流程状态
                 BK_Video.gameObject.SetActive(true);
-                BK_Video.OpenMedia(reference);
                 BK_Video.Play();
-
-                yield return new WaitForSeconds(3f);
+                
+                float Videotime = Convert.ToSingle(BK_Video.Info.GetDuration());
+                yield return new WaitForSeconds(Videotime);
                 Name_3Star.gameObject.SetActive(true);
                 Name_3Image.sprite = characterData.twistAssets.NameImage;
                 Name_3Star.Play();
@@ -164,6 +176,22 @@ namespace ARPG
                 Name_3Star.Stop();
                 Debug.Log("三阶动画结束");
             }
+            yield return new WaitForSeconds(1.25f);
+            BK_Video.gameObject.SetActive(false);
+            RewordTistPanel.gameObject.SetActive(true);
+            TwistContent.gameObject.SetActive(false);
+            BK_Video.Stop();
+            
+            UIHelper.Clear(HeadContent);
+            for (int i = 0; i < TwistAmount; i++)
+            {
+               HeadFx fx =  UISystem.Instance.InstanceUI<HeadFx>("HeadFx",HeadContent);
+               fx.InitData(characterList[i]);
+               yield return new WaitForSeconds(0.25f);
+            }
+            CorotineBtns.gameObject.SetActive(true);
+            Debug.Log("四阶动画结束");
+            
         }
     }
 }

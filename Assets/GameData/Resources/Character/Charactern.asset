@@ -29,7 +29,7 @@ MonoBehaviour:
       CharacterPanelIcon: {fileID: 21300000, guid: a2f450c7d37a5fe4b9cfcb89eb2d0479, type: 3}
       Spinedata: {fileID: 11400000, guid: 2291fa5ee34e3674cb8355126e045095, type: 2}
     Prefab: {fileID: 2060322555634032043, guid: 703f098e87e33fb459e1badb0b40d97a, type: 3}
-    CharacterStarType: 4
+    CharacterStarType: 1
     CharacterName: "\u4F18\u8863"
     battle: 2
     StepData:
@@ -92,9 +92,9 @@ MonoBehaviour:
     - "\u6025\u901F"
     - "\u5FEB\u901F\u65BD\u6CD5"
     twistAssets:
-      PropAgAndaVideoID: Prop300080
-      VideoID: Prop300080
-      NameImage: {fileID: 21300000, guid: 2f4cc2503e16e444b901a71fba857ad5, type: 3}
+      PropAgAndaVideoID: 101131_1
+      VideoID: 101131_1
+      NameImage: {fileID: 21300000, guid: 6f536d8c0780fb24cab2177149143ad6, type: 3}
   - ID: Character_1058
     Headicon: {fileID: 21300000, guid: eb1f391e437653f44bdb82d15530fff6, type: 3}
     Assets:
@@ -111,7 +111,7 @@ MonoBehaviour:
       CharacterPanelIcon: {fileID: 21300000, guid: fa4ce0ec8b9754f4aadd38c9b65bfe02, type: 3}
       Spinedata: {fileID: 11400000, guid: d8c95339ba2027443a2594a9140e4c7c, type: 2}
     Prefab: {fileID: 2060322555634032043, guid: 98a1772e638dffe44ab7bd5ef05c01db, type: 3}
-    CharacterStarType: 5
+    CharacterStarType: 1
     CharacterName: "\u65E0\u8272\u8F89\u706B"
     battle: 0
     StepData:
@@ -174,9 +174,9 @@ MonoBehaviour:
     - "\u65E0\u6211"
     - "\u5251\u6C14"
     twistAssets:
-      PropAgAndaVideoID: Prop300080
-      VideoID: Prop300080
-      NameImage: {fileID: 21300000, guid: 2f4cc2503e16e444b901a71fba857ad5, type: 3}
+      PropAgAndaVideoID: 101131_1
+      VideoID: 101131_1
+      NameImage: {fileID: 21300000, guid: 938438620145f2c4d98d7a54bf64e4d5, type: 3}
   - ID: Character_106011
     Headicon: {fileID: 21300000, guid: 4298f012e392dfe45b19da5420ea370f, type: 3}
     Assets:
@@ -193,7 +193,7 @@ MonoBehaviour:
       CharacterPanelIcon: {fileID: 21300000, guid: 256e55655e5f0a74485f2b8dada1a324, type: 3}
       Spinedata: {fileID: 11400000, guid: 52ccaf86b76abc447a6a64af40e2fc54, type: 2}
     Prefab: {fileID: 2060322555634032043, guid: a2130fa9414ac834aa0e468ef3293e7b, type: 3}
-    CharacterStarType: 6
+    CharacterStarType: 1
     CharacterName: "\u51EF\u9732"
     battle: 2
     StepData:
@@ -254,6 +254,86 @@ MonoBehaviour:
     des: "\u6362\u5934\u5927\u5E08\u51EF\u9732"
     deftualBuffID: []
     twistAssets:
-      PropAgAndaVideoID: Prop300080
-      VideoID: Prop300080
-      NameImage: {fileID: 21300000, guid: 2f4cc2503e16e444b901a71fba857ad5, type: 3}
+      PropAgAndaVideoID: 101131_1
+      VideoID: 101131_1
+      NameImage: {fileID: 21300000, guid: ea3121388083d474286c9d853ee2c75c, type: 3}
+  - ID: Character_101811
+    Headicon: {fileID: 21300000, guid: 91a5e55d41e24b54b9fd516bf2d9d837, type: 3}
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 6e11e7da403059d46817a756b8111e1e, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 10923b5278fdbec42ac6bf5da00e8770, type: 3}
+      Spinedata: {fileID: 11400000, guid: e5542dbc330079645bc8c8d840950c49, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 6e11e7da403059d46817a756b8111e1e, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 10923b5278fdbec42ac6bf5da00e8770, type: 3}
+      Spinedata: {fileID: 11400000, guid: 174c45ee345a36d4bbfc7dc25f273273, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: f3a43573a4322db4c9412bc4956e9174, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 4ba363020f10b154e94f2b6206ee9d33, type: 3}
+      Spinedata: {fileID: 11400000, guid: 0ae4af93d26130846bb164a4eaffe148, type: 2}
+    Prefab: {fileID: 2060322555634032043, guid: f76a274710332f945b8860bbc81e61f1, type: 3}
+    CharacterStarType: 3
+    CharacterName: "\u4F0A\u7EEA"
+    battle: 0
+    StepData:
+    - Star: 2
+      ItemID: 31002
+      Amount: 10
+      Gold: 200
+    - Star: 3
+      ItemID: 31002
+      Amount: 20
+      Gold: 400
+    - Star: 4
+      ItemID: 31002
+      Amount: 30
+      Gold: 800
+    - Star: 5
+      ItemID: 31002
+      Amount: 50
+      Gold: 1600
+    - Star: 6
+      ItemID: 31002
+      Amount: 100
+      Gold: 3200
+    - Star: 7
+      ItemID: 31002
+      Amount: 200
+      Gold: 6400
+    SpineIdleName: 05_idle
+    EquipAnimName: 000000_smile
+    AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
+    State:
+      PhysicsAttack: 10
+      MagicAttack: 10
+      Defense: 999
+      HP: 150
+      currentHp: 0
+      AddHp: 150
+      SkillAttack: 1
+      Cirtical: 0.15
+      CirticalAttack: 2
+      Power: 40
+      Intelligence: 5
+      AttackSpeed: 1
+      ReleaseSpeed: 1
+      MovSpeed: 100
+      Growth: 0.135
+    SkillTable:
+    - SkillID: SkillConjurerAttack
+      Type: 0
+    - SkillID: MagicBomb
+      Type: 1
+    - SkillID: HealingMagic
+      Type: 2
+    - SkillID: MagicThunder
+      Type: 3
+    - SkillID: FlameBurns
+      Type: 4
+    des: "\u8001\u5A46\u6DA9\u6DA9"
+    deftualBuffID: []
+    twistAssets:
+      PropAgAndaVideoID: 101811_1
+      VideoID: 101811_1
+      NameImage: {fileID: 21300000, guid: 799b14b6e322e334cb1fafae7813e7ff, type: 3}
