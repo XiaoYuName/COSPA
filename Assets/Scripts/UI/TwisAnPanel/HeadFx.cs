@@ -40,7 +40,7 @@ namespace ARPG.UI
 
         private void SetStarContent(int Star)
         {
-            for (int i = 0; i < StarContent.transform.childCount; i++)
+            for (int i = 0; i < StarContent.transform.childCount-1; i++)
             {
                 StarContent.transform.GetChild(i).gameObject.SetActive(i <= Star);
             }

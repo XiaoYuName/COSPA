@@ -152,22 +152,19 @@ namespace ARPG
                     _ => "StarType_Two"
                 };
                 ShowIcon.sprite = GameSystem.Instance.GetSprite(SpriteID);
-
                 ShowPanAnim.gameObject.SetActive(true);
                 ShowPanAnim.Play();
                 Debug.Log("二阶动画时长 : "+ShowPanAnim.clip.length);
-                
-                MediaReference reference = VideoManager.Instance.GetVideo(characterData.twistAssets.PropAgAndaVideoID);
-                BK_Video.OpenMedia(reference,false);
-                
                 yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
-                
+                MediaReference reference = VideoManager.Instance.GetVideo(characterData.twistAssets.PropAgAndaVideoID);
                 //根据星级来进行开启不同的流程状态
                 BK_Video.gameObject.SetActive(true);
+                BK_Video.OpenMedia(reference);
                 BK_Video.Play();
+                yield return new WaitForSeconds(0.5f);
                 
                 float Videotime = Convert.ToSingle(BK_Video.Info.GetDuration());
-                yield return new WaitForSeconds(Videotime);
+                yield return new WaitForSeconds(Videotime-(Name_3Star.clip.length+Settings.TwistTweenTime));//加上偏移时间
                 Name_3Star.gameObject.SetActive(true);
                 Name_3Image.sprite = characterData.twistAssets.NameImage;
                 Name_3Star.Play();

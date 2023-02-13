@@ -80,6 +80,11 @@ namespace ARPG
         /// 强化的基础消耗材料
         /// </summary>
         public const int PaworDeftualAmount = 15;
+
+        /// <summary>
+        /// 扭蛋动画的偏移时间
+        /// </summary>
+        public const float TwistTweenTime = 1f;
     }
 
     /// <summary>
