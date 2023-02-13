@@ -164,11 +164,18 @@ namespace ARPG
                 yield return new WaitForSeconds(0.5f);
                 
                 float Videotime = Convert.ToSingle(BK_Video.Info.GetDuration());
-                yield return new WaitForSeconds(Videotime-(Name_3Star.clip.length+Settings.TwistTweenTime));//加上偏移时间
+                yield return new WaitForSeconds(Videotime-Settings.TwistTweenTime);//加上偏移时间
+                MediaReference VideoAssets = VideoManager.Instance.GetVideo(characterData.twistAssets.VideoID);
+                BK_Video.OpenMedia(VideoAssets);
+                BK_Video.Play();
+                
                 Name_3Star.gameObject.SetActive(true);
                 Name_3Image.sprite = characterData.twistAssets.NameImage;
                 Name_3Star.Play();
                 yield return new WaitForSeconds(Name_3Star.clip.length);
+                
+                //TODO: 测试代码协程
+                yield return new WaitForSeconds(5);
                 Name_3Star.gameObject.SetActive(false);
                 Name_3Star.Stop();
                 Debug.Log("三阶动画结束");
