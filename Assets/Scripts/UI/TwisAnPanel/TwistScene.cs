@@ -159,15 +159,18 @@ namespace ARPG
                 MediaReference reference = VideoManager.Instance.GetVideo(characterData.twistAssets.PropAgAndaVideoID);
                 //根据星级来进行开启不同的流程状态
                 BK_Video.gameObject.SetActive(true);
-                BK_Video.OpenMedia(reference);
+                yield return WaitLoadVideo(BK_Video, reference);
                 BK_Video.Play();
                 yield return new WaitForSeconds(0.5f);
                 
                 float Videotime = Convert.ToSingle(BK_Video.Info.GetDuration());
-                yield return new WaitForSeconds(Videotime-Settings.TwistTweenTime);//加上偏移时间
+                yield return new WaitForSeconds(Videotime);//加上偏移时间
+                
+                
                 MediaReference VideoAssets = VideoManager.Instance.GetVideo(characterData.twistAssets.VideoID);
-                BK_Video.OpenMedia(VideoAssets);
+                yield return WaitLoadVideo(BK_Video, VideoAssets);
                 BK_Video.Play();
+                yield return new WaitForSeconds(0.5f);
                 
                 Name_3Star.gameObject.SetActive(true);
                 Name_3Image.sprite = characterData.twistAssets.NameImage;
@@ -185,6 +188,7 @@ namespace ARPG
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(false);
             BK_Video.Stop();
+            BK_Video.CloseMedia();
             
             UIHelper.Clear(HeadContent);
             for (int i = 0; i < TwistAmount; i++)
@@ -196,6 +200,86 @@ namespace ARPG
             CorotineBtns.gameObject.SetActive(true);
             Debug.Log("四阶动画结束");
             
+        }
+
+        private bool isWaitLoadVideo;
+        /// <summary>
+        /// 等待视频数据加载完毕
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator WaitLoadVideo(MediaPlayer Video,MediaReference Assets)
+        {
+            isWaitLoadVideo = false;
+            Video.OpenMedia(Assets);
+            Video.Events.AddListener(Call);
+            while (isWaitLoadVideo)
+            {
+                yield return null;
+            }
+        }
+        private void Call(MediaPlayer player, MediaPlayerEvent.EventType t1, ErrorCode code)
+        {
+            if (player != BK_Video) return;
+            if (t1 != MediaPlayerEvent.EventType.MetaDataReady) return;
+            isWaitLoadVideo = true;
+            player.Events.RemoveAllListeners();
+            // switch (t1)
+            // {
+            //     case MediaPlayerEvent.EventType.MetaDataReady:
+            //         Debug.Log("视频数据准备完成。当元数据（宽度，持续时间等）可用时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.ReadyToPlay:
+            //         Debug.Log("加载视频并准备播放时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.Started:
+            //         Debug.Log("播放开始时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.FirstFrameReady:
+            //         Debug.Log("渲染第一帧时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.FinishedPlaying:
+            //         Debug.Log("当非循环视频播放完毕时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.Closing:
+            //         Debug.Log("媒体关闭时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.Error:
+            //         Debug.Log("发生错误时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.SubtitleChange:
+            //         Debug.Log("字幕更改时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.Stalled:
+            //         Debug.Log("媒体停顿/暂停？时触发（例如，当媒体流失去连接时）-当前仅在Windows平台上受支持");
+            //         break;
+            //     case MediaPlayerEvent.EventType.Unstalled:
+            //         Debug.Log("当介质从停止状态恢复时触发（例如，重新建立丢失的连接时）");
+            //         break;
+            //     case MediaPlayerEvent.EventType.ResolutionChanged:
+            //         Debug.Log("当视频的分辨率改变（包括负载）时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.StartedSeeking:
+            //         Debug.Log("寻找开始时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.FinishedSeeking:
+            //         Debug.Log("搜索完成时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.StartedBuffering:
+            //         Debug.Log("缓冲开始时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.FinishedBuffering:
+            //         Debug.Log("缓冲完成后触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.PropertiesChanged:
+            //         Debug.Log("当任何属性（例如，立体声包装改变）时触发-必须手动触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.PlaylistItemChanged:
+            //         Debug.Log("在播放列表中播放新项目时触发");
+            //         break;
+            //     case MediaPlayerEvent.EventType.PlaylistFinished:
+            //         Debug.Log("播放列表结束时触发");
+            //         break;
+            // }
         }
     }
 }
