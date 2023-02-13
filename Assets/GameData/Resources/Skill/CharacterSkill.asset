@@ -36,6 +36,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 10
+    VideoID: 
   - ID: SkillConjurerAttack
     CD: 1
     Duration: 0.5
@@ -59,6 +60,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6151121716400007873, guid: 12d8fdc32c8c208409ada808b9ae24de, type: 3}
       count: 10
+    VideoID: 
   - ID: SkillEnemySoldierAttack
     CD: 2.5
     Duration: 0.5
@@ -82,6 +84,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
       count: 999
+    VideoID: 
   - ID: DoubleChop
     CD: 5
     Duration: 2
@@ -105,6 +108,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1011157772751556, guid: ca63c6ac7458764498741e0306f78528, type: 3}
       count: 5
+    VideoID: 
   - ID: Lunchtime
     CD: 15
     Duration: -1
@@ -126,6 +130,7 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+    VideoID: 
   - ID: PrincessRaid
     CD: 30
     Duration: 2
@@ -149,6 +154,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 5
+    VideoID: PrincessRaid
   - ID: Broken
     CD: 1
     Duration: -1
@@ -170,6 +176,7 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+    VideoID: PrincessRaid
   - ID: MagicBomb
     CD: 5
     Duration: -1
@@ -193,6 +200,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
       count: 5
+    VideoID: 
   - ID: HealingMagic
     CD: 5
     Duration: -1
@@ -214,6 +222,7 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 140000001400000014000000140000001400000014000000
     Pools: []
+    VideoID: 
   - ID: MagicThunder
     CD: 20
     Duration: 0.5
@@ -237,6 +246,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 3435570873089584574, guid: 5fa4619c39d9e7e41a5d9ea779f4946d, type: 3}
       count: 15
+    VideoID: MagicThunder
   - ID: FlameBurns
     CD: 60
     Duration: 0.5
@@ -262,6 +272,7 @@ MonoBehaviour:
       count: 15
     - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
       count: 15
+    VideoID: MagicThunder
   - ID: BoXing
     CD: 5
     Duration: 0.5
@@ -283,6 +294,7 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 
     Pools: []
+    VideoID: 
   - ID: ThrowStone
     CD: 5
     Duration: 0.5
@@ -306,3 +318,4 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1074851301299871247, guid: 78826927a5b8ffa4bb3d80cd2d4b186c, type: 3}
       count: 2
+    VideoID: 

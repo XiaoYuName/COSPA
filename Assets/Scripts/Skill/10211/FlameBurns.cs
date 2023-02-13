@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.BasePool;
 using ARPG.Config;
 using ARPG.Pool.Skill;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace ARPG
         {
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_4");
+            VideoManager.Instance.PlayerAvVideo(data.VideoID);
             base.Play();
         }
         public void AniamtorMsg(string EventName)

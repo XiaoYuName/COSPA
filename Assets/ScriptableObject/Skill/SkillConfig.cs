@@ -68,6 +68,8 @@ namespace ARPG
         public SkillDamageState SkillType;
         
         public List<ARPG.Pool.Skill.Pool> Pools;
+        [Header("技能CG_ID")]
+        public string VideoID;
     }
 
     [System.Serializable]
