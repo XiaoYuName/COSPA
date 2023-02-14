@@ -35,6 +35,7 @@ namespace ARPG.UI
             Bind(TwisBtn,()=>SwitchTable(TwisType.白金扭蛋),"UI_click");
             Bind(EquipBtn,()=>SwitchTable(TwisType.普通扭蛋),"UI_click");
             SwitchTable(TwisType.PILCK_UP);
+            AudioManager.Instance.PlayAudio("TwistHome");
         }
         
         public void SwitchTable(TwisType _type)

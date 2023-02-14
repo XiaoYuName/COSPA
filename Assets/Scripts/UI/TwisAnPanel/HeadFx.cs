@@ -27,6 +27,7 @@ namespace ARPG.UI
         {
             CharacterConfigInfo configInfo = InventoryManager.Instance.GetCharacter(characterID);
             icon.sprite = configInfo.Headicon;
+            AudioManager.Instance.PlayAudio("HeadFx");
             SetStarContent((int)configInfo.CharacterStarType);
             Ef_move2.gameObject.SetActive(true);
             if ((int)configInfo.CharacterStarType >= 3)

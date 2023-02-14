@@ -125,6 +125,7 @@ namespace ARPG
                 ? VideoManager.Instance.Get("Twist")
                 : VideoManager.Instance.Get("TwistSp");
             MediaPlayer.StarPlay(clip,true);
+            AudioManager.Instance.PlayAudio("TwistTween");
             AudioManager.Instance.PlayAudio(amount < 10?"TwistOne":"TwistTen");
             yield return new WaitForSeconds(Convert.ToSingle(clip.length));
             MediaPlayer.Close();
@@ -176,6 +177,7 @@ namespace ARPG
                 //播放Switch动画
                 SwitchTwistAnim.gameObject.SetActive(true);
                 SwitchTwistAnim.Play();
+                AudioManager.Instance.PlayAudio("Twist_Loading");
                 yield return new WaitForSeconds(SwitchTwistAnim.clip.length-0.35f);
                 SwitchTwistAnim.gameObject.SetActive(false);
                 SwitchTwistAnim.Stop();
@@ -203,9 +205,10 @@ namespace ARPG
                     //-----------------------------------------------------------------------------------------------//
                     ShowEf.gameObject.SetActive(false);
                     BK_Video.gameObject.SetActive(true);
-                    BK_Video.Play(reference);
+                    BK_Video.Play(reference,false);
+                    AudioManager.Instance.PlayAudio(characterData.twistAssets.AudioHeadID);
                     yield return new WaitForSeconds(Convert.ToSingle(reference.length));
-                    BK_Video.Play(VideoAssets);
+                    BK_Video.Play(VideoAssets,true);
                     Name_3Star.gameObject.SetActive(true);
                     Name_3Image.sprite = characterData.twistAssets.NameImage;
                     Name_3Star.Play();
@@ -227,6 +230,7 @@ namespace ARPG
                     //TODO: 增加一个粒子特效
                     Boom_Fx.gameObject.SetActive(true);
                     Boom_Fx.Play();
+                    AudioManager.Instance.PlayAudio("ShowPanAnim");
                     SkeletonGraphic.skeletonDataAsset = characterData.TwistSpine;
                     SkeletonGraphic.initialSkinName = characterData.twistAssets.SpineSkinName.ToString();
                     SkeletonGraphic.Initialize(true);

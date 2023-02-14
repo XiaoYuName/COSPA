@@ -24,9 +24,10 @@ public class UGUIVideoPlay : UIBase
         AudioSource = GetComponent<AudioSource>();
     }
     
-    public void  Play(VideoClip clip,Action action = null)
+    public void  Play(VideoClip clip,bool isLoop,Action action = null)
     {
         videoPlayer.clip = clip;
+        videoPlayer.isLooping = isLoop;
         videoPlayer.source = VideoSource.VideoClip;
         StartCoroutine(PlayVideo(null));
     }
@@ -47,11 +48,9 @@ public class UGUIVideoPlay : UIBase
     {
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.SetTargetAudioSource(0,AudioSource);
-        AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,1);
         videoPlayer.Play();
         action?.Invoke();
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
-        AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Normal,2);
     }
     
 

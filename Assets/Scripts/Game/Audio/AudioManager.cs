@@ -173,7 +173,7 @@ namespace ARPG
             switch (ItemInfo.audioType)
             {
                 case AudioType.BGM:
-                    PlayBGM(ItemInfo, 3);
+                    PlayBGM(ItemInfo, 0.25f);
                     return;
                 case AudioType.Ambient:
                     PlayAmbient(ItemInfo,1);

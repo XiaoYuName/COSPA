@@ -56,13 +56,13 @@ MonoBehaviour:
     soundPitchMin: 0.8
     soundPitchMax: 1.2
   - ID: TwistOne
-    audioType: 2
+    audioType: 3
     clip: {fileID: 8300000, guid: b1eed25622643bd47babef10fb711bfa, type: 3}
     InitVolume: 0.6
     soundPitchMin: 0.8
     soundPitchMax: 1.2
   - ID: TwistTen
-    audioType: 2
+    audioType: 3
     clip: {fileID: 8300000, guid: 6ea1757cafbc3f140aef2dbc6352cfde, type: 3}
     InitVolume: 0.6
     soundPitchMin: 0.8
@@ -77,6 +77,42 @@ MonoBehaviour:
     audioType: 3
     clip: {fileID: 8300000, guid: a0187627506074b4198c9cba77fa5f49, type: 3}
     InitVolume: 0.6
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: TwistHome
+    audioType: 0
+    clip: {fileID: 8300000, guid: 88bbe595f1311114cbe7e88b3bd9307a, type: 3}
+    InitVolume: 0.7
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: TwistTween
+    audioType: 0
+    clip: {fileID: 8300000, guid: 4113bb8e3f638424daba18634703298f, type: 3}
+    InitVolume: 0.8
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Twist_Loading
+    audioType: 3
+    clip: {fileID: 8300000, guid: f041ba2a1b4ff0543865a25b897e4e9c, type: 3}
+    InitVolume: 0.8
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: HeadFx
+    audioType: 3
+    clip: {fileID: 8300000, guid: e24a15feb45157a40a7269611a1a13cc, type: 3}
+    InitVolume: 0.8
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Twist_Yixu
+    audioType: 3
+    clip: {fileID: 8300000, guid: 78fcef48a3f1fbe4ea7405f7937a9f52, type: 3}
+    InitVolume: 1
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: ShowPanAnim
+    audioType: 3
+    clip: {fileID: 8300000, guid: 279b738d5c91b7646bfccbccacfaa2f2, type: 3}
+    InitVolume: 0.8
     soundPitchMin: 0.8
     soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}

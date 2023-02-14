@@ -259,6 +259,9 @@ namespace ARPG.Config
         [Header("VideoID")]
         public string VideoID;
 
+        [Header("对应视频语音ID")]
+        public string AudioHeadID;
+
         [Header("一,二星角色名字ID")]
         public Sprite NameImage;
 
