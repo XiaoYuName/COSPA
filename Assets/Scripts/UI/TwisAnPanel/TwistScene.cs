@@ -6,6 +6,7 @@ using ARPG.Config;
 using ARPG.UI;
 using DG.Tweening;
 using RenderHeads.Media.AVProVideo;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -15,7 +16,7 @@ namespace ARPG
 {
     public class TwistScene : UIBase
     {
-        private Image FadeImage;
+        private Animator FadeImage;
         private UGUIVideoPlay MediaPlayer;
         private GameObject RewordTistPanel;
         private RectTransform TwistContent;
@@ -48,11 +49,12 @@ namespace ARPG
         private Button Blur;
         private Animation Name2Image;
         private Animation Name1Image;
+        private SkeletonGraphic SkeletonGraphic;
         
         
         public override void Init()
         {
-            FadeImage = Get<Image>("UIMask/Fade");
+            FadeImage = Get<Animator>("UIMask/Fade");
             MediaPlayer = Get<UGUIVideoPlay>("UIMask/Viedo");
             MediaPlayer.Init();
             RewordTistPanel = Get("UIMask/RewordTwist");
@@ -75,7 +77,7 @@ namespace ARPG
             Blur = Get<Button>("UIMask/Tewwn/show_ef/Blur");
             Name2Image = Get<Animation>("UIMask/Tewwn/show_ef/name_2star");
             Name1Image = Get<Animation>("UIMask/Tewwn/show_ef/name_1star");
-            
+            SkeletonGraphic = Get<SkeletonGraphic>("UIMask/Tewwn/show_ef/CharacterSpine");
             
             Bind(CloseBtn,Close,UiAudioID.OutChick);
             Bind(CorotineBtn,CorotineTwist,UiAudioID.UI_click);
@@ -91,7 +93,6 @@ namespace ARPG
         {
             TwistAmount = Amount;
             currentdata = data;
-            FadeImage.color = new Color(0, 0, 0, 0);
             this._type = twisType;
             Open();
             ResetIni();
@@ -117,14 +118,12 @@ namespace ARPG
 
         private IEnumerator OpenTwis(int amount)
         {
-            yield return FadeImage.DOFade(1, 0.25f);
+            FadeImage.SetTrigger("Fade");
             MediaPlayer.gameObject.SetActive(true);
             VideoClip clip = _type == TwisType.PILCK_UP
                 ? VideoManager.Instance.Get("Twist")
                 : VideoManager.Instance.Get("TwistSp");
-            
             MediaPlayer.StarPlay(clip,true);
-            FadeImage.DOFade(0,0.1F);
             AudioManager.Instance.PlayAudio(amount < 10?"TwistOne":"TwistTen");
             yield return new WaitForSeconds(Convert.ToSingle(clip.length));
             MediaPlayer.Close();
@@ -225,9 +224,8 @@ namespace ARPG
                     ShowPanAnim_ef2.Play();
                     yield return new WaitForSeconds(1.2F);
                     //TODO: 增加一个粒子特效
-                    
-                    
-                    
+                    SkeletonGraphic.Initialize(true);
+                    SkeletonGraphic.skeletonDataAsset = characterData.TwistSpine;
                     BK_Video.Close();
                     Name1Image.gameObject.SetActive(false);
                     Name1Image.gameObject.SetActive(false);
@@ -249,8 +247,7 @@ namespace ARPG
                     }
                     else
                     {
-                        yield return new WaitForSeconds(0.5f);
-                        Name1Image.gameObject.SetActive(false);
+                        Name2Image.gameObject.SetActive(false);
                         Name1Image.transform.Find("name").GetComponent<Image>().sprite =
                             characterData.twistAssets.NameImage;
                         Name1Image.gameObject.SetActive(true);
@@ -260,12 +257,20 @@ namespace ARPG
                         yield return WaitSkip(Blur);
                     }
                 }
-
-
             }
             BK_Video.Close();
+
+            #region 关闭动画播放时的
+            Name1Image.gameObject.SetActive(false);
+            Name2Image.gameObject.SetActive(false);
+            ShowEf.gameObject.SetActive(false);
+            ShowIcon_ef2.gameObject.SetActive(false);
+            ShowPanAnim_ef2.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(false);
+            #endregion
+     
+            
             UIHelper.Clear(HeadContent);
             for (int i = 0; i < TwistAmount; i++)
             {
@@ -295,7 +300,8 @@ namespace ARPG
 
         public void CorotineTwist()
         {
-            
+            //TODO: 判断宝石是否足够
+            OpenTwisScene(TwistAmount, currentdata, _type);
         }
         
 

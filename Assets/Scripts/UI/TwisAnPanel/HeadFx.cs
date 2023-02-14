@@ -42,7 +42,7 @@ namespace ARPG.UI
         {
             for (int i = 0; i < StarContent.transform.childCount-1; i++)
             {
-                StarContent.transform.GetChild(i).gameObject.SetActive(i <= Star);
+                StarContent.transform.GetChild(i).gameObject.SetActive(i < Star);
             }
         }
     }

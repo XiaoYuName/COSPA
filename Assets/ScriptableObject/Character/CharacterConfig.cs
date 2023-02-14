@@ -118,6 +118,9 @@ namespace ARPG.Config
 
         [Header("扭蛋页所需资源ID")]
         public TwistAssets twistAssets;
+        
+        [Header("立绘Spine动画")]
+        public SkeletonDataAsset TwistSpine;
     }
 
     [Serializable]
@@ -261,6 +264,8 @@ namespace ARPG.Config
 
         [Header("抽到的界面背景")]
         public Sprite BKImage;
+
+    
     }
 }
 
