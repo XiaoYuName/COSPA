@@ -27,6 +27,7 @@ namespace ARPG.UI
         {
             UIHelper.Clear(content);
             Open();
+            AudioManager.Instance.PlayAudio("HeadFx");
             foreach (var rBag in RewordList)
             {
                 RewordLineUI lineUI =  UISystem.Instance.InstanceUI<RewordLineUI>("RewordLineUI", content);

@@ -13,6 +13,7 @@ namespace ARPG.UI
         private Animation Ef_move2;
         private Animation StarTween;
         private Animation NewTween;
+        private Animation ItemTween;
         public override void Init()
         {
             icon = GetComponent<Image>();
@@ -20,6 +21,7 @@ namespace ARPG.UI
             Ef_move2 = Get<Animation>("Ef_move2");
             StarTween = Get<Animation>("3Star");
             NewTween = Get<Animation>("new");
+            ItemTween = Get<Animation>("s");
 
         }
 
@@ -30,13 +32,30 @@ namespace ARPG.UI
             AudioManager.Instance.PlayAudio("HeadFx");
             SetStarContent((int)configInfo.CharacterStarType);
             Ef_move2.gameObject.SetActive(true);
+            StartCoroutine(WaitAnimation(characterID));
             if ((int)configInfo.CharacterStarType >= 3)
             {
                 StarTween.gameObject.SetActive(true);
                 StarTween.Play();
             }
-            NewTween.gameObject.SetActive(true);
-            NewTween.Play();
+        }
+
+        private IEnumerator WaitAnimation(string ID)
+        {
+            yield return new WaitForSeconds(Ef_move2.clip.length);
+            CharacterBag characterBag = InventoryManager.Instance.GetCharacterBag(ID);
+            if (characterBag != null)
+            {
+                //已有该角色,转换为秘宝
+                ItemTween.gameObject.SetActive(true);
+                ItemTween.Play();
+            }
+            else
+            {
+                //添加该角色到背包
+                NewTween.gameObject.SetActive(true);
+                NewTween.Play();
+            }
         }
 
         private void SetStarContent(int Star)

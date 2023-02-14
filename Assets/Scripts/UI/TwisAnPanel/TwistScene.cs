@@ -284,9 +284,9 @@ namespace ARPG
             UIHelper.Clear(HeadContent);
             for (int i = 0; i < TwistAmount; i++)
             {
-               HeadFx fx =  UISystem.Instance.InstanceUI<HeadFx>("HeadFx",HeadContent);
-               fx.InitData(characterList[i]);
-               yield return new WaitForSeconds(0.25f);
+                HeadFx fx =  UISystem.Instance.InstanceUI<HeadFx>("HeadFx",HeadContent);
+                fx.InitData(characterList[i]);
+                yield return new WaitForSeconds(0.25f);
             }
             CorotineBtns.gameObject.SetActive(true);
             Debug.Log("四阶动画结束");
