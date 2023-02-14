@@ -101,6 +101,13 @@ namespace ARPG.UI
         private void SingOnClick()
         {
             string des = "消耗" + CurrentInfo.SinglentAmount + "宝石,招募1次 确定吗?";
+            ItemBag BagID = InventoryManager.Instance.GetItemBag(Settings.GemsthoneID);
+            if (BagID.count - CurrentInfo.SinglentAmount < 0)
+            {
+                UISystem.Instance.ShowPopWindows("提示","您的宝石不足","确定");
+                return;
+            }
+
             UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.SinglentAmount,
                 "所持角色交换Pt","99999",1, delegate
                 {
@@ -112,6 +119,13 @@ namespace ARPG.UI
         private void OneClick()
         {
             string des = "消耗" + CurrentInfo.OneTwisAmount + "宝石,招募1次 确定吗?";
+            
+            ItemBag BagID = InventoryManager.Instance.GetItemBag(Settings.GemsthoneID);
+            if (BagID.count - CurrentInfo.OneTwisAmount < 0)
+            {
+                UISystem.Instance.ShowPopWindows("提示","您的宝石不足","确定");
+                return;
+            }
             UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.OneTwisAmount,
                 "所持角色交换Pt","99999",1,delegate
                 {
@@ -122,11 +136,18 @@ namespace ARPG.UI
 
         private void TenClick()
         {
-            string des = "消耗" + CurrentInfo.TenTwisAmount + "宝石,招募1次 确定吗?";
+            string des = "消耗" + CurrentInfo.TenTwisAmount + "宝石,招募10次 确定吗?";
+            ItemBag BagID = InventoryManager.Instance.GetItemBag(Settings.GemsthoneID);
+            if (BagID.count - CurrentInfo.TenTwisAmount < 0)
+            {
+                UISystem.Instance.ShowPopWindows("提示","您的宝石不足","确定");
+                return;
+            }
             UISystem.Instance.ShowPopConsume("附奖扭蛋",des,GoldType.宝石,CurrentInfo.TenTwisAmount,
-                "所持角色交换Pt","99999",1,delegate
+                "所持角色交换Pt","99999",10,delegate
                 {
                     InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.TenTwisAmount);
+                    InventoryManager.Instance.AddItem(new ItemBag(){ID ="99999",count = 10});
                     OpenTwisScnen(10);
                 });
         }

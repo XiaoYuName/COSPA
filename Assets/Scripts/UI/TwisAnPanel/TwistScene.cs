@@ -37,6 +37,8 @@ namespace ARPG
         private GameObject CorotineBtns;
 
         private bool isSkip;
+        private Button CloseBtn;
+        private Button CorotineBtn;
         
         
         public override void Init()
@@ -55,6 +57,10 @@ namespace ARPG
             Name_3Image = Get<Image>("UIMask/Tewwn/BK_Video/name_3star/nnnn");
             HeadContent = Get<RectTransform>("UIMask/RewordTwist/HeadContent");
             CorotineBtns = Get("UIMask/RewordTwist/CorotineBtn");
+            CloseBtn = Get<Button>("UIMask/RewordTwist/CorotineBtn/CloseBtn");
+            CorotineBtn = Get<Button>("UIMask/RewordTwist/CorotineBtn/FuncBtn");
+            Bind(CloseBtn,Close,UiAudioID.OutChick);
+            Bind(CorotineBtn,CorotineTwist,UiAudioID.UI_click);
         }
 
         /// <summary>
@@ -77,11 +83,13 @@ namespace ARPG
         public void ResetIni()
         {
             UIHelper.Clear(TwistContent);
+            UIHelper.Clear(HeadContent);
             SwitchTwistAnim.gameObject.SetActive(false);
             SwitchTwistAnim.Stop();
             ShowPanAnim.gameObject.SetActive(false);
             ShowPanAnim.Stop();
             CorotineBtns.gameObject.SetActive(false);
+            RewordTistPanel.gameObject.SetActive(false);
         }
 
         public IEnumerator OpenTwis(int amount)
@@ -177,7 +185,6 @@ namespace ARPG
                 Name_3Star.Stop();
                 Debug.Log("三阶动画结束");
             }
-            yield return new WaitForSeconds(1.25f);
             BK_Video.Close();
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(false);
@@ -203,6 +210,15 @@ namespace ARPG
                 yield return null;
             }
         }
+
+        public void CorotineTwist()
+        {
+            
+        }
+        
+
+
+
     }
 }
 
