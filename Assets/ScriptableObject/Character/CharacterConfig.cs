@@ -256,8 +256,11 @@ namespace ARPG.Config
         [Header("VideoID")]
         public string VideoID;
 
-        [Header("一,二星角色背景ID")]
+        [Header("一,二星角色名字ID")]
         public Sprite NameImage;
+
+        [Header("抽到的界面背景")]
+        public Sprite BKImage;
     }
 }
 

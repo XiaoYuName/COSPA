@@ -40,6 +40,13 @@ namespace ARPG
         private Button CloseBtn;
         private Button CorotineBtn;
         
+        //-----2星一下角色------//
+        private Animation ShowEf;
+        private Image BK;
+        private Button Blur;
+        private Animation Name2Image;
+        private Animation Name1Image;
+        
         
         public override void Init()
         {
@@ -59,6 +66,13 @@ namespace ARPG
             CorotineBtns = Get("UIMask/RewordTwist/CorotineBtn");
             CloseBtn = Get<Button>("UIMask/RewordTwist/CorotineBtn/CloseBtn");
             CorotineBtn = Get<Button>("UIMask/RewordTwist/CorotineBtn/FuncBtn");
+            ShowEf = Get<Animation>("UIMask/Tewwn/show_ef");
+            BK = Get<Image>("UIMask/Tewwn/show_ef/BK");
+            Blur = Get<Button>("UIMask/Tewwn/show_ef/Blur");
+            Name2Image = Get<Animation>("UIMask/Tewwn/show_ef/name_2star");
+            Name1Image = Get<Animation>("UIMask/Tewwn/show_ef/name_1star");
+            
+            
             Bind(CloseBtn,Close,UiAudioID.OutChick);
             Bind(CorotineBtn,CorotineTwist,UiAudioID.UI_click);
         }
@@ -90,6 +104,7 @@ namespace ARPG
             ShowPanAnim.Stop();
             CorotineBtns.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(false);
+            ShowEf.gameObject.SetActive(false);
         }
 
         public IEnumerator OpenTwis(int amount)
@@ -170,20 +185,60 @@ namespace ARPG
                 VideoClip reference = VideoManager.Instance.Get(characterData.twistAssets.PropAgAndaVideoID);
                 VideoClip VideoAssets = VideoManager.Instance.Get(characterData.twistAssets.VideoID);
                 //根据星级来进行开启不同的流程状态
-                BK_Video.gameObject.SetActive(true);
-                BK_Video.Play(reference);
-                yield return new WaitForSeconds(Convert.ToSingle(reference.length));
-                BK_Video.Play(VideoAssets);
-                Name_3Star.gameObject.SetActive(true);
-                Name_3Image.sprite = characterData.twistAssets.NameImage;
-                Name_3Star.Play();
-                yield return new WaitForSeconds(Name_3Star.clip.length);
+                if (characterData.CharacterStarType == CharacterStarType.三星)
+                {
+                    ShowEf.gameObject.SetActive(false);
+                    BK_Video.gameObject.SetActive(true);
+                    BK_Video.Play(reference);
+                    yield return new WaitForSeconds(Convert.ToSingle(reference.length));
+                    BK_Video.Play(VideoAssets);
+                    Name_3Star.gameObject.SetActive(true);
+                    Name_3Image.sprite = characterData.twistAssets.NameImage;
+                    Name_3Star.Play();
+                    yield return new WaitForSeconds(Name_3Star.clip.length);
                 
-                //等待完成点击相应操作
-                yield return WaitSkip(BK_Video.GetComponent<Button>());
-                Name_3Star.gameObject.SetActive(false);
-                Name_3Star.Stop();
-                Debug.Log("三阶动画结束");
+                    //等待完成点击相应操作
+                    yield return WaitSkip(BK_Video.GetComponent<Button>());
+                    Name_3Star.gameObject.SetActive(false);
+                    Name_3Star.Stop();
+                    Debug.Log("三阶动画结束");
+                }
+                else
+                {
+                    BK_Video.Close();
+                    Name1Image.gameObject.SetActive(false);
+                    Name1Image.gameObject.SetActive(false);
+                    ShowEf.gameObject.SetActive(true);
+                    ShowEf.Play();
+                    BK.sprite = characterData.twistAssets.BKImage;
+                    Blur.GetComponent<Image>().sprite = characterData.twistAssets.BKImage;
+                    yield return new WaitForSeconds(0.1f);
+                    if (characterData.CharacterStarType == CharacterStarType.二星)
+                    {
+                        Name1Image.gameObject.SetActive(false);
+                        Name2Image.transform.Find("name").GetComponent<Image>().sprite =
+                            characterData.twistAssets.NameImage;
+                        Name2Image.gameObject.SetActive(true);
+                        Name2Image.Play();
+                        yield return new WaitForSeconds(Name2Image.clip.length);
+
+                        yield return WaitSkip(Blur);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        Name1Image.gameObject.SetActive(false);
+                        Name1Image.transform.Find("name").GetComponent<Image>().sprite =
+                            characterData.twistAssets.NameImage;
+                        Name1Image.gameObject.SetActive(true);
+                        Name1Image.Play();
+                        yield return new WaitForSeconds(Name1Image.clip.length);
+
+                        yield return WaitSkip(Blur);
+                    }
+                }
+
+
             }
             BK_Video.Close();
             RewordTistPanel.gameObject.SetActive(true);
