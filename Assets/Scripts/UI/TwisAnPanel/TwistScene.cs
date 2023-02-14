@@ -50,6 +50,7 @@ namespace ARPG
         private Animation Name2Image;
         private Animation Name1Image;
         private SkeletonGraphic SkeletonGraphic;
+        private ParticleSystem Boom_Fx;
         
         
         public override void Init()
@@ -78,7 +79,7 @@ namespace ARPG
             Name2Image = Get<Animation>("UIMask/Tewwn/show_ef/name_2star");
             Name1Image = Get<Animation>("UIMask/Tewwn/show_ef/name_1star");
             SkeletonGraphic = Get<SkeletonGraphic>("UIMask/Tewwn/show_ef/CharacterSpine");
-            
+            Boom_Fx = Get<ParticleSystem>("UIMask/Tewwn/show_ef/BOOM_Fx");
             Bind(CloseBtn,Close,UiAudioID.OutChick);
             Bind(CorotineBtn,CorotineTwist,UiAudioID.UI_click);
         }
@@ -224,8 +225,13 @@ namespace ARPG
                     ShowPanAnim_ef2.Play();
                     yield return new WaitForSeconds(1.2F);
                     //TODO: 增加一个粒子特效
-                    SkeletonGraphic.Initialize(true);
+                    Boom_Fx.gameObject.SetActive(true);
+                    Boom_Fx.Play();
                     SkeletonGraphic.skeletonDataAsset = characterData.TwistSpine;
+                    SkeletonGraphic.initialSkinName = characterData.twistAssets.SpineSkinName.ToString();
+                    SkeletonGraphic.Initialize(true);
+                    SkeletonGraphic.AnimationState.SetAnimation(0, characterData.twistAssets
+                        .SpineAnimationName.ToString(), true);
                     BK_Video.Close();
                     Name1Image.gameObject.SetActive(false);
                     Name1Image.gameObject.SetActive(false);

@@ -265,7 +265,11 @@ namespace ARPG.Config
         [Header("抽到的界面背景")]
         public Sprite BKImage;
 
-    
+        [Header("Spine动画播放名字")]
+        public SpineDialogueAnimation SpineAnimationName;
+        
+        [Header("Spine Skin 皮肤名称")]
+        public SpineDialogueSkin SpineSkinName;
     }
 }
 
