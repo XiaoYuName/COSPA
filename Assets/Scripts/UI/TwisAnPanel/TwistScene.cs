@@ -35,7 +35,8 @@ namespace ARPG
 
         private RectTransform HeadContent;
         private GameObject CorotineBtns;
-        
+
+        private bool isSkip;
         
         
         public override void Init()
@@ -170,8 +171,8 @@ namespace ARPG
                 Name_3Star.Play();
                 yield return new WaitForSeconds(Name_3Star.clip.length);
                 
-                //TODO: 测试代码协程
-                yield return new WaitForSeconds(1.2f);
+                //等待完成点击相应操作
+                yield return WaitSkip(BK_Video.GetComponent<Button>());
                 Name_3Star.gameObject.SetActive(false);
                 Name_3Star.Stop();
                 Debug.Log("三阶动画结束");
@@ -189,6 +190,18 @@ namespace ARPG
             }
             CorotineBtns.gameObject.SetActive(true);
             Debug.Log("四阶动画结束");
+        }
+
+
+        public IEnumerator WaitSkip(Button SkipBtn)
+        {
+            isSkip = false;
+            SkipBtn.onClick.RemoveAllListeners();
+            SkipBtn.onClick.AddListener(()=>isSkip=true);
+            while (!isSkip)
+            {
+                yield return null;
+            }
         }
     }
 }
