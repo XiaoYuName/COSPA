@@ -26,7 +26,9 @@ namespace ARPG
         private Animation SwitchTwistAnim;
 
         private Animation ShowPanAnim;
+        private Animation ShowPanAnim_ef2;
         private Image ShowIcon;
+        private Image ShowIcon_ef2;
 
         private UGUIVideoPlay BK_Video;
         private Animation Name_3Star;
@@ -57,7 +59,9 @@ namespace ARPG
             TwistContent = Get<RectTransform>("UIMask/RewordTwist/Gird2_Bk/gird2");
             SwitchTwistAnim = Get<Animation>("UIMask/Tewwn/SwitchTwistAgg");
             ShowPanAnim = Get<Animation>("UIMask/Tewwn/show/show");
+            ShowPanAnim_ef2 = Get<Animation>("UIMask/Tewwn/show/show_ef_2");
             ShowIcon = Get<Image>("UIMask/Tewwn/show/show/Card_mask");
+            ShowIcon_ef2 = Get<Image>("UIMask/Tewwn/show/show_ef_2/Card_mask");
             BK_Video = Get<UGUIVideoPlay>("UIMask/Tewwn/BK_Video");
             BK_Video.Init();
             Name_3Star = Get<Animation>("UIMask/Tewwn/BK_Video/name_3star");
@@ -94,6 +98,9 @@ namespace ARPG
             StartCoroutine(OpenTwis(Amount));
         }
 
+        /// <summary>
+        /// 重置函数
+        /// </summary>
         public void ResetIni()
         {
             UIHelper.Clear(TwistContent);
@@ -101,13 +108,14 @@ namespace ARPG
             SwitchTwistAnim.gameObject.SetActive(false);
             SwitchTwistAnim.Stop();
             ShowPanAnim.gameObject.SetActive(false);
+            ShowPanAnim.gameObject.SetActive(false);
             ShowPanAnim.Stop();
             CorotineBtns.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(false);
             ShowEf.gameObject.SetActive(false);
         }
 
-        public IEnumerator OpenTwis(int amount)
+        private IEnumerator OpenTwis(int amount)
         {
             yield return FadeImage.DOFade(1, 0.25f);
             MediaPlayer.gameObject.SetActive(true);
@@ -124,27 +132,33 @@ namespace ARPG
             
         }
         
-        public IEnumerator CreatRewordScnen()
+        private IEnumerator CreatRewordScnen()
         {
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(true);
             List<string> characterList = new List<string>();
             for (int i = 0; i < TwistAmount; i++)
             {
-                Random random = new Random();
-                double value= random.NextDouble();
                 if (_type == TwisType.PILCK_UP)
                 {
+                    Random random = new Random();
+                    double value= random.NextDouble();
                     if (value <= currentdata.UpDouble)
                     {
                         CardFx Fx=  UISystem.Instance.InstanceUI<CardFx>("CardFx",TwistContent);
                         Fx.IniData(3);
                         characterList.Add(currentdata.characterID[UnityEngine.Random.Range(0,currentdata.characterID.Count)]);
-                    }else if (value <= currentdata.CharacterDouble)
+                        yield return new WaitForSeconds(0.25f);
+                        continue;
+                    }
+                    value= random.NextDouble();
+                    if (value <= currentdata.CharacterDouble)
                     {
                         CardFx Fx=  UISystem.Instance.InstanceUI<CardFx>("CardFx",TwistContent);
                         Fx.IniData(2);
                         characterList.Add(currentdata.CharacterCradsID[UnityEngine.Random.Range(0,currentdata.CharacterCradsID.Count)]);
+                        yield return new WaitForSeconds(0.25f);
+                        continue;
                     }
                     else
                     {
@@ -153,8 +167,6 @@ namespace ARPG
                         characterList.Add(currentdata.HandCrads[UnityEngine.Random.Range(0,currentdata.HandCrads.Count)]);
                     }
                 }
-
-                
                 yield return new WaitForSeconds(0.25f);
             }
 
@@ -172,21 +184,23 @@ namespace ARPG
                 CharacterConfigInfo characterData = InventoryManager.Instance.GetCharacter(characterList[i]);
                 string SpriteID = characterData.CharacterStarType switch
                 {
-                    CharacterStarType.一星 => "StarType_Two", //TODO: 暂无找到一星卡面Sprite 先用二星替代
+                    CharacterStarType.一星 => "StarType_One",
                     CharacterStarType.二星 => "StarType_Two",
                     CharacterStarType.三星 => "StarType_Three",
                     _ => "StarType_Two"
                 };
-                ShowIcon.sprite = GameSystem.Instance.GetSprite(SpriteID);
-                ShowPanAnim.gameObject.SetActive(true);
-                ShowPanAnim.Play();
-                Debug.Log("二阶动画时长 : "+ShowPanAnim.clip.length);
-                yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
-                VideoClip reference = VideoManager.Instance.Get(characterData.twistAssets.PropAgAndaVideoID);
-                VideoClip VideoAssets = VideoManager.Instance.Get(characterData.twistAssets.VideoID);
                 //根据星级来进行开启不同的流程状态
                 if (characterData.CharacterStarType == CharacterStarType.三星)
                 {
+                    ShowPanAnim_ef2.gameObject.SetActive(false);
+                    ShowIcon.sprite = GameSystem.Instance.GetSprite(SpriteID);
+                    ShowPanAnim.gameObject.SetActive(true);
+                    ShowPanAnim.Play();
+                    Debug.Log("二阶动画时长 : "+ShowPanAnim.clip.length);
+                    yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
+                    VideoClip reference = VideoManager.Instance.Get(characterData.twistAssets.PropAgAndaVideoID);
+                    VideoClip VideoAssets = VideoManager.Instance.Get(characterData.twistAssets.VideoID);
+                    //-----------------------------------------------------------------------------------------------//
                     ShowEf.gameObject.SetActive(false);
                     BK_Video.gameObject.SetActive(true);
                     BK_Video.Play(reference);
@@ -205,6 +219,15 @@ namespace ARPG
                 }
                 else
                 {
+                    ShowPanAnim.gameObject.SetActive(false);
+                    ShowIcon_ef2.sprite = GameSystem.Instance.GetSprite(SpriteID);
+                    ShowPanAnim_ef2.gameObject.SetActive(true);
+                    ShowPanAnim_ef2.Play();
+                    yield return new WaitForSeconds(1.2F);
+                    //TODO: 增加一个粒子特效
+                    
+                    
+                    
                     BK_Video.Close();
                     Name1Image.gameObject.SetActive(false);
                     Name1Image.gameObject.SetActive(false);
@@ -254,8 +277,12 @@ namespace ARPG
             Debug.Log("四阶动画结束");
         }
 
-
-        public IEnumerator WaitSkip(Button SkipBtn)
+        /// <summary>
+        /// 等待点击反馈再执行下一步
+        /// </summary>
+        /// <param name="SkipBtn">等待点击按钮的Button 组件</param>
+        /// <returns></returns>
+        private IEnumerator WaitSkip(Button SkipBtn)
         {
             isSkip = false;
             SkipBtn.onClick.RemoveAllListeners();
