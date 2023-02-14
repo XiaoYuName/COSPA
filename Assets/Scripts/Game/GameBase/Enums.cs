@@ -360,6 +360,13 @@ namespace ARPG
        普通扭蛋,
    }
 
+   public enum TwistMode
+   {
+       限定一次,
+       单次,
+       十连,
+   }
+
    public enum NoticeType
    {
        活动信息=0,

@@ -112,7 +112,8 @@ namespace ARPG.UI
                 "所持角色交换Pt","99999",1, delegate
                 {
                     InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.SinglentAmount);
-                    OpenTwisScnen(1);
+                    InventoryManager.Instance.AddItem(new ItemBag(){ID ="99999",count = 1});
+                    OpenTwisScnen(1,TwistMode.限定一次);
                 });
         }
 
@@ -130,7 +131,8 @@ namespace ARPG.UI
                 "所持角色交换Pt","99999",1,delegate
                 {
                     InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.OneTwisAmount);
-                    OpenTwisScnen(1);
+                    InventoryManager.Instance.AddItem(new ItemBag(){ID ="99999",count = 1});
+                    OpenTwisScnen(1,TwistMode.单次);
                 });
         }
 
@@ -148,7 +150,7 @@ namespace ARPG.UI
                 {
                     InventoryManager.Instance.DeleteItemBag(Settings.GemsthoneID,CurrentInfo.TenTwisAmount);
                     InventoryManager.Instance.AddItem(new ItemBag(){ID ="99999",count = 10});
-                    OpenTwisScnen(10);
+                    OpenTwisScnen(10,TwistMode.十连);
                 });
         }
 
@@ -156,10 +158,10 @@ namespace ARPG.UI
         /// 开始进入抽奖
         /// </summary>
         /// <param name="count"></param>
-        private void OpenTwisScnen(int count)
+        private void OpenTwisScnen(int count,TwistMode twistMode)
         {
             TwistScene twistScene = UISystem.Instance.GetUI<TwistScene>("TwistScene");
-            twistScene.OpenTwisScene(count,CurrentDouble,TwisType.PILCK_UP);
+            twistScene.OpenTwisScene(count,twistMode,CurrentInfo,CurrentDouble,TwisType.PILCK_UP);
         }
 
 

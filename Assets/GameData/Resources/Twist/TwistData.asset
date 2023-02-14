@@ -14,25 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TwistDatas:
   - _TwisType: 1
-    TitleString: "\u65B0\u89D2\u8272  \u4E9A\u91CC\u838E  \u767B\u573A! \u6D3B\u52A8\u4E2D\u51FA\u73B0\u7387\u4E0A\u5347!"
+    TitleString: "\u65B0\u89D2\u8272  \u4F0A\u7EEAor\u51EF\u9732  \u767B\u573A! \u6D3B\u52A8\u4E2DUP\u4E0A\u5347!"
     description: "\u62BD\u53D6[10\u6B21]\u4E00\u5B9A\u4F1A\u51FA\u73B0*2\u4EE5\u4E0A\u89D2\u82721\u540D!\n\u5DF2\u7ECF\u662F\u540C\u4F34\u7684\u89D2\u8272\u4F1A\u53D8\u6362\u4E3A\u5973\u795E\u7684\u79D8\u77F3."
-    Helpdescription: "\u62BD\u53D6[10\u6B21]\u4E00\u5B9A\u4F1A\u51FA\u73B0*2\u4EE5\u4E0A\u89D2\u82721\u540D!\n\u5DF2\u7ECF\u662F\u540C\u4F34\u7684\u89D2\u8272\u4F1A\u53D8\u6362\u4E3A\u5973\u795E\u7684\u79D8\u77F3."
+    Helpdescription: "\u6682\u672A\u5F00\u653E!\n\u6982\u7387\u516C\u793A:\n3\u661F:
+      10%\n2\u661F: 30%\n1\u661F: 60%\n\u62BD\u5230\u89D2\u8272\u540E\u5C06\u968F\u673A\u62BD\u53D6\u5BF9\u5E94\u5361\u6C60\u89D2\u8272"
     SinglentAmount: 50
     OneTwisAmount: 150
     TenTwisAmount: 1500
   Settings:
   - _TwisType: 1
-    UpDouble: 0.3
+    UpDouble: 0.1
     CharacterDouble: 0.3
-    HandDouble: 0.4
+    HandDouble: 0.6
     Video: {fileID: 11400000, guid: eece02011bb55f44c8c07cf40e36db36, type: 2}
     characterID:
     - Character_101811
     CharacterCradsID:
-    - Character_1058
     - Character_106011
     HandCrads:
     - Character_100211
+    - Character_1058
     EquipList: []
   - _TwisType: 0
     UpDouble: 0

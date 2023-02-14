@@ -23,6 +23,8 @@ namespace ARPG
         private int TwistAmount;
         private TwistDouble currentdata;
         private TwisType _type;
+        private TwistData _currentTwistData;
+        private TwistMode _mode;
 
         private Animation SwitchTwistAnim;
 
@@ -90,11 +92,13 @@ namespace ARPG
         /// <param name="Amount">扭蛋次数</param>
         /// <param name="data">类型数据</param>
         /// <param name="twisType">扭蛋类型</param>
-        public void OpenTwisScene(int Amount,TwistDouble data,TwisType twisType)
+        public void OpenTwisScene(int Amount,TwistMode mode,TwistData CurrentInfo,TwistDouble data,TwisType twisType)
         {
             TwistAmount = Amount;
+            _currentTwistData = CurrentInfo;
             currentdata = data;
             this._type = twisType;
+            _mode = mode;
             Open();
             ResetIni();
             StartCoroutine(OpenTwis(Amount));
@@ -115,6 +119,10 @@ namespace ARPG
             CorotineBtns.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(false);
             ShowEf.gameObject.SetActive(false);
+            Name1Image.gameObject.SetActive(true);
+            Name2Image.gameObject.SetActive(true);
+            ShowIcon_ef2.gameObject.SetActive(true);
+            ShowIcon.gameObject.SetActive(true);
         }
 
         private IEnumerator OpenTwis(int amount)
@@ -286,6 +294,32 @@ namespace ARPG
             {
                 HeadFx fx =  UISystem.Instance.InstanceUI<HeadFx>("HeadFx",HeadContent);
                 fx.InitData(characterList[i]);
+                
+                CharacterBag characterBag = InventoryManager.Instance.GetCharacterBag(characterList[i]);
+                if (characterBag != null)
+                {
+                    InventoryManager.Instance.AddItem(new ItemBag(){ID = "90005",count = 10,power = 0});
+                }
+                else
+                {
+                    //添加该角色到背包
+                    CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(characterList[i]);
+                    CharacterBag AddBag = new CharacterBag();
+                    AddBag.currentStar = (int) info.CharacterStarType;
+                    AddBag.exp = 0;
+                    AddBag.ID = characterList[i];
+                    AddBag.equipHelos = new[]
+                    {
+                        new EquipHelo() { ItemType = ItemType.武器, },
+                        new EquipHelo() { ItemType = ItemType.武器, },
+                        new EquipHelo() { ItemType = ItemType.防具, },
+                        new EquipHelo() { ItemType = ItemType.防具, },
+                        new EquipHelo() { ItemType = ItemType.首饰, },
+                        new EquipHelo() { ItemType = ItemType.首饰, },
+                    };
+                    InventoryManager.Instance.AddCharacter(AddBag);
+                }
+
                 yield return new WaitForSeconds(0.25f);
             }
             CorotineBtns.gameObject.SetActive(true);
@@ -310,8 +344,22 @@ namespace ARPG
 
         public void CorotineTwist()
         {
-            //TODO: 判断宝石是否足够
-            OpenTwisScene(TwistAmount, currentdata, _type);
+            ItemBag GemsthoneBag = InventoryManager.Instance.GetItemBag(Settings.GemsthoneID);
+            int Amount = _mode switch
+            {
+                TwistMode.限定一次 => _currentTwistData.SinglentAmount,
+                TwistMode.单次 => _currentTwistData.OneTwisAmount,
+                TwistMode.十连 => _currentTwistData.TenTwisAmount,
+                _ => 99999,
+            };
+            if (GemsthoneBag.count - Amount < 0)
+            {
+                Close();
+                UISystem.Instance.ShowPopWindows("提示","您的宝石不足,请补充后再次扭蛋吧!","确定");
+                return;
+            }
+            InventoryManager.Instance.DeleteItemBag(GemsthoneBag.ID,Amount);
+            OpenTwisScene(TwistAmount,_mode,_currentTwistData,currentdata, _type);
         }
         
 

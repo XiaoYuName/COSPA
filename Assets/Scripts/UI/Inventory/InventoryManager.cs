@@ -51,7 +51,7 @@ namespace ARPG
             {
                 return CharacterInfoConfig.Get(id);
             }
-            throw new Exception("角色配置总表未找到对应的角色");
+            throw new Exception("角色配置总表未找到对应的角色 ID :"+id);
         }
 
         /// <summary>
@@ -332,7 +332,27 @@ namespace ARPG
             AddItem(newBag);
             UISystem.Instance.ShowReword(newBag);
         }
-        
+
+        /// <summary>
+        /// 添加角色到背包
+        /// </summary>
+        /// <param name="PlayerBag">背包数据</param>
+        public void AddCharacter(CharacterBag PlayerBag)
+        {
+            if (GetCharacterBag(PlayerBag.ID) == null)
+            {
+                UserBag.CharacterBags.Add(PlayerBag);
+                //发送刷新角色数据回调函数
+                MessageAction.OnRefreshCharacterBag(GetCharacterAllBag());
+            }
+            else
+            {
+                //已有该角色,转换为秘宝
+                Debug.Log("重复角色自动转化为女神秘石");
+               
+            }
+        }
+
 
         #endregion
 
@@ -391,20 +411,7 @@ namespace ARPG
                 ,GetItemBag(Settings.ManaID));
         }
         
-
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                SaveGameManager.Instance.Save(1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SaveGameManager.Instance.Load(1);
-            }
-        }
-
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
