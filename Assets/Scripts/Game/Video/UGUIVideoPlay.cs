@@ -16,6 +16,7 @@ public class UGUIVideoPlay : UIBase
     private VideoPlayer videoPlayer;
     private RawImage rawImage;
     private AudioSource AudioSource;
+    private RenderTexture ouTexture;
     public override void Init()
     {
         videoPlayer = GetComponent<VideoPlayer>();
@@ -30,9 +31,15 @@ public class UGUIVideoPlay : UIBase
         StartCoroutine(PlayVideo(null));
     }
     
-    public void StarPlay(VideoClip clip)
+    public void StarPlay(VideoClip clip,bool isCreatRawImage)
     {
         videoPlayer.clip = clip;
+        if (isCreatRawImage && ouTexture == null)
+        {
+            ouTexture = new RenderTexture(1920, 1080, 16, RenderTextureFormat.ARGB32);
+            videoPlayer.targetTexture = ouTexture;
+            rawImage.texture = ouTexture;
+        }
         StartCoroutine(PlayVideo(null));
     }
     
@@ -46,15 +53,16 @@ public class UGUIVideoPlay : UIBase
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Normal,2);
     }
-
-    public VideoPlayer GetVideoPlayer()
-    {
-        return videoPlayer;
-    }
+    
 
     public override void Close()
     {
         base.Close();
+        videoPlayer.Stop();
+        if (ouTexture != null)
+        {
+            Destroy(ouTexture);
+        }
         videoPlayer.clip = null;
     }
 }

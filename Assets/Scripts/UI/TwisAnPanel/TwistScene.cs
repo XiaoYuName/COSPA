@@ -16,7 +16,7 @@ namespace ARPG
     public class TwistScene : UIBase
     {
         private Image FadeImage;
-        private MediaPlayer MediaPlayer;
+        private UGUIVideoPlay MediaPlayer;
         private GameObject RewordTistPanel;
         private RectTransform TwistContent;
         private int TwistAmount;
@@ -41,7 +41,8 @@ namespace ARPG
         public override void Init()
         {
             FadeImage = Get<Image>("UIMask/Fade");
-            MediaPlayer = Get<MediaPlayer>("UIMask/Viedo");
+            MediaPlayer = Get<UGUIVideoPlay>("UIMask/Viedo");
+            MediaPlayer.Init();
             RewordTistPanel = Get("UIMask/RewordTwist");
             TwistContent = Get<RectTransform>("UIMask/RewordTwist/Gird2_Bk/gird2");
             SwitchTwistAnim = Get<Animation>("UIMask/Tewwn/SwitchTwistAgg");
@@ -84,24 +85,21 @@ namespace ARPG
 
         public IEnumerator OpenTwis(int amount)
         {
-            
             yield return FadeImage.DOFade(1, 0.25f);
             MediaPlayer.gameObject.SetActive(true);
-            MediaPlayer.Play();
+            VideoClip clip = _type == TwisType.PILCK_UP
+                ? VideoManager.Instance.Get("Twist")
+                : VideoManager.Instance.Get("TwistSp");
+            
+            MediaPlayer.StarPlay(clip,true);
             FadeImage.DOFade(0,0.1F);
-            MediaPlayer.Events.AddListener(WaitVideoEnd);
             AudioManager.Instance.PlayAudio(amount < 10?"TwistOne":"TwistTen");
-        }
-
-        public void WaitVideoEnd(MediaPlayer player, MediaPlayerEvent.EventType t1, ErrorCode code)
-        {
-            if (player != MediaPlayer) return;
-            if (t1 != MediaPlayerEvent.EventType.FinishedPlaying) return;
-            MediaPlayer.Stop();
-            MediaPlayer.gameObject.SetActive(false);
+            yield return new WaitForSeconds(Convert.ToSingle(clip.length));
+            MediaPlayer.Close();
             StartCoroutine(CreatRewordScnen());
+            
         }
-
+        
         public IEnumerator CreatRewordScnen()
         {
             RewordTistPanel.gameObject.SetActive(true);
