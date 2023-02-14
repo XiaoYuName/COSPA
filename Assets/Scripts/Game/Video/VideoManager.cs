@@ -5,6 +5,7 @@ using ARPG.Config;
 using NaughtyAttributes;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace ARPG.BasePool
 {
@@ -49,6 +50,11 @@ namespace ARPG.BasePool
         public MediaReference GetVideo(string ID)
         {
             return AvVideoConfig.Get(ID).MediaReference;
+        }
+
+        public VideoClip Get(string ID)
+        {
+            return config.Get(ID).clip;
         }
     }
 }

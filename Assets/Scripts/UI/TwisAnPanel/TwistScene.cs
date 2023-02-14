@@ -8,6 +8,7 @@ using DG.Tweening;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using Random = System.Random;
 
 namespace ARPG
@@ -27,13 +28,15 @@ namespace ARPG
         private Animation ShowPanAnim;
         private Image ShowIcon;
 
-        private MediaPlayer BK_Video;
+        private UGUIVideoPlay BK_Video;
         private Animation Name_3Star;
         private Image Name_3Image;
 
 
         private RectTransform HeadContent;
         private GameObject CorotineBtns;
+        
+        
         
         public override void Init()
         {
@@ -44,7 +47,8 @@ namespace ARPG
             SwitchTwistAnim = Get<Animation>("UIMask/Tewwn/SwitchTwistAgg");
             ShowPanAnim = Get<Animation>("UIMask/Tewwn/show/show");
             ShowIcon = Get<Image>("UIMask/Tewwn/show/show/Card_mask");
-            BK_Video = Get<MediaPlayer>("UIMask/Tewwn/BK_Video");
+            BK_Video = Get<UGUIVideoPlay>("UIMask/Tewwn/BK_Video");
+            BK_Video.Init();
             Name_3Star = Get<Animation>("UIMask/Tewwn/BK_Video/name_3star");
             Name_3Image = Get<Image>("UIMask/Tewwn/BK_Video/name_3star/nnnn");
             HeadContent = Get<RectTransform>("UIMask/RewordTwist/HeadContent");
@@ -147,7 +151,7 @@ namespace ARPG
                 string SpriteID = characterData.CharacterStarType switch
                 {
                     CharacterStarType.一星 => "StarType_Two", //TODO: 暂无找到一星卡面Sprite 先用二星替代
-                    CharacterStarType.二星 => "StarType_Three",
+                    CharacterStarType.二星 => "StarType_Two",
                     CharacterStarType.三星 => "StarType_Three",
                     _ => "StarType_Two"
                 };
@@ -156,40 +160,28 @@ namespace ARPG
                 ShowPanAnim.Play();
                 Debug.Log("二阶动画时长 : "+ShowPanAnim.clip.length);
                 yield return new WaitForSeconds(ShowPanAnim.clip.length-1.2F);
-                MediaReference reference = VideoManager.Instance.GetVideo(characterData.twistAssets.PropAgAndaVideoID);
+                VideoClip reference = VideoManager.Instance.Get(characterData.twistAssets.PropAgAndaVideoID);
+                VideoClip VideoAssets = VideoManager.Instance.Get(characterData.twistAssets.VideoID);
                 //根据星级来进行开启不同的流程状态
                 BK_Video.gameObject.SetActive(true);
-                yield return WaitLoadVideo(BK_Video, reference);
-                BK_Video.Play();
-                yield return new WaitForSeconds(0.5f);
-                
-                float Videotime = Convert.ToSingle(BK_Video.Info.GetDuration());
-                yield return new WaitForSeconds(Videotime);//加上偏移时间
-                
-                
-                MediaReference VideoAssets = VideoManager.Instance.GetVideo(characterData.twistAssets.VideoID);
-                yield return WaitLoadVideo(BK_Video, VideoAssets);
-                BK_Video.Play();
-                yield return new WaitForSeconds(0.5f);
-                
+                BK_Video.Play(reference);
+                yield return new WaitForSeconds(Convert.ToSingle(reference.length));
+                BK_Video.Play(VideoAssets);
                 Name_3Star.gameObject.SetActive(true);
                 Name_3Image.sprite = characterData.twistAssets.NameImage;
                 Name_3Star.Play();
                 yield return new WaitForSeconds(Name_3Star.clip.length);
                 
                 //TODO: 测试代码协程
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(1.2f);
                 Name_3Star.gameObject.SetActive(false);
                 Name_3Star.Stop();
                 Debug.Log("三阶动画结束");
             }
             yield return new WaitForSeconds(1.25f);
-            BK_Video.gameObject.SetActive(false);
+            BK_Video.Close();
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(false);
-            BK_Video.Stop();
-            BK_Video.CloseMedia();
-            
             UIHelper.Clear(HeadContent);
             for (int i = 0; i < TwistAmount; i++)
             {
@@ -199,87 +191,6 @@ namespace ARPG
             }
             CorotineBtns.gameObject.SetActive(true);
             Debug.Log("四阶动画结束");
-            
-        }
-
-        private bool isWaitLoadVideo;
-        /// <summary>
-        /// 等待视频数据加载完毕
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator WaitLoadVideo(MediaPlayer Video,MediaReference Assets)
-        {
-            isWaitLoadVideo = false;
-            Video.OpenMedia(Assets);
-            Video.Events.AddListener(Call);
-            while (isWaitLoadVideo)
-            {
-                yield return null;
-            }
-        }
-        private void Call(MediaPlayer player, MediaPlayerEvent.EventType t1, ErrorCode code)
-        {
-            if (player != BK_Video) return;
-            if (t1 != MediaPlayerEvent.EventType.MetaDataReady) return;
-            isWaitLoadVideo = true;
-            player.Events.RemoveAllListeners();
-            // switch (t1)
-            // {
-            //     case MediaPlayerEvent.EventType.MetaDataReady:
-            //         Debug.Log("视频数据准备完成。当元数据（宽度，持续时间等）可用时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.ReadyToPlay:
-            //         Debug.Log("加载视频并准备播放时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.Started:
-            //         Debug.Log("播放开始时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.FirstFrameReady:
-            //         Debug.Log("渲染第一帧时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.FinishedPlaying:
-            //         Debug.Log("当非循环视频播放完毕时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.Closing:
-            //         Debug.Log("媒体关闭时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.Error:
-            //         Debug.Log("发生错误时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.SubtitleChange:
-            //         Debug.Log("字幕更改时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.Stalled:
-            //         Debug.Log("媒体停顿/暂停？时触发（例如，当媒体流失去连接时）-当前仅在Windows平台上受支持");
-            //         break;
-            //     case MediaPlayerEvent.EventType.Unstalled:
-            //         Debug.Log("当介质从停止状态恢复时触发（例如，重新建立丢失的连接时）");
-            //         break;
-            //     case MediaPlayerEvent.EventType.ResolutionChanged:
-            //         Debug.Log("当视频的分辨率改变（包括负载）时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.StartedSeeking:
-            //         Debug.Log("寻找开始时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.FinishedSeeking:
-            //         Debug.Log("搜索完成时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.StartedBuffering:
-            //         Debug.Log("缓冲开始时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.FinishedBuffering:
-            //         Debug.Log("缓冲完成后触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.PropertiesChanged:
-            //         Debug.Log("当任何属性（例如，立体声包装改变）时触发-必须手动触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.PlaylistItemChanged:
-            //         Debug.Log("在播放列表中播放新项目时触发");
-            //         break;
-            //     case MediaPlayerEvent.EventType.PlaylistFinished:
-            //         Debug.Log("播放列表结束时触发");
-            //         break;
-            // }
         }
     }
 }
