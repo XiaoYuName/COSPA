@@ -18,6 +18,8 @@ namespace ARPG.UI
         private Button GetRewordBtn;
         private TaskBag CurrentBag;
         private TaskData CurrentData;
+
+        private TextMeshProUGUI BtnName;
         public override void Init()
         {
             TypeTag = Get<TextMeshProUGUI>("Type/NameText");
@@ -27,6 +29,7 @@ namespace ARPG.UI
             Content = Get<RectTransform>("Panel/Scroll View/Viewport/Content");
             GetRewordBtn = Get<Button>("BindBtn");
             Bind(GetRewordBtn,GetReword,"OnChick");
+            BtnName = Get<TextMeshProUGUI>("BindBtn/Text");
         }
 
         public void IniData(TaskData data,TaskBag taskBag)
@@ -53,6 +56,19 @@ namespace ARPG.UI
             CurrentBag = taskBag;
             SliderValue.text = CurrentBag.currentAmount + "/" + CurrentData.RewordAmount;
             Slider.value = taskBag.currentAmount;
+            if (CurrentBag.TaskState == TaskState.待领取)
+            {
+                GetRewordBtn.interactable = true;
+                BtnName.text = "领取";
+                transform.SetAsFirstSibling();
+            }
+            else
+            {
+                if(CurrentBag.TaskState == TaskState.已领取)
+                    transform.SetAsFirstSibling();
+                GetRewordBtn.interactable = false;
+                BtnName.text = CurrentBag.TaskState.ToString();
+            }
         }
 
         public void GetReword()

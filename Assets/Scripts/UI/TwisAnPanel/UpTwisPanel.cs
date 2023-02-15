@@ -95,7 +95,7 @@ namespace ARPG.UI
 
         private void ExchangeOnClick()
         {
-            UISystem.Instance.ShowPopWindows("提示","暂未开放",null);
+            UISystem.Instance.ShowPopWindows("提示","暂未开放","确定");
         }
 
         private void SingOnClick()

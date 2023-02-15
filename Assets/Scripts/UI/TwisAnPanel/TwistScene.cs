@@ -219,11 +219,12 @@ namespace ARPG
                     VideoClip VideoAssets = VideoManager.Instance.Get(characterData.twistAssets.VideoID);
                     //-----------------------------------------------------------------------------------------------//
                     ShowEf.gameObject.SetActive(false);
+                    BK_Video.Get().targetTexture.Release();
                     BK_Video.gameObject.SetActive(true);
-                    BK_Video.Play(reference,false);
+                    BK_Video.Play(reference,false,true);
                     AudioManager.Instance.PlayAudio(characterData.twistAssets.AudioHeadID);
                     yield return new WaitForSeconds(Convert.ToSingle(reference.length));
-                    BK_Video.Play(VideoAssets,true);
+                    BK_Video.Play(VideoAssets,true,false);
                     Name_3Star.gameObject.SetActive(true);
                     Name_3Image.sprite = characterData.twistAssets.NameImage;
                     Name_3Star.Play();
