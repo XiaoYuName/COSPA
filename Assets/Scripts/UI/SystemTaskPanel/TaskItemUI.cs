@@ -65,7 +65,7 @@ namespace ARPG.UI
             else
             {
                 if(CurrentBag.TaskState == TaskState.已领取)
-                    transform.SetAsFirstSibling();
+                    transform.SetAsLastSibling();
                 GetRewordBtn.interactable = false;
                 BtnName.text = CurrentBag.TaskState.ToString();
             }

@@ -93,6 +93,7 @@ namespace ARPG
             if (GameTask.ContainsKey(ID))
             {
                 GameTask[ID].TaskState = state;
+                RefTaskPanelUI(ID, GameTask[ID]);
             }
         }
 

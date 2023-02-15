@@ -1623,7 +1623,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6918220655725002941, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
       propertyPath: m_text
-      value: "\u9886\u53D6"
+      value: "\u672A\u5B8C\u6210"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220655725002943, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220656342909593, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220656342909593, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220656342909593, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220656342909593, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918220656342909593, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.5754717
       objectReference: {fileID: 0}
     - target: {fileID: 6918220656342909594, guid: 241b02ed5c072d842ba51ec1ed24cfa0, type: 3}
       propertyPath: m_Pivot.x
