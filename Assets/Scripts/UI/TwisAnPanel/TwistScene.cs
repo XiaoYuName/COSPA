@@ -54,7 +54,12 @@ namespace ARPG
         private SkeletonGraphic SkeletonGraphic;
         private ParticleSystem Boom_Fx;
         
+        /// <summary>
+        /// 是否正在扭蛋
+        /// </summary>
+        public bool isTwist;
         
+
         public override void Init()
         {
             FadeImage = Get<Animator>("UIMask/Fade");
@@ -114,7 +119,7 @@ namespace ARPG
             SwitchTwistAnim.gameObject.SetActive(false);
             SwitchTwistAnim.Stop();
             ShowPanAnim.gameObject.SetActive(false);
-            ShowPanAnim.gameObject.SetActive(false);
+            ShowPanAnim_ef2.gameObject.SetActive(false);
             ShowPanAnim.Stop();
             CorotineBtns.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(false);
@@ -127,6 +132,8 @@ namespace ARPG
 
         private IEnumerator OpenTwis(int amount)
         {
+            if (isTwist) yield break;
+            isTwist = true;
             FadeImage.SetTrigger("Fade");
             MediaPlayer.gameObject.SetActive(true);
             VideoClip clip = _type == TwisType.PILCK_UP
@@ -304,18 +311,11 @@ namespace ARPG
                 {
                     //添加该角色到背包
                     CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(characterList[i]);
-                    CharacterBag AddBag = new CharacterBag();
-                    AddBag.currentStar = (int) info.CharacterStarType;
-                    AddBag.exp = 0;
-                    AddBag.ID = characterList[i];
-                    AddBag.equipHelos = new[]
+                    CharacterBag AddBag = new CharacterBag
                     {
-                        new EquipHelo() { ItemType = ItemType.武器, },
-                        new EquipHelo() { ItemType = ItemType.武器, },
-                        new EquipHelo() { ItemType = ItemType.防具, },
-                        new EquipHelo() { ItemType = ItemType.防具, },
-                        new EquipHelo() { ItemType = ItemType.首饰, },
-                        new EquipHelo() { ItemType = ItemType.首饰, },
+                        currentStar = (int) info.CharacterStarType,
+                        exp = 0,
+                        ID = characterList[i]
                     };
                     InventoryManager.Instance.AddCharacter(AddBag);
                 }
@@ -323,6 +323,7 @@ namespace ARPG
                 yield return new WaitForSeconds(0.25f);
             }
             CorotineBtns.gameObject.SetActive(true);
+            isTwist = false;
             Debug.Log("四阶动画结束");
         }
 
@@ -333,7 +334,7 @@ namespace ARPG
         /// <returns></returns>
         private IEnumerator WaitSkip(Button SkipBtn)
         {
-            isSkip = false;
+            isSkip = false; ;
             SkipBtn.onClick.RemoveAllListeners();
             SkipBtn.onClick.AddListener(()=>isSkip=true);
             while (!isSkip)

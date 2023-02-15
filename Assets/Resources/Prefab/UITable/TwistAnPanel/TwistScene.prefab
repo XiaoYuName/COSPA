@@ -1275,6 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
+  isTwist: 0
 --- !u!1 &5012406521704116329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,10 +1306,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5549588175278363968}
   - {fileID: 5012406522866176073}
   - {fileID: 9095417744316374571}
   - {fileID: 8495753034986706357}
+  - {fileID: 5549588175278363968}
   m_Father: {fileID: 5012406521543244285}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7909,19 +7910,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8495753033562923459}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnButtonLoadNextCard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &8495753033566957566
 GameObject:
   m_ObjectHideFlags: 0

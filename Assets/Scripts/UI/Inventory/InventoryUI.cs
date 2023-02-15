@@ -83,6 +83,7 @@ namespace ARPG.UI
             {
                 Item item = InventoryManager.Instance.GetItem(itemBags[i].ID);
                 if(item.isShowBag==false)continue;
+                if(itemBags[i].count <= 0)continue;
                 InventorySlotUI slotUI = Instantiate(_InventorySlotUI, content);
                
                 slotUI.Init();
@@ -109,6 +110,7 @@ namespace ARPG.UI
         /// <param name="table"></param>
         private void SwitchTable(ItemType table)
         {
+            CurrentTable = table;
             itemToolTip.Close();
             MaterialBtn.GetComponent<Image>().color = table == ItemType.材料 ? Color.white : new Color(1, 1, 1, 0);
             EquitBtn.GetComponent<Image>().color =

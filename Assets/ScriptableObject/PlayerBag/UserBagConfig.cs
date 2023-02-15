@@ -78,12 +78,36 @@ namespace ARPG.Config
         {
             equipHelos = new[]
             {
-                new EquipHelo() { ItemType = ItemType.武器, },
-                new EquipHelo() { ItemType = ItemType.武器, },
-                new EquipHelo() { ItemType = ItemType.防具, },
-                new EquipHelo() { ItemType = ItemType.防具, },
-                new EquipHelo() { ItemType = ItemType.首饰, },
-                new EquipHelo() { ItemType = ItemType.首饰, },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.武器,
+                    item = new Item()
+                },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.武器,
+                    item = new Item()
+                },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.防具, 
+                    item = new Item()
+                },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.防具,
+                    item = new Item()
+                },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.首饰,
+                    item = new Item()
+                },
+                new EquipHelo()
+                {
+                    ItemType = ItemType.首饰,
+                    item = new Item()
+                },
             };
         }
 

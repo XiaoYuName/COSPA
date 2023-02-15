@@ -32,7 +32,8 @@ namespace ARPG.UI
             AudioManager.Instance.PlayAudio("HeadFx");
             SetStarContent((int)configInfo.CharacterStarType);
             Ef_move2.gameObject.SetActive(true);
-            StartCoroutine(WaitAnimation(characterID));
+            CharacterBag characterBag = InventoryManager.Instance.GetCharacterBag(characterID);
+            StartCoroutine(WaitAnimation(characterBag==null));
             if ((int)configInfo.CharacterStarType >= 3)
             {
                 StarTween.gameObject.SetActive(true);
@@ -40,11 +41,10 @@ namespace ARPG.UI
             }
         }
 
-        private IEnumerator WaitAnimation(string ID)
+        private IEnumerator WaitAnimation(bool isNew)
         {
             yield return new WaitForSeconds(Ef_move2.clip.length);
-            CharacterBag characterBag = InventoryManager.Instance.GetCharacterBag(ID);
-            if (characterBag != null)
+            if (!isNew)
             {
                 //已有该角色,转换为秘宝
                 ItemTween.gameObject.SetActive(true);
