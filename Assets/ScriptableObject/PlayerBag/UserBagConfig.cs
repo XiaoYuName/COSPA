@@ -126,6 +126,8 @@ namespace ARPG.Config
 
             for (int i = 0; i < equipHelos.Length; i++)
             {
+                if(equipHelos[i].item == null)continue;
+                if(equipHelos[i].item.attribute == null)continue;
                 for (int E = 0; E < equipHelos[i].item.attribute.Count; E++)
                 {
                     switch (equipHelos[i].item.attribute[E].Mode)

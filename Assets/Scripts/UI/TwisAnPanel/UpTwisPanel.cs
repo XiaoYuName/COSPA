@@ -157,9 +157,11 @@ namespace ARPG.UI
         /// <summary>
         /// 开始进入抽奖
         /// </summary>
-        /// <param name="count"></param>
+        /// <param name="count">抽奖次数</param>
+        /// <param name="twistMode">抽奖类型</param>
         private void OpenTwisScnen(int count,TwistMode twistMode)
         {
+            TaskManager.Instance.TriggerTask(TaskTrigger.扭蛋,count);
             TwistScene twistScene = UISystem.Instance.GetUI<TwistScene>("TwistScene");
             twistScene.OpenTwisScene(count,twistMode,CurrentInfo,CurrentDouble,TwisType.PILCK_UP);
         }

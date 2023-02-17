@@ -319,6 +319,7 @@ namespace ARPG
        通关地下城,
        充值,
        释放技能,
+       扭蛋,
    }
 
    public enum TaskMode
