@@ -114,7 +114,7 @@ namespace ARPG.Config
         public string des;
         
         [Header("初始默认拥有的BUFF")]
-        public List<string> deftualBuffID = new List<string>();
+        public List<BuffIDMode> deftualBuffID = new List<BuffIDMode>();
 
         [Header("扭蛋页所需资源ID")]
         public TwistAssets twistAssets;

@@ -391,7 +391,7 @@ namespace ARPG
         {
             for (int i = 0; i < data.deftualBuffID.Count; i++)
             {
-                BuffData newBuff = ConfigSystem.Instance.GetBUFFData(data.deftualBuffID[i]);
+                BuffData newBuff = ConfigSystem.Instance.GetBUFFData(data.deftualBuffID[i].ToString());
                 if (newBuff.behaviourType == BuffBehaviourType.光环) 
                     GetStateUI().AddBuffItemUI(newBuff.ToBuff(this));
                 IBuff newIBuff = newBuff.ToBuff(this);
