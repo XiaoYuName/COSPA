@@ -36,25 +36,23 @@ namespace ARPG
             if (EventName == "OpenMelo")
             {
                 Debug.Log("开始准备砸地");
-                GameManager.Instance.StartCoroutine(OpenMeloFx());
+                GameManager.Instance.StartCoroutine(PlaySkill());
             }
             if (EventName == "CloseMelo")
             {
                 Debug.Log("开始准备关闭");
-                GameManager.Instance.StopAllCoroutines();
             }
         }
 
-        public IEnumerator OpenMeloFx()
+        public IEnumerator PlaySkill()
         {
-            Vector3 StarPoint = new Vector3(Player.transform.position.x,Player.transform.position.y+7);
-            while (Player.gameObject.activeSelf)
+            for (int i = 0; i < 10; i++)
             {
-                //1.获取随机位置
-                Vector3 randomPos = new Vector3(StarPoint.x + Random.Range(-data.RadiusOffset.x, data.RadiusOffset.x),
-                    StarPoint.y + Random.Range(-data.RadiusOffset.y, data.RadiusOffset.y));
-
-                SkillPoolManager.Release(data.Pools[0].prefab, randomPos, Quaternion.identity);
+                Vector3 randomPoint = new Vector3(
+                    Player.transform.position.x + Random.Range(-data.RadiusOffset.x, data.RadiusOffset.x), Player.transform.position.y +
+                    Random.Range(-Player.transform.position.y, Player.transform.position.y));
+                _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, randomPoint).GetComponent<_FxItem>();
+                fxItem.Play(Player,data);
                 yield return new WaitForSeconds(data.ReleaseTime);
             }
         }

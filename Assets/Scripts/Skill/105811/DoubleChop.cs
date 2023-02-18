@@ -25,7 +25,7 @@ namespace ARPG
             //3.释放技能特效
             Player.StartCoroutine(PlayFx());
         }
-        private IEnumerator PlayFx()
+        private IEnumerator PlayFx()   
         {
             yield return new WaitForSeconds(data.ReleaseTime);
             float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? 180:0; 
