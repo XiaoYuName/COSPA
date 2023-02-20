@@ -382,4 +382,14 @@ namespace ARPG
        运营,
        告知,
    }
+
+
+   public enum EquipTableType
+   {
+       通常,
+       地下城,
+       竞技场,
+       女神的秘石,
+       限定,
+   }
 }
