@@ -53,7 +53,18 @@ namespace ARPG.UI
         public void OnClick()
         {
             if (_data == null) return;
-            Debug.Log("点击");
+            ItemBag itemBag = InventoryManager.Instance.GetItemBag(_data.RewordItem.ID);
+
+            if (itemBag == null || itemBag.count < _data.RewordItem.count)
+            {
+                UISystem.Instance.ShowPopWindows("提示","购买所需材料不足","关闭");
+                return;
+            }
+            InventoryManager.Instance.DeleteItemBag(_data.RewordItem.ID,_data.RewordItem.count);
+            
+            InventoryManager.Instance.AddItem(_data.RewordItem);
+            UISystem.Instance.ShowTips("购买成功");
+
         }
     }
 }
