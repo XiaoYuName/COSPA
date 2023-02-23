@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -47,6 +48,7 @@ namespace ARPG.UI
                 Back.transform.Find("Type").GetChild(0).transform.GetComponent<Image>().sprite = GameSystem.Instance.GetSprite(SubItem.spriteID);
             }
             SubItemAmount.text = data.SubItem.count.ToString("N0");
+            InventoryManager.Instance.RegAddItemAmount(data.RewordItem.ID,BindItemRegion);
         }
 
 
@@ -71,6 +73,17 @@ namespace ARPG.UI
             InventoryManager.Instance.AddItem(newBag);
             UISystem.Instance.ShowReword(newBag);
 
+        }
+
+        public void BindItemRegion(ItemBag itemBag)
+        {
+            ItemBagAmount.text = "持有数："+itemBag.count;
+        }
+
+        public void OnDestroy()
+        {
+            if(_data != null)
+                InventoryManager.Instance.URegItemAmount(_data.RewordItem.ID,BindItemRegion);
         }
     }
 }

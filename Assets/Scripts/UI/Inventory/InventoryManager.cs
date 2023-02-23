@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ARPG.Config;
 using ARPG.GameSave;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ARPG
 {
@@ -179,6 +180,12 @@ namespace ARPG
             if (UserBag.ItemBags.Any(i => i.ID == itemBag.ID && i.power == itemBag.power))
             {
                 UserBag.ItemBags.Remove(itemBag);
+                SendItemAmount(new ItemBag()
+                {
+                    ID = itemBag.ID,
+                    count = 0,
+                    power = 0,
+                });
                 MessageAction.OnRefreshItemBag(GetItemAllBag());
             }
         }
@@ -200,12 +207,14 @@ namespace ARPG
                         if (isMoney(itemBag.ID))
                         {
                             UserBag.ItemBags[i].count = Mathf.Max(UserBag.ItemBags[i].count - Amount, 0);
+                            SendItemAmount(UserBag.ItemBags[i]);
                             MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                                 ,GetItemBag(Settings.ManaID));
                             MessageAction.OnRefreshItemBag(GetItemAllBag());
                             return;
                         }
                         UserBag.ItemBags[i].count -= Amount;
+                        SendItemAmount(UserBag.ItemBags[i]);
                         if (UserBag.ItemBags[i].count <= 0)
                         {
                             DeleteItemBag(itemBag);
@@ -256,6 +265,7 @@ namespace ARPG
                         MessageAction.OnUpdataeMoney(GetItemBag(Settings.GemsthoneID)
                             ,GetItemBag(Settings.ManaID));
                         MessageAction.OnRefreshItemBag(GetItemAllBag());
+                        SendItemAmount(UserBag.ItemBags[i]);
                         return;
                     }
                 }
@@ -271,6 +281,7 @@ namespace ARPG
                     {
                         UserBag.ItemBags[i].count += itemBag.count;
                         MessageAction.OnRefreshItemBag(GetItemAllBag());
+                        SendItemAmount(UserBag.ItemBags[i]);
                         return;
                     }
                 }
@@ -279,6 +290,7 @@ namespace ARPG
             {
                 UserBag.ItemBags.Add(itemBag);
             }
+            SendItemAmount(itemBag);
             MessageAction.OnRefreshItemBag(GetItemAllBag());
         }
 
@@ -474,6 +486,58 @@ namespace ARPG
             currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
             SaveGameManager.Instance.Save(currentUser.UID);
             UISystem.Instance.ShowPopWindows("提示","数据保存成功","确定");
+        }
+
+        private Dictionary<string, Action<ItemBag>> ItemRegList = new Dictionary<string, Action<ItemBag>>();
+
+
+        /// <summary>
+        /// 注册背包道具变化回调
+        /// </summary>
+        /// <param name="ID">注册背包ItemID</param>
+        /// <param name="action">回调函数</param>
+        /// <param name="isInit">该值如果为True：则会在注册时立即回调一次该结果</param>
+        public void RegAddItemAmount(string ID, Action<ItemBag> action,bool isInit = false)
+        {
+            if (!ItemRegList.ContainsKey(ID))
+            {
+                ItemRegList.Add(ID,action);
+            }
+            else
+            {
+                ItemRegList[ID] += action;
+            }
+
+            if (!isInit) return;
+            ItemBag itemBag = GetItemBag(ID) ?? new ItemBag()
+            {
+                ID = ID,
+                count = 0,
+                power = 0,
+            };
+            action?.Invoke(itemBag);
+        }
+
+        /// <summary>
+        /// 取消注册背包道具变化回调
+        /// </summary>
+        /// <param name="ID">背包ID</param>
+        /// <param name="action">回调函数</param>
+        public void URegItemAmount(string ID,Action<ItemBag> action)
+        {
+            if (ItemRegList.ContainsKey(ID))
+            {
+                ItemRegList[ID] -= action;
+            }
+        }
+        
+        private void SendItemAmount(ItemBag itemBag)
+        {
+            if (ItemRegList.ContainsKey(itemBag.ID))
+            {
+                ItemRegList[itemBag.ID]?.Invoke(itemBag);
+            }
+
         }
 
     }

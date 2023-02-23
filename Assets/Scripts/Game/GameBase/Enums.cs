@@ -216,6 +216,7 @@ namespace ARPG
    {
        EventMsg = 1,
        BOSSEventMsg=2,
+       ItemBagAmount=3,
    }
 
    /// <summary>

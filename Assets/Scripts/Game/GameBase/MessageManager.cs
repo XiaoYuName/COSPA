@@ -77,6 +77,9 @@ namespace ARPG
         {
             MessageTable.Clear();
         }
+        
+        
+        
     }
 }
 
