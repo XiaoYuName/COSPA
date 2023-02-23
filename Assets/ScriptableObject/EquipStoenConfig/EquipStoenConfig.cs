@@ -47,6 +47,16 @@ namespace ARPG.UI.Config
         
         [Header("需求商品")]
         public ItemBag SubItem;
+
+        [Header("需求类型，如果是材料,则使用SubItem的icon来展示")]
+        public StoenGoldIconType StoenGoldIconType;
+    }
+
+    public enum StoenGoldIconType
+    {
+        材料 =0,
+        玛那 =1,
+        宝石 =2,
     }
 }
 
