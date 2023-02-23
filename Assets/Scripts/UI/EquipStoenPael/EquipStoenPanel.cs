@@ -64,7 +64,7 @@ namespace ARPG.UI
                for (int j = 0; j < TypeList.Count; j++)
                {
                    EquipStoenItemUI SlotUI =  UISystem.Instance.InstanceUI<EquipStoenItemUI>("EquipStoenItemUI", TableContent[i].GetContent());
-                   SlotUI.InitData(TypeList[i]);
+                   SlotUI.InitData(TypeList[j]);
                }
             }
         }

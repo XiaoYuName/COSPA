@@ -44,7 +44,7 @@ namespace ARPG.UI
             Item SubItem = InventoryManager.Instance.GetItem(data.SubItem.ID);
             if (data.StoenGoldIconType == StoenGoldIconType.材料)
             {
-                Back.transform.GetChild(0).transform.GetComponent<Image>().sprite = GameSystem.Instance.GetSprite(SubItem.spriteID);
+                Back.transform.Find("Type").GetChild(0).transform.GetComponent<Image>().sprite = GameSystem.Instance.GetSprite(SubItem.spriteID);
             }
             SubItemAmount.text = data.SubItem.count.ToString("N0");
         }
@@ -53,17 +53,23 @@ namespace ARPG.UI
         public void OnClick()
         {
             if (_data == null) return;
-            ItemBag itemBag = InventoryManager.Instance.GetItemBag(_data.RewordItem.ID);
+            ItemBag itemBag = InventoryManager.Instance.GetItemBag(_data.SubItem.ID);
 
-            if (itemBag == null || itemBag.count < _data.RewordItem.count)
+            if (itemBag == null || itemBag.count < _data.SubItem.count)
             {
                 UISystem.Instance.ShowPopWindows("提示","购买所需材料不足","关闭");
                 return;
             }
-            InventoryManager.Instance.DeleteItemBag(_data.RewordItem.ID,_data.RewordItem.count);
-            
-            InventoryManager.Instance.AddItem(_data.RewordItem);
-            UISystem.Instance.ShowTips("购买成功");
+            InventoryManager.Instance.DeleteItemBag(_data.SubItem.ID,_data.SubItem.count);
+
+            ItemBag newBag = new ItemBag()
+            {
+                ID = _data.RewordItem.ID,
+                count = _data.RewordItem.count,
+                power = _data.RewordItem.power,
+            };
+            InventoryManager.Instance.AddItem(newBag);
+            UISystem.Instance.ShowReword(newBag);
 
         }
     }
