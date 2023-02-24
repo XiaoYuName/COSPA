@@ -501,7 +501,7 @@ namespace ARPG
         {
             if (!ItemRegList.ContainsKey(ID))
             {
-                ItemRegList.Add(ID,action);
+                ItemRegList.Add(ID,new Action<ItemBag>(action));
             }
             else
             {
