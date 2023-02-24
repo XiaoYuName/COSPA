@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace ARPG.UI
 {
-    public class SlotUI : UIBase,IPointerDownHandler,IPointerUpHandler
+    public class SlotUI : UIBase
     {
         private Image icon;
         private TextMeshProUGUI count;
@@ -64,17 +64,7 @@ namespace ARPG.UI
             currentID = bag.ID;
             Bind(ActionBtn,func,UiAudioID.UI_click);
         }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if(!String.IsNullOrEmpty(currentID))
-                UISystem.Instance.ShowPopItem(IDType.物品,currentID);
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            UISystem.Instance.ClosePopItem();
-        }
+        
     }
 
 }

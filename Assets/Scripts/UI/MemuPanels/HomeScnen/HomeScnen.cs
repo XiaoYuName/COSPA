@@ -30,7 +30,9 @@ public class HomeScnen : UIBase
             FadeManager.Instance.PlayFade(0.25f, delegate
             {
                 UISystem.Instance.OpenUI("EquipStoenPanel");
+                MainPanel.Instance.AddTbaleChild("EquipStoenPanel");
             }, 0.25f);
         },UiAudioID.UI_click);
+        WaitUtils.WaitTimeDo(1.5f, () => UISystem.Instance.ShowPopNotice());
     }
 }

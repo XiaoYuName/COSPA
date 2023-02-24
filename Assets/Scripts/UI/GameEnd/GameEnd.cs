@@ -53,9 +53,9 @@ namespace ARPG.UI
         public IEnumerator SettlementGameVictory(MapItem Reword)
         {
             //1.获取Player坐标
-            Vector3 playerPoint = GameManager.Instance.Player.transform.localPosition;
+            Vector3 playerPoint = GameManager.Instance.Player.transform.position;
             // //2.Player 坐标转换为UI坐标系
-            Vector3 UIPoint = UICamear.Instance.GetUICamera.WorldToScreenPoint(playerPoint);
+            Vector3 UIPoint = Camera.main.WorldToScreenPoint(playerPoint);
             //UI 坐标系转换为RectTransform 坐标系
             RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)gameObject.transform, UIPoint,
                 UICamear.Instance.GetUICamera, out var rectPoint);

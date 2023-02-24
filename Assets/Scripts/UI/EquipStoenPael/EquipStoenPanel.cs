@@ -69,6 +69,11 @@ namespace ARPG.UI
             }
         }
 
+        public override void Close()
+        {
+            base.Close();
+            MainPanel.Instance.RemoveTableChild("EquipStoenPanel");
+        }
     }
     
 }

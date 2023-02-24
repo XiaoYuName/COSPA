@@ -16,7 +16,6 @@ namespace ARPG.UI
         private RootTabBtn[] RootBtns;
         private TableType currentType; //当前Type
         private List<string> ChildUITabel = new List<string>(); //二级菜单子界面,当打开时,注册列表中,当点击菜单内的按钮时,来控制一键关闭所有子菜单
-        private bool initNotice;
 
         protected override void Awake()
         {
@@ -28,11 +27,7 @@ namespace ARPG.UI
             currentType = TableType.我的主页;
             UISystem.Instance.OpenUI("HomeScene");
 
-            if (!initNotice)
-            {
-                initNotice = true;
-                WaitUtils.WaitTimeDo(1.5f, () => UISystem.Instance.ShowPopNotice());
-            }
+            
         }
 
         /// <summary>

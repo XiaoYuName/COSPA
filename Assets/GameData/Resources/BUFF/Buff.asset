@@ -125,7 +125,7 @@ MonoBehaviour:
     Pool: []
     continueTime: -1
     StopTrigger: 3
-    maxLevel: -1
+    maxLevel: 3
     NextLevel: 3
     layer: 0
     valueBuff: -1
@@ -142,12 +142,12 @@ MonoBehaviour:
     Pool: []
     continueTime: 30
     StopTrigger: 0
-    maxLevel: -1
+    maxLevel: 3
     NextLevel: 3
     layer: 0
     valueBuff: -1
     buffTrigger: 8
-    Trigger: 0
+    Trigger: 2
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u4F24\u5BB3\u589E\u52A0+50%,\u6548\u679C\u6301\u7EED30s"
   - BuffName: "\u987F\u609F"
     SpriteID: "\u987F\u609FBUFF"
@@ -164,7 +164,7 @@ MonoBehaviour:
     layer: 0
     valueBuff: 8
     buffTrigger: 8
-    Trigger: 0
+    Trigger: 2
     description: "\u7D2F\u8BA1\u653B\u51FB\u4E09\u6B21\uFF0C\u83B7\u5F9715\u5C42\u987F\u609FBUFF,\u6BCF\u5C42\u589E\u52A0<color=red>+8%\u6700\u7EC8\u4F24\u5BB3</color>\n\u6BCF10s\u51CF\u5C11\u4E00\u5C42"
   - BuffName: "\u6C14\u52BF"
     SpriteID: "\u6C14\u52BFBUFF"
