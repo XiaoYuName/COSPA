@@ -185,7 +185,17 @@ namespace ARPG
             return ui;
         }
 
-        
+
+        /// <summary>
+        /// 设置游戏FPS
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetFPS(int value)
+        {
+            Application.targetFrameRate = value;
+        }
+
+
     }
     
 }

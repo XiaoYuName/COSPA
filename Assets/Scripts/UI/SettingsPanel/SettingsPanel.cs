@@ -15,6 +15,7 @@ namespace ARPG.UI
         private Button ReturnHomeBtn;
         private Button StoreBtn;
         private Button InventoryBtn;
+        private Button SettingBtn;
         public override void Init()
         {
             SaveBtn = Get<Button>("UIMask/Content/SaveUser");
@@ -22,6 +23,7 @@ namespace ARPG.UI
             ReturnHomeBtn = Get<Button>("UIMask/Content/ReturnHome");
             InventoryBtn = Get<Button>("UIMask/Content/ItemBag");
             StoreBtn = Get<Button>("UIMask/Content/GemsthoneShop");
+            SettingBtn = Get<Button>("UIMask/Content/Setting");
             MoneyUI.Init();
             Bind(SaveBtn,()=>InventoryManager.Instance.SaveUserData(),"UI_click");
             Bind(ReturnHomeBtn,ReturnHome,"UI_click");
@@ -43,6 +45,11 @@ namespace ARPG.UI
                     MainPanel.Instance.AddTbaleChild("StorePanel");
                 },0f);
             },"UI_click");
+            
+            Bind(SettingBtn, delegate
+            {
+                UISystem.Instance.ShowPopSetting();
+            }, UiAudioID.UI_click);
         }
 
         private void ReturnHome()

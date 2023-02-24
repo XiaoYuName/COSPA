@@ -596,6 +596,17 @@ namespace ARPG
             gemsthone.transform.SetAsLastSibling();
             gemsthone.Show(titleName,description,goldType,Amount,PropName,PropID,PropAmount,funcBtn);
         }
+
+        /// <summary>
+        /// 弹出设置界面弹窗
+        /// </summary>
+        public void ShowPopSetting()
+        {
+            PopSettings ui = GetUI<PopSettings>("PopSettings");
+            ui.transform.SetAsLastSibling();
+            ui.Open();
+        }
+
         #endregion
     }
 }

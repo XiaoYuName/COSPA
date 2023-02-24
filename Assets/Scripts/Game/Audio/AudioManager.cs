@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ARPG.Audio;
 using ARPG.Audio.Item;
+using ARPG.GameSave;
 using ARPG.UI.Config;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,7 +12,7 @@ using Random = UnityEngine.Random;
 
 namespace ARPG
 {
-    public class AudioManager : MonoSingleton<AudioManager>
+    public class AudioManager : MonoSingleton<AudioManager>,ISaveable
     {
         private AudioConfig MainAudioData;
         private SettringsConfig audioSettrings;
@@ -108,6 +109,7 @@ namespace ARPG
         /// 播放背景音效
         /// </summary>
         /// <param name="item"></param>
+        /// <param name="SnapshotTime">过度时间</param>
         private void PlayBGM(AudioItem item,float SnapshotTime)
         {
             if (item == null || item.clip == null) return;
@@ -124,6 +126,7 @@ namespace ARPG
         /// 播放环境音效
         /// </summary>
         /// <param name="item"></param>
+        /// <param name="SnapshotTime">过度时间</param>
         private void PlayAmbient(AudioItem item,float SnapshotTime)
         {
             if (item == null || item.clip == null) return;
@@ -288,24 +291,34 @@ namespace ARPG
                     SetMixerVolme("MasterVolume", volme);
                     break;
                 case AudioMixerGroupType.AmbientMaster:
+                    SetMixerVolme("AmbientMaster", volme);
                     break;
                 case AudioMixerGroupType.AmbientItem:
                     SetMixerVolme("AmbientVolume", volme);
                     break;
                 case AudioMixerGroupType.BGMMaster:
+                    SetMixerVolme("BGMMaster", volme);
                     break;
                 case AudioMixerGroupType.BGMItem:
                     SetMixerVolme("BGMVolume", volme);
                     break;
                 case AudioMixerGroupType.UIMaster:
+                    SetMixerVolme("UIMaster", volme);
                     break;
                 case AudioMixerGroupType.UIItem:
                     SetMixerVolme("UIVolume", volme);
                     break;
                 case AudioMixerGroupType.HeadMaster:
+                    SetMixerVolme("HeadMaster", volme);
                     break;
                 case AudioMixerGroupType.HeadItem:
                     SetMixerVolme("HeadVolme", volme);
+                    break;
+                case AudioMixerGroupType.VideoMaster:
+                    SetMixerVolme("VideoMaster", volme);
+                    break;
+                case AudioMixerGroupType.VideoItem:
+                    SetMixerVolme("VideoItem", volme);
                     break;
             }
             //保存数据
@@ -339,6 +352,33 @@ namespace ARPG
         private float ConvertMixerVolme(float amount)
         {
             return (amount * 100 - 80);
+        }
+        
+
+        public float GetMaskValue(AudioMixerGroupType _type)
+        {
+            return audioSettrings.GetGroupTypeValue(_type);
+        }
+
+        //--------------------------------保存接口---------------------------//
+        public string GUID => "AudioManager";
+        
+        public void Start()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+        }
+        
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            JsonTool.SavaGame(audioSettrings,GUID+"AudioSettings.save");
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData GameSave)
+        {
+            audioSettrings = JsonTool.LoadGame<SettringsConfig>(GUID + "AudioSettings.save");
         }
     }
 }

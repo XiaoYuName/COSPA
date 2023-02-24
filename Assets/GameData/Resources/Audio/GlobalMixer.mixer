@@ -250,14 +250,26 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: bce281f3f96eb9143b0a5909272d3237
     name: AmbientVolume
+  - guid: d438f1eb572bbc948861df273274165e
+    name: AmbientMaster
   - guid: 6cc0f64f1f2a4e141930454c5e4c0134
     name: BGMVolume
+  - guid: 4decceb1523c5a4478fcdecb85c15971
+    name: BGMMaster
   - guid: 3dd03475b9dee7446906fb73574087a0
     name: HeadVolme
+  - guid: b734effa2945add4aa74dffb427d9d1c
+    name: HeadMaster
   - guid: fa8ec48e9da06664d87d2d51b1f10c83
     name: MasterVolume
+  - guid: 49c5230a3c72b5a4cbdc22bcab673d94
+    name: UIMaster
   - guid: 1bb8f7738e31d8f409745bed6e259f86
     name: UIVolume
+  - guid: dbea238c6c894c94485f922e7dabb398
+    name: VideoItem
+  - guid: 1237f722c2658f340ab193ab37cc8c96
+    name: VideoMaster
   m_AudioMixerGroupViews:
   - guids:
     - bc3d7eba69f06aa4ba4ae20504b6844f
@@ -273,7 +285,7 @@ AudioMixerController:
     - f56fea3d393ebaf48820518fbff6c3f8
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 1722504437986904499}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
