@@ -45,6 +45,7 @@ namespace ARPG
         {
             base.Awake();
             Init();
+            Application.targetFrameRate = 120;
         }
         
         private void Init()
