@@ -17,18 +17,18 @@ namespace ARPG
     public class TaskManager : MonoSingleton<TaskManager>,ISaveable
     {
         private TaskConfig _config;
-        private Dictionary<string,TaskBag> GameTask = new Dictionary<string,TaskBag>();
-        
+        private Dictionary<string, TaskBag> GameTask = new Dictionary<string, TaskBag>();
+
         public int Timer;//累计在线时间
         private bool isStopTimer;
-        
+
         protected override void Awake()
         {
             base.Awake();
             _config = ConfigManager.LoadConfig<TaskConfig>("Task/SystemTask");
             MessageAction.newUser += newUser;
         }
-        
+
         /// <summary>
         /// 根据配置创建对应映射字典与任务背包
         /// </summary>
@@ -44,7 +44,7 @@ namespace ARPG
                     TaskState = TaskState.未完成,
                     SaveTime = DateTime.Now,
                 };
-                AddGameTask(Task.TagUID,taskBag);
+                AddGameTask(Task.TagUID, taskBag);
             }
         }
 
@@ -53,7 +53,7 @@ namespace ARPG
         /// </summary>
         /// <param name="data">任务数据</param>
         /// <param name="bag">背包</param>
-        private void AddGameTask(string data,TaskBag bag)
+        private void AddGameTask(string data, TaskBag bag)
         {
             if (!GameTask.ContainsKey(data))
                 GameTask[data] = bag;
@@ -69,17 +69,18 @@ namespace ARPG
         {
             for (int i = 0; i < GameTask.Count; i++)
             {
-                (string ID,TaskBag bag) = GameTask.ElementAt(i);
+                (string ID, TaskBag bag) = GameTask.ElementAt(i);
                 TaskData data = _config.GetTaskData(ID);
-                if(data._TaskTrigger != trigger) continue;
-                if(bag.TaskState == TaskState.未完成)
+                if (data._TaskTrigger != trigger) continue;
+                if (bag.TaskState == TaskState.未完成)
                     GameTask[ID].currentAmount += value;
                 if (GameTask[ID].currentAmount >= data.RewordAmount)
                 {
                     GameTask[ID].currentAmount = data.RewordAmount;
                     GameTask[ID].TaskState = TaskState.待领取;
                 }
-                RefTaskPanelUI(ID,GameTask[ID]);
+
+                RefTaskPanelUI(ID, GameTask[ID]);
             }
         }
 
@@ -88,7 +89,7 @@ namespace ARPG
         /// </summary>
         /// <param name="ID"></param>
         /// <param name="state"></param>
-        public void SetTaskState(string ID,TaskState state)
+        public void SetTaskState(string ID, TaskState state)
         {
             if (GameTask.ContainsKey(ID))
             {
@@ -102,14 +103,14 @@ namespace ARPG
         /// </summary>
         private void InitTaskPanelUI()
         {
-            SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel",false);
+            SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel", false);
             TaskPanel.CreatTaskItemUI(GameTask);
         }
 
-        private void RefTaskPanelUI(string ID,TaskBag taskBag)
+        private void RefTaskPanelUI(string ID, TaskBag taskBag)
         {
             SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel");
-            TaskPanel.RefTaskItemUI(ID,taskBag);
+            TaskPanel.RefTaskItemUI(ID, taskBag);
         }
 
 
@@ -143,7 +144,7 @@ namespace ARPG
             if (isStopTimer) return;
             try
             {
-                Task timerTask = Task.Delay(TimeSpan.FromMinutes(1),_tokenSource.Token);
+                Task timerTask = Task.Delay(TimeSpan.FromMinutes(1), _tokenSource.Token);
                 await timerTask;
                 Timer++;
                 StarTimer();
@@ -151,7 +152,7 @@ namespace ARPG
             }
             catch (Exception e)
             {
-                Debug.Log("任务计时器:Timer 被强行停止"+e.Message);
+                Debug.Log("任务计时器:Timer 被强行停止" + e.Message);
             }
         }
 
@@ -172,7 +173,7 @@ namespace ARPG
             }
 
             base.OnDestroy();
-            
+
         }
 
         //--------------------------------存储--------------------------//
@@ -189,6 +190,10 @@ namespace ARPG
             _saveable.RegisterSaveable();
         }
 
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <returns></returns>
         public GameSaveData GenerateSaveData()
         {
             GameSaveData newSave = new GameSaveData()
@@ -198,6 +203,10 @@ namespace ARPG
             return newSave;
         }
 
+        /// <summary>
+        /// 读取数据
+        /// </summary>
+        /// <param name="GameSave">存档数据</param>
         public void RestoreData(GameSaveData GameSave)
         {
             Dictionary<string, TaskBag> Task = GameSave.SaveTask;
@@ -209,10 +218,13 @@ namespace ARPG
                 ResetTaskState();
                 StarTimer();
                 InitTaskPanelUI();
-                
+                ResetBagState();
             }
         }
 
+        /// <summary>
+        /// 判断任务是否到了刷新时间
+        /// </summary>
         public void ResetTaskState()
         {
             for (int i = 0; i < GameTask.Count; i++)
@@ -221,18 +233,19 @@ namespace ARPG
                 TaskData data = GetTaskData(ID);
                 if (data != null)
                 {
-                    if(data.RefType == TaskRefType.不刷新) continue;
+                    if (data.RefType == TaskRefType.不刷新) continue;
                     if (data.RefType == TaskRefType.每天刷新)
                     {
-                        if ((DateTime.Now -GameTask[ID].SaveTime).Days >= 1)
+                        if ((DateTime.Now - GameTask[ID].SaveTime).Days >= 1)
                         {
                             GameTask[ID].currentAmount = 0;
                             GameTask[ID].TaskState = TaskState.未完成;
                             GameTask[ID].SaveTime = DateTime.Now;
                         }
-                    }else if (data.RefType == TaskRefType.每月刷新)
+                    }
+                    else if (data.RefType == TaskRefType.每月刷新)
                     {
-                        if ((DateTime.Now -GameTask[ID].SaveTime).Days >= 30)
+                        if ((DateTime.Now - GameTask[ID].SaveTime).Days >= 30)
                         {
                             GameTask[ID].currentAmount = 0;
                             GameTask[ID].TaskState = TaskState.未完成;
@@ -242,6 +255,18 @@ namespace ARPG
 
 
                 }
+            }
+        }
+
+        /// <summary>
+        /// 加载完数据后刷新任务的状态UI
+        /// </summary>
+        public void ResetBagState()
+        {
+            for (int i = 0; i < GameTask.Count; i++)
+            {
+                (string ID, TaskBag taskBag) = GameTask.ElementAt(i);
+                RefTaskPanelUI(ID, taskBag);
             }
         }
     }
