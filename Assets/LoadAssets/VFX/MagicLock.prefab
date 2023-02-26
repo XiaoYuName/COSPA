@@ -4928,7 +4928,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7789447385233063938}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5003,7 +5003,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9814,7 +9814,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7880529702485662387}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9889,7 +9889,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -13640,7 +13640,7 @@ ParticleSystem:
     subEmitters:
     - serializedVersion: 3
       emitter: {fileID: 5544038990062069500}
-      type: 2
+      type: 4
       properties: 0
       emitProbability: 1
   LightsModule:
@@ -19554,6 +19554,7 @@ GameObject:
   - component: {fileID: 6361653563475555793}
   - component: {fileID: 3895830396761829277}
   - component: {fileID: 5287690125509485223}
+  - component: {fileID: 8586809030281955461}
   m_Layer: 0
   m_Name: MagicLock
   m_TagString: Untagged
@@ -24359,6 +24360,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8586809030281955461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9022134803574788783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39640a0aa19eb2a4bbf37dd2c08c69b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1581957240498746988
 PrefabInstance:
   m_ObjectHideFlags: 0

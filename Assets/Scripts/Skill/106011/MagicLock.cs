@@ -23,9 +23,10 @@ namespace ARPG
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_2");
             base.Play();
-            AniamtorMsg("MagicLock");
         }
-        
+
+        private List<MagicLockFx> _lockFxes = new List<MagicLockFx>();
+        private List<Enemy> Enemys = new List<Enemy>();
         public void AniamtorMsg(string EventName)
         {
             if (Player == null)
@@ -33,21 +34,41 @@ namespace ARPG
                 Player = GameManager.Instance.Player;
             }
 
-            if (EventName != "MagicLock") return;
-            SkillPoolManager.Instance.StartCoroutine(PlayFx());
+            if (EventName != "OpenMagicLock" && EventName != "BommMagicLock") return;
+
+            if (EventName == "OpenMagicLock")
+            {
+                SkillPoolManager.Instance.StartCoroutine(PlayFx());
+            }
+
+            if (EventName == "BommMagicLock")
+            {
+                for (int i = 0; i < _lockFxes.Count; i++)
+                {
+                    _lockFxes[i].Boom();
+                    GameManager.Instance.OptionDamage(Player,
+                        Enemys[i],data,Enemys[i].GetPoint());
+                }
+            }
 
         }
 
         public IEnumerator PlayFx()
         {
             Collider2D[] targets = new Collider2D[(int)data.Duration];
+            _lockFxes.Clear();
+            Enemys.Clear();
             var size = Physics2D.OverlapCircleNonAlloc(Player.transform.position, data.Radius, targets, data.Mask);
             for (int i = 0; i < size; i++)
             {
-                Debug.Log("锁定目标: "+targets[i].gameObject.name+"  目标状态: "+targets[i].gameObject.activeSelf);
-                SkillPoolManager.Release(data.Pools[0].prefab, targets[i].gameObject.transform.position, Quaternion.identity);
+                Enemy enemy = targets[i].gameObject.GetComponentInParent<Enemy>();
+                if(enemy == null)continue;
+                MagicLockFx lockFx = SkillPoolManager.Release(data.Pools[0].prefab, enemy.transform.position, Quaternion.identity)
+                    .GetComponent<MagicLockFx>();
+                Enemys.Add(enemy);
+                _lockFxes.Add(lockFx);
                 yield return new WaitForSeconds(data.ReleaseTime);
-                GameManager.Instance.OptionDamage(Player,targets[i].gameObject.transform.GetComponentInParent<Enemy>(),data,targets[i].gameObject.transform.position);
+
             }
         }
     }

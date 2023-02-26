@@ -344,9 +344,9 @@ MonoBehaviour:
       count: 50
     VideoID: 
   - ID: MagicLock
-    CD: 20
-    Duration: 6
-    ReleaseTime: 0.09
+    CD: 3
+    Duration: 5
+    ReleaseTime: 0.01
     Radius: 60
     RadiusOffset: {x: 0, y: 0}
     Mask:
@@ -365,5 +365,5 @@ MonoBehaviour:
       MultistageDamage: 
     Pools:
     - prefab: {fileID: 9022134803574788783, guid: 999e3bcc42f74b541bbdaca61223fa23, type: 3}
-      count: 5
+      count: 10
     VideoID: 
