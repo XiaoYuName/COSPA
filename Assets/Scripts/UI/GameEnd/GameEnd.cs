@@ -130,12 +130,12 @@ namespace ARPG.UI
                 .OnComplete(delegate
                 {
                     TitleText.transform
-                        .DOMove(new Vector3(TitleText.transform.position.x, TitleText.transform.position.y + 300,transform.position.z), 1.25f).
+                        .DOLocalMove(new Vector3(TitleText.transform.localPosition.x, TitleText.transform.localPosition.y + 400,transform.position.z), 1.25f).
                         OnComplete(
                             delegate
                             {
-                                var netPoint = NextBtn.transform.position;
-                                NextBtn.transform.DOMove(new Vector3(netPoint.x, netPoint.y + 250, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
+                                var netPoint = NextBtn.transform.localPosition;
+                                NextBtn.transform.DOLocalMove(new Vector3(netPoint.x, netPoint.y + 230, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
                                     .OnComplete(() =>
                                     {
                                         Bind(NextBtn, delegate
