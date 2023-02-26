@@ -343,3 +343,27 @@ MonoBehaviour:
     - prefab: {fileID: 8558445127854203614, guid: 35c17a2f042ed5844bda8d109e88d805, type: 3}
       count: 50
     VideoID: 
+  - ID: MagicLock
+    CD: 20
+    Duration: 0.25
+    ReleaseTime: 0.09
+    Radius: 60
+    RadiusOffset: {x: 5, y: 1}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 50
+    icon: {fileID: 21300000, guid: ee8985eb55fc2c14699f6e9456827f96, type: 3}
+    SkillName: "\u9ED1\u9B54\u6CD5\u9501\u5B9A"
+    SkillDes: "\u9ED1\u9B54\u6CD5\u9501\u5B9A"
+    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
+    ActionStar: 0
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 1
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 9022134803574788783, guid: 999e3bcc42f74b541bbdaca61223fa23, type: 3}
+      count: 5
+    VideoID: 
