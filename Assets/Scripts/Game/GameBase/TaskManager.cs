@@ -106,7 +106,11 @@ namespace ARPG
             SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel", false);
             TaskPanel.CreatTaskItemUI(GameTask);
         }
-
+        /// <summary>
+        /// 刷新Task UI 的显示
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="taskBag"></param>
         private void RefTaskPanelUI(string ID, TaskBag taskBag)
         {
             SystemTaskPanel TaskPanel = UISystem.Instance.GetUI<SystemTaskPanel>("SystemTaskPanel");

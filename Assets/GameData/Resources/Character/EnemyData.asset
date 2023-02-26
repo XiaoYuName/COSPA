@@ -32,12 +32,14 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
+      ReleaseSpeed: 0
       MovSpeed: 0.35
       Growth: 0.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
     Animator: {fileID: 22100000, guid: a5150adc347f1fd46abdabfaed6fe302, type: 2}
+    description: 
   - ID: 200900
     EnemyName: "\u6811\u7CBE"
     Attackradius: 1.75
@@ -57,12 +59,14 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 1
+      ReleaseSpeed: 0
       MovSpeed: 0.5
       Growth: 0.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
     Animator: {fileID: 22100000, guid: 3ca18ae3502d4794a9a2bcdfb7297f1b, type: 2}
+    description: 
   - ID: 204000
     EnemyName: "\u5E7C\u5E74\u72EE\u9E6B"
     Attackradius: 1.5
@@ -82,12 +86,14 @@ MonoBehaviour:
       Power: 15
       Intelligence: 20
       AttackSpeed: 2.25
+      ReleaseSpeed: 0
       MovSpeed: 0.65
       Growth: 0.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
     Animator: {fileID: 22100000, guid: 0bc25ab2f5bb30d46b3e5bd056be9b12, type: 2}
+    description: 
   - ID: 201200
     EnemyName: "\u77F3\u5DE8\u4EBA"
     Attackradius: 1.5
@@ -98,7 +104,7 @@ MonoBehaviour:
       PhysicsAttack: 59
       MagicAttack: 30
       Defense: 8
-      HP: 9800
+      HP: 1960
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
@@ -107,6 +113,7 @@ MonoBehaviour:
       Power: 45
       Intelligence: 20
       AttackSpeed: 1
+      ReleaseSpeed: 0
       MovSpeed: 0.35
       Growth: 0.1
     SkillTable:
@@ -115,3 +122,4 @@ MonoBehaviour:
     - SkillID: ThrowStone
       Type: 1
     Animator: {fileID: 22100000, guid: c655e3b3f9e84ce45b0e1ed4973094d8, type: 2}
+    description: 
