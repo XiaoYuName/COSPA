@@ -367,3 +367,27 @@ MonoBehaviour:
     - prefab: {fileID: 9022134803574788783, guid: 999e3bcc42f74b541bbdaca61223fa23, type: 3}
       count: 10
     VideoID: 
+  - ID: GravitationalBlackHole
+    CD: 3
+    Duration: 30
+    ReleaseTime: 0.01
+    Radius: 60
+    RadiusOffset: {x: 5.77, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 50
+    icon: {fileID: 21300000, guid: 3b2816c497a816842a3b65877bdda874, type: 3}
+    SkillName: "\u5F15\u529B\u9ED1\u6D1E"
+    SkillDes: "\u5F15\u529B\u9ED1\u6D1E"
+    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
+    ActionStar: 3
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 1
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 7272240401369760330, guid: a6ede51bfb83c9243841c7bcb7f597c0, type: 3}
+      count: 2
+    VideoID: 106001_Skill

@@ -71,6 +71,12 @@ namespace ARPG
 
             }
         }
+
+        public override void UHandle()
+        {
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,AniamtorMsg);
+            base.UHandle();
+        }
     }
 }
 
