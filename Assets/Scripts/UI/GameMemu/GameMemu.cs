@@ -16,7 +16,7 @@ namespace ARPG.UI
         public override void Init()
         {
             QuitBtn = Get<Button>("MemuBtn");
-            VaveText = Get<TextMeshProUGUI>("Vave/Count");
+            VaveText = Get<TextMeshProUGUI>("Wave/Count");
             Bind(QuitBtn,()=>UISystem.Instance.OpenUI("MemuPanel"),"OnChick");
         }
 
