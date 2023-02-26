@@ -625,7 +625,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -711,6 +711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410205010}
   - component: {fileID: 1410205009}
+  - component: {fileID: 1410205011}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -734,7 +735,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 585249a843c2fef49a61e671456575d5, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 59121b9855c3b4a48af38955f7cf26bd, type: 2}
 --- !u!4 &1410205010
 Transform:
   m_ObjectHideFlags: 0
@@ -750,6 +751,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410205011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410205008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484a1564f1991b246b547d6c037c9c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 59121b9855c3b4a48af38955f7cf26bd, type: 2}
 --- !u!1 &1758410762
 GameObject:
   m_ObjectHideFlags: 0

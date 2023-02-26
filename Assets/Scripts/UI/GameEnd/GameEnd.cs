@@ -88,19 +88,22 @@ namespace ARPG.UI
             NextBtn.interactable = false;
             //2.Player移出屏幕
             Character Player = GameManager.Instance.Player;
+            //3.关闭Player的Collider
+            Player.GetComponent<Collider2D>().enabled = false;
             //2.1将视口坐标转化为世界坐标
             var word = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.25f, 0));
             Vector3 target = new Vector3(word.x + 3, word.y, word.z);
             //2.2 解除2DCamera 的跟随
             GameManager.Instance.RelieveFollowPlayer();
             //2.3 开始移动
-            while (Vector2.Distance(Player.transform.position,target) > 0.15f)
+            while (Vector2.Distance(Player.transform.localPosition,target) > 0.15f)
             {
-                Player.transform.position= Vector2.MoveTowards(Player.transform.position, target, 3.5f * Time.deltaTime);
+                Player.transform.localPosition= Vector2.MoveTowards(Player.transform.localPosition, target, 3.5f * Time.deltaTime);
                 Player.anim.SetBool("isMovenemt",true);
                 yield return null;
             }
             Player.anim.SetBool("isMovenemt",false);
+            Player.GetComponent<Collider2D>().enabled = true;
             //逐步生成奖励界面
             List<RewordItemBag> rewordItemBags = new List<RewordItemBag>();
             foreach (var Re in  reword.RewordItemList)

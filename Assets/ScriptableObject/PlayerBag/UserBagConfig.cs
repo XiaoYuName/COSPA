@@ -160,10 +160,10 @@ namespace ARPG.Config
                             state.AttackSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
                             break;
                         case StateMode.移动速度:
-                            state.MovSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.MovSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
                             break;
                         case StateMode.释放速度:
-                            state.ReleaseSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
                             break;
                         default:
                             break;

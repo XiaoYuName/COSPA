@@ -124,7 +124,7 @@ namespace ARPG
         private IEnumerator MovZeroPoint(Vector3 zeroPoint)
         {
             Player.transform.rotation = Quaternion.Euler(0,0,0);
-            while (Vector3.Distance(Player.transform.position,zeroPoint) >0.5f)
+            while (Vector3.Distance(Player.transform.localPosition,zeroPoint) >0.5f)
             {
                 Player.transform.localPosition = Vector3.MoveTowards(Player.transform.localPosition, zeroPoint, 3.5f*Time.deltaTime);
                 Player.anim.SetBool("isMovenemt",true);
