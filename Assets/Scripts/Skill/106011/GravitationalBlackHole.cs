@@ -43,17 +43,17 @@ namespace ARPG
         public IEnumerator WaitVideo()
         {
             VideoManager.Instance.PlayerAvVideo(data.VideoID);
-            Player.anim.speed = 0;
+            Player.anim.SetFloat("GlobalSpeed",0);
             yield return new WaitForSecondsRealtime(1.9f);
-            Player.anim.speed = 1;
+            Player.anim.SetFloat("GlobalSpeed",1);
             
         }
 
         public void PlayFx()
         {
-            GravitationalBlackHoleFx fx = SkillPoolManager.Release(data.Pools[0].prefab, Player.GetPoint(), Quaternion.identity)
+            GravitationalBlackHoleFx fx = SkillPoolManager.Release(data.Pools[0].prefab, Player.GetPoint(), Player.transform.rotation)
                 .GetComponent<GravitationalBlackHoleFx>();
-            fx.Play(data);
+            fx.Play(Player,data);
         }
 
     }
