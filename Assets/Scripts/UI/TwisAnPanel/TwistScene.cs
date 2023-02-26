@@ -58,6 +58,12 @@ namespace ARPG
         /// 是否正在扭蛋
         /// </summary>
         public bool isTwist;
+
+        private IEnumerator twistIEnumeratorOne;
+        private IEnumerator twistIEnumeratorTow;
+        private Coroutine TwistOne;
+        private Coroutine TwistTow;
+        private Button SkipVideoButton;
         
 
         public override void Init()
@@ -87,8 +93,10 @@ namespace ARPG
             Name1Image = Get<Animation>("UIMask/Tewwn/show_ef/name_1star");
             SkeletonGraphic = Get<SkeletonGraphic>("UIMask/Tewwn/show_ef/CharacterSpine");
             Boom_Fx = Get<ParticleSystem>("UIMask/Tewwn/show_ef/BOOM_Fx");
+            SkipVideoButton = Get<Button>("UIMask/Tewwn/SkilVideoBtn");
             Bind(CloseBtn,Close,UiAudioID.OutChick);
             Bind(CorotineBtn,CorotineTwist,UiAudioID.UI_click);
+            Bind(SkipVideoButton,Skip,UiAudioID.OnChick);
         }
 
         /// <summary>
@@ -128,6 +136,7 @@ namespace ARPG
             Name2Image.gameObject.SetActive(true);
             ShowIcon_ef2.gameObject.SetActive(true);
             ShowIcon.gameObject.SetActive(true);
+            SkipVideoButton.gameObject.SetActive(false);
         }
 
         private IEnumerator OpenTwis(int amount)
@@ -187,6 +196,15 @@ namespace ARPG
             }
 
             yield return new WaitForSeconds(1.25f);
+            //TODO :显示跳过按钮
+            SkipVideoButton.gameObject.SetActive(true);
+            twistIEnumeratorOne = Twist_One(characterList);
+            TwistOne = StartCoroutine(twistIEnumeratorOne);
+            twistIEnumeratorTow = Twist_Tow(characterList);
+        }
+
+        private IEnumerator Twist_One(List<string> characterList)
+        {
             for (int i = 0; i < TwistAmount; i++)
             {
                 //播放Switch动画
@@ -286,6 +304,12 @@ namespace ARPG
             }
             BK_Video.Close();
 
+            PlayTwistTow();
+
+        }
+
+        private void PlayTwistTow()
+        {
             #region 关闭动画播放时的
             Name1Image.gameObject.SetActive(false);
             Name2Image.gameObject.SetActive(false);
@@ -294,9 +318,14 @@ namespace ARPG
             ShowPanAnim_ef2.gameObject.SetActive(false);
             RewordTistPanel.gameObject.SetActive(true);
             TwistContent.gameObject.SetActive(false);
+            SwitchTwistAnim.Stop();
+            SwitchTwistAnim.gameObject.SetActive(false);
             #endregion
-     
-            
+            TwistTow = StartCoroutine(twistIEnumeratorTow);
+        }
+
+        private IEnumerator Twist_Tow(List<string> characterList)
+        {
             UIHelper.Clear(HeadContent);
             for (int i = 0; i < TwistAmount; i++)
             {
@@ -328,6 +357,8 @@ namespace ARPG
             Debug.Log("四阶动画结束");
         }
 
+
+
         /// <summary>
         /// 等待点击反馈再执行下一步
         /// </summary>
@@ -342,6 +373,18 @@ namespace ARPG
             {
                 yield return null;
             }
+        }
+
+        private void Skip()
+        {
+            SkipVideoButton.gameObject.SetActive(false);
+            if (TwistOne != null)
+            {
+                StopCoroutine(TwistOne);
+                TwistOne = null;
+            }
+            BK_Video.Close();
+            PlayTwistTow();
         }
 
         public void CorotineTwist()
