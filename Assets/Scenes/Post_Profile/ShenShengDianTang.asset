@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
+  m_Name: ShenShengDianTang
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 2512218916944844695}
-  - {fileID: 4203814680114167438}
-  - {fileID: 5809936147336044858}
---- !u!114 &2512218916944844695
+  - {fileID: 5898570270906468044}
+  - {fileID: 2397108922108573508}
+--- !u!114 &2397108922108573508
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,13 +36,13 @@ MonoBehaviour:
     m_Value: 2.5
   scatter:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.7
   clamp:
     m_OverrideState: 0
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.7019608, g: 0.882353, b: 0.5764706, a: 1}
+    m_Value: {r: 0, g: 0.34117648, b: 0.7254902, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -57,23 +56,7 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &4203814680114167438
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0
---- !u!114 &5809936147336044858
+--- !u!114 &5898570270906468044
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,9 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   postExposure:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   contrast:
     m_OverrideState: 0

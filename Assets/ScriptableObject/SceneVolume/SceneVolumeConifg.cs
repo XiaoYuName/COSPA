@@ -10,7 +10,7 @@ namespace ARPG
     [CreateAssetMenu(fileName = "SceneVolume",menuName = "ARPG/VolumeConfig")]
     public class SceneVolumeConifg : ScriptableObject
     {
-        public List<SceneVolumeConfig> SceneProFile = new List<SceneVolumeConfig>();
+        public List<SceneVolumeData> SceneProFile = new List<SceneVolumeData>();
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace ARPG
     }
 
     [System.Serializable]
-    public class SceneVolumeConfig
+    public class SceneVolumeData
     {
         [Scene]
         public string SceneName;

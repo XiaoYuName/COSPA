@@ -393,4 +393,23 @@ namespace ARPG
        女神的秘石,
        限定,
    }
+
+   /// <summary>
+   /// 回调的时机
+   /// </summary>
+   public enum FuncMode
+   {
+       /// <summary>
+       /// 一开始
+       /// </summary>
+       Star,
+       /// <summary>
+       /// 中途
+       /// </summary>
+       Crent,
+       /// <summary>
+       /// 结束
+       /// </summary>
+       End,
+   }
 }

@@ -190,7 +190,7 @@ namespace ARPG
             UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
             
         }
-        
+
         /// <summary>
         /// 伤害运算
         /// </summary>
@@ -198,7 +198,8 @@ namespace ARPG
         /// <param name="target">目标受伤者</param>
         /// <param name="item">释放的技能</param>
         /// <param name="BoundPoint">命中点</param>
-        public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint)
+        /// <param name="isMultisTag">是否启用延迟多段上海,默认启用</param>
+        public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint,bool isMultisTag = true)
         {
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
             float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
@@ -211,6 +212,13 @@ namespace ARPG
                 }
                 return;
             }
+            //多段运算
+            if (item.SkillType.isMultistage && isMultisTag)
+            {
+                StartCoroutine(WaitMultistageAttack(attack,target,item,BoundPoint));
+                return;
+            }
+
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
             float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
@@ -348,22 +356,119 @@ namespace ARPG
         }
 
         /// <summary>
+        /// 延迟
+        /// </summary>
+        /// <param name="attack">攻击者</param>
+        /// <param name="target">目标敌方</param>
+        /// <param name="item">技能数据信息</param>
+        /// <param name="Point">命中点位置</param>
+        /// <returns></returns>
+        private IEnumerator WaitMultistageAttack(IDamage attack,IDamage target,SkillItem item,Vector3 Point)
+        {
+            if (Player != null)
+            {
+                float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
+                for (int i = 0; i < item.SkillType.MultistageDamage.Count; i++)
+                {
+                    CharacterState attackState = attack.GetState();
+                    CharacterState targetState = target.GetState();
+                    float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害, StateMode.最终伤害); //最终伤害值
+                    //1.1 获取攻击者的基础力量*物理攻击力
+                    switch (item.SkillType.type)
+                    {
+                        case DamageType.Physics:
+                            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) *
+                                          (1 + (attackState.SkillAttack / 10));
+                            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
+                            bool isCirtical = attackState.Cirtical > Random.value;
+                            if (isCirtical)
+                            {
+                                //暴击了
+                                // ReSharper disable once PossibleLossOfFraction
+                                Physics *= (2.5d + attackState.CirticalAttack / 10);
+                            }
+                            //1.1 计算基础攻击力
+                            Physics += item.SkillType.MultistageDamage[i];
+                            //2.  扣除防御力加成
+                            Physics -= (targetState.Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
+                            //3.计算BUFF加成
+                            Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益,
+                                StateMode.物理攻击力);
+                            //4.计算最终伤害
+                            Physics *= (1 + (BuffValue / 100));
+                            Physics *= (1 + (NextBuffVlaue / 100));
+                            Physics = Mathf.Max(1, (int)Physics);
+                            target.IDamage((int)Math.Round(Physics, 0));
+                            DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity).GetComponent<DamageTextItem>();
+                            damageTextItem.Show(DamageType.Physics, isCirtical, ((int)Math.Round(Physics, 0)).ToString());
+                            break;
+                        case DamageType.Magic:
+                            var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence) *
+                                        (1 + (attackState.SkillAttack / 100) + (1 + attackState.CirticalAttack / 100));
+                            //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
+                            bool isMagicCirtical = attackState.Cirtical > Random.value;
+                            if (isMagicCirtical)
+                            {
+                                //暴击了
+                                // ReSharper disable once PossibleLossOfFraction
+                                Magic *= (2.5d + attackState.CirticalAttack / 10);
+                            }
+                            Magic += item.SkillType.MultistageDamage[i];
+                            //1.1 伤害要减去地方防御力
+                            Magic -= (targetState.Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
+                            //2.基础攻击力加技能基础伤害
+                            Magic += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.魔法攻击力);
+                            Magic *= (1 + (BuffValue / 100));
+                            Magic *= (1 + (NextBuffVlaue / 100));
+                            Magic = Mathf.Max(1, (int)Magic);
+                            target.IDamage((int)Math.Round(Magic, 0));
+                            DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity).GetComponent<DamageTextItem>();
+                            damageText.Show(DamageType.Magic, isMagicCirtical, ((int)Math.Round(Magic, 0)).ToString());
+                            break;
+                        default:
+                            Debug.Log("未知的伤害类型，请检查");
+                            break;
+                    }
+                    yield return new WaitForSeconds(item.SkillType.MultistageTime);
+                }
+            }
+        }
+
+        /// <summary>
         /// 多个敌人命中伤害类型类型运算
         /// </summary>
         /// <param name="attack">攻击者</param>
         /// <param name="targets">目标列表</param>
         /// <param name="item">使用的技能</param>
         /// <param name="BoundPoint">命中点</param>
-        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, Vector3[] BoundPoint)
+        /// <param name="isMultisTag">是否启用延迟多段伤害,默认启用</param>
+        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, Vector3[] BoundPoint,bool isMultisTag = true)
         {
             if (BoundPoint.Length != targets.Length)
                 throw new Exception("命中点与敌人数不匹配");
 
             for (int i = 0; i < targets.Length; i++)
             {
-                OptionDamage(attack,targets[i],item,BoundPoint[i]);
+                OptionDamage(attack,targets[i],item,BoundPoint[i],isMultisTag);
             }
         }
+
+        /// <summary>
+        /// 多个敌人命中伤害类型类型运算
+        /// </summary>
+        /// <param name="attack">攻击者</param>
+        /// <param name="targets">目标列表</param>
+        /// <param name="item">使用的技能</param>
+        /// <param name="isMultisTag">是否启用延迟多段伤害,默认启用</param>
+        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item,bool isMultisTag = true)
+        {
+            for (int i = 0; i < targets.Length; i++)
+            {
+                OptionDamage(attack,targets[i],item,targets[i].GetPoint(),isMultisTag);
+            }
+        }
+        
+       
 
 
         /// <summary>

@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using ARPG;
 using ARPG.BasePool;
 using ARPG.Config;
 using ARPG.Pool.Skill;
-using RenderHeads.Media.AVProVideo;
-using UnityEngine;
 
 namespace ARPG
 {
@@ -56,6 +52,11 @@ namespace ARPG
             fx.Play(Player,data);
         }
 
+        public override void UHandle()
+        {
+            base.UHandle();
+            MessageManager.Instance.Register<string>(C2C.EventMsg,AniamtorMsg);
+        }
     }
 }
 
