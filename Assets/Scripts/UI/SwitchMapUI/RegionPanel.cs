@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ARPG.UI.Config;
+using UnityEngine.UI;
 
 namespace ARPG.UI
 {
@@ -17,6 +18,7 @@ namespace ARPG.UI
         private RegionConfig MainConfig;
         private Animator anim;
         private RegionTableUI OpenTableUI;
+        private Button CloseBtn;
         
         /// <summary>
         /// 副本进度 Vector2(主线x -  章节x)
@@ -37,6 +39,8 @@ namespace ARPG.UI
             RegionItemUI = UISystem.Instance.GetPrefab<RegionTableUI>("RegionTableUI");
             RegionContent = Get<RectTransform>("UIMask/RegionLineView/View/Content");
             RegionChildContent = Get<RectTransform>("UIMask/RegionItemView/View/Content");
+            CloseBtn = Get<Button>("UIMask/Close");
+            Bind(CloseBtn,Close,UiAudioID.OutChick);
             MainPrincList = MainConfig.RegionList;
             anim = GetComponent<Animator>();
             CreateLineItemUI();
