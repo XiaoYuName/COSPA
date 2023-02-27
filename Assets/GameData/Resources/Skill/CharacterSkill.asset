@@ -320,11 +320,19 @@ MonoBehaviour:
       count: 2
     VideoID: 
   - ID: Melo
+<<<<<<< Updated upstream
     CD: 15
     Duration: 0.25
     ReleaseTime: 0.09
     Radius: 1.25
     RadiusOffset: {x: 5, y: 1}
+=======
+    CD: 8
+    Duration: 5
+    ReleaseTime: 0.05
+    Radius: 250
+    RadiusOffset: {x: 5, y: 4}
+>>>>>>> Stashed changes
     Mask:
       serializedVersion: 2
       m_Bits: 65536
@@ -340,7 +348,13 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 
     Pools:
+<<<<<<< Updated upstream
     - prefab: {fileID: 8558445127854203614, guid: 35c17a2f042ed5844bda8d109e88d805, type: 3}
+=======
+    - prefab: {fileID: 7749057169913871176, guid: 0a9a6ad270836114e97115e09074e4b3, type: 3}
+      count: 150
+    - prefab: {fileID: 5873398716109378662, guid: 23ee66643949f0a4ca40d9e409e22c34, type: 3}
+>>>>>>> Stashed changes
       count: 50
     VideoID: 
   - ID: MagicLock
