@@ -82,7 +82,7 @@ namespace ARPG.UI
 
         public void OnDestroy()
         {
-            if(_data != null)
+            if(_data != null && InventoryManager.IsInitialized)
                 InventoryManager.Instance.URegItemAmount(_data.RewordItem.ID,BindItemRegion);
         }
     }

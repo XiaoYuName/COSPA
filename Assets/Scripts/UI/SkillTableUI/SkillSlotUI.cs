@@ -16,7 +16,6 @@ namespace ARPG.UI
         private TextMeshProUGUI SkillMode;
         private TextMeshProUGUI SkillDes;
         private TextMeshProUGUI SkillCD;
-        private TextMeshProUGUI SkillRunTime;
         private TextMeshProUGUI SkillRadius;
         private GameObject NotPanel;
         private TextMeshProUGUI StepUpDes;
@@ -28,7 +27,6 @@ namespace ARPG.UI
             SkillMode = Get<TextMeshProUGUI>("Mask/SkilMode");
             SkillDes = Get<TextMeshProUGUI>("Mask/SkillDes");
             SkillCD = Get<TextMeshProUGUI>("Mask/SkilCD");
-            SkillRunTime = Get<TextMeshProUGUI>("Mask/SkilRunTime");
             SkillRadius = Get<TextMeshProUGUI>("Mask/SkilRadius");
             NotPanel = Get("NotPanel");
             icon = Get<Image>("icon");
@@ -42,7 +40,6 @@ namespace ARPG.UI
             SkillName.text = data.SkillName;
             SkillMode.text = data.SkillType.type.ToString();
             SkillCD.text = "CD:"+data.CD;
-            SkillRunTime.text = "持续:" + data.Duration;
             SkillRadius.text = "范围:" + data.Radius+"xp";
             icon.sprite = data.icon;
             SkillDes.text = data.SkillDes;

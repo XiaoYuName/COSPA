@@ -426,6 +426,7 @@ namespace ARPG
         
         protected override void OnDestroy()
         {
+            ItemRegList.Clear();
             base.OnDestroy();
             MessageAction.newUser -= NewSave;
         }
@@ -539,6 +540,8 @@ namespace ARPG
             }
 
         }
+        
+    
 
     }
 }
