@@ -41,7 +41,7 @@ namespace ARPG.UI
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
-                    TitleText.transform.DOLocalMove(new Vector3(TitleText.transform.localPosition.x,TitleText.transform.localPosition.y+300,transform.position.z), 1.25f).OnComplete(
+                    TitleText.transform.DOLocalMove(new Vector3(0,TitleText.transform.localPosition.y+300,transform.position.z), 1.25f).OnComplete(
                         ()=>StartCoroutine(SettlementGameVictory(RewordItem)));
                 });
         }
