@@ -42,7 +42,6 @@ QualitySettings:
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 0}
     excludedTargetPlatforms:
-    - Server
     - Standalone
     - Android
   - serializedVersion: 2
@@ -122,7 +121,6 @@ QualitySettings:
     excludedTargetPlatforms:
     - Server
     - Standalone
-    - Android
   - serializedVersion: 2
     name: High
     pixelLightCount: 2
@@ -161,6 +159,7 @@ QualitySettings:
     excludedTargetPlatforms:
     - Server
     - Standalone
+    - Android
   - serializedVersion: 2
     name: Very High
     pixelLightCount: 3
@@ -199,6 +198,7 @@ QualitySettings:
     excludedTargetPlatforms:
     - Server
     - Standalone
+    - Android
   - serializedVersion: 2
     name: Ultra
     pixelLightCount: 4
@@ -236,6 +236,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: a739316364eb2d8419b7e96faace9bfa, type: 2}
     excludedTargetPlatforms:
     - Server
+    - Android
   m_PerPlatformDefaultQuality:
     Android: 2
     GameCoreScarlett: 5

@@ -25,14 +25,14 @@ namespace ARPG.UI
         private ItemBag currentBag;
         public override void Init()
         {
-            itemName = Get<TextMeshProUGUI>("UIMask/ItemName");
-            itemType = Get<TextMeshProUGUI>("UIMask/ItemType");
-            slotUI = Get<InventorySlotUI>("UIMask/InventorySlotUI");
-            StateConent = Get<RectTransform>("UIMask/StateContent");
-            description = Get<TextMeshProUGUI>("UIMask/description/Value");
-            SellAmount = Get<TextMeshProUGUI>("UIMask/ItemSell");
-            SellBtn = Get<Button>("UIMask/description/Button");
-            itemMode = Get<TextMeshProUGUI>("UIMask/itemMode");
+            itemName = Get<TextMeshProUGUI>("UIMask/Top/ItemName");
+            itemType = Get<TextMeshProUGUI>("UIMask/Top/ItemType");
+            slotUI = Get<InventorySlotUI>("UIMask/Crent/InventorySlotUI");
+            StateConent = Get<RectTransform>("UIMask/Crent/StateContent");
+            description = Get<TextMeshProUGUI>("UIMask/Crent/description/Value");
+            SellAmount = Get<TextMeshProUGUI>("UIMask/Down/State_Value/ItemSell");
+            SellBtn = Get<Button>("UIMask/Down/SellBtn");
+            itemMode = Get<TextMeshProUGUI>("UIMask/Top/itemMode");
             slotUI.Init();
             Bind(SellBtn,OnClick,"OnChick");
         }
