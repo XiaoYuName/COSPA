@@ -43,7 +43,12 @@ namespace ARPG.UI
 
         public void UpdateSlider(CharacterState enemy)
         {
-            
+            if (!isOpen)
+            {
+                InitData(enemy);
+                Open();
+            }
+
             if (_Tween != null)
             {
                 StopCoroutine(_Tween);
