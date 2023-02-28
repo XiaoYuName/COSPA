@@ -27,9 +27,9 @@ namespace ARPG.UI
         {
             itemName = Get<TextMeshProUGUI>("UIMask/Top/ItemName");
             itemType = Get<TextMeshProUGUI>("UIMask/Top/ItemType");
-            slotUI = Get<InventorySlotUI>("UIMask/Crent/InventorySlotUI");
+            slotUI = Get<InventorySlotUI>("UIMask/Top/InventorySlotUI");
             StateConent = Get<RectTransform>("UIMask/Crent/StateContent");
-            description = Get<TextMeshProUGUI>("UIMask/Crent/description/Value");
+            description = Get<TextMeshProUGUI>("UIMask/Top/description/Value");
             SellAmount = Get<TextMeshProUGUI>("UIMask/Down/State_Value/ItemSell");
             SellBtn = Get<Button>("UIMask/Down/SellBtn");
             itemMode = Get<TextMeshProUGUI>("UIMask/Top/itemMode");
