@@ -301,6 +301,7 @@ namespace ARPG
        觉悟,
        顿悟,
        气势,
+       猫猫凯露,
    }
 
    public enum IDType

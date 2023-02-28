@@ -232,15 +232,15 @@ MonoBehaviour:
     AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
     State:
       PhysicsAttack: 10
-      MagicAttack: 10
-      Defense: 999
+      MagicAttack: 5
+      Defense: 20
       HP: 150
       currentHp: 0
       AddHp: 150
       SkillAttack: 1
       Cirtical: 0.15
       CirticalAttack: 2
-      Power: 40
+      Power: 5
       Intelligence: 5
       AttackSpeed: 1
       ReleaseSpeed: 1
@@ -258,7 +258,7 @@ MonoBehaviour:
     - SkillID: Aurora
       Type: 4
     des: "\u6362\u5934\u5927\u5E08\u51EF\u9732"
-    deftualBuffID: 05000000
+    deftualBuffID: 0a000000
     twistAssets:
       PropAgAndaVideoID: 101131_1
       VideoID: 101131_2
