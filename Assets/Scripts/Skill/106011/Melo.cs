@@ -34,6 +34,7 @@ namespace ARPG
             GameManager.Instance.StartCoroutine(PlaySkill());
         }
 
+        List<GameObject> LookFxObj = new List<GameObject>();
         public IEnumerator PlaySkill()
         {
             Collider2D[] target = new Collider2D[5];
@@ -43,13 +44,47 @@ namespace ARPG
             if (size == 0) yield break;
             GameObject LoopFx = SkillPoolManager.Release(data.Pools[0].prefab, CharacterTran.transform.position,
                 Quaternion.identity);
-            // for (int i = 0; i < size; i++)
-            // {
-            //     while (Vector2.Distance(LoopFx,target[]))
-            //     {
-            //         
-            //     }
-            // }
+            List<Coroutine> LookFxList = new List<Coroutine>();
+            LookFxObj.Clear();
+            for (int i = 0; i < size; i++)
+            {
+                IDamage enemy = target[i].GetComponentInParent<IDamage>();
+                Transform enemyBoneTran = enemy.GetPoint("body");
+                while (Vector2.Distance(LoopFx.transform.position,enemyBoneTran.position) > 0.15f)
+                {
+                    LoopFx.transform.position = Vector2.MoveTowards(LoopFx.transform.position,
+                        enemyBoneTran.position, data.ReleaseTime * Time.deltaTime);
+                    yield return null;
+                }
+                Coroutine LookCoroutine = SkillPoolManager.Instance.StartCoroutine(LookTarget(enemy));
+                LookFxList.Add(LookCoroutine);
+            }
+            LoopFx.gameObject.SetActive(false);
+            for (int i = 0; i < LookFxList.Count; i++)
+            {
+                IDamage enemy = target[i].GetComponentInParent<IDamage>();
+                Transform tagetTran = enemy.GetPoint("body");
+                SkillPoolManager.Instance.StopCoroutine(LookFxList[i]);
+                LookFxObj[i].gameObject.SetActive(false);
+                SkillPoolManager.Release(data.Pools[1].prefab,tagetTran.position);
+                GameManager.Instance.OptionDamage(Player,enemy,data,tagetTran.position);
+                yield return new WaitForSeconds(0.15f);
+            }
+        }
+
+        public IEnumerator LookTarget(IDamage target)
+        {
+            Transform enemyBoneTran = target.GetPoint("body");
+            GameObject LoopFx = SkillPoolManager.Release(data.Pools[0].prefab, enemyBoneTran.position,
+                Quaternion.identity);
+            LookFxObj.Add(LoopFx);
+            
+            while (target.GetState().currentHp >= 0)
+            {
+                LoopFx.transform.position = Vector2.MoveTowards(LoopFx.transform.position,
+                    enemyBoneTran.position, data.ReleaseTime * Time.deltaTime);
+                yield return null;
+            }
         }
     }
 }

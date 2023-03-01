@@ -350,8 +350,8 @@ MonoBehaviour:
   - ID: Melo
     CD: 15
     Duration: 0.25
-    ReleaseTime: 0.09
-    Radius: 1.25
+    ReleaseTime: 5
+    Radius: 60
     RadiusOffset: {x: 5, y: 1}
     Mask:
       serializedVersion: 2
@@ -368,8 +368,10 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 
     Pools:
-    - prefab: {fileID: 8558445127854203614, guid: 35c17a2f042ed5844bda8d109e88d805, type: 3}
-      count: 50
+    - prefab: {fileID: 684750634934637353, guid: c005d7d54cbd2344985d53c8225b86b5, type: 3}
+      count: 7
+    - prefab: {fileID: 8186574560000162925, guid: 9c99db77dbb49c145b453a14529f3b09, type: 3}
+      count: 7
     VideoID: 
   - ID: MagicLock
     CD: 3

@@ -10,15 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 442907092464650952, guid: 5773b0d31791d874097ec8f946dbefdc, type: 3}
       propertyPath: m_Name
-      value: explosion_1
+      value: explosion_1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 442907092464650953, guid: 5773b0d31791d874097ec8f946dbefdc, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 442907092464650958, guid: 5773b0d31791d874097ec8f946dbefdc, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 442907092464650959, guid: 5773b0d31791d874097ec8f946dbefdc, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 442907092464650959, guid: 5773b0d31791d874097ec8f946dbefdc, type: 3}
       propertyPath: m_LocalScale.x
