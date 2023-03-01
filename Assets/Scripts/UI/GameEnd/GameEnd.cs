@@ -12,6 +12,7 @@ namespace ARPG.UI
     {
         private Image TitleText;
         private Button NextBtn;
+        private RectTransform NextRect;
         private RewordUI _RewordUI;
         private LevelPanelUI PanelUI;
 
@@ -19,7 +20,7 @@ namespace ARPG.UI
         public Sprite OverSpine;
         
         //1.记录初始坐标
-        private Vector3 NextBtnStarPoint;
+        private Vector2 NextBtnStarPoint;
         private Vector3 TitleStarPoint;
         public override void Init()
         {
@@ -27,9 +28,11 @@ namespace ARPG.UI
             var transform1 = TitleText.transform;
             transform1.localScale = Vector3.zero;
             TitleStarPoint = transform1.position;
-
+            
             NextBtn = Get<Button>("UIMask/NextBtn");
-            NextBtnStarPoint = NextBtn.transform.position;
+            NextRect = NextBtn.transform as RectTransform;
+            
+            NextBtnStarPoint = NextRect.anchoredPosition;
             
             _RewordUI = Get<RewordUI>("UIMask/RewordUI");
             _RewordUI.Init();
@@ -65,15 +68,14 @@ namespace ARPG.UI
             panelUI.transform.localPosition = rectPoint;
             yield return panelUI.OpentionLevelAndFavorability(Reword);
             //4.等待玩家点击下一部,进行奖励界面的处理
-            var netPoint = NextBtn.transform.localPosition;
-            NextBtn.transform.DOLocalMove(new Vector3(netPoint.x, netPoint.y + 250, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
-                .OnComplete(() =>
+            var netPoint = NextRect.anchoredPosition;
+            NextRect.DOAnchorPos(new Vector2(netPoint.x, netPoint.y + 250), 1.25f).SetEase(Ease.OutElastic).OnComplete(() =>
+            {
+                Bind(NextBtn, delegate
                 {
-                    Bind(NextBtn, delegate
-                    {
-                        StartCoroutine(ShowRewowrdItem(Reword,panelUI));
-                    }, "UI_click");
-                });
+                    StartCoroutine(ShowRewowrdItem(Reword,panelUI));
+                }, "UI_click");
+            });
         }
 
         public IEnumerator ShowRewowrdItem(MapItem reword,LevelPanelUI levelPanelUI)
@@ -81,9 +83,7 @@ namespace ARPG.UI
             var netPoint = levelPanelUI.transform.position;
             levelPanelUI.transform.DOMove(new Vector3(netPoint.x, netPoint.y - 450, netPoint.z), 1.25f)
                 .OnComplete(()=> levelPanelUI.gameObject.SetActive(false));
-            TitleText.transform.DOMove(
-                new Vector3(TitleText.transform.position.x, TitleText.transform.position.y + 30, transform.position.z),
-                0.25f);
+            TitleText.transform.DOMoveY(TitleText.transform.position.y + 30, 0.25f);
             
             NextBtn.interactable = false;
             //2.Player移出屏幕
@@ -137,15 +137,15 @@ namespace ARPG.UI
                         OnComplete(
                             delegate
                             {
-                                var netPoint = NextBtn.transform.localPosition;
-                                NextBtn.transform.DOLocalMove(new Vector3(netPoint.x, netPoint.y + 230, netPoint.z), 1.25f).SetEase(Ease.OutElastic)
-                                    .OnComplete(() =>
+                                var netPoint = NextRect.anchoredPosition;
+                                NextRect.DOAnchorPos(new Vector2(netPoint.x, netPoint.y + 250), 1.25f).SetEase(Ease.OutElastic).OnComplete(() =>
+                                {
+                                    Bind(NextBtn, delegate
                                     {
-                                        Bind(NextBtn, delegate
-                                        {
-                                            GameManager.Instance.VictoryQuitScene();
-                                        }, "UI_click");
-                                    });
+                                        GameManager.Instance.VictoryQuitScene();
+                                    }, "UI_click");
+                                });
+                                
                             }
                         );
                 });
@@ -157,7 +157,7 @@ namespace ARPG.UI
             base.Close();
             if(PanelUI != null)
                 Destroy(PanelUI.gameObject);
-            NextBtn.transform.position = NextBtnStarPoint;
+            NextRect.anchoredPosition = NextBtnStarPoint;
             NextBtn.onClick.RemoveAllListeners();
             _RewordUI.Close();
             
