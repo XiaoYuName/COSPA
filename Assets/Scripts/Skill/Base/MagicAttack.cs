@@ -52,7 +52,7 @@ namespace ARPG
             }
             Bull.gameObject.SetActive(false);
             GameManager.Instance.OptionDamage(Player,target,data,targetPos.position);
-            ParticleSystem HitFx = SkillPoolManager.Release(data.Pools[2].prefab, targetPos.position,Quaternion.identity).GetComponent<ParticleSystem>();
+            ParticleSystem HitFx = SkillPoolManager.Release(data.Pools[2].prefab, targetPos.position,Quaternion.Euler(-90,0,0)).GetComponent<ParticleSystem>();
             yield return new WaitForSeconds(HitFx.main.duration);
             HitFx.gameObject.SetActive(false);
         }
