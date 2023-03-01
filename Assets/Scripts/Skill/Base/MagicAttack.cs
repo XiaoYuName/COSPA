@@ -48,6 +48,10 @@ namespace ARPG
             {
                 Bull.transform.position = Vector3.MoveTowards(Bull.transform.position, targetPos.transform.position, 
                     data.ReleaseTime * Time.deltaTime);
+                
+                Vector3 dir = targetPos.position - Bull.transform.position;
+                float angle = Vector3.SignedAngle(Vector3.right, dir, Vector3.forward);
+                Bull.transform.eulerAngles = new Vector3(0, 0, angle);
                 yield return null;
             }
             Bull.gameObject.SetActive(false);
