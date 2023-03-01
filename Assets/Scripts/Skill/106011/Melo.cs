@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ARPG
 {
     /// <summary>
-    /// 冥落
+    /// 连锁闪电
     /// </summary>
     public class Melo : PlayerSkill
     {
@@ -30,31 +30,26 @@ namespace ARPG
             {
                 Player = GameManager.Instance.Player;
             }
-
-            if (EventName != "OpenMelo" && EventName != "CloseMelo") return;
-
-            if (EventName == "OpenMelo")
-            {
-                Debug.Log("开始准备砸地");
-                GameManager.Instance.StartCoroutine(PlaySkill());
-            }
-            if (EventName == "CloseMelo")
-            {
-                Debug.Log("开始准备关闭");
-            }
+            if (EventName != "OpenMelo") return;
+            GameManager.Instance.StartCoroutine(PlaySkill());
         }
 
         public IEnumerator PlaySkill()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Vector3 randomPoint = new Vector3(
-                    Player.transform.position.x + Random.Range(-data.RadiusOffset.x, data.RadiusOffset.x), Player.transform.position.y +
-                    Random.Range(-Player.transform.position.y, Player.transform.position.y));
-                _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, randomPoint).GetComponent<_FxItem>();
-                fxItem.Play(Player,data);
-                yield return new WaitForSeconds(data.ReleaseTime);
-            }
+            Collider2D[] target = new Collider2D[5];
+            Transform CharacterTran = Player.GetPoint("weaponMain_away").transform;
+            int size = Physics2D.OverlapCircleNonAlloc(CharacterTran.position, data.Radius, target,
+                data.Mask);
+            if (size == 0) yield break;
+            GameObject LoopFx = SkillPoolManager.Release(data.Pools[0].prefab, CharacterTran.transform.position,
+                Quaternion.identity);
+            // for (int i = 0; i < size; i++)
+            // {
+            //     while (Vector2.Distance(LoopFx,target[]))
+            //     {
+            //         
+            //     }
+            // }
         }
     }
 }
