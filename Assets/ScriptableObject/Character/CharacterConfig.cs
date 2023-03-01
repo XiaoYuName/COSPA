@@ -182,6 +182,12 @@ namespace ARPG.Config
     {
         public string SkillID;
         public SkillType Type;
+        
+        [Tooltip("按下攻击按钮播放的音效,为空则不播放")]
+        /// <summary>
+        /// 按下攻击按钮播放的音效
+        /// </summary>
+        public string BtnAudioID;
     }
 
     public enum SkillType

@@ -79,7 +79,8 @@ namespace ARPG.UI
             void UnityAction()
             {
                 func?.Invoke();
-                AudioManager.Instance.PlayAudio(audioname);
+                if(!String.IsNullOrEmpty(audioname))
+                    AudioManager.Instance.PlayAudio(audioname);
             }
 
             button.onClick.AddListener(UnityAction);

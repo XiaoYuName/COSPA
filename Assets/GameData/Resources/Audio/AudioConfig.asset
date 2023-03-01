@@ -115,8 +115,50 @@ MonoBehaviour:
     InitVolume: 0.8
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: GameScene
+    audioType: 0
+    clip: {fileID: 8300000, guid: c0da37eda2c4e4046b6ab43a86ed1564, type: 3}
+    InitVolume: 0.8
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: bgm_character
+    audioType: 0
+    clip: {fileID: 8300000, guid: cdb0cca6694690746959f4dd626a5edb, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: DungeonsBGM
+    audioType: 0
+    clip: {fileID: 8300000, guid: ae1b143c5869b64428cb53649d704c53, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: AttackSceneBGM
+    audioType: 0
+    clip: {fileID: 8300000, guid: 04b9f8e6cbcba6f41961cbb743734210, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: DeftualBOSS_BGM
+    audioType: 0
+    clip: {fileID: 8300000, guid: 3e65ba4a72da5f242ada5629396f9561, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: Region_01
+    audioType: 0
+    clip: {fileID: 8300000, guid: 561ef33e6d42ffb41bca4c04a1b10187, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
-  GameAudio: []
+  GameAudio:
+  - SceneName: SenLin
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: HUOHUO
+    BgmName: AttackSceneBGM
+    AmbientName: 
   GolodAudioMixer: {fileID: 24100000, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   AudioMixerGroupInfos:
   - Type: 0
@@ -162,12 +204,6 @@ MonoBehaviour:
   - ID: BGAudio_001
     audioType: 4
     clip: {fileID: 8300000, guid: 772b7031e7bf73e499db7332be719303, type: 3}
-    InitVolume: 0.4
-    soundPitchMin: 0.8
-    soundPitchMax: 1.2
-  - ID: bgm_character
-    audioType: 4
-    clip: {fileID: 8300000, guid: cdb0cca6694690746959f4dd626a5edb, type: 3}
     InitVolume: 0.4
     soundPitchMin: 0.8
     soundPitchMax: 1.2

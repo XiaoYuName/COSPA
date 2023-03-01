@@ -24,14 +24,17 @@ namespace ARPG.BasePool
         {
             VideoPlayer.OpenMedia(item.MediaReference);
             VideoPlayer.Events.AddListener(Call);
-            if (item.SinghtAudio)
+            if (!String.IsNullOrEmpty(item.AudioName))
             {
-                AudioManager.Instance.PlayAudio(item.AudioName);
-                AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,0.5f);
-            }
-            else
-            {
-                AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,0.5f);
+                if (item.SinghtAudio)
+                {
+                    AudioManager.Instance.PlayAudio(item.AudioName);
+                    AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,0.5f);
+                }
+                else
+                {
+                    AudioManager.Instance.SetSnapshot(AudioSnapshotsType.Video,0.5f);
+                }
             }
             VideoImage.transform.localScale = new Vector3(2, 2, 2);
             VideoPlayer.Play();

@@ -193,6 +193,12 @@ namespace ARPG
             BuffAddTrigger(BuffTrigger.累计攻击);
             TriggerStopEvent(StopTrigger.攻击时);
             TriggerEndEvent(EndTrigger.攻击时);
+            
+            var audioID = data.GetSkillNameID(SkillType.Attack).BtnAudioID;
+            if (audioID != null && !String.IsNullOrEmpty(audioID))
+            {
+                AudioManager.Instance.PlayAudio(audioID);
+            }
         }
 
 
@@ -203,6 +209,12 @@ namespace ARPG
         {
             if(SkillDic.ContainsKey(SkillType.Skill_01))
                 SkillDic[SkillType.Skill_01].Play();
+            
+            var audioID = data.GetSkillNameID(SkillType.Skill_01).BtnAudioID;
+            if (audioID != null && !String.IsNullOrEmpty(audioID))
+            {
+               AudioManager.Instance.PlayAudio(audioID);
+            }
         }
     
         /// <summary>
@@ -212,6 +224,12 @@ namespace ARPG
         {
             if(SkillDic.ContainsKey(SkillType.Skill_02))
                 SkillDic[SkillType.Skill_02].Play();
+            
+            var audioID = data.GetSkillNameID(SkillType.Skill_02).BtnAudioID;
+            if (audioID != null && !String.IsNullOrEmpty(audioID))
+            {
+                AudioManager.Instance.PlayAudio(audioID);
+            }
         }
 
         /// <summary>
@@ -221,6 +239,12 @@ namespace ARPG
         {
             if(SkillDic.ContainsKey(SkillType.Skill_03))
                 SkillDic[SkillType.Skill_03].Play();
+            
+            var audioID = data.GetSkillNameID(SkillType.Skill_03).BtnAudioID;
+            if (audioID != null && !String.IsNullOrEmpty(audioID))
+            {
+                AudioManager.Instance.PlayAudio(audioID);
+            }
         }
 
         /// <summary>
@@ -230,6 +254,12 @@ namespace ARPG
         {
             if(SkillDic.ContainsKey(SkillType.Evolution))
                 SkillDic[SkillType.Evolution].Play();
+            
+            var audioID = data.GetSkillNameID(SkillType.Evolution).BtnAudioID;
+            if (audioID != null && !String.IsNullOrEmpty(audioID))
+            {
+                AudioManager.Instance.PlayAudio(audioID);
+            }
         }
         #endregion
         

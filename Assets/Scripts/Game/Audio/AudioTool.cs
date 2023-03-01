@@ -13,7 +13,7 @@ namespace ARPG.Audio
         public bool isLoop;
         public AudioType Type;
 
-        public void Start()
+        public void OnEnable()
         {
             if (Type == AudioType.Video)
             {

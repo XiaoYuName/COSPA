@@ -175,11 +175,11 @@ namespace ARPG
         public void InitBindButton(Action attack, Action skill_1, Action skill_2, Action skill_3,Action skill_4)
         {
             Open();
-            Bind(AttackBtn,attack,"OnChick");
-            Bind(SkillBtn_1,skill_1,"OnChick");
-            Bind(SkillBtn_2,skill_2,"OnChick");
-            Bind(SkillBtn_3,skill_3,"OnChick");
-            Bind(SkillBtn_4,skill_4,"OnChick");
+            Bind(AttackBtn,attack,"");
+            Bind(SkillBtn_1,skill_1,"");
+            Bind(SkillBtn_2,skill_2,"");
+            Bind(SkillBtn_3,skill_3,"");
+            Bind(SkillBtn_4,skill_4,"");
         }
     }
 }

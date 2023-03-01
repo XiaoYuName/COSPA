@@ -15,7 +15,7 @@ namespace ARPG
                 UISystem.Instance.CloseUI("BossStateUI");
             }
             TaskManager.Instance.TriggerTask(TaskTrigger.击杀怪物,1);
-
+            AudioManager.Instance.PlayActiveSceneBGM(); //切换成默认场景BGM
             foreach (var skill in enemy.SkillDic)
             {
                 enemy.SkillDic[skill.Key].UHandle();

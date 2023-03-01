@@ -72,14 +72,23 @@ namespace ARPG
         }
         
         //加载场景回调
-        public void OpenNewScene()
+        private void OpenNewScene()
         {
             string currentScnenName = SceneManager.GetActiveScene().name;
             SceneAudioItem scneneAudioInfo = MainAudioData.GetScneneAudioInfo(currentScnenName);
             if (scneneAudioInfo == null) return;
-            AudioItem bgmItem = MainAudioData.Get(scneneAudioInfo.BgmName);
-            AudioItem Ambient = MainAudioData.Get(scneneAudioInfo.AmbientName);
-           
+            AudioItem bgmItem = null;
+            if (!String.IsNullOrEmpty(scneneAudioInfo.BgmName))
+            {
+                bgmItem = MainAudioData.Get(scneneAudioInfo.BgmName);
+            }
+
+            AudioItem Ambient = null;
+            if (!String.IsNullOrEmpty(scneneAudioInfo.AmbientName))
+            {
+                Ambient = MainAudioData.Get(scneneAudioInfo.AmbientName);
+            }
+            
             if(AduioCoroutine != null)
                 StopCoroutine(AduioCoroutine); //先停止之前的协程
             AduioCoroutine = StartCoroutine(PlaySceneAudio(bgmItem, Ambient));
@@ -98,10 +107,12 @@ namespace ARPG
                 PlayAmbient(AmbientItem,1f);
                 yield return new WaitForSeconds(AudioSwitchRadom);
                 PlayBGM(BgmItem,SpanshotTime);
-            }
-            else
+            }else if (BgmItem != null)
             {
-                Debug.LogWarning("该场景未配置音效文件");
+                PlayBGM(BgmItem,SpanshotTime);
+            }else if (AmbientItem != null)
+            {
+                PlayAmbient(AmbientItem,1f);
             }
         }
 
@@ -113,6 +124,7 @@ namespace ARPG
         private void PlayBGM(AudioItem item,float SnapshotTime)
         {
             if (item == null || item.clip == null) return;
+            if (BGMAudio.clip == item.clip) return;
             BGMAudio.clip = item.clip;
             BGMAudio.volume = item.InitVolume;
             if (BGMAudio.isActiveAndEnabled)
@@ -121,6 +133,7 @@ namespace ARPG
             }
             normalSnapshot.TransitionTo(SnapshotTime);
         }
+        
 
         /// <summary>
         /// 播放环境音效
@@ -207,9 +220,15 @@ namespace ARPG
             audioGame.AudioSource.volume = ItemInfo.InitVolume;
             audioGame.Play();
         }
-        
-        
-        
+
+        /// <summary>
+        /// 播放默认处于该场景的BGM
+        /// </summary>
+        public void PlayActiveSceneBGM()
+        {
+            OpenNewScene();
+        }
+
         /// <summary>
         /// 播放一个音效
         /// </summary>

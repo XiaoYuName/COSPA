@@ -74,7 +74,7 @@ namespace ARPG
             if (data.Type == EnemyType.BOSS)
             {
                 UISystem.Instance.OpenUI("BOSSAppear");
-                
+                AudioManager.Instance.PlayAudio("DeftualBOSS_BGM");
                 stateUI = UISystem.Instance.GetUI<BossStateUI>("BossStateUI");
                 stateUI.InitData(State);
                 animState = 999;
