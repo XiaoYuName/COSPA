@@ -439,5 +439,15 @@ MonoBehaviour:
       isMultistage: 1
       MultistageTime: 0.2
       MultistageDamage: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-    Pools: []
+    Pools:
+    - prefab: {fileID: 3588700100050076302, guid: 79dcaaf22a0e7394db346fd257efe560, type: 3}
+      count: 2
+    - prefab: {fileID: 2054283959142997995, guid: 159f97c9823bc43488889f3492481061, type: 3}
+      count: 2
+    - prefab: {fileID: 3870702213756817317, guid: 78dd418c7ba0c924fa36fa3962af6234, type: 3}
+      count: 2
+    - prefab: {fileID: 3870702213756817317, guid: 78dd418c7ba0c924fa36fa3962af6234, type: 3}
+      count: 2
+    - prefab: {fileID: 2054283959142997995, guid: 159f97c9823bc43488889f3492481061, type: 3}
+      count: 2
     VideoID: 106001_Skill
