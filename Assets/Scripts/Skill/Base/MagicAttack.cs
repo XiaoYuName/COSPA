@@ -35,6 +35,7 @@ namespace ARPG
            if(target == null) yield break;
            Transform PlayerBonePos = Player.GetPoint("weaponMain_away");
            GameObject Bull =  SkillPoolManager.Release(data.Pools[0].prefab, PlayerBonePos.transform.position, Quaternion.identity);
+           AudioManager.Instance.PlayAudio("MagicAttack");
            ParticleSystem StarFx = SkillPoolManager.Release(data.Pools[1].prefab, PlayerBonePos.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
            SkillPoolManager.Instance.StartCoroutine(MovenemtToTargetDamager(Bull, target));
            yield return new WaitForSeconds(StarFx.main.duration);

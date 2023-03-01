@@ -47,6 +47,7 @@ public class GravitationalBlackHoleFx : MonoBehaviour
         {
             GameManager.Instance.OptionDamage(attack,targets[i],Skilldata,transform.position);
         }
+        AudioManager.Instance.PlayAudio("GravitationalBlackHoleFx");
         yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }

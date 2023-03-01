@@ -139,6 +139,7 @@ namespace ARPG
             {
                 ui.ShowEndGame(GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
             }
+            AudioManager.Instance.PlayAudio("VictoryGame");
             UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
             _coroutine = null;
         }

@@ -23,7 +23,7 @@ namespace ARPG
             Title = Get<TextMeshProUGUI>("UIMask/Title");
             content = Get<RectTransform>("UIMask/Content");
             CloseBtn = Get<Button>("UIMask/CloseBtn");
-            Bind(CloseBtn,OnChick,"OnChick");
+            Bind(CloseBtn,OnChick,"");
             SelectBuffList = new List<BuffData>();
         }
 
@@ -48,6 +48,7 @@ namespace ARPG
             {
                 SwitchBuffUI buffUI =  UISystem.Instance.InstanceUI<SwitchBuffUI>("SwitchBuffUI",content);
                 buffUI.IniData(Buff[i].ToString());
+                AudioManager.Instance.PlayAudio("SwitchBUFF");
                 yield return new WaitForSeconds(0.25f);
             }
             
@@ -75,6 +76,7 @@ namespace ARPG
                 }
             }
             isEndClick = true;
+            AudioManager.Instance.PlayAudio("SetBuffBtn");
             UIHelper.Clear(content);
             CurrentWaweBuff = null;
             SelectBuffList.Clear();

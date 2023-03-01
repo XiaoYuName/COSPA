@@ -151,6 +151,42 @@ MonoBehaviour:
     InitVolume: 0.4
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: GravitationalBlackHoleFx
+    audioType: 3
+    clip: {fileID: 8300000, guid: a7775fc053de1b744acd5393fb9f7f49, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: MagicAttack
+    audioType: 3
+    clip: {fileID: 8300000, guid: 62f2fac3a68c4f3418625a23035a5101, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: SwitchBUFF
+    audioType: 3
+    clip: {fileID: 8300000, guid: 8d4595667851da34cb2aa7fad6db4b11, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: SetBuffBtn
+    audioType: 3
+    clip: {fileID: 8300000, guid: a42cbe3164408c3449ad0ceba735e3a9, type: 3}
+    InitVolume: 0.4
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: ShenShenDianTang_BGM
+    audioType: 0
+    clip: {fileID: 8300000, guid: cf844ed84812fc84894db150e75bdc21, type: 3}
+    InitVolume: 0.5
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+  - ID: VictoryGame
+    audioType: 3
+    clip: {fileID: 8300000, guid: dd963eb720369704b8559021b210cd63, type: 3}
+    InitVolume: 0.5
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
   GameAudio:
   - SceneName: SenLin
@@ -158,6 +194,9 @@ MonoBehaviour:
     AmbientName: 
   - SceneName: HUOHUO
     BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: ShenShenDianTang
+    BgmName: ShenShenDianTang_BGM
     AmbientName: 
   GolodAudioMixer: {fileID: 24100000, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   AudioMixerGroupInfos:

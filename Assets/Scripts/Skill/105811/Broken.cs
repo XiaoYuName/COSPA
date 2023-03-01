@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.BasePool;
 using ARPG.Config;
+using ARPG.Pool.Skill;
 using UnityEngine;
 
 namespace ARPG
@@ -15,12 +17,14 @@ namespace ARPG
         {
             base.Init(character, type, item);
             MessageManager.Instance.Register<string>(C2C.EventMsg,PlaySkill);
+            
         }
 
         public override void Play()
         {
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_4");
+            SkillPoolManager.Instance.StartCoroutine(WaitVideo());
             base.Play();
         }
 
@@ -48,6 +52,15 @@ namespace ARPG
             {
                 // ignored
             }
+        }
+        
+        public IEnumerator WaitVideo()
+        {
+            VideoManager.Instance.PlayerAvVideo(data.VideoID);
+            Player.anim.SetFloat("GlobalSpeed",0);
+            yield return new WaitForSecondsRealtime(1.9f);
+            Player.anim.SetFloat("GlobalSpeed",1);
+            
         }
 
         public override void UHandle()

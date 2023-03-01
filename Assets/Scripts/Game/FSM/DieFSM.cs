@@ -12,10 +12,10 @@ namespace ARPG
             if (enemy.data.Type == EnemyType.BOSS && enemy.stateUI != null)
             {
                 TaskManager.Instance.TriggerTask(TaskTrigger.击杀BOSS,1);
+                AudioManager.Instance.PlayActiveSceneBGM(); //切换成默认场景BGM
                 UISystem.Instance.CloseUI("BossStateUI");
             }
             TaskManager.Instance.TriggerTask(TaskTrigger.击杀怪物,1);
-            AudioManager.Instance.PlayActiveSceneBGM(); //切换成默认场景BGM
             foreach (var skill in enemy.SkillDic)
             {
                 enemy.SkillDic[skill.Key].UHandle();
