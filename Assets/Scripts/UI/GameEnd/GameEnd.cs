@@ -11,6 +11,7 @@ namespace ARPG.UI
     public class GameEnd : UIBase
     {
         private Image TitleText;
+        private RectTransform TitleRect;
         private Button NextBtn;
         private RectTransform NextRect;
         private RewordUI _RewordUI;
@@ -21,13 +22,14 @@ namespace ARPG.UI
         
         //1.记录初始坐标
         private Vector2 NextBtnStarPoint;
-        private Vector3 TitleStarPoint;
+        private Vector2 TitleStarPoint;
         public override void Init()
         {
             TitleText = Get<Image>("UIMask/TitleText");
+            TitleRect = TitleText.transform as RectTransform;
             var transform1 = TitleText.transform;
             transform1.localScale = Vector3.zero;
-            TitleStarPoint = transform1.position;
+            TitleStarPoint = TitleRect.anchoredPosition;
             
             NextBtn = Get<Button>("UIMask/NextBtn");
             NextRect = NextBtn.transform as RectTransform;
@@ -41,11 +43,14 @@ namespace ARPG.UI
         public void ShowEndGame(MapItem RewordItem)
         {
             TitleText.sprite = VietorySpien;
+            
+            
+            
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
-                    TitleText.transform.DOLocalMove(new Vector3(0,TitleText.transform.localPosition.y+300,transform.position.z), 1.25f).OnComplete(
-                        ()=>StartCoroutine(SettlementGameVictory(RewordItem)));
+                    TitleRect.DOAnchorPos(new Vector2(0, TitleRect.anchoredPosition.y + 300), 1.25f).OnComplete(() =>
+                        StartCoroutine(SettlementGameVictory(RewordItem)));
                 });
         }
 
@@ -83,8 +88,7 @@ namespace ARPG.UI
             var netPoint = levelPanelUI.transform.position;
             levelPanelUI.transform.DOMove(new Vector3(netPoint.x, netPoint.y - 450, netPoint.z), 1.25f)
                 .OnComplete(()=> levelPanelUI.gameObject.SetActive(false));
-            TitleText.transform.DOMoveY(TitleText.transform.position.y + 30, 0.25f);
-            
+            TitleRect.DOAnchorPosY(TitleRect.anchoredPosition.y + 30, 0.25f);
             NextBtn.interactable = false;
             //2.Player移出屏幕
             Character Player = GameManager.Instance.Player;
@@ -132,22 +136,18 @@ namespace ARPG.UI
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
-                    TitleText.transform
-                        .DOLocalMove(new Vector3(TitleText.transform.localPosition.x, TitleText.transform.localPosition.y + 400,transform.position.z), 1.25f).
-                        OnComplete(
-                            delegate
+                    TitleRect.DOAnchorPosY(TitleRect.anchoredPosition.y + 400, 1.25f).OnComplete(() =>
+                    {
+                        var netPoint = NextRect.anchoredPosition;
+                        NextRect.DOAnchorPos(new Vector2(netPoint.x, netPoint.y + 250), 1.25f).SetEase(Ease.OutElastic)
+                            .OnComplete(() =>
                             {
-                                var netPoint = NextRect.anchoredPosition;
-                                NextRect.DOAnchorPos(new Vector2(netPoint.x, netPoint.y + 250), 1.25f).SetEase(Ease.OutElastic).OnComplete(() =>
+                                Bind(NextBtn, delegate
                                 {
-                                    Bind(NextBtn, delegate
-                                    {
-                                        GameManager.Instance.VictoryQuitScene();
-                                    }, "UI_click");
-                                });
-                                
-                            }
-                        );
+                                    GameManager.Instance.VictoryQuitScene();
+                                }, "UI_click");
+                            });
+                    });
                 });
         }
 
@@ -162,7 +162,7 @@ namespace ARPG.UI
             _RewordUI.Close();
             
             TitleText.transform.localScale = Vector3.zero;
-            TitleText.transform.position = TitleStarPoint;
+            TitleRect.anchoredPosition = TitleStarPoint;
         }
     }
 
