@@ -347,7 +347,14 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.3667
+    functionName: SpineEvent
+    data: MagicAttack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 1
 --- !u!74 &-7866592014226449710
 AnimationClip:
   m_ObjectHideFlags: 0

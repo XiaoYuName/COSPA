@@ -12,8 +12,7 @@ namespace ARPG
 {
     public class Enemy : MonoBehaviour,IDamage,IBuffLogic
     {
-        
-
+        #region PropComonent
         /// <summary>
         /// Spine 动画
         /// </summary>
@@ -45,6 +44,9 @@ namespace ARPG
         [HideInInspector]public Collider2D DamageCollider2D;
         
         [HideInInspector]public BossStateUI stateUI;
+        private SkeletonUtilityBone[] bones;
+      
+
         /// <summary>
         /// 自定义中心点
         /// </summary>
@@ -65,6 +67,8 @@ namespace ARPG
             State.currentHp = State.HP;
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             anim.runtimeAnimatorController = data.Animator;
+
+            bones = transform.GetComponentsInChildren<SkeletonUtilityBone>();
             CreateSkillClass();
             //1.如果是BOSS类型敌人入场后直接进行攻击状态
             if (data.Type == EnemyType.BOSS)
@@ -81,8 +85,9 @@ namespace ARPG
 
             SwitchFSM(FSMType.IdleFSM);
         }
+        #endregion
 
-  
+        #region Skill
         /// <summary>
         /// 创建技能Skill对象和映射字典
         /// </summary>
@@ -100,8 +105,9 @@ namespace ARPG
                 if (skill != null) skill.Init(this, skillItem);
             }
         }
+        #endregion
         
-
+        #region FSM
         protected void Update()
         {
             FSM?.BehaviourUpdate(this);
@@ -159,7 +165,10 @@ namespace ARPG
         {
             FSM.OnColliderExit2D(other,this);
         }
+        #endregion
 
+        #region IDamage
+        
         /// <summary>
         /// 获取自身属性状态
         /// </summary>
@@ -176,6 +185,27 @@ namespace ARPG
         public Vector3 GetPoint()
         {
             return CentenPoint.position;
+        }
+        
+        /// <summary>
+        /// 获取骨骼位置,该位置跟随Spine动画位置
+        /// </summary>
+        /// <param name="BoneName">骨骼</param>
+        /// <returns>返回对应骨骼根节点位置，如果找不到,则直接返回Character原点</returns>
+        public Transform GetPoint(string BoneName)
+        {
+            if (bones == null) return transform;
+            foreach (var bone in bones)
+            {
+                if (bone.bone.ToString() == BoneName)
+                {
+#if UNITY_EDITOR
+                    Debug.Log("找到对应:"+BoneName+"骨骼跟随节点");
+#endif
+                    return bone.transform;
+                }
+            }
+            return transform;
         }
         
         /// <summary>
@@ -205,7 +235,9 @@ namespace ARPG
         {
             State.currentHp = Mathf.Min(State.currentHp+Reply, State.HP);
         }
+        #endregion
 
+        #region IBUFF
         //----------------------------BUFF--------------------------------//
         public IBuffLogic GetBuffLogic()
         {
@@ -229,7 +261,7 @@ namespace ARPG
         {
             
         }
-       
+        #endregion
     }
 }
 

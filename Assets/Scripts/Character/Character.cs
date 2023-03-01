@@ -12,6 +12,7 @@ namespace ARPG
 {
     public  class Character : MonoBehaviour,IDamage,IBuffLogic
     {
+        #region PropComponent
         /// <summary>
         /// 在背包的数据
         /// </summary>
@@ -25,7 +26,7 @@ namespace ARPG
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
         public Collider2D DamageCollider2D;
-
+        private SkeletonUtilityBone[] bones;
 
 
         //--------------------------Movenemt--------------------------//
@@ -53,7 +54,9 @@ namespace ARPG
 
         private Dictionary<EndTrigger, Dictionary<IBuff, Action>> EndBuffTriggers =
             new Dictionary<EndTrigger, Dictionary<IBuff, Action>>();
+        #endregion
 
+        #region Character
         private void Awake()
         {
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
@@ -82,6 +85,7 @@ namespace ARPG
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             BuffNext = new Dictionary<BuffTrigger, Dictionary<IBuff, int>>();
             stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
+            bones  = transform.GetComponentsInChildren<SkeletonUtilityBone>();
             CreateSkillClass();
             CreatBuff();
         }
@@ -174,7 +178,9 @@ namespace ARPG
             if(!isAI)
                 anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
         }
-
+        #endregion
+        
+        #region Skill
         /// <summary>
         /// 普攻技能回调函数
         /// </summary>
@@ -225,8 +231,10 @@ namespace ARPG
             if(SkillDic.ContainsKey(SkillType.Evolution))
                 SkillDic[SkillType.Evolution].Play();
         }
-
-        //----------------------------攻击接口---------------------------//
+        #endregion
+        
+        #region IDamage
+        
         public CharacterState GetState()
         {
             return State;
@@ -242,6 +250,27 @@ namespace ARPG
             {
                 return Vector3.zero;
             }
+        }
+
+        /// <summary>
+        /// 获取骨骼位置,该位置跟随Spine动画位置
+        /// </summary>
+        /// <param name="BodyName">骨骼</param>
+        /// <returns>返回对应骨骼根节点位置，如果找不到,则直接返回Character原点</returns>
+        public Transform GetPoint(string BodyName)
+        {
+            if (bones == null) return transform;
+            foreach (var bone in bones)
+            {
+                if (bone.bone.ToString() == BodyName)
+                {
+#if UNITY_EDITOR
+                    Debug.Log("找到对应:"+BodyName+"骨骼跟随节点");
+#endif
+                    return bone.transform;
+                }
+            }
+            return transform;
         }
 
 
@@ -269,9 +298,9 @@ namespace ARPG
             StateUI.UpdateState(State);
             BuffTriggerEvent(BuffTrigger.回复自身时);
         }
-
-
-        //--------------------------------BUFF接口----------------------------------------//
+        #endregion
+        
+        #region IBUFF
         /// <summary>
         /// 触发触发器
         /// </summary>
@@ -505,6 +534,7 @@ namespace ARPG
                 }
             }
         }
+        #endregion
     }
 }
 

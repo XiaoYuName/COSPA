@@ -17,6 +17,8 @@ public interface IDamage
     /// </summary>
     /// <returns></returns>
     Vector3 GetPoint();
+
+    Transform GetPoint(string BoneName);
     
     /// <summary>
     /// 受伤

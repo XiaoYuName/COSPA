@@ -85,6 +85,34 @@ MonoBehaviour:
     - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
       count: 999
     VideoID: 
+  - ID: MagicAttack
+    CD: 1
+    Duration: 30
+    ReleaseTime: 2.5
+    Radius: 60
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 2
+    icon: {fileID: 21300000, guid: aff23992db5e040a0b1bd59259bcf120, type: 3}
+    SkillName: "\u9B54\u6CD5\u5E08\u666E\u653B"
+    SkillDes: "\u9B54\u6CD5\u5E08\u666E\u653B"
+    StepUpDes: 
+    ActionStar: 0
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+    Pools:
+    - prefab: {fileID: 7948697386711082023, guid: c07546841ca4c21488b98e644306301f, type: 3}
+      count: 5
+    - prefab: {fileID: 6730587176808229221, guid: b6e3d48e3131302458e3208af69b37a9, type: 3}
+      count: 5
+    - prefab: {fileID: 1907788672798889127, guid: f47bd4624e3bdcd4c8642d2e3ae8e306, type: 3}
+      count: 5
+    VideoID: 
   - ID: DoubleChop
     CD: 5
     Duration: 2
