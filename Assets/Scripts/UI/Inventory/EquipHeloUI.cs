@@ -30,6 +30,8 @@ namespace ARPG.UI
         [HideInInspector]public EquipHelo currentdata;
         public bool isEquip; //是否已经装备过装备了
 
+        private Button UEquipButton; //点击后弹出ItemToolTip 并且可以进行拆卸
+
         private void Awake()
         {
             Init();
@@ -41,6 +43,8 @@ namespace ARPG.UI
             deftualIcon = iconImage.sprite;
             Level = Get<TextMeshProUGUI>("Level");
             powor = Get<TextMeshProUGUI>("Powor");
+            UEquipButton = GetComponent<Button>();
+            Bind(UEquipButton,UEquipOnClick,UiAudioID.UI_Bc_Click);
         }
 
         public void InitData(EquipHelo data)
@@ -62,6 +66,14 @@ namespace ARPG.UI
             Level.gameObject.SetActive(!isNull);
             powor.gameObject.SetActive(!isNull);
         }
+
+
+        public void UEquipOnClick()
+        {
+            CharacterEquipPanel baseUI = UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel");
+            baseUI.ShowItemToolTip(this);
+        }
+
     }
 }
 

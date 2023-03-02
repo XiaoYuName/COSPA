@@ -258,6 +258,7 @@ namespace ARPG.Config
                 });
             return 2;
        }
+       
     }
     
 

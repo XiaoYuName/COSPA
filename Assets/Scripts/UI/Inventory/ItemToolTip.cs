@@ -21,6 +21,7 @@ namespace ARPG.UI
         private Button CloseBtn;
         private Button BindBtn;
         private ItemBag currentItem;
+        private TextMeshProUGUI BindBtnName;
         
         public override void Init()
         {
@@ -34,6 +35,7 @@ namespace ARPG.UI
             content = Get<RectTransform>("Mask/Panel/Info/Scroll View/Content");
             CloseBtn = Get<Button>("Mask/Panel/CloseBtn");
             BindBtn = Get<Button>("Mask/Panel/BindBtn");
+            BindBtnName = BindBtn.transform.Find("BtnName").GetComponent<TextMeshProUGUI>();
         }
 
         public void InitData(ItemBag itemBag)
@@ -54,7 +56,29 @@ namespace ARPG.UI
                 value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,itemBag.power)).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
+            BindBtnName.text = "装备";
             Bind(BindBtn, SetEquip, "OnChick");
+            Open();
+        }
+
+        public void InitData(EquipHeloUI hole)
+        {
+            ItemName.text = hole.currentdata.item.ItemName;
+            ItemType.text = hole.currentdata.item.Type.ToString();
+            Level.text = "lv: "+hole.currentdata.item.level;
+            Powor.text = "+" +hole.currentdata.Powor;
+            Slot.sprite = GameSystem.Instance.GetSprite(hole.currentdata.item.spriteID);
+            Count.text = "*" + 1;
+            UIHelper.Clear(content);
+            foreach (var t in hole.currentdata.item.attribute)
+            {
+                PropValue value =Instantiate(Obj, content);
+                value.Init();
+                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,hole.currentdata.Powor)).ToString());
+            }
+            Bind(CloseBtn,Close,"OutChick");
+            BindBtnName.text = "卸下";
+            Bind(BindBtn, ()=>UEquip(hole), "OnChick");
             Open();
         }
 
@@ -62,6 +86,21 @@ namespace ARPG.UI
         {
             UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").UpdateEquipHolo(currentItem);
             Close();
+        }
+
+        //卸下装备
+        private void UEquip(EquipHeloUI hole)
+        {
+            ItemBag itemBag = new ItemBag()
+            {
+                ID = hole.currentdata.item.ID,
+                count = 1,
+                power = hole.currentdata.Powor,
+            };
+            InventoryManager.Instance.AddItem(itemBag);
+            hole.currentdata.item = new Item();
+            hole.InitData(hole.currentdata);
+            UISystem.Instance.ShowTips("装备卸载成功");
         }
     }
 }

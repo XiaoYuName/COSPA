@@ -108,6 +108,11 @@ namespace ARPG
         /// 弹窗
         /// </summary>
         public const string PopWindows = "PopWindows";
+        
+        /// <summary>
+        /// UI点击音效——2
+        /// </summary>
+        public const string UI_Bc_Click = "UI_Bc_Click";
     }
 }
 

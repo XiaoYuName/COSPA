@@ -207,6 +207,11 @@ namespace ARPG.UI
         {
             _toolTip.InitData(bag);
         }
+        
+        public void ShowItemToolTip(EquipHeloUI hole)
+        {
+            _toolTip.InitData(hole);
+        }
 
 
         /// <summary>
