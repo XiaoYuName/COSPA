@@ -40,7 +40,7 @@ namespace ARPG.UI
                 case MaxType.icon:
                     break;
                 case MaxType.Video:
-                    var Clip =  VideoManager.Instance.GetVideo(info.GetAssets(Star).VideoID);
+                    var Clip =  info.GetAssets(Star).VideAssets;
                     if (Clip == null) Close();
                     MediaPlayer.gameObject.SetActive(true);
                     MediaPlayer.OpenMedia(Clip);

@@ -27,7 +27,7 @@ namespace ARPG
         {
             if(isCold || Player.animSpeed ==0)return;
             Player.anim.SetTrigger("Skill_4");
-            VideoManager.Instance.PlayerAvVideo(data.VideoID);
+            VideoManager.Instance.PlayerAvVideo(data.VideoAsset);
             base.Play();
         }
         public void AniamtorMsg(string EventName)

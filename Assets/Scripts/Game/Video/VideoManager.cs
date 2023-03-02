@@ -46,6 +46,13 @@ namespace ARPG.BasePool
             avVideoItem.Init();
             avVideoItem.StarPlay(AvVideoConfig.Get(videoID));
         }
+        
+        public void PlayerAvVideo(MediaReference VideoAssets)
+        {
+            UIAvVideoItem avVideoItem = AvVideoPool.Instance.Get();
+            avVideoItem.Init();
+            avVideoItem.StarPlay(VideoAssets);
+        }
 
         public MediaReference GetVideo(string ID)
         {

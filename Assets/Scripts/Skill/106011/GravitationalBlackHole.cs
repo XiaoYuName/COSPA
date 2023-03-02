@@ -38,7 +38,7 @@ namespace ARPG
 
         public IEnumerator WaitVideo()
         {
-            VideoManager.Instance.PlayerAvVideo(data.VideoID);
+            VideoManager.Instance.PlayerAvVideo(data.VideoAsset);
             Player.anim.SetFloat("GlobalSpeed",0);
             yield return new WaitForSecondsRealtime(1.9f);
             Player.anim.SetFloat("GlobalSpeed",1);

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
+using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 using Spine.Unity;
 
@@ -233,7 +234,7 @@ namespace ARPG.Config
         public SkeletonDataAsset Spinedata;
         
         [Header("视频Video ID --注: 默认使用AvPro 进行播放")]
-        public string VideoID;
+        public MediaReference VideAssets;
     }
 
     [Serializable]

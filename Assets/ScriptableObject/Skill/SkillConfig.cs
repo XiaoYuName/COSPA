@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using RenderHeads.Media.AVProVideo;
 using UnityEngine;
 
 namespace ARPG
@@ -69,7 +70,7 @@ namespace ARPG
         
         public List<ARPG.Pool.Skill.Pool> Pools;
         [Header("技能CG_ID")]
-        public string VideoID;
+        public MediaReference VideoAsset;
     }
 
     [System.Serializable]

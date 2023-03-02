@@ -39,6 +39,14 @@ namespace ARPG.BasePool
             VideoImage.transform.localScale = new Vector3(2, 2, 2);
             VideoPlayer.Play();
         }
+        
+        public void StarPlay(MediaReference item)
+        {
+            VideoPlayer.OpenMedia(item);
+            VideoPlayer.Events.AddListener(Call);
+            VideoImage.transform.localScale = new Vector3(2, 2, 2);
+            VideoPlayer.Play();
+        }
 
         private void Call(MediaPlayer player, MediaPlayerEvent.EventType t1, ErrorCode code)
         {
