@@ -109,7 +109,7 @@ namespace ARPG.UI
                     break;
                 }
             }
-
+            UIHelper.Clear(StateContent);
             if (StateContent == null) return;
             
             var PhysicsAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);

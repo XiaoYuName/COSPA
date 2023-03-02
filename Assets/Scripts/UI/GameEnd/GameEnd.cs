@@ -72,6 +72,7 @@ namespace ARPG.UI
             PanelUI = panelUI;
             panelUI.transform.localPosition = rectPoint;
             yield return panelUI.OpentionLevelAndFavorability(Reword);
+            InventoryManager.Instance.SendCharacterBag(GameManager.Instance.Player.currentBag);
             //4.等待玩家点击下一部,进行奖励界面的处理
             var netPoint = NextRect.anchoredPosition;
             NextRect.DOAnchorPos(new Vector2(netPoint.x, netPoint.y + 250), 1.25f).SetEase(Ease.OutElastic).OnComplete(() =>
