@@ -41,7 +41,7 @@ namespace ARPG.UI
         {
             CurrentEquips = Equips;
             currentPoworAmount = 0;
-            if (Equips == null || Equips.Count <= 1)
+            if (Equips == null || Equips.Count < 1)
             {
                 ItemName.text = "暂无装备";
                 SliderValue.text = "0/0";
@@ -115,7 +115,21 @@ namespace ARPG.UI
         private void Pawor()
         {
             ItemBag itemBag = CurrentEquips[curretnIndex];
-            itemBag.power++;
+            if (itemBag.count > 1)
+            {
+                ItemBag newBag = new ItemBag()
+                {
+                    ID = itemBag.ID,
+                    power = itemBag.power + 1,
+                    count = 1,
+                };
+                InventoryManager.Instance.DeleteItemBag(itemBag.ID,1);
+                InventoryManager.Instance.AddItem(newBag);
+            }
+            else
+            {
+                itemBag.power++;
+            }
             InventoryManager.Instance.DeleteItemBag(Settings.PoworID, currentPoworAmount);
             UISystem.Instance.ShowPopWindows("提示","强化成功","关闭");
             MessageAction.OnRefreshItemBag(InventoryManager.Instance.GetItemAllBag());
