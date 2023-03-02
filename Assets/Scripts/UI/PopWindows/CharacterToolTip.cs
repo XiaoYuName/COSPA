@@ -39,6 +39,12 @@ namespace ARPG.UI
         
         private CharacterBag currentBag;
 
+        private Button MaxSiezBtn;
+        private Button SwitchiconBtn;
+        private Button SwitchWidthBtn;
+        private MaxToolTip MaxToolTip;
+        private MaxType _type;
+
         public override void Init()
         {
             icon = Get<Image>("UIMask/Back/Info/Mask/icon");
@@ -61,7 +67,14 @@ namespace ARPG.UI
             {
                 content.Init();
             }
+
+            MaxSiezBtn = Get<Button>("UIMask/Back/Info/Mask/MaxSizeBtn");
+            SwitchiconBtn = Get<Button>("UIMask/Back/Info/Mask/Switch_icon_Btn");
             
+            MaxToolTip = Get<MaxToolTip>("UIMask/MaxToolTip");
+            MaxToolTip.Init();
+            _type = MaxType.Video;
+            Bind(MaxSiezBtn,ShoMaxToolTip,UiAudioID.OnChick);
         }
 
         /// <summary>
@@ -70,6 +83,8 @@ namespace ARPG.UI
         public void ShowCharacterInfo(CharacterBag data)
         {
             CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(data.ID);
+            SwitchiconBtn.gameObject.SetActive(info.CharacterStarType == CharacterStarType.三星);
+            
             currentBag = data;
             icon.sprite = info.GetAssets(currentBag.currentStar).OringIcon;
             CharacterName.text = info.CharacterName;
@@ -196,6 +211,12 @@ namespace ARPG.UI
                     TableContents[i].gameObject.SetActive(TableContents[i].tableType == _type);
                 }
             }
+        }
+
+        private void ShoMaxToolTip()
+        {
+            CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(currentBag.ID);
+            MaxToolTip.ShowMax(_type,currentBag.currentStar,info);
         }
 
         public override void Close()

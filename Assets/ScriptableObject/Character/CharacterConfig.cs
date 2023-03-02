@@ -231,6 +231,9 @@ namespace ARPG.Config
         /// 对应的Spine动画
         /// </summary>
         public SkeletonDataAsset Spinedata;
+        
+        [Header("视频Video ID --注: 默认使用AvPro 进行播放")]
+        public string VideoID;
     }
 
     [Serializable]
