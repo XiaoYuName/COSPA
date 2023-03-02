@@ -21,6 +21,7 @@ namespace ARPG
         private void Awake()
         {
             Canvas = GetComponent<Canvas>();
+            Canvas.overrideSorting = true;
             Canvas.sortingLayerName = SortingLayer;
             Canvas.sortingOrder = OrderinLayer;
         }

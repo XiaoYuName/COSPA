@@ -228,14 +228,14 @@ namespace ARPG
             switch (item.SkillType.type)
             {
                 case DamageType.Physics:
-                    var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+                    var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 100));
                     //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
                     bool isCirtical = attackState.Cirtical > Random.value;
                     if (isCirtical)
                     {
                         //暴击了
                         // ReSharper disable once PossibleLossOfFraction
-                        Physics *= (2.5d+attackState.CirticalAttack/10);
+                        Physics *= (2.5d+attackState.CirticalAttack/100);
                     }
                     //1.1 计算基础攻击力
                     Physics += item.Diamage;
@@ -252,14 +252,14 @@ namespace ARPG
                     damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
                     return;
                 case DamageType.Magic:
-                    var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence)*(1+(attackState.SkillAttack/100) + (1+attackState.CirticalAttack/100));
+                    var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence)*(1+(attackState.SkillAttack/100));
                     //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
                     bool isMagicCirtical = attackState.Cirtical > Random.value;
                     if (isMagicCirtical)
                     {
                         //暴击了
                         // ReSharper disable once PossibleLossOfFraction
-                        Magic *= (2.5d+attackState.CirticalAttack/10);
+                        Magic *= (2.5d+attackState.CirticalAttack/100);
                     }
                     Magic += item.Diamage;
                     //1.1 伤害要减去地方防御力
@@ -288,7 +288,7 @@ namespace ARPG
         private void OptionAddHp(IDamage attack, SkillItem item,Vector3 Point)
         {
             CharacterState attackState = attack.GetState();
-            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
+            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 10));
             float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
             //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
             bool isCirtical = attackState.Cirtical > Random.value;
@@ -296,16 +296,16 @@ namespace ARPG
             {
                 //暴击了
                 // ReSharper disable once PossibleLossOfFraction
-                Physics *= (2.5d+attackState.CirticalAttack/10);
+                addHp *= (2.5d+attackState.CirticalAttack/10);
             }
-            Physics += item.Diamage;
+            addHp += item.Diamage;
             //2.基础攻击力加技能基础伤害
-            Physics *= (1+(BuffValue/10));
+            addHp *= (1+(BuffValue/100));
             
-            Physics = Mathf.Max(1, (int)Physics);
-            attack.IReply((int)Math.Round(Physics,0));
+            addHp = Mathf.Max(1, (int)addHp);
+            attack.IReply((int)Math.Round(addHp,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
+            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(addHp,0)).ToString());
         }
 
         /// <summary>

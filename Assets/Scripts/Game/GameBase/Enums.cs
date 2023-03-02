@@ -385,6 +385,12 @@ namespace ARPG
        告知,
    }
 
+   public enum MemuTableMode
+   {
+       属性,
+       故事,
+       简介,
+   }
 
    public enum EquipTableType
    {

@@ -108,6 +108,15 @@ namespace ARPG
             return helpConfig.Get(helpType);
         }
 
+        /// <summary>
+        /// 获取职业特性说明
+        /// </summary>
+        /// <param name="type">职业</param>
+        /// <returns></returns>
+        public string GetBattleDescription(BattleType type)
+        {
+            return GameConfig.GetBattleDescription(type);
+        }
 
         /// <summary>
         /// 获取一个预制体GameObject 对象

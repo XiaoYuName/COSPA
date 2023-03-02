@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace ARPG.Config
@@ -22,6 +24,24 @@ namespace ARPG.Config
         {
             return FaramIcons.Find(f => f.Mode == mode).faram;
         }
+
+        public List<BattleMode> BattleModes = new List<BattleMode>();
+
+        /// <summary>
+        /// 获取职业特性描述
+        /// </summary>
+        /// <param name="_type">职业</param>
+        /// <returns></returns>
+        public string GetBattleDescription(BattleType _type)
+        {
+            BattleMode mode = BattleModes.Find(t => t.type == _type);
+            if (mode == null)
+            {
+                return String.Empty;
+            }
+            return mode.description;
+        }
+
     }
     
     [System.Serializable]
@@ -35,5 +55,14 @@ namespace ARPG.Config
         /// 边框
         /// </summary>
         public Sprite faram;
+    }
+
+    [Serializable]
+    public class BattleMode
+    {
+        public BattleType type;
+
+        [ResizableTextArea]
+        public string description;
     }
 }
