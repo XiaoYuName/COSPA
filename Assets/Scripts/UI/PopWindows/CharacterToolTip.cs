@@ -218,7 +218,7 @@ namespace ARPG.UI
             CharacterConfigInfo info = InventoryManager.Instance.GetCharacter(currentBag.ID);
             MaxToolTip.ShowMax(_type,currentBag.currentStar,info);
         }
-
+        
         public override void Close()
         {
             base.Close();

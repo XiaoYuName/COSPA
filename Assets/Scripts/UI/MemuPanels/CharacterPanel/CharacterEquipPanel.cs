@@ -213,6 +213,11 @@ namespace ARPG.UI
             _toolTip.InitData(hole);
         }
 
+        public CharacterBag GetCurrentCharacterBag()
+        {
+            return currentCharacterBag;
+        }
+
 
         /// <summary>
         /// 播放当前角色Spine动画
@@ -273,6 +278,26 @@ namespace ARPG.UI
             MessageAction.UpCharacterBag -= RefCharacterBag;
             MessageAction.RefreshItemBag -= RefreshItemBag;
         }
+        
+        
+        //--------------------------------消息注册-------------------------------------------------//
+        // private void RegHandler()
+        // {
+        //     InventoryManager.Instance.RegAddCharacterBag(currentCharacterBag.ID,RefCharacterChang);
+        // }
+        //
+        // private void URegHandle()
+        // {
+        //     if(InventoryManager.IsInitialized)
+        //         InventoryManager.Instance.URegCharacterBag(currentCharacterBag.ID,RefCharacterChang);
+        // }
+        //
+        // private void RefCharacterChang(CharacterBag bag)
+        // {
+        //     URegHandle(); //取消注册之前的角色绑定ID变化
+        //     InitData(bag);
+        //     RegHandler(); //注册现在的角色绑定ID变化
+        // }
     }
 }
 

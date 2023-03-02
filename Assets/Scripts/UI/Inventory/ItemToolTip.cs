@@ -100,6 +100,8 @@ namespace ARPG.UI
             InventoryManager.Instance.AddItem(itemBag);
             hole.currentdata.item = new Item();
             hole.InitData(hole.currentdata);
+            CharacterEquipPanel baseUI = UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel");
+            InventoryManager.Instance.SendCharacterBag(baseUI.GetCurrentCharacterBag());
             UISystem.Instance.ShowTips("装备卸载成功");
         }
     }

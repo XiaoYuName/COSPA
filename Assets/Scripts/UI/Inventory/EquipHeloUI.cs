@@ -72,6 +72,7 @@ namespace ARPG.UI
         {
             CharacterEquipPanel baseUI = UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel");
             baseUI.ShowItemToolTip(this);
+           
         }
 
     }

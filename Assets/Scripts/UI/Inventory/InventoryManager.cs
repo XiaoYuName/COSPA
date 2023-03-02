@@ -427,6 +427,7 @@ namespace ARPG
         protected override void OnDestroy()
         {
             ItemRegList.Clear();
+            CharacterRegList.Clear();
             base.OnDestroy();
             MessageAction.newUser -= NewSave;
         }
@@ -491,6 +492,8 @@ namespace ARPG
 
         private Dictionary<string, Action<ItemBag>> ItemRegList = new Dictionary<string, Action<ItemBag>>();
 
+        private Dictionary<string, Action<CharacterBag>> CharacterRegList =
+            new Dictionary<string, Action<CharacterBag>>();
 
         /// <summary>
         /// 注册背包道具变化回调
@@ -540,8 +543,71 @@ namespace ARPG
             }
 
         }
+
         
-    
+        /// <summary>
+        /// 注册背包角色状态变更
+        /// </summary>
+        /// <param name="ID">角色ID</param>
+        /// <param name="action">变化回调</param>
+        /// <param name="isInit">该值如果为True：则会在注册时立即回调一次该结果</param>
+        public void RegAddCharacterBag(string ID, Action<CharacterBag> action,bool isInit = false)
+        {
+            if (!CharacterRegList.ContainsKey(ID))
+            {
+                CharacterRegList.Add(ID,new Action<CharacterBag>(action));
+            }
+            else
+            {
+                CharacterRegList[ID] += action;
+            }
+
+            if (!isInit) return;
+            CharacterBag characterBag = GetCharacterBag(ID);
+            if (characterBag != null)
+            {
+                action?.Invoke(characterBag);
+            }
+        }
+
+        /// <summary>
+        /// 取消注册背包角色状态变更
+        /// </summary>
+        /// <param name="ID">角色ID</param>
+        /// <param name="action">回调函数</param>
+        public void URegCharacterBag(string ID, Action<CharacterBag> action)
+        {
+            if (CharacterRegList.ContainsKey(ID))
+            {
+                CharacterRegList[ID] -= action;
+            }
+        }
+        
+        /// <summary>
+        /// 发送角色背包变化注册消息
+        /// </summary>
+        /// <param name="characterBag"></param>
+        public void SendCharacterBag(CharacterBag characterBag)
+        {
+            if (CharacterRegList.ContainsKey(characterBag.ID))
+            {
+                CharacterRegList[characterBag.ID]?.Invoke(characterBag);
+            }
+        }
+
+        /// <summary>
+        /// 发送所以角色变化注册消息
+        /// </summary>
+        public void SendAllCharacterBag()
+        {
+            for (int i = 0; i < UserBag.CharacterBags.Count; i++)
+            {
+                if (CharacterRegList.ContainsKey(UserBag.CharacterBags[i].ID))
+                {
+                    SendCharacterBag(UserBag.CharacterBags[i]);
+                }
+            }
+        }
 
     }
 }
