@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 namespace RPG.Transition
 {
-    public class TransitionManager : MonoBehaviour
+    public class TransitionManager : MonoSingleton<TransitionManager>
     {
         [Header("游戏开始默认场景"),Scene]
         public string startSceneName = String.Empty;
@@ -17,11 +17,12 @@ namespace RPG.Transition
         private CanvasGroup fadeGroup;
         private const float fadeDuration = 1.5f;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             StartCoroutine(LoadScnen("UI"));
         }
-
+        
         private void Start()
         {
             fadeGroup = GameObject.FindWithTag("fadeGroup").GetComponent<CanvasGroup>();
@@ -58,7 +59,17 @@ namespace RPG.Transition
             if (!isFade)
                 StartCoroutine(Transition(ScnenName, pos));
         }
-        
+
+        /// <summary>
+        /// 加载新场景(叠加): 注意
+        /// </summary>
+        /// <param name="ScnenName">场景名称</param>
+        public void TransitionScnen(string ScnenName)
+        {
+            if(!isFade)
+                StartCoroutine(Transition(ScnenName));
+        }
+
         private IEnumerator LoadScnen(string scnemName)
         {
             yield return SceneManager.LoadSceneAsync(scnemName,LoadSceneMode.Additive);
@@ -112,7 +123,15 @@ namespace RPG.Transition
             
         }
         
-        
+        private IEnumerator Transition(string sceneName)
+        {
+            //卸载当前场景
+            yield return Fade(1);
+            yield return LoadAsynScnen(sceneName);
+            yield return Fade(0);
+            MessageAction.OnAfterScenenLoadEvent();
+            
+        }
 
         /// <summary>
         /// 淡入淡出场景

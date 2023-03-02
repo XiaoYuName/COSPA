@@ -41,6 +41,24 @@ namespace ARPG.Config
             }
             return mode.description;
         }
+        
+        
+        public List<RegionInIMode> RegionModes = new List<RegionInIMode>();
+
+        /// <summary>
+        /// 获取对应难度边框
+        /// </summary>
+        /// <param name="_type">难度</param>
+        /// <returns></returns>
+        public Sprite GetRegionModesSprite(RegionMode _type)
+        {
+            RegionInIMode mode = RegionModes.Find(t => t.type == _type);
+            if (mode == null)
+            {
+                return GameSystem.Instance.GetSprite("DeftualIcon");
+            }
+            return mode.icon;
+        }
 
     }
     
@@ -64,5 +82,13 @@ namespace ARPG.Config
 
         [ResizableTextArea]
         public string description;
+    }
+    
+    [Serializable]
+    public class RegionInIMode
+    {
+        public RegionMode type;
+        
+        public Sprite icon;
     }
 }

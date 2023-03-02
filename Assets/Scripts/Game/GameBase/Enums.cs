@@ -419,4 +419,19 @@ namespace ARPG
        /// </summary>
        End,
    }
+
+   public enum RegionMode
+   {
+       普通,
+       困难,
+       地狱,
+       噩梦,
+   }
+
+   public enum LookState
+   {
+       未开启,
+       已解锁,
+       已通关,
+   }
 }

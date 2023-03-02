@@ -97,6 +97,16 @@ namespace ARPG
         {
             return GameConfig.GetFaram(mode);
         }
+        
+        /// <summary>
+        /// 获取稀有度框
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public Sprite GetRegionFarem(RegionMode mode)
+        {
+            return GameConfig.GetRegionModesSprite(mode);
+        }
 
         /// <summary>
         /// 获取说明配置文本

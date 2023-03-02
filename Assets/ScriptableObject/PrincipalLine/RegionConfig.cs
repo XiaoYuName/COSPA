@@ -38,8 +38,13 @@ namespace ARPG.UI.Config
     {
         [Header("章节名称")]
         public string RegionName;
-        
+        [Header("描述")]
+        public string RegionDes;
         public Sprite backIcon;
+        [Header("难度标签")]
+        public RegionMode Mode;
+        [Scene]
+        public string MapSceneName;
         
         /// <summary>
         /// 剧情进度列表

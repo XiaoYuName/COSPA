@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Region
   m_EditorClassIdentifier: 
   RegionList:
-  - RegionName: "\u5E7D\u8272\u68EE\u6797"
-    backIcon: {fileID: 21300000, guid: edf3ccfd7bd331d469d9eae52861d1e2, type: 3}
+  - RegionName: "\u4E91\u6D77\u7684\u5C71\u8109"
+    RegionDes: "\u8D2F\u7A7F\u4E91\u5C42\u7684\u5C71\u8109"
+    backIcon: {fileID: 1973452501, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
+    Mode: 0
+    MapSceneName: WordMap
     RegionItemList:
     - RegionItemName: "\u6DF1\u6797\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: ce2cb9615ddbdb94ba3fe346092c1615, type: 3}
@@ -88,8 +91,47 @@ MonoBehaviour:
         BuffList:
           Buff_ID: 
           count: 0
-  - RegionName: "\u5929\u7A7A\u4E4B\u57CE"
-    backIcon: {fileID: 21300000, guid: edf3ccfd7bd331d469d9eae52861d1e2, type: 3}
+  - RegionName: "\u5BC6\u6797\u7684\u5927\u6811"
+    RegionDes: "\u5B58\u5728\u4E8E\u68EE\u6797\u6DF1\u5904\u76841\u68F5\u5927\u6811"
+    backIcon: {fileID: -1503919277, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
+    Mode: 1
+    MapSceneName: WordMap
+    RegionItemList:
+    - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
+      backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
+      targetScene: Root
+      Press: {x: 0, y: 0}
+      StarPos: {x: 0, y: 0, z: 0}
+      WaveItems: []
+    - RegionItemName: "\u65AD\u57A3\u6B8B\u58C1"
+      backIcon: {fileID: 21300000, guid: 20e98a6e84a0e1540819ec78ab0d38e2, type: 3}
+      targetScene: Root
+      Press: {x: 0, y: 0}
+      StarPos: {x: 0, y: 0, z: 0}
+      WaveItems: []
+  - RegionName: "\u65AD\u5D16\u7684\u9057\u8FF9"
+    RegionDes: "\u5728\u65AD\u5D16\u7EDD\u58C1\u88AB\u53D1\u73B0\u7684\u9057\u8FF9"
+    backIcon: {fileID: 930461193, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
+    Mode: 2
+    MapSceneName: WordMap
+    RegionItemList:
+    - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
+      backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
+      targetScene: Root
+      Press: {x: 0, y: 0}
+      StarPos: {x: 0, y: 0, z: 0}
+      WaveItems: []
+    - RegionItemName: "\u65AD\u57A3\u6B8B\u58C1"
+      backIcon: {fileID: 21300000, guid: 20e98a6e84a0e1540819ec78ab0d38e2, type: 3}
+      targetScene: Root
+      Press: {x: 0, y: 0}
+      StarPos: {x: 0, y: 0, z: 0}
+      WaveItems: []
+  - RegionName: "\u6CA7\u6D77\u7684\u5B64\u5854"
+    RegionDes: "\u5C79\u7ACB\u5728\u5927\u6D77\u4E4B\u4E0A\u7684\u8FF7\u4E4B\u5DE8\u5854"
+    backIcon: {fileID: -578473543, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
+    Mode: 3
+    MapSceneName: WordMap
     RegionItemList:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
