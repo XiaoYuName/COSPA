@@ -68,7 +68,9 @@ public class RegionItemUI : UIBase
             return;
         }
         Debug.Log("准备弹出选择战斗角色界面:"+_RegionName+"   "+_RegionItem.RegionItemName);
-
+        MainPanel.Instance.AddTbaleChild("RegionToolTip");
+        UISystem.Instance.OpenUI<RegionToolTip>("RegionToolTip",(ui)=>
+            ui.InitData(_RegionItem));
     }
 
 

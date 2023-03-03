@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapData
   m_EditorClassIdentifier: 
   BaseDatas:
-  - ID: "\u6DF1\u6797\u5165\u53E3"
+  - ID: 1-1
     mapIcon: {fileID: 21300000, guid: 7beaa358194ecaf469b541833aa26de7, type: 3}
     RewordItemList:
     - itemBag:
@@ -52,7 +52,46 @@ MonoBehaviour:
         count: 31
         power: 0
       Type: 0
-  - ID: "\u706B\u706B\u8001\u5BB6"
+  - ID: 1-2
+    mapIcon: {fileID: 21300000, guid: 119dc82e3a683574fbc1d4d311ae1354, type: 3}
+    RewordItemList:
+    - itemBag:
+        ID: 101011
+        count: 1
+        power: 11
+      Type: 0
+    - itemBag:
+        ID: 101012
+        count: 1
+        power: 10
+      Type: 0
+    - itemBag:
+        ID: 31002
+        count: 500
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 31058
+        count: 500
+        power: 0
+      Type: 0
+    MoneyReword:
+    - itemBag:
+        ID: 91001
+        count: 500
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 94001
+        count: 500
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 92001
+        count: 31
+        power: 0
+      Type: 0
+  - ID: 1-2
     mapIcon: {fileID: 21300000, guid: 119dc82e3a683574fbc1d4d311ae1354, type: 3}
     RewordItemList:
     - itemBag:
