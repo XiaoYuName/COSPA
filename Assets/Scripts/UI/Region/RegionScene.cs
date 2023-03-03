@@ -27,6 +27,7 @@ namespace ARPG.UI
 
         public IEnumerator InitData(RegionLine data)
         {
+            UIHelper.Clear(RegionContent);
             yield return Instantiate(data.SceneGrid, RegionContent);
             RegionGridScene regionGridScene = GetComponentInChildren<RegionGridScene>();
             if (regionGridScene == null) yield break;
