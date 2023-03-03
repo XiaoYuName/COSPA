@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ARPG.Config;
 using ARPG.GameSave;
+using ARPG.UI.Config;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,6 +36,7 @@ namespace ARPG
             UserBag = ConfigManager.LoadConfig<UserBagConfig>("PlayerBag/User");
             CharacterInfoConfig = ConfigManager.LoadConfig<CharacterConfig>("Character/Charactern");
             _itemConfig = ConfigManager.LoadConfig<BaseItemConfig>("Character/ItemConfig");
+            var  MainConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
             MessageAction.newUser += NewSave;
         }
 
@@ -443,7 +445,10 @@ namespace ARPG
 
         public GameSaveData GenerateSaveData()
         {
-            GameSaveData data = new GameSaveData();
+            GameSaveData data = new GameSaveData
+            {
+                RegionSave = RegionSaveBag
+            };
             JsonTool.SavaGame(UserBag,currentUser.UID+"Bag.save");
             return  data;
         }
@@ -453,6 +458,16 @@ namespace ARPG
             UserBag  = JsonTool.LoadGame<UserBagConfig>(currentUser.UID+"Bag.save");
             currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
             currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
+            var regionSave = GameSave.RegionSave;
+            if (regionSave is not { Count: > 0 })
+            {
+                InitRegionProgress();
+            }
+            else
+            {
+                RegionSaveBag = regionSave;
+            }
+
             MessageAction.OnRefreshItemBag(GetItemAllBag());
             MessageAction.OnRefreshCharacterBag(GetCharacterAllBag());
         }
@@ -608,6 +623,92 @@ namespace ARPG
                 }
             }
         }
+        
+        
+        
+        //-----------主线章节----------------------//
+        /// <summary>
+        /// 主线章节进度 ----string ：主线名称 -- 章节名称--章节存储信息类
+        /// </summary>
+        private Dictionary<string, Dictionary<string, RegionProgress>> RegionSaveBag =  new Dictionary<string, Dictionary<string, RegionProgress>>();
+        
+        public RegionProgress GetRegionData(string ID,string ChildName)
+        {
+            if (RegionSaveBag.ContainsKey(ID))
+            {
+                if (RegionSaveBag[ID].ContainsKey(ChildName))
+                {
+                    return RegionSaveBag[ID][ChildName];
+                }
+            }
+            return null;
+        }
+
+        private void RegRegionHandle(string ID,string ChildID)
+        {
+            if (!RegionSaveBag.ContainsKey(ID))
+            {
+                RegionSaveBag.Add(ID,new Dictionary<string, RegionProgress>());
+            }
+            if (!RegionSaveBag[ID].ContainsKey(ChildID))
+            {
+                RegionSaveBag[ID].Add(ChildID,new RegionProgress()
+                {
+                    RegionID = ChildID,
+                    Star = 0,
+                    State = LookState.未开启,
+                });
+            }
+            
+        }
+        
+        public void SetRegionHandle(string ID, string ChildID, int value)
+        {
+            if (RegionSaveBag.ContainsKey(ID))
+            {
+                if (RegionSaveBag[ID].ContainsKey(ChildID))
+                {
+                    RegionSaveBag[ID][ChildID].Star = value;
+                }
+            }
+        }
+        public void SetRegionHandle(string ID, string ChildID, LookState state)
+        {
+            if (RegionSaveBag.ContainsKey(ID))
+            {
+                if (RegionSaveBag[ID].ContainsKey(ChildID))
+                {
+                    RegionSaveBag[ID][ChildID].State = state;
+                }
+            }
+        }
+
+        private void InitRegionProgress()
+        {
+            var MainConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
+            for (int i = 0; i < MainConfig.RegionList.Count; i++)
+            {
+                for (int j = 0; j < MainConfig.RegionList[i].RegionItemList.Count; j++)
+                {
+                    RegRegionHandle(MainConfig.RegionList[i].RegionName,MainConfig.RegionList[i].RegionItemList[j].RegionItemName);
+                }
+            }
+            SetRegionHandle(MainConfig.RegionList[0].RegionName,MainConfig.RegionList[0].RegionItemList[0].RegionItemName,LookState.已解锁);
+        }
+    }
+    
+    public class RegionProgress
+    {
+        /// <summary>
+        /// 主线名称
+        /// </summary>
+        public string RegionID;
+        /// <summary>
+        /// 章节名称
+        /// </summary>
+        public string ChildID;
+        public int Star;
+        public LookState State;
 
     }
 }

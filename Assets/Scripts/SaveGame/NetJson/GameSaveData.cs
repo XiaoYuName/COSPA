@@ -12,6 +12,8 @@ namespace ARPG.GameSave
     public class GameSaveData
     {
         public Dictionary<string, TaskBag> SaveTask;
+
+        public  Dictionary<string, Dictionary<string, RegionProgress>> RegionSave =  new Dictionary<string, Dictionary<string, RegionProgress>>();
     }
 }
 

@@ -29,7 +29,8 @@ namespace ARPG.Config
         /// 主线任务进度表
         /// </summary>
         public Vector2Int PrincProgress;
-        
+
+     
 
     }
 
@@ -305,18 +306,12 @@ namespace ARPG.Config
         public int Powor;
     }
 
-
-
-
-
+    
     [Serializable]
     public class RewordItemBag
     {
         public ItemBag itemBag;
         public RewordType Type;
     }
-
-
-
 }
 

@@ -30,6 +30,7 @@ namespace ARPG.UI
             Bind(CloseBtn,Close,UiAudioID.OutChick);
             CreateLineItemUI();
             MessageAction.RefRegionPress += SetUpdateRegionPress;
+            SetUpdateRegionPress();
         }
 
         /// <summary>

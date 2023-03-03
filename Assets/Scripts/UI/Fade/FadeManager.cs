@@ -36,6 +36,36 @@ namespace ARPG
             SpriteIcon.sprite = _config.GetRandomSprite();
             StartCoroutine(StarFade(time,stoptime));
         }
+        
+        
+        /// <summary>
+        /// 播放一个淡入淡出
+        /// </summary>
+        /// <param name="time">淡入淡出的时长</param>
+        /// <param name="WaitFunc">淡入时回调函数</param>
+        /// <param name="mode">回调函数触发时机</param>
+        public void PlayFade(float time, IEnumerator WaitFunc,FuncMode mode)
+        {
+            if (isFade) return;
+            SpriteIcon.sprite = _config.GetRandomSprite();
+            StartCoroutine(StarFade(time,WaitFunc,mode));
+        }
+
+        /// <summary>
+        /// 播放一个淡入淡出
+        /// </summary>
+        /// <param name="time">淡入淡出的时长</param>
+        /// <param name="WaitList">中途等待的携程</param>
+        /// <param name="StarAction">淡入一开始回调</param>
+        /// <param name="CreatAction">中途回调函数</param>
+        /// <param name="EndAction">淡出结束回调函数</param>
+        public void PlayFade(float time, IEnumerator WaitList, Action StarAction, Action CreatAction, Action EndAction)
+        {
+            if (isFade) return;
+            SpriteIcon.sprite = _config.GetRandomSprite();
+            StartCoroutine(StarFade(time,WaitList,StarAction,CreatAction,EndAction));
+        }
+
 
         private IEnumerator StarFade(float time,float stoptime)
         {
@@ -47,7 +77,40 @@ namespace ARPG
             FadeGroup.blocksRaycasts = false;
             endfun = null;
         }
+        private IEnumerator StarFade(float time,IEnumerator WaitFunc,FuncMode mode)
+        {
+            if(mode== FuncMode.Star)
+                yield return WaitFunc;
+            
+            yield return Fade(1,time);
+            
+            if(mode== FuncMode.Star)
+                yield return WaitFunc;
+            yield return Fade(0,time);
+            
+            if(mode== FuncMode.Star)
+                yield return WaitFunc;
+            
+            FadeGroup.blocksRaycasts = false;
+            endfun = null;
+        }
+        
+        private IEnumerator StarFade(float time,IEnumerator WaitList, Action StarAction, Action CreatAction, Action EndAction)
+        {
+            StarAction?.Invoke();
+            yield return Fade(1,time);
 
+            CreatAction?.Invoke();
+            if (WaitList != null)
+                yield return WaitList;
+            
+            yield return Fade(0,time);
+            EndAction?.Invoke();
+            
+            FadeGroup.blocksRaycasts = false;
+            endfun = null;
+        }
+        
         private IEnumerator Fade(float targetAlpha,float tiem)
         {
             isFade = true;

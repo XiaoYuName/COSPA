@@ -17,9 +17,9 @@ MonoBehaviour:
     RegionDes: "\u8D2F\u7A7F\u4E91\u5C42\u7684\u5C71\u8109"
     backIcon: {fileID: 1973452501, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
     Mode: 0
-    MapSceneName: WordMap
+    SceneGrid: {fileID: 7012663978742813824, guid: 6e1afe00569fabf4cb83fa268721ac8d, type: 3}
     RegionItemList:
-    - RegionItemName: "\u6DF1\u6797\u5165\u53E3"
+    - RegionItemName: 1-1
       backIcon: {fileID: 21300000, guid: ce2cb9615ddbdb94ba3fe346092c1615, type: 3}
       targetScene: SenLin
       Press: {x: 0, y: 1}
@@ -50,10 +50,51 @@ MonoBehaviour:
         BuffList:
           Buff_ID: 
           count: 0
-    - RegionItemName: "\u706B\u706B\u8001\u5BB6"
+    - RegionItemName: 1-2
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
       targetScene: HUOHUO
-      Press: {x: 0, y: 1}
+      Press: {x: 0, y: 2}
+      StarPos: {x: -9.74, y: -2, z: 0}
+      WaveItems:
+      - EnemyList:
+        - dataID: 200700
+          count: 1
+          CreatePos: {x: 2.56, y: -1.87, z: 0}
+          MaxRadius: -4
+          MinRandius: 0
+        - dataID: 204000
+          count: 2
+          CreatePos: {x: 2.56, y: -1.87, z: 0}
+          MaxRadius: -4
+          MinRandius: 0
+        isOpenBuff: 0
+        BuffList:
+          Buff_ID: 
+          count: 0
+      - EnemyList:
+        - dataID: 200700
+          count: 2
+          CreatePos: {x: 2.56, y: -1.87, z: 0}
+          MaxRadius: -4
+          MinRandius: 0
+        - dataID: 204000
+          count: 8
+          CreatePos: {x: 0, y: 0, z: 0}
+          MaxRadius: 0
+          MinRandius: 0
+        - dataID: 201200
+          count: 1
+          CreatePos: {x: 0, y: 0, z: 0}
+          MaxRadius: 0
+          MinRandius: 0
+        isOpenBuff: 0
+        BuffList:
+          Buff_ID: 
+          count: 0
+    - RegionItemName: 1-3
+      backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
+      targetScene: HUOHUO
+      Press: {x: 0, y: 3}
       StarPos: {x: -9.74, y: -2, z: 0}
       WaveItems:
       - EnemyList:
@@ -95,7 +136,7 @@ MonoBehaviour:
     RegionDes: "\u5B58\u5728\u4E8E\u68EE\u6797\u6DF1\u5904\u76841\u68F5\u5927\u6811"
     backIcon: {fileID: -1503919277, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
     Mode: 1
-    MapSceneName: WordMap
+    SceneGrid: {fileID: 0}
     RegionItemList:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
@@ -113,7 +154,7 @@ MonoBehaviour:
     RegionDes: "\u5728\u65AD\u5D16\u7EDD\u58C1\u88AB\u53D1\u73B0\u7684\u9057\u8FF9"
     backIcon: {fileID: 930461193, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
     Mode: 2
-    MapSceneName: WordMap
+    SceneGrid: {fileID: 0}
     RegionItemList:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}
@@ -131,7 +172,7 @@ MonoBehaviour:
     RegionDes: "\u5C79\u7ACB\u5728\u5927\u6D77\u4E4B\u4E0A\u7684\u8FF7\u4E4B\u5DE8\u5854"
     backIcon: {fileID: -578473543, guid: 39c5d0b79d511b9418d7d5bab674d9a7, type: 3}
     Mode: 3
-    MapSceneName: WordMap
+    SceneGrid: {fileID: 0}
     RegionItemList:
     - RegionItemName: "\u5929\u7A7A\u4E4B\u57CE\u5165\u53E3"
       backIcon: {fileID: 21300000, guid: 8defabf88fab2e044984d9267e75d65d, type: 3}

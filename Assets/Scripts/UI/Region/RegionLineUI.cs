@@ -74,14 +74,32 @@ namespace ARPG.UI
         private void LoadWordMapScene()
         {
             if(data == null)return;
-            if (String.IsNullOrEmpty(data.MapSceneName)) return;
-            Debug.Log("加载世界主线场景");
+            if (data.SceneGrid == null)
+            {
+                UISystem.Instance.ShowTips("暂未开放");
+                return;
+            }
             if (lookState == LookState.未开启)
             {
                 UISystem.Instance.ShowTips("需通关上一个关卡");
                 return;
             }
-            TransitionManager.Instance.TransitionScnen(data.MapSceneName);
+
+
+            IEnumerator WaitLoad = LoadRegionUI(data);
+            void EndAction()
+            {
+                RegionScene regionScene = UISystem.Instance.GetUI<RegionScene>("RegionScene");
+                regionScene.PlayTweenBar();
+            }
+            FadeManager.Instance.PlayFade(1.15f,WaitLoad,null,null,EndAction);
+        }
+
+        private IEnumerator LoadRegionUI(RegionLine data)
+        {
+            RegionScene regionScene =  UISystem.Instance.GetUI<RegionScene>("RegionScene");
+            MainPanel.Instance.AddTbaleChild("RegionScene");
+            yield return regionScene.InitData(data);
         }
     } 
 }

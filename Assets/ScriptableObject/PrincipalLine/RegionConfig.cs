@@ -43,8 +43,9 @@ namespace ARPG.UI.Config
         public Sprite backIcon;
         [Header("难度标签")]
         public RegionMode Mode;
-        [Scene]
-        public string MapSceneName;
+        
+        [Header("世界地图预制体")]
+        public GameObject SceneGrid;
         
         /// <summary>
         /// 剧情进度列表
