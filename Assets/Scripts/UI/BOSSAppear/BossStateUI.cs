@@ -35,7 +35,7 @@ namespace ARPG.UI
             BossLevel = Get<TextMeshProUGUI>("UIMask/Slider/BossLevel");
         }
 
-        public void InitData(Enemy enemy,CharacterState state)
+        public void InitData(Enemy enemy,CharacterState state,int Level)
         {
             if (!isOpen)
                 Open();
@@ -44,15 +44,15 @@ namespace ARPG.UI
             _slider.value = state.currentHp;
             Hp.text = state.currentHp + "/" + state.HP;
             BossName.text = enemy.data.EnemyName;
-            BossLevel.text = "Lv:" + enemy.data.Level;
-            UpdateSlider(enemy,state);
+            BossLevel.text = "Lv:" + Level;
+            UpdateSlider(enemy,state,Level);
         }
 
-        public void UpdateSlider(Enemy enemy,CharacterState state)
+        public void UpdateSlider(Enemy enemy,CharacterState state,int Level)
         {
             if (!isOpen)
             {
-                InitData(enemy,state);
+                InitData(enemy,state,Level);
                 Open();
             }
 

@@ -210,7 +210,9 @@ namespace ARPG
         public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint,bool isMultisTag = true)
         {
             if (target == null && item.SkillType.type != DamageType.Treatment) return;
-            if (target.GetState().currentHp <= 0) return; //防止多段伤害一直显示掉血
+            
+            if(item.SkillType.type != DamageType.Treatment)
+                if (target.GetState().currentHp <= 0) return; //防止多段伤害一直显示掉血
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
             float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
             if (item.SkillType.type == DamageType.Treatment)

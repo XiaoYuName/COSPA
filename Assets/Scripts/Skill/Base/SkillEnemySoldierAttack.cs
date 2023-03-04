@@ -19,7 +19,7 @@ namespace ARPG
         }
         private IEnumerator PlayFx()
         {
-            AttackPoint = Enemy.transform.Find("AttackPoint");
+            AttackPoint = Enemy.GetPoint("body");
             yield return new WaitForSeconds(data.ReleaseTime);
             _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, AttackPoint.position,
                 Quaternion.identity).GetComponent<_FxItem>();

@@ -53,7 +53,7 @@ namespace ARPG.UI
             {
                 PropValue value =Instantiate(Obj, content);
                 value.Init();
-                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,itemBag.power)).ToString());
+                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,itemBag.power/10)).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
             BindBtnName.text = "装备";
@@ -74,7 +74,7 @@ namespace ARPG.UI
             {
                 PropValue value =Instantiate(Obj, content);
                 value.Init();
-                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,hole.currentdata.Powor)).ToString());
+                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,hole.currentdata.Powor/10)).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
             BindBtnName.text = "卸下";

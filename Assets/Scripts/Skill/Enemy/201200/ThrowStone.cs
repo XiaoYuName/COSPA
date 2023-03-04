@@ -18,7 +18,7 @@ namespace ARPG
         {
             base.Init(enemy, item);
             MessageManager.Instance.Register<string>(C2C.BOSSEventMsg,AnimatorEvent);
-            AttackPoint = enemy.transform.Find("AttackPoint");
+            AttackPoint = enemy.GetPoint("Rock");
         }
 
         public override void Play(Action action)
@@ -32,7 +32,7 @@ namespace ARPG
         {
             if (!Evernt.Equals("ThrowStone")) return;
             if (Enemy == null) return;
-            Transform SkillPoint = Enemy.transform.Find("SkillPoint");
+            Transform SkillPoint = Enemy.GetPoint("Rock");
             MovFxItem movFxItem =  SkillPoolManager.Release(data.Pools[0].prefab,SkillPoint.position,
                 Quaternion.identity).GetComponent<MovFxItem>();
             movFxItem.StarMovTarget(Enemy,-Enemy.GetTransform().right.normalized,data,_action);

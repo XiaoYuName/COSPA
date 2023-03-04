@@ -24,10 +24,6 @@ namespace ARPG.Config
         /// </summary>
         [Header("名字")]
         public string EnemyName;
-
-        [Header("等级")]
-        public int Level;
-        
         /// <summary>
         /// 攻击范围
         /// </summary>

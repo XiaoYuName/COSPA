@@ -40,6 +40,9 @@ namespace ARPG
         /// 技能配置字典
         /// </summary>
         public Dictionary<SkillType, EnemySkill> SkillDic = new Dictionary<SkillType, EnemySkill>();
+        
+        public int Level;
+        
         //受击Collider
         [HideInInspector]public Collider2D DamageCollider2D;
         
@@ -63,8 +66,9 @@ namespace ARPG
         public virtual void Init(int sort,EnemyData Data,int level)
         {
             data = Data;
+            Level = level;
             State = data.State.Clone() as CharacterState;
-            State = Settings.GetLevelGrowthState(level, data.State);
+            State = Settings.GetLevelGrowthState(Mathf.Max(level,1), State);
             State.currentHp = State.HP;
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             anim.runtimeAnimatorController = data.Animator;
@@ -77,7 +81,7 @@ namespace ARPG
                 UISystem.Instance.OpenUI("BOSSAppear");
                 AudioManager.Instance.PlayAudio("DeftualBOSS_BGM");
                 stateUI = UISystem.Instance.GetUI<BossStateUI>("BossStateUI");
-                stateUI.InitData(this,State);
+                stateUI.InitData(this,State,Level);
                 animState = 999;
                 anim.SetInteger(s_State,animState);
                 SwitchFSM(FSMType.BOSSBehaviour);
