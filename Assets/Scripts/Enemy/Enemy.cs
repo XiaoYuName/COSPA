@@ -60,10 +60,11 @@ namespace ARPG
             CentenPoint = transform.Find("GetPoint");
         }
 
-        public virtual void Init(int sort,EnemyData Data)
+        public virtual void Init(int sort,EnemyData Data,int level)
         {
             data = Data;
             State = data.State.Clone() as CharacterState;
+            State = Settings.GetLevelGrowthState(level, data.State);
             State.currentHp = State.HP;
             Spine.GetComponent<MeshRenderer>().sortingOrder = sort;
             anim.runtimeAnimatorController = data.Animator;
@@ -85,6 +86,7 @@ namespace ARPG
 
             SwitchFSM(FSMType.IdleFSM);
         }
+        
         #endregion
 
         #region Skill

@@ -124,7 +124,6 @@ namespace ARPG.Config
         public CharacterState Operation()
         {
             CharacterState state = InventoryManager.Instance.GetCharacter(ID).State.Clone() as CharacterState;
-
             for (int i = 0; i < equipHelos.Length; i++)
             {
                 if(equipHelos[i].item == null)continue;
@@ -171,7 +170,7 @@ namespace ARPG.Config
                     }
                 }
             }
-            return Settings.GetGrowthState(state);
+            return Settings.GetLevelGrowthState(Level,state);
         }
 
 

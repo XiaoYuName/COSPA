@@ -64,7 +64,7 @@ namespace ARPG
         /// <returns></returns>
         public static CharacterState GetGrowthState(CharacterState state)
         {
-            state.PhysicsAttack = (int)(state.PhysicsAttack *  (1+state.Growth));
+            state.PhysicsAttack = (int)(state.PhysicsAttack * (1+state.Growth));
             state.MagicAttack = (int)(state.MagicAttack *  (1+state.Growth));
             state.Defense = (int)(state.Defense *  (1+state.Growth));
             state.HP = (int)(state.HP *  (1+state.Growth));
@@ -74,6 +74,22 @@ namespace ARPG
             state.Intelligence = (int)(state.Intelligence *  (1+state.Growth));
             state.AttackSpeed = (state.AttackSpeed *  1+(state.Growth*0.125f));
             state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
+            return state;
+        }
+        
+        public static CharacterState GetLevelGrowthState(int levle,CharacterState state)
+        {
+            state.PhysicsAttack = (int)(state.PhysicsAttack * (levle*(1+state.Growth)));
+            state.MagicAttack = (int)(state.MagicAttack * (levle*(1+state.Growth)));
+            state.Defense = (int)(state.Defense *  (levle*(1+state.Growth)));
+            state.HP = (int)(state.HP *  (levle*(1+state.Growth)));
+            state.AddHp = (int)(state.AddHp *  (levle*(1+state.Growth)));
+            state.Cirtical = (int)(state.Cirtical *  (levle*(1+state.Growth)));
+            state.Power = (int)(state.Power * (levle*(1+state.Growth)));
+            state.Intelligence = (int)(state.Intelligence *  (levle*(1+state.Growth)));
+            state.AttackSpeed = (float)(state.AttackSpeed *  (levle*(1+(state.Growth*0.025))));
+            state.MovSpeed = (float)(state.MovSpeed * (levle*(1+(state.Growth*0.025))));
+            state.ReleaseSpeed =(float)(state.ReleaseSpeed * (levle*(1+(state.Growth*0.025))));
             return state;
         }
 

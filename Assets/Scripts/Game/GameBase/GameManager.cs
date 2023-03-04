@@ -209,7 +209,7 @@ namespace ARPG
         /// <param name="isMultisTag">是否启用延迟多段上海,默认启用</param>
         public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint,bool isMultisTag = true)
         {
-            if (target == null) return;
+            if (target == null && item.SkillType.type != DamageType.Treatment) return;
             if (target.GetState().currentHp <= 0) return; //防止多段伤害一直显示掉血
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
             float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
@@ -243,7 +243,7 @@ namespace ARPG
                     {
                         //暴击了
                         // ReSharper disable once PossibleLossOfFraction
-                        Physics *= (2.5d+attackState.CirticalAttack/100);
+                        Physics *= (attackState.CirticalAttack +attackState.CirticalAttack/100);
                     }
                     //1.1 计算基础攻击力
                     Physics += item.Diamage;
@@ -267,7 +267,7 @@ namespace ARPG
                     {
                         //暴击了
                         // ReSharper disable once PossibleLossOfFraction
-                        Magic *= (2.5d+attackState.CirticalAttack/100);
+                        Magic *= (attackState.CirticalAttack +attackState.CirticalAttack/100);
                     }
                     Magic += item.Diamage;
                     //1.1 伤害要减去地方防御力
@@ -296,24 +296,15 @@ namespace ARPG
         private void OptionAddHp(IDamage attack, SkillItem item,Vector3 Point)
         {
             CharacterState attackState = attack.GetState();
-            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 10));
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
-            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
-            bool isCirtical = attackState.Cirtical > Random.value;
-            if (isCirtical)
-            {
-                //暴击了
-                // ReSharper disable once PossibleLossOfFraction
-                addHp *= (2.5d+attackState.CirticalAttack/10);
-            }
+            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 100));
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.治疗量);//最终伤害值
             addHp += item.Diamage;
             //2.基础攻击力加技能基础伤害
             addHp *= (1+(BuffValue/100));
-            
             addHp = Mathf.Max(1, (int)addHp);
             attack.IReply((int)Math.Round(addHp,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(addHp,0)).ToString());
+            damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
         }
 
         /// <summary>
@@ -324,25 +315,15 @@ namespace ARPG
         private void OptionAddHp(IDamage attack, int value)
         {
             CharacterState attackState = attack.GetState();
-            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 10));
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
-            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
-            bool isCirtical = attackState.Cirtical > Random.value;
-            if (isCirtical)
-            {
-                //暴击了
-                // ReSharper disable once PossibleLossOfFraction
-                Physics *= (2.5d+attackState.CirticalAttack/10);
-            }
-            Physics += value;
-            
-            Physics *= (1+(BuffValue/10));
-            
+            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 100));
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.治疗量);//最终伤害值
+            addHp += value;
             //2.基础攻击力加技能基础伤害
-            Physics = Mathf.Max(1, (int)Physics);
-            attack.IReply((int)Math.Round(Physics,0));
+            addHp *= (1+(BuffValue/100));
+            addHp = Mathf.Max(1, (int)addHp);
+            attack.IReply((int)Math.Round(addHp,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Treatment,isCirtical,((int)Math.Round(Physics,0)).ToString());
+            damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
         }
         
         /// <summary>
@@ -389,14 +370,14 @@ namespace ARPG
                     {
                         case DamageType.Physics:
                             var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) *
-                                          (1 + (attackState.SkillAttack / 10));
+                                          (1 + (attackState.SkillAttack / 100));
                             //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
                             bool isCirtical = attackState.Cirtical > Random.value;
                             if (isCirtical)
                             {
                                 //暴击了
                                 // ReSharper disable once PossibleLossOfFraction
-                                Physics *= (2.5d + attackState.CirticalAttack / 10);
+                                Physics *= (attackState.CirticalAttack  + attackState.CirticalAttack / 100);
                             }
                             //1.1 计算基础攻击力
                             Physics += item.SkillType.MultistageDamage[i];
@@ -422,7 +403,7 @@ namespace ARPG
                             {
                                 //暴击了
                                 // ReSharper disable once PossibleLossOfFraction
-                                Magic *= (2.5d + attackState.CirticalAttack / 10);
+                                Magic *= (attackState.CirticalAttack + attackState.CirticalAttack / 100);
                             }
                             Magic += item.SkillType.MultistageDamage[i];
                             //1.1 伤害要减去地方防御力

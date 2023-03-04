@@ -122,7 +122,7 @@ namespace ARPG
                     int RandomX = (int)Random.Range(data.MinRandius, data.MaxRadius);
                     int RandomY = (int)Random.Range(data.MinRandius, data.MaxRadius);
                     Enemy enemy =  EnemyPoolManager.Release(Prefab, pos + new Vector3(RandomX, RandomY, 0), Quaternion.identity).GetComponent<Enemy>();
-                    enemy.Init(j,GetData(data.dataID));
+                    enemy.Init(j,GetData(data.dataID),currentRegion.WaveItems[currentIndex].EnemyList[i].Levle);
                     CurrenEnemys.Add(enemy);
                 }
             }

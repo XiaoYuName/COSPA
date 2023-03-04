@@ -121,6 +121,8 @@ namespace ARPG.UI.Config
         public float MaxRadius;
         [Tooltip("随机最小范围")]
         public float MinRandius;
+        [Header("怪物等级")]
+        public int Levle;
     }
     
     
