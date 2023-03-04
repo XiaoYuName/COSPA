@@ -45,7 +45,15 @@ namespace ARPG.UI
             ItemName.text = item.ItemName;
             ItemType.text = item.Type.ToString();
             Level.text = "lv: "+item.level;
-            Powor.text = "+" +itemBag.power;
+            if (itemBag.power <= 0)
+            {
+                Powor.gameObject.SetActive(false);
+            }
+            else
+            {
+                Powor.text = "+" +itemBag.power;
+                Powor.gameObject.SetActive(true);
+            }
             Slot.sprite = GameSystem.Instance.GetSprite(item.spriteID);
             Count.text = "*" + itemBag.count;
             UIHelper.Clear(content);
@@ -53,7 +61,9 @@ namespace ARPG.UI
             {
                 PropValue value =Instantiate(Obj, content);
                 value.Init();
-                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,itemBag.power/10)).ToString());
+                var Pawor = (Mathf.Max(1, itemBag.power / 70));
+                //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                value.Show(t.Mode.ToString(), Pawor < itemBag.power ? (t.value + itemBag.power).ToString() : (t.value * Pawor).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
             BindBtnName.text = "装备";
@@ -66,15 +76,26 @@ namespace ARPG.UI
             ItemName.text = hole.currentdata.item.ItemName;
             ItemType.text = hole.currentdata.item.Type.ToString();
             Level.text = "lv: "+hole.currentdata.item.level;
-            Powor.text = "+" +hole.currentdata.Powor;
+            if (hole.currentdata.Powor <= 0)
+            {
+                Powor.gameObject.SetActive(false);
+            }
+            else
+            {
+                Powor.text = "+" +hole.currentdata.Powor;
+                Powor.gameObject.SetActive(true);
+            }
             Slot.sprite = GameSystem.Instance.GetSprite(hole.currentdata.item.spriteID);
             Count.text = "*" + 1;
             UIHelper.Clear(content);
+            
             foreach (var t in hole.currentdata.item.attribute)
             {
                 PropValue value =Instantiate(Obj, content);
                 value.Init();
-                value.Show(t.Mode.ToString(),(t.value*Mathf.Max(1,hole.currentdata.Powor/10)).ToString());
+                var Pawor = (Mathf.Max(1, hole.currentdata.Powor / 70));
+                //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                value.Show(t.Mode.ToString(), Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor).ToString() : (t.value* Pawor).ToString());
             }
             Bind(CloseBtn,Close,"OutChick");
             BindBtnName.text = "卸下";

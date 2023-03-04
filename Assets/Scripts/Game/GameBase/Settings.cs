@@ -65,17 +65,19 @@ namespace ARPG
         /// <returns></returns>
         public static CharacterState GetLevelGrowthState(int levle,CharacterState state)
         {
-            state.PhysicsAttack = (int)(state.PhysicsAttack * (levle*(1+state.Growth)));
-            state.MagicAttack = (int)(state.MagicAttack * (levle*(1+state.Growth)));
-            state.Defense = (int)(state.Defense *  (levle*(1+state.Growth)));
-            state.HP = (int)(state.HP *  (levle*(1+state.Growth)));
-            state.AddHp = (int)(state.AddHp *  (levle*(1+state.Growth)));
-            state.Cirtical = (int)(state.Cirtical *  (levle*(1+state.Growth)));
             state.Power = (int)(state.Power * (levle*(1+state.Growth)));
+            state.Vit = (int)(state.Power * (levle*(1+state.Growth)));
+            state.Agility = (int)(state.Power * (levle*(1+state.Growth)));
             state.Intelligence = (int)(state.Intelligence *  (levle*(1+state.Growth)));
-            state.AttackSpeed = (float)(state.AttackSpeed *  (levle*(1+(state.Growth*0.025))));
-            state.MovSpeed = (float)(state.MovSpeed * (levle*(1+(state.Growth*0.025))));
-            state.ReleaseSpeed =(float)(state.ReleaseSpeed * (levle*(1+(state.Growth*0.025))));
+            state.PhysicsAttack = (int)(state.PhysicsAttack * (levle*(1+state.Growth)))+(state.Power / 10);
+            state.MagicAttack = (int)(state.MagicAttack * (levle*(1+state.Growth)))+(state.Intelligence/10);
+            state.Defense = (int)(state.Defense *  (levle*(1+state.Growth)))+(state.Vit/40);
+            state.HP = (int)(state.HP *  (levle*(1+state.Growth)))+(state.Vit/2);;
+            state.AddHp = (int)(state.AddHp *  (levle*(1+state.Growth)))+(state.Vit/100)+(state.Agility/100)+(state.Intelligence/100)+(state.Power/100);
+            state.Cirtical = (int)(state.Cirtical *  (levle*(1+state.Growth)));
+            state.AttackSpeed = (float)(state.AttackSpeed *  (levle*(1+state.Growth*0.025)))+(state.Agility/100);
+            state.MovSpeed = (float)(state.MovSpeed * (levle*(1+state.Growth*0.025)))+(state.Agility/100);
+            state.ReleaseSpeed =(float)(state.ReleaseSpeed * (levle*(1+state.Growth*0.025)))+(state.Agility/100);
             return state;
         }
 

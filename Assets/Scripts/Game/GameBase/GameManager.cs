@@ -234,59 +234,30 @@ namespace ARPG
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
             float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
-            //1.1 获取攻击者的基础力量*物理攻击力
-            switch (item.SkillType.type)
+            
+            //伤害 = 物理攻击力+技能基础攻击力*技能攻击力*最终伤害*暴击伤害 - 敌方防御力
+            //1.计算基础伤害
+            int DeftualAttack = item.SkillType.type == DamageType.Physics ? attackState.PhysicsAttack : attackState.MagicAttack;
+            float Physics = DeftualAttack + item.Diamage;
+            //2.计算暴击伤害
+            bool isCirtical = attackState.Cirtical > Random.value;
+            if (isCirtical)
             {
-                case DamageType.Physics:
-                    var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) * (1 + (attackState.SkillAttack / 100));
-                    //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
-                    bool isCirtical = attackState.Cirtical > Random.value;
-                    if (isCirtical)
-                    {
-                        //暴击了
-                        // ReSharper disable once PossibleLossOfFraction
-                        Physics *= (attackState.CirticalAttack +attackState.CirticalAttack/100);
-                    }
-                    //1.1 计算基础攻击力
-                    Physics += item.Diamage;
-                    //2.  扣除防御力加成
-                    Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
-                    //3.计算BUFF加成
-                    Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
-                    //4.计算最终伤害
-                    Physics *= (1+(BuffValue/100));
-                    Physics *= (1 + (NextBuffVlaue / 100));
-                    Physics = Mathf.Max(1, (int)Physics);
-                    target.IDamage((int)Math.Round(Physics,0));
-                    DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
-                    damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
-                    return;
-                case DamageType.Magic:
-                    var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence)*(1+(attackState.SkillAttack/100));
-                    //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
-                    bool isMagicCirtical = attackState.Cirtical > Random.value;
-                    if (isMagicCirtical)
-                    {
-                        //暴击了
-                        // ReSharper disable once PossibleLossOfFraction
-                        Magic *= (attackState.CirticalAttack +attackState.CirticalAttack/100);
-                    }
-                    Magic += item.Diamage;
-                    //1.1 伤害要减去地方防御力
-                    Magic -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
-                    //2.基础攻击力加技能基础伤害
-                    Magic += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.魔法攻击力);
-                    Magic *= (1+(BuffValue/100));
-                    Magic *= (1 + (NextBuffVlaue / 100));
-                    Magic = Mathf.Max(1, (int)Magic);
-                    target.IDamage((int)Math.Round(Magic,0));
-                    DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
-                    damageText.Show(DamageType.Magic,isMagicCirtical,((int)Math.Round(Magic,0)).ToString());
-                    return;
-                default:
-                    Debug.Log("未知的伤害类型，请检查");
-                    return;
+                //暴击了
+                Physics *= (1+attackState.CirticalAttack/100);
             }
+            //3.计算BUFF最终伤害加成
+            Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
+            Physics *= (1+(BuffValue/100));
+            Physics *= (1 + (NextBuffVlaue / 100));
+            Physics = Mathf.Max(1, (int)Physics);
+            //4.计算技能攻击力加成
+            Physics *= (1+attackState.SkillAttack/100);
+            //5.扣除敌方防御力加成
+            Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+            target.IDamage((int)Math.Round(Physics,0));
+            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
         }
 
         /// <summary>
@@ -298,12 +269,15 @@ namespace ARPG
         private void OptionAddHp(IDamage attack, SkillItem item,Vector3 Point)
         {
             CharacterState attackState = attack.GetState();
-            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 100));
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.治疗量);//最终伤害值
-            addHp += item.Diamage;
-            //2.基础攻击力加技能基础伤害
+            //回复量 = 基础回复量+技能基础回复量*治疗量*技攻
+            //1.计算基础回复量
+            double addHp = attackState.AddHp + item.Diamage;
+            //2.计算治疗量
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗,StateMode.治疗量);//最终伤害值
             addHp *= (1+(BuffValue/100));
             addHp = Mathf.Max(1, (int)addHp);
+            //3.计算技能攻击力
+            addHp *= (1+attackState.SkillAttack/100);
             attack.IReply((int)Math.Round(addHp,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
             damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
@@ -317,12 +291,15 @@ namespace ARPG
         private void OptionAddHp(IDamage attack, int value)
         {
             CharacterState attackState = attack.GetState();
-            double addHp = attackState.AddHp * (1 + (attackState.SkillAttack / 100));
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.治疗量);//最终伤害值
-            addHp += value;
-            //2.基础攻击力加技能基础伤害
+            //回复量 = 基础回复量+技能基础回复量*治疗量*技攻
+            //1.计算基础回复量
+            double addHp = attackState.AddHp + value;
+            //2.计算治疗量
+            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗,StateMode.治疗量);//最终伤害值
             addHp *= (1+(BuffValue/100));
             addHp = Mathf.Max(1, (int)addHp);
+            //3.计算技能攻击力
+            addHp *= (1+attackState.SkillAttack/100);
             attack.IReply((int)Math.Round(addHp,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
             damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
@@ -368,61 +345,28 @@ namespace ARPG
                     if(targetState.currentHp<=0) continue;
                     float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害, StateMode.最终伤害); //最终伤害值
                     //1.1 获取攻击者的基础力量*物理攻击力
-                    switch (item.SkillType.type)
+                    int DeftualAttack = item.SkillType.type == DamageType.Physics ? attackState.PhysicsAttack : attackState.MagicAttack;
+                    float Physics = DeftualAttack + item.Diamage;
+                    //2.计算暴击伤害
+                    bool isCirtical = attackState.Cirtical > Random.value;
+                    if (isCirtical)
                     {
-                        case DamageType.Physics:
-                            var Physics = attackState.PhysicsAttack * (1 + 0.004 * attackState.Power) *
-                                          (1 + (attackState.SkillAttack / 100));
-                            //1.基础攻击力 = (物理攻击力 * （1+0.004*力量）*技能攻击力*暴击伤害
-                            bool isCirtical = attackState.Cirtical > Random.value;
-                            if (isCirtical)
-                            {
-                                //暴击了
-                                // ReSharper disable once PossibleLossOfFraction
-                                Physics *= (attackState.CirticalAttack  + attackState.CirticalAttack / 100);
-                            }
-                            //1.1 计算基础攻击力
-                            Physics += item.SkillType.MultistageDamage[i];
-                            //2.  扣除防御力加成
-                            Physics -= (targetState.Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
-                            //3.计算BUFF加成
-                            Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益,
-                                StateMode.物理攻击力);
-                            //4.计算最终伤害
-                            Physics *= (1 + (BuffValue / 100));
-                            Physics *= (1 + (NextBuffVlaue / 100));
-                            Physics = Mathf.Max(1, (int)Physics);
-                            target.IDamage((int)Math.Round(Physics, 0));
-                            DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity).GetComponent<DamageTextItem>();
-                            damageTextItem.Show(DamageType.Physics, isCirtical, ((int)Math.Round(Physics, 0)).ToString());
-                            break;
-                        case DamageType.Magic:
-                            var Magic = attackState.MagicAttack * (1 + 0.004 * attackState.Intelligence) *
-                                        (1 + (attackState.SkillAttack / 100) + (1 + attackState.CirticalAttack / 100));
-                            //1.基础攻击力 = (魔法攻击力 * （1+0.004*智力）*技能攻击力*暴击伤害
-                            bool isMagicCirtical = attackState.Cirtical > Random.value;
-                            if (isMagicCirtical)
-                            {
-                                //暴击了
-                                // ReSharper disable once PossibleLossOfFraction
-                                Magic *= (attackState.CirticalAttack + attackState.CirticalAttack / 100);
-                            }
-                            Magic += item.SkillType.MultistageDamage[i];
-                            //1.1 伤害要减去地方防御力
-                            Magic -= (targetState.Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
-                            //2.基础攻击力加技能基础伤害
-                            Magic += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.魔法攻击力);
-                            Magic *= (1 + (BuffValue / 100));
-                            Magic *= (1 + (NextBuffVlaue / 100));
-                            Magic = Mathf.Max(1, (int)Magic);
-                            target.IDamage((int)Math.Round(Magic, 0));
-                            DamageTextItem damageText = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity).GetComponent<DamageTextItem>();
-                            damageText.Show(DamageType.Magic, isMagicCirtical, ((int)Math.Round(Magic, 0)).ToString());
-                            break;
-                        default:
-                            Debug.Log("未知的伤害类型，请检查");
-                            break;
+                        //暴击了
+                        Physics *= (1+attackState.CirticalAttack/100);
                     }
+                    //3.计算BUFF最终伤害加成
+                    Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
+                    Physics *= (1+(BuffValue/100));
+                    Physics *= (1 + (NextBuffVlaue / 100));
+                    Physics = Mathf.Max(1, (int)Physics);
+                    //4.计算技能攻击力加成
+                    Physics *= (1+attackState.SkillAttack/100);
+                    //5.扣除敌方防御力加成
+                    Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+                    target.IDamage((int)Math.Round(Physics,0));
+                    DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
+                    damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
+                    
                     yield return new WaitForSeconds(item.SkillType.MultistageTime);
                 }
             }

@@ -111,6 +111,21 @@ namespace ARPG.UI
             }
             UIHelper.Clear(StateContent);
             if (StateContent == null) return;
+            var Power = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            Power.Init();
+            Power.Show("力量",currentCharacterState.Power.ToString());
+            
+            var Intelligence = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            Intelligence.Init();
+            Intelligence.Show("智力",currentCharacterState.Intelligence.ToString());
+            
+            var vit = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            vit.Init();
+            vit.Show("体力",currentCharacterState.Vit.ToString());
+            
+            var Agility = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            Agility.Init();
+            Agility.Show("敏捷",currentCharacterState.Agility.ToString());
             
             var PhysicsAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             PhysicsAttack.Init();
@@ -124,46 +139,34 @@ namespace ARPG.UI
             HP.Init();
             HP.Show("HP",currentCharacterState.HP.ToString());
             
-            var AddHp = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
-            AddHp.Init();
-            AddHp.Show("生命回复",currentCharacterState.AddHp.ToString());
-            
-            var Power = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
-            Power.Init();
-            Power.Show("力量",currentCharacterState.Power.ToString());
-            
-            var Intelligence = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
-            Intelligence.Init();
-            Intelligence.Show("智力",currentCharacterState.Intelligence.ToString());
-            
             var Defense = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             Defense.Init();
             Defense.Show("防御",currentCharacterState.Defense.ToString());
             
             var AttackSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             AttackSpeed.Init();
-            AttackSpeed.Show("攻击速度",currentCharacterState.AttackSpeed.ToString(CultureInfo.InvariantCulture));
+            AttackSpeed.Show("攻击速度",(int)currentCharacterState.AttackSpeed+"%");
             
             var ReleaseSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             ReleaseSpeed.Init();
-            ReleaseSpeed.Show("释放速度","%"+currentCharacterState.ReleaseSpeed);
+            ReleaseSpeed.Show("释放速度",(int)currentCharacterState.ReleaseSpeed+"%");
             
             var MovSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             MovSpeed.Init();
-            MovSpeed.Show("移动速度","%"+currentCharacterState.MovSpeed);
+            MovSpeed.Show("移动速度",(int)currentCharacterState.MovSpeed+"%");
             
             
             var Cirtical = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             Cirtical.Init();
-            Cirtical.Show("暴击几率","%"+currentCharacterState.Cirtical *100);
+            Cirtical.Show("暴击几率",(int)currentCharacterState.Cirtical*100+"%");
             
             var CirticalAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             CirticalAttack.Init();
-            CirticalAttack.Show("暴击伤害","%"+currentCharacterState.CirticalAttack);
+            CirticalAttack.Show("暴击伤害",(int)currentCharacterState.CirticalAttack*100+"%");
             
             var SkillAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             SkillAttack.Init();
-            SkillAttack.Show("技能攻击力","%"+currentCharacterState.SkillAttack);
+            SkillAttack.Show("技能攻击力",currentCharacterState.SkillAttack+"%");
 
         }
 

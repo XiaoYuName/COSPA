@@ -151,14 +151,20 @@ namespace ARPG.Config
         [Header("暴击几率"),Range(0,1)]
         public float Cirtical;
 
-        [Header("暴击伤害")]
-        public int CirticalAttack;
+        [Header("暴击伤害"),Range(1,200)]
+        public float CirticalAttack;
 
         [Header("力量")]
         public int Power;
 
         [Header("智力")]
         public int Intelligence;
+        
+        [Header("体力")]
+        public int Vit;
+        
+        [Header("敏捷")]
+        public int Agility;
 
         [Header("攻击速度")]
         public float AttackSpeed;

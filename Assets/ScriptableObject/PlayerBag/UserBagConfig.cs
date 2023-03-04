@@ -124,62 +124,113 @@ namespace ARPG.Config
         public CharacterState Operation()
         {
             CharacterState state = InventoryManager.Instance.GetCharacter(ID).State.Clone() as CharacterState;
+            state = Settings.GetLevelGrowthState(Level, state);
             for (int i = 0; i < equipHelos.Length; i++)
             {
                 if(equipHelos[i].item == null)continue;
                 if(equipHelos[i].item.attribute == null)continue;
                 for (int E = 0; E < equipHelos[i].item.attribute.Count; E++)
                 {
+                    
                     switch (equipHelos[i].item.attribute[E].Mode)
                     {
                         case StateMode.物理攻击力:
-                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            var PhysicsAttackPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (PhysicsAttackPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.PhysicsAttack += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.PhysicsAttack += equipHelos[i].item.attribute[E].value*PhysicsAttackPawor;
                             break;
                         case StateMode.魔法攻击力:
-                            state.MagicAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            var MagicAttackPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (MagicAttackPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.MagicAttack += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.MagicAttack += equipHelos[i].item.attribute[E].value*MagicAttackPawor;
                             break;
                         case StateMode.生命值:
-                            state.HP += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            var HPPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (HPPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.HP += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.HP += equipHelos[i].item.attribute[E].value*HPPawor;
                             break;
                         case StateMode.生命恢复:
-                            state.AddHp += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            var AddHpPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (AddHpPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.AddHp += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.AddHp += equipHelos[i].item.attribute[E].value*AddHpPawor;
                             break;
                         case StateMode.防御力:
-                            state.Defense += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            var DefensePawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (DefensePawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.Defense += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.Defense += equipHelos[i].item.attribute[E].value*DefensePawor;
                             break;
                         case StateMode.技能攻击力:
-                            state.SkillAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            state.SkillAttack += equipHelos[i].item.attribute[E].value *Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.暴击率:
-                            state.Cirtical += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            state.Cirtical += equipHelos[i].item.attribute[E].value * Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.暴击伤害:
-                            state.CirticalAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            state.CirticalAttack += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.攻击速度:
-                            state.AttackSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
+                            state.AttackSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.移动速度:
-                            state.MovSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
+                            state.MovSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.释放速度:
-                            state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
-                            break;
-                        case StateMode.治疗量:
-                            state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/10);
+                            state.ReleaseSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.力量:
-                            state.Power += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
+                            var PowerPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (PowerPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.Power += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.Power += equipHelos[i].item.attribute[E].value*PowerPawor;
+                            state.PhysicsAttack += (state.Power/10);
+                            state.AddHp += (state.Power/100);
                             break;
                         case StateMode.智力:
-                            state.Intelligence += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
+                            var IntelligencePawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (IntelligencePawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.Intelligence += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.Intelligence += equipHelos[i].item.attribute[E].value*IntelligencePawor;
+                            state.MagicAttack += (state.Intelligence/10);
+                            state.AddHp += (state.Intelligence/100);
+                            break;
+                        case StateMode.体力:
+                            var VitPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (VitPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.Vit += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.Vit += equipHelos[i].item.attribute[E].value*VitPawor;
+                            state.HP += (state.Vit/2);
+                            state.Defense += state.Vit/40;
+                            state.AddHp += (state.Vit/100);
+                            break;
+                        case StateMode.敏捷:
+                            var AgilityPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (AgilityPawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.Agility += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.Agility += equipHelos[i].item.attribute[E].value*AgilityPawor;
+                            state.MovSpeed += (state.Agility/100);
+                            state.AttackSpeed += (state.Agility/50);
+                            state.ReleaseSpeed += (state.Agility/50);;
                             break;
                         default:
                             break;
                     }
                 }
             }
-            return Settings.GetLevelGrowthState(Level,state);
+            return state;
         }
 
 
