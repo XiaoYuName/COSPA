@@ -78,6 +78,11 @@ namespace ARPG
             return MapConfig.Get(id);
         }
 
+        public RandomMapItem GetRandomMap(string ID)
+        {
+            return MapConfig.GetRandomMapItem(ID);
+        }
+
         /// <summary>
         /// 获取精灵
         /// </summary>

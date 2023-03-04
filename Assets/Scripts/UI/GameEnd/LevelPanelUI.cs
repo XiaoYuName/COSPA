@@ -55,6 +55,29 @@ namespace ARPG.UI
             yield return null;
         }
         
+        public IEnumerator OpentionLevelAndFavorability(RandomMapItem Reword)
+        {
+            CharacterBag characterBag = InventoryManager.Instance.GetBag(
+                GameManager.Instance.Player.currentBag.ID);
+            
+            LevelText.text = characterBag.Level.ToString();
+
+            LevelSlider.value = characterBag.exp;
+            LevelSlider.minValue = 0;
+            LevelSlider.maxValue = characterBag.MaxExp;
+            for (int i = 0; i < Reword.MoneyReword.Length; i++)
+            {
+                if (Reword.MoneyReword[i].itemBag.ID != Settings.ExpID) continue;
+                if (Reword.MoneyReword[i].itemBag.count > 0)
+                {
+                    int exp = Reword.MoneyReword[i].itemBag.count;
+                    yield return AddUserExp(characterBag,exp);
+                }
+            }
+
+            yield return null;
+        }
+        
         private IEnumerator AddUserExp(CharacterBag bag,int value)  
         {
             //1.获取添加的经验总值

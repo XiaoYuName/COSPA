@@ -13,99 +13,6 @@ MonoBehaviour:
   m_Name: Charactern
   m_EditorClassIdentifier: 
   BaseDatas:
-  - ID: Character_1002
-    Headicon: {fileID: 21300000, guid: 061bb7dc0548b6e4d9d19297d5a95ae2, type: 3}
-    Assets:
-    - Star: 1
-      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
-      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
-      Spinedata: {fileID: 11400000, guid: 7bbc324d974bba142b075cc637b7b28d, type: 2}
-      VideAssets: {fileID: 11400000, guid: acc49a7f29ddf8546a696012d68591cf, type: 2}
-    - Star: 3
-      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
-      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
-      Spinedata: {fileID: 11400000, guid: 203d5eeb4410b8743beb052ffeb31c98, type: 2}
-      VideAssets: {fileID: 11400000, guid: acc49a7f29ddf8546a696012d68591cf, type: 2}
-    - Star: 6
-      OringIcon: {fileID: 21300000, guid: 844d3fdcc08503644ba8b71d326f4c3d, type: 3}
-      CharacterPanelIcon: {fileID: 21300000, guid: a2f450c7d37a5fe4b9cfcb89eb2d0479, type: 3}
-      Spinedata: {fileID: 11400000, guid: 2291fa5ee34e3674cb8355126e045095, type: 2}
-      VideAssets: {fileID: 11400000, guid: 1bcef76718717ea4b90f44c4d2e4a55d, type: 2}
-    Prefab: {fileID: 2060322555634032043, guid: 703f098e87e33fb459e1badb0b40d97a, type: 3}
-    CharacterStarType: 1
-    CharacterName: "\u4F18\u8863"
-    battle: 2
-    StepData:
-    - Star: 2
-      ItemID: 31002
-      Amount: 10
-      Gold: 200
-    - Star: 3
-      ItemID: 31002
-      Amount: 20
-      Gold: 400
-    - Star: 4
-      ItemID: 31002
-      Amount: 30
-      Gold: 800
-    - Star: 5
-      ItemID: 31002
-      Amount: 50
-      Gold: 1600
-    - Star: 6
-      ItemID: 31002
-      Amount: 100
-      Gold: 3200
-    - Star: 7
-      ItemID: 31002
-      Amount: 200
-      Gold: 6400
-    SpineIdleName: 07_idle
-    EquipAnimName: 000000_smile
-    AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
-    State:
-      PhysicsAttack: 10
-      MagicAttack: 10
-      Defense: 80
-      HP: 150
-      currentHp: 0
-      AddHp: 150
-      SkillAttack: 1
-      Cirtical: 0.15
-      CirticalAttack: 2
-      Power: 10
-      Intelligence: 0
-      AttackSpeed: 1
-      ReleaseSpeed: 1
-      MovSpeed: 135
-      Growth: 0.135
-    SkillTable:
-    - SkillID: SkillConjurerAttack
-      Type: 0
-      BtnAudioID: 
-    - SkillID: MagicBomb
-      Type: 1
-      BtnAudioID: 
-    - SkillID: HealingMagic
-      Type: 2
-      BtnAudioID: 
-    - SkillID: MagicThunder
-      Type: 3
-      BtnAudioID: 
-    - SkillID: FlameBurns
-      Type: 4
-      BtnAudioID: 
-    des: xxx
-    deftualBuffID: 03000000
-    twistAssets:
-      PropAgAndaVideoID: 101131_1
-      VideoID: 101131_2
-      AudioHeadID: Twist_Yixu
-      NameImage: {fileID: 21300000, guid: 6f536d8c0780fb24cab2177149143ad6, type: 3}
-      BKImage: {fileID: 21300000, guid: 126d97a4e52be244f84dcee4d64f570f, type: 3}
-      SpineAnimationName: 8
-      SpineSkinName: 1
-    TwistSpine: {fileID: 11400000, guid: e37bcb452807d0e42b26ad808185a5d7, type: 2}
   - ID: Character_1058
     Headicon: {fileID: 21300000, guid: eb1f391e437653f44bdb82d15530fff6, type: 3}
     Assets:
@@ -157,17 +64,17 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
     State:
-      PhysicsAttack: 10
-      MagicAttack: 10
-      Defense: 100
-      HP: 150
+      PhysicsAttack: 3
+      MagicAttack: 1
+      Defense: 5
+      HP: 100
       currentHp: 0
-      AddHp: 150
+      AddHp: 5
       SkillAttack: 1
       Cirtical: 0.15
       CirticalAttack: 2
-      Power: 40
-      Intelligence: 5
+      Power: 8
+      Intelligence: 2
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 100
@@ -199,6 +106,99 @@ MonoBehaviour:
       SpineAnimationName: 8
       SpineSkinName: 1
     TwistSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
+  - ID: Character_1002
+    Headicon: {fileID: 21300000, guid: 061bb7dc0548b6e4d9d19297d5a95ae2, type: 3}
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
+      Spinedata: {fileID: 11400000, guid: 7bbc324d974bba142b075cc637b7b28d, type: 2}
+      VideAssets: {fileID: 11400000, guid: acc49a7f29ddf8546a696012d68591cf, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 36e7f33273a4cf047ac071759b553f62, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: b0bf33502f6231b4fa5ae7b57f06a0b5, type: 3}
+      Spinedata: {fileID: 11400000, guid: 203d5eeb4410b8743beb052ffeb31c98, type: 2}
+      VideAssets: {fileID: 11400000, guid: acc49a7f29ddf8546a696012d68591cf, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: 844d3fdcc08503644ba8b71d326f4c3d, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: a2f450c7d37a5fe4b9cfcb89eb2d0479, type: 3}
+      Spinedata: {fileID: 11400000, guid: 2291fa5ee34e3674cb8355126e045095, type: 2}
+      VideAssets: {fileID: 11400000, guid: 1bcef76718717ea4b90f44c4d2e4a55d, type: 2}
+    Prefab: {fileID: 2060322555634032043, guid: 703f098e87e33fb459e1badb0b40d97a, type: 3}
+    CharacterStarType: 1
+    CharacterName: "\u4F18\u8863"
+    battle: 2
+    StepData:
+    - Star: 2
+      ItemID: 31002
+      Amount: 10
+      Gold: 200
+    - Star: 3
+      ItemID: 31002
+      Amount: 20
+      Gold: 400
+    - Star: 4
+      ItemID: 31002
+      Amount: 30
+      Gold: 800
+    - Star: 5
+      ItemID: 31002
+      Amount: 50
+      Gold: 1600
+    - Star: 6
+      ItemID: 31002
+      Amount: 100
+      Gold: 3200
+    - Star: 7
+      ItemID: 31002
+      Amount: 200
+      Gold: 6400
+    SpineIdleName: 07_idle
+    EquipAnimName: 000000_smile
+    AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
+    State:
+      PhysicsAttack: 1
+      MagicAttack: 4
+      Defense: 5
+      HP: 80
+      currentHp: 0
+      AddHp: 5
+      SkillAttack: 1
+      Cirtical: 0.1
+      CirticalAttack: 2
+      Power: 2
+      Intelligence: 8
+      AttackSpeed: 1
+      ReleaseSpeed: 1
+      MovSpeed: 135
+      Growth: 0.135
+    SkillTable:
+    - SkillID: SkillConjurerAttack
+      Type: 0
+      BtnAudioID: 
+    - SkillID: MagicBomb
+      Type: 1
+      BtnAudioID: 
+    - SkillID: HealingMagic
+      Type: 2
+      BtnAudioID: 
+    - SkillID: MagicThunder
+      Type: 3
+      BtnAudioID: 
+    - SkillID: FlameBurns
+      Type: 4
+      BtnAudioID: 
+    des: xxx
+    deftualBuffID: 03000000
+    twistAssets:
+      PropAgAndaVideoID: 101131_1
+      VideoID: 101131_2
+      AudioHeadID: Twist_Yixu
+      NameImage: {fileID: 21300000, guid: 6f536d8c0780fb24cab2177149143ad6, type: 3}
+      BKImage: {fileID: 21300000, guid: 126d97a4e52be244f84dcee4d64f570f, type: 3}
+      SpineAnimationName: 8
+      SpineSkinName: 1
+    TwistSpine: {fileID: 11400000, guid: e37bcb452807d0e42b26ad808185a5d7, type: 2}
   - ID: Character_1060
     Headicon: {fileID: 21300000, guid: 4298f012e392dfe45b19da5420ea370f, type: 3}
     Assets:
@@ -250,20 +250,20 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
     State:
-      PhysicsAttack: 10
-      MagicAttack: 5
-      Defense: 20
+      PhysicsAttack: 1
+      MagicAttack: 8
+      Defense: 5
       HP: 150
       currentHp: 0
-      AddHp: 150
+      AddHp: 5
       SkillAttack: 1
       Cirtical: 0.15
-      CirticalAttack: 2
-      Power: 5
-      Intelligence: 5
+      CirticalAttack: 3
+      Power: 2
+      Intelligence: 10
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 100
+      MovSpeed: 95
       Growth: 0.135
     SkillTable:
     - SkillID: MagicAttack
@@ -343,21 +343,21 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 261facbb50b9288409188be0c13deaba, type: 2}
     State:
-      PhysicsAttack: 10
-      MagicAttack: 10
-      Defense: 999
-      HP: 150
+      PhysicsAttack: 1
+      MagicAttack: 3
+      Defense: 10
+      HP: 125
       currentHp: 0
-      AddHp: 150
+      AddHp: 7
       SkillAttack: 1
-      Cirtical: 0.15
-      CirticalAttack: 2
-      Power: 40
-      Intelligence: 5
+      Cirtical: 0.21
+      CirticalAttack: 3
+      Power: 12
+      Intelligence: 2
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 100
-      Growth: 0.135
+      MovSpeed: 110
+      Growth: 0.251
     SkillTable:
     - SkillID: SkillSoldierAttack
       Type: 0

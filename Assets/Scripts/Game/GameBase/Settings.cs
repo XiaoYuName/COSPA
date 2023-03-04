@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.Config;
@@ -85,6 +86,25 @@ namespace ARPG
         /// 扭蛋动画的偏移时间
         /// </summary>
         public const float TwistTweenTime = 1f;
+
+
+        /// <summary>
+        /// 判断是否是随机奖励地下城
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns></returns>
+        public static bool isRandomRegion(string Name)
+        {
+            var strings = Enum.GetNames(typeof(RegionRandomType));
+            for (int i = 0; i < strings.Length; i++)
+            {
+                if (strings[i] == Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     /// <summary>
@@ -114,5 +134,7 @@ namespace ARPG
         /// </summary>
         public const string UI_Bc_Click = "UI_Bc_Click";
     }
+    
+    
 }
 

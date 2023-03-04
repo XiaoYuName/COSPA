@@ -20,8 +20,7 @@ namespace ARPG.UI.Config
         /// 独立副本
         /// </summary>
         public List<RegionItem> RegionSingleton = new List<RegionItem>();
-
-
+        
         /// <summary>
         /// 根据副本名称获取独立副本配置
         /// </summary>
@@ -77,6 +76,7 @@ namespace ARPG.UI.Config
         [Tooltip("列表中每一条代表一波怪物,列表的长度代表该地图的总波数")]
         public List<WaveItem> WaveItems;
     }
+    
 
     [System.Serializable]
     public class WaveItem

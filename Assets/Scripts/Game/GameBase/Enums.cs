@@ -379,26 +379,26 @@ namespace ARPG
 
    public enum NoticeMode
    {
-       扭蛋,
-       资讯,
-       运营,
-       告知,
+       扭蛋=0,
+       资讯=1,
+       运营=2,
+       告知=3,
    }
 
    public enum MemuTableMode
    {
-       属性,
-       故事,
-       简介,
+       属性=0,
+       故事=1,
+       简介=2,
    }
 
    public enum EquipTableType
    {
-       通常,
-       地下城,
-       竞技场,
-       女神的秘石,
-       限定,
+       通常=0,
+       地下城=1,
+       竞技场=2,
+       女神的秘石=3,
+       限定=4,
    }
 
    /// <summary>
@@ -409,29 +409,39 @@ namespace ARPG
        /// <summary>
        /// 一开始
        /// </summary>
-       Star,
+       Star=0,
        /// <summary>
        /// 中途
        /// </summary>
-       Crent,
+       Crent=1,
        /// <summary>
        /// 结束
        /// </summary>
-       End,
+       End=2,
    }
 
    public enum RegionMode
    {
-       普通,
-       困难,
-       地狱,
-       噩梦,
+       普通=0,
+       困难=1,
+       地狱=2,
+       噩梦=3,
    }
 
    public enum LookState
    {
-       未开启,
-       已解锁,
-       已通关,
+       未开启=0,
+       已解锁=1,
+       已通关=2,
+   }
+
+   public enum RegionRandomType
+   {
+       None,
+       深渊_1,
+       深渊_2,
+       深渊_3,
+       深渊_4,
+       深渊_5,
    }
 }

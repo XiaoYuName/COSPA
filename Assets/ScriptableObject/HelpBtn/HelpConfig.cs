@@ -33,6 +33,7 @@ namespace ARPG.UI.Config
         觉醒,
         无尽回廊,
         主线玩法,
-        主线帮助
+        主线帮助,
+        深渊,
     }
 }

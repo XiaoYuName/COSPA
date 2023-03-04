@@ -40,6 +40,6 @@ namespace ARPG.UI
             神圣殿堂
         }
     }
-    
+
 }
 

@@ -137,7 +137,14 @@ namespace ARPG
             yield return new WaitForSeconds(1.25f);
             void Func(GameEnd ui)
             {
-                ui.ShowEndGame(GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                if (Settings.isRandomRegion(currentRegion.RegionItemName))
+                {
+                    ui.ShowEndGame(GameSystem.Instance.GetRandomMap(currentRegion.RegionItemName));
+                }
+                else
+                {
+                    ui.ShowEndGame(GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                }
             }
             AudioManager.Instance.PlayAudio("VictoryGame");
             UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
@@ -202,6 +209,7 @@ namespace ARPG
         /// <param name="isMultisTag">是否启用延迟多段上海,默认启用</param>
         public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint,bool isMultisTag = true)
         {
+            if (target == null) return;
             if (target.GetState().currentHp <= 0) return; //防止多段伤害一直显示掉血
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
             float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);

@@ -35,6 +35,34 @@ namespace ARPG.UI
 
         public void InitData(RegionItem regionItem)
         {
+           
+            if (Settings.isRandomRegion(regionItem.RegionItemName))
+            {
+                RandomMapItem randomMapItem = MapConfig.GetRandomMapItem(regionItem.RegionItemName);
+                MapName.text = randomMapItem.ID;
+                BackImage.sprite = randomMapItem.mapIcon;
+                CreateSlotUI(randomMapItem.RewordItemList);
+                UIHelper.Clear(EnemyContent);
+                for (int i = 0; i < regionItem.WaveItems.Count; i++)
+                {
+                    CreateEnemyUI(i,regionItem.WaveItems[i].EnemyList);
+                }
+                UIHelper.Clear(RewordContent);
+                CreateMontySlotUI(randomMapItem.MoneyReword);
+            
+                Bind(OpenBtn, delegate
+                {
+                    void Func(SwitchCharacterPanel ui)
+                    {
+                        ui.CreateChacacterSlotUI(regionItem);
+                        MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
+                    }
+                    UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel", Func);
+                }, "OnChick");
+                return;
+                
+                
+            }
             MapItem mapItem = MapConfig.Get(regionItem.RegionItemName);
             MapName.text = mapItem.ID;
             BackImage.sprite = mapItem.mapIcon;
@@ -63,6 +91,16 @@ namespace ARPG.UI
         /// </summary>
         /// <param name="Reword"></param>
         private void CreateSlotUI(List<RewordItemBag> Reword)
+        {
+            UIHelper.Clear(ItemContent);
+            foreach (var Item in Reword)
+            {
+                MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",ItemContent);
+                Slot.InitData(Item.itemBag);
+            }
+        }
+        
+        private void CreateSlotUI(List<RandomRewordItemBag> Reword)
         {
             UIHelper.Clear(ItemContent);
             foreach (var Item in Reword)

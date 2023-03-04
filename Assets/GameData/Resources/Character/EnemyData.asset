@@ -13,28 +13,58 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   BaseDatas:
+  - ID: 200600
+    EnemyName: "\u9F20\u5996"
+    Level: 1
+    Attackradius: 1.5
+    icon: {fileID: 21300000, guid: 3e25b147018ea534a8c13cd4645dc204, type: 3}
+    Type: 0
+    Prefab: {fileID: 599150379652071904, guid: ef1b1c98887b92c4d90ba75c1610289b, type: 3}
+    State:
+      PhysicsAttack: 3
+      MagicAttack: 1
+      Defense: 2
+      HP: 25
+      currentHp: 0
+      AddHp: 2
+      SkillAttack: 1
+      Cirtical: 1
+      CirticalAttack: 2
+      Power: 3
+      Intelligence: 2
+      AttackSpeed: 1
+      ReleaseSpeed: 1
+      MovSpeed: 0.35
+      Growth: 0.25
+    SkillTable:
+    - SkillID: SkillEnemySoldierAttack
+      Type: 0
+      BtnAudioID: 
+    Animator: {fileID: 22100000, guid: 0979db93726c49746a3392597c7a9d51, type: 2}
+    description: 
   - ID: 200700
     EnemyName: "\u6728\u7075"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 3085bdae72b11714a9794bf1901b5f15, type: 3}
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     State:
-      PhysicsAttack: 15
-      MagicAttack: 30
-      Defense: 8
-      HP: 100
+      PhysicsAttack: 3
+      MagicAttack: 3
+      Defense: 1
+      HP: 50
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
-      Cirtical: 0.25
+      Cirtical: 1
       CirticalAttack: 2
-      Power: 15
-      Intelligence: 20
+      Power: 3
+      Intelligence: 2
       AttackSpeed: 1
-      ReleaseSpeed: 0
+      ReleaseSpeed: 1
       MovSpeed: 0.35
-      Growth: 0.1
+      Growth: 0.25
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -43,6 +73,7 @@ MonoBehaviour:
     description: "\u88AB\u611F\u67D3\u7684\u9B54\u7269"
   - ID: 200900
     EnemyName: "\u6811\u5996"
+    Level: 0
     Attackradius: 1.75
     icon: {fileID: 21300000, guid: cbd111aa8b3fd3848889cd89ca040932, type: 3}
     Type: 0
@@ -71,6 +102,7 @@ MonoBehaviour:
     description: "\u5C06\u67D4\u8F6F\u7684\u679D\u6761\u4F5C\u4E3A\u97AD\u5B50\u653B\u51FB\u7684\u6811\u4E4B\u9B54\u7269"
   - ID: 204000
     EnemyName: "\u5C0F\u5C0F\u683C\u91CC\u82AC"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 99a04f12fed99b748b3fb33ee46b563c, type: 3}
     Type: 0
@@ -99,6 +131,7 @@ MonoBehaviour:
     description: "\u7FC5\u8180\u5F88\u5C0F,\u8FD8\u6682\u65F6\u65E0\u6CD5\u98DE\u884C\u7684\u683C\u91CC\u82AC\u5E7C\u5D3D"
   - ID: 201200
     EnemyName: "\u9B54\u50CF"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 6b91eb23738af62478980ef39767f2d7, type: 3}
     Type: 2
@@ -130,6 +163,7 @@ MonoBehaviour:
     description: "\u7528\u7ED3\u5B9E\u7684\u8EAB\u4F53\uFF0C\u8FDB\u884C\u653B\u5B88\u7684\u5CA9\u77F3\u9B54\u7269"
   - ID: 200400
     EnemyName: "\u72FC\u4EBA"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 6704d67b4c3064c4aadfd6f6beaf5971, type: 3}
     Type: 0
@@ -156,36 +190,9 @@ MonoBehaviour:
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: bfe5828d83e99c842bdaa3a78b7505c6, type: 2}
     description: 
-  - ID: 200600
-    EnemyName: "\u9F20\u5996"
-    Attackradius: 1.5
-    icon: {fileID: 21300000, guid: 3e25b147018ea534a8c13cd4645dc204, type: 3}
-    Type: 0
-    Prefab: {fileID: 599150379652071904, guid: ef1b1c98887b92c4d90ba75c1610289b, type: 3}
-    State:
-      PhysicsAttack: 59
-      MagicAttack: 30
-      Defense: 8
-      HP: 1960
-      currentHp: 0
-      AddHp: 2
-      SkillAttack: 1
-      Cirtical: 1
-      CirticalAttack: 2
-      Power: 45
-      Intelligence: 20
-      AttackSpeed: 1
-      ReleaseSpeed: 0
-      MovSpeed: 0.35
-      Growth: 0.1
-    SkillTable:
-    - SkillID: SkillEnemySoldierAttack
-      Type: 0
-      BtnAudioID: 
-    Animator: {fileID: 22100000, guid: 0979db93726c49746a3392597c7a9d51, type: 2}
-    description: 
   - ID: 201100
     EnemyName: "\u72D7\u5934\u4EBA"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 5079133339f210a46be5b857ed2e54ff, type: 3}
     Type: 0
@@ -214,6 +221,7 @@ MonoBehaviour:
     description: 
   - ID: 203000
     EnemyName: "\u8F6F\u6CE5\u602A"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 80519b8017948a14898c4d9208afc155, type: 3}
     Type: 0
@@ -242,6 +250,7 @@ MonoBehaviour:
     description: "\u5341\u5206\u7C98\u6ED1\u7684\u80F6\u72B6\u9B54\u7269"
   - ID: 203100
     EnemyName: "\u5E7C\u5E74\u5DE8\u8725"
+    Level: 0
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 88d4d06e736bee642aa12b7db168ba76, type: 3}
     Type: 0
