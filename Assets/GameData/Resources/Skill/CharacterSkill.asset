@@ -46,7 +46,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 2.5
+    Diamage: 6
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u9B54\u6CD5\u5E08\u804C\u4E1A\u666E\u901A\u653B\u51FB"
     SkillDes: 
@@ -70,7 +70,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 15
+    Diamage: 3
     icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
     SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"
     SkillDes: 
@@ -122,10 +122,10 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 35
+    Diamage: 16
     icon: {fileID: 21300000, guid: a6d96b2e6c339cc40a2c781f67434744, type: 3}
     SkillName: "\u91CD\u65A9"
-    SkillDes: "\u91CA\u653E\u540E\u8DF3\u8D77\uFF0C\u968F\u673A\u65A9\u4E0B\u4E00\u5230\u91CD\u65A9\n\u5BF9\u5730\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB35\u7684\u7269\u7406\u4F24\u5BB3\uFF0C"
+    SkillDes: "\u91CA\u653E\u540E\u8DF3\u8D77\uFF0C\u968F\u673A\u65A9\u4E0B\u4E00\u5230\u91CD\u65A9\n\u5BF9\u5730\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB16\u7684\u7269\u7406\u4F24\u5BB3\uFF0C"
     StepUpDes: 
     ActionStar: 0
     SkillType:
@@ -146,7 +146,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 0
-    Diamage: 30
+    Diamage: 8
     icon: {fileID: 21300000, guid: d05369c33b9d7d647b48a6c314e2c047, type: 3}
     SkillName: "\u5348\u9910\u65F6\u95F4"
     SkillDes: "\u4F7F\u7528\u540E\u6062\u590D\u81EA\u8EAB\u57FA\u784030\u8840\u91CF"
@@ -160,7 +160,7 @@ MonoBehaviour:
     Pools: []
     VideoAsset: {fileID: 0}
   - ID: PrincessRaid
-    CD: 30
+    CD: 15
     Duration: 2
     ReleaseTime: 1
     Radius: 3
@@ -168,10 +168,10 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 35
+    Diamage: 17.5
     icon: {fileID: 21300000, guid: a4957e973db297f4ebfb991f348b30a5, type: 3}
     SkillName: "\u516C\u4E3B\u7A81\u88AD"
-    SkillDes: "\u53D1\u52A8\u540E\uFF0C\u516C\u4E3B\u77ED\u6682\u84C4\u529B\u540E\u53D1\u90013\u9053\u91CD\u65A9\uFF0C\u6BCF\u9053\u91CD\u65A9\u9020\u621035\u57FA\u7840\u4F24\u5BB3"
+    SkillDes: "\u53D1\u52A8\u540E\uFF0C\u516C\u4E3B\u77ED\u6682\u84C4\u529B\u540E\u53D1\u90013\u9053\u91CD\u65A9\uFF0C\u6BCF\u9053\u91CD\u65A9\u9020\u621017.5\u57FA\u7840\u4F24\u5BB3"
     StepUpDes: "\n\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F33\u9636"
     ActionStar: 3
     SkillType:
@@ -184,7 +184,7 @@ MonoBehaviour:
       count: 5
     VideoAsset: {fileID: 11400000, guid: 5d5bae3938eb7624abfa697180b63969, type: 2}
   - ID: Broken
-    CD: 35
+    CD: 20
     Duration: -1
     ReleaseTime: -1
     Radius: 1500
@@ -192,10 +192,10 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 4500
+    Diamage: 40
     icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
     SkillName: "\u7834\u788E\u65A9"
-    SkillDes: "\u516C\u4E3B\u84C4\u529B\u540E\uFF0C\u53D1\u52A8\u5F3A\u529B\u7834\u788E\u65A9,\u65A9\u51FB\u5BF9\u654C\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB1500\u4F24\u5BB3\n\u8BE5\u6280\u80FD\u5FC5\u5B9A\u547D\u4E2D"
+    SkillDes: "\u516C\u4E3B\u84C4\u529B\u540E\uFF0C\u53D1\u52A8\u5F3A\u529B\u7834\u788E\u65A9,\u65A9\u51FB\u5BF9\u654C\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB40\u4F24\u5BB3\n\u8BE5\u6280\u80FD\u5FC5\u5B9A\u547D\u4E2D"
     StepUpDes: "\n\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
     ActionStar: 6
     SkillType:
@@ -238,17 +238,17 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 0
-    Diamage: 50
+    Diamage: 3
     icon: {fileID: 21300000, guid: 6afd675ae8e0f0c4382795a5a166766f, type: 3}
     SkillName: "\u6CBB\u6108\u9B54\u6CD5"
-    SkillDes: "\u91CA\u653E\u540E\u7ACB\u5373\u56DE\u590D\u81EA\u8EABHP+50,\u4E4B\u540E\u6CA15\u79D2\u56DE\u590D20HP,\u6301\u7EED30\u79D2"
+    SkillDes: "\u91CA\u653E\u540E\u7ACB\u5373\u56DE\u590D\u81EA\u8EABHP+3,\u4E4B\u540E\u6CA15\u79D2\u56DE\u590D20HP"
     StepUpDes: 
     ActionStar: 1
     SkillType:
       type: 3
       isMultistage: 1
       MultistageTime: 1
-      MultistageDamage: 140000001400000014000000140000001400000014000000
+      MultistageDamage: 020000000200000002000000020000000200000002000000
     Pools: []
     VideoAsset: {fileID: 0}
   - ID: MagicThunder
@@ -284,7 +284,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 360
+    Diamage: 22.22
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u70C8\u7130\u711A\u70EC"
     SkillDes: "\u4F18\u8863\u8FDB\u5165\u5F15\u5BFC\u72B6\u6001,\u9501\u5B9A\u5728\u573A\u654C\u4EBA\u5BF9\u5728\u573A\u654C\u4EBA\u53D1\u52A8\u70C8\u7130\u9B54\u6CD5,\n\u968F\u540E\u9020\u6210\u7206\u70B8"
@@ -310,7 +310,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 50
+    Diamage: 15
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u594B\u529B\u62F3\u51FB"
     SkillDes: "\u594B\u529B\u62F3\u51FB"

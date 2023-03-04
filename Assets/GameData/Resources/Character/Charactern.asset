@@ -64,18 +64,18 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
     State:
-      PhysicsAttack: 3
+      PhysicsAttack: 7
       MagicAttack: 1
       Defense: 5
-      HP: 100
+      HP: 60
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
       Cirtical: 0.15
       CirticalAttack: 2
-      Power: 9
+      Power: 6
       Intelligence: 2
-      Vit: 8
+      Vit: 10
       Agility: 2
       AttackSpeed: 1
       ReleaseSpeed: 1
@@ -162,16 +162,16 @@ MonoBehaviour:
       PhysicsAttack: 1
       MagicAttack: 4
       Defense: 5
-      HP: 80
+      HP: 40
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
       Cirtical: 0.1
       CirticalAttack: 2
       Power: 2
-      Intelligence: 8
-      Vit: 0
-      Agility: 0
+      Intelligence: 10
+      Vit: 5
+      Agility: 4
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 135
@@ -257,16 +257,16 @@ MonoBehaviour:
       PhysicsAttack: 1
       MagicAttack: 8
       Defense: 5
-      HP: 150
+      HP: 80
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
       Cirtical: 0.15
       CirticalAttack: 3
       Power: 2
-      Intelligence: 10
-      Vit: 0
-      Agility: 0
+      Intelligence: 12
+      Vit: 5
+      Agility: 3
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 95
@@ -349,19 +349,19 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 261facbb50b9288409188be0c13deaba, type: 2}
     State:
-      PhysicsAttack: 1
+      PhysicsAttack: 17
       MagicAttack: 3
-      Defense: 10
+      Defense: 8
       HP: 125
       currentHp: 0
-      AddHp: 7
+      AddHp: 2
       SkillAttack: 1
       Cirtical: 0.21
-      CirticalAttack: 3
-      Power: 12
+      CirticalAttack: 2
+      Power: 21
       Intelligence: 2
-      Vit: 0
-      Agility: 0
+      Vit: 8
+      Agility: 2
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 110

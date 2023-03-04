@@ -26,7 +26,7 @@ namespace ARPG
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
         private Vector2Int currentPress;
-        
+
         protected override void Awake()
         {
             base.Awake();

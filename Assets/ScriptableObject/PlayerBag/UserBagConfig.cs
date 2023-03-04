@@ -221,9 +221,9 @@ namespace ARPG.Config
                                 state.Agility += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
                             else
                                 state.Agility += equipHelos[i].item.attribute[E].value*AgilityPawor;
-                            state.MovSpeed += (state.Agility/100);
-                            state.AttackSpeed += (state.Agility/50);
-                            state.ReleaseSpeed += (state.Agility/50);;
+                            state.MovSpeed += (state.Agility/300);
+                            state.AttackSpeed += (state.Agility/500);
+                            state.ReleaseSpeed += (state.Agility/500);;
                             break;
                         default:
                             break;
