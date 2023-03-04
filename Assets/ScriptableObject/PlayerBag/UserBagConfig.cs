@@ -133,37 +133,46 @@ namespace ARPG.Config
                     switch (equipHelos[i].item.attribute[E].Mode)
                     {
                         case StateMode.物理攻击力:
-                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.PhysicsAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.魔法攻击力:
-                            state.MagicAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.MagicAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.生命值:
-                            state.HP += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.HP += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.生命恢复:
-                            state.AddHp += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.AddHp += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.防御力:
-                            state.Defense += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.Defense += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.技能攻击力:
-                            state.SkillAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.SkillAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.暴击率:
-                            state.Cirtical += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.Cirtical += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.暴击伤害:
-                            state.CirticalAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.CirticalAttack += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.攻击速度:
-                            state.AttackSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor);
+                            state.AttackSpeed += equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor/10);
                             break;
                         case StateMode.移动速度:
                             state.MovSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
                             break;
                         case StateMode.释放速度:
                             state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
+                            break;
+                        case StateMode.治疗量:
+                            state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/10);
+                            break;
+                        case StateMode.力量:
+                            state.Power += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
+                            break;
+                        case StateMode.智力:
+                            state.Intelligence += (equipHelos[i].item.attribute[E].value*Mathf.Max(1,equipHelos[i].Powor)/100);
                             break;
                         default:
                             break;

@@ -58,25 +58,11 @@ namespace ARPG
         public const string PoworID = "22001";
         
         /// <summary>
-        /// 计算成长值后的属性
+        /// 计算属性成长之后的属性
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="levle">等级</param>
+        /// <param name="state">角色CharacterState</param>
         /// <returns></returns>
-        public static CharacterState GetGrowthState(CharacterState state)
-        {
-            state.PhysicsAttack = (int)(state.PhysicsAttack * (1+state.Growth));
-            state.MagicAttack = (int)(state.MagicAttack *  (1+state.Growth));
-            state.Defense = (int)(state.Defense *  (1+state.Growth));
-            state.HP = (int)(state.HP *  (1+state.Growth));
-            state.AddHp = (int)(state.AddHp *  (1+state.Growth));
-            state.Cirtical = (int)(state.Cirtical *  (1+state.Growth));
-            state.Power = (int)(state.Power *  (1+state.Growth));
-            state.Intelligence = (int)(state.Intelligence *  (1+state.Growth));
-            state.AttackSpeed = (state.AttackSpeed *  1+(state.Growth*0.125f));
-            state.MovSpeed = (state.MovSpeed *  1+(state.Growth*0.125f));
-            return state;
-        }
-        
         public static CharacterState GetLevelGrowthState(int levle,CharacterState state)
         {
             state.PhysicsAttack = (int)(state.PhysicsAttack * (levle*(1+state.Growth)));
