@@ -11,6 +11,8 @@ namespace ARPG.UI
     {
         private Slider _slider;
         private TextMeshProUGUI Hp;
+        private TextMeshProUGUI BossName;
+        private TextMeshProUGUI BossLevel;
         private RectTransform _fill; 
         private RectTransform _tweenFill;
         
@@ -29,9 +31,11 @@ namespace ARPG.UI
             _fill = Get<RectTransform>("UIMask/Slider/Fill Area/Fill");
             _tweenFill = Get<RectTransform>("UIMask/Slider/Fill Area/Fill_Vlaue");
             Hp = Get<TextMeshProUGUI>("UIMask/Slider/HP_Value");
+            BossName = Get<TextMeshProUGUI>("UIMask/Slider/BossName");
+            BossLevel = Get<TextMeshProUGUI>("UIMask/Slider/BossLevel");
         }
 
-        public void InitData(CharacterState state)
+        public void InitData(Enemy enemy,CharacterState state)
         {
             if (!isOpen)
                 Open();
@@ -39,13 +43,16 @@ namespace ARPG.UI
             _slider.maxValue = state.HP;
             _slider.value = state.currentHp;
             Hp.text = state.currentHp + "/" + state.HP;
+            BossName.text = enemy.data.EnemyName;
+            BossLevel.text = "Lv:" + enemy.data.Level;
+            UpdateSlider(enemy,state);
         }
 
-        public void UpdateSlider(CharacterState enemy)
+        public void UpdateSlider(Enemy enemy,CharacterState state)
         {
             if (!isOpen)
             {
-                InitData(enemy);
+                InitData(enemy,state);
                 Open();
             }
 
@@ -55,8 +62,8 @@ namespace ARPG.UI
                 _tweenFill.anchorMax = new Vector2(_fill.anchorMax.x, _fill.anchorMax.y);
                 _Tween = null;
             }
-            _slider.value = enemy.currentHp;
-            Hp.text = enemy.currentHp + "/" + enemy.HP;
+            _slider.value = state.currentHp;
+            Hp.text = state.currentHp + "/" + state.HP;
             if(gameObject.activeSelf)
                 _Tween = StartCoroutine(TweenFill());
             

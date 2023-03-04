@@ -13,7 +13,7 @@ namespace ARPG
         {
             if (enemy.data.Type == EnemyType.BOSS && enemy.stateUI != null)
             {
-                enemy.stateUI.UpdateSlider(enemy.GetState());
+                enemy.stateUI.UpdateSlider(enemy,enemy.GetState());
             }
 
             enemy.anim.SetTrigger(s_Damage);

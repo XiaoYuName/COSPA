@@ -345,6 +345,7 @@ namespace ARPG
                     {
                         currentStar = (int) info.CharacterStarType,
                         exp = 0,
+                        Level = 1,
                         ID = characterList[i]
                     };
                     InventoryManager.Instance.AddCharacter(AddBag);

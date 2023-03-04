@@ -76,7 +76,7 @@ namespace ARPG
                 UISystem.Instance.OpenUI("BOSSAppear");
                 AudioManager.Instance.PlayAudio("DeftualBOSS_BGM");
                 stateUI = UISystem.Instance.GetUI<BossStateUI>("BossStateUI");
-                stateUI.InitData(State);
+                stateUI.InitData(this,State);
                 animState = 999;
                 anim.SetInteger(s_State,animState);
                 SwitchFSM(FSMType.BOSSBehaviour);

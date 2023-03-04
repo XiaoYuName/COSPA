@@ -15,7 +15,7 @@ namespace ARPG
         {
             Base = enemy;
             Base.anim.SetTrigger("Star");
-            enemy.stateUI.InitData(enemy.GetState());
+            enemy.stateUI.InitData(enemy,enemy.GetState());
             MessageManager.Instance.Register<string>(C2C.BOSSEventMsg,SpienEvent);
         }
 

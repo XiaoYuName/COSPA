@@ -313,5 +313,17 @@ namespace ARPG.Config
         public ItemBag itemBag;
         public RewordType Type;
     }
+
+    [Serializable]
+    public class RandomRewordItemBag
+    {
+        public ItemBag itemBag;
+        public RewordType Type;
+        /// <summary>
+        /// 概率
+        /// </summary>
+        [Range(0, 1)] 
+        public float random;
+    }
 }
 
