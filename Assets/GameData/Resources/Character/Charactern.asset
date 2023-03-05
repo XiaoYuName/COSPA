@@ -66,7 +66,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 7
       MagicAttack: 1
-      Defense: 5
+      PhysicsDefense: 6
+      MagicDefense: 4
       HP: 60
       currentHp: 0
       AddHp: 5
@@ -161,7 +162,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 1
       MagicAttack: 4
-      Defense: 5
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 40
       currentHp: 0
       AddHp: 5
@@ -256,7 +258,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 1
       MagicAttack: 8
-      Defense: 5
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 80
       currentHp: 0
       AddHp: 5
@@ -351,7 +354,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 17
       MagicAttack: 3
-      Defense: 8
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 125
       currentHp: 0
       AddHp: 2

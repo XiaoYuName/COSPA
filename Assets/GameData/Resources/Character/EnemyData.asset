@@ -22,7 +22,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 3
       MagicAttack: 1
-      Defense: 6
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 20
       currentHp: 38
       AddHp: 2
@@ -52,7 +53,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 3
       MagicAttack: 1
-      Defense: 4
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 25
       currentHp: 40
       AddHp: 2
@@ -82,7 +84,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 15
       MagicAttack: 15
-      Defense: 10
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 10
       currentHp: 0
       AddHp: 2
@@ -112,7 +115,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 8
       MagicAttack: 8
-      Defense: 8
+      PhysicsDefense: 9
+      MagicDefense: 9
       HP: 13
       currentHp: 0
       AddHp: 2
@@ -124,7 +128,7 @@ MonoBehaviour:
       Vit: 10
       Agility: 7
       AttackSpeed: 2.25
-      ReleaseSpeed: 0
+      ReleaseSpeed: 1
       MovSpeed: 0.65
       Growth: 0.1
     SkillTable:
@@ -142,7 +146,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 25
       MagicAttack: 8
-      Defense: 10
+      PhysicsDefense: 25
+      MagicDefense: 25
       HP: 125
       currentHp: 0
       AddHp: 2
@@ -175,7 +180,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 25
       MagicAttack: 25
-      Defense: 8
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 100
       currentHp: 0
       AddHp: 2
@@ -205,7 +211,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 8
       MagicAttack: 25
-      Defense: 8
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 75
       currentHp: 0
       AddHp: 2
@@ -235,7 +242,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 8
       MagicAttack: 21
-      Defense: 8
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 75
       currentHp: 0
       AddHp: 2
@@ -265,7 +273,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 25
       MagicAttack: 25
-      Defense: 8
+      PhysicsDefense: 0
+      MagicDefense: 0
       HP: 111
       currentHp: 0
       AddHp: 2

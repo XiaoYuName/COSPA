@@ -17,7 +17,7 @@ namespace ARPG
         /// 在背包的数据
         /// </summary>
         [HideInInspector] public CharacterBag currentBag;
-        protected CharacterState State;
+        [SerializeField]protected CharacterState State;
         protected CharacterConfigInfo data;
         protected SkeletonMecanim Spine;
         [HideInInspector]public Animator anim;
