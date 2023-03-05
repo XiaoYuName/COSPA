@@ -22,6 +22,10 @@ namespace ARPG
         /// 当前战斗的副本
         /// </summary>
         private RegionItem currentRegion;
+        /// <summary>
+        /// 当前战斗的章节
+        /// </summary>
+        private RegionLine currentRegionLine;
         
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
@@ -33,16 +37,18 @@ namespace ARPG
             
             DamageWordUI = GameSystem.Instance.GetPrefab("DamageText");
         }
-        
-        
+
+
         /// <summary>
         /// 初始化加载战斗场景
         /// </summary>
         /// <param name="bags">玩家列表</param>
         /// <param name="pos">玩家位置</param>
-        /// <param name="regionItem">敌人配置</param>
-        public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionItem regionItem)
+        /// <param name="regionLine">当前战斗的主线</param>
+        /// <param name="regionItem">当前战斗的章节</param>
+        public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionLine regionLine,RegionItem regionItem)
         {
+            currentRegionLine = regionLine;
             currentRegion = regionItem;
             currentPress = regionItem.Press;
             var data = InventoryManager.Instance.GetCharacter(bags.ID);
@@ -164,6 +170,15 @@ namespace ARPG
             BUFFManager.Instance.RemoveDictionary(Player);
             Destroy(Player.gameObject);
             InventoryManager.Instance.SetPress(currentPress);
+
+            if (currentRegionLine != null)
+            {
+                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,LookState.已通关);
+                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,3);
+                MessageAction.OnSetUpRegionPress();
+            }
+
+            
             MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
         }
 

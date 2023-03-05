@@ -29,6 +29,7 @@ namespace ARPG.UI
         private TextMeshProUGUI maxText;
         
         private RegionItem currentRegion;
+        private RegionLine currentRegionLine;
 
         public override void Init()
         {
@@ -47,12 +48,13 @@ namespace ARPG.UI
         /// <summary>
         /// 创建出战角色UI
         /// </summary>
-        public void CreateChacacterSlotUI(RegionItem regionItem)
+        public void CreateChacacterSlotUI(RegionLine regionLine,RegionItem regionItem)
         {
             UIHelper.Clear(content);
             UIHelper.Clear(selectContent);
             SlotUis.Clear();
             currentRegion = regionItem;
+            currentRegionLine = regionLine;
             SelectSlotUis = new SelectSlotUI[Settings.MaxSelectAmount];
             currentCount = 0;
             currentText.text = "当前出战: <color=red>" + currentCount + "</color>";
@@ -68,6 +70,24 @@ namespace ARPG.UI
             }
         }
 
+        public void CreateChacacterSlotUI(RegionItem regionItem)
+        {
+            UIHelper.Clear(content);
+            UIHelper.Clear(selectContent);
+            SlotUis.Clear();
+            currentRegion = regionItem;
+            SelectSlotUis = new SelectSlotUI[Settings.MaxSelectAmount];
+            currentCount = 0;
+            currentText.text = "当前出战: <color=red>" + currentCount + "</color>";
+            maxText.text = "当前出战总上限:<color=red>" + Settings.MaxSelectAmount + "</color>";
+            List<CharacterBag> characterBags =  InventoryManager.Instance.GetCharacterAllBag();
+            for (int i = 0; i < characterBags.Count; i++)
+            {
+                CharacterSlotUI Slot =  UISystem.Instance.InstanceUI<CharacterSlotUI>("CharacterSlotUI", content);
+                Slot.InitData(i,characterBags[i]);
+                SlotUis.Add(Slot);
+            }
+        }
 
         /// <summary>
         /// 刷新选中角色UI
@@ -133,7 +153,7 @@ namespace ARPG.UI
             if (SelectSlotUis[0] != null && !String.IsNullOrEmpty(currentRegion.targetScene))
             {
                 Close();
-                MessageAction.OnStartGameScene(currentRegion.targetScene,currentRegion.StarPos,SelectSlotUis[0].currentdata,currentRegion);
+                MessageAction.OnStartGameScene(currentRegion.targetScene,currentRegion.StarPos,SelectSlotUis[0].currentdata,currentRegionLine,currentRegion);
                 MainPanel.Instance.Close();
             }
             else

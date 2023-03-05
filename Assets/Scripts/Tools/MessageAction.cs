@@ -10,7 +10,7 @@ namespace ARPG
     {
         #region 场景切换
 
-        public static event Action<string, Vector3,CharacterBag,RegionItem> StartGameScene;
+        public static event Action<string, Vector3,CharacterBag,RegionLine,RegionItem> StartGameScene;
 
         /// <summary>
         /// 首次进入战斗场景
@@ -18,10 +18,11 @@ namespace ARPG
         /// <param name="scneneName">场景名称</param>
         /// <param name="pos">生成位置</param>
         /// <param name="Character">玩家配置</param>
+        /// <param name="regionLine">主线</param>
         /// <param name="regionItem">敌人配置</param>
-        public static void OnStartGameScene(string scneneName, Vector3 pos,CharacterBag Character,RegionItem regionItem)
+        public static void OnStartGameScene(string scneneName, Vector3 pos,CharacterBag Character,RegionLine regionLine,RegionItem regionItem)
         {
-            StartGameScene?.Invoke(scneneName,pos,Character,regionItem);
+            StartGameScene?.Invoke(scneneName,pos,Character,regionLine,regionItem);
         }
 
         public static event Action<string, Vector3> TransitionEvent;
@@ -106,6 +107,17 @@ namespace ARPG
         {
             RefRegionPress?.Invoke();
         }
+        
+        /// <summary>
+        /// 通关后刷新进度字典
+        /// </summary>
+        public static event Action SetUpRegionPress;
+        
+        public static void OnSetUpRegionPress()
+        {
+            SetUpRegionPress?.Invoke();
+        }
+        
 
         /// <summary>
         /// 创建新用户事件
@@ -153,7 +165,7 @@ namespace ARPG
         #endregion
 
 
-
+        
     }
 }
 

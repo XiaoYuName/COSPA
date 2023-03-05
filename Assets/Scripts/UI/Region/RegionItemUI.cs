@@ -13,7 +13,7 @@ public class RegionItemUI : UIBase
     private GameObject RegionMode;
     private Button OnClick;
 
-    private string _RegionName;
+    private RegionLine _regionLine;
     private RegionItem _RegionItem;
     private LookState _lookState;
 
@@ -27,13 +27,13 @@ public class RegionItemUI : UIBase
         Bind(OnClick,OnClikc,UiAudioID.UI_click);
     }
 
-    public void InitData(string RegionName,RegionItem data)
+    public void InitData(RegionLine regionLine,RegionItem data)
     {
-        _RegionName = RegionName;
+        _regionLine = regionLine;
         _RegionItem = data;
         icon.sprite = data.backIcon;
         MapIndex.text = data.RegionItemName;
-        var Save = InventoryManager.Instance.GetRegionData(RegionName, data.RegionItemName);
+        var Save = InventoryManager.Instance.GetRegionData(_regionLine.RegionName, data.RegionItemName);
         if (Save == null)
         {
             StarContent.Show(0);
@@ -54,10 +54,30 @@ public class RegionItemUI : UIBase
         _RegionItem = null;
     }
 
+    public void SetUpState()
+    {
+        if (_regionLine == null || _RegionItem == null)
+        {
+            SetNotData();
+            return;
+        }
+        var Save = InventoryManager.Instance.GetRegionData(_regionLine.RegionName, _RegionItem.RegionItemName);
+        if (Save == null)
+        {
+            StarContent.Show(0);
+            _lookState = LookState.未开启;
+            MapIndex.text = "???";
+            return;
+        }
+        StarContent.Show(Save.Star);
+        _lookState = Save.State;
+        RegionMode.gameObject.SetActive(Save.State == LookState.未开启);
+    }
+
 
     private void OnClikc()
     {
-        if (_RegionName == null || _RegionItem == null)
+        if (_regionLine == null || _RegionItem == null)
         {
             UISystem.Instance.ShowTips("暂未开放");
             return;
@@ -67,10 +87,9 @@ public class RegionItemUI : UIBase
             UISystem.Instance.ShowTips("请通过上个关卡");
             return;
         }
-        Debug.Log("准备弹出选择战斗角色界面:"+_RegionName+"   "+_RegionItem.RegionItemName);
         MainPanel.Instance.AddTbaleChild("RegionToolTip");
         UISystem.Instance.OpenUI<RegionToolTip>("RegionToolTip",(ui)=>
-            ui.InitData(_RegionItem));
+            ui.InitData(_regionLine,_RegionItem));
     }
 
 

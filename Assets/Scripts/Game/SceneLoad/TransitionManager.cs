@@ -41,15 +41,15 @@ namespace RPG.Transition
             MessageAction.StartGameScene -= StarGameScen;
         }
 
-        private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data,RegionItem regionItem)
+        private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data,RegionLine regionLine,RegionItem regionItem)
         {
             if (!isFade)
-                StartCoroutine(StartGameScene(SceneName,pos,data,regionItem));
+                StartCoroutine(StartGameScene(SceneName,pos,data,regionLine,regionItem));
         }
 
-        private IEnumerator StartGameScene(string ScnenName, Vector3 pos,CharacterBag data,RegionItem regionItem)
+        private IEnumerator StartGameScene(string ScnenName, Vector3 pos,CharacterBag data,RegionLine regionLine,RegionItem regionItem)
         {
-            yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos,regionItem));
+            yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos,regionLine,regionItem));
             EnemyManager.Instance.PlayEnemy();
         }
 

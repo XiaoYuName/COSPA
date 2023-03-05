@@ -679,6 +679,53 @@ namespace ARPG
                 if (RegionSaveBag[ID].ContainsKey(ChildID))
                 {
                     RegionSaveBag[ID][ChildID].State = state;
+                    if (state == LookState.已通关)
+                    {
+                        //通知更改下一个主线进度
+                        for (int i = 0; i < RegionSaveBag[ID].Count; i++)
+                        {
+                            (string childID, RegionProgress progress) = RegionSaveBag[ID].ElementAt(i);
+                            if (childID == ChildID)
+                            {
+                                int index = i + 1;
+                                if (index < RegionSaveBag[ID].Count)
+                                {
+                                    (string tempID,RegionProgress regionProgress) =RegionSaveBag[ID].ElementAt(index);
+                                    RegionSaveBag[ID][tempID].State = LookState.已解锁;
+                                    MessageAction.OnSetUpRegionPress();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public void SetRegionHandle(string ID, string ChildID, int value, LookState lookState)
+        {
+            if (RegionSaveBag.ContainsKey(ID))
+            {
+                if (RegionSaveBag[ID].ContainsKey(ChildID))
+                {
+                    RegionSaveBag[ID][ChildID].State = lookState;
+                    RegionSaveBag[ID][ChildID].Star = value;
+                    if (lookState == LookState.已通关)
+                    {
+                        //通知更改下一个主线进度
+                        for (int i = 0; i < RegionSaveBag[ID].Count; i++)
+                        {
+                            (string childID, RegionProgress progress) = RegionSaveBag[ID].ElementAt(i);
+                            if (childID == ChildID)
+                            {
+                                int index = i + 1;
+                                if (index < RegionSaveBag[ID].Count)
+                                {
+                                    (string tempID,RegionProgress regionProgress) =RegionSaveBag[ID].ElementAt(i);
+                                    RegionSaveBag[ID][tempID].State = LookState.已解锁;
+                                    MessageAction.OnSetUpRegionPress();
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

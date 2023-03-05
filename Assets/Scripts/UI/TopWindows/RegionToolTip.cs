@@ -33,36 +33,8 @@ namespace ARPG.UI
             OpenBtn = Get<Button>("UIMask/Back/RightPanel/OpenBtn");
         }
 
-        public void InitData(RegionItem regionItem)
+        public void InitData(RegionLine line,RegionItem regionItem)
         {
-           
-            if (Settings.isRandomRegion(regionItem.RegionItemName))
-            {
-                RandomMapItem randomMapItem = MapConfig.GetRandomMapItem(regionItem.RegionItemName);
-                MapName.text = randomMapItem.ID;
-                BackImage.sprite = randomMapItem.mapIcon;
-                CreateSlotUI(randomMapItem.RewordItemList);
-                UIHelper.Clear(EnemyContent);
-                for (int i = 0; i < regionItem.WaveItems.Count; i++)
-                {
-                    CreateEnemyUI(i,regionItem.WaveItems[i].EnemyList);
-                }
-                UIHelper.Clear(RewordContent);
-                CreateMontySlotUI(randomMapItem.MoneyReword);
-            
-                Bind(OpenBtn, delegate
-                {
-                    void Func(SwitchCharacterPanel ui)
-                    {
-                        ui.CreateChacacterSlotUI(regionItem);
-                        MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
-                    }
-                    UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel", Func);
-                }, "OnChick");
-                return;
-                
-                
-            }
             MapItem mapItem = MapConfig.Get(regionItem.RegionItemName);
             MapName.text = mapItem.ID;
             BackImage.sprite = mapItem.mapIcon;
@@ -74,6 +46,32 @@ namespace ARPG.UI
             }
             UIHelper.Clear(RewordContent);
             CreateMontySlotUI(mapItem.MoneyReword);
+            
+            Bind(OpenBtn, delegate
+            {
+                void Func(SwitchCharacterPanel ui)
+                {
+                    ui.CreateChacacterSlotUI(line,regionItem);
+                    MainPanel.Instance.AddTbaleChild("SwitchCharacterPanel");
+                }
+                UISystem.Instance.OpenUI<SwitchCharacterPanel>("SwitchCharacterPanel", Func);
+            }, "OnChick");
+        }
+
+
+        public void InitData(RegionItem regionItem)
+        {
+            RandomMapItem randomMapItem = MapConfig.GetRandomMapItem(regionItem.RegionItemName);
+            MapName.text = randomMapItem.ID;
+            BackImage.sprite = randomMapItem.mapIcon;
+            CreateSlotUI(randomMapItem.RewordItemList);
+            UIHelper.Clear(EnemyContent);
+            for (int i = 0; i < regionItem.WaveItems.Count; i++)
+            {
+                CreateEnemyUI(i,regionItem.WaveItems[i].EnemyList);
+            }
+            UIHelper.Clear(RewordContent);
+            CreateMontySlotUI(randomMapItem.MoneyReword);
             
             Bind(OpenBtn, delegate
             {
