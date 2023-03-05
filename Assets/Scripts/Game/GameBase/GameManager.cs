@@ -182,8 +182,22 @@ namespace ARPG
                 MessageAction.OnSetUpRegionPress();
             }
 
-            
-            MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            if (currentRegionLine != null)
+            {
+                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
+                if(quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                else
+                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            }
+            else
+            {
+                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
+                if (quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
+                else
+                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            }
         }
 
         /// <summary>

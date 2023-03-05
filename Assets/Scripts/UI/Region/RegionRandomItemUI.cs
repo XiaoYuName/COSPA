@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ARPG.UI;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace ARPG
         private Button Button;
 
         public RegionRandomType Type;
+        public Image Tweenicon;
         private void Awake()
         {
             Init();
@@ -22,6 +24,11 @@ namespace ARPG
         {
             Button = GetComponent<Button>();
             Bind(Button, OnClick, UiAudioID.UI_Bc_Click);
+            if (Tweenicon != null)
+            {
+                Tweenicon.transform.DOScale(new Vector3(1.15f, 1.15f, 0), 0.15f).SetLoops(-1, LoopType.Yoyo);
+            }
+
         }
 
         private void OnClick()

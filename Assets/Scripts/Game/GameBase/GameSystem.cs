@@ -84,6 +84,16 @@ namespace ARPG
         }
 
         /// <summary>
+        /// 获取对应副本退出后的停留关卡
+        /// </summary>
+        /// <param name="lineName">主线关卡</param>
+        /// <returns></returns>
+        public RegionQuitData GetQuitData(string lineName)
+        {
+            return GameConfig.GetRegionQuitData(lineName);
+        }
+
+        /// <summary>
         /// 获取精灵
         /// </summary>
         /// <param name="id">配置表ID</param>

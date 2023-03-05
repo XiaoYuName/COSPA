@@ -25,6 +25,15 @@ namespace ARPG
             StartGameScene?.Invoke(scneneName,pos,Character,regionLine,regionItem);
         }
 
+
+        public static event Action<string, RegionQuitData> QuitAttackScene;
+
+        public static void OnQuitAttackScnen(string sceneName, RegionQuitData data)
+        {
+            QuitAttackScene?.Invoke(sceneName,data);
+        }
+
+
         public static event Action<string, Vector3> TransitionEvent;
         
         public static void OnTransitionEvent(string name, Vector3 pos)

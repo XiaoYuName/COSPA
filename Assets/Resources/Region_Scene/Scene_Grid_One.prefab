@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 0
   Type: 1
+  Tweenicon: {fileID: 9123237003043256964}
 --- !u!1 &875849267273362501
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +764,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
+  dataLine:
+    RegionName: 
+    RegionDes: 
+    backIcon: {fileID: 0}
+    Mode: 0
+    SceneGrid: {fileID: 0}
+    RegionItemList: []
 --- !u!1 &7012663978799338712
 GameObject:
   m_ObjectHideFlags: 0

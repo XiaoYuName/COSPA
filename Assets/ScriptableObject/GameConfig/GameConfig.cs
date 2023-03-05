@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.UI.Config;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -60,6 +61,18 @@ namespace ARPG.Config
             return mode.icon;
         }
 
+
+        public List<RegionQuitData> RegionQuitDatas = new List<RegionQuitData>();
+
+        /// <summary>
+        /// 获取对应主线退出后的停留页面
+        /// </summary>
+        /// <returns></returns>
+        public RegionQuitData GetRegionQuitData(string LineName)
+        {
+            return RegionQuitDatas.Find(name => name.RegionLineName == LineName);
+        }
+
     }
     
     [System.Serializable]
@@ -90,5 +103,21 @@ namespace ARPG.Config
         public RegionMode type;
         
         public Sprite icon;
+    }
+
+
+    /// <summary>
+    /// 各个部分退出后,要回到的界面
+    /// </summary>
+    [Serializable]
+    public class RegionQuitData
+    {
+        public string RegionLineName;
+
+        public TableType table;
+
+        public string uiname;
+
+        public string uiname_er;
     }
 }

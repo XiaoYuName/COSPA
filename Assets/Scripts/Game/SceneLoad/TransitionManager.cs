@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using ARPG;
 using ARPG.Config;
+using ARPG.UI;
 using ARPG.UI.Config;
 using NaughtyAttributes;
 using UnityEngine;
@@ -33,12 +35,14 @@ namespace RPG.Transition
         {
             MessageAction.TransitionEvent += TransitionScnen;
             MessageAction.StartGameScene += StarGameScen;
+            MessageAction.QuitAttackScene += TransitionQuitAttackScnen;
         }
         
         private void OnDisable()
         {
             MessageAction.TransitionEvent -= TransitionScnen;
             MessageAction.StartGameScene -= StarGameScen;
+            MessageAction.QuitAttackScene -= TransitionQuitAttackScnen;
         }
 
         private void StarGameScen(string SceneName,Vector3 pos,CharacterBag data,RegionLine regionLine,RegionItem regionItem)
@@ -53,11 +57,18 @@ namespace RPG.Transition
             EnemyManager.Instance.PlayEnemy();
         }
 
+        
 
         private void TransitionScnen(string ScnenName, Vector3 pos)
         {
             if (!isFade)
                 StartCoroutine(Transition(ScnenName, pos));
+        }
+
+        private void TransitionQuitAttackScnen(string ScnenName,RegionQuitData data)
+        {
+            if (!isFade)
+                StartCoroutine(Transition(ScnenName, data));
         }
 
         /// <summary>
@@ -70,11 +81,21 @@ namespace RPG.Transition
                 StartCoroutine(Transition(ScnenName));
         }
 
+        /// <summary>
+        /// 加载一个场景
+        /// </summary>
+        /// <param name="scnemName"></param>
+        /// <returns></returns>
         private IEnumerator LoadScnen(string scnemName)
         {
             yield return SceneManager.LoadSceneAsync(scnemName,LoadSceneMode.Additive);
         }
 
+        /// <summary>
+        /// 异步加载一个场景
+        /// </summary>
+        /// <param name="scnenName">场景名称</param>
+        /// <returns></returns>
         private IEnumerator LoadAsynScnen(string scnenName)
         {
             yield return SceneManager.LoadSceneAsync(scnenName,LoadSceneMode.Additive);
@@ -97,6 +118,53 @@ namespace RPG.Transition
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             yield return LoadAsynScnen(sceneName);
             MessageAction.OnMovToPosint(targetpos);
+            yield return Fade(0);
+            MessageAction.OnAfterScenenLoadEvent();
+            
+        }
+        
+        /// <summary>
+        /// 场景切换,并切换到对应分之
+        /// </summary>
+        /// <param name="sceneName">场景名称</param>
+        /// <param name="tableType">切换的分之</param>
+        /// <param name="uiname">打开的UIName</param>
+        /// <returns></returns>
+        private IEnumerator Transition(string sceneName,TableType tableType,string uiname)
+        {
+            //卸载当前场景
+            MessageAction.OnBeforScenenUnloadEvent();
+            yield return Fade(1);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return LoadAsynScnen(sceneName);
+            MainPanel.Instance.SwitchTabBtn(tableType);
+            UISystem.Instance.OpenUI(uiname);
+            yield return Fade(0);
+            MessageAction.OnAfterScenenLoadEvent();
+            
+        }
+        
+        private IEnumerator Transition(string sceneName,RegionQuitData data)
+        {
+            //卸载当前场景
+            MessageAction.OnBeforScenenUnloadEvent();
+            yield return Fade(1);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return LoadAsynScnen(sceneName);
+            MainPanel.Instance.SwitchTabBtn(data.table);
+            if (!String.IsNullOrEmpty(data.uiname))
+            {
+                UISystem.Instance.OpenUI(data.uiname);
+                MainPanel.Instance.AddTbaleChild(data.uiname);
+            }
+
+            if (!String.IsNullOrEmpty(data.uiname_er))
+            {
+                UISystem.Instance.OpenUI(data.uiname_er);
+                MainPanel.Instance.AddTbaleChild(data.uiname_er);
+            }
+
+            
             yield return Fade(0);
             MessageAction.OnAfterScenenLoadEvent();
             
