@@ -129,8 +129,12 @@ namespace ARPG.UI
             UIHelper.Clear(ItemContent);
             foreach (var Item in Reword)
             {
-                MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",ItemContent);
-                Slot.InitData(Item.itemBag);
+                RewordSlotUI rewordSlotUI = UISystem.Instance.InstanceUI<RewordSlotUI>("RewordSlotUI", ItemContent);
+                rewordSlotUI.InitData(new RewordItemBag()
+                {
+                    itemBag = Item.itemBag,
+                    Type = Item.Type,
+                });
             }
         }
         
@@ -139,8 +143,12 @@ namespace ARPG.UI
             UIHelper.Clear(ItemContent);
             foreach (var Item in Reword)
             {
-                MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",ItemContent);
-                Slot.InitData(Item.itemBag);
+                RewordSlotUI rewordSlotUI = UISystem.Instance.InstanceUI<RewordSlotUI>("RewordSlotUI", ItemContent);
+                rewordSlotUI.InitData(new RewordItemBag()
+                {
+                    itemBag = Item.itemBag,
+                    Type = Item.Type,
+                });
             }
         }
         
@@ -166,8 +174,12 @@ namespace ARPG.UI
         {
             foreach (var Item in Reword)
             {
-                MaterialSlotUI Slot = UISystem.Instance.InstanceUI<MaterialSlotUI>("MaterialSlotUI",RewordContent);
-                Slot.InitData(Item.itemBag);
+                RewordSlotUI rewordSlotUI = UISystem.Instance.InstanceUI<RewordSlotUI>("RewordSlotUI", RewordContent);
+                rewordSlotUI.InitData(new RewordItemBag()
+                {
+                    itemBag = Item.itemBag,
+                    Type = Item.Type,
+                });
             }
         }
 

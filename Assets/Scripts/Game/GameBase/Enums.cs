@@ -139,7 +139,14 @@ namespace ARPG
        /// 首次通关奖励
        /// </summary>
        Star,
+       /// <summary>
+       /// 三星奖励
+       /// </summary>
        ThreeStar,
+       /// <summary>
+       /// 随机概率获得
+       /// </summary>
+       Random,
    }
 
    public enum UITableType

@@ -14,7 +14,7 @@ namespace ARPG
         {
             base.Init(enemy, item);
             MessageManager.Instance.Register<string>(C2C.BOSSEventMsg,AnimatorEvent);
-            AttackPoint = enemy.transform.Find("AttackPoint");
+            AttackPoint = enemy.GetPoint("body");
         }
 
         public override void Play(Action action)
