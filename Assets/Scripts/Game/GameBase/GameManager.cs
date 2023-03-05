@@ -85,7 +85,22 @@ namespace ARPG
             BUFFManager.Instance.RemoveDictionary(Player);
             EnemyManager.Instance.QuitGameScene();
             Destroy(Player.gameObject);
-            MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            if (currentRegionLine != null)
+            {
+                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
+                if(quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                else
+                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            }
+            else
+            {
+                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
+                if (quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
+                else
+                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+            }
         }
 
         private Coroutine _coroutine;
