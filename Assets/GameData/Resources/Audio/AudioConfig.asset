@@ -127,6 +127,12 @@ MonoBehaviour:
     InitVolume: 0.8
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: Special
+    audioType: 0
+    clip: {fileID: 8300000, guid: f1f4908657b01dd4fa367c8e59fa9c00, type: 3}
+    InitVolume: 0.5
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   - ID: bgm_character
     audioType: 0
     clip: {fileID: 8300000, guid: cdb0cca6694690746959f4dd626a5edb, type: 3}
