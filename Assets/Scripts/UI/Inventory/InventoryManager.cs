@@ -654,7 +654,8 @@ namespace ARPG
             {
                 RegionSaveBag[ID].Add(ChildID,new RegionProgress()
                 {
-                    RegionID = ChildID,
+                    RegionID = ID,
+                    ChildID = ChildID,
                     Star = 0,
                     State = LookState.未开启,
                 });
@@ -747,7 +748,8 @@ namespace ARPG
             //独立副本
             for (int i = 0; i < MainConfig.RegionSingleton.Count; i++)
             {
-                RegRegionHandle(MainConfig.RegionList[i].RegionName,MainConfig.RegionList[i].RegionName);
+                RegRegionHandle(MainConfig.RegionSingleton[i].RegionItemName,MainConfig.RegionSingleton[i].RegionItemName);
+                SetRegionHandle(MainConfig.RegionSingleton[i].RegionItemName, MainConfig.RegionSingleton[i].RegionItemName, 3, LookState.已解锁);
             }
             SetRegionHandle(MainConfig.RegionList[0].RegionName,MainConfig.RegionList[0].RegionItemList[0].RegionItemName,LookState.已解锁);
         }
