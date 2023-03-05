@@ -48,19 +48,13 @@ namespace ARPG
         
         [HideInInspector]public BossStateUI stateUI;
         private SkeletonUtilityBone[] bones;
-      
-
-        /// <summary>
-        /// 自定义中心点
-        /// </summary>
-        private Transform CentenPoint;
+        
         protected void Awake()
         {
             anim = transform.Find("Spine").GetComponent<Animator>();
             Spine = transform.Find("Spine").GetComponent<SkeletonMecanim>();
             rb = GetComponent<Rigidbody2D>();
             DamageCollider2D = transform.Find("DamageCollider").GetComponent<Collider2D>();
-            CentenPoint = transform.Find("GetPoint");
         }
 
         public virtual void Init(int sort,EnemyData Data,int level)
@@ -190,7 +184,7 @@ namespace ARPG
         /// <returns></returns>
         public Vector3 GetPoint()
         {
-            return CentenPoint.position;
+            return transform.position;
         }
         
         /// <summary>
@@ -200,10 +194,11 @@ namespace ARPG
         /// <returns>返回对应骨骼根节点位置，如果找不到,则直接返回Character原点</returns>
         public Transform GetPoint(string BoneName)
         {
-            if (bones == null) return transform;
+            if (bones is not { Length: > 0 }) return transform;
             foreach (var bone in bones)
             {
-                if (bone.bone.ToString() == BoneName)
+                if(String.IsNullOrEmpty(bone.boneName))continue;
+                if (bone.boneName == BoneName)
                 {
 #if UNITY_EDITOR
                     Debug.Log("找到对应:"+BoneName+"骨骼跟随节点");
@@ -220,7 +215,7 @@ namespace ARPG
         /// <returns></returns>
         public Transform GetTransform()
         {
-            return CentenPoint;
+            return GetPoint("root");
         }
         
         /// <summary>

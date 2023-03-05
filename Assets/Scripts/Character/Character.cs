@@ -26,6 +26,7 @@ namespace ARPG
         [HideInInspector]public float animSpeed = 1; //动画驱动的移动速度，该速度控制在动画播放过程中,能否能进行重复操作，或者切换动画
         [HideInInspector]public bool isAI;
         public Collider2D DamageCollider2D;
+        public Collider2D GroundCollider;
         private SkeletonUtilityBone[] bones;
 
 
@@ -66,6 +67,7 @@ namespace ARPG
             Joystick.gameObject.SetActive(true);
             attackButton = UISystem.Instance.GetUI<AttackButton>("AttackButton");
             DamageCollider2D = transform.Find("DamageCollier").GetComponent<Collider2D>();
+            GroundCollider = GetComponent<Collider2D>();
             StateUI = UISystem.Instance.GetUI<PlayerState>("PlayerState");
         }
 
