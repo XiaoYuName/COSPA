@@ -151,7 +151,8 @@ namespace RPG.Transition
             yield return Fade(1);
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             yield return LoadAsynScnen(sceneName);
-           
+            var value =MainPanel.Instance.GetTabeleData(data.table);
+            UISystem.Instance.OpenUI(value.OpenUIName);
             if (!String.IsNullOrEmpty(data.uiname))
             {
                 UISystem.Instance.OpenUI(data.uiname);
@@ -163,8 +164,8 @@ namespace RPG.Transition
                 UISystem.Instance.OpenUI(data.uiname_er);
                 MainPanel.Instance.AddTbaleChild(data.uiname_er);
             }
-            var value =MainPanel.Instance.GetTabeleData(data.table);
-            UISystem.Instance.OpenUI(value.OpenUIName);
+           
+            MainPanel.Instance.AddTbaleChild(value.OpenUIName);
             yield return Fade(0);
             MessageAction.OnAfterScenenLoadEvent();
             
