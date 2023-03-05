@@ -199,16 +199,40 @@ MonoBehaviour:
     InitVolume: 0.5
     soundPitchMin: 0.8
     soundPitchMax: 1.2
+  - ID: Scene_Grid_One
+    audioType: 0
+    clip: {fileID: 8300000, guid: 59de88cc1c430cc4d8894f2693403cda, type: 3}
+    InitVolume: 0.5
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
   GolodAudioItem: {fileID: 2586690892610636633, guid: 77df672357f4fef44aea68c82e12d140, type: 3}
   GameAudio:
-  - SceneName: SenLin
-    BgmName: AttackSceneBGM
-    AmbientName: 
-  - SceneName: HUOHUO
-    BgmName: AttackSceneBGM
-    AmbientName: 
-  - SceneName: ShenShenDianTang
+  - SceneName: "1-\u6BCF\u65E5\u526F\u672C"
     BgmName: ShenShenDianTang_BGM
+    AmbientName: 
+  - SceneName: "1-\u521D\u59CB\u68EE\u6797"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u77F3\u5934\u6CC9"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u5927\u6728\u6865"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u5C0F\u6CBC\u6CFD"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u957F\u8D70\u5ECA_1"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u957F\u8D70\u5ECA_2"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u6DF1\u6E0A\u68EE\u6797"
+    BgmName: AttackSceneBGM
+    AmbientName: 
+  - SceneName: "1-\u795E\u5723\u6BBF\u5802"
+    BgmName: AttackSceneBGM
     AmbientName: 
   GolodAudioMixer: {fileID: 24100000, guid: 22eb3a55b8380804e9c5ea02e6a62351, type: 2}
   AudioMixerGroupInfos:

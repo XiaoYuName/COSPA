@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 7012663978742813839}
   - component: {fileID: 7012663978742813838}
   - component: {fileID: 452708860426804751}
+  - component: {fileID: 4149797860298918001}
   m_Layer: 5
   m_Name: Scene_Grid_One
   m_TagString: Untagged
@@ -771,6 +772,21 @@ MonoBehaviour:
     Mode: 0
     SceneGrid: {fileID: 0}
     RegionItemList: []
+--- !u!114 &4149797860298918001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012663978742813824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d7554e7d1c6f24891e6c9677450e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioID: Scene_Grid_One
+  isLoop: 1
+  Type: 0
 --- !u!1 &7012663978799338712
 GameObject:
   m_ObjectHideFlags: 0
