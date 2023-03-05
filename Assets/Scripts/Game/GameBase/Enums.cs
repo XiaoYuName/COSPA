@@ -28,6 +28,8 @@ namespace ARPG
        生命值,
        生命恢复,
        防御力,
+       物理防御力,
+       魔法防御力,
        技能攻击力,
        暴击率,
        暴击伤害,
@@ -137,6 +139,7 @@ namespace ARPG
        /// 首次通关奖励
        /// </summary>
        Star,
+       ThreeStar,
    }
 
    public enum UITableType

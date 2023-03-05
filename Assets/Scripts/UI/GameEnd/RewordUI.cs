@@ -36,7 +36,9 @@ namespace ARPG.UI
         private void CreateSlotUI(RewordItemBag itemBag)
         {
             RewordSlotUI Slot = UISystem.Instance.InstanceUI<RewordSlotUI>("RewordSlotUI",Content);
+            Slot.transform.localScale = Vector3.zero;
             Slot.InitData(itemBag);
+            Slot.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutElastic);
         }
     }
 

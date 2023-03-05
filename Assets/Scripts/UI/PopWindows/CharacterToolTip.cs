@@ -139,9 +139,13 @@ namespace ARPG.UI
             HP.Init();
             HP.Show("HP",currentCharacterState.HP.ToString());
             
+            var PhysicsDefense = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            PhysicsDefense.Init();
+            PhysicsDefense.Show("物理防御",currentCharacterState.PhysicsDefense.ToString());
+            
             var Defense = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             Defense.Init();
-            Defense.Show("防御",currentCharacterState.Defense.ToString());
+            Defense.Show("魔法防御",currentCharacterState.MagicDefense.ToString());
             
             var AttackSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             AttackSpeed.Init();

@@ -16,6 +16,7 @@ namespace ARPG.UI
         private RectTransform NextRect;
         private RewordUI _RewordUI;
         private LevelPanelUI PanelUI;
+        private string LineName;
 
         public Sprite VietorySpien;
         public Sprite OverSpine;
@@ -40,9 +41,10 @@ namespace ARPG.UI
             _RewordUI.Init();
         }
 
-        public void ShowEndGame(MapItem RewordItem)
+        public void ShowEndGame(string LineName,MapItem RewordItem)
         {
             TitleText.sprite = VietorySpien;
+            this.LineName = LineName;
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
                 {
@@ -50,8 +52,9 @@ namespace ARPG.UI
                         StartCoroutine(SettlementGameVictory(RewordItem)));
                 });
         }
-        public void ShowEndGame(RandomMapItem RewordItem)
+        public void ShowEndGame(string LineName,RandomMapItem RewordItem)
         {
+            this.LineName = LineName;
             TitleText.sprite = VietorySpien;
             TitleText.transform.DOScale(new Vector3(1.25f, 1.25f, 1), 1.25f).SetEase(Ease.OutElastic)
                 .OnComplete(delegate
@@ -118,6 +121,12 @@ namespace ARPG.UI
             });
         }
 
+        /// <summary>
+        /// 逐步显示奖励函数
+        /// </summary>
+        /// <param name="reword"></param>
+        /// <param name="levelPanelUI"></param>
+        /// <returns></returns>
         private IEnumerator ShowRewowrdItem(MapItem reword,LevelPanelUI levelPanelUI)
         {
             var netPoint = levelPanelUI.transform.position;
@@ -145,13 +154,34 @@ namespace ARPG.UI
             Player.GetComponent<Collider2D>().enabled = true;
             //逐步生成奖励界面
             List<RewordItemBag> rewordItemBags = new List<RewordItemBag>();
+            RegionProgress progress =  InventoryManager.Instance.GetRegionData(LineName, reword.ID);
             foreach (var Re in  reword.RewordItemList)
             {
-                rewordItemBags.Add(Re);
+                if (progress.State == LookState.已解锁)  //初次通关,获取全部奖励
+                {
+                    rewordItemBags.Add(Re);
+                }else if (progress.State == LookState.已通关)
+                {
+                    if (Re.Type == RewordType.Star)continue;
+                    if(Re.Type == RewordType.ThreeStar && progress.Star <3)continue;
+                    
+                    rewordItemBags.Add(Re);
+                }
+
+
             }
             foreach (var Re in reword.MoneyReword)
             {
-                rewordItemBags.Add(Re);
+                if (progress.State == LookState.已解锁)  //初次通关,获取全部奖励
+                {
+                    rewordItemBags.Add(Re);
+                }else if (progress.State == LookState.已通关)
+                {
+                    if (Re.Type == RewordType.Star)continue;
+                    if(Re.Type == RewordType.ThreeStar && progress.Star <3)continue;
+                    
+                    rewordItemBags.Add(Re);
+                }
             }
             _RewordUI.gameObject.SetActive(true);
             yield return _RewordUI.InitData(rewordItemBags);

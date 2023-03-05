@@ -20,7 +20,7 @@ namespace ARPG
         /// 获取奖励界面每次生成的间隔时间
         /// </summary>
         /// 
-        public const float RewordTime = 0.5f;
+        public const float RewordTime = 0.15f;
 
         /// <summary>
         /// ShowItem 动画时间
@@ -71,7 +71,8 @@ namespace ARPG
             state.Intelligence = (int)(state.Intelligence *  (1+(levle/10)*(1+state.Growth)));
             state.PhysicsAttack = (int)(state.PhysicsAttack * (1+(levle/100)*(1+state.Growth)))+(state.Power / 10);
             state.MagicAttack = (int)(state.MagicAttack * (1+(levle/100)*(1+state.Growth)))+(state.Intelligence/10);
-            state.Defense = (int)(state.Defense *  (1+(levle/7.5)*(1+state.Growth)))+(state.Vit/40);
+            state.PhysicsDefense = (int)(state.PhysicsDefense *  (1+(levle/7.5)*(1+state.Growth)))+(state.Vit/40);
+            state.MagicDefense = (int)(state.MagicDefense *  (1+(levle/7.5)*(1+state.Growth)))+(state.Vit/40);
             state.HP = (int)(state.HP *  (1+(levle/5)*(1+state.Growth)))+(state.Vit/2);;
             state.AddHp = (int)(state.AddHp *  (1+(levle/10)*(1+state.Growth)))+(state.Vit/100)+(state.Agility/100)+(state.Intelligence/100)+(state.Power/100);
             state.Cirtical = (int)(state.Cirtical *  (1+(levle/10)*(1+state.Growth)));

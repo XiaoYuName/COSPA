@@ -145,11 +145,14 @@ namespace ARPG
             {
                 if (Settings.isRandomRegion(currentRegion.RegionItemName))
                 {
-                    ui.ShowEndGame(GameSystem.Instance.GetRandomMap(currentRegion.RegionItemName));
+                    ui.ShowEndGame(currentRegion.RegionItemName,GameSystem.Instance.GetRandomMap(currentRegion.RegionItemName));
                 }
                 else
                 {
-                    ui.ShowEndGame(GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                    if(currentRegionLine == null)
+                        ui.ShowEndGame(currentRegion.RegionItemName,GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                    else
+                        ui.ShowEndGame(currentRegionLine.RegionName,GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
                 }
             }
             AudioManager.Instance.PlayAudio("VictoryGame");
@@ -269,7 +272,8 @@ namespace ARPG
             //4.计算技能攻击力加成
             Physics *= (1+attackState.SkillAttack/100);
             //5.扣除敌方防御力加成
-            Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+            int Defense = item.SkillType.type == DamageType.Physics ? attackState.PhysicsDefense : attackState.MagicDefense;
+            Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
             target.IDamage((int)Math.Round(Physics,0));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
             damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
@@ -377,7 +381,8 @@ namespace ARPG
                     //4.计算技能攻击力加成
                     Physics *= (1+attackState.SkillAttack/100);
                     //5.扣除敌方防御力加成
-                    Physics -= (targetState.Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+                    int Defense = item.SkillType.type == DamageType.Physics ? attackState.PhysicsDefense : attackState.MagicDefense;
+                    Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
                     target.IDamage((int)Math.Round(Physics,0));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
                     damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());

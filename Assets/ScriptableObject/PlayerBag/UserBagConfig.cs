@@ -162,12 +162,19 @@ namespace ARPG.Config
                             else
                                 state.AddHp += equipHelos[i].item.attribute[E].value*AddHpPawor;
                             break;
-                        case StateMode.防御力:
-                            var DefensePawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
-                            if (DefensePawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
-                                state.Defense += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                        case StateMode.物理防御力:
+                            var PhysicsDefensePawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (PhysicsDefensePawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.PhysicsDefense += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
                             else
-                                state.Defense += equipHelos[i].item.attribute[E].value*DefensePawor;
+                                state.PhysicsDefense += equipHelos[i].item.attribute[E].value*PhysicsDefensePawor;
+                            break;
+                        case StateMode.魔法防御力:
+                            var MagicDefensePawor = (Mathf.Max(1, equipHelos[i].Powor / 70));
+                            if (MagicDefensePawor < equipHelos[i].Powor) //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                                state.MagicDefense += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
+                            else
+                                state.MagicDefense += equipHelos[i].item.attribute[E].value*MagicDefensePawor;
                             break;
                         case StateMode.技能攻击力:
                             state.SkillAttack += equipHelos[i].item.attribute[E].value *Mathf.Max(1, equipHelos[i].Powor / 70);
@@ -212,7 +219,8 @@ namespace ARPG.Config
                             else
                                 state.Vit += equipHelos[i].item.attribute[E].value*VitPawor;
                             state.HP += (state.Vit/2);
-                            state.Defense += state.Vit/40;
+                            state.PhysicsDefense += state.Vit/40;
+                            state.MagicDefense += state.Vit/40;
                             state.AddHp += (state.Vit/100);
                             break;
                         case StateMode.敏捷:

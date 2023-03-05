@@ -628,7 +628,7 @@ namespace ARPG
         
         //-----------主线章节----------------------//
         /// <summary>
-        /// 主线章节进度 ----string ：主线名称 -- 章节名称--章节存储信息类
+        /// 章节进度 ----string ：主线名称 -- 章节名称--章节存储信息类
         /// </summary>
         private Dictionary<string, Dictionary<string, RegionProgress>> RegionSaveBag =  new Dictionary<string, Dictionary<string, RegionProgress>>();
         
@@ -730,15 +730,24 @@ namespace ARPG
             }
         }
 
+        /// <summary>
+        /// 初始化所以副本对应进度字典
+        /// </summary>
         private void InitRegionProgress()
         {
             var MainConfig = ConfigManager.LoadConfig<RegionConfig>("Region/Region");
+            //主线副本
             for (int i = 0; i < MainConfig.RegionList.Count; i++)
             {
                 for (int j = 0; j < MainConfig.RegionList[i].RegionItemList.Count; j++)
                 {
                     RegRegionHandle(MainConfig.RegionList[i].RegionName,MainConfig.RegionList[i].RegionItemList[j].RegionItemName);
                 }
+            }
+            //独立副本
+            for (int i = 0; i < MainConfig.RegionSingleton.Count; i++)
+            {
+                RegRegionHandle(MainConfig.RegionList[i].RegionName,MainConfig.RegionList[i].RegionName);
             }
             SetRegionHandle(MainConfig.RegionList[0].RegionName,MainConfig.RegionList[0].RegionItemList[0].RegionItemName,LookState.已解锁);
         }

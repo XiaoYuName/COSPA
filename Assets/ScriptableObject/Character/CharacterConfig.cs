@@ -132,9 +132,12 @@ namespace ARPG.Config
 
         [Header("魔法攻击")]
         public int MagicAttack;
-        
-        [Header("防御力")]
-        public int Defense;
+
+        [Header("物理防御力")]
+        public int PhysicsDefense;
+
+        [Header("魔法防御力")]
+        public int MagicDefense;
 
         [Header("生命值")]
         public int HP;
