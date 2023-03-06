@@ -29,6 +29,7 @@ namespace ARPG
             valueSpeed = Random.Range(0.7f,1f);
             InitSkill();
             selectSkillItem = Base.SkillDic[SkillType.Attack] as EnemySkill;
+            waitNextTime = false;
             enemy.animState = 2;
             durntTime = new WaitForSeconds(enemy.SkillDic[SkillType.Attack].data.CD);
             Base.anim.SetInteger("State",enemy.animState);

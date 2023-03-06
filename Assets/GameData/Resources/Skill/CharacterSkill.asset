@@ -64,8 +64,8 @@ MonoBehaviour:
   - ID: SkillEnemySoldierAttack
     CD: 2.5
     Duration: 0.5
-    ReleaseTime: 0.5
-    Radius: 0.6
+    ReleaseTime: 0.75
+    Radius: 2.15
     RadiusOffset: {x: -0.79, y: -0.89}
     Mask:
       serializedVersion: 2
@@ -303,14 +303,14 @@ MonoBehaviour:
     VideoAsset: {fileID: 11400000, guid: 57acace1104cd62408a498d23c3ab202, type: 2}
   - ID: BoXing
     CD: 5
-    Duration: 0.5
+    Duration: 3
     ReleaseTime: 8
-    Radius: 7
+    Radius: 8
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 15
+    Diamage: 75
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u594B\u529B\u62F3\u51FB"
     SkillDes: "\u594B\u529B\u62F3\u51FB"
@@ -324,7 +324,7 @@ MonoBehaviour:
     Pools: []
     VideoAsset: {fileID: 0}
   - ID: ThrowStone
-    CD: 5
+    CD: 15
     Duration: 0.5
     ReleaseTime: 8
     Radius: 250
@@ -359,7 +359,7 @@ MonoBehaviour:
     Diamage: 75
     icon: {fileID: 21300000, guid: 349634fb96aebde48b9e83f0cb74a757, type: 3}
     SkillName: "\u8FDE\u9501\u95EA\u7535"
-    SkillDes: "\u8FDE\u9501\u95EA\u7535"
+    SkillDes: "\u5728\u5F15\u5BFC\u4E00\u6BB5\u65F6\u95F4\u540E\uFF0C\u51EF\u9732\u53D1\u5C04\u4E00\u4E2A\u95EA\u7535\u56E0\u5B50\u7A7F\u68AD\u654C\u4EBA\u5E76\n\u6807\u8BB0\u96F7\u7535\u5370\u8BB0.\u6700\u59275\u540D,\u7ED3\u675F\u540E\u5BF9\u88AB\u6807\u8BB0\u654C\u4EBA\u9020\u6210x\u4F24\u5BB3"
     StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
     ActionStar: 0
     SkillType:
@@ -409,8 +409,8 @@ MonoBehaviour:
     Diamage: 50
     icon: {fileID: 21300000, guid: 3b2816c497a816842a3b65877bdda874, type: 3}
     SkillName: "\u5F15\u529B\u9ED1\u6D1E"
-    SkillDes: "\u5F15\u529B\u9ED1\u6D1E"
-    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
+    SkillDes: "\u53D1\u5C04\u4E00\u679A\u9ED1\u6D1E,\u9ED1\u6D1E\u4F1A\u5411\u524D\u79FB\u52A8,\n\u9ED1\u6D1E\u4F1A\u5438\u9644\u6CBF\u9014\u6240\u6709\u654C\u4EBA\uFF0C\n\u5728\u5230\u8FBE\u7EC8\u70B9x\u79D2\u540E\u53D1\u52A8\u7206\u70B8,\u5BF9\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
+    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F33\u9636"
     ActionStar: 3
     SkillType:
       type: 2
@@ -453,3 +453,27 @@ MonoBehaviour:
     - prefab: {fileID: 2054283959142997995, guid: 159f97c9823bc43488889f3492481061, type: 3}
       count: 2
     VideoAsset: {fileID: 11400000, guid: 333c02c92d1a16542b6d446e35b280b4, type: 2}
+  - ID: Spitfire
+    CD: 5
+    Duration: 30
+    ReleaseTime: 0.01
+    Radius: 10
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 32768
+    Diamage: 42
+    icon: {fileID: 21300000, guid: c1ddeaca732a8a74297e0348ca23a04f, type: 3}
+    SkillName: "\u5C0F\u55B7\u706B"
+    SkillDes: "\u5C0F\u55B7\u706B"
+    StepUpDes: 
+    ActionStar: 1
+    SkillType:
+      type: 2
+      isMultistage: 1
+      MultistageTime: 0.2
+      MultistageDamage: 0500000005000000050000000500000005000000
+    Pools:
+    - prefab: {fileID: 5387797516183409861, guid: ec3c0359b4f5d2b4abbcb6e1129d8011, type: 3}
+      count: 0
+    VideoAsset: {fileID: 0}

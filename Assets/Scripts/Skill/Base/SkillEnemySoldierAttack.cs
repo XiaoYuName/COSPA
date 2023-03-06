@@ -19,11 +19,22 @@ namespace ARPG
         }
         private IEnumerator PlayFx()
         {
-            AttackPoint = Enemy.GetPoint("body");
+            AttackPoint = Enemy.transform.Find("AttackPoint");
+            if (AttackPoint == null)
+            {
+                AttackPoint = Enemy.transform;
+            }
             yield return new WaitForSeconds(data.ReleaseTime);
-            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, AttackPoint.position,
-                Quaternion.identity).GetComponent<_FxItem>();
-            fxItem.Play(Enemy,data);
+            Collider2D target = Physics2D.OverlapCircle(AttackPoint.position,data.Radius,data.Mask);
+            if (target != null && target.CompareTag("Character"))
+            {
+                IDamage player = target.transform.GetComponentInParent<Character>();
+                if (player != null)
+                {
+                    Vector3 boundPoint = target.bounds.ClosestPoint(AttackPoint.position);
+                    GameManager.Instance.OptionDamage(Enemy,player,data,boundPoint);
+                }
+            }
         }
     }
 

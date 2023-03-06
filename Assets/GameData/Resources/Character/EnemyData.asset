@@ -268,7 +268,7 @@ MonoBehaviour:
     EnemyName: "\u5E7C\u5E74\u5DE8\u8725"
     Attackradius: 1.5
     icon: {fileID: 21300000, guid: 88d4d06e736bee642aa12b7db168ba76, type: 3}
-    Type: 0
+    Type: 2
     Prefab: {fileID: 599150379652071904, guid: a6c8f479b6ba6dc41bb96935c03f4d10, type: 3}
     State:
       PhysicsAttack: 25
@@ -290,7 +290,7 @@ MonoBehaviour:
       MovSpeed: 0.35
       Growth: 0.25
     SkillTable:
-    - SkillID: SkillEnemySoldierAttack
+    - SkillID: Spitfire
       Type: 0
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: af861c6dbec04c546b3f4e4ff8c82cc8, type: 2}
