@@ -32,8 +32,10 @@ MonoBehaviour:
     Type: 0
     Mode: 0
     attribute:
-    - Mode: 13
+    - Mode: 16
       value: 1
+    - Mode: 15
+      value: 0.1
     description: "\u94C1\u5320\u7684\u65B0\u624B\u6B66\u5668"
     sellAmount: 200
     purchase: 100
@@ -48,9 +50,57 @@ MonoBehaviour:
     attribute:
     - Mode: 0
       value: 18
+    - Mode: 16
+      value: 5
     description: "\u613F\u7F8E\u597D\u7684\u5FC3\u7075\u966A\u4F34\u4E0E\u4F60"
     sellAmount: 300
     purchase: 200
+    isSell: 0
+    isShowBag: 1
+  - ID: 101251
+    ItemName: "\u6B21\u5143\u9B54\u6756"
+    level: 1
+    spriteID: 101251
+    Type: 0
+    Mode: 1
+    attribute:
+    - Mode: 1
+      value: 18
+    description: "\u6253\u9B54\u6CD5\u5E08\u6B21\u5143\u9B54\u6756"
+    sellAmount: 20000
+    purchase: 20000
+    isSell: 1
+    isShowBag: 1
+  - ID: 103283
+    ItemName: "\u9501\u5B50\u7532"
+    level: 1
+    spriteID: 103283
+    Type: 1
+    Mode: 0
+    attribute:
+    - Mode: 4
+      value: 8
+    - Mode: 2
+      value: 50
+    description: "\u7531\u7EAF\u94C1\u6253\u9020\u800C\u6210,\u53EF\u4EE5\u63D0\u9AD8\u4F7F\u7528\u8005\u7684\u9632\u5FA1"
+    sellAmount: 90000
+    purchase: 90000
+    isSell: 0
+    isShowBag: 1
+  - ID: 102431
+    ItemName: "\u6025\u901F\u4E4B\u978B"
+    level: 1
+    spriteID: 102431
+    Type: 2
+    Mode: 0
+    attribute:
+    - Mode: 19
+      value: 3
+    - Mode: 2
+      value: 5
+    description: "\u7531\u7EAF\u94C1\u6253\u9020\u800C\u6210,\u53EF\u4EE5\u63D0\u9AD8\u4F7F\u7528\u8005\u7684\u901F\u5EA6"
+    sellAmount: 90000
+    purchase: 90000
     isSell: 0
     isShowBag: 1
   - ID: 91001
@@ -90,13 +140,13 @@ MonoBehaviour:
     isSell: 0
     isShowBag: 1
   - ID: 31058
-    ItemName: "\u65E0\u8272\u8F89\u706B\u8BB0\u5FC6\u788E\u7247"
+    ItemName: "\u4F69\u53EF\u8389\u59C6\u8BB0\u5FC6\u788E\u7247"
     level: 0
     spriteID: 31058
     Type: 4
     Mode: 0
     attribute: []
-    description: "\u706B\u706B"
+    description: "\u4F69\u53EF\u8389\u59C6\u8BB0\u5FC6\u788E\u7247"
     sellAmount: 0
     purchase: 0
     isSell: 0
@@ -137,24 +187,6 @@ MonoBehaviour:
     purchase: 900
     isSell: 0
     isShowBag: 1
-  - ID: 101251
-    ItemName: "\u6B21\u5143\u9B54\u6756"
-    level: 1
-    spriteID: 101251
-    Type: 0
-    Mode: 1
-    attribute:
-    - Mode: 1
-      value: 18
-    - Mode: 4
-      value: 8
-    - Mode: 7
-      value: 3
-    description: "\u6253\u9B54\u6CD5\u5E08\u6B21\u5143\u9B54\u6756"
-    sellAmount: 20000
-    purchase: 20000
-    isSell: 1
-    isShowBag: 1
   - ID: 22001
     ItemName: "\u88C5\u5907\u5F3A\u5316\u77F3"
     level: 1
@@ -175,38 +207,6 @@ MonoBehaviour:
     Mode: 2
     attribute: []
     description: "\u8574\u542B\u5F3A\u5927\u7684\u9B54\u529B,\u53EF\u4EE5\u5728\u5546\u5E97\u5151\u6362\u8BB0\u5FC6\u788E\u7247"
-    sellAmount: 90000
-    purchase: 90000
-    isSell: 0
-    isShowBag: 1
-  - ID: 103283
-    ItemName: "\u9501\u5B50\u7532"
-    level: 1
-    spriteID: 103283
-    Type: 1
-    Mode: 0
-    attribute:
-    - Mode: 4
-      value: 8
-    - Mode: 2
-      value: 50
-    description: "\u7531\u7EAF\u94C1\u6253\u9020\u800C\u6210,\u53EF\u4EE5\u63D0\u9AD8\u4F7F\u7528\u8005\u7684\u9632\u5FA1"
-    sellAmount: 90000
-    purchase: 90000
-    isSell: 0
-    isShowBag: 1
-  - ID: 102431
-    ItemName: "\u6025\u901F\u4E4B\u978B"
-    level: 1
-    spriteID: 102431
-    Type: 2
-    Mode: 0
-    attribute:
-    - Mode: 9
-      value: 1
-    - Mode: 11
-      value: 1
-    description: "\u7531\u7EAF\u94C1\u6253\u9020\u800C\u6210,\u53EF\u4EE5\u63D0\u9AD8\u4F7F\u7528\u8005\u7684\u901F\u5EA6"
     sellAmount: 90000
     purchase: 90000
     isSell: 0

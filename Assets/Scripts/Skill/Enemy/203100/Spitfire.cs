@@ -27,9 +27,9 @@ namespace ARPG
         {
             if (!Evernt.Equals("Spitfire")) return;
             if (Enemy == null) return;
-            Collider2D target = Physics2D.OverlapCircle(AttackPoint.position, data.Radius, data.Mask);
-            SkillPoolManager.Release(data.Pools[0].prefab, AttackPoint.position,
-                Quaternion.Euler(-180, AttackPoint.transform.rotation.eulerAngles.y, 0));
+            Collider2D target = Physics2D.OverlapCircle(AttackPoint.localPosition, data.Radius, data.Mask);
+            SkillPoolManager.Release(data.Pools[0].prefab, AttackPoint.position,Quaternion.Euler(
+                Enemy.transform.eulerAngles.x,-Enemy.transform.eulerAngles.y,0));
             if (target != null && target.CompareTag("Character"))
             {
                 IDamage damage = target.transform.GetComponentInParent<Character>();

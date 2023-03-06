@@ -304,9 +304,15 @@ namespace ARPG
             //5.扣除敌方防御力加成
             int Defense = item.SkillType.type == DamageType.Physics ? attackState.PhysicsDefense : attackState.MagicDefense;
             Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
-            target.IDamage((int)Math.Round(Physics,0));
+            //6.根据吸血量回复自身
+            if (attackState.Bloodintake > 0)
+            {
+                int BloodHp = Mathf.RoundToInt(Physics * Mathf.Max(1,attackState.Bloodintake));
+                target.IReply(Mathf.Max(BloodHp,1));
+            }
+            target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
+            damageTextItem.Show(DamageType.Physics,isCirtical,Mathf.Max((int)Math.Round(Physics,0),1).ToString());
         }
 
         /// <summary>
@@ -411,11 +417,17 @@ namespace ARPG
                     //4.计算技能攻击力加成
                     Physics *= (1+attackState.SkillAttack/100);
                     //5.扣除敌方防御力加成
-                    int Defense = item.SkillType.type == DamageType.Physics ? attackState.PhysicsDefense : attackState.MagicDefense;
+                    int Defense = item.SkillType.type == DamageType.Physics ? targetState.PhysicsDefense : targetState.MagicDefense;
                     Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
-                    target.IDamage((int)Math.Round(Physics,0));
+                    //6.根据吸血量回复自身
+                    if (attackState.Bloodintake > 0)
+                    {
+                        int BloodHp = Mathf.RoundToInt(Physics * Mathf.Max(1,attackState.Bloodintake));
+                        target.IReply(Mathf.Max(BloodHp,1));
+                    }
+                    target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
-                    damageTextItem.Show(DamageType.Physics,isCirtical,((int)Math.Round(Physics,0)).ToString());
+                    damageTextItem.Show(DamageType.Physics,isCirtical,Mathf.Max((int)Math.Round(Physics,0),1).ToString());
                     
                     yield return new WaitForSeconds(item.SkillType.MultistageTime);
                 }

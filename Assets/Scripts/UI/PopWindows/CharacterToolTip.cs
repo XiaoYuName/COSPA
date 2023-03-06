@@ -171,6 +171,10 @@ namespace ARPG.UI
             var SkillAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             SkillAttack.Init();
             SkillAttack.Show("技能攻击力",currentCharacterState.SkillAttack+"%");
+            
+            var Bloodintake = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
+            Bloodintake.Init();
+            Bloodintake.Show("吸血量",currentCharacterState.Bloodintake+"%");
 
         }
 

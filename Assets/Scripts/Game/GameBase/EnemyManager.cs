@@ -89,6 +89,8 @@ namespace ARPG
                 EnemyPoolManager.Instance.AddPoolPrefab(Pool);
                 yield return null;
             }
+            
+            
             EnemyPoolManager.Instance.Init();
         }
 

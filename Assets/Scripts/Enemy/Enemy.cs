@@ -104,6 +104,7 @@ namespace ARPG
                 SkillDic.Add(data.SkillTable[i].Type,skill);
                 if (skill != null) skill.Init(this, skillItem);
             }
+
         }
         #endregion
         

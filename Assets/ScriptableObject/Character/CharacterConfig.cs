@@ -177,6 +177,9 @@ namespace ARPG.Config
 
         [Header("移动速度")]
         public float MovSpeed;
+        
+        [Header("吸血量"),Range(0,100)]
+        public int Bloodintake;
 
         [Header("成长系数"),Range(0.1f,100)]
         public float Growth;
