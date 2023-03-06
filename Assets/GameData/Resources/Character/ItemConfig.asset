@@ -33,9 +33,9 @@ MonoBehaviour:
     Mode: 0
     attribute:
     - Mode: 16
-      value: 1
+      value: 15
     - Mode: 15
-      value: 0.1
+      value: 3
     description: "\u94C1\u5320\u7684\u65B0\u624B\u6B66\u5668"
     sellAmount: 200
     purchase: 100
@@ -49,9 +49,11 @@ MonoBehaviour:
     Mode: 1
     attribute:
     - Mode: 0
-      value: 18
+      value: 180
     - Mode: 16
-      value: 5
+      value: 50
+    - Mode: 15
+      value: 25
     description: "\u613F\u7F8E\u597D\u7684\u5FC3\u7075\u966A\u4F34\u4E0E\u4F60"
     sellAmount: 300
     purchase: 200

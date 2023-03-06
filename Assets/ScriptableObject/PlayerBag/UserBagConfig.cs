@@ -131,7 +131,6 @@ namespace ARPG.Config
                 if(equipHelos[i].item.attribute == null)continue;
                 for (int E = 0; E < equipHelos[i].item.attribute.Count; E++)
                 {
-                    
                     switch (equipHelos[i].item.attribute[E].Mode)
                     {
                         case StateMode.物理攻击力:
@@ -175,9 +174,6 @@ namespace ARPG.Config
                                 state.MagicDefense += equipHelos[i].item.attribute[E].value + equipHelos[i].Powor;
                             else
                                 state.MagicDefense += equipHelos[i].item.attribute[E].value*MagicDefensePawor;
-                            break;
-                        case StateMode.技能攻击力:
-                            state.SkillAttack += equipHelos[i].item.attribute[E].value *Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.暴击率:
                             state.Cirtical += equipHelos[i].item.attribute[E].value * Mathf.Max(1, equipHelos[i].Powor / 70);
@@ -232,6 +228,13 @@ namespace ARPG.Config
                             state.MovSpeed += (state.Agility/300);
                             state.AttackSpeed += (state.Agility/500);
                             state.ReleaseSpeed += (state.Agility/500);;
+                            break;
+                        //---不受到武器强化影响-//
+                        case StateMode.吸血量:
+                            state.Bloodintake += equipHelos[i].item.attribute[E].value;
+                            break;
+                        case StateMode.技能攻击力:
+                            state.SkillAttack += equipHelos[i].item.attribute[E].value;
                             break;
                         default:
                             break;

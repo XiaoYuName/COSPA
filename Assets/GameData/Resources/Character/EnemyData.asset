@@ -20,24 +20,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: ef1b1c98887b92c4d90ba75c1610289b, type: 3}
     State:
-      PhysicsAttack: 3
-      MagicAttack: 1
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 20
-      currentHp: 38
-      AddHp: 2
+      PhysicsAttack: 80
+      MagicAttack: 20
+      PhysicsDefense: 30
+      MagicDefense: 30
+      HP: 200
+      currentHp: 0
+      AddHp: 3
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 3
-      Intelligence: 2
+      Power: 10
+      Intelligence: 5
       Vit: 5
-      Agility: 2
+      Agility: 10
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
-      Growth: 1.5
+      Bloodintake: 1
+      Growth: 2.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -51,24 +52,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     State:
-      PhysicsAttack: 3
-      MagicAttack: 1
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 25
-      currentHp: 40
+      PhysicsAttack: 20
+      MagicAttack: 80
+      PhysicsDefense: 30
+      MagicDefense: 30
+      HP: 250
+      currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 3
-      Intelligence: 2
-      Vit: 0
-      Agility: 0
+      Power: 5
+      Intelligence: 10
+      Vit: 5
+      Agility: 10
       AttackSpeed: 1.1612921
       ReleaseSpeed: 1.1612921
       MovSpeed: 0.40645227
-      Growth: 0.25
+      Bloodintake: 0
+      Growth: 2.3
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -82,24 +84,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 48d0ef71c5bd26743889121bda18d8ab, type: 3}
     State:
-      PhysicsAttack: 15
-      MagicAttack: 15
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 10
+      PhysicsAttack: 100
+      MagicAttack: 20
+      PhysicsDefense: 45
+      MagicDefense: 45
+      HP: 400
       currentHp: 0
-      AddHp: 2
+      AddHp: 3
       SkillAttack: 1
-      Cirtical: 0.25
+      Cirtical: 1
       CirticalAttack: 2
-      Power: 10
-      Intelligence: 10
-      Vit: 5
-      Agility: 1
+      Power: 19
+      Intelligence: 8
+      Vit: 8
+      Agility: 10
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 0.5
-      Growth: 0.1
+      MovSpeed: 0.35
+      Bloodintake: 1
+      Growth: 2.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -113,24 +116,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: db99ccdc63660a94dbeba983a8a5eece, type: 3}
     State:
-      PhysicsAttack: 8
-      MagicAttack: 8
-      PhysicsDefense: 9
-      MagicDefense: 9
-      HP: 13
+      PhysicsAttack: 75
+      MagicAttack: 20
+      PhysicsDefense: 30
+      MagicDefense: 30
+      HP: 300
       currentHp: 0
-      AddHp: 2
+      AddHp: 3
       SkillAttack: 1
-      Cirtical: 0.25
+      Cirtical: 1
       CirticalAttack: 2
-      Power: 15
+      Power: 16
       Intelligence: 8
-      Vit: 10
-      Agility: 7
-      AttackSpeed: 2.25
+      Vit: 5
+      Agility: 10
+      AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 0.65
-      Growth: 0.1
+      MovSpeed: 0.35
+      Bloodintake: 1
+      Growth: 2.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -144,24 +148,25 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: 462a9358e94909c4181e717e632fda81, type: 3}
     State:
-      PhysicsAttack: 25
-      MagicAttack: 8
-      PhysicsDefense: 25
-      MagicDefense: 25
-      HP: 125
+      PhysicsAttack: 300
+      MagicAttack: 150
+      PhysicsDefense: 300
+      MagicDefense: 150
+      HP: 3000
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 17
-      Intelligence: 8
-      Vit: 19
-      Agility: 8
+      Power: 50
+      Intelligence: 10
+      Vit: 30
+      Agility: 10
       AttackSpeed: 1
       ReleaseSpeed: 0
       MovSpeed: 0.35
-      Growth: 2.25
+      Bloodintake: 5
+      Growth: 3.3
     SkillTable:
     - SkillID: BoXing
       Type: 0
@@ -178,23 +183,24 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 42f8c5bf759482a4cb85a2993f76dedc, type: 3}
     State:
-      PhysicsAttack: 25
-      MagicAttack: 25
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 100
+      PhysicsAttack: 500
+      MagicAttack: 100
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 10000
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 23
-      Intelligence: 8
-      Vit: 12
-      Agility: 7
+      Power: 50
+      Intelligence: 20
+      Vit: 30
+      Agility: 50
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
+      Bloodintake: 15
       Growth: 0.45
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
@@ -209,24 +215,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 67112b1850a06544c8cda4399deacd09, type: 3}
     State:
-      PhysicsAttack: 8
-      MagicAttack: 25
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 75
+      PhysicsAttack: 150
+      MagicAttack: 75
+      PhysicsDefense: 100
+      MagicDefense: 200
+      HP: 600
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 8
-      Intelligence: 17
-      Vit: 8
-      Agility: 5
+      Power: 20
+      Intelligence: 20
+      Vit: 50
+      Agility: 8
       AttackSpeed: 1
       ReleaseSpeed: 0
       MovSpeed: 0.35
-      Growth: 0.1
+      Bloodintake: 1
+      Growth: 1.15
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -240,24 +247,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 5791f1b5895743c4fb3f0730e5868217, type: 3}
     State:
-      PhysicsAttack: 8
-      MagicAttack: 21
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 75
+      PhysicsAttack: 35
+      MagicAttack: 35
+      PhysicsDefense: 200
+      MagicDefense: 200
+      HP: 888
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 10
-      Intelligence: 10
-      Vit: 12
-      Agility: 5
+      Power: 15
+      Intelligence: 15
+      Vit: 70
+      Agility: 20
       AttackSpeed: 1
-      ReleaseSpeed: 0
+      ReleaseSpeed: 1
       MovSpeed: 0.35
-      Growth: 0.1
+      Bloodintake: 1
+      Growth: 1.15
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -271,24 +279,25 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: a6c8f479b6ba6dc41bb96935c03f4d10, type: 3}
     State:
-      PhysicsAttack: 25
-      MagicAttack: 25
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 111
+      PhysicsAttack: 200
+      MagicAttack: 450
+      PhysicsDefense: 150
+      MagicDefense: 450
+      HP: 7500
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 15
-      Intelligence: 15
-      Vit: 8
-      Agility: 6
+      Power: 60
+      Intelligence: 100
+      Vit: 50
+      Agility: 8
       AttackSpeed: 1
-      ReleaseSpeed: 1
+      ReleaseSpeed: 0
       MovSpeed: 0.35
-      Growth: 0.125
+      Bloodintake: 15
+      Growth: 5
     SkillTable:
     - SkillID: Spitfire
       Type: 0

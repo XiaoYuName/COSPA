@@ -64,23 +64,24 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
     State:
-      PhysicsAttack: 7
-      MagicAttack: 1
-      PhysicsDefense: 400
-      MagicDefense: 400
-      HP: 90000
+      PhysicsAttack: 150
+      MagicAttack: 10
+      PhysicsDefense: 200
+      MagicDefense: 200
+      HP: 500
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
-      Cirtical: 0.15
+      Cirtical: 0.1
       CirticalAttack: 2
-      Power: 6
-      Intelligence: 2
-      Vit: 10
-      Agility: 2
+      Power: 25
+      Intelligence: 10
+      Vit: 15
+      Agility: 20
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 100
+      Bloodintake: 0
       Growth: 0.135
     SkillTable:
     - SkillID: SkillSoldierAttack
@@ -160,23 +161,24 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
     State:
-      PhysicsAttack: 1
-      MagicAttack: 4
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 40
+      PhysicsAttack: 10
+      MagicAttack: 150
+      PhysicsDefense: 180
+      MagicDefense: 180
+      HP: 470
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
       Cirtical: 0.1
       CirticalAttack: 2
-      Power: 2
-      Intelligence: 10
-      Vit: 5
-      Agility: 4
+      Power: 10
+      Intelligence: 25
+      Vit: 15
+      Agility: 20
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 135
+      Bloodintake: 0
       Growth: 0.135
     SkillTable:
     - SkillID: SkillConjurerAttack
@@ -256,24 +258,25 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
     State:
-      PhysicsAttack: 1
-      MagicAttack: 8
-      PhysicsDefense: 0
-      MagicDefense: 0
-      HP: 80
+      PhysicsAttack: 10
+      MagicAttack: 180
+      PhysicsDefense: 150
+      MagicDefense: 150
+      HP: 450
       currentHp: 0
       AddHp: 5
       SkillAttack: 1
-      Cirtical: 0.15
-      CirticalAttack: 3
-      Power: 2
-      Intelligence: 12
-      Vit: 5
-      Agility: 3
+      Cirtical: 0.1
+      CirticalAttack: 2
+      Power: 30
+      Intelligence: 10
+      Vit: 17
+      Agility: 18
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 95
-      Growth: 0.135
+      MovSpeed: 135
+      Bloodintake: 0
+      Growth: 0.157
     SkillTable:
     - SkillID: MagicAttack
       Type: 0
@@ -369,6 +372,7 @@ MonoBehaviour:
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 110
+      Bloodintake: 0
       Growth: 0.251
     SkillTable:
     - SkillID: SkillSoldierAttack

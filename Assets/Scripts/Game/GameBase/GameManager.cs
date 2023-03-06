@@ -302,13 +302,15 @@ namespace ARPG
             //4.计算技能攻击力加成
             Physics *= (1+attackState.SkillAttack/100);
             //5.扣除敌方防御力加成
-            int Defense = item.SkillType.type == DamageType.Physics ? attackState.PhysicsDefense : attackState.MagicDefense;
+            int Defense = item.SkillType.type == DamageType.Physics ? targetState.PhysicsDefense : targetState.MagicDefense;
             Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
             //6.根据吸血量回复自身
             if (attackState.Bloodintake > 0)
             {
                 int BloodHp = Mathf.RoundToInt(Physics * Mathf.Max(1,attackState.Bloodintake));
-                target.IReply(Mathf.Max(BloodHp,1));
+                attack.IReply(Mathf.Max(BloodHp,1));
+                DamageTextItem ReplyItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
+                ReplyItem.Show(DamageType.Treatment,false,Mathf.Max(BloodHp,1).ToString());
             }
             target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
             DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
@@ -423,7 +425,9 @@ namespace ARPG
                     if (attackState.Bloodintake > 0)
                     {
                         int BloodHp = Mathf.RoundToInt(Physics * Mathf.Max(1,attackState.Bloodintake));
-                        target.IReply(Mathf.Max(BloodHp,1));
+                        attack.IReply(Mathf.Max(BloodHp,1));
+                        DamageTextItem ReplyItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
+                        ReplyItem.Show(DamageType.Treatment,false,Mathf.Max(BloodHp,1).ToString());
                     }
                     target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
                     DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
