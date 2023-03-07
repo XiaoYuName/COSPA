@@ -48,6 +48,9 @@ namespace ARPG
         
         [HideInInspector]public BossStateUI stateUI;
         private SkeletonUtilityBone[] bones;
+
+        public Coroutine YoyoAddHp;
+        private WaitForSeconds AddHpTime;
         
         protected void Awake()
         {
@@ -61,6 +64,7 @@ namespace ARPG
         {
             data = Data;
             Level = level;
+            AddHpTime = new WaitForSeconds(Settings.AddWaitTime);
             State = data.State.Clone() as CharacterState;
             State = Settings.GetLevelGrowthState(Mathf.Max(level,1), State);
             State.currentHp = State.HP;
@@ -83,6 +87,21 @@ namespace ARPG
             }
 
             SwitchFSM(FSMType.IdleFSM);
+            YoyoAddHp = StartCoroutine(YoyoLoopAddHp());
+        }
+        
+        
+        /// <summary>
+        /// 生命值自动回复效果
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator YoyoLoopAddHp()
+        {
+            while (gameObject.activeSelf && State.currentHp >0)
+            {
+                yield return AddHpTime;
+                GameManager.Instance.OptionAddHp(this,State.AddHp);
+            }
         }
         
         #endregion

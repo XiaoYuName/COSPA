@@ -28,7 +28,8 @@ namespace ARPG
         public Collider2D DamageCollider2D;
         public Collider2D GroundCollider;
         private SkeletonUtilityBone[] bones;
-
+        private Coroutine addHpCoroutine;
+        private WaitForSeconds addHpSeconds;
 
         //--------------------------Movenemt--------------------------//
         [HideInInspector]public Rigidbody2D rb;
@@ -53,8 +54,7 @@ namespace ARPG
         private Dictionary<BuffTrigger, Dictionary<IBuff, int>> BuffNext;
         public Dictionary<StopTrigger, Dictionary<IBuff,Action>> stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
 
-        private Dictionary<EndTrigger, Dictionary<IBuff, Action>> EndBuffTriggers =
-            new Dictionary<EndTrigger, Dictionary<IBuff, Action>>();
+        private Dictionary<EndTrigger, Dictionary<IBuff, Action>> EndBuffTriggers = new Dictionary<EndTrigger, Dictionary<IBuff, Action>>();
         #endregion
 
         #region Character
@@ -84,12 +84,14 @@ namespace ARPG
             Spine.Initialize(true);
             attackButton.InitBindButton(Attack,Skill_1,Skill_2,Skill_3,Skill_4);
             anim.runtimeAnimatorController = data.AnimatorController;
+            addHpSeconds = new WaitForSeconds(Settings.AddWaitTime);
             body = transform.Find("Spine/SkeletonUtility-SkeletonRoot/root");
             BuffNext = new Dictionary<BuffTrigger, Dictionary<IBuff, int>>();
             stopAttackEvent = new Dictionary<StopTrigger, Dictionary<IBuff, Action>>();
             bones  = transform.GetComponentsInChildren<SkeletonUtilityBone>();
             CreateSkillClass();
             CreatBuff();
+            StartCoroutine(YoyoLoopAddHp());
         }
 
         private void CreateSkillClass()
@@ -180,6 +182,21 @@ namespace ARPG
             if(!isAI)
                 anim.SetBool(s_IsMovenemt,!(InputSpeed == Vector2.zero));
         }
+
+        
+        /// <summary>
+        /// 生命值自动回复效果
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator YoyoLoopAddHp()
+        {
+            while (gameObject.activeSelf && State.currentHp >0)
+            {
+                yield return addHpSeconds;
+                GameManager.Instance.OptionAddHp(this,State.AddHp);
+            }
+        }
+
         #endregion
         
         #region Skill
@@ -330,6 +347,10 @@ namespace ARPG
             StateUI.UpdateState(State);
             BuffTriggerEvent(BuffTrigger.回复自身时);
         }
+        
+        
+        
+        
         #endregion
         
         #region IBUFF

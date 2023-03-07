@@ -31,6 +31,8 @@ namespace ARPG
         /// </summary>
         public const float PopTweenTime = 0.15f;
 
+        public const float AddWaitTime = 60f;
+
         public static readonly Vector3 zeroView = new Vector3(0.5F, 0.25F, 0);
 
         //基础经验值: 经验值计算公式 :(基础经验值)*当前等级*(当前星级)

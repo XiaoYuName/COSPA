@@ -345,7 +345,7 @@ namespace ARPG
         /// </summary>
         /// <param name="attack">技能发动者</param>
         /// <param name="value">基础数值</param>
-        private void OptionAddHp(IDamage attack, int value)
+        public void OptionAddHp(IDamage attack, int value)
         {
             CharacterState attackState = attack.GetState();
             //回复量 = 基础回复量+技能基础回复量*治疗量*技攻

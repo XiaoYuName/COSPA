@@ -27,6 +27,8 @@ namespace ARPG
                 enemy.gameObject.SetActive(false);//释放线程池资源
                 EnemyManager.Instance.DieCurrentEnemy(enemy);
             });
+            
+            
         }
 
         public override void BehaviourUpdate(Enemy enemy)
