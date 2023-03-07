@@ -86,6 +86,12 @@ namespace ARPG
                 yield return null;
             }
         }
+
+        public override void UHandle()
+        {
+            base.UHandle();
+            MessageManager.Instance.URegister<string>(C2C.EventMsg,AniamtorMsg);
+        }
     }
 }
 

@@ -477,3 +477,27 @@ MonoBehaviour:
     - prefab: {fileID: 2008043505024872480, guid: 4a977b3eeb6357049b1be6195268840b, type: 3}
       count: 5
     VideoAsset: {fileID: 0}
+  - ID: Charm
+    CD: 7
+    Duration: 2
+    ReleaseTime: 0.01
+    Radius: 10
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 32768
+    Diamage: 250
+    icon: {fileID: 21300000, guid: 8e81dc7369ac5ff46b0ba2f92ef95802, type: 3}
+    SkillName: "\u9B45\u60D1"
+    SkillDes: "\u9B45\u60D1:\u5F15\u5BFC\u4E00\u6BB5\u65F6\u95F4\u540E\u5BF9\u547D\u4E2D\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
+    StepUpDes: 
+    ActionStar: 1
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 8732955778285178646, guid: 7dbd4597ca62ad944a2654a2c0a211d2, type: 3}
+      count: 5
+    VideoAsset: {fileID: 0}

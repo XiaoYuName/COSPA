@@ -355,30 +355,30 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 261facbb50b9288409188be0c13deaba, type: 2}
     State:
-      PhysicsAttack: 17
-      MagicAttack: 3
-      PhysicsDefense: 1250
-      MagicDefense: 1250
-      HP: 125
+      PhysicsAttack: 1200
+      MagicAttack: 1500
+      PhysicsDefense: 100
+      MagicDefense: 100
+      HP: 5000
       currentHp: 0
-      AddHp: 2
+      AddHp: 50
       SkillAttack: 1
-      Cirtical: 0.21
+      Cirtical: 0.1
       CirticalAttack: 2
-      Power: 21
-      Intelligence: 2
-      Vit: 8
-      Agility: 2
+      Power: 250
+      Intelligence: 100
+      Vit: 150
+      Agility: 200
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 110
-      Bloodintake: 0
-      Growth: 0.251
+      Bloodintake: 3
+      Growth: 0.135
     SkillTable:
     - SkillID: SkillSoldierAttack
       Type: 0
       BtnAudioID: 
-    - SkillID: MagicBomb
+    - SkillID: Charm
       Type: 1
       BtnAudioID: 
     - SkillID: HealingMagic
@@ -391,7 +391,7 @@ MonoBehaviour:
       Type: 4
       BtnAudioID: 
     des: "\u4F0A\u7EEA\u8001\u5A46"
-    deftualBuffID: 00000000
+    deftualBuffID: 
     twistAssets:
       PropAgAndaVideoID: 101811_1
       VideoID: 101811_2
