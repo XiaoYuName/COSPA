@@ -8663,7 +8663,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -29261,7 +29261,7 @@ GameObject:
   - component: {fileID: 2178111381980517616}
   - component: {fileID: 7010793995535260106}
   m_Layer: 11
-  m_Name: FlayXinBoom
+  m_Name: Rnergypouring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29293,7 +29293,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6133900582286846402}
   serializedVersion: 8
-  lengthInSec: 10
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 1
   cullingMode: 0
