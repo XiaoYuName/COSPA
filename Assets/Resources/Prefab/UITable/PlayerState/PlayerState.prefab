@@ -503,8 +503,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2130145747052773908}
     m_Modifications:
     - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 167.6982
+      value: 0.000030518
       objectReference: {fileID: 0}
     - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_SizeDelta.y
@@ -512,7 +520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -48.2
+      value: -0.000045776367
       objectReference: {fileID: 0}
     - target: {fileID: 1487425402, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -524,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_fontSize
-      value: 26.06
+      value: 26.6
       objectReference: {fileID: 0}
     - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_fontColor.b
@@ -539,6 +547,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_fontSizeBase
       value: 26.06
       objectReference: {fileID: 0}
@@ -546,6 +558,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+    - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1487425403, guid: fc40f66d99fbf8846aad0af74670ec06, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295

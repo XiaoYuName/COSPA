@@ -179,7 +179,7 @@ namespace ARPG
         /// <summary>
         /// 结算完结，退出战斗场景,回到GameScene场景
         /// </summary>
-        public void VictoryQuitScene()
+        public void VictoryQuitScene(GameResult result)
         {
             UISystem.Instance.CloseUI("GameEnd");
             UISystem.Instance.CloseUI("GameMemu");
@@ -190,29 +190,37 @@ namespace ARPG
             Destroy(Player.gameObject);
             InventoryManager.Instance.SetPress(currentPress);
 
-            if (currentRegionLine != null)
+            if (result == GameResult.胜利)
             {
-                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,LookState.已通关);
-                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,3);
-                MessageAction.OnSetUpRegionPress();
-            }
+                if (currentRegionLine != null)
+                {
+                    InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,LookState.已通关);
+                    InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,3);
+                    MessageAction.OnSetUpRegionPress();
+                }
 
-            if (currentRegionLine != null)
-            {
-                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
-                if(quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                if (currentRegionLine != null)
+                {
+                    RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
+                    if(quitData != null)
+                        MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                    else
+                        MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                }
                 else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                {
+                    RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
+                    if (quitData != null)
+                        MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
+                    else
+                        MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                }
             }
             else
             {
-                RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
-                if (quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
-                else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
             }
+
         }
 
         /// <summary>

@@ -16,6 +16,7 @@ namespace ARPG
        格斗,
        魔法师,
        牧师,
+       魅魔,
    }
 
    /// <summary>
@@ -459,5 +460,13 @@ namespace ARPG
        深渊_3,
        深渊_4,
        深渊_5,
+   }
+
+
+   public enum GameResult
+   {
+       胜利,
+       失败,
+       中途退出,
    }
 }

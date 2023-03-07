@@ -122,7 +122,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 16
+    Diamage: 300
     icon: {fileID: 21300000, guid: a6d96b2e6c339cc40a2c781f67434744, type: 3}
     SkillName: "\u91CD\u65A9"
     SkillDes: "\u91CA\u653E\u540E\u8DF3\u8D77\uFF0C\u968F\u673A\u65A9\u4E0B\u4E00\u5230\u91CD\u65A9\n\u5BF9\u5730\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB16\u7684\u7269\u7406\u4F24\u5BB3\uFF0C"
@@ -146,7 +146,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 0
-    Diamage: 8
+    Diamage: 300
     icon: {fileID: 21300000, guid: d05369c33b9d7d647b48a6c314e2c047, type: 3}
     SkillName: "\u5348\u9910\u65F6\u95F4"
     SkillDes: "\u4F7F\u7528\u540E\u6062\u590D\u81EA\u8EAB\u57FA\u784030\u8840\u91CF"
@@ -160,7 +160,7 @@ MonoBehaviour:
     Pools: []
     VideoAsset: {fileID: 0}
   - ID: PrincessRaid
-    CD: 15
+    CD: 10
     Duration: 2
     ReleaseTime: 1
     Radius: 3
@@ -168,7 +168,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 17.5
+    Diamage: 200
     icon: {fileID: 21300000, guid: a4957e973db297f4ebfb991f348b30a5, type: 3}
     SkillName: "\u516C\u4E3B\u7A81\u88AD"
     SkillDes: "\u53D1\u52A8\u540E\uFF0C\u516C\u4E3B\u77ED\u6682\u84C4\u529B\u540E\u53D1\u90013\u9053\u91CD\u65A9\uFF0C\u6BCF\u9053\u91CD\u65A9\u9020\u621017.5\u57FA\u7840\u4F24\u5BB3"
@@ -192,7 +192,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 40
+    Diamage: 1000
     icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
     SkillName: "\u7834\u788E\u65A9"
     SkillDes: "\u516C\u4E3B\u84C4\u529B\u540E\uFF0C\u53D1\u52A8\u5F3A\u529B\u7834\u788E\u65A9,\u65A9\u51FB\u5BF9\u654C\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB40\u4F24\u5BB3\n\u8BE5\u6280\u80FD\u5FC5\u5B9A\u547D\u4E2D"

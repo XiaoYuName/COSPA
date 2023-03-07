@@ -64,23 +64,23 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
     State:
-      PhysicsAttack: 150
-      MagicAttack: 10
-      PhysicsDefense: 200
-      MagicDefense: 200
-      HP: 500
+      PhysicsAttack: 1500
+      MagicAttack: 100
+      PhysicsDefense: 0
+      MagicDefense: 0
+      HP: 5000
       currentHp: 0
-      AddHp: 5
+      AddHp: 50
       SkillAttack: 1
       Cirtical: 0.1
       CirticalAttack: 2
-      Power: 25
-      Intelligence: 10
-      Vit: 15
-      Agility: 20
+      Power: 250
+      Intelligence: 100
+      Vit: 150
+      Agility: 200
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 100
+      MovSpeed: 110
       Bloodintake: 0
       Growth: 0.135
     SkillTable:
@@ -357,8 +357,8 @@ MonoBehaviour:
     State:
       PhysicsAttack: 17
       MagicAttack: 3
-      PhysicsDefense: 0
-      MagicDefense: 0
+      PhysicsDefense: 1250
+      MagicDefense: 1250
       HP: 125
       currentHp: 0
       AddHp: 2

@@ -186,7 +186,7 @@ namespace ARPG.UI
             _RewordUI.gameObject.SetActive(true);
             yield return _RewordUI.InitData(rewordItemBags);
             
-            Bind(NextBtn,GameManager.Instance.VictoryQuitScene,"OutChick");
+            Bind(NextBtn,()=>GameManager.Instance.VictoryQuitScene(GameResult.胜利),"OutChick");
             NextBtn.interactable = true;
             
             yield return null;
@@ -238,7 +238,7 @@ namespace ARPG.UI
             _RewordUI.gameObject.SetActive(true);
             yield return _RewordUI.InitData(rewordItemBags);
             
-            Bind(NextBtn,GameManager.Instance.VictoryQuitScene,"OutChick");
+            Bind(NextBtn,()=>GameManager.Instance.VictoryQuitScene(GameResult.胜利),"OutChick");
             NextBtn.interactable = true;
             
             yield return null;
@@ -262,7 +262,7 @@ namespace ARPG.UI
                             {
                                 Bind(NextBtn, delegate
                                 {
-                                    GameManager.Instance.VictoryQuitScene();
+                                    GameManager.Instance.VictoryQuitScene(GameResult.失败);
                                 }, "UI_click");
                             });
                     });

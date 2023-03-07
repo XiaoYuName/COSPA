@@ -20,25 +20,25 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: ef1b1c98887b92c4d90ba75c1610289b, type: 3}
     State:
-      PhysicsAttack: 80
-      MagicAttack: 20
-      PhysicsDefense: 30
-      MagicDefense: 30
-      HP: 200
-      currentHp: 0
-      AddHp: 3
+      PhysicsAttack: 800
+      MagicAttack: 200
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 2000
+      currentHp: 30
+      AddHp: 30
       SkillAttack: 1
-      Cirtical: 1
+      Cirtical: 0.1
       CirticalAttack: 2
-      Power: 10
-      Intelligence: 5
-      Vit: 5
-      Agility: 10
+      Power: 100
+      Intelligence: 50
+      Vit: 50
+      Agility: 100
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
-      Bloodintake: 1
-      Growth: 2.1
+      Bloodintake: 0
+      Growth: 1.1
     SkillTable:
     - SkillID: SkillEnemySoldierAttack
       Type: 0
@@ -52,20 +52,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     State:
-      PhysicsAttack: 20
-      MagicAttack: 80
-      PhysicsDefense: 30
-      MagicDefense: 30
-      HP: 250
-      currentHp: 0
-      AddHp: 2
+      PhysicsAttack: 800
+      MagicAttack: 200
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 2000
+      currentHp: 30
+      AddHp: 30
       SkillAttack: 1
-      Cirtical: 1
+      Cirtical: 0.1
       CirticalAttack: 2
-      Power: 5
-      Intelligence: 10
-      Vit: 5
-      Agility: 10
+      Power: 100
+      Intelligence: 50
+      Vit: 50
+      Agility: 100
       AttackSpeed: 1.1612921
       ReleaseSpeed: 1.1612921
       MovSpeed: 0.40645227
@@ -84,20 +84,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 48d0ef71c5bd26743889121bda18d8ab, type: 3}
     State:
-      PhysicsAttack: 100
-      MagicAttack: 20
-      PhysicsDefense: 45
-      MagicDefense: 45
-      HP: 400
+      PhysicsAttack: 1000
+      MagicAttack: 0
+      PhysicsDefense: 400
+      MagicDefense: 400
+      HP: 4000
       currentHp: 0
-      AddHp: 3
+      AddHp: 100
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 19
-      Intelligence: 8
-      Vit: 8
-      Agility: 10
+      Power: 120
+      Intelligence: 50
+      Vit: 80
+      Agility: 100
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
@@ -116,20 +116,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: db99ccdc63660a94dbeba983a8a5eece, type: 3}
     State:
-      PhysicsAttack: 75
-      MagicAttack: 20
-      PhysicsDefense: 30
-      MagicDefense: 30
-      HP: 300
+      PhysicsAttack: 1200
+      MagicAttack: 0
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 4500
       currentHp: 0
-      AddHp: 3
+      AddHp: 120
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 16
-      Intelligence: 8
-      Vit: 5
-      Agility: 10
+      Power: 125
+      Intelligence: 50
+      Vit: 80
+      Agility: 110
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
@@ -148,20 +148,20 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: 462a9358e94909c4181e717e632fda81, type: 3}
     State:
-      PhysicsAttack: 300
-      MagicAttack: 150
+      PhysicsAttack: 3000
+      MagicAttack: 1500
       PhysicsDefense: 300
       MagicDefense: 150
-      HP: 3000
-      currentHp: 0
+      HP: 30000
+      currentHp: 200
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 50
-      Intelligence: 10
-      Vit: 30
-      Agility: 10
+      Power: 500
+      Intelligence: 100
+      Vit: 300
+      Agility: 100
       AttackSpeed: 1
       ReleaseSpeed: 0
       MovSpeed: 0.35
@@ -183,20 +183,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 42f8c5bf759482a4cb85a2993f76dedc, type: 3}
     State:
-      PhysicsAttack: 500
-      MagicAttack: 100
-      PhysicsDefense: 300
-      MagicDefense: 300
-      HP: 10000
+      PhysicsAttack: 5000
+      MagicAttack: 1000
+      PhysicsDefense: 330
+      MagicDefense: 330
+      HP: 15000
       currentHp: 0
-      AddHp: 2
+      AddHp: 100
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 50
-      Intelligence: 20
-      Vit: 30
-      Agility: 50
+      Power: 500
+      Intelligence: 200
+      Vit: 300
+      Agility: 500
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
@@ -215,20 +215,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 67112b1850a06544c8cda4399deacd09, type: 3}
     State:
-      PhysicsAttack: 150
-      MagicAttack: 75
-      PhysicsDefense: 100
-      MagicDefense: 200
-      HP: 600
+      PhysicsAttack: 1400
+      MagicAttack: 0
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 5000
       currentHp: 0
-      AddHp: 2
+      AddHp: 120
       SkillAttack: 1
-      Cirtical: 1
+      Cirtical: 0.5
       CirticalAttack: 2
-      Power: 20
-      Intelligence: 20
-      Vit: 50
-      Agility: 8
+      Power: 140
+      Intelligence: 50
+      Vit: 100
+      Agility: 110
       AttackSpeed: 1
       ReleaseSpeed: 0
       MovSpeed: 0.35
@@ -247,20 +247,20 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 5791f1b5895743c4fb3f0730e5868217, type: 3}
     State:
-      PhysicsAttack: 35
-      MagicAttack: 35
-      PhysicsDefense: 200
-      MagicDefense: 200
-      HP: 888
-      currentHp: 0
+      PhysicsAttack: 1200
+      MagicAttack: 0
+      PhysicsDefense: 500
+      MagicDefense: 500
+      HP: 6000
+      currentHp: 120
       AddHp: 2
       SkillAttack: 1
-      Cirtical: 1
+      Cirtical: 0.05
       CirticalAttack: 2
-      Power: 15
-      Intelligence: 15
-      Vit: 70
-      Agility: 20
+      Power: 130
+      Intelligence: 0
+      Vit: 150
+      Agility: 110
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 0.35
@@ -279,28 +279,28 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: a6c8f479b6ba6dc41bb96935c03f4d10, type: 3}
     State:
-      PhysicsAttack: 200
-      MagicAttack: 450
-      PhysicsDefense: 150
-      MagicDefense: 450
-      HP: 7500
+      PhysicsAttack: 100
+      MagicAttack: 4500
+      PhysicsDefense: 360
+      MagicDefense: 360
+      HP: 13500
       currentHp: 0
       AddHp: 2
       SkillAttack: 1
       Cirtical: 1
       CirticalAttack: 2
-      Power: 60
-      Intelligence: 100
-      Vit: 50
-      Agility: 8
+      Power: 200
+      Intelligence: 500
+      Vit: 300
+      Agility: 460
       AttackSpeed: 1
       ReleaseSpeed: 0
       MovSpeed: 0.35
       Bloodintake: 15
-      Growth: 5
+      Growth: 1.5
     SkillTable:
     - SkillID: Spitfire
       Type: 0
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: af861c6dbec04c546b3f4e4ff8c82cc8, type: 2}
-    description: "\u5E7C\u5E74\u5F62\u6001\u4E0B\u7684\u5DE8\u8725,\u4F53\u79EF\u8F83\u5C0F"
+    description: "\u5E7C\u5E74\u5F62\u6001\u4E0B\u9B54\u7269,\u4F53\u79EF\u8F83\u5C0F"
