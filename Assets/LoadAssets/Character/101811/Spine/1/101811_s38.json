@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "+ednLsMpH0cdSv4LCb05etqI/Vk", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
+"skeleton": { "hash": "O8bK2FyY0fRyLHaTVUHzXuDSIVY", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
 "bones": [
 	{ "name": "root", "y": 1.42 },
 	{ "name": "body", "parent": "root", "x": 5.5, "y": 80.45 },
@@ -2638,6 +2638,9 @@
 					{ "slot": "handB", "offset": 8 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 0.4333, "name": "SpineEvent", "string": "SkillSoldierAttack" }
 		]
 	},
 	"05_attack_skipQuest": {
@@ -34936,7 +34939,7 @@
 			}
 		],
 		"events": [
-			{ "time": 1.5, "name": "SpineEvent", "string": "Charm" }
+			{ "time": 1.3667, "name": "SpineEvent", "string": "Charm" }
 		]
 	},
 	"101801_skill1": {
@@ -38765,6 +38768,9 @@
 					{ "slot": "handB", "offset": 8 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 1, "name": "SpineEvent", "string": "RnergyPouring" }
 		]
 	},
 	"101801_skill_evolution0": {

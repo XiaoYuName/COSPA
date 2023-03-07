@@ -527,3 +527,27 @@ MonoBehaviour:
     - prefab: {fileID: 5048682453207073191, guid: 9f24e7c9a591cd74e8c48b95594269c5, type: 3}
       count: 5
     VideoAsset: {fileID: 0}
+  - ID: RnergyPouring
+    CD: 25
+    Duration: 2
+    ReleaseTime: 0.01
+    Radius: 0
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 15
+    icon: {fileID: 21300000, guid: de349c85e5097f440b49b1422f39dfbf, type: 3}
+    SkillName: "\u80FD\u91CF\u503E\u6CE8"
+    SkillDes: "\u5BF9\u547D\u4E2D\u76EE\u6807\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
+    StepUpDes: 
+    ActionStar: 3
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 6133900582286846402, guid: 76ee9451ef3ea42479f8dd9ff83b7b19, type: 3}
+      count: 2
+    VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
