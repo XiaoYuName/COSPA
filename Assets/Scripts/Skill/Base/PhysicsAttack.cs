@@ -20,9 +20,11 @@ namespace ARPG
         
         public void AnimatorMsg(string EventName)
         {
-            if (EventName != "SkillSoldierAttack")return;
-            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90; 
-            SkillPoolManager.Release(data.Pools[0].prefab, Player.body.position, Quaternion.Euler(0,rotationY,-90));
+            if (EventName != "PhysicsAttack")return;
+            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90;
+            Vector3 PalyPoint = new Vector3(Player.body.position.x + data.RadiusOffset.x,
+                Player.body.position.y + data.RadiusOffset.y, 0);
+            SkillPoolManager.Release(data.Pools[0].prefab, PalyPoint, Quaternion.Euler(0,rotationY,-90));
 
             Collider2D[] targets = new Collider2D[10];
             int size = Physics2D.OverlapCircleNonAlloc(Player.body.position, data.Radius, targets,data.Mask);

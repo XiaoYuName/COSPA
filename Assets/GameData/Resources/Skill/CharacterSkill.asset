@@ -13,36 +13,12 @@ MonoBehaviour:
   m_Name: CharacterSkill
   m_EditorClassIdentifier: 
   BaseDatas:
-  - ID: SkillSoldierAttack
-    CD: 1
-    Duration: 2
-    ReleaseTime: 0.5
-    Radius: 2.5
-    RadiusOffset: {x: 0, y: 0}
-    Mask:
-      serializedVersion: 2
-      m_Bits: 0
-    Diamage: 5
-    icon: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
-    SkillName: "\u6218\u58EB\u804C\u4E1A\u666E\u901A\u653B\u51FB"
-    SkillDes: 
-    StepUpDes: 
-    ActionStar: 0
-    SkillType:
-      type: 1
-      isMultistage: 0
-      MultistageTime: 0
-      MultistageDamage: 
-    Pools:
-    - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
-      count: 10
-    VideoAsset: {fileID: 0}
   - ID: PhysicsAttack
     CD: -1
     Duration: -1
     ReleaseTime: -1
     Radius: 2.5
-    RadiusOffset: {x: 0, y: 0}
+    RadiusOffset: {x: 1.2, y: 0}
     Mask:
       serializedVersion: 2
       m_Bits: 65536

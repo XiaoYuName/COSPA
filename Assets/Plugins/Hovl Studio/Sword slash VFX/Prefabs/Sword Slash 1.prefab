@@ -24443,7 +24443,6 @@ GameObject:
   - component: {fileID: 198741542255655676}
   - component: {fileID: 199720500564923422}
   - component: {fileID: -8242956681992459727}
-  - component: {fileID: -6997110344020891520}
   - component: {fileID: 2049464633090279021}
   m_Layer: 11
   m_Name: Sword Slash 1
@@ -29343,18 +29342,6 @@ SortingGroup:
   m_SortingLayer: 4
   m_SortingOrder: 2
   m_SortAtRoot: 0
---- !u!114 &-6997110344020891520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872147318604286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15bd42a0a44858d4a97066b380fa2693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2049464633090279021
 CircleCollider2D:
   m_ObjectHideFlags: 0
