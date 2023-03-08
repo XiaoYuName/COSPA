@@ -56,7 +56,7 @@ namespace ARPG
         
         public IEnumerator WaitVideo()
         {
-            VideoManager.Instance.PlayerAvVideo(data.ID);
+            VideoManager.Instance.PlayerAvVideo(data.VideoAsset);
             yield return new WaitForSecondsRealtime(1.9f);
             Player.anim.speed = 1;
         }
