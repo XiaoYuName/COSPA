@@ -35,7 +35,8 @@ namespace ARPG
            Transform PlayerBonePos = Player.GetPoint("weaponMain_away");
            GameObject Bull =  SkillPoolManager.Release(data.Pools[0].prefab, PlayerBonePos.transform.position, Quaternion.identity);
            AudioManager.Instance.PlayAudio("MagicAttack");
-           SkillPoolManager.Release(data.Pools[1].prefab, PlayerBonePos.transform.position, Quaternion.identity);
+           ParticleSystem Star = SkillPoolManager.Release(data.Pools[1].prefab, PlayerBonePos.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+           Star.Play();
            SkillPoolManager.Instance.StartCoroutine(MovenemtToTargetDamager(Bull, target));
         }
         

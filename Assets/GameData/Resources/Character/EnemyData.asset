@@ -52,8 +52,8 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 599150379652071904, guid: 25e5b6b73ec94b344a6796923f2e81f6, type: 3}
     State:
-      PhysicsAttack: 800
-      MagicAttack: 200
+      PhysicsAttack: 200
+      MagicAttack: 800
       PhysicsDefense: 300
       MagicDefense: 300
       HP: 2000
@@ -72,7 +72,7 @@ MonoBehaviour:
       Bloodintake: 0
       Growth: 2.3
     SkillTable:
-    - SkillID: SkillEnemySoldierAttack
+    - SkillID: SkillEnemyMagicAttack
       Type: 0
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: a5150adc347f1fd46abdabfaed6fe302, type: 2}
