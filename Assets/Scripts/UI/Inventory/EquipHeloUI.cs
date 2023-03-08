@@ -70,6 +70,7 @@ namespace ARPG.UI
 
         public void UEquipOnClick()
         {
+            if (currentdata == null) return;
             CharacterEquipPanel baseUI = UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel");
             baseUI.ShowItemToolTip(this);
            

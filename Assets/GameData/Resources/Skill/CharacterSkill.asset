@@ -457,7 +457,7 @@ MonoBehaviour:
     CD: 5
     Duration: 2
     ReleaseTime: 0.01
-    Radius: 10
+    Radius: 3.5
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
@@ -550,4 +550,30 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6133900582286846402, guid: 76ee9451ef3ea42479f8dd9ff83b7b19, type: 3}
       count: 2
+    VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
+  - ID: TouchingMoment
+    CD: 25
+    Duration: -1
+    ReleaseTime: -1
+    Radius: -1
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 75
+    icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
+    SkillName: "\u5FC3\u52A8\u65F6\u523B"
+    SkillDes: "\u5FC3\u52A8\u65F6\u523B"
+    StepUpDes: 
+    ActionStar: 6
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 6560997941617112720, guid: c497539bbe0de84479aa4e67f4902557, type: 3}
+      count: 5
+    - prefab: {fileID: 4080316614503620887, guid: 1d23e0c5b30c7a44594b94047e036451, type: 3}
+      count: 1
     VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}

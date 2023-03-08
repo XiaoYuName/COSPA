@@ -35,7 +35,6 @@ namespace ARPG
         public void PlayerFx()
         {
             Transform bodyTran = Player.GetPoint("legF");
-            SkillPoolManager.Release(data.Pools[0].prefab, bodyTran.position,Quaternion.Euler(bodyTran.eulerAngles.x,-bodyTran.eulerAngles.y,0));
             Collider2D other =  Physics2D.OverlapCircle(bodyTran.position, data.Radius,data.Mask);
             if (other == null || !other.CompareTag("Character")) return;
             IDamage target = other.transform.GetComponentInParent<Enemy>();

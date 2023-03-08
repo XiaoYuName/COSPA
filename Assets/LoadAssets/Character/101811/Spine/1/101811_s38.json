@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "O8bK2FyY0fRyLHaTVUHzXuDSIVY", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
+"skeleton": { "hash": "+CWu695GVUA7y5uAxV6SRfktGE0", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
 "bones": [
 	{ "name": "root", "y": 1.42 },
 	{ "name": "body", "parent": "root", "x": 5.5, "y": 80.45 },
@@ -39327,11 +39327,11 @@
 			"weaponSubB": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 7.2, "color": "fffffffe" }
+					{ "time": 4.3667, "color": "fffffffe" }
 				],
 				"attachment": [
 					{ "name": null },
-					{ "time": 7.2, "name": null }
+					{ "time": 4.3667, "name": null }
 				]
 			},
 			"weaponSubF": {
@@ -41571,26 +41571,26 @@
 					{ "curve": "stepped" },
 					{ "time": 1.0333, "curve": 0.25, "c3": 0.75 },
 					{ "time": 1.2333, "angle": 0.06, "curve": "stepped" },
-					{ "time": 5.9, "angle": 0.06, "curve": 0.114, "c2": 0.4, "c3": 0.561, "c4": 0.97 },
-					{ "time": 6.0333, "angle": 0.04, "curve": 0.333, "c2": 0.32, "c3": 0.666, "c4": 0.65 },
-					{ "time": 6.1, "angle": 0.04, "curve": 0.145, "c2": 0.41, "c3": 0.681, "c4": 0.89 },
-					{ "time": 6.3, "angle": 0.02, "curve": 0.25, "c3": 0.75 },
-					{ "time": 6.4, "angle": 0.02, "curve": 0.25, "c3": 0.75 },
-					{ "time": 6.7667, "curve": "stepped" },
-					{ "time": 7.1, "curve": 0.313, "c2": 0.64, "c3": 0.646 },
-					{ "time": 7.2 }
+					{ "time": 3.0667, "angle": 0.06, "curve": 0.114, "c2": 0.4, "c3": 0.561, "c4": 0.97 },
+					{ "time": 3.2, "angle": 0.04, "curve": 0.333, "c2": 0.32, "c3": 0.666, "c4": 0.65 },
+					{ "time": 3.2667, "angle": 0.04, "curve": 0.145, "c2": 0.41, "c3": 0.681, "c4": 0.89 },
+					{ "time": 3.4667, "angle": 0.02, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.5667, "angle": 0.02, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.9333, "curve": "stepped" },
+					{ "time": 4.2667, "curve": 0.313, "c2": 0.64, "c3": 0.646 },
+					{ "time": 4.3667 }
 				],
 				"translate": [
 					{ "curve": "stepped" },
-					{ "time": 7.2 }
+					{ "time": 4.3667 }
 				],
 				"scale": [
 					{ "curve": "stepped" },
-					{ "time": 7.2 }
+					{ "time": 4.3667 }
 				],
 				"shear": [
 					{ "curve": "stepped" },
-					{ "time": 7.2 }
+					{ "time": 4.3667 }
 				]
 			},
 			"weaponSubF": {
@@ -41782,7 +41782,7 @@
 				]
 			},
 			{
-				"time": 6,
+				"time": 3.1667,
 				"offsets": [
 					{ "slot": "handB", "offset": 1 },
 					{ "slot": "armF", "offset": 8 },
@@ -41794,7 +41794,7 @@
 				]
 			},
 			{
-				"time": 7.2,
+				"time": 4.3667,
 				"offsets": [
 					{ "slot": "handB", "offset": 1 },
 					{ "slot": "armF", "offset": 8 },
@@ -41805,6 +41805,9 @@
 					{ "slot": "handF", "offset": 4 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 2.4667, "name": "SpineEvent", "string": "TouchingMoment" }
 		]
 	},
 	"000000_balloon_flying_down": {

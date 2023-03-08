@@ -161,20 +161,20 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 871ac2f317cfa5142a051cedf8f6e33d, type: 2}
     State:
-      PhysicsAttack: 10
-      MagicAttack: 150
-      PhysicsDefense: 180
-      MagicDefense: 180
-      HP: 470
+      PhysicsAttack: 500
+      MagicAttack: 1500
+      PhysicsDefense: 0
+      MagicDefense: 0
+      HP: 4500
       currentHp: 0
-      AddHp: 5
+      AddHp: 50
       SkillAttack: 1
       Cirtical: 0.1
       CirticalAttack: 2
-      Power: 10
-      Intelligence: 25
-      Vit: 15
-      Agility: 20
+      Power: 250
+      Intelligence: 100
+      Vit: 150
+      Agility: 200
       AttackSpeed: 1
       ReleaseSpeed: 1
       MovSpeed: 135
@@ -325,7 +325,7 @@ MonoBehaviour:
     Prefab: {fileID: 2060322555634032043, guid: f76a274710332f945b8860bbc81e61f1, type: 3}
     CharacterStarType: 3
     CharacterName: "\u4F0A\u7EEA"
-    battle: 0
+    battle: 4
     StepData:
     - Star: 2
       ItemID: 31018
@@ -387,7 +387,7 @@ MonoBehaviour:
     - SkillID: RnergyPouring
       Type: 3
       BtnAudioID: 
-    - SkillID: FlameBurns
+    - SkillID: TouchingMoment
       Type: 4
       BtnAudioID: 
     des: "\u4F0A\u7EEA\u8001\u5A46"

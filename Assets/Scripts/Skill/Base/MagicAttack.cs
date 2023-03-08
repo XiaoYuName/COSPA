@@ -45,11 +45,10 @@ namespace ARPG
         private IEnumerator MovenemtToTargetDamager(GameObject Bull,IDamage target)
         {
             Transform targetPos = target.GetPoint("body");
-            while (Vector2.Distance(Bull.transform.position,targetPos.position) > 0.15f)
+            while (isNotChekc(targetPos.gameObject)&&Vector2.Distance(Bull.transform.position,targetPos.position) > 0.15f)
             {
                 Bull.transform.position = Vector3.MoveTowards(Bull.transform.position, targetPos.transform.position, 
                     data.ReleaseTime * Time.deltaTime);
-                
                 Vector3 dir = targetPos.position - Bull.transform.position;
                 float angle = Vector3.SignedAngle(Vector3.right, dir, Vector3.forward);
                 Bull.transform.eulerAngles = new Vector3(0, 0, angle);
@@ -76,6 +75,16 @@ namespace ARPG
             }
 
             return null;
+        }
+
+        public bool isNotChekc(GameObject target)
+        {
+            if (Player != null && Player.gameObject.activeSelf && target != null && target.gameObject.activeSelf)
+            {
+                return true;
+            }
+
+            return false;
         }
 
 
