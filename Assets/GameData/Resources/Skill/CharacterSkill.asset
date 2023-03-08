@@ -37,53 +37,33 @@ MonoBehaviour:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 10
     VideoAsset: {fileID: 0}
-  - ID: SkillConjurerAttack
+  - ID: UE_MagicAttack
     CD: 1
-    Duration: 0.5
-    ReleaseTime: 0.5
-    Radius: 3.5
+    Duration: 30
+    ReleaseTime: 5
+    Radius: 60
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 6
-    icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
-    SkillName: "\u9B54\u6CD5\u5E08\u804C\u4E1A\u666E\u901A\u653B\u51FB"
-    SkillDes: 
+    Diamage: 2
+    icon: {fileID: 21300000, guid: aff23992db5e040a0b1bd59259bcf120, type: 3}
+    SkillName: "\u9B54\u6CD5\u5E08\u666E\u653B"
+    SkillDes: "UE_\u9B54\u6CD5\u5E08\u666E\u653B"
     StepUpDes: 
     ActionStar: 0
     SkillType:
       type: 2
       isMultistage: 0
-      MultistageTime: 0
-      MultistageDamage: 
+      MultistageTime: 0.2
+      MultistageDamage: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
     Pools:
-    - prefab: {fileID: 6151121716400007873, guid: 12d8fdc32c8c208409ada808b9ae24de, type: 3}
-      count: 10
-    VideoAsset: {fileID: 0}
-  - ID: SkillEnemySoldierAttack
-    CD: 2.5
-    Duration: 0.5
-    ReleaseTime: 0.75
-    Radius: 2.15
-    RadiusOffset: {x: -0.79, y: -0.89}
-    Mask:
-      serializedVersion: 2
-      m_Bits: 32768
-    Diamage: 3
-    icon: {fileID: 21300000, guid: 84ea8babf74fa4e9a9d27401b99d3658, type: 3}
-    SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"
-    SkillDes: 
-    StepUpDes: 
-    ActionStar: 0
-    SkillType:
-      type: 1
-      isMultistage: 0
-      MultistageTime: 0
-      MultistageDamage: 
-    Pools:
-    - prefab: {fileID: 8002295471322181082, guid: b42933eb27e084943bade0b3dcd66e34, type: 3}
-      count: 999
+    - prefab: {fileID: 1504338092237711473, guid: e959af8c70f962941969653e3c92080f, type: 3}
+      count: 5
+    - prefab: {fileID: 1569303603051749341, guid: d1725fa9f124438498020a365bc01ab1, type: 3}
+      count: 5
+    - prefab: {fileID: 7721399164225838425, guid: 650212be0d26e7a40aeae07cf5c4b465, type: 3}
+      count: 5
     VideoAsset: {fileID: 0}
   - ID: MagicAttack
     CD: 1
@@ -112,6 +92,28 @@ MonoBehaviour:
       count: 5
     - prefab: {fileID: 1907788672798889127, guid: f47bd4624e3bdcd4c8642d2e3ae8e306, type: 3}
       count: 5
+    VideoAsset: {fileID: 0}
+  - ID: SkillEnemySoldierAttack
+    CD: 1.5
+    Duration: -1
+    ReleaseTime: -1
+    Radius: -1
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 32768
+    Diamage: 2.5
+    icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
+    SkillName: "\u602A\u7269\u666E\u901A\u653B\u51FB"
+    SkillDes: "\u602A\u7269\u666E\u901A\u653B\u51FB"
+    StepUpDes: 
+    ActionStar: 0
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools: []
     VideoAsset: {fileID: 0}
   - ID: DoubleChop
     CD: 5

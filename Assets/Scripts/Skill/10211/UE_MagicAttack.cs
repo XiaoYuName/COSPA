@@ -2,13 +2,12 @@ using System.Collections;
 using ARPG.Config;
 using ARPG.Pool.Skill;
 using UnityEngine;
-
 namespace ARPG
 {
     /// <summary>
-    /// 魔法师远程攻击
+    /// UE 换色普攻
     /// </summary>
-    public class MagicAttack : Skill
+    public class UE_MagicAttack : Skill
     {
         public override void Init(Character character, SkillType type, SkillItem item)
         {
@@ -90,6 +89,6 @@ namespace ARPG
             base.UHandle();
             MessageManager.Instance.URegister<string>(C2C.EventMsg,AnimatorMsg);
         }
-    }   
+    }
 }
 
