@@ -20,6 +20,8 @@ namespace ARPG
 
         public override void Play()
         {
+            if(Player.animSpeed == 0)return;
+            Player.anim.SetTrigger("Attack");
         }
 
         public void AnimatorMsg(string EventName)

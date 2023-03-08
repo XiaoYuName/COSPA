@@ -39,7 +39,6 @@ namespace ARPG
         private DynamicJoystick Joystick;
         private Vector2 InputSpeed;
         private static readonly int s_IsMovenemt = Animator.StringToHash("isMovenemt");
-        private static readonly int s_Attack = Animator.StringToHash("Attack");
         //-------------------------Skill-------------------------------//
         /// <summary>
         /// 技能对象子弹,初始化阶段会加载出所有的技能对象,并执行Init初始化,之后在释放时调用Play方法
@@ -206,7 +205,6 @@ namespace ARPG
         protected  void Attack()
         {
             if(animSpeed == 0)return;
-            anim.SetTrigger(s_Attack);
             SkillDic[SkillType.Attack].Play();
             BuffTriggerEvent(BuffTrigger.攻击时);
             BuffAddTrigger(BuffTrigger.累计攻击);

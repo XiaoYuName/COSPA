@@ -61,7 +61,7 @@ namespace ARPG
     {
         public override void Play()
         {
-            Player.StartCoroutine(PlayFx());
+           
         }
 
         private IEnumerator PlayFx()
