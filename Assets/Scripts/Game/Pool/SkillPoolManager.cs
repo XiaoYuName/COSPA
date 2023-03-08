@@ -48,6 +48,12 @@ namespace ARPG.Pool.Skill
          Pools.Add(Item);
       }
 
+      public void ClearPool()
+      {
+         Pools.Clear();
+         UIHelper.Clear(transform);
+      }
+
 
       /// <summary>
       /// 释放一个对象

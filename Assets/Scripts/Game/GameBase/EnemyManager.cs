@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ARPG.Config;
+using ARPG.Pool.Skill;
 using ARPG.UI;
 using ARPG.UI.Config;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace ARPG
             GameMemu = UISystem.Instance.GetUI<GameMemu>("GameMemu");
            
             List<Pool.Skill.Pool> CreatBag = new List<Pool.Skill.Pool>();
-            
+            List<Pool.Skill.Pool> SkillPool = new List<Pool.Skill.Pool>();
             for (int i = 0; i < data.WaveItems.Count; i++)  //循环每波敌人
             {
                 foreach (var enemyBag in data.WaveItems[i].EnemyList) //循环每个波中的所有敌人
@@ -80,6 +81,29 @@ namespace ARPG
                     {
                         CreatBag.Add(new Pool.Skill.Pool{prefab = Prefab,count = enemyBag.count});
                     }
+
+                    EnemyData enemyData = GetData(enemyBag.dataID);
+                    foreach (var Skill in enemyData.SkillTable)
+                    {
+                        SkillItem skillItem = GameSystem.Instance.GetSkill(Skill.SkillID);
+                        for (int j = 0; j < skillItem.Pools.Count; j++)
+                        {
+                            if (SkillPool.Any(p => p.prefab == skillItem.Pools[j].prefab))
+                            {
+                                for (int k = 0; k < SkillPool.Count; k++)
+                                {
+                                    if (SkillPool[k].prefab != skillItem.Pools[j].prefab) continue;
+                                    SkillPool[k].count += skillItem.Pools[j].count;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                SkillPool.Add(skillItem.Pools[j]);
+                            }
+                        }
+                    }
+
                 }
                 yield return null;
             }
@@ -89,7 +113,11 @@ namespace ARPG
                 EnemyPoolManager.Instance.AddPoolPrefab(Pool);
                 yield return null;
             }
-            
+
+            foreach (var skill in SkillPool)
+            {
+                SkillPoolManager.Instance.AddPoolPrefab(skill);
+            }
             
             EnemyPoolManager.Instance.Init();
         }

@@ -67,7 +67,7 @@ namespace ARPG
                 count =  100,
             });
             yield return EnemyManager.Instance.CreateEnemy(regionItem);
-            ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
+            
         }
 
         /// <summary>
@@ -85,6 +85,7 @@ namespace ARPG
             UISystem.Instance.CloseUI("AttackButton");
             BUFFManager.Instance.RemoveDictionary(Player);
             EnemyManager.Instance.QuitGameScene();
+            SkillPoolManager.Instance.ClearPool();
             Destroy(Player.gameObject);
             if (currentRegionLine != null)
             {
@@ -189,6 +190,7 @@ namespace ARPG
             EnemyManager.Instance.QuitGameScene();
             BUFFManager.Instance.RemoveDictionary(Player);
             Destroy(Player.gameObject);
+            SkillPoolManager.Instance.ClearPool();
             InventoryManager.Instance.SetPress(currentPress);
 
             if (currentRegionLine != null && result == GameResult.胜利)

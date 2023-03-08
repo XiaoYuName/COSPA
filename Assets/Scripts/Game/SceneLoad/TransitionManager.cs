@@ -55,6 +55,8 @@ namespace RPG.Transition
         {
             yield return Transition(ScnenName, pos, GameManager.Instance.StarSceneGame(data, pos,regionLine,regionItem));
             EnemyManager.Instance.PlayEnemy();
+            ARPG.Pool.Skill.SkillPoolManager.Instance.Init();
+            yield return new WaitForSeconds(0.2f);
         }
 
         
