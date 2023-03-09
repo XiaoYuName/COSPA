@@ -23,7 +23,7 @@ namespace ARPG.UI
         {
             CloseBtn = Get<Button>("UIMask/Back/RightPanel/CloseBtn");
             Bind(CloseBtn,Close,UiAudioID.OutChick);
-            ItemContent = Get<RectTransform>("UIMask/Back/LeftPanel/ItemRow/Content");
+            ItemContent = Get<RectTransform>("UIMask/Back/LeftPanel/ItemRow/RewordView/Viewport/Content");
             RewordContent = Get<RectTransform>("UIMask/Back/LeftPanel/RewordRow/Content");
             
             EnemyContent = Get<RectTransform>("UIMask/Back/LeftPanel/EnemyRow/EnemyView/Viewport/Content");

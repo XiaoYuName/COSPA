@@ -293,9 +293,6 @@ MonoBehaviour:
     - ID: 91001
       count: 60
       power: 0
-    - ID: 101251
-      count: 1
-      power: 1
   - TaskName: "\u51FB\u6740BOSS 50 \u53EA"
     TagUID: AttackEnemy_BOSS_50
     Mode: 2
@@ -303,19 +300,7 @@ MonoBehaviour:
     RefType: 0
     RewordAmount: 50
     _TaskTrigger: 1
-    RewordItemList:
-    - ID: 22001
-      count: 60
-      power: 0
-    - ID: 94001
-      count: 600
-      power: 0
-    - ID: 91001
-      count: 6000
-      power: 0
-    - ID: 101251
-      count: 1
-      power: 10
+    RewordItemList: []
   - TaskName: "\u626D\u86CB1\u6B21"
     TagUID: AttackEnemy_Twist_1
     Mode: 2
@@ -333,9 +318,6 @@ MonoBehaviour:
     - ID: 91001
       count: 6000
       power: 0
-    - ID: 101251
-      count: 1
-      power: 50
   - TaskName: "\u626D\u86CB5\u6B21"
     TagUID: AttackEnemy_Twist_5
     Mode: 2
@@ -353,9 +335,6 @@ MonoBehaviour:
     - ID: 91001
       count: 6000
       power: 0
-    - ID: 101251
-      count: 1
-      power: 50
   - TaskName: "\u626D\u86CB10\u6B21"
     TagUID: AttackEnemy_Twist_10
     Mode: 2
@@ -373,9 +352,6 @@ MonoBehaviour:
     - ID: 91001
       count: 6000
       power: 0
-    - ID: 101251
-      count: 1
-      power: 50
   - TaskName: "\u626D\u86CB100\u6B21"
     TagUID: AttackEnemy_Twist_100
     Mode: 2
@@ -393,6 +369,3 @@ MonoBehaviour:
     - ID: 91001
       count: 6000
       power: 0
-    - ID: 101251
-      count: 1
-      power: 50
