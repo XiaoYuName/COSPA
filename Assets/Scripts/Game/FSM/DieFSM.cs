@@ -14,6 +14,7 @@ namespace ARPG
                 TaskManager.Instance.TriggerTask(TaskTrigger.击杀BOSS,1);
                 AudioManager.Instance.PlayActiveSceneBGM(); //切换成默认场景BGM
                 UISystem.Instance.CloseUI("BossStateUI");
+                enemy.DamageCollider2D.enabled = false;
             }
             TaskManager.Instance.TriggerTask(TaskTrigger.击杀怪物,1);
             foreach (var skill in enemy.SkillDic)
@@ -25,6 +26,7 @@ namespace ARPG
             {
                 if(enemy== null || enemy.gameObject ==null)return;
                 enemy.gameObject.SetActive(false);//释放线程池资源
+                enemy.DamageCollider2D.enabled = true;
                 EnemyManager.Instance.DieCurrentEnemy(enemy);
             });
             
