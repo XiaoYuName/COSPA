@@ -17,25 +17,20 @@ MonoBehaviour:
     mapIcon: {fileID: 21300000, guid: 7beaa358194ecaf469b541833aa26de7, type: 3}
     RewordItemList:
     - itemBag:
-        ID: 101011
-        count: 1
-        power: 0
-      Type: 0
-    - itemBag:
         ID: 22001
         count: 50
         power: 0
       Type: 2
     - itemBag:
-        ID: 102011
-        count: 1
+        ID: 101011
+        count: 2
         power: 0
-      Type: 2
+      Type: 0
     - itemBag:
-        ID: 103011
-        count: 1
+        ID: 102011
+        count: 0
         power: 0
-      Type: 2
+      Type: 0
     MoneyReword:
     - itemBag:
         ID: 91001
@@ -61,24 +56,29 @@ MonoBehaviour:
         power: 0
       Type: 2
     - itemBag:
-        ID: 103012
+        ID: 103011
+        count: 1
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 103111
         count: 1
         power: 0
       Type: 0
     MoneyReword:
     - itemBag:
-        ID: 100
-        count: 50
+        ID: 91001
+        count: 100
         power: 0
       Type: 2
     - itemBag:
         ID: 94001
-        count: 500
+        count: 100
         power: 0
       Type: 0
     - itemBag:
         ID: 92001
-        count: 50
+        count: 31
         power: 0
       Type: 0
   - ID: 1-3
@@ -91,6 +91,16 @@ MonoBehaviour:
       Type: 2
     - itemBag:
         ID: 104011
+        count: 1
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 90005
+        count: 10
+        power: 0
+      Type: 2
+    - itemBag:
+        ID: 101014
         count: 1
         power: 0
       Type: 2
@@ -120,7 +130,7 @@ MonoBehaviour:
     RewordItemList:
     - itemBag:
         ID: 22001
-        count: 100
+        count: 80
         power: 0
       Type: 2
     - itemBag:
@@ -153,20 +163,20 @@ MonoBehaviour:
     mapIcon: {fileID: 21300000, guid: 7beaa358194ecaf469b541833aa26de7, type: 3}
     RewordItemList:
     - itemBag:
+        ID: 22001
+        count: 80
+        power: 0
+      Type: 2
+    - itemBag:
         ID: 103012
         count: 1
         power: 0
       Type: 0
     - itemBag:
-        ID: 103111
+        ID: 103112
         count: 1
         power: 0
       Type: 0
-    - itemBag:
-        ID: 22001
-        count: 100
-        power: 0
-      Type: 2
     MoneyReword:
     - itemBag:
         ID: 91001
@@ -192,25 +202,20 @@ MonoBehaviour:
         power: 0
       Type: 2
     - itemBag:
-        ID: 101013
+        ID: 104012
         count: 1
         power: 0
       Type: 0
     - itemBag:
-        ID: 101014
-        count: 1
+        ID: 90005
+        count: 20
         power: 0
       Type: 2
     - itemBag:
-        ID: 103112
+        ID: 101015
         count: 1
         power: 0
       Type: 2
-    - itemBag:
-        ID: 22001
-        count: 60
-        power: 0
-      Type: 0
     - itemBag:
         ID: 102015
         count: 1
@@ -236,22 +241,12 @@ MonoBehaviour:
     mapIcon: {fileID: 21300000, guid: c670661510d58a24f92f96cf0188b4cb, type: 3}
     RewordItemList:
     - itemBag:
-        ID: 101013
-        count: 1
-        power: 0
-      Type: 0
-    - itemBag:
-        ID: 103013
-        count: 1
-        power: 0
-      Type: 0
-    - itemBag:
         ID: 22001
-        count: 1
+        count: 100
         power: 0
-      Type: 0
+      Type: 2
     - itemBag:
-        ID: 103113
+        ID: 101013
         count: 1
         power: 0
       Type: 0
@@ -259,7 +254,7 @@ MonoBehaviour:
         ID: 102013
         count: 1
         power: 0
-      Type: 2
+      Type: 0
     MoneyReword:
     - itemBag:
         ID: 91001
@@ -280,25 +275,20 @@ MonoBehaviour:
     mapIcon: {fileID: 21300000, guid: db7527cf8e6416d47bc075af6f808e71, type: 3}
     RewordItemList:
     - itemBag:
-        ID: 101015
-        count: 1
-        power: 0
-      Type: 2
-    - itemBag:
         ID: 22001
-        count: 500
+        count: 120
         power: 0
       Type: 2
     - itemBag:
-        ID: 103014
+        ID: 103013
         count: 1
         power: 0
       Type: 0
     - itemBag:
-        ID: 103114
+        ID: 103113
         count: 1
         power: 0
-      Type: 2
+      Type: 0
     MoneyReword:
     - itemBag:
         ID: 91001
@@ -319,32 +309,32 @@ MonoBehaviour:
     mapIcon: {fileID: 21300000, guid: 7854f440bee52564ca7e29fc6dd5a46c, type: 3}
     RewordItemList:
     - itemBag:
+        ID: 22001
+        count: 200
+        power: 0
+      Type: 2
+    - itemBag:
+        ID: 104013
+        count: 1
+        power: 0
+      Type: 0
+    - itemBag:
+        ID: 102016
+        count: 1
+        power: 0
+      Type: 2
+    - itemBag:
         ID: 101016
         count: 1
         power: 0
       Type: 2
     - itemBag:
-        ID: 103015
-        count: 1
-        power: 0
-      Type: 2
-    - itemBag:
-        ID: 22001
-        count: 300
-        power: 0
-      Type: 0
-    - itemBag:
-        ID: 104013
-        count: 1
-        power: 0
-      Type: 2
-    - itemBag:
-        ID: 103115
-        count: 1
-        power: 0
-      Type: 2
-    - itemBag:
         ID: 102016
+        count: 1
+        power: 0
+      Type: 2
+    - itemBag:
+        ID: 101016
         count: 1
         power: 0
       Type: 2
@@ -388,11 +378,6 @@ MonoBehaviour:
     - itemBag:
         ID: 104017
         count: 0
-        power: 0
-      Type: 0
-    - itemBag:
-        ID: 22001
-        count: 300
         power: 0
       Type: 0
     - itemBag:
@@ -459,7 +444,7 @@ MonoBehaviour:
         ID: 94001
         count: 1000
         power: 0
-      Type: 1
+      Type: 0
     - itemBag:
         ID: 92001
         count: 500
@@ -480,55 +465,61 @@ MonoBehaviour:
         count: 1
         power: 0
       Type: 4
-      random: 0.046
+      random: 0.15
     - itemBag:
         ID: 102017
         count: 1
         power: 0
       Type: 4
-      random: 0.046
+      random: 0.15
     - itemBag:
         ID: 111111
         count: 1
         power: 0
       Type: 4
-      random: 0.01
+      random: 0.015
     - itemBag:
         ID: 103016
         count: 1
         power: 0
       Type: 4
-      random: 0.157
+      random: 0.15
     - itemBag:
         ID: 103116
         count: 1
         power: 0
       Type: 4
-      random: 0.157
-    - itemBag:
-        ID: 103116
-        count: 1
-        power: 0
-      Type: 4
-      random: 0.157
+      random: 0.15
     - itemBag:
         ID: 104014
         count: 1
         power: 0
       Type: 4
-      random: 0.157
+      random: 0.15
     - itemBag:
         ID: 104015
         count: 1
         power: 0
       Type: 4
-      random: 0.157
+      random: 0.15
     - itemBag:
         ID: 104016
         count: 1
         power: 0
       Type: 4
-      random: 0.157
+      random: 0.15
+    - itemBag:
+        ID: 22001
+        count: 200
+        power: 0
+      Type: 4
+      random: 0.35
+    - itemBag:
+        ID: 91001
+        count: 200
+        power: 0
+      Type: 4
+      random: 0.2
     MoneyReword:
     - itemBag:
         ID: 91001
