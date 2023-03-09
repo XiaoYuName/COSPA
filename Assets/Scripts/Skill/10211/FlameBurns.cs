@@ -61,17 +61,22 @@ namespace ARPG
             FxFlame.Clear();
             while (true)
             {
-                Collider2D target = Physics2D.OverlapCircle(Player.body.transform.position, data.Radius, data.Mask);
-                if (target != null && target.CompareTag("Character"))
+                Collider2D[] collider2Ds = new Collider2D[20];
+                int siez  = Physics2D.OverlapCircleNonAlloc(Player.body.transform.position, data.Radius, collider2Ds, data.Mask);
+                if(siez<=0)yield break;
+                for (int i = 0; i < collider2Ds.Length; i++)
                 {
-                    ARPG.Enemy tarEnemy = target.transform.parent.GetComponent<Enemy>();
-                    targets.Add(tarEnemy);
-                    GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, target.transform.position, Quaternion.identity);
-                    Fx.transform.parent = target.transform;
-                    FxFlame.Add(Fx);
-                    yield return new WaitForSeconds(0.25f);
+                    if (collider2Ds[i] != null && collider2Ds[i].CompareTag("Character"))
+                    {
+                        ARPG.Enemy tarEnemy = collider2Ds[i].GetComponentInParent<Enemy>();
+                        targets.Add(tarEnemy);
+                        GameObject Fx = SkillPoolManager.Release(data.Pools[0].prefab, tarEnemy.transform.position, Quaternion.identity);
+                        Fx.transform.parent = tarEnemy.transform;
+                        FxFlame.Add(Fx);
+                    }
                 }
-
+                
+                
                 yield return null;
             }
             // ReSharper disable once IteratorNeverReturns

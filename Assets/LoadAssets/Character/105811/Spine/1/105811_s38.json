@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "DHhL8UQYJy3Jt/YWgfmK1Y/4eN8", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
+"skeleton": { "hash": "O/+Mf6BCduG5jozFwjuiznWc1lA", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
 "bones": [
 	{ "name": "root", "y": 1.42 },
 	{ "name": "body", "parent": "root", "x": 5.5, "y": 80.45 },
@@ -43963,6 +43963,9 @@
 					{ "slot": "handB", "offset": 8 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 4.9333, "name": "SpineEvent", "string": "Broken" }
 		]
 	},
 	"000000_balloon_flying_down": {

@@ -22,13 +22,13 @@ MonoBehaviour:
     _TaskTrigger: 2
     RewordItemList:
     - ID: 22001
-      count: 5
+      count: 10
       power: 0
     - ID: 94001
       count: 50
       power: 0
     - ID: 91001
-      count: 1
+      count: 5
       power: 0
   - TaskName: "\u7D2F\u8BA1\u5728\u7EBF10\u5206\u949F"
     TagUID: NewYear_02
@@ -42,10 +42,10 @@ MonoBehaviour:
       count: 10
       power: 0
     - ID: 94001
-      count: 100
+      count: 50
       power: 0
     - ID: 91001
-      count: 2
+      count: 10
       power: 0
   - TaskName: "\u7D2F\u8BA1\u5728\u7EBF30\u5206\u949F"
     TagUID: NewYear_03
@@ -56,13 +56,13 @@ MonoBehaviour:
     _TaskTrigger: 2
     RewordItemList:
     - ID: 22001
-      count: 30
+      count: 10
       power: 0
     - ID: 94001
       count: 150
       power: 0
     - ID: 91001
-      count: 5
+      count: 30
       power: 0
   - TaskName: "\u7D2F\u8BA1\u5728\u7EBF60\u5206\u949F"
     TagUID: NewYear_04
@@ -72,14 +72,11 @@ MonoBehaviour:
     RewordAmount: 60
     _TaskTrigger: 2
     RewordItemList:
-    - ID: 101251
-      count: 1
-      power: 6
     - ID: 22001
-      count: 60
+      count: 10
       power: 0
     - ID: 94001
-      count: 150
+      count: 50
       power: 0
     - ID: 91001
       count: 100
@@ -95,12 +92,6 @@ MonoBehaviour:
     - ID: 22001
       count: 50
       power: 0
-    - ID: 94001
-      count: 50
-      power: 0
-    - ID: 91001
-      count: 50
-      power: 0
   - TaskName: "\u91CA\u653E\u6280\u80FD10\u6B21"
     TagUID: PlayerSkill_10
     Mode: 0
@@ -112,11 +103,8 @@ MonoBehaviour:
     - ID: 22001
       count: 50
       power: 0
-    - ID: 94001
-      count: 50
-      power: 0
-    - ID: 91001
-      count: 50
+    - ID: 101011
+      count: 8
       power: 0
   - TaskName: "\u5145\u503C6\u5143"
     TagUID: AddGold_6
@@ -229,7 +217,7 @@ MonoBehaviour:
     _TaskTrigger: 5
     RewordItemList:
     - ID: 22001
-      count: 60
+      count: 1080
       power: 0
     - ID: 94001
       count: 600
@@ -307,7 +295,7 @@ MonoBehaviour:
       power: 0
     - ID: 101251
       count: 1
-      power: 11
+      power: 1
   - TaskName: "\u51FB\u6740BOSS 50 \u53EA"
     TagUID: AttackEnemy_BOSS_50
     Mode: 2
@@ -327,7 +315,7 @@ MonoBehaviour:
       power: 0
     - ID: 101251
       count: 1
-      power: 50
+      power: 10
   - TaskName: "\u626D\u86CB1\u6B21"
     TagUID: AttackEnemy_Twist_1
     Mode: 2

@@ -37,7 +37,6 @@ namespace ARPG
                     Player.StartCoroutine(WaitVideo());
                     break;
                 case "StopSkill_3":
-                    Player.anim.speed = 0;
                     break;
                 case "CreateSword":
                     PlaySkillFx();
@@ -64,10 +63,22 @@ namespace ARPG
 
         public void PlaySkillFx()
         {
-            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90; 
-            _FxItem fxItem = SkillPoolManager.Release(data.Pools[0].prefab, Player.body.position,
-                Quaternion.Euler(0,rotationY,-90)).GetComponent<_FxItem>();
-            fxItem.Play(Player,data);
+            float rotationY = Player.transform.rotation.eulerAngles.y > 0 ? -90:90;
+            Vector3 PalyPoint = new Vector3(Player.body.position.x + data.RadiusOffset.x,
+                Player.body.position.y + data.RadiusOffset.y, 0);
+            SkillPoolManager.Release(data.Pools[0].prefab, PalyPoint, Quaternion.Euler(0,rotationY,-90));
+
+            Collider2D[] targets = new Collider2D[10];
+            int size = Physics2D.OverlapCircleNonAlloc(Player.body.position, data.Radius, targets,data.Mask);
+            if (size <= 0) return;
+            foreach (var enemy in targets)
+            {
+                if(enemy== null)continue;
+                if (!enemy.gameObject.CompareTag("Character"))continue;
+                IDamage target = enemy.GetComponentInParent<Enemy>();
+                Vector3 boundPoint = enemy.bounds.ClosestPoint(Player.body.position);
+                GameManager.Instance.OptionDamage(Player,target,data,boundPoint);
+            }
         }
 
         /// <summary>
