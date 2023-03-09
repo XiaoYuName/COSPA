@@ -601,3 +601,27 @@ MonoBehaviour:
     - prefab: {fileID: 4080316614503620887, guid: 1d23e0c5b30c7a44594b94047e036451, type: 3}
       count: 1
     VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
+  - ID: Enemy_Bait
+    CD: 3
+    Duration: -1
+    ReleaseTime: -1
+    Radius: 5
+    RadiusOffset: {x: 0, y: -1.08}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 32768
+    Diamage: 1
+    icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
+    SkillName: "\u72FC\u738B\u6495\u88C2"
+    SkillDes: "\u6495\u88C2"
+    StepUpDes: 
+    ActionStar: 6
+    SkillType:
+      type: 2
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 5404440256479476643, guid: f7b95c4ad9cf6e543beeac6009669bce, type: 3}
+      count: 5
+    VideoAsset: {fileID: 0}

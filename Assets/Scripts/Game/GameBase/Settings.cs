@@ -79,7 +79,7 @@ namespace ARPG
             state.AddHp = (int)(state.AddHp *  (1+(levle/10)*(1+state.Growth)))+(state.Vit/100)+(state.Agility/100)+(state.Intelligence/100)+(state.Power/100);
             state.Cirtical = (int)(state.Cirtical *  (1+(levle/10)*(1+state.Growth)));
             state.AttackSpeed = (float)(state.AttackSpeed *  (1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/500);
-            state.MovSpeed = (float)(state.MovSpeed * (1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/500);
+            state.MovSpeed = (float)(state.MovSpeed * (1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/2500);
             state.ReleaseSpeed =(float)(state.ReleaseSpeed *(1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/500);
             return state;
         }

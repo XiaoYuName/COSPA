@@ -17,6 +17,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8011499988070143668, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143668, guid: d01b2bc613595994f976d54ca728e205, type: 3}
       propertyPath: SubModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -30,6 +34,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011499988070143668, guid: d01b2bc613595994f976d54ca728e205, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011499988070143669, guid: d01b2bc613595994f976d54ca728e205, type: 3}
+      propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8011499988070143669, guid: d01b2bc613595994f976d54ca728e205, type: 3}

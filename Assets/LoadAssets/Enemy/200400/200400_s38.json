@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "DX2HSKN6FAFez8Tb45/DCtTFw9A", "spine": "3.8", "x": -254.86, "y": -65, "width": 437.3, "height": 394.09 },
+"skeleton": { "hash": "3ovilr7kCEw2RZtsFvMHtVxFPHs", "spine": "3.8.99", "x": -254.86, "y": -65, "width": 437.3, "height": 394.09 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "hipF", "parent": "root", "length": 36, "rotation": -102.35, "x": 19.72, "y": 105.35 },
@@ -68,86 +68,6 @@
 	{
 		"name": "default",
 		"attachments": {
-			"ef_eyes": {
-				"ef_eyes": { "x": 29.59, "y": 1.58, "width": 320, "height": 250 }
-			},
-			"handR": {
-				"handR": { "x": 41.39, "y": -27.75, "width": 320, "height": 250 }
-			},
-			"armAttackB2": {
-				"armAttackB2": { "x": 67.21, "y": 65.94, "rotation": 46.58, "width": 320, "height": 250 }
-			},
-			"handL": {
-				"handL": { "x": -76.11, "y": 87.41, "width": 320, "height": 250 }
-			},
-			"ef_eyes_01": {
-				"ef_eyes": { "x": 28.1, "y": 1.1, "width": 320, "height": 250 }
-			},
-			"tategami2": {
-				"tategami2": { "x": -5.17, "y": -24.1, "width": 320, "height": 250 }
-			},
-			"face1": {
-				"face1": { "x": 7.09, "y": 3.29, "width": 320, "height": 250 },
-				"face_damage": { "x": 7.08, "y": 3.28, "width": 320, "height": 250 }
-			},
-			"handAttackB": {
-				"handAttackB": { "x": 2.82, "y": 65.71, "rotation": 38.39, "width": 320, "height": 250 }
-			},
-			"handAttackF": {
-				"handAttackF": { "x": -48.73, "y": -84.88, "rotation": -171.89, "width": 320, "height": 250 }
-			},
-			"tail": {
-				"tail": { "x": -94.12, "y": 25.87, "width": 320, "height": 250 }
-			},
-			"udeR1": {
-				"udeR1": { "x": 4.98, "y": -21.75, "width": 320, "height": 250 }
-			},
-			"udeR2": {
-				"udeR2": { "x": -18.29, "y": -51.57, "width": 320, "height": 250 }
-			},
-			"hipF": {
-				"hipF": { "x": -7.02, "y": -82.08, "rotation": 102.37, "width": 320, "height": 250 }
-			},
-			"udeL1": {
-				"udeL1": { "x": -103.07, "y": 62.94, "width": 320, "height": 250 }
-			},
-			"udeL2": {
-				"udeL2": { "x": -58.75, "y": -2.85, "width": 320, "height": 250 }
-			},
-			"tategami1": {
-				"tategami1": { "x": 6.53, "y": -16.3, "width": 320, "height": 250 }
-			},
-			"footL": {
-				"footL": { "x": -150.32, "y": 65.63, "width": 320, "height": 250 },
-				"footR": { "x": -58.09, "y": 66.77, "width": 320, "height": 250 }
-			},
-			"shadow": {
-				"shadow": { "width": 65, "height": 65 }
-			},
-			"body": {
-				"body": { "x": -78.74, "y": 24.24, "width": 320, "height": 250 }
-			},
-			"footR": {
-				"footR": { "x": -58.48, "y": 67.11, "width": 320, "height": 250 }
-			},
-			"face_ago": {
-				"face_ago": { "x": -21.99, "y": 12.31, "width": 320, "height": 250 }
-			},
-			"legR2": {
-				"legR2": { "x": -35.36, "y": 65.7, "width": 320, "height": 250 }
-			},
-			"armAttackF1": {
-				"armAttackF1": { "x": 4.91, "y": -64.05, "rotation": 169.32, "width": 320, "height": 250 }
-			},
-			"armAttackF2": {
-				"armAttackF2": { "x": 35.43, "y": -50.26, "rotation": 124.84, "width": 320, "height": 250 }
-			},
-			"armAttackB1": {
-				"armAttackB1": { "x": 8.11, "y": 8.46, "rotation": -180, "width": 320, "height": 250 }
-			},
-			"legL2": {
-				"legL2": { "x": -147.51, "y": 87.35, "width": 320, "height": 250 }
-			},
 			"Center": {
 				"Center": {
 					"type": "boundingbox",
@@ -155,18 +75,159 @@
 					"vertices": [ -135.84, -88.08, 72.52, -88.07, 75.02, 56.28, -134.6, 55.01 ]
 				}
 			},
-			"legF1": {
-				"legF1": { "x": -101.39, "y": -67.93, "rotation": 55.53, "width": 320, "height": 250 }
+			"armAttackB1": {
+				"armAttackB1": { "x": 8.11, "y": 8.46, "rotation": -180, "width": 320, "height": 250 }
+			},
+			"armAttackB2": {
+				"armAttackB2": { "x": 67.21, "y": 65.94, "rotation": 46.58, "width": 320, "height": 250 }
+			},
+			"armAttackF1": {
+				"armAttackF1": { "x": 4.91, "y": -64.05, "rotation": 169.32, "width": 320, "height": 250 }
+			},
+			"armAttackF2": {
+				"armAttackF2": { "x": 35.43, "y": -50.26, "rotation": 124.84, "width": 320, "height": 250 }
+			},
+			"body": {
+				"body": { "x": -78.74, "y": 24.24, "width": 320, "height": 250 }
+			},
+			"ef_eyes": {
+				"ef_eyes": { "x": 29.59, "y": 1.58, "width": 320, "height": 250 }
+			},
+			"ef_eyes_01": {
+				"ef_eyes": { "x": 28.1, "y": 1.1, "width": 320, "height": 250 }
+			},
+			"face1": {
+				"face1": { "x": 7.09, "y": 3.29, "width": 320, "height": 250 },
+				"face_damage": { "x": 7.08, "y": 3.28, "width": 320, "height": 250 }
+			},
+			"face_ago": {
+				"face_ago": { "x": -21.99, "y": 12.31, "width": 320, "height": 250 }
+			},
+			"footL": {
+				"footL": { "x": -150.32, "y": 65.63, "width": 320, "height": 250 },
+				"footR": { "x": -58.09, "y": 66.77, "width": 320, "height": 250 }
+			},
+			"footR": {
+				"footR": { "x": -58.48, "y": 67.11, "width": 320, "height": 250 }
+			},
+			"handAttackB": {
+				"handAttackB": { "x": 2.82, "y": 65.71, "rotation": 38.39, "width": 320, "height": 250 }
+			},
+			"handAttackF": {
+				"handAttackF": { "x": -48.73, "y": -84.88, "rotation": -171.89, "width": 320, "height": 250 }
+			},
+			"handL": {
+				"handL": { "x": -76.11, "y": 87.41, "width": 320, "height": 250 }
+			},
+			"handR": {
+				"handR": { "x": 41.39, "y": -27.75, "width": 320, "height": 250 }
+			},
+			"hipF": {
+				"hipF": { "x": -7.02, "y": -82.08, "rotation": 102.37, "width": 320, "height": 250 }
 			},
 			"legB1": {
 				"legB1": { "x": 23.3, "y": -71.96, "rotation": 140.43, "width": 320, "height": 250 }
+			},
+			"legF1": {
+				"legF1": { "x": -101.39, "y": -67.93, "rotation": 55.53, "width": 320, "height": 250 }
+			},
+			"legL2": {
+				"legL2": { "x": -147.51, "y": 87.35, "width": 320, "height": 250 }
+			},
+			"legR2": {
+				"legR2": { "x": -35.36, "y": 65.7, "width": 320, "height": 250 }
+			},
+			"shadow": {
+				"shadow": { "width": 65, "height": 65 }
+			},
+			"tail": {
+				"tail": { "x": -94.12, "y": 25.87, "width": 320, "height": 250 }
+			},
+			"tategami1": {
+				"tategami1": { "x": 6.53, "y": -16.3, "width": 320, "height": 250 }
+			},
+			"tategami2": {
+				"tategami2": { "x": -5.17, "y": -24.1, "width": 320, "height": 250 }
+			},
+			"udeL1": {
+				"udeL1": { "x": -103.07, "y": 62.94, "width": 320, "height": 250 }
+			},
+			"udeL2": {
+				"udeL2": { "x": -58.75, "y": -2.85, "width": 320, "height": 250 }
+			},
+			"udeR1": {
+				"udeR1": { "x": 4.98, "y": -21.75, "width": 320, "height": 250 }
+			},
+			"udeR2": {
+				"udeR2": { "x": -18.29, "y": -51.57, "width": 320, "height": 250 }
 			}
 		}
 	}
 ],
+"events": {
+	"EnemySpineEvent": {}
+},
 "animations": {
 	"200400_attack": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1.6, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "armAttackB1" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "armAttackB2" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "armAttackF1" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "armAttackF2" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -177,6 +238,152 @@
 					{ "time": 1.6, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.3667, "color": "fffffffe" },
+					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1.6, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "ef_eyes" },
+					{ "time": 0.7, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.3667, "color": "fffffffe" },
+					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1.6, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "ef_eyes" },
+					{ "time": 0.7, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1.6, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1.6, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1.6, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1.6, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "handAttackB" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "handAttackF" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 0.7333, "name": null },
+					{ "time": 1, "name": "handL" },
+					{ "time": 1.6, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1.0333, "name": null },
+					{ "time": 1.4333, "name": "handR" },
+					{ "time": 1.6, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1.6, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1.6, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1.6, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -185,6 +392,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1.6, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1.6, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1.6, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1.6, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1.6, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1.6, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -211,108 +468,6 @@
 					{ "time": 1.6, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1.0333, "name": null },
-					{ "time": 1.4333, "name": "handR" },
-					{ "time": 1.6, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1.6, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.3667, "color": "fffffffe" },
-					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 1.6, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.3667, "name": "ef_eyes" },
-					{ "time": 0.7, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1.6, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1.6, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "armAttackB1" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.3667, "color": "fffffffe" },
-					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 1.6, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.3667, "name": "ef_eyes" },
-					{ "time": 0.7, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1.6, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1.6, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -325,50 +480,6 @@
 					{ "time": 1.6, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "handAttackB" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "armAttackF2" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1.6, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1.6, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -379,114 +490,6 @@
 					{ "time": 1.0333, "name": null },
 					{ "time": 1.4333, "name": "udeR2" },
 					{ "time": 1.6, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1.6, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "armAttackB2" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "handAttackF" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1.6, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1.6, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "armAttackF1" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1.6, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 0.7333, "name": null },
-					{ "time": 1, "name": "handL" },
-					{ "time": 1.6, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1.6, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1.6, "name": "footR" }
 				]
 			}
 		},
@@ -1717,10 +1720,63 @@
 			},
 			{ "time": 1.4333 },
 			{ "time": 1.6 }
+		],
+		"events": [
+			{ "time": 1.0333, "name": "EnemySpineEvent", "string": "Enemy_Bait" }
 		]
 	},
 	"200400_damage": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 0.6667, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -1731,6 +1787,137 @@
 					{ "time": 0.6667, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_damage" },
+					{ "time": 0.3667, "name": "face1" },
+					{ "time": 0.6667, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 0.6667, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 0.6667, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 0.6667, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 0.6667, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 0.6667, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 0.6667, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 0.6667, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 0.6667, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -1739,6 +1926,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 0.6667, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 0.6667, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 0.6667, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 0.6667, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 0.6667, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.6667, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 0.6667, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -1761,96 +1998,6 @@
 					{ "time": 0.6667, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 0.6667, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 0.6667, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 0.6667, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 0.6667, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 0.6667, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 0.6667, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -1861,46 +2008,6 @@
 					{ "time": 0.6667, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 0.6667, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 0.6667, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -1909,107 +2016,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 0.6667, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_damage" },
-					{ "time": 0.3667, "name": "face1" },
-					{ "time": 0.6667, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 0.6667, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 0.6667, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.6667, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 0.6667, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 0.6667, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 0.6667, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.6667, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 0.6667, "name": "footR" }
 				]
 			}
 		},
@@ -2736,6 +2742,56 @@
 	},
 	"200400_die": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1.1333, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -2746,6 +2802,137 @@
 					{ "time": 1.1333, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 0.6667, "name": "face_damage" },
+					{ "time": 1.1333, "name": "face_damage" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1.1333, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1.1333, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1.1333, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.1333, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1.1333, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1.1333, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1.1333, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1.1333, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1.1333, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -2754,6 +2941,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1.1333, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1.1333, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1.1333, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1.1333, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1.1333, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.1333, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1.1333, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -2776,96 +3013,6 @@
 					{ "time": 1.1333, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1.1333, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1.1333, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1.1333, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1.1333, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1.1333, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1.1333, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -2876,46 +3023,6 @@
 					{ "time": 1.1333, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1.1333, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1.1333, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -2924,107 +3031,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1.1333, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 0.6667, "name": "face_damage" },
-					{ "time": 1.1333, "name": "face_damage" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1.1333, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1.1333, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.1333, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1.1333, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1.1333, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1.1333, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.1333, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1.1333, "name": "footR" }
 				]
 			}
 		},
@@ -3945,6 +3951,56 @@
 	},
 	"200400_idle": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1.3, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -3955,6 +4011,136 @@
 					{ "time": 1.3, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1.3, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1.3, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1.3, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1.3, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1.3, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1.3, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1.3, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1.3, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1.3, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -3963,6 +4149,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1.3, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1.3, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1.3, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1.3, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1.3, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1.3, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -3985,96 +4221,6 @@
 					{ "time": 1.3, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1.3, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1.3, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1.3, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1.3, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1.3, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1.3, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -4085,46 +4231,6 @@
 					{ "time": 1.3, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1.3, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1.3, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -4133,106 +4239,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1.3, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1.3, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1.3, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1.3, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1.3, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1.3, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1.3, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1.3, "name": "footR" }
 				]
 			}
 		},
@@ -4884,6 +4890,56 @@
 	},
 	"200400_run": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -4894,6 +4950,136 @@
 					{ "time": 1, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -4902,6 +5088,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -4924,96 +5160,6 @@
 					{ "time": 1, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5024,46 +5170,6 @@
 					{ "time": 1, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5072,106 +5178,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1, "name": "footR" }
 				]
 			}
 		},
@@ -5802,6 +5808,56 @@
 	},
 	"200400_run_gamestart": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5812,6 +5868,136 @@
 					{ "time": 1, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5820,6 +6006,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -5842,96 +6078,6 @@
 					{ "time": 1, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5942,46 +6088,6 @@
 					{ "time": 1, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -5990,106 +6096,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1, "name": "footR" }
 				]
 			}
 		},
@@ -6720,6 +6726,64 @@
 	},
 	"200400_skill2": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1.6, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "armAttackB1" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "armAttackB2" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "armAttackF1" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "armAttackF2" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -6730,6 +6794,152 @@
 					{ "time": 1.6, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.3667, "color": "fffffffe" },
+					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1.6, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "ef_eyes" },
+					{ "time": 0.7, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 0.3667, "color": "fffffffe" },
+					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 1.6, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "ef_eyes" },
+					{ "time": 0.7, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1.6, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1.6, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1.6, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1.6, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.0333, "name": "handAttackB" },
+					{ "time": 1.4333, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "handAttackF" },
+					{ "time": 1, "name": null },
+					{ "time": 1.6, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 0.7333, "name": null },
+					{ "time": 1, "name": "handL" },
+					{ "time": 1.6, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1.0333, "name": null },
+					{ "time": 1.4333, "name": "handR" },
+					{ "time": 1.6, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1.6, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1.6, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1.6, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -6738,6 +6948,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1.6, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1.6, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1.6, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1.6, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1.6, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.6, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1.6, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -6764,108 +7024,6 @@
 					{ "time": 1.6, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1.0333, "name": null },
-					{ "time": 1.4333, "name": "handR" },
-					{ "time": 1.6, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1.6, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.3667, "color": "fffffffe" },
-					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 1.6, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.3667, "name": "ef_eyes" },
-					{ "time": 0.7, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1.6, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1.6, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "armAttackB1" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 0.3667, "color": "fffffffe" },
-					{ "time": 0.6667, "color": "ffffff00", "curve": "stepped" },
-					{ "time": 1.6, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.3667, "name": "ef_eyes" },
-					{ "time": 0.7, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1.6, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1.6, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -6878,50 +7036,6 @@
 					{ "time": 1.6, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "handAttackB" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "armAttackF2" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1.6, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1.6, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -6932,114 +7046,6 @@
 					{ "time": 1.0333, "name": null },
 					{ "time": 1.4333, "name": "udeR2" },
 					{ "time": 1.6, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1.6, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.0333, "name": "armAttackB2" },
-					{ "time": 1.4333, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "handAttackF" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1.6, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1.6, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.7333, "name": "armAttackF1" },
-					{ "time": 1, "name": null },
-					{ "time": 1.6, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1.6, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 0.7333, "name": null },
-					{ "time": 1, "name": "handL" },
-					{ "time": 1.6, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1.6, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.6, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1.6, "name": "footR" }
 				]
 			}
 		},
@@ -8274,6 +8280,56 @@
 	},
 	"200400_standBy": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1.3, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -8284,6 +8340,136 @@
 					{ "time": 1.3, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1.3, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1.3, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1.3, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1.3, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1.3, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1.3, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1.3, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1.3, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1.3, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1.3, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -8292,6 +8478,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1.3, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1.3, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1.3, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1.3, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1.3, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1.3, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1.3, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -8314,96 +8550,6 @@
 					{ "time": 1.3, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1.3, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1.3, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1.3, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1.3, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1.3, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1.3, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -8414,46 +8560,6 @@
 					{ "time": 1.3, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1.3, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1.3, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -8462,106 +8568,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1.3, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1.3, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1.3, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1.3, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1.3, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1.3, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1.3, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1.3, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1.3, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1.3, "name": "footR" }
 				]
 			}
 		},
@@ -9209,10 +9215,63 @@
 		"drawOrder": [
 			{},
 			{ "time": 1.3 }
+		],
+		"events": [
+			{ "time": 1.3, "name": "EnemySpineEvent", "string": "SummonStop" }
 		]
 	},
 	"200400_walk": {
 		"slots": {
+			"Center": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "Center" },
+					{ "time": 1, "name": "Center" }
+				]
+			},
+			"armAttackB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackB2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"armAttackF2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
 			"body": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -9223,6 +9282,136 @@
 					{ "time": 1, "name": "body" }
 				]
 			},
+			"ef_eyes": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"ef_eyes_01": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"face1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face1" },
+					{ "time": 1, "name": "face1" }
+				]
+			},
+			"face_ago": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "face_ago" },
+					{ "time": 1, "name": "face_ago" }
+				]
+			},
+			"footL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footL" },
+					{ "time": 1, "name": "footL" }
+				]
+			},
+			"footR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "footR" },
+					{ "time": 1, "name": "footR" }
+				]
+			},
+			"handAttackB": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handAttackF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"handL": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handL" },
+					{ "time": 1, "name": "handL" }
+				]
+			},
+			"handR": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "handR" },
+					{ "time": 1, "name": "handR" }
+				]
+			},
+			"hipF": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "hipF" },
+					{ "time": 1, "name": "hipF" }
+				]
+			},
+			"legB1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legB1" },
+					{ "time": 1, "name": "legB1" }
+				]
+			},
+			"legF1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legF1" },
+					{ "time": 1, "name": "legF1" }
+				]
+			},
 			"legL2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -9231,6 +9420,56 @@
 				"attachment": [
 					{ "name": "legL2" },
 					{ "time": 1, "name": "legL2" }
+				]
+			},
+			"legR2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "legR2" },
+					{ "time": 1, "name": "legR2" }
+				]
+			},
+			"shadow": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "shadow" },
+					{ "time": 1, "name": "shadow" }
+				]
+			},
+			"tail": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tail" },
+					{ "time": 1, "name": "tail" }
+				]
+			},
+			"tategami1": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami1" },
+					{ "time": 1, "name": "tategami1" }
+				]
+			},
+			"tategami2": {
+				"color": [
+					{ "color": "fffffffe", "curve": "stepped" },
+					{ "time": 1, "color": "fffffffe" }
+				],
+				"attachment": [
+					{ "name": "tategami2" },
+					{ "time": 1, "name": "tategami2" }
 				]
 			},
 			"udeL1": {
@@ -9253,96 +9492,6 @@
 					{ "time": 1, "name": "udeL2" }
 				]
 			},
-			"handR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handR" },
-					{ "time": 1, "name": "handR" }
-				]
-			},
-			"tategami1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami1" },
-					{ "time": 1, "name": "tategami1" }
-				]
-			},
-			"ef_eyes": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"legF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legF1" },
-					{ "time": 1, "name": "legF1" }
-				]
-			},
-			"legB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legB1" },
-					{ "time": 1, "name": "legB1" }
-				]
-			},
-			"armAttackB1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"ef_eyes_01": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"tail": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tail" },
-					{ "time": 1, "name": "tail" }
-				]
-			},
-			"tategami2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "tategami2" },
-					{ "time": 1, "name": "tategami2" }
-				]
-			},
 			"udeR1": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -9353,46 +9502,6 @@
 					{ "time": 1, "name": "udeR1" }
 				]
 			},
-			"handAttackB": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"armAttackF2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"shadow": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "shadow" },
-					{ "time": 1, "name": "shadow" }
-				]
-			},
-			"legR2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "legR2" },
-					{ "time": 1, "name": "legR2" }
-				]
-			},
 			"udeR2": {
 				"color": [
 					{ "color": "fffffffe", "curve": "stepped" },
@@ -9401,106 +9510,6 @@
 				"attachment": [
 					{ "name": "udeR2" },
 					{ "time": 1, "name": "udeR2" }
-				]
-			},
-			"face1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face1" },
-					{ "time": 1, "name": "face1" }
-				]
-			},
-			"armAttackB2": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"handAttackF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"face_ago": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "face_ago" },
-					{ "time": 1, "name": "face_ago" }
-				]
-			},
-			"Center": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "Center" },
-					{ "time": 1, "name": "Center" }
-				]
-			},
-			"armAttackF1": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 1, "name": null }
-				]
-			},
-			"footL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footL" },
-					{ "time": 1, "name": "footL" }
-				]
-			},
-			"handL": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "handL" },
-					{ "time": 1, "name": "handL" }
-				]
-			},
-			"hipF": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "hipF" },
-					{ "time": 1, "name": "hipF" }
-				]
-			},
-			"footR": {
-				"color": [
-					{ "color": "fffffffe", "curve": "stepped" },
-					{ "time": 1, "color": "fffffffe" }
-				],
-				"attachment": [
-					{ "name": "footR" },
-					{ "time": 1, "name": "footR" }
 				]
 			}
 		},

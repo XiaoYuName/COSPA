@@ -326,6 +326,7 @@ MonoBehaviour:
       AttackSpeed: 0
       ReleaseSpeed: 0
       MovSpeed: 0
+      Bloodintake: 0
       Growth: 0
     SkillTable: []
     Animator: {fileID: 0}
@@ -348,6 +349,7 @@ GameObject:
   - component: {fileID: 599150381622781948}
   - component: {fileID: 599150381622781949}
   - component: {fileID: 1941255637322357291}
+  - component: {fileID: 7949208776678822574}
   m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
@@ -496,6 +498,18 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 599150381622781949}
   skeletonGraphic: {fileID: 0}
+--- !u!114 &7949208776678822574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599150381622781951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddf7da5c1e588d46810368ef01a75a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1226829126338710842
 GameObject:
   m_ObjectHideFlags: 0

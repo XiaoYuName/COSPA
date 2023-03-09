@@ -34,7 +34,7 @@ namespace ARPG
         {
             if (name == "SummonStop")
             {
-                Base.SwitchFSM(FSMType.IdleFSM);
+                Base.SwitchFSM(FSMType.AttackFSM);
             }
         }
 

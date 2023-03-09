@@ -26,7 +26,7 @@ namespace ARPG
         public override void BehaviourStart(Enemy enemy)
         {
             Base = enemy;
-            valueSpeed = Random.Range(0.7f,1f);
+            valueSpeed = Random.Range(0.5f,0.7f);
             InitSkill();
             selectSkillItem = Base.SkillDic[SkillType.Attack] as EnemySkill;
             waitNextTime = false;
