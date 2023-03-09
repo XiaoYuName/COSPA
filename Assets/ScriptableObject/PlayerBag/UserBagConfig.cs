@@ -182,13 +182,13 @@ namespace ARPG.Config
                             state.CirticalAttack += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.攻击速度:
-                            state.AttackSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
+                            state.AttackSpeed += (equipHelos[i].item.attribute[E].value/100) +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.移动速度:
-                            state.MovSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
+                            state.MovSpeed += (equipHelos[i].item.attribute[E].value/100) +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.释放速度:
-                            state.ReleaseSpeed += equipHelos[i].item.attribute[E].value +Mathf.Max(1, equipHelos[i].Powor / 70);
+                            state.ReleaseSpeed += (equipHelos[i].item.attribute[E].value/100) +Mathf.Max(1, equipHelos[i].Powor / 70);
                             break;
                         case StateMode.力量:
                             var PowerPawor = (Mathf.Max(1, equipHelos[i].Powor / 70));

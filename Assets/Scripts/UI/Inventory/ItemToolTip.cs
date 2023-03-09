@@ -95,7 +95,20 @@ namespace ARPG.UI
                 value.Init();
                 var Pawor = (Mathf.Max(1, hole.currentdata.Powor / 70));
                 //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
-                value.Show(t.Mode.ToString(), Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor).ToString() : (t.value* Pawor).ToString());
+                bool isTake = Settings.isStateTake(t.Mode);
+                string res;
+                if (isTake)
+                {
+                    int paworValue = Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor) : (t.value * Pawor);
+                    res = paworValue * 100 + "%";
+                }
+                else
+                {
+                    res = Pawor < hole.currentdata.Powor
+                        ? (t.value + hole.currentdata.Powor).ToString()
+                        : (t.value * Pawor).ToString();
+                }
+                value.Show(t.Mode.ToString(), res);
             }
             Bind(CloseBtn,Close,"OutChick");
             BindBtnName.text = "卸下";

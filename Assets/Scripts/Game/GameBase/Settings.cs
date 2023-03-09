@@ -84,6 +84,34 @@ namespace ARPG
             return state;
         }
 
+        public static bool isStateTake(StateMode mode)
+        {
+            return mode switch
+            {
+                StateMode.体力 => false,
+                StateMode.物理攻击力 => false,
+                StateMode.魔法攻击力 => false,
+                StateMode.生命值 => false,
+                StateMode.生命恢复 => false,
+                StateMode.防御力 => false,
+                StateMode.物理防御力 => false,
+                StateMode.魔法防御力 => false,
+                StateMode.技能攻击力 => false,
+                StateMode.暴击率 => true,
+                StateMode.暴击伤害 => true,
+                StateMode.攻击速度 => true,
+                StateMode.移动速度 => true,
+                StateMode.最终伤害 => true,
+                StateMode.释放速度 => true,
+                StateMode.治疗量 => false,
+                StateMode.吸血量 => false,
+                StateMode.力量 => false,
+                StateMode.智力 => false,
+                StateMode.敏捷 => false,
+                _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
+            };
+        }
+
         /// <summary>
         /// 强化的基础消耗材料
         /// </summary>
