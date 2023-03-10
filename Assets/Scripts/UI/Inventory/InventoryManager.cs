@@ -467,7 +467,7 @@ namespace ARPG
             {
                 RegionSaveBag = regionSave;
             }
-
+            MessageAction.OnSetUpRegionPress();
             MessageAction.OnRefreshItemBag(GetItemAllBag());
             MessageAction.OnRefreshCharacterBag(GetCharacterAllBag());
         }
@@ -491,6 +491,7 @@ namespace ARPG
         public void SetCurrentUser(User user)
         {
             currentUser = user;
+            RegionSaveBag = new Dictionary<string, Dictionary<string, RegionProgress>>();
         }
 
         /// <summary>
