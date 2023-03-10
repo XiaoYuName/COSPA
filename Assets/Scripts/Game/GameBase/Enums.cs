@@ -319,6 +319,9 @@ namespace ARPG
        顿悟,
        气势,
        猫猫凯露,
+       屠龙者,
+       灭龙者,
+       猎龙者,
    }
 
    public enum IDType

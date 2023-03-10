@@ -19,23 +19,7 @@ MonoBehaviour:
     spriteID: "\u6DF1\u6E0A\u786C\u5E01"
     Type: 3
     Mode: 1
-    attribute:
-    - Mode: 16
-      value: 35
-    - Mode: 17
-      value: 35
-    - Mode: 19
-      value: 25
-    - Mode: 18
-      value: 100
-    - Mode: 0
-      value: 100
-    - Mode: 1
-      value: 100
-    - Mode: 2
-      value: 500
-    - Mode: 15
-      value: 2
+    attribute: []
     description: "\u53EA\u6709\u901A\u5173\u4E86\u6DF1\u6E0A\u6A21\u5F0F\u7684\u5F3A\u8005\u624D\u80FD\u83B7\u5F97\u7684\u6750\u6599,\u53EF\u4EE5\u5728\u6DF1\u6E0A\u786C\u5E01\u83B7\u53D6\u9053\u5177"
     sellAmount: 50000
     purchase: 50000
@@ -238,6 +222,8 @@ MonoBehaviour:
       value: 150
     - Mode: 0
       value: 600
+    - Mode: 15
+      value: 3
     description: "\u8FD9\u628A\u5251\u52A0\u5165\u4E86\u72FC\u738B\u7684\u7CBE\u8840\u5236\u4F5C\u800C\u6210\u5927\u5251"
     sellAmount: 3000
     purchase: 3000
@@ -257,11 +243,11 @@ MonoBehaviour:
     - Mode: 0
       value: 500
     - Mode: 10
-      value: 3
+      value: 0.03
     - Mode: 11
-      value: 3
+      value: 0.03
     - Mode: 13
-      value: 3
+      value: 0.03
     description: "\u53E4\u8001\u7684\u8F7B\u5DE7\u5927\u5251,\u62FF\u7740\u5B83\u611F\u89C9\u901F\u5EA6\u90FD\u5FEB\u4E86\u51E0\u5206"
     sellAmount: 3000
     purchase: 3000
@@ -281,7 +267,7 @@ MonoBehaviour:
     - Mode: 18
       value: 250
     - Mode: 0
-      value: 800
+      value: 1200
     - Mode: 5
       value: 350
     description: "\u8FD9\u662F\u4F69\u514B\u5229\u59C6\u7684\u5BB6\u65CF\u6839\u636E\u9057\u4F20\u4E4B\u5251\u7684\u6837\u5B50\u5236\u4F5C\u800C\u6210,\u5728\u4F69\u514B\u5229\u59C6\u6210\u5E74\u540E\u8D60\u4E0E"
@@ -351,11 +337,11 @@ MonoBehaviour:
     - Mode: 1
       value: 500
     - Mode: 10
-      value: 1
+      value: 0.01
     - Mode: 11
-      value: 1
+      value: 0.01
     - Mode: 13
-      value: 1
+      value: 0.01
     description: "\u7531\u70BC\u91D1\u5E08\u5236\u4F5C\u800C\u6210,\u5728\u70BC\u91D1\u52A0\u6301\u4E0B\u9B54\u529B\u62E5\u6709\u4E86\u4E0D\u9519\u7684\u901F\u5EA6"
     sellAmount: 100
     purchase: 100
@@ -371,7 +357,7 @@ MonoBehaviour:
     - Mode: 1
       value: 600
     - Mode: 13
-      value: 1
+      value: 0.03
     - Mode: 15
       value: 2
     description: "\u52A0\u5165\u4E86\u4E0D\u7A33\u5B9A\u7EA2\u5B9D\u77F3\u7684\u9B54\u6756,\u5728\u4E0D\u9519\u7684\u5A01\u529B\u4E0B\u8FD8\u80FD\u6062\u590D\u81EA\u8EAB"
@@ -415,7 +401,13 @@ MonoBehaviour:
     - Mode: 2
       value: 300
     - Mode: 19
-      value: 50
+      value: 150
+    - Mode: 10
+      value: 0.3
+    - Mode: 11
+      value: 0.3
+    - Mode: 13
+      value: 0.3
     description: "\u738B\u56FD\u9057\u7269\u4E4B\u4E00\uFF0C\u9B54\u6756\u5728\u70BC\u91D1\u672F\u7684\u52A0\u6210\u4E0B\u5341\u5206\u5168\u80FD"
     sellAmount: 3000
     purchase: 3000
@@ -439,7 +431,7 @@ MonoBehaviour:
     - Mode: 0
       value: 100
     - Mode: 10
-      value: 3
+      value: 1
     description: "\u53EA\u6709\u9B45\u9B54\u624D\u80FD\u62FF\u8D77\u7684\u6B66\u5668,\u867D\u8BF4\u662F\u5251,\u4F46\u662F\u770B\u5468\u56F4\u65CB\u8F6C\u7684\u9B54\u529B,\u770B\u8D77\u6765\u5BF9\u9B54\u6CD5\u7684\u52A0\u6301\u66F4\u5927"
     sellAmount: 3000
     purchase: 3000
@@ -664,6 +656,8 @@ MonoBehaviour:
       value: 500
     - Mode: 9
       value: 5
+    - Mode: 13
+      value: 0.15
     description: "\u88AB\u9ED1\u6697\u4E4B\u529B\u4FB5\u8680\u7684\u6CD5\u888D,\u4F69\u6234\u65F6\u53EF\u4EE5\u663E\u8457\u63D0\u9AD8\u80FD\u529B"
     sellAmount: 150
     purchase: 150
@@ -818,6 +812,12 @@ MonoBehaviour:
       value: 50
     - Mode: 2
       value: 300
+    - Mode: 10
+      value: 0.03
+    - Mode: 11
+      value: 0.03
+    - Mode: 13
+      value: 0.03
     description: "\u4F7F\u7528\u84DD\u5B9D\u77F3\u5236\u4F5C\u800C\u6210\u7684\u5FBD\u7AE0"
     sellAmount: 150
     purchase: 150
@@ -846,6 +846,12 @@ MonoBehaviour:
       value: 500
     - Mode: 15
       value: 2
+    - Mode: 10
+      value: 0.2
+    - Mode: 11
+      value: 0.2
+    - Mode: 13
+      value: 0.2
     description: "\u738B\u56FD\u9057\u5931\u5B9D\u7269\u4E4B\u4E00,\u5176\u4E2D\u8574\u542B\u5F3A\u5927\u7684\u529B\u91CF"
     sellAmount: 2000
     purchase: 2000

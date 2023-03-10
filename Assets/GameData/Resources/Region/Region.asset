@@ -142,7 +142,7 @@ MonoBehaviour:
       backIcon: {fileID: 21300000, guid: 22c64ed0b2c85784c9c84cb42cbdf880, type: 3}
       targetScene: "1-\u5927\u6728\u6865"
       Press: {x: 0, y: 3}
-      StarPos: {x: -8.98, y: -2, z: 0}
+      StarPos: {x: -8.84, y: -2.32, z: 0}
       WaveItems:
       - EnemyList:
         - dataID: 200900
@@ -291,7 +291,7 @@ MonoBehaviour:
         isOpenBuff: 0
         BuffList:
           Buff_ID: 
-          count: 0
+          count: 1
       - EnemyList:
         - dataID: 203000
           count: 5
@@ -304,11 +304,11 @@ MonoBehaviour:
           CreatePos: {x: 2.56, y: -1.87, z: 0}
           MaxRadius: -4
           MinRandius: 0
-          Levle: 10
-        isOpenBuff: 0
+          Levle: 5
+        isOpenBuff: 1
         BuffList:
-          Buff_ID: 
-          count: 0
+          Buff_ID: 0b0000000c0000000d000000
+          count: 3
     - RegionItemName: 1-8
       backIcon: {fileID: 21300000, guid: 862930bf1e4937f4fbae7cd99452e811, type: 3}
       targetScene: "1-\u77F3\u5934\u6CC9"

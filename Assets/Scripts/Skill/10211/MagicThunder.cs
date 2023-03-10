@@ -53,7 +53,7 @@ namespace ARPG
 
         public IEnumerator CrearFx()
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 15; i++)
             {
                Collider2D target = Physics2D.OverlapCircle(Player.body.transform.position, data.Radius, data.Mask);
                if (target != null && target.CompareTag("Character"))

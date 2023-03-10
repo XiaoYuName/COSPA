@@ -200,3 +200,54 @@ MonoBehaviour:
     buffTrigger: 1
     Trigger: 0
     description: "\u6280\u80FD\u653B\u51FB\u529B+15%"
+  - BuffName: "\u5C60\u9F99\u8005"
+    SpriteID: "\u5C60\u9F99\u8005BUFF"
+    buffType: 1
+    random: 1
+    buffPic: 1
+    behaviourType: 0
+    PicMode: 10
+    Pool: []
+    continueTime: 50
+    StopTrigger: 0
+    maxLevel: 10
+    NextLevel: 10
+    layer: 0
+    valueBuff: 1
+    buffTrigger: 0
+    Trigger: 0
+    description: "\u653B\u51FB\u901F\u5EA6+100%"
+  - BuffName: "\u730E\u9F99\u8005"
+    SpriteID: "\u5C60\u9F99\u8005BUFF"
+    buffType: 1
+    random: 1
+    buffPic: 2
+    behaviourType: 0
+    PicMode: 13
+    Pool: []
+    continueTime: 50
+    StopTrigger: 0
+    maxLevel: 10
+    NextLevel: 10
+    layer: 0
+    valueBuff: 1
+    buffTrigger: 0
+    Trigger: 0
+    description: "\u91CA\u653E\u901F\u5EA6+100%"
+  - BuffName: "\u706D\u9F99\u8005"
+    SpriteID: "\u5C60\u9F99\u8005BUFF"
+    buffType: 0
+    random: 1
+    buffPic: 50
+    behaviourType: 0
+    PicMode: 12
+    Pool: []
+    continueTime: -1
+    StopTrigger: 0
+    maxLevel: -1
+    NextLevel: -1
+    layer: 0
+    valueBuff: -1
+    buffTrigger: 0
+    Trigger: 0
+    description: "\u6700\u7EC8\u4F24\u5BB3+50%"
