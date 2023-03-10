@@ -64,16 +64,16 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: bab7ffe7253b16646a7aa82361d143c2, type: 2}
     State:
-      PhysicsAttack: 1500
+      PhysicsAttack: 2000
       MagicAttack: 100
       PhysicsDefense: 0
       MagicDefense: 0
-      HP: 5000
+      HP: 4500
       currentHp: 0
       AddHp: 50
       SkillAttack: 0
-      Cirtical: 0.1
-      CirticalAttack: 2
+      Cirtical: 0.25
+      CirticalAttack: 3
       Power: 250
       Intelligence: 100
       Vit: 150
@@ -165,7 +165,7 @@ MonoBehaviour:
       MagicAttack: 1500
       PhysicsDefense: 0
       MagicDefense: 0
-      HP: 4500
+      HP: 4300
       currentHp: 0
       AddHp: 50
       SkillAttack: 0
@@ -258,25 +258,25 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: f9ad5535531882a4b8386b985f74a504, type: 2}
     State:
-      PhysicsAttack: 10
-      MagicAttack: 180
-      PhysicsDefense: 150
-      MagicDefense: 150
-      HP: 450
+      PhysicsAttack: 500
+      MagicAttack: 1800
+      PhysicsDefense: 0
+      MagicDefense: 0
+      HP: 4000
       currentHp: 0
-      AddHp: 5
+      AddHp: 50
       SkillAttack: 0
-      Cirtical: 0.1
-      CirticalAttack: 2
-      Power: 30
-      Intelligence: 10
-      Vit: 17
-      Agility: 18
+      Cirtical: 0.25
+      CirticalAttack: 3
+      Power: 250
+      Intelligence: 100
+      Vit: 150
+      Agility: 200
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 135
+      MovSpeed: 115
       Bloodintake: 0
-      Growth: 0.157
+      Growth: 0.135
     SkillTable:
     - SkillID: MagicAttack
       Type: 0
@@ -355,25 +355,25 @@ MonoBehaviour:
     EquipAnimName: 000000_smile
     AnimatorController: {fileID: 22100000, guid: 261facbb50b9288409188be0c13deaba, type: 2}
     State:
-      PhysicsAttack: 1200
+      PhysicsAttack: 1500
       MagicAttack: 1500
-      PhysicsDefense: 100
-      MagicDefense: 100
+      PhysicsDefense: 50
+      MagicDefense: 50
       HP: 5000
       currentHp: 0
       AddHp: 50
       SkillAttack: 0
-      Cirtical: 0.1
-      CirticalAttack: 2
+      Cirtical: 0.25
+      CirticalAttack: 4
       Power: 250
       Intelligence: 100
       Vit: 150
       Agility: 200
       AttackSpeed: 1
       ReleaseSpeed: 1
-      MovSpeed: 110
-      Bloodintake: 0
-      Growth: 0.135
+      MovSpeed: 100
+      Bloodintake: 3
+      Growth: 0.165
     SkillTable:
     - SkillID: PhysicsAttack
       Type: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
       Type: 4
       BtnAudioID: 
     des: "\u4F0A\u7EEA\u8001\u5A46"
-    deftualBuffID: 
+    deftualBuffID: 04000000
     twistAssets:
       PropAgAndaVideoID: 101811_1
       VideoID: 101811_2

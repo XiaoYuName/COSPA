@@ -67,8 +67,24 @@ namespace ARPG.UI
                 string res;
                 if (isTake)
                 {
-                    float paworValue = Pawor < itemBag.power ? (t.value + itemBag.power) : (t.value * Pawor);
-                    res = paworValue * 100 + "%";
+                    switch (t.Mode)
+                    {
+                        case StateMode.技能攻击力 or StateMode.吸血量:
+                            res = t.value.ToString();
+                            break;
+                        case StateMode.攻击速度 or StateMode.移动速度 or StateMode.释放速度 or StateMode.暴击伤害
+                            or StateMode.暴击率 :
+                            res = (t.value*100) * Mathf.Max(itemBag.power / 70, 1)+"%";
+                            break;
+                        default:
+                        {
+                            float paworValue = Pawor < itemBag.power ? (t.value + itemBag.power) : (t.value * Pawor);
+                            res = paworValue * 100 + "%";
+                            break;
+                        }
+                    }
+                    
+                    
                 }
                 else
                 {
@@ -113,8 +129,22 @@ namespace ARPG.UI
                 string res;
                 if (isTake)
                 {
-                    float paworValue = Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor) : (t.value * Pawor);
-                    res = paworValue * 100 + "%";
+                    switch (t.Mode)
+                    {
+                        case StateMode.技能攻击力 or StateMode.吸血量:
+                            res = t.value.ToString();
+                            break;
+                        case StateMode.攻击速度 or StateMode.移动速度 or StateMode.释放速度 or StateMode.暴击伤害
+                            or StateMode.暴击率 :
+                            res = (t.value*100) * Mathf.Max(hole.currentdata.Powor / 70, 1)+"%";
+                            break;
+                        default:
+                        {
+                            float paworValue = Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor) : (t.value * Pawor);
+                            res = paworValue * 100 + "%";
+                            break;
+                        }
+                    }
                 }
                 else
                 {

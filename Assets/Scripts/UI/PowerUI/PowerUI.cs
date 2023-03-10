@@ -77,6 +77,11 @@ namespace ARPG.UI
         private void SetCurrentSlotUI(int index)
         {
             curretnIndex = index;
+            if (curretnIndex >= CurrentEquips.Count)
+            {
+                curretnIndex= CurrentEquips.Count-1;
+            }
+
             _slotUI.InitData(CurrentEquips[curretnIndex]);
             SetShow(CurrentEquips[curretnIndex]);
         }

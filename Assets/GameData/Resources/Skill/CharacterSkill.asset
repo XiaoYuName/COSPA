@@ -22,7 +22,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 5
+    Diamage: 8
     icon: {fileID: 21300000, guid: 0d17362f56f054fb6b9d751d8c84c78f, type: 3}
     SkillName: "\u6218\u58EB\u804C\u4E1A\u666E\u901A\u653B\u51FB"
     SkillDes: "\u6218\u58EB\u804C\u4E1A\u666E\u901A\u653B\u51FB"
@@ -46,7 +46,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 2
+    Diamage: 5
     icon: {fileID: 21300000, guid: aff23992db5e040a0b1bd59259bcf120, type: 3}
     SkillName: "\u9B54\u6CD5\u5E08\u666E\u653B"
     SkillDes: "UE_\u9B54\u6CD5\u5E08\u666E\u653B"
@@ -74,7 +74,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 2
+    Diamage: 5
     icon: {fileID: 21300000, guid: aff23992db5e040a0b1bd59259bcf120, type: 3}
     SkillName: "\u9B54\u6CD5\u5E08\u666E\u653B"
     SkillDes: "\u9B54\u6CD5\u5E08\u666E\u653B"
@@ -192,7 +192,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 800
+    Diamage: 1000
     icon: {fileID: 21300000, guid: a4957e973db297f4ebfb991f348b30a5, type: 3}
     SkillName: "\u516C\u4E3B\u7A81\u88AD"
     SkillDes: "\u53D1\u52A8\u540E\uFF0C\u516C\u4E3B\u77ED\u6682\u84C4\u529B\u540E\u53D1\u90013\u9053\u91CD\u65A9\uFF0C\u6BCF\u9053\u91CD\u65A9\u9020\u6210800\u57FA\u7840\u4F24\u5BB3"
@@ -208,7 +208,7 @@ MonoBehaviour:
       count: 5
     VideoAsset: {fileID: 11400000, guid: 5d5bae3938eb7624abfa697180b63969, type: 2}
   - ID: Broken
-    CD: 20
+    CD: 25
     Duration: -1
     ReleaseTime: -1
     Radius: 1500
@@ -216,7 +216,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 5000
+    Diamage: 7000
     icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
     SkillName: "\u7834\u788E\u65A9"
     SkillDes: "\u516C\u4E3B\u84C4\u529B\u540E\uFF0C\u53D1\u52A8\u5F3A\u529B\u7834\u788E\u65A9,\u65A9\u51FB\u5BF9\u654C\u65B9\u9020\u6210\u57FA\u7840\u653B\u51FB5000\u4F24\u5BB3\n\u8BE5\u6280\u80FD\u5FC5\u5B9A\u547D\u4E2D"
@@ -230,7 +230,7 @@ MonoBehaviour:
     Pools: []
     VideoAsset: {fileID: 11400000, guid: 5d5bae3938eb7624abfa697180b63969, type: 2}
   - ID: MagicBomb
-    CD: 5
+    CD: 8
     Duration: -1
     ReleaseTime: -1
     Radius: 300
@@ -238,7 +238,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 10
+    Diamage: 300
     icon: {fileID: 21300000, guid: f3d74a4188f55404389674a4f4f13c2f, type: 3}
     SkillName: "\u9B54\u6CD5\u7206\u70B8"
     SkillDes: "\u5F15\u5BFC\u540E\u53D1\u52A8\u7206\u70B8\uFF0C\u5BF9\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
@@ -254,7 +254,7 @@ MonoBehaviour:
       count: 5
     VideoAsset: {fileID: 0}
   - ID: HealingMagic
-    CD: 5
+    CD: 15
     Duration: -1
     ReleaseTime: -1
     Radius: 99
@@ -284,7 +284,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 1500
+    Diamage: 1800
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u5F15\u96F7\u9635"
     SkillDes: "\u5728\u81EA\u8EAB200px\u8303\u56F4\u5185\u53EC\u5524\u5929\u96F7,\u5929\u96F7\u5BF9\u654C\u65B9\u9020\u62101500\u70B9\u4F24\u5BB3"
@@ -294,13 +294,13 @@ MonoBehaviour:
       type: 2
       isMultistage: 0
       MultistageTime: 1
-      MultistageDamage: 140000001400000014000000140000001400000014000000
+      MultistageDamage: a0000000b4000000b5000000b9000000bc000000c8000000
     Pools:
     - prefab: {fileID: 3435570873089584574, guid: 5fa4619c39d9e7e41a5d9ea779f4946d, type: 3}
       count: 15
     VideoAsset: {fileID: 11400000, guid: 57acace1104cd62408a498d23c3ab202, type: 2}
   - ID: FlameBurns
-    CD: 60
+    CD: 30
     Duration: 0.5
     ReleaseTime: 8
     Radius: 1500
@@ -308,7 +308,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 5000
+    Diamage: 9000
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u70C8\u7130\u711A\u70EC"
     SkillDes: "\u4F18\u8863\u8FDB\u5165\u5F15\u5BFC\u72B6\u6001,\u9501\u5B9A\u5728\u573A\u654C\u4EBA\u5BF9\u5728\u573A\u654C\u4EBA\u53D1\u52A8\u70C8\u7130\u9B54\u6CD5,\n\u968F\u540E\u9020\u6210\u7206\u70B8"
@@ -326,7 +326,7 @@ MonoBehaviour:
       count: 15
     VideoAsset: {fileID: 11400000, guid: 57acace1104cd62408a498d23c3ab202, type: 2}
   - ID: BoXing
-    CD: 5
+    CD: 4
     Duration: 3
     ReleaseTime: 8
     Radius: 8
@@ -334,7 +334,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 75
+    Diamage: 85
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u594B\u529B\u62F3\u51FB"
     SkillDes: "\u594B\u529B\u62F3\u51FB"
@@ -348,7 +348,7 @@ MonoBehaviour:
     Pools: []
     VideoAsset: {fileID: 0}
   - ID: ThrowStone
-    CD: 15
+    CD: 8
     Duration: 0.5
     ReleaseTime: 8
     Radius: 250
@@ -356,7 +356,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 75
+    Diamage: 250
     icon: {fileID: 21300000, guid: 73aae2a6a45e6034793954681b440020, type: 3}
     SkillName: "\u6254\u77F3\u5934"
     SkillDes: "\u7838\u77F3\u5934"
@@ -372,7 +372,7 @@ MonoBehaviour:
       count: 2
     VideoAsset: {fileID: 0}
   - ID: Melo
-    CD: 15
+    CD: 13
     Duration: 0.25
     ReleaseTime: 5
     Radius: 60
@@ -380,7 +380,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 500
+    Diamage: 800
     icon: {fileID: 21300000, guid: 349634fb96aebde48b9e83f0cb74a757, type: 3}
     SkillName: "\u8FDE\u9501\u95EA\u7535"
     SkillDes: "\u5728\u5F15\u5BFC\u4E00\u6BB5\u65F6\u95F4\u540E\uFF0C\u51EF\u9732\u53D1\u5C04\u4E00\u4E2A\u95EA\u7535\u56E0\u5B50\u7A7F\u68AD\u654C\u4EBA\u5E76\n\u6807\u8BB0\u96F7\u7535\u5370\u8BB0.\u6700\u59275\u540D,\u7ED3\u675F\u540E\u5BF9\u88AB\u6807\u8BB0\u654C\u4EBA\u9020\u6210500\u4F24\u5BB3"
@@ -406,7 +406,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 50
+    Diamage: 300
     icon: {fileID: 21300000, guid: ee8985eb55fc2c14699f6e9456827f96, type: 3}
     SkillName: "\u9ED1\u9B54\u6CD5\u9501\u5B9A"
     SkillDes: "\u9ED1\u9B54\u6CD5\u9501\u5B9A"
@@ -422,7 +422,7 @@ MonoBehaviour:
       count: 10
     VideoAsset: {fileID: 0}
   - ID: GravitationalBlackHole
-    CD: 3
+    CD: 8
     Duration: 30
     ReleaseTime: 0.01
     Radius: 60
@@ -430,7 +430,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 1500
+    Diamage: 2500
     icon: {fileID: 21300000, guid: 3b2816c497a816842a3b65877bdda874, type: 3}
     SkillName: "\u5F15\u529B\u9ED1\u6D1E"
     SkillDes: "\u53D1\u5C04\u4E00\u679A\u9ED1\u6D1E,\u9ED1\u6D1E\u4F1A\u5411\u524D\u79FB\u52A8,\n\u9ED1\u6D1E\u4F1A\u5438\u9644\u6CBF\u9014\u6240\u6709\u654C\u4EBA\uFF0C\n\u5728\u5230\u8FBE\u7EC8\u70B9x\u79D2\u540E\u53D1\u52A8\u7206\u70B8,\u5BF9\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
@@ -446,7 +446,7 @@ MonoBehaviour:
       count: 2
     VideoAsset: {fileID: 11400000, guid: 333c02c92d1a16542b6d446e35b280b4, type: 2}
   - ID: Aurora
-    CD: 3
+    CD: 29
     Duration: 30
     ReleaseTime: 0.01
     Radius: 60
@@ -454,7 +454,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 2500
+    Diamage: 5000
     icon: {fileID: 21300000, guid: c1ddeaca732a8a74297e0348ca23a04f, type: 3}
     SkillName: "\u6697\u52B2\u7206\u53D1"
     SkillDes: "\u6697\u52B2\u7206\u53D1"
@@ -464,7 +464,7 @@ MonoBehaviour:
       type: 2
       isMultistage: 1
       MultistageTime: 0.2
-      MultistageDamage: 2c0100002c0100002c0100002c0100002c0100002c0100002c0100002c0100002c0100002c010000
+      MultistageDamage: c2010000c2010000c2010000c2010000c20100002b0200002b0200009a0200000903000078030000
     Pools:
     - prefab: {fileID: 3588700100050076302, guid: 79dcaaf22a0e7394db346fd257efe560, type: 3}
       count: 2
@@ -478,7 +478,7 @@ MonoBehaviour:
       count: 2
     VideoAsset: {fileID: 11400000, guid: 333c02c92d1a16542b6d446e35b280b4, type: 2}
   - ID: Spitfire
-    CD: 5
+    CD: 4
     Duration: 2
     ReleaseTime: 0.01
     Radius: 3.5
@@ -486,7 +486,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 42
+    Diamage: 120
     icon: {fileID: 21300000, guid: c1ddeaca732a8a74297e0348ca23a04f, type: 3}
     SkillName: "\u5C0F\u55B7\u706B"
     SkillDes: "\u5C0F\u55B7\u706B"
@@ -496,13 +496,13 @@ MonoBehaviour:
       type: 2
       isMultistage: 1
       MultistageTime: 0.2
-      MultistageDamage: 0500000005000000050000000500000005000000
+      MultistageDamage: 3200000032000000320000003200000032000000
     Pools:
     - prefab: {fileID: 2008043505024872480, guid: 4a977b3eeb6357049b1be6195268840b, type: 3}
       count: 5
     VideoAsset: {fileID: 0}
   - ID: Charm
-    CD: 7
+    CD: 8
     Duration: 2
     ReleaseTime: 0.01
     Radius: 10
@@ -510,7 +510,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 500
+    Diamage: 750
     icon: {fileID: 21300000, guid: 8e81dc7369ac5ff46b0ba2f92ef95802, type: 3}
     SkillName: "\u9B45\u60D1"
     SkillDes: "\u9B45\u60D1:\u5F15\u5BFC\u4E00\u6BB5\u65F6\u95F4\u540E\u5BF9\u547D\u4E2D\u654C\u65B9\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
@@ -526,10 +526,10 @@ MonoBehaviour:
       count: 5
     VideoAsset: {fileID: 0}
   - ID: Lash
-    CD: 7
+    CD: 10
     Duration: 2
     ReleaseTime: 0.01
-    Radius: 11.23
+    Radius: 5
     RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
@@ -541,7 +541,7 @@ MonoBehaviour:
     StepUpDes: 
     ActionStar: 1
     SkillType:
-      type: 2
+      type: 1
       isMultistage: 0
       MultistageTime: 0.2
       MultistageDamage: 
@@ -552,7 +552,7 @@ MonoBehaviour:
       count: 5
     VideoAsset: {fileID: 0}
   - ID: RnergyPouring
-    CD: 25
+    CD: 15
     Duration: 2
     ReleaseTime: 0.01
     Radius: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 1800
+    Diamage: 2000
     icon: {fileID: 21300000, guid: de349c85e5097f440b49b1422f39dfbf, type: 3}
     SkillName: "\u80FD\u91CF\u503E\u6CE8"
     SkillDes: "\u5BF9\u547D\u4E2D\u76EE\u6807\u9020\u6210\u9B54\u6CD5\u4F24\u5BB3"
@@ -576,7 +576,7 @@ MonoBehaviour:
       count: 2
     VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
   - ID: TouchingMoment
-    CD: 25
+    CD: 45
     Duration: -1
     ReleaseTime: -1
     Radius: -1
@@ -584,7 +584,7 @@ MonoBehaviour:
     Mask:
       serializedVersion: 2
       m_Bits: 65536
-    Diamage: 500
+    Diamage: 800
     icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
     SkillName: "\u5FC3\u52A8\u65F6\u523B"
     SkillDes: "\u5FC3\u52A8\u65F6\u523B"
@@ -605,19 +605,19 @@ MonoBehaviour:
     CD: 3
     Duration: -1
     ReleaseTime: -1
-    Radius: 5
+    Radius: 3
     RadiusOffset: {x: 0, y: -1.08}
     Mask:
       serializedVersion: 2
       m_Bits: 32768
-    Diamage: 1
+    Diamage: 45
     icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
     SkillName: "\u72FC\u738B\u6495\u88C2"
     SkillDes: "\u6495\u88C2"
     StepUpDes: 
     ActionStar: 6
     SkillType:
-      type: 2
+      type: 1
       isMultistage: 0
       MultistageTime: 0.2
       MultistageDamage: 

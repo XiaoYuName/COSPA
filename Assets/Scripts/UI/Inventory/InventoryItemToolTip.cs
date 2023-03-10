@@ -55,10 +55,39 @@ namespace ARPG.UI
             description.text = item.description;
             SellAmount.text = item.sellAmount.ToString();
             UIHelper.Clear(StateConent);
-            foreach (var stateValue in item.attribute)
+            foreach (var t in item.attribute)
             {
                 PropValue propValue = UISystem.Instance.InstanceUI<PropValue>("InventoryPropValue",StateConent);
-                propValue.Show(stateValue.Mode.ToString(),(stateValue.value*Mathf.Max(1,itemBag.power)).ToString());
+                var Pawor = (Mathf.Max(1, itemBag.power / 70));
+                //如果提升率小于装备强化等级，那么装备强化多少级就给多少点的基础属性
+                bool isTake = Settings.isStateTake(t.Mode);
+                string res;
+                if (isTake)
+                {
+                    switch (t.Mode)
+                    {
+                        case StateMode.技能攻击力 or StateMode.吸血量:
+                            res = t.value.ToString();
+                            break;
+                        case StateMode.攻击速度 or StateMode.移动速度 or StateMode.释放速度 or StateMode.暴击伤害
+                            or StateMode.暴击率 :
+                            res = (t.value*100) * Mathf.Max(itemBag.power / 70, 1)+"%";
+                            break;
+                        default:
+                        {
+                            float paworValue = Pawor < itemBag.power ? (t.value + itemBag.power) : (t.value * Pawor);
+                            res = paworValue * 100 + "%";
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    res = Pawor < itemBag.power
+                        ? (t.value + itemBag.power).ToString()
+                        : (t.value * Pawor).ToString();
+                }
+                propValue.Show(t.Mode.ToString(), res);
             }
             SellBtn.interactable = item.isSell;
             currentBag = itemBag;

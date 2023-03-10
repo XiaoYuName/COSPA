@@ -141,73 +141,6 @@ MonoBehaviour:
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: 0bc25ab2f5bb30d46b3e5bd056be9b12, type: 2}
     description: "\u7FC5\u8180\u5F88\u5C0F,\u8FD8\u6682\u65F6\u65E0\u6CD5\u98DE\u884C\u7684\u683C\u91CC\u82AC\u5E7C\u5D3D"
-  - ID: 201200
-    EnemyName: "\u9B54\u50CF"
-    Attackradius: 1.5
-    icon: {fileID: 21300000, guid: 6b91eb23738af62478980ef39767f2d7, type: 3}
-    Type: 2
-    Prefab: {fileID: 599150379652071904, guid: 462a9358e94909c4181e717e632fda81, type: 3}
-    State:
-      PhysicsAttack: 3000
-      MagicAttack: 1500
-      PhysicsDefense: 300
-      MagicDefense: 150
-      HP: 30000
-      currentHp: 200
-      AddHp: 2
-      SkillAttack: 1
-      Cirtical: 1
-      CirticalAttack: 2
-      Power: 500
-      Intelligence: 100
-      Vit: 300
-      Agility: 100
-      AttackSpeed: 1
-      ReleaseSpeed: 0
-      MovSpeed: 0.45
-      Bloodintake: 3
-      Growth: 2
-    SkillTable:
-    - SkillID: BoXing
-      Type: 0
-      BtnAudioID: 
-    - SkillID: ThrowStone
-      Type: 1
-      BtnAudioID: 
-    Animator: {fileID: 22100000, guid: c655e3b3f9e84ce45b0e1ed4973094d8, type: 2}
-    description: "\u7528\u7ED3\u5B9E\u7684\u8EAB\u4F53\uFF0C\u8FDB\u884C\u653B\u5B88\u7684\u5CA9\u77F3\u9B54\u7269"
-  - ID: 200400
-    EnemyName: "\u72FC\u738B"
-    Attackradius: 1.5
-    icon: {fileID: 21300000, guid: 6704d67b4c3064c4aadfd6f6beaf5971, type: 3}
-    Type: 2
-    Prefab: {fileID: 599150379652071904, guid: 42f8c5bf759482a4cb85a2993f76dedc, type: 3}
-    State:
-      PhysicsAttack: 5000
-      MagicAttack: 1000
-      PhysicsDefense: 330
-      MagicDefense: 330
-      HP: 15000
-      currentHp: 0
-      AddHp: 100
-      SkillAttack: 1
-      Cirtical: 1
-      CirticalAttack: 2
-      Power: 500
-      Intelligence: 200
-      Vit: 300
-      Agility: 120
-      AttackSpeed: 1
-      ReleaseSpeed: 1
-      MovSpeed: 0.55
-      Bloodintake: 15
-      Growth: 2
-    SkillTable:
-    - SkillID: Enemy_Bait
-      Type: 0
-      BtnAudioID: 
-    Animator: {fileID: 22100000, guid: bfe5828d83e99c842bdaa3a78b7505c6, type: 2}
-    description: 
   - ID: 201100
     EnemyName: "\u72D7\u5934\u4EBA"
     Attackradius: 1.5
@@ -272,6 +205,73 @@ MonoBehaviour:
       BtnAudioID: 
     Animator: {fileID: 22100000, guid: 75b9c019e9d7c554495c12df9f0d9047, type: 2}
     description: "\u5341\u5206\u7C98\u6ED1\u7684\u80F6\u72B6\u9B54\u7269"
+  - ID: 201200
+    EnemyName: "\u9B54\u50CF"
+    Attackradius: 1.5
+    icon: {fileID: 21300000, guid: 6b91eb23738af62478980ef39767f2d7, type: 3}
+    Type: 2
+    Prefab: {fileID: 599150379652071904, guid: 462a9358e94909c4181e717e632fda81, type: 3}
+    State:
+      PhysicsAttack: 3000
+      MagicAttack: 1500
+      PhysicsDefense: 300
+      MagicDefense: 300
+      HP: 35000
+      currentHp: 200
+      AddHp: 2
+      SkillAttack: 1
+      Cirtical: 1
+      CirticalAttack: 2
+      Power: 500
+      Intelligence: 100
+      Vit: 300
+      Agility: 100
+      AttackSpeed: 1
+      ReleaseSpeed: 0
+      MovSpeed: 0.5
+      Bloodintake: 3
+      Growth: 2
+    SkillTable:
+    - SkillID: BoXing
+      Type: 0
+      BtnAudioID: 
+    - SkillID: ThrowStone
+      Type: 1
+      BtnAudioID: 
+    Animator: {fileID: 22100000, guid: c655e3b3f9e84ce45b0e1ed4973094d8, type: 2}
+    description: "\u7528\u7ED3\u5B9E\u7684\u8EAB\u4F53\uFF0C\u8FDB\u884C\u653B\u5B88\u7684\u5CA9\u77F3\u9B54\u7269"
+  - ID: 200400
+    EnemyName: "\u72FC\u738B"
+    Attackradius: 1.5
+    icon: {fileID: 21300000, guid: 6704d67b4c3064c4aadfd6f6beaf5971, type: 3}
+    Type: 2
+    Prefab: {fileID: 599150379652071904, guid: 42f8c5bf759482a4cb85a2993f76dedc, type: 3}
+    State:
+      PhysicsAttack: 5000
+      MagicAttack: 1000
+      PhysicsDefense: 330
+      MagicDefense: 330
+      HP: 18000
+      currentHp: 0
+      AddHp: 100
+      SkillAttack: 1
+      Cirtical: 1
+      CirticalAttack: 2
+      Power: 500
+      Intelligence: 200
+      Vit: 300
+      Agility: 120
+      AttackSpeed: 1
+      ReleaseSpeed: 1
+      MovSpeed: 0.75
+      Bloodintake: 15
+      Growth: 2
+    SkillTable:
+    - SkillID: Enemy_Bait
+      Type: 0
+      BtnAudioID: 
+    Animator: {fileID: 22100000, guid: bfe5828d83e99c842bdaa3a78b7505c6, type: 2}
+    description: 
   - ID: 203100
     EnemyName: "\u5E7C\u5E74\u5DE8\u8725"
     Attackradius: 1.5
@@ -295,9 +295,9 @@ MonoBehaviour:
       Agility: 125
       AttackSpeed: 1
       ReleaseSpeed: 0
-      MovSpeed: 0.55
+      MovSpeed: 0.85
       Bloodintake: 15
-      Growth: 3
+      Growth: 2.5
     SkillTable:
     - SkillID: Spitfire
       Type: 0
