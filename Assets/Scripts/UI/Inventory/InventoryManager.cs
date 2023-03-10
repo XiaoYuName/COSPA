@@ -396,13 +396,20 @@ namespace ARPG
             }
         }
 
-
-        public void RefItemBag(string itemID)
+        /// <summary>
+        /// Debug 调试模式使用
+        /// </summary>
+        /// <param name="level"></param>
+        public void SetAllCharacterLevel(int level)
         {
-            
+            foreach (var characterBag in UserBag.CharacterBags)
+            {
+                characterBag.Level = Mathf.Abs(level);
+                MessageAction.OnUpCharacterBag(characterBag);
+            }
         }
 
-
+        
         #endregion
 
 

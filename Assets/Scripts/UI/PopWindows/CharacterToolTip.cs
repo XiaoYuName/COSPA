@@ -149,20 +149,20 @@ namespace ARPG.UI
             
             var AttackSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             AttackSpeed.Init();
-            AttackSpeed.Show("攻击速度",(int)currentCharacterState.AttackSpeed*100+"%");
+            AttackSpeed.Show("攻击速度",currentCharacterState.AttackSpeed*100+"%");
             
             var ReleaseSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             ReleaseSpeed.Init();
-            ReleaseSpeed.Show("释放速度",(int)currentCharacterState.ReleaseSpeed*100+"%");
+            ReleaseSpeed.Show("释放速度",currentCharacterState.ReleaseSpeed*100+"%");
             
             var MovSpeed = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             MovSpeed.Init();
-            MovSpeed.Show("移动速度",(int)currentCharacterState.MovSpeed*100+"%");
+            MovSpeed.Show("移动速度",currentCharacterState.MovSpeed+"%");
             
             
             var Cirtical = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             Cirtical.Init();
-            Cirtical.Show("暴击几率",(int)currentCharacterState.Cirtical*100+"%");
+            Cirtical.Show("暴击几率",currentCharacterState.Cirtical*100+"%");
             
             var CirticalAttack = UISystem.Instance.InstanceUI<PropValue>("StateBig_Value", StateContent);
             CirticalAttack.Init();

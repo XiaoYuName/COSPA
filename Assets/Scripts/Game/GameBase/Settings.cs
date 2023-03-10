@@ -68,8 +68,8 @@ namespace ARPG
         public static CharacterState GetLevelGrowthState(int levle,CharacterState state)
         {
             state.Power = (int)(state.Power * (1+(levle/10)*(1+state.Growth)));
-            state.Vit = (int)(state.Power * (1+(levle/100)*(1+state.Growth)));
-            state.Agility = (int)(state.Power *(1+(levle/500)*(1+state.Growth)));
+            state.Vit = (int)(state.Vit * (1+(levle/100)*(1+state.Growth)));
+            state.Agility = (int)(state.Agility *(1+(levle/500)*(1+state.Growth)));
             state.Intelligence = (int)(state.Intelligence *  (1+(levle/10)*(1+state.Growth)));
             state.PhysicsAttack = (int)(state.PhysicsAttack * (1+(levle/100)*(1+state.Growth)))+(state.Power / 10);
             state.MagicAttack = (int)(state.MagicAttack * (1+(levle/100)*(1+state.Growth)))+(state.Intelligence/10);
@@ -77,7 +77,7 @@ namespace ARPG
             state.MagicDefense = (int)(state.MagicDefense *  (1+(levle/7.5)*(1+state.Growth)))+(state.Vit/40);
             state.HP = (int)(state.HP *  (1+(levle/5)*(1+state.Growth)))+(state.Vit/2);;
             state.AddHp = (int)(state.AddHp *  (1+(levle/10)*(1+state.Growth)))+(state.Vit/100)+(state.Agility/100)+(state.Intelligence/100)+(state.Power/100);
-            state.Cirtical = (int)(state.Cirtical *  (1+(levle/10)*(1+state.Growth)));
+            state.Cirtical = (state.Cirtical *  (1+(levle/10)*(1+state.Growth)));
             state.AttackSpeed = (float)(state.AttackSpeed *  (1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/500);
             state.MovSpeed = (float)(state.MovSpeed * (1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/2500);
             state.ReleaseSpeed =(float)(state.ReleaseSpeed *(1+(levle/100)*(1+state.Growth*0.025)))+(state.Agility/500);

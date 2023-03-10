@@ -67,7 +67,7 @@ namespace ARPG.UI
                 string res;
                 if (isTake)
                 {
-                    int paworValue = Pawor < itemBag.power ? (t.value + itemBag.power) : (t.value * Pawor);
+                    float paworValue = Pawor < itemBag.power ? (t.value + itemBag.power) : (t.value * Pawor);
                     res = paworValue * 100 + "%";
                 }
                 else
@@ -113,7 +113,7 @@ namespace ARPG.UI
                 string res;
                 if (isTake)
                 {
-                    int paworValue = Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor) : (t.value * Pawor);
+                    float paworValue = Pawor < hole.currentdata.Powor ? (t.value + hole.currentdata.Powor) : (t.value * Pawor);
                     res = paworValue * 100 + "%";
                 }
                 else

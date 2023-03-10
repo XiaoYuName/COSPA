@@ -26,6 +26,8 @@ public partial class SROptions
     public int amount;
 
     public int pawor;
+
+    public int level;
     
     [Category("AddItem"),DisplayName("物品ID")]
     public string GMID
@@ -72,7 +74,25 @@ public partial class SROptions
             Debug.Log("GM:没有该Item的定义");
         }
     }
+
     
     
+
+    [Category("角色控制"),NumberRange(1,99999),DisplayName("等级")]
+    public int Level
+    {
+        get { return level; }
+        set { level = value; }
+    }
     
+    
+    [Category("角色控制"),DisplayName("设置玩家等级")]
+    public void SetCharacterLevel()
+    {
+        if (Level <= 0) return;
+        InventoryManager.Instance.SetAllCharacterLevel(Level);
+    }
+
+
+
 }	

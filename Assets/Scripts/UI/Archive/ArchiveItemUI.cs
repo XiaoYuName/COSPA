@@ -36,7 +36,7 @@ namespace ARPG.UI
             currentUser = user;
             ManaAmount.text = user.ManaAmount.ToString();
             GemsthoneAmount.text = user.GemsthoneAmount.ToString();
-            DateTimeText.text = user.SaveTime.ToString(CultureInfo.InvariantCulture);
+            DateTimeText.text = user.SaveTime.ToString();
         }
 
         private void LoadGameScnen()

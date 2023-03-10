@@ -73,7 +73,7 @@ namespace ARPG.Config
     public class StateValue
     {
         public StateMode Mode;
-        public int value;
+        public float value;
     }
     
 }
