@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "3r20WuSWww7CYuSNyTKaegdrnH0", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
+"skeleton": { "hash": "gDTH++iZUqcZI+M68z7ujZCToKo", "spine": "3.8.99", "x": -409.62, "y": -252.81, "width": 910, "height": 912 },
 "bones": [
 	{ "name": "root", "y": 1.42 },
 	{ "name": "body", "parent": "root", "x": 5.5, "y": 80.45 },
@@ -46982,6 +46982,10 @@
 					{ "slot": "weaponSub_away", "offset": -24 }
 				]
 			}
+		],
+		"events": [
+			{ "time": 0.6, "name": "SpineEvent", "string": "RunFlame" },
+			{ "time": 4.7667, "name": "SpineEvent", "string": "FlameBomb" }
 		]
 	},
 	"000000_balloon_flying_down": {

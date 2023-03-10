@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using ARPG.Config;
 using ARPG.Pool.Skill;
 using ARPG.UI;
@@ -16,18 +14,20 @@ namespace ARPG
     /// 战斗场景主管理器
     /// </summary>
     public class GameManager : MonoSingleton<GameManager>
-    { 
+    {
         //角色的公用预制体
-        [HideInInspector]public Character Player;
+        [HideInInspector] public Character Player;
+
         /// <summary>
         /// 当前战斗的副本
         /// </summary>
         private RegionItem currentRegion;
+
         /// <summary>
         /// 当前战斗的章节
         /// </summary>
         private RegionLine currentRegionLine;
-        
+
         private CinemachineVirtualCamera virtualCamera;
         private GameObject DamageWordUI;
         private Vector2Int currentPress;
@@ -35,7 +35,7 @@ namespace ARPG
         protected override void Awake()
         {
             base.Awake();
-            
+
             DamageWordUI = GameSystem.Instance.GetPrefab("DamageText");
         }
 
@@ -47,14 +47,14 @@ namespace ARPG
         /// <param name="pos">玩家位置</param>
         /// <param name="regionLine">当前战斗的主线</param>
         /// <param name="regionItem">当前战斗的章节</param>
-        public IEnumerator StarSceneGame(CharacterBag bags,Vector3 pos,RegionLine regionLine,RegionItem regionItem)
+        public IEnumerator StarSceneGame(CharacterBag bags, Vector3 pos, RegionLine regionLine, RegionItem regionItem)
         {
             currentRegionLine = regionLine;
             currentRegion = regionItem;
             currentPress = regionItem.Press;
             var data = InventoryManager.Instance.GetCharacter(bags.ID);
             var Obj = data.Prefab.GetComponent<Character>();
-            Player =  Instantiate(Obj, pos, Quaternion.identity);
+            Player = Instantiate(Obj, pos, Quaternion.identity);
             Player.Init(bags);
             Player.isAI = false;
             UISystem.Instance.OpenUI("GameMemu");
@@ -64,10 +64,9 @@ namespace ARPG
             ARPG.Pool.Skill.SkillPoolManager.Instance.AddPoolPrefab(new Pool.Skill.Pool
             {
                 prefab = DamageWordUI,
-                count =  100,
+                count = 100,
             });
             yield return EnemyManager.Instance.CreateEnemy(regionItem);
-            
         }
 
         /// <summary>
@@ -90,22 +89,23 @@ namespace ARPG
             if (currentRegionLine != null)
             {
                 RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
-                if(quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                if (quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen", quitData);
                 else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                    MessageAction.OnTransitionEvent("GameScnen", Vector3.zero);
             }
             else
             {
                 RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
                 if (quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
+                    MessageAction.OnQuitAttackScnen("GameScnen", quitData);
                 else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                    MessageAction.OnTransitionEvent("GameScnen", Vector3.zero);
             }
         }
 
         private Coroutine _coroutine;
+
         /// <summary>
         /// 战斗胜利，结算完毕后退出战斗场景
         /// </summary>
@@ -116,11 +116,11 @@ namespace ARPG
             UISystem.Instance.CloseUI("PlayerState");
             DynamicJoystick joystick = UISystem.Instance.GetNotBaseUI<DynamicJoystick>("DynamicJoystick");
             joystick.gameObject.SetActive(false);
-            TaskManager.Instance.TriggerTask(TaskTrigger.通关地下城,1);
+            TaskManager.Instance.TriggerTask(TaskTrigger.通关地下城, 1);
             UISystem.Instance.CloseUI("AttackButton");
             StartCoroutine(WaitPlayAnimator());
         }
-        
+
         /// <summary>
         /// 战斗结束时，如果Player还在表演动画，则等待动画表演完毕，再进行进入到结算动画
         /// </summary>
@@ -129,10 +129,11 @@ namespace ARPG
         {
             Vector3 wordPoint = Camera.main.ViewportToWorldPoint(Settings.zeroView);
             wordPoint.z = 0;
-            while (Player.animSpeed <= 0)  //如果Player正在播放其他动画，则等待动画播放完毕
+            while (Player.animSpeed <= 0) //如果Player正在播放其他动画，则等待动画播放完毕
             {
                 yield return null;
             }
+
             Player.animSpeed = 0;
             Player.isAI = true;
             Player.rb.velocity = Vector2.zero;
@@ -146,35 +147,42 @@ namespace ARPG
         /// <returns></returns>
         private IEnumerator MovZeroPoint(Vector3 zeroPoint)
         {
-            Player.transform.rotation = Quaternion.Euler(0,0,0);
+            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
             Player.GroundCollider.enabled = false;
-            while (Vector3.Distance(Player.transform.localPosition,zeroPoint) >0.5f)
+            while (Vector3.Distance(Player.transform.localPosition, zeroPoint) > 0.5f)
             {
-                Player.transform.localPosition = Vector3.MoveTowards(Player.transform.localPosition, zeroPoint, 3.5f*Time.deltaTime);
-                Player.anim.SetBool("isMovenemt",true);
+                Player.transform.localPosition =
+                    Vector3.MoveTowards(Player.transform.localPosition, zeroPoint, 3.5f * Time.deltaTime);
+                Player.anim.SetBool("isMovenemt", true);
                 yield return null;
             }
+
             //2.播放胜利庆祝动画
-            Player.anim.SetBool("isMovenemt",false);
+            Player.anim.SetBool("isMovenemt", false);
             Player.anim.SetTrigger("Victory");
             //3.显示胜利UI
             yield return new WaitForSeconds(1.25f);
+
             void Func(GameEnd ui)
             {
                 if (Settings.isRandomRegion(currentRegion.RegionItemName))
                 {
-                    ui.ShowEndGame(currentRegion.RegionItemName,GameSystem.Instance.GetRandomMap(currentRegion.RegionItemName));
+                    ui.ShowEndGame(currentRegion.RegionItemName,
+                        GameSystem.Instance.GetRandomMap(currentRegion.RegionItemName));
                 }
                 else
                 {
-                    if(currentRegionLine == null)
-                        ui.ShowEndGame(currentRegion.RegionItemName,GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                    if (currentRegionLine == null)
+                        ui.ShowEndGame(currentRegion.RegionItemName,
+                            GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
                     else
-                        ui.ShowEndGame(currentRegionLine.RegionName,GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
+                        ui.ShowEndGame(currentRegionLine.RegionName,
+                            GameSystem.Instance.GetMapReword(currentRegion.RegionItemName));
                 }
             }
+
             AudioManager.Instance.PlayAudio("VictoryGame");
-            UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
+            UISystem.Instance.OpenUI<GameEnd>("GameEnd", Func);
             _coroutine = null;
         }
 
@@ -195,28 +203,29 @@ namespace ARPG
 
             if (currentRegionLine != null && result == GameResult.胜利)
             {
-                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,LookState.已通关);
-                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName,currentRegion.RegionItemName,3);
+                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName, currentRegion.RegionItemName,
+                    LookState.已通关);
+                InventoryManager.Instance.SetRegionHandle(currentRegionLine.RegionName, currentRegion.RegionItemName,
+                    3);
                 MessageAction.OnSetUpRegionPress();
             }
 
             if (currentRegionLine != null)
             {
                 RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegionLine.RegionName);
-                if(quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData);
+                if (quitData != null)
+                    MessageAction.OnQuitAttackScnen("GameScnen", quitData);
                 else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                    MessageAction.OnTransitionEvent("GameScnen", Vector3.zero);
             }
             else
             {
                 RegionQuitData quitData = GameSystem.Instance.GetQuitData(currentRegion.RegionItemName);
                 if (quitData != null)
-                    MessageAction.OnQuitAttackScnen("GameScnen",quitData); 
+                    MessageAction.OnQuitAttackScnen("GameScnen", quitData);
                 else
-                    MessageAction.OnTransitionEvent("GameScnen",Vector3.zero);
+                    MessageAction.OnTransitionEvent("GameScnen", Vector3.zero);
             }
-
         }
 
         /// <summary>
@@ -226,7 +235,7 @@ namespace ARPG
         {
             StartCoroutine(GameOverWait());
         }
-        
+
 
         /// <summary>
         /// 死亡结算界面，写成携程是希望之后添加其他DoTween动画
@@ -243,12 +252,13 @@ namespace ARPG
             UISystem.Instance.CloseUI("AttackButton");
             EnemyManager.Instance.QuitGameScene();
             yield return new WaitForSeconds(1);
+
             void Func(GameEnd ui)
             {
                 ui.ShowGameOver();
             }
-            UISystem.Instance.OpenUI<GameEnd>("GameEnd",Func);
-            
+
+            UISystem.Instance.OpenUI<GameEnd>("GameEnd", Func);
         }
 
         /// <summary>
@@ -259,66 +269,80 @@ namespace ARPG
         /// <param name="item">释放的技能</param>
         /// <param name="BoundPoint">命中点</param>
         /// <param name="isMultisTag">是否启用延迟多段上海,默认启用</param>
-        public void OptionDamage(IDamage attack,IDamage target,SkillItem item,Vector3 BoundPoint,bool isMultisTag = true)
+        public void OptionDamage(IDamage attack, IDamage target, SkillItem item, Vector3 BoundPoint,
+            bool isMultisTag = true)
         {
             if (target == null && item.SkillType.type != DamageType.Treatment) return;
-            
-            if(item.SkillType.type != DamageType.Treatment)
-                if (target.GetState().currentHp <= 0) return; //防止多段伤害一直显示掉血
+
+            if (item.SkillType.type != DamageType.Treatment)
+                if (target.GetState().currentHp <= 0)
+                    return; //防止多段伤害一直显示掉血
             //1.伤害技能计算算法  ： 角色（基础力量 * 造成的伤害）*技能攻击力
-            float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
+            float NextBuffVlaue =
+                BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
             if (item.SkillType.type == DamageType.Treatment)
             {
-                OptionAddHp(attack,item,BoundPoint);
+                OptionAddHp(attack, item, BoundPoint);
                 if (item.SkillType.isMultistage)
                 {
-                    StartCoroutine(WaitMultistage(attack,item,BoundPoint));
+                    StartCoroutine(WaitMultistage(attack, item, BoundPoint));
                 }
+
                 return;
             }
+
             //多段运算
             if (item.SkillType.isMultistage && isMultisTag)
             {
-                StartCoroutine(WaitMultistageAttack(attack,target,item,BoundPoint));
+                StartCoroutine(WaitMultistageAttack(attack, target, item, BoundPoint));
                 return;
             }
 
             CharacterState attackState = attack.GetState();
             CharacterState targetState = target.GetState();
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害,StateMode.最终伤害);//最终伤害值
-            
+            float BuffValue =
+                BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害, StateMode.最终伤害); //最终伤害值
+
             //伤害 = 物理攻击力+技能基础攻击力*技能攻击力*最终伤害*暴击伤害 - 敌方防御力
             //1.计算基础伤害
-            int DeftualAttack = item.SkillType.type == DamageType.Physics ? attackState.PhysicsAttack : attackState.MagicAttack;
+            int DeftualAttack = item.SkillType.type == DamageType.Physics
+                ? attackState.PhysicsAttack
+                : attackState.MagicAttack;
             float Physics = DeftualAttack + item.Diamage;
             //2.计算暴击伤害
-            bool isCirtical = attackState.Cirtical > Random.value;
+            bool isCirtical =  Random.value < attackState.Cirtical;
             if (isCirtical)
             {
                 //暴击了
-                Physics *= (1+attackState.CirticalAttack/100);
+                Physics *= attackState.CirticalAttack;
             }
+
             //3.计算BUFF最终伤害加成
             Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
-            Physics *= (1+(BuffValue/100));
+            Physics *= (1 + (BuffValue / 100));
             Physics *= (1 + (NextBuffVlaue / 100));
-            Physics = Mathf.Max(1, (int)Physics);
+            Physics = Mathf.Max(1, (int) Physics);
             //4.计算技能攻击力加成
-            Physics *= (1+attackState.SkillAttack/100);
+            Physics *= (1 + attackState.SkillAttack / 100);
             //5.扣除敌方防御力加成
-            int Defense = item.SkillType.type == DamageType.Physics ? targetState.PhysicsDefense : targetState.MagicDefense;
-            Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+            int Defense = item.SkillType.type == DamageType.Physics
+                ? targetState.PhysicsDefense
+                : targetState.MagicDefense;
+            Physics -= (Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
             //6.根据吸血量回复自身
             if (attackState.Bloodintake > 0)
             {
-                float BloodHp = Physics * ((float)attackState.Bloodintake/100);
-                attack.IReply((int)Mathf.Max(BloodHp,1));
-                DamageTextItem ReplyItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
-                ReplyItem.Show(DamageType.Treatment,false,Mathf.Max(BloodHp,1).ToString("N0"));
+                float BloodHp = Physics * ((float) attackState.Bloodintake / 100);
+                attack.IReply((int) Mathf.Max(BloodHp, 1));
+                DamageTextItem ReplyItem = SkillPoolManager
+                    .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity).GetComponent<DamageTextItem>();
+                ReplyItem.Show(DamageType.Treatment, false, Mathf.Max((int) BloodHp, 1).ToString());
             }
-            target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
-            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,BoundPoint,Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Physics,isCirtical,Mathf.Max((int)Math.Round(Physics,0),1).ToString());
+
+            target.IDamage(Mathf.Max((int) Math.Round(Physics, 0), 1));
+            DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, BoundPoint, Quaternion.identity)
+                .GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Physics, isCirtical, Mathf.Max((int) Math.Round(Physics, 0), 1).ToString());
         }
 
         /// <summary>
@@ -327,21 +351,23 @@ namespace ARPG
         /// <param name="attack">攻击者</param>
         /// <param name="item">技能数据</param>
         /// <param name="Point">命中点坐标</param>
-        private void OptionAddHp(IDamage attack, SkillItem item,Vector3 Point)
+        private void OptionAddHp(IDamage attack, SkillItem item, Vector3 Point)
         {
             CharacterState attackState = attack.GetState();
             //回复量 = 基础回复量+技能基础回复量*治疗量*技攻
             //1.计算基础回复量
             double addHp = attackState.AddHp + item.Diamage;
             //2.计算治疗量
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗,StateMode.治疗量);//最终伤害值
-            addHp *= (1+(BuffValue/100));
-            addHp = Mathf.Max(1, (int)addHp);
+            float BuffValue =
+                BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗, StateMode.治疗量); //最终伤害值
+            addHp *= (1 + (BuffValue / 100));
+            addHp = Mathf.Max(1, (int) addHp);
             //3.计算技能攻击力
-            addHp *= (1+attackState.SkillAttack/100);
-            attack.IReply((int)Math.Round(addHp,0));
-            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
+            addHp *= (1 + attackState.SkillAttack / 100);
+            attack.IReply((int) Math.Round(addHp, 0));
+            DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity)
+                .GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Treatment, false, ((int) Math.Round(addHp, 0)).ToString());
         }
 
         /// <summary>
@@ -356,16 +382,18 @@ namespace ARPG
             //1.计算基础回复量
             double addHp = attackState.AddHp + value;
             //2.计算治疗量
-            float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗,StateMode.治疗量);//最终伤害值
-            addHp *= (1+(BuffValue/100));
-            addHp = Mathf.Max(1, (int)addHp);
+            float BuffValue =
+                BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.治疗, StateMode.治疗量); //最终伤害值
+            addHp *= (1 + (BuffValue / 100));
+            addHp = Mathf.Max(1, (int) addHp);
             //3.计算技能攻击力
-            addHp *= (1+attackState.SkillAttack/100);
-            attack.IReply((int)Math.Round(addHp,0));
-            DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Treatment,false,((int)Math.Round(addHp,0)).ToString());
+            addHp *= (1 + attackState.SkillAttack / 100);
+            attack.IReply((int) Math.Round(addHp, 0));
+            DamageTextItem damageTextItem = SkillPoolManager
+                .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity).GetComponent<DamageTextItem>();
+            damageTextItem.Show(DamageType.Treatment, false, ((int) Math.Round(addHp, 0)).ToString());
         }
-        
+
         /// <summary>
         /// 延迟多段回复效果
         /// </summary>
@@ -373,14 +401,14 @@ namespace ARPG
         /// <param name="item">技能配置</param>
         /// <param name="Point">发动点</param>
         /// <returns></returns>
-        private IEnumerator WaitMultistage(IDamage attack, SkillItem item,Vector3 Point)
+        private IEnumerator WaitMultistage(IDamage attack, SkillItem item, Vector3 Point)
         {
             yield return new WaitForSeconds(item.SkillType.MultistageTime);
             if (Player != null)
             {
                 for (int i = 0; i < item.SkillType.MultistageDamage.Count; i++)
                 {
-                    OptionAddHp(attack,item.SkillType.MultistageDamage[i]);
+                    OptionAddHp(attack, item.SkillType.MultistageDamage[i]);
                     yield return new WaitForSeconds(item.SkillType.MultistageTime);
                 }
             }
@@ -394,49 +422,61 @@ namespace ARPG
         /// <param name="item">技能数据信息</param>
         /// <param name="Point">命中点位置</param>
         /// <returns></returns>
-        private IEnumerator WaitMultistageAttack(IDamage attack,IDamage target,SkillItem item,Vector3 Point)
+        private IEnumerator WaitMultistageAttack(IDamage attack, IDamage target, SkillItem item, Vector3 Point)
         {
             if (Player != null)
             {
-                float NextBuffVlaue = BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
+                float NextBuffVlaue =
+                    BUFFManager.Instance.GetNextDicTypeValue(attack.GetBuffLogic(), BuffTrigger.累计攻击, StateMode.最终伤害);
                 for (int i = 0; i < item.SkillType.MultistageDamage.Count; i++)
                 {
                     CharacterState attackState = attack.GetState();
                     CharacterState targetState = target.GetState();
-                    if(targetState.currentHp<=0) continue;
-                    float BuffValue = BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害, StateMode.最终伤害); //最终伤害值
+                    if (targetState.currentHp <= 0) continue;
+                    float BuffValue =
+                        BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.伤害, StateMode.最终伤害); //最终伤害值
                     //1.1 获取攻击者的基础力量*物理攻击力
-                    int DeftualAttack = item.SkillType.type == DamageType.Physics ? attackState.PhysicsAttack : attackState.MagicAttack;
+                    int DeftualAttack = item.SkillType.type == DamageType.Physics
+                        ? attackState.PhysicsAttack
+                        : attackState.MagicAttack;
                     float Physics = DeftualAttack + item.Diamage;
                     //2.计算暴击伤害
-                    bool isCirtical = attackState.Cirtical > Random.value;
+                    bool isCirtical =  Random.value < attackState.Cirtical;
                     if (isCirtical)
                     {
                         //暴击了
-                        Physics *= (1+attackState.CirticalAttack/100);
+                        Physics *= attackState.CirticalAttack;
                     }
+
                     //3.计算BUFF最终伤害加成
                     Physics += BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.物理攻击力);
-                    Physics *= (1+(BuffValue/100));
+                    Physics *= (1 + (BuffValue / 100));
                     Physics *= (1 + (NextBuffVlaue / 100));
-                    Physics = Mathf.Max(1, (int)Physics);
+                    Physics = Mathf.Max(1, (int) Physics);
                     //4.计算技能攻击力加成
-                    Physics *= (1+attackState.SkillAttack/100);
+                    Physics *= (1 + attackState.SkillAttack / 100);
                     //5.扣除敌方防御力加成
-                    int Defense = item.SkillType.type == DamageType.Physics ? targetState.PhysicsDefense : targetState.MagicDefense;
-                    Physics -= (Defense+BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(),BuffType.增益,StateMode.防御力));
+                    int Defense = item.SkillType.type == DamageType.Physics
+                        ? targetState.PhysicsDefense
+                        : targetState.MagicDefense;
+                    Physics -= (Defense +
+                                BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
                     //6.根据吸血量回复自身
                     if (attackState.Bloodintake > 0)
                     {
-                        float BloodHp = Physics * ((float)attackState.Bloodintake/100);
-                        attack.IReply((int)Mathf.Max(BloodHp,1));
-                        DamageTextItem ReplyItem  = SkillPoolManager.Release(DamageWordUI,attack.GetPoint(),Quaternion.identity).GetComponent<DamageTextItem>();
-                        ReplyItem.Show(DamageType.Treatment,false,Mathf.Max(BloodHp,1).ToString("N0"));
+                        float BloodHp = Physics * ((float) attackState.Bloodintake / 100);
+                        attack.IReply((int) Mathf.Max(BloodHp, 1));
+                        DamageTextItem ReplyItem = SkillPoolManager
+                            .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity)
+                            .GetComponent<DamageTextItem>();
+                        ReplyItem.Show(DamageType.Treatment, false, Mathf.Max(BloodHp, 1).ToString("N0"));
                     }
-                    target.IDamage(Mathf.Max((int)Math.Round(Physics,0),1));
-                    DamageTextItem damageTextItem  = SkillPoolManager.Release(DamageWordUI,Point,Quaternion.identity).GetComponent<DamageTextItem>();
-                    damageTextItem.Show(DamageType.Physics,isCirtical,Mathf.Max((int)Math.Round(Physics,0),1).ToString());
-                    
+
+                    target.IDamage(Mathf.Max((int) Math.Round(Physics, 0), 1));
+                    DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity)
+                        .GetComponent<DamageTextItem>();
+                    damageTextItem.Show(DamageType.Physics, isCirtical,
+                        Mathf.Max((int) Math.Round(Physics, 0), 1).ToString());
                     yield return new WaitForSeconds(item.SkillType.MultistageTime);
                 }
             }
@@ -450,14 +490,15 @@ namespace ARPG
         /// <param name="item">使用的技能</param>
         /// <param name="BoundPoint">命中点</param>
         /// <param name="isMultisTag">是否启用延迟多段伤害,默认启用</param>
-        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, Vector3[] BoundPoint,bool isMultisTag = true)
+        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, Vector3[] BoundPoint,
+            bool isMultisTag = true)
         {
             if (BoundPoint.Length != targets.Length)
                 throw new Exception("命中点与敌人数不匹配");
 
             for (int i = 0; i < targets.Length; i++)
             {
-                OptionDamage(attack,targets[i],item,BoundPoint[i],isMultisTag);
+                OptionDamage(attack, targets[i], item, BoundPoint[i], isMultisTag);
             }
         }
 
@@ -468,15 +509,13 @@ namespace ARPG
         /// <param name="targets">目标列表</param>
         /// <param name="item">使用的技能</param>
         /// <param name="isMultisTag">是否启用延迟多段伤害,默认启用</param>
-        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item,bool isMultisTag = true)
+        public void OptionAllDamage(IDamage attack, IDamage[] targets, SkillItem item, bool isMultisTag = true)
         {
             for (int i = 0; i < targets.Length; i++)
             {
-                OptionDamage(attack,targets[i],item,targets[i].GetPoint(),isMultisTag);
+                OptionDamage(attack, targets[i], item, targets[i].GetPoint(), isMultisTag);
             }
         }
-        
-       
 
 
         /// <summary>
@@ -486,8 +525,5 @@ namespace ARPG
         {
             virtualCamera.Follow = null;
         }
-
     }
-
 }
-

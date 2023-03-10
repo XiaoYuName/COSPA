@@ -53,8 +53,8 @@ namespace ARPG.UI
                     UISystem.Instance.ShowPopWindows("提示","为了您的正常流程体验,暂时关闭充值功能","关闭");
                     return;
                     //TODO: 暂时关闭充值
-                    InventoryManager.Instance.AddGold(type,currentdata.RewordCount);
-                    TaskManager.Instance.TriggerTask(TaskTrigger.充值,currentdata.RMB);
+                    // InventoryManager.Instance.AddGold(type,currentdata.RewordCount);
+                    // TaskManager.Instance.TriggerTask(TaskTrigger.充值,currentdata.RMB);
                 },true);
         }
 
