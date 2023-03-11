@@ -79,7 +79,7 @@ namespace ARPG
                 Quaternion.identity);
             LookFxObj.Add(LoopFx);
             
-            while (target.GetState().currentHp >= 0)
+            while (target.GetState().currentHp >= 0 && enemyBoneTran.gameObject.activeSelf)
             {
                 LoopFx.transform.position = Vector2.MoveTowards(LoopFx.transform.position,
                     enemyBoneTran.position, data.ReleaseTime * Time.deltaTime);
