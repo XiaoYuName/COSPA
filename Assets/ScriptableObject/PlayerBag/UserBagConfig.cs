@@ -267,13 +267,64 @@ namespace ARPG.Config
                 }
             }
             //2. 让玩家选择拆卸掉其中一个
+            // UISystem.Instance.ShowPopDialogue("提示","装备栏已满,请选择要替换掉的装备",
+            //     allEquip[1].item.ItemName,allEquip[0].item.ItemName,
+            //     () =>
+            //     {
+            //         for (int i = 0; i < current.Count; i++)
+            //         {
+            //             if (current[i].item == allEquip[1].item)
+            //             {
+            //                 //拆掉他,
+            //                 ItemBag Bag = new ItemBag()
+            //                 {
+            //                     ID = current[i].item.ID,
+            //                     power = current[i].Powor,
+            //                     count = 1,
+            //                 };
+            //                 InventoryManager.Instance.AddItem(Bag);
+            //                 //2.1 装备新装备
+            //                 current[i].item = InventoryManager.Instance.GetItem(bag.ID);
+            //                 current[i].Powor = bag.power;
+            //                 equipHelos = current.ToArray();
+            //                 InventoryManager.Instance.DeleteItemBag(bag,1);
+            //                 UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").PlayCode();
+            //                 return;
+            //             }
+            //         }
+            //     }, 
+            //     () =>
+            //     {
+            //         for (int i = 0; i < current.Count; i++)
+            //         {
+            //             if (current[i].item == allEquip[0].item)
+            //             {
+            //                 //拆掉他,
+            //                 ItemBag Bag = new ItemBag()
+            //                 {
+            //                     ID = current[i].item.ID,
+            //                     power = current[i].Powor,
+            //                     count = 1,
+            //                 };
+            //                 InventoryManager.Instance.AddItem(Bag);
+            //                 //2.1 装备新装备
+            //                 current[i].item = InventoryManager.Instance.GetItem(bag.ID);
+            //                 current[i].Powor = bag.power;
+            //                 equipHelos = current.ToArray();
+            //                 InventoryManager.Instance.DeleteItemBag(bag,1);
+            //                 UISystem.Instance.GetUI<CharacterEquipPanel>("CharacterEquipPanel").PlayCode();
+            //                 return;
+            //             }
+            //         }
+            //     });
+            
             UISystem.Instance.ShowPopDialogue("提示","装备栏已满,请选择要替换掉的装备",
-                allEquip[1].item.ItemName,allEquip[0].item.ItemName,
+                allEquip[0].item.ItemName,allEquip[1].item.ItemName,
                 () =>
-                {
+                { 
                     for (int i = 0; i < current.Count; i++)
                     {
-                        if (current[i].item == allEquip[1].item)
+                        if (current[i].item == allEquip[0].item)
                         {
                             //拆掉他,
                             ItemBag Bag = new ItemBag()
@@ -297,7 +348,7 @@ namespace ARPG.Config
                 {
                     for (int i = 0; i < current.Count; i++)
                     {
-                        if (current[i].item == allEquip[0].item)
+                        if (current[i].item == allEquip[1].item)
                         {
                             //拆掉他,
                             ItemBag Bag = new ItemBag()
@@ -317,6 +368,8 @@ namespace ARPG.Config
                         }
                     }
                 });
+            
+            
             return 2;
        }
        

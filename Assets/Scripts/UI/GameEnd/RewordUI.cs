@@ -25,7 +25,13 @@ namespace ARPG.UI
              yield return new WaitForSeconds(1.25f);
              for (int i = 0; i < itemBags.Count; i++)
              {
-                 InventoryManager.Instance.AddItem(itemBags[i].itemBag); //背包添加同步一阵内
+                 ItemBag itemBag = new ItemBag()
+                 {
+                     ID = itemBags[i].itemBag.ID,
+                     count = itemBags[i].itemBag.count,
+                     power = itemBags[i].itemBag.power,
+                 };
+                 InventoryManager.Instance.AddItem(itemBag); //背包添加同步一阵内
                  CreateSlotUI(itemBags[i]);
                  yield return _seconds;
              }

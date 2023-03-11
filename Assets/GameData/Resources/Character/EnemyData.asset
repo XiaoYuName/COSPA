@@ -212,10 +212,10 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: 462a9358e94909c4181e717e632fda81, type: 3}
     State:
-      PhysicsAttack: 3000
+      PhysicsAttack: 2800
       MagicAttack: 1500
-      PhysicsDefense: 300
-      MagicDefense: 300
+      PhysicsDefense: 310
+      MagicDefense: 310
       HP: 35000
       currentHp: 200
       AddHp: 2
@@ -247,15 +247,15 @@ MonoBehaviour:
     Type: 2
     Prefab: {fileID: 599150379652071904, guid: 42f8c5bf759482a4cb85a2993f76dedc, type: 3}
     State:
-      PhysicsAttack: 5000
+      PhysicsAttack: 4000
       MagicAttack: 1000
-      PhysicsDefense: 330
-      MagicDefense: 330
-      HP: 18000
+      PhysicsDefense: 350
+      MagicDefense: 350
+      HP: 20000
       currentHp: 0
       AddHp: 100
       SkillAttack: 1
-      Cirtical: 1
+      Cirtical: 0.35
       CirticalAttack: 2
       Power: 500
       Intelligence: 200

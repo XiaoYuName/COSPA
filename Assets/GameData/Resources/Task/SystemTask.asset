@@ -92,6 +92,12 @@ MonoBehaviour:
     - ID: 22001
       count: 50
       power: 0
+    - ID: 94001
+      count: 50
+      power: 0
+    - ID: 91001
+      count: 5
+      power: 0
   - TaskName: "\u91CA\u653E\u6280\u80FD10\u6B21"
     TagUID: PlayerSkill_10
     Mode: 0
@@ -103,8 +109,79 @@ MonoBehaviour:
     - ID: 22001
       count: 50
       power: 0
-    - ID: 101011
-      count: 8
+    - ID: 94001
+      count: 100
+      power: 0
+    - ID: 91001
+      count: 10
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD15\u6B21"
+    TagUID: PlayerSkill_15
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 15
+    _TaskTrigger: 7
+    RewordItemList:
+    - ID: 22001
+      count: 150
+      power: 0
+    - ID: 94001
+      count: 150
+      power: 0
+    - ID: 91001
+      count: 15
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD30\u6B21"
+    TagUID: PlayerSkill_30
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 30
+    _TaskTrigger: 7
+    RewordItemList:
+    - ID: 22001
+      count: 200
+      power: 0
+    - ID: 94001
+      count: 200
+      power: 0
+    - ID: 91001
+      count: 30
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD50\u6B21"
+    TagUID: PlayerSkill_50
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 50
+    _TaskTrigger: 7
+    RewordItemList:
+    - ID: 22001
+      count: 400
+      power: 0
+    - ID: 94001
+      count: 500
+      power: 0
+    - ID: 91001
+      count: 50
+      power: 0
+  - TaskName: "\u91CA\u653E\u6280\u80FD100\u6B21"
+    TagUID: PlayerSkill_100
+    Mode: 0
+    TaskMode: 0
+    RefType: 1
+    RewordAmount: 100
+    _TaskTrigger: 7
+    RewordItemList:
+    - ID: 22001
+      count: 1000
+      power: 0
+    - ID: 94001
+      count: 1500
+      power: 0
+    - ID: 91001
+      count: 100
       power: 0
   - TaskName: "\u5145\u503C6\u5143"
     TagUID: AddGold_6
@@ -115,10 +192,10 @@ MonoBehaviour:
     _TaskTrigger: 6
     RewordItemList:
     - ID: 22001
-      count: 180
+      count: 60
       power: 0
     - ID: 94001
-      count: 600
+      count: 60
       power: 0
     - ID: 91001
       count: 60
@@ -208,40 +285,6 @@ MonoBehaviour:
     - ID: 91001
       count: 60
       power: 0
-  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53611\u6B21"
-    TagUID: Region_1
-    Mode: 1
-    TaskMode: 2
-    RefType: 3
-    RewordAmount: 1
-    _TaskTrigger: 5
-    RewordItemList:
-    - ID: 22001
-      count: 1080
-      power: 0
-    - ID: 94001
-      count: 600
-      power: 0
-    - ID: 91001
-      count: 60
-      power: 0
-  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53615\u6B21"
-    TagUID: Region_5
-    Mode: 1
-    TaskMode: 2
-    RefType: 3
-    RewordAmount: 5
-    _TaskTrigger: 5
-    RewordItemList:
-    - ID: 22001
-      count: 60
-      power: 0
-    - ID: 94001
-      count: 600
-      power: 0
-    - ID: 91001
-      count: 60
-      power: 0
   - TaskName: "\u51FB\u6740\u602A\u726910\u53EA"
     TagUID: AttackEnemy_1
     Mode: 2
@@ -276,31 +319,6 @@ MonoBehaviour:
     - ID: 91001
       count: 60
       power: 0
-  - TaskName: "\u51FB\u6740BOSS 1 \u53EA"
-    TagUID: AttackEnemy_BOSS_1
-    Mode: 2
-    TaskMode: 2
-    RefType: 0
-    RewordAmount: 1
-    _TaskTrigger: 1
-    RewordItemList:
-    - ID: 22001
-      count: 60
-      power: 0
-    - ID: 94001
-      count: 600
-      power: 0
-    - ID: 91001
-      count: 60
-      power: 0
-  - TaskName: "\u51FB\u6740BOSS 50 \u53EA"
-    TagUID: AttackEnemy_BOSS_50
-    Mode: 2
-    TaskMode: 2
-    RefType: 0
-    RewordAmount: 50
-    _TaskTrigger: 1
-    RewordItemList: []
   - TaskName: "\u626D\u86CB1\u6B21"
     TagUID: AttackEnemy_Twist_1
     Mode: 2
@@ -309,14 +327,14 @@ MonoBehaviour:
     RewordAmount: 1
     _TaskTrigger: 8
     RewordItemList:
+    - ID: 91001
+      count: 50
+      power: 0
     - ID: 22001
       count: 60
       power: 0
     - ID: 94001
       count: 600
-      power: 0
-    - ID: 91001
-      count: 6000
       power: 0
   - TaskName: "\u626D\u86CB5\u6B21"
     TagUID: AttackEnemy_Twist_5
@@ -326,14 +344,14 @@ MonoBehaviour:
     RewordAmount: 5
     _TaskTrigger: 8
     RewordItemList:
+    - ID: 91001
+      count: 150
+      power: 0
     - ID: 22001
-      count: 60
+      count: 100
       power: 0
     - ID: 94001
-      count: 600
-      power: 0
-    - ID: 91001
-      count: 6000
+      count: 1000
       power: 0
   - TaskName: "\u626D\u86CB10\u6B21"
     TagUID: AttackEnemy_Twist_10
@@ -343,14 +361,31 @@ MonoBehaviour:
     RewordAmount: 10
     _TaskTrigger: 8
     RewordItemList:
+    - ID: 91001
+      count: 350
+      power: 0
     - ID: 22001
-      count: 60
+      count: 350
       power: 0
     - ID: 94001
-      count: 600
+      count: 3000
       power: 0
+  - TaskName: "\u626D\u86CB20\u6B21"
+    TagUID: AttackEnemy_Twist_20
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 20
+    _TaskTrigger: 8
+    RewordItemList:
     - ID: 91001
-      count: 6000
+      count: 500
+      power: 0
+    - ID: 22001
+      count: 500
+      power: 0
+    - ID: 94001
+      count: 3000
       power: 0
   - TaskName: "\u626D\u86CB100\u6B21"
     TagUID: AttackEnemy_Twist_100
@@ -360,6 +395,93 @@ MonoBehaviour:
     RewordAmount: 100
     _TaskTrigger: 8
     RewordItemList:
+    - ID: 91001
+      count: 3000
+      power: 0
+    - ID: 22001
+      count: 3500
+      power: 0
+    - ID: 94001
+      count: 3000
+      power: 0
+  - TaskName: "\u51FB\u6740BOSS 1 \u53EA"
+    TagUID: AttackEnemy_BOSS_1
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 1
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u51FB\u6740BOSS 5 \u53EA"
+    TagUID: AttackEnemy_BOSS_5
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 5
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 101014
+      count: 1
+      power: 5
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u51FB\u6740BOSS 10 \u53EA"
+    TagUID: AttackEnemy_BOSS_10
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 50
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 103014
+      count: 1
+      power: 10
+  - TaskName: "\u51FB\u6740BOSS 50 \u53EA"
+    TagUID: AttackEnemy_BOSS_50
+    Mode: 2
+    TaskMode: 2
+    RefType: 0
+    RewordAmount: 50
+    _TaskTrigger: 1
+    RewordItemList:
+    - ID: 101016
+      count: 1
+      power: 10
+    - ID: 102016
+      count: 1
+      power: 10
+  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53611\u6B21"
+    TagUID: Region_1
+    Mode: 1
+    TaskMode: 2
+    RefType: 3
+    RewordAmount: 1
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 1080
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 60
+      power: 0
+  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u53615\u6B21"
+    TagUID: Region_5
+    Mode: 1
+    TaskMode: 2
+    RefType: 3
+    RewordAmount: 5
+    _TaskTrigger: 5
+    RewordItemList:
     - ID: 22001
       count: 60
       power: 0
@@ -367,5 +489,22 @@ MonoBehaviour:
       count: 600
       power: 0
     - ID: 91001
-      count: 6000
+      count: 60
+      power: 0
+  - TaskName: "\u901A\u5173\u4EFB\u610F\u5173\u536110\u6B21"
+    TagUID: Region_10
+    Mode: 1
+    TaskMode: 2
+    RefType: 3
+    RewordAmount: 5
+    _TaskTrigger: 5
+    RewordItemList:
+    - ID: 22001
+      count: 60
+      power: 0
+    - ID: 94001
+      count: 600
+      power: 0
+    - ID: 91001
+      count: 10
       power: 0
