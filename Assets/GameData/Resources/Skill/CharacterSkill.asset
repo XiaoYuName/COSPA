@@ -37,6 +37,30 @@ MonoBehaviour:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 10
     VideoAsset: {fileID: 0}
+  - ID: Archery
+    CD: -1
+    Duration: -1
+    ReleaseTime: -1
+    Radius: 2.5
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 8
+    icon: {fileID: 21300000, guid: 2dcbffd24f8490a45ab3d46b19659f79, type: 3}
+    SkillName: "\u5C04\u7BAD"
+    SkillDes: "\u5C04\u7BAD"
+    StepUpDes: 
+    ActionStar: 0
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0.2
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 2172600158281868152, guid: 609b9e4a31ce18840b373c7c9384bea1, type: 3}
+      count: 10
+    VideoAsset: {fileID: 0}
   - ID: UE_MagicAttack
     CD: 1
     Duration: 30

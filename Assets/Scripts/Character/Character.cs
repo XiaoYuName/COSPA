@@ -92,7 +92,10 @@ namespace ARPG
             CreatBuff();
             StartCoroutine(YoyoLoopAddHp());
         }
-
+    
+        /// <summary>
+        /// 实例化技能脚本对象，并把技能所用特效预制体存入对象池中
+        /// </summary>
         private void CreateSkillClass()
         {
             SkillDic.Clear();
