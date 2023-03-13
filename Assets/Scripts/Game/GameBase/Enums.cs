@@ -17,6 +17,7 @@ namespace ARPG
        魔法师,
        牧师,
        魅魔,
+       弓箭手,
    }
 
    /// <summary>

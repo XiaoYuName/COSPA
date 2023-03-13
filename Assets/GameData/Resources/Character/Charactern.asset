@@ -401,3 +401,100 @@ MonoBehaviour:
       SpineAnimationName: 0
       SpineSkinName: 0
     TwistSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
+  - ID: Character_1011
+    Headicon: {fileID: 21300000, guid: 139afcbe2d5dd2248acf2af8bbffe63c, type: 3}
+    Assets:
+    - Star: 1
+      OringIcon: {fileID: 21300000, guid: 0491ea3e84099c74e946185578b75028, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 1436f3261ae43fe469a5c7da85cfdf73, type: 3}
+      Spinedata: {fileID: 11400000, guid: 26fdaf12d1086a1459c224051075e240, type: 2}
+      VideAssets: {fileID: 11400000, guid: 798a6137d5955a342a5d725c0b7c4f96, type: 2}
+    - Star: 3
+      OringIcon: {fileID: 21300000, guid: 0491ea3e84099c74e946185578b75028, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 1436f3261ae43fe469a5c7da85cfdf73, type: 3}
+      Spinedata: {fileID: 11400000, guid: 26fdaf12d1086a1459c224051075e240, type: 2}
+      VideAssets: {fileID: 11400000, guid: 798a6137d5955a342a5d725c0b7c4f96, type: 2}
+    - Star: 6
+      OringIcon: {fileID: 21300000, guid: 6d9af9604e228f24ca267edccb33edce, type: 3}
+      CharacterPanelIcon: {fileID: 21300000, guid: 8c2c9b59635f65a4d82a58b52b33e57d, type: 3}
+      Spinedata: {fileID: 11400000, guid: 4eb058b2518705b45a92393e8cb0229b, type: 2}
+      VideAssets: {fileID: 11400000, guid: 6ca49e9fa0a0f0940aa576bed676cc41, type: 2}
+    Prefab: {fileID: 2060322555634032043, guid: 3de75a6e0ac9d9f4ba65ac5e1702a48d, type: 3}
+    CharacterStarType: 3
+    CharacterName: "\u59B9\u5F13"
+    battle: 5
+    StepData:
+    - Star: 2
+      ItemID: 31018
+      Amount: 50
+      Gold: 200
+    - Star: 3
+      ItemID: 31018
+      Amount: 100
+      Gold: 400
+    - Star: 4
+      ItemID: 31018
+      Amount: 200
+      Gold: 800
+    - Star: 5
+      ItemID: 31018
+      Amount: 240
+      Gold: 1600
+    - Star: 6
+      ItemID: 31018
+      Amount: 280
+      Gold: 3200
+    - Star: 7
+      ItemID: 31018
+      Amount: 500
+      Gold: 6400
+    SpineIdleName: 08_idle
+    EquipAnimName: 000000_smile
+    AnimatorController: {fileID: 22100000, guid: 261facbb50b9288409188be0c13deaba, type: 2}
+    State:
+      PhysicsAttack: 1600
+      MagicAttack: 0
+      PhysicsDefense: 50
+      MagicDefense: 50
+      HP: 4500
+      currentHp: 0
+      AddHp: 50
+      SkillAttack: 0
+      Cirtical: 0.25
+      CirticalAttack: 2.5
+      Power: 250
+      Intelligence: 100
+      Vit: 150
+      Agility: 300
+      AttackSpeed: 1.15
+      ReleaseSpeed: 1
+      MovSpeed: 100
+      Bloodintake: 0
+      Growth: 0.165
+    SkillTable:
+    - SkillID: PhysicsAttack
+      Type: 0
+      BtnAudioID: 
+    - SkillID: Charm
+      Type: 1
+      BtnAudioID: 
+    - SkillID: Lash
+      Type: 2
+      BtnAudioID: 
+    - SkillID: RnergyPouring
+      Type: 3
+      BtnAudioID: 
+    - SkillID: TouchingMoment
+      Type: 4
+      BtnAudioID: 
+    des: "\u4F0A\u7EEA\u8001\u5A46"
+    deftualBuffID: 01000000
+    twistAssets:
+      PropAgAndaVideoID: 101811_1
+      VideoID: 101811_2
+      AudioHeadID: Twist_Yixu
+      NameImage: {fileID: 21300000, guid: 799b14b6e322e334cb1fafae7813e7ff, type: 3}
+      BKImage: {fileID: 21300000, guid: da72352d413a46449bcd275e19dd7ed5, type: 3}
+      SpineAnimationName: 0
+      SpineSkinName: 0
+    TwistSpine: {fileID: 11400000, guid: 3b4837bc400bacd498d0ba9fb675ed9a, type: 2}
