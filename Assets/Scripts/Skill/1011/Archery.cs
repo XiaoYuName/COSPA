@@ -12,6 +12,7 @@ namespace ARPG
     /// </summary>
     public class Archery : Skill
     {
+        private int AttackCount;
         public override void Init(Character character, SkillType type, SkillItem item)
         {
             base.Init(character, type, item);
@@ -19,14 +20,29 @@ namespace ARPG
         }
         public override void Play()
         {
-            if(Player.animSpeed == 0)return;
-            Player.anim.SetTrigger("Attack");
+            if (AttackCount >= 3)
+            {
+                if(Player.animSpeed == 0)return;
+                AttackCount = 0;
+                Player.anim.SetTrigger("SkipAttack");
+            }
+            else
+            {
+                if(Player.animSpeed == 0)return;
+                Player.anim.SetTrigger("Attack");
+                AttackCount++;
+            }
+
+            
         }
         public void AnimatorMsg(string EventName)
         {
             if (EventName != "Archery") return;
-            GameObject fX =  SkillPoolManager.Release(data.Pools[0].prefab, Player.GetPoint("Body").position, Quaternion.identity);
-           
+            Vector3 CrentPoint = new Vector3(Player.GetPoint("weaponMain_away").position.x + data.RadiusOffset.x,
+                Player.GetPoint("weaponMain_away").position.y + data.RadiusOffset.y);
+            GameObject fX =  SkillPoolManager.Release(data.Pools[0].prefab, CrentPoint, Player.transform.rotation);
+            MovForward movForward = fX.GetComponent<MovForward>();
+            movForward.PlayMovForward(Player,data);
         }
         
         public override void UHandle()
