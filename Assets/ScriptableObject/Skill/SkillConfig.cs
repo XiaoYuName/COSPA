@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.UI.Config;
 using NaughtyAttributes;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine;
@@ -69,6 +70,8 @@ namespace ARPG
         public SkillDamageState SkillType;
         
         public List<ARPG.Pool.Skill.Pool> Pools;
+
+        public List<BuffIDMode> SkillBUFF;
         [Header("技能CG_ID")]
         public MediaReference VideoAsset;
     }

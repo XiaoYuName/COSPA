@@ -251,3 +251,20 @@ MonoBehaviour:
     buffTrigger: 0
     Trigger: 0
     description: "\u6700\u7EC8\u4F24\u5BB3+50%"
+  - BuffName: "\u6D3B\u529B\u56DB\u5C04"
+    SpriteID: "\u6D3B\u529B\u56DB\u5C04BUFF"
+    buffType: 1
+    random: 1
+    buffPic: -1
+    behaviourType: 1
+    PicMode: 10
+    Pool: []
+    continueTime: 30
+    StopTrigger: 0
+    maxLevel: -1
+    NextLevel: -1
+    layer: 1
+    valueBuff: 0.3
+    buffTrigger: 12
+    Trigger: 0
+    description: "\u653B\u51FB\u901F\u5EA6+30%\uFF0C\u79FB\u52A8\u901F\u5EA6+30%\uFF0C\u91CA\u653E\u901F\u5EA6+30%"

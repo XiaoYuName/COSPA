@@ -272,6 +272,7 @@ namespace ARPG
        累计技能,
        累计受击,
        累计移动,
+       直接触发,
    }
 
    public enum StopTrigger
@@ -323,6 +324,7 @@ namespace ARPG
        屠龙者,
        灭龙者,
        猎龙者,
+       活力四射,
    }
 
    public enum IDType

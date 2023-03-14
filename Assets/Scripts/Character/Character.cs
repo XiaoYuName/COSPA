@@ -520,6 +520,13 @@ namespace ARPG
             IBuff newIBuff = newBuff.ToBuff(this);
             if (newBuff.behaviourType == BuffBehaviourType.光环) 
                 GetStateUI().AddBuffItemUI(newIBuff);
+            if (newBuff.buffTrigger == BuffTrigger.直接触发)
+            {
+                GetStateUI().AddBuffItemUI(newIBuff);
+                newIBuff.Trigger(newIBuff.data.buffTrigger);
+                return;
+            }
+
             Buffs.Add(newIBuff);
             RefDicBUFF(newBuff.buffTrigger, newIBuff, 0);
             if (BUFFManager.Instance.isNextType(buff.buffTrigger))
