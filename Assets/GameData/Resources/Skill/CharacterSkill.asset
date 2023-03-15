@@ -763,7 +763,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 65536
     Diamage: 1500
-    icon: {fileID: 21300000, guid: 8674f38226df47d429631a1eb20bbf76, type: 3}
+    icon: {fileID: 21300000, guid: 13a20b89c8d38df4cb4c72392a264992, type: 3}
     SkillName: "\u706B\u7130\u7BAD"
     SkillDes: "\u5411\u524D\u65B9\u53D1\u52A8\u706B\u7130\u7BAD\uFF0C\u5BF9\u547D\u4E2D\u654C\u4EBA\u9020\u6210\u4F24\u5BB3\u5E76\u6301\u7EED\u9020\u6210\u707C\u4F24"
     StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F33\u9636"
@@ -781,6 +781,39 @@ MonoBehaviour:
     - prefab: {fileID: 5728413281991103570, guid: d9a0033d02818d344ad20fe4a3b07d82, type: 3}
       count: 5
     - prefab: {fileID: 5314156243274475663, guid: 532caf560e24b3f42a4b544fbb892650, type: 3}
+      count: 5
+    PoolOffets:
+    - {x: 0, y: -0.6}
+    - {x: 0, y: 0}
+    - {x: 0.39, y: -0.43}
+    SkillBUFF: 
+    VideoAsset: {fileID: 11400000, guid: d5b7172a31c280041a9563ddc917d2cb, type: 2}
+  - ID: ArrowRain
+    CD: 30
+    Duration: 125
+    ReleaseTime: -1
+    Radius: -1
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 500
+    icon: {fileID: 21300000, guid: 13a20b89c8d38df4cb4c72392a264992, type: 3}
+    SkillName: "\u70C8\u7130\u7BAD\u96E8"
+    SkillDes: "\u5411\u5929\u7A7A\u53D1\u52A8\u706B\u7130\u7BAD\uFF0C\u5BF9\u547D\u4E2D\u654C\u4EBA\u9020\u6210\u4F24\u5BB3\u5E76\u6301\u7EED\u9020\u6210\u707C\u4F24"
+    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F36\u9636"
+    ActionStar: 3
+    SkillType:
+      type: 1
+      isMultistage: 0
+      MultistageTime: 0
+      MultistageDamage: 
+    Pools:
+    - prefab: {fileID: 6659547932147062975, guid: 3ac10433633fe5e469cdb573f9ce75a1, type: 3}
+      count: 5
+    - prefab: {fileID: 3000542506874455715, guid: ec9493154fbf92e4a81a7d318aaf1c3d, type: 3}
+      count: 5
+    - prefab: {fileID: 3534610965023720155, guid: df307d817b391d744a4c30ee0e43d083, type: 3}
       count: 5
     PoolOffets:
     - {x: 0, y: -0.6}
