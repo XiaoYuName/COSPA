@@ -1259,7 +1259,7 @@ MonoBehaviour:
         MaxRadius: -4
         MinRandius: 0
         Levle: 17
-      isOpenBuff: 1
+      isOpenBuff: 0
       BuffList:
         Buff_ID: 0a00000005000000
         count: 0
@@ -1361,7 +1361,7 @@ MonoBehaviour:
         MaxRadius: -4
         MinRandius: 0
         Levle: 8
-      isOpenBuff: 1
+      isOpenBuff: 0
       BuffList:
         Buff_ID: 0b0000000c0000000d000000
         count: 1
@@ -1470,7 +1470,7 @@ MonoBehaviour:
         MaxRadius: -4
         MinRandius: 0
         Levle: 15
-      isOpenBuff: 1
+      isOpenBuff: 0
       BuffList:
         Buff_ID: 040000000500000000000000
         count: 1
@@ -1521,9 +1521,9 @@ MonoBehaviour:
         MaxRadius: -4
         MinRandius: 0
         Levle: 10
-      isOpenBuff: 1
+      isOpenBuff: 0
       BuffList:
-        Buff_ID: 060000000700000008000000
+        Buff_ID: 
         count: 1
     - EnemyList:
       - dataID: 200600
@@ -1554,8 +1554,8 @@ MonoBehaviour:
         CreatePos: {x: 2.56, y: -1.87, z: 0}
         MaxRadius: -4
         MinRandius: 0
-        Levle: 20
-      isOpenBuff: 1
+        Levle: 30
+      isOpenBuff: 0
       BuffList:
         Buff_ID: 0d0000000c0000000b000000
         count: 1
@@ -1605,19 +1605,19 @@ MonoBehaviour:
         CreatePos: {x: 0, y: 0, z: 0}
         MaxRadius: 0
         MinRandius: 0
-        Levle: 5
+        Levle: 10
       - dataID: 204000
         count: 2
         CreatePos: {x: 0, y: 0, z: 0}
         MaxRadius: 0
         MinRandius: 0
-        Levle: 5
+        Levle: 10
       - dataID: 203100
         count: 1
         CreatePos: {x: 0, y: 0, z: 0}
         MaxRadius: 0
         MinRandius: 0
-        Levle: 12
+        Levle: 18
       isOpenBuff: 1
       BuffList:
         Buff_ID: 0b0000000c0000000d000000

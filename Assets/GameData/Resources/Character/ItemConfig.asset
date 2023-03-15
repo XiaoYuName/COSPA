@@ -114,7 +114,7 @@ MonoBehaviour:
     level: 1
     spriteID: "\u4F0A\u7EEA\u8BB0\u5FC6\u788E\u7247"
     Type: 4
-    Mode: 1
+    Mode: 2
     attribute: []
     description: "\u8FD9\u91CC\u57CB\u85CF\u7740\u4F60\u4E0E\u5979\u7684\u8BB0\u5FC6\u3002\u53EF\u4EE5\u7528\u4E8E\u4F0A\u7EEA\u89C9\u9192"
     sellAmount: 900
@@ -126,7 +126,7 @@ MonoBehaviour:
     level: 1
     spriteID: "\u51EF\u9732\u8BB0\u5FC6\u788E\u7247"
     Type: 4
-    Mode: 2
+    Mode: 1
     attribute: []
     description: "\u8FD9\u91CC\u57CB\u85CF\u7740\u4F60\u4E0E\u5979\u7684\u8BB0\u5FC6\u3002\u53EF\u4EE5\u7528\u4E8E\u51EF\u9732\u89C9\u9192"
     sellAmount: 90000
@@ -143,6 +143,18 @@ MonoBehaviour:
     description: "\u4F69\u53EF\u8389\u59C6\u8BB0\u5FC6\u788E\u7247"
     sellAmount: 0
     purchase: 0
+    isSell: 0
+    isShowBag: 1
+  - ID: 31011
+    ItemName: "\u7483\u4E43\u8BB0\u5FC6\u788E\u7247"
+    level: 0
+    spriteID: "\u7483\u4E43\u8BB0\u5FC6\u788E\u7247"
+    Type: 4
+    Mode: 2
+    attribute: []
+    description: "\u8FD9\u91CC\u57CB\u85CF\u7740\u4F60\u4E0E\u5979\u7684\u8BB0\u5FC6\u3002\u53EF\u4EE5\u7528\u4E8E\u7483\u4E43\u89C9\u9192"
+    sellAmount: 10000
+    purchase: 10000
     isSell: 0
     isShowBag: 1
   - ID: 101011
@@ -457,6 +469,34 @@ MonoBehaviour:
     - Mode: 8
       value: 0.15
     description: "\u53EA\u6709\u9B45\u9B54\u624D\u80FD\u62FF\u8D77\u7684\u6B66\u5668,\u867D\u8BF4\u662F\u5251,\u4F46\u662F\u770B\u5468\u56F4\u65CB\u8F6C\u7684\u9B54\u529B,\u770B\u8D77\u6765\u5BF9\u9B54\u6CD5\u7684\u52A0\u6301\u66F4\u5927"
+    sellAmount: 60000
+    purchase: 60000
+    isSell: 0
+    isShowBag: 1
+  - ID: 1111111
+    ItemName: "\u751C\u5FC3\u4E4B\u5F13"
+    level: 20
+    spriteID: "\u751C\u5FC3\u4E4B\u5F13"
+    Type: 0
+    Mode: 2
+    attribute:
+    - Mode: 0
+      value: 960
+    - Mode: 16
+      value: 260
+    - Mode: 15
+      value: 2
+    - Mode: 10
+      value: 1
+    - Mode: 13
+      value: 1
+    - Mode: 11
+      value: 1
+    - Mode: 9
+      value: 3
+    - Mode: 8
+      value: 0.15
+    description: "\u53EA\u6709\u53EF\u7231\u7684\u4EBA\u624D\u80FD\u7A7F\u6234\u7684\u5F13"
     sellAmount: 60000
     purchase: 60000
     isSell: 0
