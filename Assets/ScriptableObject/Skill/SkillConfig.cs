@@ -70,6 +70,8 @@ namespace ARPG
         public SkillDamageState SkillType;
         
         public List<ARPG.Pool.Skill.Pool> Pools;
+        [Header("技能预制体偏移量")]
+        public List<Vector2> PoolOffets = new List<Vector2>();
 
         public List<BuffIDMode> SkillBUFF;
         [Header("技能CG_ID")]

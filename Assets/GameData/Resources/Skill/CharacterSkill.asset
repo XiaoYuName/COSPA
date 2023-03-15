@@ -36,11 +36,12 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 10
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Archery
     CD: -1
-    Duration: 10
+    Duration: 125
     ReleaseTime: -1
     Radius: 2.5
     RadiusOffset: {x: 0.39, y: -0.43}
@@ -61,6 +62,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 2172600158281868152, guid: 609b9e4a31ce18840b373c7c9384bea1, type: 3}
       count: 10
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: UE_MagicAttack
@@ -90,6 +92,7 @@ MonoBehaviour:
       count: 5
     - prefab: {fileID: 7721399164225838425, guid: 650212be0d26e7a40aeae07cf5c4b465, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: MagicAttack
@@ -119,6 +122,7 @@ MonoBehaviour:
       count: 5
     - prefab: {fileID: 1907788672798889127, guid: f47bd4624e3bdcd4c8642d2e3ae8e306, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: SkillEnemySoldierAttack
@@ -142,6 +146,7 @@ MonoBehaviour:
       MultistageTime: 0.2
       MultistageDamage: 
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: SkillEnemyMagicAttack
@@ -165,6 +170,7 @@ MonoBehaviour:
       MultistageTime: 0.2
       MultistageDamage: 
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: DoubleChop
@@ -190,6 +196,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1011157772751556, guid: ca63c6ac7458764498741e0306f78528, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Lunchtime
@@ -213,6 +220,7 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: PrincessRaid
@@ -238,6 +246,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1872147318604286, guid: 5bea49531fc500c408823a2e2863106f, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 5d5bae3938eb7624abfa697180b63969, type: 2}
   - ID: Broken
@@ -261,6 +270,7 @@ MonoBehaviour:
       MultistageTime: 0
       MultistageDamage: 
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 5d5bae3938eb7624abfa697180b63969, type: 2}
   - ID: MagicBomb
@@ -286,6 +296,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: HealingMagic
@@ -309,6 +320,7 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: c8000000c8000000c8000000c8000000c8000000c8000000
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: MagicThunder
@@ -334,6 +346,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 3435570873089584574, guid: 5fa4619c39d9e7e41a5d9ea779f4946d, type: 3}
       count: 15
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 57acace1104cd62408a498d23c3ab202, type: 2}
   - ID: FlameBurns
@@ -361,6 +374,7 @@ MonoBehaviour:
       count: 15
     - prefab: {fileID: 6342507552349231116, guid: c685259a143c94b49bc6caf6581204ce, type: 3}
       count: 15
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 57acace1104cd62408a498d23c3ab202, type: 2}
   - ID: BoXing
@@ -384,6 +398,7 @@ MonoBehaviour:
       MultistageTime: 1
       MultistageDamage: 
     Pools: []
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: ThrowStone
@@ -409,6 +424,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 1074851301299871247, guid: 78826927a5b8ffa4bb3d80cd2d4b186c, type: 3}
       count: 2
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Melo
@@ -436,6 +452,7 @@ MonoBehaviour:
       count: 7
     - prefab: {fileID: 8186574560000162925, guid: 9c99db77dbb49c145b453a14529f3b09, type: 3}
       count: 7
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: MagicLock
@@ -461,6 +478,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 9022134803574788783, guid: 999e3bcc42f74b541bbdaca61223fa23, type: 3}
       count: 10
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: GravitationalBlackHole
@@ -486,6 +504,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 7272240401369760330, guid: a6ede51bfb83c9243841c7bcb7f597c0, type: 3}
       count: 2
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 333c02c92d1a16542b6d446e35b280b4, type: 2}
   - ID: Aurora
@@ -519,6 +538,7 @@ MonoBehaviour:
       count: 2
     - prefab: {fileID: 2054283959142997995, guid: 159f97c9823bc43488889f3492481061, type: 3}
       count: 2
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: 333c02c92d1a16542b6d446e35b280b4, type: 2}
   - ID: Spitfire
@@ -544,6 +564,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 2008043505024872480, guid: 4a977b3eeb6357049b1be6195268840b, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Charm
@@ -569,6 +590,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 8732955778285178646, guid: 7dbd4597ca62ad944a2654a2c0a211d2, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Lash
@@ -596,6 +618,7 @@ MonoBehaviour:
       count: 5
     - prefab: {fileID: 5048682453207073191, guid: 9f24e7c9a591cd74e8c48b95594269c5, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: RnergyPouring
@@ -621,6 +644,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6133900582286846402, guid: 76ee9451ef3ea42479f8dd9ff83b7b19, type: 3}
       count: 2
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
   - ID: TouchingMoment
@@ -648,6 +672,7 @@ MonoBehaviour:
       count: 5
     - prefab: {fileID: 4080316614503620887, guid: 1d23e0c5b30c7a44594b94047e036451, type: 3}
       count: 1
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 11400000, guid: debb0a72324d6c349a49e1d522c46cc5, type: 2}
   - ID: Enemy_Bait
@@ -673,6 +698,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 5404440256479476643, guid: f7b95c4ad9cf6e543beeac6009669bce, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: PotsHoot
@@ -698,6 +724,7 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 4233066069687858489, guid: 5a37ea458c4e4ed4dba801cae43277d2, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Skill_Dynamic
@@ -723,5 +750,41 @@ MonoBehaviour:
     Pools:
     - prefab: {fileID: 6231570396792167636, guid: d9325cce5bbbe6348b64fea0b9084bdf, type: 3}
       count: 5
+    PoolOffets: []
     SkillBUFF: 0e000000
     VideoAsset: {fileID: 0}
+  - ID: Oven
+    CD: 15
+    Duration: 125
+    ReleaseTime: -1
+    Radius: -1
+    RadiusOffset: {x: 0, y: 0}
+    Mask:
+      serializedVersion: 2
+      m_Bits: 65536
+    Diamage: 1500
+    icon: {fileID: 21300000, guid: 8674f38226df47d429631a1eb20bbf76, type: 3}
+    SkillName: "\u706B\u7130\u7BAD"
+    SkillDes: "\u5411\u524D\u65B9\u53D1\u52A8\u706B\u7130\u7BAD\uFF0C\u5BF9\u547D\u4E2D\u654C\u4EBA\u9020\u6210\u4F24\u5BB3\u5E76\u6301\u7EED\u9020\u6210\u707C\u4F24"
+    StepUpDes: "\u5C1A\u672A\u89E3\u9501\uFF1A\n\t\t    \u89E3\u9501\u6761\u4EF6\uFF1A\u89C9\u9192\u81F33\u9636"
+    ActionStar: 3
+    SkillType:
+      type: 1
+      isMultistage: 1
+      MultistageTime: 0.2
+      MultistageDamage: c8000000c8000000c8000000c8000000c8000000
+    Pools:
+    - prefab: {fileID: 6659547932147062975, guid: 3ac10433633fe5e469cdb573f9ce75a1, type: 3}
+      count: 5
+    - prefab: {fileID: 3000542506874455715, guid: ec9493154fbf92e4a81a7d318aaf1c3d, type: 3}
+      count: 5
+    - prefab: {fileID: 5728413281991103570, guid: d9a0033d02818d344ad20fe4a3b07d82, type: 3}
+      count: 5
+    - prefab: {fileID: 5314156243274475663, guid: 532caf560e24b3f42a4b544fbb892650, type: 3}
+      count: 5
+    PoolOffets:
+    - {x: 0, y: -0.6}
+    - {x: 0, y: 0}
+    - {x: 0.39, y: -0.43}
+    SkillBUFF: 
+    VideoAsset: {fileID: 11400000, guid: d5b7172a31c280041a9563ddc917d2cb, type: 2}

@@ -15,6 +15,7 @@ namespace ARPG
         private Rigidbody2D rb;
         private Character Player;
         private SkillItem data;
+        private Action<Collider2D> OnCollider;
 
 
         public void Init()
@@ -22,10 +23,11 @@ namespace ARPG
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void PlayMovForward(Character character, SkillItem data)
+        public void PlayMovForward(Character character, SkillItem data,Action<Collider2D> OnColliderAction=null)
         {
             Init();
             Player = character;
+            OnCollider = OnColliderAction;
             this.data = data;
             StartCoroutine(Movenemt());
         }
@@ -53,7 +55,9 @@ namespace ARPG
                 Debug.Log("检测到敌人,准备触发伤害");
                 Enemy enmey = col.transform.GetComponentInParent<Enemy>();
                 Vector3 boundPoint = col.bounds.ClosestPoint(transform.position);
+                OnCollider?.Invoke(col);
                 GameManager.Instance.OptionDamage(Player,enmey,data,boundPoint);
+                
             }
         }
     }
