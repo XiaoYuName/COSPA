@@ -701,11 +701,11 @@ MonoBehaviour:
     SkillBUFF: 
     VideoAsset: {fileID: 0}
   - ID: Skill_Dynamic
-    CD: 10
+    CD: 30
     Duration: -1
     ReleaseTime: -1
     Radius: -1
-    RadiusOffset: {x: -1, y: -1}
+    RadiusOffset: {x: 0, y: 0}
     Mask:
       serializedVersion: 2
       m_Bits: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
       MultistageTime: 0.2
       MultistageDamage: 
     Pools:
-    - prefab: {fileID: 4233066069687858489, guid: 5a37ea458c4e4ed4dba801cae43277d2, type: 3}
+    - prefab: {fileID: 6231570396792167636, guid: d9325cce5bbbe6348b64fea0b9084bdf, type: 3}
       count: 5
     SkillBUFF: 0e000000
     VideoAsset: {fileID: 0}

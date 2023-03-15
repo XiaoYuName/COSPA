@@ -330,9 +330,11 @@ namespace ARPG
                 : targetState.MagicDefense;
             Physics -= (Defense + BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
             //6.根据吸血量回复自身
-            if (attackState.Bloodintake > 0)
+            var Buff_Bloodintake =
+                BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.吸血量);
+            if (attackState.Bloodintake > 0 ||Buff_Bloodintake>0)
             {
-                float BloodHp = Physics * ((float) attackState.Bloodintake / 100);
+                float BloodHp = Physics * (attackState.Bloodintake+Buff_Bloodintake / 100);
                 attack.IReply((int) Mathf.Max(BloodHp, 1));
                 DamageTextItem ReplyItem = SkillPoolManager
                     .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity).GetComponent<DamageTextItem>();
@@ -342,7 +344,7 @@ namespace ARPG
             target.IDamage(Mathf.Max((int) Math.Round(Physics, 0), 1));
             DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, BoundPoint, Quaternion.identity)
                 .GetComponent<DamageTextItem>();
-            damageTextItem.Show(DamageType.Physics, isCirtical, Mathf.Max((int) Math.Round(Physics, 0), 1).ToString());
+            damageTextItem.Show(item.SkillType.type, isCirtical, Mathf.Max((int) Math.Round(Physics, 0), 1).ToString());
         }
 
         /// <summary>
@@ -462,20 +464,21 @@ namespace ARPG
                     Physics -= (Defense +
                                 BUFFManager.Instance.GetTyepValue(target.GetBuffLogic(), BuffType.增益, StateMode.防御力));
                     //6.根据吸血量回复自身
-                    if (attackState.Bloodintake > 0)
+                    var Buff_Bloodintake =
+                        BUFFManager.Instance.GetTyepValue(attack.GetBuffLogic(), BuffType.增益, StateMode.吸血量);
+                    if (attackState.Bloodintake > 0 ||Buff_Bloodintake>0)
                     {
-                        float BloodHp = Physics * ((float) attackState.Bloodintake / 100);
+                        float BloodHp = Physics * (attackState.Bloodintake+Buff_Bloodintake / 100);
                         attack.IReply((int) Mathf.Max(BloodHp, 1));
                         DamageTextItem ReplyItem = SkillPoolManager
-                            .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity)
-                            .GetComponent<DamageTextItem>();
-                        ReplyItem.Show(DamageType.Treatment, false, Mathf.Max(BloodHp, 1).ToString("N0"));
+                            .Release(DamageWordUI, attack.GetPoint(), Quaternion.identity).GetComponent<DamageTextItem>();
+                        ReplyItem.Show(DamageType.Treatment, false, Mathf.Max((int) BloodHp, 1).ToString());
                     }
 
                     target.IDamage(Mathf.Max((int) Math.Round(Physics, 0), 1));
                     DamageTextItem damageTextItem = SkillPoolManager.Release(DamageWordUI, Point, Quaternion.identity)
                         .GetComponent<DamageTextItem>();
-                    damageTextItem.Show(DamageType.Physics, isCirtical,
+                    damageTextItem.Show(item.SkillType.type, isCirtical,
                         Mathf.Max((int) Math.Round(Physics, 0), 1).ToString());
                     yield return new WaitForSeconds(item.SkillType.MultistageTime);
                 }

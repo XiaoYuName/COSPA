@@ -81,16 +81,33 @@ namespace ARPG
                     }
                     break;
                 case BuffType.增益:
-                    if (piccorotine != null)
+                    switch (data.StopTrigger)
                     {
-                        if(curretnLevel<data.maxLevel)
-                            curretnLevel++;
-                        //重新计算层数冷却
-                        RefBuffUI();
-                        BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
-                        return;
+                        case StopTrigger.持续:
+                            BUFFManager.Instance.StartCoroutine(WaitCorontiueTime());
+                            break;
+                        case StopTrigger.层数清空:
+                            if (piccorotine != null)
+                            {
+                                if(curretnLevel<data.maxLevel)
+                                    curretnLevel++;
+                                //重新计算层数冷却
+                                RefBuffUI();
+                                BUFFManager.Instance.AddDictionary(tag,data.buffType,this,data.PicMode,data.valueBuff*curretnLevel);
+                                return;
+                            }
+                            piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
+                            break;
+                        
+                        case StopTrigger.攻击时:
+                            break;
+                        case StopTrigger.释放技能时:
+                            break;
+                        case StopTrigger.受击时:
+                            break;
+                        default:
+                            break;
                     }
-                    piccorotine ??= BUFFManager.Instance.StartCoroutine(WaitPicLevel());
                     break;
                 case BuffType.减益:
                     //TODO: 开始减益目标属性
@@ -102,7 +119,7 @@ namespace ARPG
                 case BuffType.控制:
                     break;
                 default:
-                    throw new Exception("未知BUFF类型");
+                    break;
             }
         }
         //普通层级类型BUFF 持续时间内增加层数
@@ -142,6 +159,22 @@ namespace ARPG
             yield return new WaitForSeconds(data.continueTime);
             RemoveBuffUI();
             BUFFManager.Instance.RemoveAddNextDicionary(tag,data.buffTrigger,this);
+        }
+        
+        /// <summary>
+        /// 持续时间内获得增益效果
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator WaitCorontiueTime()
+        {
+            AddBuffUI(false);
+            foreach (var stateValue in data.PropPicList)
+            {
+                BUFFManager.Instance.AddDictionary(tag,data.buffType,this,stateValue.Mode,stateValue.value);
+            }
+            yield return new WaitForSeconds(data.continueTime);
+            BUFFManager.Instance.RemoveDictionary(tag,data.buffType,this);
+            RemoveBuffUI();
         }
 
         //减层数类型

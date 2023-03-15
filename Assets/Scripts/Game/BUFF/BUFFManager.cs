@@ -153,6 +153,7 @@ namespace ARPG
                 StateMode.释放速度 => 0,
                 StateMode.防御力 => 0,
                 StateMode.魔法攻击力 => 0,
+                StateMode.吸血量 => 0,
                 _ => 1,
             };
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -89,6 +90,9 @@ namespace ARPG
         [ResizableTextArea,Tooltip("描述")]
         public string description;
 
+        [Header("增益列表加成")]
+        public List<StateValue> PropPicList;
+ 
 
         /// <summary>
         /// 将数据转换为IBuff实例

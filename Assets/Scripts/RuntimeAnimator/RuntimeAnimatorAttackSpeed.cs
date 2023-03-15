@@ -11,6 +11,7 @@ public class RuntimeAnimatorAttackSpeed : StateMachineBehaviour
         if (character == null) return;
         if (mode == StateMode.攻击速度)
         {
+            
             animator.speed = character.GetState().AttackSpeed+BUFFManager.Instance.GetTyepValue(character,BuffType.增益,mode);
         }
         else
