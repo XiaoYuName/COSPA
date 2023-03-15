@@ -23,6 +23,7 @@ public class GravitationalBlackHoleFx : MonoBehaviour
     {
         this.attack = attack;
         Skilldata = data;
+        targets.Clear();
         StartCoroutine(WaitClose());
         StartCoroutine(MovTarget(data));
     }

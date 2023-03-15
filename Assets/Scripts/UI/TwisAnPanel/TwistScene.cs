@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ARPG.BasePool;
 using ARPG.Config;
+using ARPG.GameSave;
 using ARPG.UI;
 using DG.Tweening;
 using RenderHeads.Media.AVProVideo;
@@ -107,6 +108,7 @@ namespace ARPG
         /// <param name="twisType">扭蛋类型</param>
         public void OpenTwisScene(int Amount,TwistMode mode,TwistData CurrentInfo,TwistDouble data,TwisType twisType)
         {
+            InventoryManager.Instance.SaveUserData();
             TwistAmount = Amount;
             _currentTwistData = CurrentInfo;
             currentdata = data;
@@ -353,6 +355,7 @@ namespace ARPG
 
                 yield return new WaitForSeconds(0.25f);
             }
+            InventoryManager.Instance.SaveUserData();
             CorotineBtns.gameObject.SetActive(true);
             isTwist = false;
             Debug.Log("四阶动画结束");

@@ -74,7 +74,7 @@ namespace ARPG
                 if (data._TaskTrigger != trigger) continue;
                 if (bag.TaskState == TaskState.未完成)
                     GameTask[ID].currentAmount += value;
-                if (GameTask[ID].currentAmount >= data.RewordAmount)
+                if (GameTask[ID].currentAmount >= data.RewordAmount && GameTask[ID].TaskState != TaskState.已领取)
                 {
                     GameTask[ID].currentAmount = data.RewordAmount;
                     GameTask[ID].TaskState = TaskState.待领取;
