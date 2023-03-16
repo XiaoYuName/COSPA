@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 13.14, z: 0, w: 0}
+  m_Padding: {x: 0, y: 10, z: 0, w: 10}
   m_Softness: {x: 0, y: 0}
 --- !u!1 &3301501482329244386
 GameObject:
@@ -2693,6 +2693,7 @@ GameObject:
   - component: {fileID: 8984404199303766045}
   - component: {fileID: 8984404199303766044}
   - component: {fileID: 8984404199303766019}
+  - component: {fileID: 1925015089510543609}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2715,11 +2716,11 @@ RectTransform:
   m_Father: {fileID: 2987898993045010974}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8984404199303766045
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2771,17 +2772,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 9
-    m_Right: 9
+    m_Left: 10
+    m_Right: 10
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 128, y: 128}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 22.1, y: 9.11}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1925015089510543609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8984404199303766017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &8984404199307762283
 GameObject:
   m_ObjectHideFlags: 0
