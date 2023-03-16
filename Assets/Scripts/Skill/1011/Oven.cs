@@ -74,7 +74,7 @@ namespace ARPG
         {
             VideoManager.Instance.PlayerAvVideo(data.VideoAsset);
             Player.anim.SetFloat("GlobalSpeed",0);
-            yield return new WaitForSeconds(1.9f);
+            yield return new WaitForSeconds(2f);
             Player.anim.SetFloat("GlobalSpeed",1);
                 
         }

@@ -108,7 +108,7 @@ namespace ARPG
         /// <param name="twisType">扭蛋类型</param>
         public void OpenTwisScene(int Amount,TwistMode mode,TwistData CurrentInfo,TwistDouble data,TwisType twisType)
         {
-            InventoryManager.Instance.SaveUserData();
+            InventoryManager.Instance.SaveUserData(false);
             TwistAmount = Amount;
             _currentTwistData = CurrentInfo;
             currentdata = data;
@@ -243,8 +243,11 @@ namespace ARPG
                     BK_Video.gameObject.SetActive(true);
                     BK_Video.Play(reference,false,true);
                     AudioManager.Instance.PlayAudio(characterData.twistAssets.AudioHeadID);
+                    if(!String.IsNullOrEmpty(characterData.twistAssets.AudioVideoID))
+                        AudioManager.Instance.PlayAudio(characterData.twistAssets.AudioVideoID);
                     yield return new WaitForSeconds(Convert.ToSingle(reference.length));
                     BK_Video.Play(VideoAssets,true,false);
+                    
                     Name_3Star.gameObject.SetActive(true);
                     Name_3Image.sprite = characterData.twistAssets.NameImage;
                     Name_3Star.Play();
@@ -355,7 +358,7 @@ namespace ARPG
 
                 yield return new WaitForSeconds(0.25f);
             }
-            InventoryManager.Instance.SaveUserData();
+            InventoryManager.Instance.SaveUserData(false);
             CorotineBtns.gameObject.SetActive(true);
             isTwist = false;
             Debug.Log("四阶动画结束");

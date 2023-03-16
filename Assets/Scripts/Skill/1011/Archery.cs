@@ -13,6 +13,7 @@ namespace ARPG
     public class Archery : Skill
     {
         private int AttackCount;
+        private bool isNextLine;
         public override void Init(Character character, SkillType type, SkillItem item)
         {
             base.Init(character, type, item);
@@ -21,10 +22,11 @@ namespace ARPG
         }
         public override void Play()
         {
-            if (AttackCount > 2)
+            if (AttackCount >= 2)
             {
                 if(Player.animSpeed == 0)return;
                 AttackCount = 0;
+                isNextLine = true;
                 Player.anim.SetTrigger("SkipAttack");
             }
             else
@@ -43,8 +45,9 @@ namespace ARPG
                 Player.GetPoint("weaponMain_away").position.y + data.RadiusOffset.y);
             GameObject fX =  SkillPoolManager.Release(data.Pools[0].prefab, CrentPoint, Player.transform.rotation);
             MovForward movForward = fX.GetComponent<MovForward>();
-            if (AttackCount > 2)
+            if (isNextLine)
             {
+                isNextLine = false;
                 movForward.PlayMovForward(Player,data);
                
             }

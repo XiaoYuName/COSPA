@@ -281,6 +281,9 @@ namespace ARPG.Config
         [Header("对应视频语音ID")]
         public string AudioHeadID;
 
+        [Header("对应视频环境音ID")]
+        public string AudioVideoID;
+        
         [Header("一,二星角色名字ID")]
         public Sprite NameImage;
 

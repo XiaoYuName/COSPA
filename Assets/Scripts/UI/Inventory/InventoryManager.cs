@@ -504,13 +504,14 @@ namespace ARPG
         /// <summary>
         /// 保存当前数据到文件
         /// </summary>
-        public void SaveUserData()
+        public void SaveUserData(bool isShowPop = true)
         {
             currentUser.SaveTime = DateTime.Now;
             currentUser.GemsthoneAmount = GetItemBag(Settings.GemsthoneID).count;
             currentUser.ManaAmount = GetItemBag(Settings.ManaID).count;
             SaveGameManager.Instance.Save(currentUser.UID);
-            UISystem.Instance.ShowPopWindows("提示","数据保存成功","确定");
+            if(isShowPop)
+             UISystem.Instance.ShowPopWindows("提示","数据保存成功","确定");
         }
 
         private Dictionary<string, Action<ItemBag>> ItemRegList = new Dictionary<string, Action<ItemBag>>();
