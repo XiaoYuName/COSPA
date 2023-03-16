@@ -5,7 +5,7 @@ using ARPG;
 using UnityEngine;
 
 /// <summary>
-/// 魅惑子粒子
+/// 子粒子伤害触发器
 /// </summary>
 public class Charm_Fx : MonoBehaviour
 {
@@ -25,21 +25,31 @@ public class Charm_Fx : MonoBehaviour
     }
 
 
+    // private void OnParticleCollision(GameObject other)
+    // {
+    //     List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
+    //     int number = charmParticleSystem.GetCollisionEvents(other, collisionEvents);
+    //     Debug.Log("当前同时碰到了"+number+"个怪物");
+    //     if (attack == null || data == null) return;
+    //     if(number <= 0)return;
+    //
+    //
+    //     for (int i = 0; i < number; i++)
+    //     {
+    //         IDamage target = collisionEvents[i].colliderComponent.transform.GetComponentInParent<IDamage>();
+    //         if(target == null)continue;
+    //         GameManager.Instance.OptionDamage(attack,target,data,target.GetPoint());
+    //     }
+    //     
+    // }
     private void OnParticleCollision(GameObject other)
     {
-        List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
-        int number = charmParticleSystem.GetCollisionEvents(other, collisionEvents);
-        Debug.Log("当前同时碰到了"+number+"个怪物");
         if (attack == null || data == null) return;
-        if(number <= 0)return;
-
-
-        for (int i = 0; i < number; i++)
+        if (other.CompareTag("Character"))
         {
-            IDamage target = collisionEvents[i].colliderComponent.transform.GetComponentInParent<IDamage>();
-            if(target == null)continue;
+            IDamage target = other.transform.GetComponentInParent<IDamage>();
+            if(target == null)return;
             GameManager.Instance.OptionDamage(attack,target,data,target.GetPoint());
         }
-        
     }
 }

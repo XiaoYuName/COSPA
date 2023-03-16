@@ -20,7 +20,7 @@ namespace ARPG
         }
         public override void Play()
         {
-            if (AttackCount >= 3)
+            if (AttackCount >= 2)
             {
                 if(Player.animSpeed == 0)return;
                 AttackCount = 0;
@@ -42,7 +42,17 @@ namespace ARPG
                 Player.GetPoint("weaponMain_away").position.y + data.RadiusOffset.y);
             GameObject fX =  SkillPoolManager.Release(data.Pools[0].prefab, CrentPoint, Player.transform.rotation);
             MovForward movForward = fX.GetComponent<MovForward>();
-            movForward.PlayMovForward(Player,data);
+            if (AttackCount >= 2)
+            {
+                movForward.PlayMovForward(Player,data, delegate(Collider2D collider2D)
+                {
+                    movForward.gameObject.SetActive(false);
+                });
+            }
+            else
+            {
+                movForward.PlayMovForward(Player,data);
+            }
         }
         
         public override void UHandle()
