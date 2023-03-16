@@ -65,9 +65,9 @@ namespace ARPG
         /// <param name="levle">等级</param>
         /// <param name="state">角色CharacterState</param>
         /// <returns></returns>
-        public static CharacterState GetLevelGrowthState(int levle,CharacterState state)
+        public static CharacterState GetLevelGrowthState(float levle,CharacterState state)
         {
-            state.Power = (int)(state.Power * (1+(levle/10)*(1+state.Growth)));
+            state.Power =Mathf.RoundToInt(state.Power * (1+levle/10)*(1+state.Growth));
             state.Vit = (int)(state.Vit * (1+(levle/100)*(1+state.Growth)));
             state.Agility = (int)(state.Agility *(1+(levle/500)*(1+state.Growth)));
             state.Intelligence = (int)(state.Intelligence *  (1+(levle/10)*(1+state.Growth)));
