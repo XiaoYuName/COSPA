@@ -10,6 +10,7 @@ public class HomeScnen : UIBase
     private Button TaskBtn;
     private Button UpGameBtn;
     private Button ShorBtn;
+    private Button DanceBtn;
     public override void Init()
     {
         TaskBtn = Get<Button>("UIMask/DownUI/Content/TaskBtn");
@@ -34,5 +35,8 @@ public class HomeScnen : UIBase
             }, 0.25f);
         },UiAudioID.UI_click);
         WaitUtils.WaitTimeDo(1.5f, () => UISystem.Instance.ShowPopNotice());
+
+        DanceBtn = Get<Button>("UIMask/TopUI/DanceBtn");
+        Bind(DanceBtn,()=>UISystem.Instance.OpenUI("DanceActivity"),UiAudioID.OnChick);
     }
 }

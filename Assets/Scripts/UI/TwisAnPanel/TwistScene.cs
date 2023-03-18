@@ -411,6 +411,7 @@ namespace ARPG
                 return;
             }
             InventoryManager.Instance.DeleteItemBag(GemsthoneBag.ID,Amount);
+            TaskManager.Instance.TriggerTask(TaskTrigger.扭蛋,Amount);
             OpenTwisScene(TwistAmount,_mode,_currentTwistData,currentdata, _type);
         }
         
