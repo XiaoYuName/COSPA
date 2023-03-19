@@ -149,7 +149,7 @@ namespace ARPG
                     AutoTopRootUI.Add(TopAuto);
                 }
 
-                var TopGame = transform.parent.Find("TopAutoGameScene") as RectTransform;
+                var TopGame = transform.parent.Find("TopAutoGameScene").Find(ParentName) as RectTransform;
                 if (TopGame == null)
                 {
                     GameObject obj = new GameObject(ParentName);
@@ -159,7 +159,7 @@ namespace ARPG
                 }
                 else
                 {
-                    TopAutoGameSceneRoot.Add(TopAuto);
+                    TopAutoGameSceneRoot.Add(TopGame);
                 }
             }
         }
