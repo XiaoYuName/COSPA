@@ -174,6 +174,10 @@ namespace ARPG
        /// 宽度顶层
        /// </summary>
        AutoTop,
+       /// <summary>
+       /// 高GameScene层
+       /// </summary>
+       TopAutoGameScene,
    }
 
 

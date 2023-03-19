@@ -49,6 +49,10 @@ namespace ARPG
         /// </summary>
         private List<RectTransform> AutoTopRootUI;
 
+        /// <summary>
+        /// 高与GameScene 场景UI的层级,一般用于全屏UI
+        /// </summary>
+        private List<RectTransform> TopAutoGameSceneRoot;
         protected override void Awake()
         {
             base.Awake();
@@ -68,6 +72,7 @@ namespace ARPG
             AutoUIRootDonw = new List<RectTransform>();
             TopAutoUIRootTop = new List<RectTransform>();
             AutoTopRootUI = new List<RectTransform>();
+            TopAutoGameSceneRoot = new List<RectTransform>();
                 InitParent();
             InitLoadPrefab();
         }
@@ -144,6 +149,18 @@ namespace ARPG
                     AutoTopRootUI.Add(TopAuto);
                 }
 
+                var TopGame = transform.parent.Find("TopAutoGameScene") as RectTransform;
+                if (TopGame == null)
+                {
+                    GameObject obj = new GameObject(ParentName);
+                    obj.transform.parent = transform;
+                    obj.transform.localPosition = Vector3.zero;
+                    TopAutoGameSceneRoot.Add(obj.transform as RectTransform);
+                }
+                else
+                {
+                    TopAutoGameSceneRoot.Add(TopAuto);
+                }
             }
         }
         
@@ -188,6 +205,7 @@ namespace ARPG
                 UITableType.UIDonw => AutoUIRootDonw.Find(a => a.name == uiname),
                 UITableType.TopUIRoot => TopAutoUIRootTop.Find(a=>a.name == uiname),
                 UITableType.AutoTop => AutoTopRootUI.Find(a=>a.name == uiname),
+                UITableType.TopAutoGameScene=> TopAutoGameSceneRoot.Find(a=>a.name==uiname),
                 _=>  UIRoot.Find(a => a.name == uiname),
             };
         }
