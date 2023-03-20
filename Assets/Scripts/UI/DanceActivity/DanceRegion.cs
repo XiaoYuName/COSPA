@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Config;
 using ARPG.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace ARPG
         private GameObject MainContent;
         private Button MainBtn;
         private GameObject AudioContent;
+        private DanceConfig DanceConfig;
+        private SwitchAudioContentUI AudioContentUI;
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Back/Top/CloseBtn");
@@ -22,7 +25,16 @@ namespace ARPG
             MainBtn = Get<Button>("UIMask/Back/Down/ENTER");
             MainContent = Get("UIMask/Back/Center/MainContent");
             AudioContent = Get("UIMask/Back/Center/AudioContent");
+            DanceConfig = ConfigManager.LoadConfig<DanceConfig>("Activity/DanceConfig");
+            AudioContentUI = Get<SwitchAudioContentUI>("UIMask/Back/Center/AudioContent/Center");
+            AudioContentUI.Init();
+            InitSwitchAudioContentUI();
             Bind(MainBtn,()=>SwitchTbaleBtn(DancePanelType.AudioContent),UiAudioID.OnChick);
+        }
+
+        private void InitSwitchAudioContentUI()
+        {
+            AudioContentUI.InitData(DanceConfig._danceDatas);
         }
 
         private void SwitchTbaleBtn(DancePanelType table)
@@ -37,6 +49,7 @@ namespace ARPG
                 case DancePanelType.AudioContent:
                     MainContent.gameObject.SetActive(false);
                     AudioContent.gameObject.SetActive(true);
+                    AudioContentUI.SetCurrentIndexUI();
                     Bind(CloseBtn,()=>SwitchTbaleBtn(DancePanelType.MainCharacter),UiAudioID.OnChick);
                     break;
             }
