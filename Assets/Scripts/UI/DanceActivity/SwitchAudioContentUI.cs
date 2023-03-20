@@ -69,6 +69,11 @@ namespace ARPG.UI
             SetIndexUI(CurretnIndex);
         }
 
+        public DanceData GetCurrentDanceData()
+        {
+            return CurrentData[CurretnIndex];
+        }
+
     }
 }
 

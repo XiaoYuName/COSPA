@@ -18,6 +18,7 @@ namespace ARPG
         private GameObject AudioContent;
         private DanceConfig DanceConfig;
         private SwitchAudioContentUI AudioContentUI;
+        private Button GameSceneBtn;
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Back/Top/CloseBtn");
@@ -28,8 +29,10 @@ namespace ARPG
             DanceConfig = ConfigManager.LoadConfig<DanceConfig>("Activity/DanceConfig");
             AudioContentUI = Get<SwitchAudioContentUI>("UIMask/Back/Center/AudioContent/Center");
             AudioContentUI.Init();
+            GameSceneBtn = Get<Button>("UIMask/Back/Center/AudioContent/Down/Top_Back");
             InitSwitchAudioContentUI();
             Bind(MainBtn,()=>SwitchTbaleBtn(DancePanelType.AudioContent),UiAudioID.OnChick);
+            Bind(GameSceneBtn,OnGameDenceScene,UiAudioID.OnChick);
         }
 
         private void InitSwitchAudioContentUI()
@@ -53,6 +56,17 @@ namespace ARPG
                     Bind(CloseBtn,()=>SwitchTbaleBtn(DancePanelType.MainCharacter),UiAudioID.OnChick);
                     break;
             }
+        }
+
+        private void OnGameDenceScene()
+        {
+            DanceData SelectDance = AudioContentUI.GetCurrentDanceData();
+            MainPanel.Instance.Close();
+            MessageAction.OnTransitionEvent("DanceScene",Vector3.zero);
+            Close();
+            UISystem.Instance.CloseUI("DanceActivity");
+            ActivityGameScene gameScene = UISystem.Instance.GetUI<ActivityGameScene>("DanceGameScene",true);
+            gameScene.InitData(SelectDance);
         }
     }
 
