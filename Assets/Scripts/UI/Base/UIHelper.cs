@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 
 /// <summary>
@@ -31,5 +32,14 @@ public static class UIHelper
         {
             Object.Destroy(child.gameObject);
         }
+    }
+    
+    /// <summary>
+    /// 播放当前角色Spine动画
+    /// </summary>
+    /// <param name="playName">动画名称</param>
+    public  static void PlaySpineAnimation(SkeletonGraphic SpineController,string playName,bool isLoop)
+    {
+        SpineController.AnimationState.SetAnimation(0, playName, isLoop);
     }
 }

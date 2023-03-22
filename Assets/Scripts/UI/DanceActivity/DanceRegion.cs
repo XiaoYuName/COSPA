@@ -18,7 +18,10 @@ namespace ARPG
         private GameObject AudioContent;
         private DanceConfig DanceConfig;
         private SwitchAudioContentUI AudioContentUI;
+        private DanceCharacterContentUI DanceCharacterContentUI;
+        private GameObject CharacterPanel;
         private Button GameSceneBtn;
+        private Button CharacterBtn;
         public override void Init()
         {
             CloseBtn = Get<Button>("UIMask/Back/Top/CloseBtn");
@@ -28,18 +31,24 @@ namespace ARPG
             AudioContent = Get("UIMask/Back/Center/AudioContent");
             DanceConfig = ConfigManager.LoadConfig<DanceConfig>("Activity/DanceConfig");
             AudioContentUI = Get<SwitchAudioContentUI>("UIMask/Back/Center/AudioContent/Center");
+            DanceCharacterContentUI = Get<DanceCharacterContentUI>("UIMask/Back/Center/Character_Content");
+            DanceCharacterContentUI.Init();
             AudioContentUI.Init();
+            CharacterBtn = Get<Button>("UIMask/Back/Down/SwitchCharacterPanel");
             GameSceneBtn = Get<Button>("UIMask/Back/Center/AudioContent/Down/Top_Back");
-            InitSwitchAudioContentUI();
+            CharacterPanel = Get("UIMask/Back/Center/Character_Content");
+            InitContentUI();
+            Bind(CharacterBtn,()=>SwitchTbaleBtn(DancePanelType.CharacterContent),UiAudioID.OnChick);
             Bind(MainBtn,()=>SwitchTbaleBtn(DancePanelType.AudioContent),UiAudioID.OnChick);
             Bind(GameSceneBtn,OnGameDenceScene,UiAudioID.OnChick);
         }
 
-        private void InitSwitchAudioContentUI()
+        private void InitContentUI()
         {
             AudioContentUI.InitData(DanceConfig._danceDatas);
+            DanceCharacterContentUI.InitData(DanceConfig._danceCharacter);
         }
-
+        
         private void SwitchTbaleBtn(DancePanelType table)
         {
             switch (table)
@@ -47,12 +56,20 @@ namespace ARPG
                 case DancePanelType.MainCharacter:
                     MainContent.gameObject.SetActive(true);
                     AudioContent.gameObject.SetActive(false);
+                    CharacterPanel.gameObject.SetActive(false);
                     Bind(CloseBtn,Close,UiAudioID.OnChick);
                     break;
                 case DancePanelType.AudioContent:
                     MainContent.gameObject.SetActive(false);
                     AudioContent.gameObject.SetActive(true);
+                    CharacterPanel.gameObject.SetActive(false);
                     AudioContentUI.SetCurrentIndexUI();
+                    Bind(CloseBtn,()=>SwitchTbaleBtn(DancePanelType.MainCharacter),UiAudioID.OnChick);
+                    break;
+                case DancePanelType.CharacterContent:
+                    MainContent.gameObject.SetActive(false);
+                    AudioContent.gameObject.SetActive(false);
+                    CharacterPanel.gameObject.SetActive(true);
                     Bind(CloseBtn,()=>SwitchTbaleBtn(DancePanelType.MainCharacter),UiAudioID.OnChick);
                     break;
             }
@@ -74,6 +91,7 @@ namespace ARPG
     {
         MainCharacter,
         AudioContent,
+        CharacterContent,
     }
 }
 
