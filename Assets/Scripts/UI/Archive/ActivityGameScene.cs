@@ -26,6 +26,11 @@ namespace ARPG
             AudioManager.Instance.PlayAudio(data.AudioID);
         }
 
+        public void CreatPlayer()
+        {
+            
+        }
+
         /// <summary>
         /// 视频结束,游戏结束
         /// </summary>
